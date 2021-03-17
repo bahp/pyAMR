@@ -25,6 +25,10 @@ Welcome to pyAMR's documentation!
    _examples/forecasting/index
    _examples/nhs/index
 
+.. toctree::
+   :maxdepth: 2
+   :caption: API
+   :hidden:
 
    _apidoc/modules
 
