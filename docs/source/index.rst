@@ -1,6 +1,18 @@
 Welcome to pyAMR's documentation!
 =================================
 
+``pyAMR`` is a lightweight library to compute and display various
+Antimicrobial Resistance (AMR) statistics.
+
+.. .. image:: /logos/blender.png
+   :width: 150
+   :align: right
+   :alt: DataBlend
+
+The code of the project is on Github: https://github.com/bahp/datablend
+
+The coverage: `Link <./_coverage/index.html>`_
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
