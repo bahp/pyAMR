@@ -1,5 +1,5 @@
-Welcome to fyp2020-username's documentation!
-============================================
+Welcome to pyAMR's documentation!
+=================================
 
 .. toctree::
    :maxdepth: 2
@@ -10,7 +10,9 @@ Welcome to fyp2020-username's documentation!
    :caption: Tutorial
    :hidden:
 
-   tutorials/setup
+   usage/introduction
+   usage/installation
+   usage/quickstart
 
 
 .. toctree::
@@ -19,6 +21,12 @@ Welcome to fyp2020-username's documentation!
    :hidden:
 
    _examples/tutorial/index
+   _examples/indexes/index
+   _examples/forecasting/index
+   _examples/nhs/index
+
+
+   _apidoc/modules
 
 Indices and tables
 ==================
@@ -26,3 +34,5 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+

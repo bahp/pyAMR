@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core.regression package &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyamr.core.stats package" href="pyamr.core.stats.html" />
+    <link rel="prev" title="pyamr.core package" href="pyamr.core.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">The tutorial gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Calculating AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Time-series forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyamr</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyamr.html">pyamr package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">pyamr</a> &raquo;</li>
+        
+          <li><a href="pyamr.html">pyamr package</a> &raquo;</li>
+        
+          <li><a href="pyamr.core.html">pyamr.core package</a> &raquo;</li>
+        
+      <li>pyamr.core.regression package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/_apidoc/pyamr.core.regression.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pyamr-core-regression-package">
+<h1>pyamr.core.regression package<a class="headerlink" href="#pyamr-core-regression-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyamr.core.regression.arima">
+<span id="pyamr-core-regression-arima-module"></span><h2>pyamr.core.regression.arima module<a class="headerlink" href="#module-pyamr.core.regression.arima" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.regression.arima.ARIMAWrapper">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.regression.arima.</span></code><code class="sig-name descname"><span class="pre">ARIMAWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.regression.wreg.RegressionWrapper</span></code></a></p>
+<p>Description</p>
+<dl class="py method">
+<dt id="pyamr.core.regression.arima.ARIMAWrapper.as_summary">
+<code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates a summary string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.arima.ARIMAWrapper.auto">
+<code class="sig-name descname"><span class="pre">auto</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['nc',</span> <span class="pre">'c']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.auto" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method finds the best arima through bruteforce.</p>
+<p>Note: It uses grid search through the base wrapper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endog</strong> (<em>array-like</em>) – The endogenous variable (aka. time series data)</p></li>
+<li><p><strong>exog</strong> (<em>array-like</em>) – The exogenous variable (by default is the time t starting in 0)</p></li>
+<li><p><strong>ic</strong> (<em>string</em>) – The information criteria which should be any of the params which
+are set in the wrapper (see method _init_result).</p></li>
+<li><p><strong>max_ar</strong> (<em>number</em>) – The maximum autorregresive order to inspect.</p></li>
+<li><p><strong>max_ma</strong> (<em>number</em>) – The maximum moving average order to inspect.</p></li>
+<li><p><strong>max_d</strong> (<em>number</em>) – The maximum difference to inspect.</p></li>
+<li><p><strong>warn</strong> (<em>string, options = {ignore, raise}</em>) – Whether or not to ignore the warnings raised</p></li>
+<li><p><strong>return_fits</strong> (<em>bool</em>) – Whether or not to return all the fits. If false only the best model
+is returned. If true all the models and the best model are returned
+separately.</p></li>
+<li><p><strong>converged</strong> (<em>bool</em>) – Whether or not to return only converging models. If false all models
+are returned. If true, only those models that converged are returned.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.arima.ARIMAWrapper.conf_int_forecast">
+<code class="sig-name descname"><span class="pre">conf_int_forecast</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.conf_int_forecast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the out-sample confidence interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>predictions</strong> (<em>array-like</em>) – The predictions done by the model.</p></li>
+<li><p><strong>alpha</strong> (<em>int</em>) – The alpha to configure the confidence interval.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.arima.ARIMAWrapper.evaluate">
+<code class="sig-name descname"><span class="pre">evaluate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates a dictionary with the relevant attributes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is an issue with the method conf_int(alpha). It can receive
+as input parameters a pandas series or a numpy array. We are using
+it with numpy array as input, hence when pandas series is passed
+the method _init_result gives an error.</p>
+</div>
+<p>&#64;see: statsmodels.Arima
+&#64;see: statsmodels.ArimaResults</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>the confidence interval.</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dictionary</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>map with all the parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.arima.ARIMAWrapper.get_prediction">
+<code class="sig-name descname"><span class="pre">get_prediction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.get_prediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method calls the predict function in ARIMA.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The confidence intervals have been implemented using the functions
+<code class="docutils literal notranslate"><span class="pre">_forecast_conf_int()</span></code> and <code class="docutils literal notranslate"><span class="pre">_forecast_error()</span></code> implemented in the
+statsmodels.ts.arima_model.ARIMAResults. As such, it produces the
+same confidence intervals than the method <code class="docutils literal notranslate"><span class="pre">plot_predict()</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameter start refers to the original series. As such, if the
+series has been differenced (e.g. d=1) the first observation has
+been lost. In those cases, start has to be greater or equal to d.</p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Review the predictions when dynamic is set to true.</p></li>
+<li><p>Review the confidence intervals (in and out sample)</p></li>
+<li><p>Review the prediction intervals.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>int (optional)</em>) – The time t to start the prediction</p></li>
+<li><p><strong>end</strong> (<em>int (optional)</em>) – The time t to end the prediction</p></li>
+<li><p><strong>dynamic</strong> (<em>bool</em>) – The dynamic keyword affects in-sample prediction. If dynamic is false
+then the in-sample lagged values are used for prediction. if dynamic
+is true, then in-sample forecasts are used in place of lagged
+dependent variables. The first forecasted value is start.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – The alpha value when creating the norm point percent function to
+compute the confidence intervals for the forecast predictions.</p></li>
+<li><p><strong>typ</strong> (<em>string-like, options = {linear, levels}</em>) – Wether to predict the original levels (levels) or predict in terms of
+the differenced endogenous variables.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pyamr-core-regression-pyarima-module">
+<h2>pyamr.core.regression.pyarima module<a class="headerlink" href="#pyamr-core-regression-pyarima-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pyamr-core-regression-pyarima2-module">
+<h2>pyamr.core.regression.pyarima2 module<a class="headerlink" href="#pyamr-core-regression-pyarima2-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyamr.core.regression.sarimax">
+<span id="pyamr-core-regression-sarimax-module"></span><h2>pyamr.core.regression.sarimax module<a class="headerlink" href="#module-pyamr.core.regression.sarimax" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.regression.sarimax.SARIMAXWrapper">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.regression.sarimax.</span></code><code class="sig-name descname"><span class="pre">SARIMAXWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.regression.wreg.RegressionWrapper</span></code></a></p>
+<p>Description</p>
+<dl class="py method">
+<dt id="pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary">
+<code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates a summary string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.sarimax.SARIMAXWrapper.auto">
+<code class="sig-name descname"><span class="pre">auto</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[12]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['n',</span> <span class="pre">'c',</span> <span class="pre">'t',</span> <span class="pre">'ct']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.auto" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method finds the best arima through bruteforce.</p>
+<p>Note: It uses grid search through the base wrapper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endog</strong> (<em>array-like</em>) – The endogenous variable (aka. time series data)</p></li>
+<li><p><strong>exog</strong> (<em>array-like</em>) – The exogenous variable (by default is the time t starting in 0)</p></li>
+<li><p><strong>ic</strong> (<em>string</em>) – The information criteria which should be any of the params which
+are set in the wrapper (see method _init_result).</p></li>
+<li><p><strong>max_ar</strong> (<em>number</em>) – The maximum autorregresive order to inspect.</p></li>
+<li><p><strong>max_ma</strong> (<em>number</em>) – The maximum moving average order to inspect.</p></li>
+<li><p><strong>max_d</strong> (<em>number</em>) – The maximum difference to inspect.</p></li>
+<li><p><strong>max_P</strong> (<em>number</em>)</p></li>
+<li><p><strong>max_D</strong> (<em>number</em>)</p></li>
+<li><p><strong>max_Q</strong> (<em>number</em>)</p></li>
+<li><p><strong>list_s</strong> (<em>array-like</em>)</p></li>
+<li><p><strong>warn</strong> (<em>string, options = {ignore, raise}</em>) – Whether or not to ignore the warnings raised</p></li>
+<li><p><strong>return_fits</strong> (<em>bool</em>) – Whether or not to return all the fits. If false only the best model
+is returned. If true all the models and the best model are returned
+separately.</p></li>
+<li><p><strong>converged</strong> (<em>bool</em>) – Whether or not to return only converging models. If false all models
+are returned. If true, only those models that converged are returned.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate">
+<code class="sig-name descname"><span class="pre">evaluate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates a dictioanry with the relevant parameters.</p>
+<p>&#64;see: statsmodels.Sarimax
+&#64;see: statsmodels.SarimaxResults</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>significance level</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dictionary</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dictionary with the parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction">
+<code class="sig-name descname"><span class="pre">get_prediction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method calls the get prediction function in ARIMA.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>int (optional)</em>) – The time t to start the prediction</p></li>
+<li><p><strong>end</strong> (<em>int (optional)</em>) – The time t to end the prediction</p></li>
+<li><p><strong>dynamic</strong> (<em>bool</em>) – The dynamic keyword affects in-sample prediction. If dynamic is false
+then the in-sample lagged values are used for prediction. if dynamic
+is true, then in-sample forecasts are used in place of lagged dependent
+variables. The first forecasted value is start.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – The alpha value when creating the norm point percent function to
+compute the confidence intervals for the forecast predictions.</p></li>
+<li><p><strong>typ</strong> (<em>string-like, options = {linear, levels}</em>) – Wether to predict the original levels (levels) or predict in terms of
+the differenced endogenous variables.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.sarimax.SARIMAXWrapper.load">
+<code class="sig-name descname"><span class="pre">load</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method loads the information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.sarimax.SARIMAXWrapper.save">
+<code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method saves the information.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyamr.core.regression.wbase">
+<span id="pyamr-core-regression-wbase-module"></span><h2>pyamr.core.regression.wbase module<a class="headerlink" href="#module-pyamr.core.regression.wbase" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.regression.wbase.BaseWrapper">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wbase.</span></code><code class="sig-name descname"><span class="pre">BaseWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.as_series">
+<code class="sig-name descname"><span class="pre">as_series</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.as_series" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method returns a series with all the information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>label</strong> (<em>label to concatenate to index name (e.g. trend to label-trend).</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>series</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas series with the results, configuration and model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.as_summary">
+<code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method displays the final summary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.attrs">
+<code class="sig-name descname"><span class="pre">attrs</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.attrs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method returns all the defined attributes as tuples.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.fargs">
+<code class="sig-name descname"><span class="pre">fargs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.fargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method returns elements in kwargs which are function inputs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.fit">
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method performs the fit.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.from_list_dataframe">
+<code class="sig-name descname"><span class="pre">from_list_dataframe</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper_list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.from_list_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>This methods creates a dataframe summary from a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wrapper_list</strong> (<em>list with wrapper objects.</em>)</p></li>
+<li><p><strong>flabel</strong> (<em>if include the class _name in the index.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>summary</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.grid_search">
+<code class="sig-name descname"><span class="pre">grid_search</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.grid_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes grid search.</p>
+<p>It creates all the possible combinations combining the arguments passed.
+Such arguments should be for the constructor and the fit methods. The
+results are stored in an array with the corresponding wrapper instances.</p>
+<p>Notes: The wrappers need to have the method fit implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>con_kwargs</strong> (<em>arguments to be passed to the constructor method.</em>)</p></li>
+<li><p><strong>fit_kwargs</strong> (<em>arguments to be passed to the fit method.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>summary</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>summary with all the elements.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.grid_search_dataframe">
+<code class="sig-name descname"><span class="pre">grid_search_dataframe</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_params</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.grid_search_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes grid search and stores results in a dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>con_kwargs</strong> (<em>arguments to be passed to the constructor method.</em>)</p></li>
+<li><p><strong>fit_kwargs</strong> (<em>arguments to be passed to the fit method.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>summary</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>summary with all the elements.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.load">
+<code class="sig-name descname"><span class="pre">load</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method loads the wrapper.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method returns all the defined methods as tuples.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wbase.BaseWrapper.save">
+<code class="sig-name descname"><span class="pre">save</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method saves the wrapper.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyamr.core.regression.wls">
+<span id="pyamr-core-regression-wls-module"></span><h2>pyamr.core.regression.wls module<a class="headerlink" href="#module-pyamr.core.regression.wls" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.regression.wls.PredictionResult">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wls.</span></code><code class="sig-name descname"><span class="pre">PredictionResult</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cilo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ciup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pstd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pilo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">piup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endog</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.PredictionResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyamr.core.regression.wls.WLSWrapper">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wls.</span></code><code class="sig-name descname"><span class="pre">WLSWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.regression.wreg.RegressionWrapper</span></code></a></p>
+<p>The description…</p>
+<dl class="py method">
+<dt id="pyamr.core.regression.wls.WLSWrapper.as_summary">
+<code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates a summary string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wls.WLSWrapper.evaluate">
+<code class="sig-name descname"><span class="pre">evaluate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method set all the variables into this class.</p>
+<dl>
+<dt>Notes:</dt><dd><ul class="simple">
+<li><p>if instead of having the attribute series it is desired to set</p></li>
+</ul>
+<p>each element of the series as an attribute, just used the following
+statement: setattr(self, name, value).</p>
+<ul class="simple">
+<li><p>Note the difference between the resid and wresid since they will</p></li>
+</ul>
+<p>also have different statistical properties. Furthermore, there is
+a vector with normalized residuals resid_pearson.</p>
+</dd>
+</dl>
+<p>&#64;see: statsmodels.WLS
+&#64;see: pyAMR.core.regression.RegressionResultsWrapper</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>the confidence interval</em>)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dictionary</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>map with all the parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wls.WLSWrapper.fit">
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes the WLS.</p>
+<p>&#64;see statsmodels.regression.linear_model.WLS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endog</strong> (<em>array-like</em>) – The endogenous variable (aka. time series data)</p></li>
+<li><p><strong>exog</strong> (<em>array-like</em>) – The exogenous variable (by default is the time t starting in 0)</p></li>
+<li><p><strong>trend</strong> (<em>str-like, options = {c, nc}</em>) – Wether to add a constant or not.</p></li>
+<li><p><strong>weights</strong> (<em>array-like (optional)</em>) – The weights for the weighted least square regression. If weights and
+W are both not note, the W instance will be used to transform the
+weights variables.</p></li>
+<li><p><strong>W</strong> (<em>object-like (optional)</em>) – The instance to transform the weights. It must implement the
+function ‘weights’.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict-like</em>) – The rest of the arguments to pass to the  __init__ and fit methods
+of the class statsmodels.WLS (see xxx)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>object</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>OLSWrapper object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wls.WLSWrapper.get_prediction">
+<code class="sig-name descname"><span class="pre">get_prediction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.get_prediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method predicts using the model.</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Note that wls_predict_std has weights (those used in WLS) as
+an input parameter. However, these are not passed to the
+function. However, those weights are available for insample
+predictions but not for forecasting.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>int (optional)</em>) – The time t to start the prediction</p></li>
+<li><p><strong>end</strong> (<em>int (optional)</em>) – The time t to end the prediction</p></li>
+<li><p><strong>kwargs</strong> – The arguments to pass to the method get_prediction of the
+class statsmodels.WLS (see xxx)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>time, prediction mean, prediction confidence interval</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wls.WLSWrapper.line">
+<code class="sig-name descname"><span class="pre">line</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.line" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method returns arrays to plot line and confidence intervals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wls.WLSWrapper.pred_int">
+<code class="sig-name descname"><span class="pre">pred_int</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.pred_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes the prediction intervals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>int (optional)</em>) – The time t to start the prediction</p></li>
+<li><p><strong>end</strong> (<em>int (optional)</em>) – The time t to end the prediction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>the standard prediction error and the prediction intervals</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyamr.core.regression.wreg">
+<span id="pyamr-core-regression-wreg-module"></span><h2>pyamr.core.regression.wreg module<a class="headerlink" href="#module-pyamr.core.regression.wreg" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.regression.wreg.RegressionWrapper">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wreg.</span></code><code class="sig-name descname"><span class="pre">RegressionWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wreg.RegressionWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<p>Description…</p>
+<dl class="py method">
+<dt id="pyamr.core.regression.wreg.RegressionWrapper.conf_int_insample">
+<code class="sig-name descname"><span class="pre">conf_int_insample</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wreg.RegressionWrapper.conf_int_insample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the in-sample confidence interval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>predictions</strong> (<em>array-like</em>) – The predictions done by the model.</p></li>
+<li><p><strong>alpha</strong> (<em>int</em>) – The alpha to configure the confidence interval.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wreg.RegressionWrapper.fit">
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wreg.RegressionWrapper.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method performs the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>dict-like</em>) – The arguments that will be passed to the method.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.wreg.RegressionWrapper.resid">
+<code class="sig-name descname"><span class="pre">resid</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wreg.RegressionWrapper.resid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the residual</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pyamr-core-regression-wregression-module">
+<h2>pyamr.core.regression.wregression module<a class="headerlink" href="#pyamr-core-regression-wregression-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyamr.core.regression">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.core.regression" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="pyamr.core.stats.html" class="btn btn-neutral float-right" title="pyamr.core.stats package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pyamr.core.html" class="btn btn-neutral float-left" title="pyamr.core package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

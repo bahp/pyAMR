@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core package &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyamr.core.regression package" href="pyamr.core.regression.html" />
+    <link rel="prev" title="pyamr package" href="pyamr.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">The tutorial gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Calculating AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Time-series forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyamr</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyamr.html">pyamr package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pyamr.core package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">pyamr</a> &raquo;</li>
+        
+          <li><a href="pyamr.html">pyamr package</a> &raquo;</li>
+        
+      <li>pyamr.core package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/_apidoc/pyamr.core.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pyamr-core-package">
+<h1>pyamr.core package<a class="headerlink" href="#pyamr-core-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyamr.core.regression.html">pyamr.core.regression package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#module-pyamr.core.regression.arima">pyamr.core.regression.arima module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#pyamr-core-regression-pyarima-module">pyamr.core.regression.pyarima module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#pyamr-core-regression-pyarima2-module">pyamr.core.regression.pyarima2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#module-pyamr.core.regression.sarimax">pyamr.core.regression.sarimax module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#module-pyamr.core.regression.wbase">pyamr.core.regression.wbase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#module-pyamr.core.regression.wls">pyamr.core.regression.wls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#module-pyamr.core.regression.wreg">pyamr.core.regression.wreg module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#pyamr-core-regression-wregression-module">pyamr.core.regression.wregression module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.html#module-pyamr.core.regression">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyamr.core.stats.html">pyamr.core.stats package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.html#pyamr-core-stats-adfuller-module">pyamr.core.stats.adfuller module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.html#pyamr-core-stats-correlation-module">pyamr.core.stats.correlation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.html#pyamr-core-stats-kendall-module">pyamr.core.stats.kendall module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.html#pyamr-core-stats-stationarity-module">pyamr.core.stats.stationarity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.html#module-pyamr.core.stats.wbase">pyamr.core.stats.wbase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.html#module-pyamr.core.stats">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyamr.core.table.html">pyamr.core.table package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.table.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.table.html#module-pyamr.core.table.acronym">pyamr.core.table.acronym module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.table.html#pyamr-core-table-antibiotic-module">pyamr.core.table.antibiotic module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.table.html#pyamr-core-table-organism-module">pyamr.core.table.organism module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.table.html#pyamr-core-table-utils-module">pyamr.core.table.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.table.html#module-pyamr.core.table">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyamr.core.asai">
+<span id="pyamr-core-asai-module"></span><h2>pyamr.core.asai module<a class="headerlink" href="#module-pyamr.core.asai" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.asai.ASAI">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></code><code class="sig-name descname"><span class="pre">ASAI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_specie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_antibiotic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIBIOTIC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'THRESHOLD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FREQUENCY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wgenus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wspecie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_SPECIE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class computes the antimicrobial spectrum of activity.</p>
+<p>The antimicrobial spectrum of activity (ASAI) represents ….</p>
+<p>The mathematical definition is…</p>
+<p>An example is to compute the ASAI for gram-positive and gram-negative
+bacteria. In that example, the ASAI indicates whether or not
+the antimicrobial is effective against (i) different grams (n/p) which
+is often denoted as broad spectrum (ii) different species within the
+same gram often denoted as intermediate spectrum or (iii) a particular
+species in a particular gram often denoted as narrow spectrum.</p>
+<p>input.csv</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">,</span><span class="n">gram</span><span class="p">,</span><span class="n">specie</span><span class="p">,</span><span class="n">genus</span><span class="p">,</span><span class="n">antibiotic</span><span class="p">,</span><span class="n">resistance</span>
+<span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">8</span>
+<span class="mi">2</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusb</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">10</span>
+<span class="mi">3</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusc</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">50</span>
+<span class="mi">4</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie2</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">20</span>
+<span class="mi">5</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie3</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">aantibiotic1</span><span class="p">,</span><span class="mi">50</span>
+</pre></div>
+</div>
+<p>output.csv</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">antibiotic</span><span class="p">,</span> <span class="n">gramn</span><span class="p">,</span> <span class="n">gramp</span><span class="o">.</span>
+<span class="n">antibiotic1</span><span class="p">,</span> <span class="n">NaN</span><span class="p">,</span> <span class="mf">5.6667</span>
+<span class="n">antibiotic2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0000</span>
+<span class="n">antibiotic3</span><span class="p">,</span> <span class="n">NaN</span><span class="p">,</span> <span class="mf">5.6667</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Add an example (executable)</p>
+</div>
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_abx">
+<code class="sig-name descname"><span class="pre">c_abx</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_abx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_fre">
+<code class="sig-name descname"><span class="pre">c_fre</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'FREQUENCY'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_fre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_gen">
+<code class="sig-name descname"><span class="pre">c_gen</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'GENUS'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_gen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_res">
+<code class="sig-name descname"><span class="pre">c_res</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'RESISTANCE'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_res" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_spe">
+<code class="sig-name descname"><span class="pre">c_spe</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SPECIE'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_spe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_thr">
+<code class="sig-name descname"><span class="pre">c_thr</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'THRESHOLD'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_thr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_wgen">
+<code class="sig-name descname"><span class="pre">c_wgen</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'W_GENUS'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_wgen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI.c_wspe">
+<code class="sig-name descname"><span class="pre">c_wspe</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'W_SPECIE'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_wspe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.asai.ASAI.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_category</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function computes the asai index by category.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>pandas DataFrame</em>) – The pandas DataFrame containing the data. In particular it needs to
+contain the following columns: genus, specie, antibiotic and the
+resistance outcome within the range [0,1].</p></li>
+<li><p><strong>by_category</strong> (<em>string</em>) – The name of the column that will be used to group ASAI.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the dataframe…</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyamr.core.freq">
+<span id="pyamr-core-freq-module"></span><h2>pyamr.core.freq module<a class="headerlink" href="#module-pyamr.core.freq" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.freq.Frequency">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.freq.</span></code><code class="sig-name descname"><span class="pre">Frequency</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_antibiotic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIBIOTIC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_organism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DATE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_outcome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SENSITIVITY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_labnumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%Y-%M-%d'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.freq.Frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="pyamr.core.freq.Frequency.c_abx">
+<code class="sig-name descname"><span class="pre">c_abx</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.freq.Frequency.c_abx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.freq.Frequency.c_dat">
+<code class="sig-name descname"><span class="pre">c_dat</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'DATE'</span></em><a class="headerlink" href="#pyamr.core.freq.Frequency.c_dat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.freq.Frequency.c_org">
+<code class="sig-name descname"><span class="pre">c_org</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SPECIE'</span></em><a class="headerlink" href="#pyamr.core.freq.Frequency.c_org" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.freq.Frequency.c_out">
+<code class="sig-name descname"><span class="pre">c_out</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SENSITIVITY'</span></em><a class="headerlink" href="#pyamr.core.freq.Frequency.c_out" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.freq.Frequency.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'overall'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pairs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wshift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.freq.Frequency.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function computes the frequencies.</p>
+<p>The method allows to compute the overall frequencies, the frequencies for
+independent time intervals (ITI) such as monthly or yearly and the
+frequencies for overlapping time intervals (OTI) in which the parameters
+wshift and wsize need to be specified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>dataframe-like</em>) – The microbiology dataframe with the following columns.</p></li>
+<li><p><strong>by_category</strong> (<em>string</em>) – The category to group the outcomes. The outcomes are grouped in pairs
+formed by (organism, antibiotic) by default. However, these can be
+also grouped by organisms or antibiotics.</p></li>
+<li><p><strong>fs</strong> (<em>string</em>) – The frequency sample (e.g. 1D, 1M, 7D, …)</p></li>
+<li><p><strong>wshift</strong> (<em>integer</em>) – The shift between consecutive windows (OTI).</p></li>
+<li><p><strong>wsize</strong> (<em>integer</em>) – The size of the window (OTI)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.freq.Frequency.fit">
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.freq.Frequency.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyamr.core.greetings">
+<span id="pyamr-core-greetings-module"></span><h2>pyamr.core.greetings module<a class="headerlink" href="#module-pyamr.core.greetings" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.greetings.Greetings">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.greetings.</span></code><code class="sig-name descname"><span class="pre">Greetings</span></code><a class="headerlink" href="#pyamr.core.greetings.Greetings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="pyamr.core.greetings.Greetings.greet">
+<code class="sig-name descname"><span class="pre">greet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.greetings.Greetings.greet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyamr.core.greetings.Hello">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.greetings.</span></code><code class="sig-name descname"><span class="pre">Hello</span></code><a class="headerlink" href="#pyamr.core.greetings.Hello" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.greetings.Greetings" title="pyamr.core.greetings.Greetings"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.greetings.Greetings</span></code></a></p>
+<dl class="py method">
+<dt id="pyamr.core.greetings.Hello.greet">
+<code class="sig-name descname"><span class="pre">greet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.greetings.Hello.greet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyamr.core.greetings.Morning">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.greetings.</span></code><code class="sig-name descname"><span class="pre">Morning</span></code><a class="headerlink" href="#pyamr.core.greetings.Morning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.greetings.Greetings" title="pyamr.core.greetings.Greetings"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.greetings.Greetings</span></code></a></p>
+<dl class="py method">
+<dt id="pyamr.core.greetings.Morning.greet">
+<code class="sig-name descname"><span class="pre">greet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.greetings.Morning.greet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyamr.core.sari">
+<span id="pyamr-core-sari-module"></span><h2>pyamr.core.sari module<a class="headerlink" href="#module-pyamr.core.sari" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.sari.SARI">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">SARI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI.c_abx">
+<code class="sig-name descname"><span class="pre">c_abx</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI.c_abx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI.c_dat">
+<code class="sig-name descname"><span class="pre">c_dat</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'DATE'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI.c_dat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI.c_org">
+<code class="sig-name descname"><span class="pre">c_org</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SPECIE'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI.c_org" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI.c_out">
+<code class="sig-name descname"><span class="pre">c_out</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SENSITIVITY'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI.c_out" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.sari.SARI.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes the single antibitic resistance index</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyamr.core.sari.sari_hard">
+<code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">sari_hard</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.sari_hard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pyamr.core.sari.sari_medium">
+<code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">sari_medium</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.sari_medium" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pyamr.core.sari.sari_soft">
+<code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">sari_soft</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.sari_soft" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pyamr.core.sari.sari_whard">
+<code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">sari_whard</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.sari_whard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pyamr.core">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.core" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="pyamr.core.regression.html" class="btn btn-neutral float-right" title="pyamr.core.regression package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pyamr.html" class="btn btn-neutral float-left" title="pyamr package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
