@@ -69,7 +69,7 @@ def _delete_types(x):
     if '(3rd type)' in x: return x.replace(' (3rd type)', '')
     return x
   except Exception as e:
-    print e
+    print(e)
     return x
 
 def _delete_parenthesis_content(x):
@@ -95,7 +95,7 @@ def _fix_sp_ending(x):
     if 'species' in x: return x.replace('species','sp.')
     return x
   except Exception as e:
-    print e
+    print(e)
     return x
 
 def _fix_sp_abbreviation(x):
@@ -108,7 +108,7 @@ def _fix_sp_abbreviation(x):
     if "staph." in x: return x.replace('staph.', 'staphylococcus ')
     return x
   except Exception as e:
-    print e
+    print(e)
     return x
 
 #-------------------------------------------------------------------------
@@ -191,7 +191,7 @@ def transform_rename(filepath, df):
   # Read config information.
   file = open(filepath) 
   config_info = json.load(file)
-  print config_info
+  print(config_info)
   # Variables.
   rename_drugs = config_info['drugs']['rename']
   rename_bugs = config_info['bugs']['rename']

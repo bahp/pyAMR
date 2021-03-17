@@ -197,16 +197,16 @@ if __name__ == '__main__':
   kendall = KendallWrapper(estimator=kendall).fit(x=y)
 
   # Print series.
-  print "\n"
-  print kendall.as_series()
+  print("\n")
+  print(kendall.as_series())
 
   # Print summary.
-  print "\n"
-  print kendall.as_summary()
+  print("\n")
+  print(kendall.as_summary())
 
   # Print identifier
-  print "\n"
-  print kendall._identifier()
+  print("\n")
+  print(kendall._identifier())
  
   # -----------------
   # Save and load

@@ -147,17 +147,16 @@ if __name__ == '__main__':
   s10 = median_absolute_error(y_true, y_pred)
 
   # Compute scores
-  print "\nScores:"
-  print "-------"
-  print 'Mean Absolute Error            : %.3f' % s1
-  print 'Mean Absolute Error (_)        : %.3f' % s2
-  print 'Mean Squared Error             : %.3f' % s3
-  print 'Mean Squared Log Error         : %.3f' % s4
-  print 'Mean Absolute Percentage (_)   : %.3f' % s5
-  print 'Mean Directional Accuracy (_)  : %.3f' % s6
-  print 'Mean Absolute Scaled error (_) : %.3f' % s7
-
-  print 'Median Absolute Error          : %.3f' % s10    
+  print("\nScores:")
+  print("-------")
+  print('Mean Absolute Error            : %.3f' % s1)
+  print('Mean Absolute Error (_)        : %.3f' % s2)
+  print('Mean Squared Error             : %.3f' % s3)
+  print('Mean Squared Log Error         : %.3f' % s4)
+  print('Mean Absolute Percentage (_)   : %.3f' % s5)
+  print('Mean Directional Accuracy (_)  : %.3f' % s6)
+  print('Mean Absolute Scaled error (_) : %.3f' % s7)
+  print('Median Absolute Error          : %.3f' % s10)
 
 
 

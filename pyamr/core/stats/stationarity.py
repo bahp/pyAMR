@@ -216,16 +216,16 @@ if __name__ == '__main__':
                     adf_kwargs={'maxlag':12, 'autolag':'BIC'})
 
   # Print series.
-  print "\n"
-  print stationarity_ct.as_series()
+  print("\n")
+  print(stationarity_ct.as_series())
 
   # Print summary.
-  print "\n"
-  print stationarity_ct.as_summary()
+  print("\n")
+  print(stationarity_ct.as_summary())
 
   # Print identifier.
-  print "\n"
-  print stationarity_ct._identifier()
+  print("\n")
+  print(stationarity_ct._identifier())
 
 
   # ----------------

@@ -70,7 +70,7 @@ class AntibioticsTable:
     txt = "Check that the columns with the ANTIBIOTIC name and code have "
     txt+= "mapped in the rename_map variable in the file "
     txt+= "module/settings/microbiology.py\n"
-    print txt
+    print(txt)
 
 
   #------------------------------------------------------
@@ -268,23 +268,23 @@ class AntibioticsTable:
     dup_codeF = df[df.duplicated(self.codeF)]
 
     # Print text init
-    print "-"*80 + "\n"+txt_init
-    print "Different Original Names: %s" % len(df[self.nameO].unique())
-    print "Different Formated Names: %s " % len(df[self.nameF].unique())
-    print "Different Antibiotics Codes: %s\n" % len(df[self.codeF].unique())
+    print("-"*80 + "\n"+txt_init)
+    print("Different Original Names: %s" % len(df[self.nameO].unique()))
+    print("Different Formated Names: %s " % len(df[self.nameF].unique()))
+    print("Different Antibiotics Codes: %s\n" % len(df[self.codeF].unique()))
 
     # Print duplicates
-    if len(dup_nameO)>0: print dup_nameO
-    if len(dup_codeO)>0: print dup_codeO
-    if len(dup_codeF)>0: print dup_codeF
+    if len(dup_nameO)>0: print(dup_nameO)
+    if len(dup_codeO)>0: print(dup_codeO)
+    if len(dup_codeF)>0: print(dup_codeF)
 
     # Print conflicts
     if dfc is not None:
-      print "Conflicts:"
-      print dfc
-      print txt_merge
+      print("Conflicts:")
+      print(dfc)
+      print(txt_merge)
 
-    print "Please revise: %s" % pathname
+    print("Please revise: %s" % pathname)
 
 
 
@@ -326,7 +326,7 @@ class AntibioticTable():
     df_u = dataframe.reset_index().rename(columns={0:'count'})
     df_u = dataframe.replace("None", np.nan)
 
-    print df_u
+    print(df_u)
     """
     if self.to_lowercase is not None:
 
@@ -347,7 +347,7 @@ if __name__ == '__main__':
   sys.path.append('../../../')
 
   # Import specific libraries
-  from pyAMR.datasets import load
+  from pyamr.datasets import load
 
   # Constants.
   goback = "../../../../"
@@ -373,8 +373,8 @@ if __name__ == '__main__':
   # ---------------------
   # Builter
   builder = AntibioticsTable()
-  print data.columns
-  print data.head(10)
+  print(data.columns)
+  print(data.head(10))
 
   # Compute antibiotic table.
   builder.compute(input_path, output_path)

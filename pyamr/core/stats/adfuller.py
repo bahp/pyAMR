@@ -138,16 +138,16 @@ if __name__ == '__main__':
   adf = ADFWrapper(estimator=adfuller).fit(x=y, regression='ct')
 
   # Print series.
-  print "\n"
-  print adf.as_series()
+  print("\n")
+  print(adf.as_series())
 
   # Print summary.
-  print "\n"
-  print adf.as_summary()
+  print("\n")
+  print(adf.as_summary())
 
   # Print identifier.
-  print "\n"
-  print adf._identifier()
+  print("\n")
+  print(adf._identifier())
 
   # -----------------
   # Save and load
@@ -178,5 +178,5 @@ if __name__ == '__main__':
   summary = adf.from_list_dataframe(lwrappers, flabel=True)
 
   # Plot result.
-  print "\n"
-  print summary.T
+  print("\n")
+  print(summary.T)

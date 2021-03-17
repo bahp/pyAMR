@@ -27,12 +27,10 @@ from operator import attrgetter
 # Import pyramid arima
 from pyramid.arima import ARIMA as PYARIMA
 
-# Add module wrappers to sys path dynamically.
-sys.path.append("../../../")
 
 # Libraries wrapper.
-from pyAMR.core.regression.wreg import RegressionWrapper
-from pyAMR.core.stats.wbase import getargspecdict
+from pyamr.core.regression.wreg import RegressionWrapper
+from pyamr.core.stats.wbase import getargspecdict
 
 class PyramidWrapper(RegressionWrapper):
 
@@ -320,10 +318,10 @@ if __name__ == '__main__':
                 trend='c', disp=0)
 
   # Print series.
-  print pyramid.as_series()
+  print(pyramid.as_series())
 
   # Print summary.
-  print pyramid.as_summary()
+  print(pyramid.as_summary())
 
   # -----------------
   # Save & Load
@@ -389,8 +387,8 @@ if __name__ == '__main__':
   summary = pyramid.from_list_dataframe(models).T
 
   # Plot result.
-  print "\nSummary"
-  print summary
+  print("\nSummary")
+  print(summary)
 
   # -------------------
   # autoarima
@@ -443,8 +441,8 @@ if __name__ == '__main__':
   plt.show()
 
   # Print result.
-  print "\nAuto Stepwise Summary"
-  print summary
+  print("\nAuto Stepwise Summary")
+  print(summary)
 
 
   # Retrieving all fits
@@ -464,13 +462,13 @@ if __name__ == '__main__':
     n_fits=None, out_of_sample_size=0, scoring='mse', scoring_args=None)
  
 
-  print len(brute_fit)
+  print(len(brute_fit))
   # Create summary dataframe
   summary = PyramidWrapper().from_list_dataframe(brute_fit, flabel=False).T
 
   # Plot result.
-  print "\nAuto Brute Force Summary"
-  print summary
+  print("\nAuto Brute Force Summary")
+  print(summary)
 
   # Show.
   plt.show()

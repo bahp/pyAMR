@@ -131,12 +131,12 @@ if __name__ == '__main__':
   correlation = CorrelationWrapper().fit(x1=y1, x2=y2)
 
   # Print series.
-  print "\n"
-  print correlation.as_series()
+  print("\n")
+  print(correlation.as_series())
 
   # Print summary.
-  print "\n"
-  print correlation.as_summary()
+  print("\n")
+  print(correlation.as_summary())
 
   correlation
 

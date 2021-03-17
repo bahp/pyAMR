@@ -73,7 +73,7 @@ class OrganismsTable:
     txt = "Check that the columns with the ORGANISM name and code have "
     txt+= "mapped in the rename_map variable in the file "
     txt+= "module/settings/microbiology.py\n"
-    print txt
+    print(txt)
 
 
 
@@ -303,26 +303,26 @@ class OrganismsTable:
     dup_codeF = df[df.duplicated(self.codeF)]
 
     # Print text init
-    print "-"*80 + "\n"+txt_init
-    print "Different Original Names: %s" % len(df[self.nameO].unique())
-    print "Different Formated Names: %s " % len(df[self.nameF].unique())
-    print "Different Organism Codes: %s" % len(df[self.codeF].unique())
-    print "Different Species Names: %s" % len(df[self.nameS].unique())
-    print "Different Species Codes: %s\n" % len(df[self.codeS].unique())
+    print("-"*80 + "\n"+txt_init)
+    print("Different Original Names: %s" % len(df[self.nameO].unique()))
+    print("Different Formated Names: %s " % len(df[self.nameF].unique()))
+    print("Different Organism Codes: %s" % len(df[self.codeF].unique()))
+    print("Different Species Names: %s" % len(df[self.nameS].unique()))
+    print("Different Species Codes: %s\n" % len(df[self.codeS].unique()))
 
     # Print duplicates
-    if len(dup_nameO)>0: print dup_nameO
-    if len(dup_codeO)>0: print dup_codeO
-    if len(dup_codeF)>0: print dup_codeF
+    if len(dup_nameO)>0: print(dup_nameO)
+    if len(dup_codeO)>0: print(dup_codeO)
+    if len(dup_codeF)>0: print(dup_codeF)
 
     # Print conflicts
     if dfc is not None:
       if len(dfc)>0:
-        print "Conflicts:"
-        print dfc
-        print txt_merge
+        print("Conflicts:")
+        print(dfc)
+        print(txt_merge)
 
-    print "Please revise: %s" % pathname
+    print("Please revise: %s" % pathname)
 
 
 
@@ -343,7 +343,7 @@ if __name__ == '__main__':
   sys.path.append('../../../')
 
   # Import specific libraries
-  from pyAMR.datasets import load
+  from pyamr.datasets import load
 
   # Constants.
   goback = "../../../../"
@@ -362,7 +362,7 @@ if __name__ == '__main__':
   # ---------------------
   # Builter
   builder = AntibioticsTable()
-  print data.columns
+  print(data.columns)
 
   builder.fit()
   import sys

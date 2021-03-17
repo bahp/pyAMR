@@ -31,7 +31,7 @@ from statsmodels.tsa.arima_model import ARIMA
 sys.path.append("../../../")
 
 # Libraries wrapper.
-from wregression import BaseRegressionWrapper
+from pyamr.core.regression.wregression import BaseRegressionWrapper
 
 class PyramidWrapper(BaseRegressionWrapper):
 
