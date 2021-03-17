@@ -12,14 +12,14 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../fyp2020-username/'))
+sys.path.insert(0, os.path.abspath('../../pyamr/'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'fyp2020-username'
-copyright = '2021, <Full name>'
-author = '<Full name>'
+project = 'pyamr'
+copyright = '2021, Bernard Hernandez'
+author = 'Bernard Hernandez'
 
 # The full version, including alpha/beta/rc tags
 release = '0.0.1'
@@ -32,6 +32,7 @@ release = '0.0.1'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    #'sphinx.ext.coverage',
     'sphinx.ext.napoleon',        # docstrings
     'sphinx.ext.todo',
     'sphinx.ext.githubpages',     # gh-pages needs a .nojekyll file
@@ -67,9 +68,18 @@ from sphinx_gallery.sorting import FileNameSortKey
 # Configuration for sphinx_gallery
 sphinx_gallery_conf = {
     # path to your example scripts
-    'examples_dirs': ['../../examples/tutorial'],
+    'examples_dirs': [
+        '../../examples/tutorial',
+        '../../examples/indexes',
+        '../../examples/forecasting',
+        '../../examples/nhs'
+    ],
     # path to where to save gallery generated output
-    'gallery_dirs': ['../source/_examples/tutorial'],
+    'gallery_dirs': [
+        '../source/_examples/tutorial',
+        '../source/_examples/indexes',
+        '../source/_examples/forecasting',
+        '../source/_examples/nhs'],
     # Other
     'line_numbers': True,
     'download_all_examples': False,

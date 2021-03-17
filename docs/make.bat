@@ -11,6 +11,7 @@ set SOURCEDIR=source
 set BUILDDIR=build
 
 if "%1" == "" goto help
+if "%1" == "github" goto github
 
 %SPHINXBUILD% >NUL 2>NUL
 if errorlevel 9009 (
@@ -29,7 +30,11 @@ if errorlevel 9009 (
 goto end
 
 :help
-%SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+%SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+
+:github
+%SPHINXBUILD% -M "html" %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+@xcopy .\build\html ..\..\gh-pages\docs\ /E /Y > nul
 
 :end
 popd
