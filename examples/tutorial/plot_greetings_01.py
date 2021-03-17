@@ -6,9 +6,9 @@ Example using your package
 """
 
 # Libraries
-from pkgname.utils.display import show
-from pkgname.core.greetings import Hello
-from pkgname.core.greetings import Morning
+from pyamr.utils.display import show
+from pyamr.core.greetings import Hello
+from pyamr.core.greetings import Morning
 
 # -------------------------------------
 # Constants
