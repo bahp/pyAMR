@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Tutorial &mdash; fyp2020-username 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The tutorial gallery" href="../_examples/tutorial/index.html" />
+    <link rel="prev" title="Welcome to fyp2020-username’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fyp2020-username
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-the-virtual-environment">Creating the virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-repository-from-template">Creating repository from template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-the-repository-locally">Set up the repository locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-your-pkg-in-editable-mode">Installing your pkg in editable mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generating-documentation">Generating documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests">Running tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#now-it-is-time-to-start-coding">Now it is time to start coding!</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">The tutorial gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fyp2020-username</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/setup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-the-virtual-environment">
+<h2>Creating the virtual environment<a class="headerlink" href="#creating-the-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>A virtual environment is a tool that helps to keep dependencies required by
+different projects separate by creating isolated python virtual environments
+for them. This is one of the most important tools that Python developers use.</p>
+<p>In recent versions of python (&gt;3) we can use venv. If you have various
+versions of python you might need to use python3 or py instead.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">venv</span>           <span class="c1"># Install venv</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">&lt;</span><span class="n">environment</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>    <span class="c1"># Create environment</span>
+</pre></div>
+</div>
+<p>Otherwise, using standard virtualenv (linux-based systems)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python</span>                                    <span class="c1"># where is python</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>                          <span class="c1"># Install virtualenv</span>
+<span class="n">virtualenv</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">python</span><span class="o">-</span><span class="n">path</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">environment</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>  <span class="c1"># create virtualenv</span>
+</pre></div>
+</div>
+<p>Let’s activate the environment</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">&lt;</span><span class="n">environment</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>          <span class="c1"># activate environment</span>
+</pre></div>
+</div>
+<p>To deactivate the environment just type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>                                      <span class="c1"># deactivate environment</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ths is slightly different on Windows systems. It is also possible
+to configure the virtual environment using the python IDE PyCharm. Students
+can get a free licence.</p>
+</div>
+</div>
+<div class="section" id="creating-repository-from-template">
+<h2>Creating repository from template<a class="headerlink" href="#creating-repository-from-template" title="Permalink to this headline">¶</a></h2>
+<p>Repository template: <a class="reference external" href="https://github.com/bahp/fyp-pypkg-template">https://github.com/bahp/fyp-pypkg-template</a></p>
+<p>Open the previous url and create your own repository using it as
+a template. For this, click on the green “Use as a template” button.
+Please use the following conventions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>name: <code class="docutils literal notranslate"><span class="pre">fyp&lt;year&gt;-&lt;imperial_username&gt;</span></code> # eg. fyp2020-bahp</p></li>
+<li><p>include a brief description of the project</p></li>
+<li><p>keep it <code class="docutils literal notranslate"><span class="pre">public</span></code> to be able to use github pages.</p></li>
+<li><p>tick <code class="docutils literal notranslate"><span class="pre">include</span> <span class="pre">all</span> <span class="pre">branches</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>Once you have created the repository, it should appear on your repository list.
+Note that the url to clone the repository is under the green “code” button and
+it should look like <a class="reference external" href="https://github.com/bahp/fyp2020-bahp.git">https://github.com/bahp/fyp2020-bahp.git</a> but replacing bahp
+with your github username and fyp2020-bahp with your repository name.</p>
+<p>Let’s double check that Github Pages is enabled. For this, click ‘Settings’,
+scroll down to the GitHub Pages section and select: (i) gh-pages as source branch
+and (ii) docs as a source folder.</p>
+</div>
+<div class="section" id="set-up-the-repository-locally">
+<h2>Set up the repository locally<a class="headerlink" href="#set-up-the-repository-locally" title="Permalink to this headline">¶</a></h2>
+<p>On your computer, open the terminal and create your repository folder:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir fyp2020-bahp <span class="c1"># fyp&lt;yyyy&gt;-&lt;imperial-username&gt;</span>
+</pre></div>
+</div>
+<p>Move inside the folder:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> fyp2020-bahp
+</pre></div>
+</div>
+<p>Clone each branch in a different folder:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone -b main https://github.com/bahp/fyp2020-bahp.git
+<span class="gp">$</span> mv &lt;repository_name&gt; main
+<span class="gp">$</span> git clone -b gh-pages https://github.com/bahp/fyp2020-bahp.gi
+<span class="gp">$</span> mv &lt;repository_name&gt; gh-pages
+</pre></div>
+</div>
+<p>Your repository is now ready!</p>
+<p>The main branch contains all the source files and the gh-pages will be just used
+to host the documentation in html. Brief summary of the contents below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">gh-pages</span>
+<span class="go">    |- docs</span>
+<span class="go">        - documentation</span>
+<span class="go">main</span>
+<span class="go">    |- docs</span>
+<span class="go">        |- build</span>
+<span class="go">        |- source</span>
+<span class="go">            |- conf.py    # config - sphinx documentation</span>
+<span class="go">            |- index.rst  # index - sphinx documentation</span>
+<span class="go">        make.bat</span>
+<span class="go">        Makefile          # run to create documentation</span>
+<span class="go">    |- examples</span>
+<span class="go">    |- pkgname            # your library</span>
+<span class="go">        |- core           # contains your pkg core classes</span>
+<span class="go">        |- tests          # contains your pkg tests - pytest</span>
+<span class="go">        |- utils          # contains your pkg utils</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-your-pkg-in-editable-mode">
+<h2>Installing your pkg in editable mode<a class="headerlink" href="#installing-your-pkg-in-editable-mode" title="Permalink to this headline">¶</a></h2>
+<p>During your project you will find that some behaviour can be encapsulated in
+either classes or methods. This will save you repeating code in every single
+script you write. These classes and/or methods will be part of your library.
+You can find an example in <code class="docutils literal notranslate"><span class="pre">pkgname</span></code>.</p>
+<p>It is recommended to install the package in editable (develop) mode. It puts a link
+(actually *.pth files) into the python installation to your code,
+so that your package is installed, but any changes will immediately take effect.
+This way all your can import your package the usual way.</p>
+<p>First, ensure that the repository is in your local machine (we just did it
+on the previous section)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/&lt;</span><span class="n">username</span><span class="o">&gt;/&lt;</span><span class="n">reponame</span><span class="o">&gt;.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Let’s install the requirements. Move to the folder where requirements.txt is
+and install all the required libraries as shown in the statements below. In
+the scenario of missing libraries, just install them using pip.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>   <span class="c1"># Install al the requirements</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that you will need to add required libraries so other people
+can start using your package quickly. For example, if you use use
+scikit-learn then include scikit-learn in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p>
+</div>
+<p>Move to the directory where the setup.py is. Please note that although <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> is
+a python script, it is not recommended to install it executing that file with python
+directly. Instead lets use the package manager pip.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Feel free to change your package name if you want. However, note that
+to make things work you will need to make the appropriate changes in existing
+files: <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> and <code class="docutils literal notranslate"><span class="pre">plot_greetings_01.py</span></code>.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">editable</span>  <span class="o">.</span>         <span class="c1"># Install in editable mode</span>
+</pre></div>
+</div>
+<p>Read more about <a class="reference external" href="https://python-packaging-tutorial.readthedocs.io/en/latest/setup_py.html">packages</a></p>
+</div>
+<div class="section" id="generating-documentation">
+<h2>Generating documentation<a class="headerlink" href="#generating-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To generate autodocs automatically look at sphinx-napoleon and sphinx-autodocs.
+In general the numpy documentation style is used thorough the code.</p>
+</div>
+<p>Let’s use Sphinx to generate the documentation. First, you will need to install sphinx,
+sphinx-gallery, sphinx-std-theme and matplotlib. Note that they might have been already
+installed through the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p>
+<p>Let’s install the required libraries.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pip install sphinx            # Install sphinx</span>
+<span class="go">python -m pip install sphinx-gallery    # Install sphinx-gallery for examples</span>
+<span class="go">python -m pip install sphinx-std-theme  # Install sphinx-std-theme CSS</span>
+<span class="go">python -m pip install matplotlib        # Install matplotlib for plot examples</span>
+</pre></div>
+</div>
+<p>Then go to the docs folder within main and run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make github</span>
+</pre></div>
+</div>
+<p>Note that make github is defined within the Makefile and it is equivalent to:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">make clean html</span>
+<span class="go">cp -a _build/html/. ../../gh-pages/docs</span>
+</pre></div>
+</div>
+<p>These commands first generate the sphinx documentation in html and then copies
+the html folder into the gh-pages branch. You can see how the documentation
+looks like locally by opening the gh-pages/docs/index.html file. If you move to
+the gh-pages branch and push all the changes the documentation will be also
+available online thanks to GitHub Pages. You can access it through your
+repository page (see Environments / GitHub Pages / Active)</p>
+<p>Note that in order to edit the documentation you need to create .rst files and
+include these newly created files in the index.rst document. An example is shown
+in docs/source/tutorials/setup.rst.</p>
+<p>In addition, you can create and document python scripts that will be automatically
+included in the documentation (gallery examples) using sphinx-gallery. Remember
+to include the folder(s) containing the scripts in the variable <code class="docutils literal notranslate"><span class="pre">sphinx_gallery_conf</span></code>
+in the conf.py file as shown below for tutorial.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Configuration <span class="k">for</span> sphinx_gallery
+<span class="go">sphinx_gallery_conf = {</span>
+<span class="gp">    #</span> path to your example scripts
+<span class="hll"><span class="go">    &#39;examples_dirs&#39;: [&#39;../../examples/tutorial&#39;],</span>
+</span><span class="gp">    #</span> path to where to save gallery generated output
+<span class="hll"><span class="go">    &#39;gallery_dirs&#39;: [&#39;../source/_examples/tutorial&#39;],</span>
+</span><span class="gp">    #</span> Other
+<span class="go">    &#39;line_numbers&#39;: True,</span>
+<span class="go">    &#39;download_all_examples&#39;: False,</span>
+<span class="go">    &#39;within_subsection_order&#39;: FileNameSortKey</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Also remember to include the .rst file automatically generated
+the <code class="docutils literal notranslate"><span class="pre">docs/index.rst</span></code> file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">.. toctree::</span>
+<span class="go">    :maxdepth: 2</span>
+<span class="go">    :caption: Example Galleries</span>
+<span class="go">    :hidden:</span>
+
+<span class="hll"><span class="go">    _examples/tutorial/index</span>
+</span></pre></div>
+</div>
+<p>To include the output of the script (e.g. graph or console output) in the documentation
+remember to prefix the script file name with <code class="docutils literal notranslate"><span class="pre">plot</span></code> (e.g. plot_sample_01.py). You can
+find the following examples in examples/tutorial:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_greetings_01.py</span></code> script using your pkgname package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_sample_01.py</span></code> script just including all the code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_sample_02.py</span></code> script documenting steps within the code.</p></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">Read more about <a class="reference external" href="https://www.sphinx-doc.org/en/master/">sphinx</a></div>
+<div class="line">Read more about <a class="reference external" href="https://sphinx-gallery.github.io/stable/index.html">sphinx-gallery</a></div>
+</div>
+</div>
+<div class="section" id="running-tests">
+<h2>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h2>
+<p>Just go to the main folder and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span>
+</pre></div>
+</div>
+<p>Read more about <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a></p>
+</div>
+<div class="section" id="now-it-is-time-to-start-coding">
+<h2>Now it is time to start coding!<a class="headerlink" href="#now-it-is-time-to-start-coding" title="Permalink to this headline">¶</a></h2>
+<p>I would recommend to start with dirty <code class="docutils literal notranslate"><span class="pre">scripts</span></code> in the scripts folder.</p>
+<p>After some time coding, you might identify that part of your implementation
+could be encapsulated in a number of classes and methods. Or that some
+methods are being called very often. In such case, include those methods
+in your <code class="docutils literal notranslate"><span class="pre">pkgname</span></code> so you can import them easily and therefore don’t end up
+copy/paste code all the time.</p>
+<p>Once you have some results, create an example, document it and keep it clean.
+For example, if you have trained a model and plotted some graphs to
+evaluate its performance, create a file in gallery, document it properly
+within the code and include the folder in sphinx-gallery. This will facilitate
+to review the code and results and you will have everything ready to include
+it later in your report!</p>
+<p>Where to store the data?</p>
+<p><strong>Option I:</strong> When the datasets used in the examples are completely different,
+we can include the datasets directly within the example folder as shown in
+the folder structure below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">examples</span>
+<span class="o">|-</span> <span class="n">tutorial</span>
+<span class="o">|-</span> <span class="n">yourexample</span>
+    <span class="o">|-</span> <span class="n">datasets</span>  <span class="c1"># put here any data</span>
+        <span class="o">|-</span> <span class="n">pathology</span><span class="o">.</span><span class="n">csv</span>
+    <span class="o">|-</span> <span class="n">outputs</span>   <span class="c1"># put here any outcomes</span>
+        <span class="o">|-</span> <span class="n">datasets</span>
+            <span class="o">|-</span> <span class="n">pathology_fmt</span><span class="o">.</span><span class="n">csv</span>
+    <span class="n">format_pathology</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">do_something</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">do_something_else</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p><strong>Option II:</strong> If your examples use always the same data (which is probably the
+case) you could include the data in the main folder so it looks something
+like this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span>
+    <span class="o">|-</span> <span class="n">microbiology</span><span class="o">.</span><span class="n">csv</span>
+    <span class="o">|-</span> <span class="n">pathology</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">examples</span>
+<span class="o">|-</span> <span class="n">tutorial</span>
+<span class="o">|-</span> <span class="n">yourexample</span>
+    <span class="o">|-</span> <span class="n">outputs</span>   <span class="c1"># put here any outcomes</span>
+        <span class="o">|-</span> <span class="n">datasets</span>
+            <span class="o">|-</span> <span class="n">pathology_fmt</span><span class="o">.</span><span class="n">csv</span>
+            <span class="o">|-</span> <span class="n">microbiology_fmt</span><span class="o">.</span><span class="n">csv</span>
+    <span class="n">format_pathology</span><span class="o">.</span><span class="n">py</span>     <span class="c1"># loads datasets/pathology.csv saves in outputs</span>
+    <span class="n">format_microbiology</span><span class="o">.</span><span class="n">py</span>  <span class="c1"># loads datasets/microbiology.csv saves in outputs</span>
+    <span class="n">plot_roc_and_cfmatrix</span><span class="o">.</span><span class="n">py</span>   <span class="c1"># loads outputs/datasets/....</span>
+    <span class="n">plot_temporal_analysis</span><span class="o">.</span><span class="n">py</span>  <span class="c1"># loads outputs/datasets/...</span>
+</pre></div>
+</div>
+<p>Also, if you create various examples, the portion of the code that
+loads and saves data might become a bit repetitive. However, this
+is usually not included in the package. Thus you could use the
+code below so the paths are not absolute but to the file you are
+running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="c1"># -------------------------------</span>
+<span class="c1"># Create configuration from data</span>
+<span class="c1"># -------------------------------</span>
+<span class="c1"># Current path</span>
+<span class="n">curr_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+
+<span class="c1"># Folder with the raw data</span>
+<span class="n">path_data</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/../../datasets/&#39;</span>
+
+<span class="c1"># Path with fixed data</span>
+<span class="n">path_micro</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">/outputs/datasets/</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">curr_path</span><span class="p">,</span> <span class="s1">&#39;microbiology_fmt.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These are just suggestions, if you feel more comfortable following other
+folder structure and/or approaches feel free to do so!</p>
+<p>Happy coding!</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../_examples/tutorial/index.html" class="btn btn-neutral float-right" title="The tutorial gallery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to fyp2020-username’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, &lt;Full name&gt;.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
