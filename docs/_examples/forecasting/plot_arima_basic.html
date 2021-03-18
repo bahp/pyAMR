@@ -90,8 +90,9 @@
             
               <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
@@ -107,6 +108,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
             
@@ -186,37 +192,37 @@ to download the full example code</p>
 <img alt="ARIMA non-dynamic, ARIMA dynamic" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_arima_basic_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-arima-aic                    784.8803
-arima-bic                    792.0264
-arima-hqic                   787.7454
-arima-llf                   -389.4402
-arima-const_coef             269.8181
-arima-const_std               149.221
-arima-const_tvalue             1.8082
-arima-const_tprob              0.0706
-arima-const_cil              -22.6497
-arima-const_ciu              562.2859
-arima-ar.L1.y_coef             0.9858
-arima-ar.L1.y_std              0.0155
-arima-ar.L1.y_tvalue          63.6169
+arima-aic                     783.779
+arima-bic                     790.925
+arima-hqic                    786.644
+arima-llf                   -388.8895
+arima-const_coef             286.7379
+arima-const_std              131.1117
+arima-const_tvalue              2.187
+arima-const_tprob              0.0287
+arima-const_cil               29.7637
+arima-const_ciu              543.7122
+arima-ar.L1.y_coef             0.9831
+arima-ar.L1.y_std              0.0172
+arima-ar.L1.y_tvalue          57.2836
 arima-ar.L1.y_tprob               0.0
-arima-ar.L1.y_cil              0.9555
-arima-ar.L1.y_ciu              1.0162
-arima-m_dw                     2.0266
-arima-m_jb_value             1044.535
+arima-ar.L1.y_cil              0.9495
+arima-ar.L1.y_ciu              1.0167
+arima-m_dw                     1.9204
+arima-m_jb_value             619.2511
 arima-m_jb_prob                   0.0
-arima-m_skew                  -3.1833
-arima-m_kurtosis              19.5175
-arima-m_nm_value              85.1397
+arima-m_skew                  -2.5761
+arima-m_kurtosis              15.6187
+arima-m_nm_value              70.8781
 arima-m_nm_prob                   0.0
-arima-m_ks_value               0.5982
+arima-m_ks_value               0.5545
 arima-m_ks_prob                   0.0
-arima-m_shp_value              0.7467
+arima-m_shp_value              0.8099
 arima-m_shp_prob                  0.0
-arima-m_ad_value               3.5055
+arima-m_ad_value               2.1841
 arima-m_ad_nnorm                False
 arima-converged                  True
-arima-endog             [20.361335...
+arima-endog             [62.075051...
 arima-order                 (1, 0, 0)
 arima-trend                         c
 arima-disp                          0
@@ -228,25 +234,25 @@ Summary:
                               ARMA Model Results
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                   80
-Model:                     ARMA(1, 0)   Log Likelihood                -389.440
-Method:                       css-mle   S.D. of innovations             30.776
-Date:                Wed, 17 Mar 2021   AIC                            784.880
-Time:                        19:31:19   BIC                            792.026
-Sample:                             0   HQIC                           787.745
+Model:                     ARMA(1, 0)   Log Likelihood                -388.889
+Method:                       css-mle   S.D. of innovations             30.599
+Date:                Thu, 18 Mar 2021   AIC                            783.779
+Time:                        21:32:38   BIC                            790.925
+Sample:                             0   HQIC                           786.644
 
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        269.8181    149.221      1.808      0.071     -22.650     562.286
-ar.L1.y        0.9858      0.015     63.617      0.000       0.955       1.016
+const        286.7379    131.112      2.187      0.029      29.764     543.712
+ar.L1.y        0.9831      0.017     57.284      0.000       0.949       1.017
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000  Durbin-Watson:                    2.027
-Prob(Omnibus):                  0.000  Jarque-Bera (JB):              1044.535
-Skew:                          -3.183  Prob(JB):                         0.000
-Kurtosis_m:                    19.518  Cond No:
-Normal (N):                    85.140  Prob(N):                          0.000
+Omnibus:                        0.000  Durbin-Watson:                    1.920
+Prob(Omnibus):                  0.000  Jarque-Bera (JB):               619.251
+Skew:                          -2.576  Prob(JB):                         0.000
+Kurtosis_m:                    15.619  Cond No:
+Normal (N):                    70.878  Prob(N):                          0.000
 ==============================================================================
 </pre></div>
 </div>
@@ -536,7 +542,7 @@ Normal (N):                    85.140  Prob(N):                          0.000
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.179 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.167 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-arima-basic-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/44849333351519007fb6ae0f72ed5bed/plot_arima_basic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_arima_basic.py</span></code></a></p>

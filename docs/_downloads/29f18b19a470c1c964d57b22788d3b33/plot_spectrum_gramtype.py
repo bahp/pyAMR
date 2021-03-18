@@ -143,7 +143,7 @@ sns.barplot(x=y_p, y=x, ax=axes[0], orient='h', palette=colormap_p,
 sns.barplot(x=-y_n, y=x, ax=axes[0], orient='h', palette=colormap_n,
   saturation=0.5, label='Gram-negative')
 
-# Plot with plain pallete (values are already size of bars)
+# Plot with plain palette (values are already size of bars)
 sns.barplot(x=y_p, y=x, ax=axes[1], orient='h', color='b',
   saturation=0.5, label='Gram-positive')
 sns.barplot(x=-y_n, y=x, ax=axes[1], orient='h', color='r',

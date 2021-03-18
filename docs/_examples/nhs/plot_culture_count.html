@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>SART - by gram type &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SART - by gram type" href="plot_spectrum.html" />
+    <link rel="prev" title="SARI - Antibiogram" href="plot_antibiogram.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">The tutorial gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indexes/index.html">Calculating AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Time-series forecasting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">EPIC IMPoC</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_antibiogram.html">SARI - Antibiogram</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SART - by gram type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_spectrum.html">SART - by gram type</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">EPIC IMPoC</a> &raquo;</li>
+        
+      <li>SART - by gram type</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/_examples/nhs/plot_culture_count.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-nhs-plot-culture-count-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="sart-by-gram-type">
+<span id="sphx-glr-examples-nhs-plot-culture-count-py"></span><h1>SART - by gram type<a class="headerlink" href="#sart-by-gram-type" title="Permalink to this headline">¶</a></h1>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Show:
+SAUR           2383
+ECOL           1786
+COLIF           563
+CNS             364
+ENTC            320
+PAER            314
+NGON            260
+KPNE            237
+HINF            178
+BHSB            178
+ABAU             98
+SMAR             97
+PROTE            96
+ENTB             79
+SERRA            77
+PSEUD            72
+SPNE             70
+ECLO             68
+BHSA             65
+MCAT             58
+BHSCG            56
+CKOS             51
+LFC              48
+MMOR             46
+AHS              43
+KOXY             42
+ACINE            30
+EFAS             24
+BACIL            24
+SMIL             22
+ENTAE            20
+KLEBS            20
+SALMO            20
+BHSC             17
+CORYN            17
+CITRO            16
+CAMPY            15
+CSTR             12
+SEPI             12
+HAEMO            12
+A_ANAEROBE       12
+ROTH             11
+AFAE             10
+CGLA              9
+PMIR              6
+PSTU              6
+A_NYI             6
+SHIGE             5
+VIRST             5
+SORA              5
+STREP             5
+BHSG              4
+SMAL              3
+A_ISOLATED        1
+A_SFLORA          1
+A_MANAEROBE       1
+Name: organismCode, dtype: int64
+SAUR           0.2979
+ECOL           0.2233
+COLIF          0.0704
+CNS            0.0455
+ENTC           0.0400
+PAER           0.0393
+NGON           0.0325
+KPNE           0.0296
+HINF           0.0222
+BHSB           0.0222
+ABAU           0.0123
+SMAR           0.0121
+PROTE          0.0120
+ENTB           0.0099
+SERRA          0.0096
+PSEUD          0.0090
+SPNE           0.0088
+ECLO           0.0085
+BHSA           0.0081
+MCAT           0.0073
+BHSCG          0.0070
+CKOS           0.0064
+LFC            0.0060
+MMOR           0.0057
+AHS            0.0054
+KOXY           0.0053
+ACINE          0.0037
+EFAS           0.0030
+BACIL          0.0030
+SMIL           0.0027
+ENTAE          0.0025
+KLEBS          0.0025
+SALMO          0.0025
+BHSC           0.0021
+CORYN          0.0021
+CITRO          0.0020
+CAMPY          0.0019
+CSTR           0.0015
+SEPI           0.0015
+HAEMO          0.0015
+A_ANAEROBE     0.0015
+ROTH           0.0014
+AFAE           0.0013
+CGLA           0.0011
+PMIR           0.0008
+PSTU           0.0008
+A_NYI          0.0008
+SHIGE          0.0006
+VIRST          0.0006
+SORA           0.0006
+STREP          0.0006
+BHSG           0.0005
+SMAL           0.0004
+A_ISOLATED     0.0001
+A_SFLORA       0.0001
+A_MANAEROBE    0.0001
+Name: organismCode, dtype: float64
+organismCode  antibioticCode
+ABAU          AAMI              10
+              AAMO               3
+              AAMPC              1
+              AAUG               3
+              AAZT               3
+                                ..
+VIRST         ACLI               1
+              AERY               1
+              AMLS               1
+              APEN               1
+              ATET               1
+Length: 716, dtype: int64
+SPECIE  ANTIBIOTIC
+ABAU    AAMI          10.0
+        AAMO           3.0
+        AAMPC          1.0
+        AAUG           3.0
+        AAZT           3.0
+                      ...
+VIRST   ACLI           1.0
+        AERY           1.0
+        AMLS           1.0
+        APEN           1.0
+        ATET           1.0
+Length: 716, dtype: float64
+SENSITIVITY  &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  not done  resistant  sensitive
+SPECIE
+ABAU                       0.0               0.0           0.0       0.0       35.0       63.0
+ACINE                      0.0               0.0           0.0       0.0       13.0       17.0
+AFAE                       0.0               0.0           0.0       0.0        1.0        9.0
+AHS                        0.0               0.0           1.0       0.0        5.0       37.0
+A_ANAEROBE                 0.0               0.0           0.0       0.0        0.0       12.0
+A_ISOLATED                 0.0               0.0           0.0       0.0        0.0        1.0
+A_MANAEROBE                0.0               0.0           0.0       0.0        0.0        1.0
+A_NYI                      0.0               0.0           0.0       0.0        2.0        4.0
+A_SFLORA                   0.0               0.0           0.0       0.0        0.0        1.0
+BACIL                      0.0               0.0           0.0       0.0        9.0       15.0
+BHSA                       0.0               0.0           0.0       0.0        3.0       62.0
+BHSB                       0.0               0.0           0.0       0.0       43.0      135.0
+BHSC                       0.0               0.0           0.0       0.0        3.0       14.0
+BHSCG                      0.0               0.0           0.0       0.0       13.0       43.0
+BHSG                       0.0               0.0           0.0       0.0        1.0        3.0
+CAMPY                      0.0               0.0           0.0       0.0        4.0       11.0
+CGLA                       3.0               0.0           1.0       0.0        1.0        4.0
+CITRO                      0.0               0.0           0.0       0.0        4.0       12.0
+CKOS                       0.0               0.0           0.0       0.0        3.0       48.0
+CNS                        0.0               0.0           1.0       0.0      137.0      226.0
+COLIF                      0.0               0.0           0.0       0.0      106.0      457.0
+CORYN                      0.0               0.0           0.0       0.0        6.0       11.0
+CSTR                       0.0               0.0           0.0       0.0        3.0        9.0
+ECLO                       0.0               0.0           0.0       0.0       15.0       53.0
+ECOL                       0.0               1.0           5.0       2.0      290.0     1488.0
+EFAS                       0.0               0.0           0.0       0.0        1.0       23.0
+ENTAE                      0.0               0.0           0.0       0.0        4.0       16.0
+ENTB                       0.0               0.0           0.0       0.0       18.0       61.0
+ENTC                       0.0               0.0           0.0       0.0       53.0      267.0
+HAEMO                      0.0               0.0           0.0       0.0        4.0        8.0
+HINF                       0.0               0.0           0.0       0.0       29.0      149.0
+KLEBS                      0.0               0.0           0.0       0.0        2.0       18.0
+KOXY                       0.0               0.0           0.0       0.0        4.0       38.0
+KPNE                       0.0               0.0           4.0       3.0       73.0      157.0
+LFC                        0.0               0.0           0.0       0.0        4.0       44.0
+MCAT                       0.0               0.0           0.0       0.0        8.0       50.0
+MMOR                       0.0               0.0           0.0       0.0       15.0       31.0
+NGON                       0.0               0.0           0.0       0.0       24.0      236.0
+PAER                       0.0               0.0           4.0       4.0       18.0      288.0
+PMIR                       0.0               0.0           0.0       0.0        2.0        4.0
+PROTE                      0.0               0.0           1.0       0.0       16.0       79.0
+PSEUD                      0.0               0.0           1.0       0.0       17.0       54.0
+PSTU                       0.0               0.0           0.0       0.0        0.0        6.0
+ROTH                       0.0               0.0           0.0       0.0        7.0        4.0
+SALMO                      0.0               0.0           0.0       0.0        0.0       20.0
+SAUR                       1.0               0.0           2.0       0.0      546.0     1834.0
+SEPI                       0.0               0.0           0.0       0.0        3.0        9.0
+SERRA                      0.0               0.0           2.0       0.0       26.0       49.0
+SHIGE                      0.0               0.0           0.0       0.0        0.0        5.0
+SMAL                       0.0               0.0           0.0       0.0        0.0        3.0
+SMAR                       0.0               0.0           0.0       0.0       26.0       71.0
+SMIL                       0.0               0.0           0.0       0.0        2.0       20.0
+SORA                       0.0               0.0           0.0       0.0        0.0        5.0
+SPNE                       0.0               0.0           0.0       0.0       11.0       59.0
+STREP                      0.0               0.0           0.0       0.0        0.0        5.0
+VIRST                      0.0               0.0           0.0       0.0        2.0        3.0
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
+ <span class="kn">import</span> <span class="nn">sys</span>
+ <span class="kn">import</span> <span class="nn">glob</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+ <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+ <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+ <span class="c1"># Import pyamr</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.freq</span> <span class="kn">import</span> <span class="n">Frequency</span>
+
+ <span class="c1"># Configure seaborn style (context=talk)</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Set matplotlib</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+
+ <span class="c1"># Pandas configuration</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+ <span class="c1"># Numpy configuration</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+ <span class="c1"># -------------------------</span>
+ <span class="c1"># Constants</span>
+ <span class="c1"># -------------------------</span>
+ <span class="c1"># Replace codes</span>
+ <span class="n">replace_codes</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s1">&#39;9MRSN&#39;</span><span class="p">:</span><span class="s1">&#39;MRSCUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;URINE CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;URICUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;WOUND CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;WOUCUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;BLOOD CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;SPUTUM CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;SPTCUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;CSF CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;CSFCUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;EYE CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;EYECUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;GENITALCUL&#39;</span><span class="p">:</span><span class="s1">&#39;GENCUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;NEONATAL SCREEN&#39;</span><span class="p">:</span><span class="s1">&#39;NEOCUL&#39;</span><span class="p">,</span>
+ <span class="p">}</span>
+
+ <span class="c1"># Interesting columns</span>
+ <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;labNumber&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;patNumber&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;orderCode&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;organismCode&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;sensitivity&#39;</span><span class="p">]</span>
+
+ <span class="c1"># Path</span>
+ <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../resources/data/nhs/susceptibility/complete/&#39;</span>
+
+ <span class="c1"># -------------------------</span>
+ <span class="c1"># Main</span>
+ <span class="c1"># -------------------------</span>
+ <span class="c1"># Load all files</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>  \
+     <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">],</span>
+         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/*.csv&quot;</span><span class="p">)])</span>
+
+ <span class="c1"># Replace</span>
+ <span class="n">data</span><span class="o">.</span><span class="n">organismCode</span> <span class="o">=</span> \
+     <span class="n">data</span><span class="o">.</span><span class="n">organismCode</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">replace_codes</span><span class="p">)</span>
+
+ <span class="c1"># Drop duplicates</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+
+ <span class="c1"># .. note: This is not counting the number of samples of each</span>
+ <span class="c1">#          culture taken, but also includes one row for each</span>
+ <span class="c1">#          antimicrobial tested. To count the number of samples</span>
+ <span class="c1">#          not the keep just one value per &lt;patient, order_code&gt;</span>
+ <span class="c1"># Frequency</span>
+ <span class="n">freq</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">organismCode</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+ <span class="c1"># Porportion</span>
+ <span class="n">prop</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">organismCode</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1">#data.groupby</span>
+ <span class="c1">#aux = data.organismCode.apply(freq=&#39;value_counts&#39;)</span>
+
+ <span class="n">aux2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;organismCode&#39;</span><span class="p">,</span> <span class="s1">&#39;antibioticCode&#39;</span><span class="p">]]</span> \
+     <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;value_counts&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Show:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">aux2</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
+
+
+ <span class="c1"># Show</span>
+ <span class="c1">#print(&quot;\nData:&quot;)</span>
+ <span class="c1">#print(data)</span>
+
+
+ <span class="c1"># --------------------</span>
+ <span class="c1"># compute frequencies</span>
+ <span class="c1"># --------------------</span>
+ <span class="c1"># Create instance</span>
+ <span class="n">freq</span> <span class="o">=</span> <span class="n">Frequency</span><span class="p">(</span><span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
+                  <span class="n">column_organism</span><span class="o">=</span><span class="s1">&#39;organismCode&#39;</span><span class="p">,</span>
+                  <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">,</span>
+                  <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Compute frequencies overall</span>
+ <span class="n">freq_overall</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;overall&#39;</span><span class="p">,</span>
+                                   <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">)</span>
+
+ <span class="n">freq</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;overall&#39;</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;organisms&#39;</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="n">freq_overall</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.118 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-nhs-plot-culture-count-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/893c2e9781cbd7e823d788d03a4325cc/plot_culture_count.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_culture_count.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/6ab86ddc0b0df84b2c71028c455ec7bf/plot_culture_count.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_culture_count.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plot_spectrum.html" class="btn btn-neutral float-right" title="SART - by gram type" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_antibiogram.html" class="btn btn-neutral float-left" title="SARI - Antibiogram" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

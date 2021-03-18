@@ -1,0 +1,557 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Piechart Biomarkers &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Piechart Profile Completeness" href="plot_piechart_completeness.html" />
+    <link rel="prev" title="Piechart AMR review" href="plot_piechart_amrreview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">The tutorial gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indexes/index.html">Calculating AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Time-series forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_dataframe_table.html">Table Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_piechart_amrreview.html">Piechart AMR review</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Piechart Biomarkers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_piechart_completeness.html">Piechart Profile Completeness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_piechart_culture.html">Piechart Cultures</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Visualization</a> &raquo;</li>
+        
+      <li>Piechart Biomarkers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/_examples/visualization/plot_piechart_biomarker.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-visualization-plot-piechart-biomarker-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="piechart-biomarkers">
+<span id="sphx-glr-examples-visualization-plot-piechart-biomarker-py"></span><h1>Piechart Biomarkers<a class="headerlink" href="#piechart-biomarkers" title="Permalink to this headline">¶</a></h1>
+<p>Example using your package</p>
+<dl>
+<dt>Author: Bernard</dt><dd><p>Date: 19/08/2016
+Description: This script creates PIECHARTS for the paper which</p>
+<blockquote>
+<div><p>describes the infection risk inference: “Evaluating
+machine learning algorithms for infection risk inference
+using routinely collected pathology labotartory data”.</p>
+</div></blockquote>
+<p>Notes: The values can be changed to display other data.</p>
+<p>Useful links:
+&#64;see: <a class="reference external" href="http://matplotlib.org/examples/color/named_colors.html">http://matplotlib.org/examples/color/named_colors.html</a>
+&#64;see: <a class="reference external" href="http://matplotlib.org/examples/color/colormaps_reference.html">http://matplotlib.org/examples/color/colormaps_reference.html</a>
+&#64;see: <a class="reference external" href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge">http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge</a>
+&#64;see: <a class="reference external" href="http://matplotlib.org/api/text_api.html#matplotlib.text.Text">http://matplotlib.org/api/text_api.html#matplotlib.text.Text</a></p>
+</dd>
+</dl>
+<hr class="docutils" />
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+ <span class="c1"># Libraries.</span>
+ <span class="kn">import</span> <span class="nn">sys</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+ <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+ <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+ <span class="c1"># Matplotlib font size configuration.</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">9.0</span>
+
+ <span class="c1"># ------------------------------------------------------------------------</span>
+ <span class="c1">#                            HELPER METHODS</span>
+ <span class="c1"># ------------------------------------------------------------------------</span>
+ <span class="k">def</span> <span class="nf">transparency</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">rgb</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cmap</span><span class="p">):</span>
+         <span class="n">cmap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rgb</span> <span class="o">+</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,)</span>
+     <span class="k">return</span> <span class="n">cmap</span>
+
+ <span class="c1"># ------------------------------------------------------------------------</span>
+ <span class="c1">#                            CONFIGURATION</span>
+ <span class="c1"># ------------------------------------------------------------------------</span>
+ <span class="c1"># Common configuration.</span>
+ <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span>
+ <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CRP&#39;</span><span class="p">,</span><span class="s1">&#39;ALT&#39;</span><span class="p">,</span><span class="s1">&#39;BIL&#39;</span><span class="p">,</span><span class="s1">&#39;ALP&#39;</span><span class="p">,</span><span class="s1">&#39;CRE&#39;</span><span class="p">,</span><span class="s1">&#39;WBC&#39;</span><span class="p">]</span>    <span class="c1"># labels</span>
+ <span class="n">labels_empty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>           <span class="c1"># labels empty</span>
+ <span class="n">colors</span> <span class="o">=</span> <span class="n">transparency</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="mf">0.5</span><span class="p">)</span>
+ <span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># proportion with which to offset each wedge</span>
+ <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%1.0f%%</span><span class="s1">&#39;</span>       <span class="c1"># print values inside the wedges</span>
+ <span class="n">pctdistance</span> <span class="o">=</span> <span class="mf">0.4</span>         <span class="c1"># ratio betwen center and text (default=0.6)</span>
+ <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.7</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
+ <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
+ <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
+ <span class="n">radius</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1"># size of piechart (default=1)</span>
+ <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
+ <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
+ <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
+
+ <span class="c1"># map with arguments for the text objects.</span>
+ <span class="n">textprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
+
+ <span class="c1"># map with arguments for the wedge objects.</span>
+ <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{}</span>
+
+ <span class="c1"># Color manually selected</span>
+ <span class="n">colors_manual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;violet&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;mediumaquamarine&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;indianred&#39;</span><span class="p">]</span>
+
+
+
+
+ <span class="c1"># -------------------------------------------------------------------------</span>
+ <span class="c1">#                              FIGURE 1</span>
+ <span class="c1"># -------------------------------------------------------------------------</span>
+ <span class="c1"># Number of pathology laboratory data for each of the selected biochemical</span>
+ <span class="c1"># markers (ALP, ALT, BIL, CRE, CRP, WBC) for the non-infection category</span>
+ <span class="c1"># during the years 2014 and 2015.</span>
+
+ <span class="c1"># Portions.</span>
+ <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">]</span>               <span class="c1"># Add proportions</span>
+
+ <span class="c1"># reset feature</span>
+ <span class="n">startangle</span> <span class="o">=</span> <span class="mi">130</span>
+
+ <span class="c1"># Plot.</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
+         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
+         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>   <span class="c1"># Use: labels / labels_empty</span>
+         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>   <span class="c1"># Use: colors / colors_manual</span>
+         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
+         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
+         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
+         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
+         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
+         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
+         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
+         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
+         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
+         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
+                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
+ <span class="c1"># Format figure.</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>          <span class="c1"># Add title.</span>
+ <span class="c1">#plt.legend(labels=labels, fontsize=&#39;xx-large&#39;)  # Add legend.</span>
+
+ <span class="c1"># -------------------------------------------------------------------------</span>
+ <span class="c1">#                              FIGURE 2</span>
+ <span class="c1"># -------------------------------------------------------------------------</span>
+ <span class="c1"># Number of pathology laboratory data for each of the selected biochemical</span>
+ <span class="c1"># markers (ALP, ALT, BIL, CRE, CRP, WBC) for the infection category</span>
+ <span class="c1"># during the years 2014 and 2015. [&#39;CRP&#39;,&#39;ALP&#39;,&#39;BIL&#39;,&#39;ALT&#39;,&#39;CRE&#39;,&#39;WBC&#39;]</span>
+
+ <span class="c1"># Portions</span>
+ <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>                  <span class="c1"># Add proportions</span>
+
+ <span class="c1"># reset feature</span>
+ <span class="n">startangle</span> <span class="o">=</span> <span class="mi">155</span>
+
+ <span class="c1"># Plot.</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
+         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
+         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>               <span class="c1"># Use: labels / labels_empty</span>
+         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>               <span class="c1"># Use: colors / colors_manual</span>
+         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
+         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
+         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
+         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
+         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
+         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
+         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
+         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
+         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
+         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
+                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
+
+ <span class="c1"># Format figure.</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>  <span class="c1"># Add title</span>
+ <span class="c1">#plt.legend(labels=labels)               # Add legend.</span>
+
+ <span class="c1"># Show figures</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<ul class="sphx-glr-horizontal">
+<li><img alt="plot piechart biomarker" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_biomarker_001.png" />
+</li>
+<li><img alt="plot piechart biomarker" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_biomarker_002.png" />
+</li>
+</ul>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_biomarker.py:101: MatplotlibDeprecationWarning: Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
+  plt.pie(sizes,
+C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_biomarker.py:138: MatplotlibDeprecationWarning: Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
+  plt.pie(sizes,
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.135 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-piechart-biomarker-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/06d67cd6c4efe99dde91458ae10b5e7b/plot_piechart_biomarker.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_piechart_biomarker.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/6999a6b7b4ffc34a35b1eba81cd48f34/plot_piechart_biomarker.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_piechart_biomarker.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plot_piechart_completeness.html" class="btn btn-neutral float-right" title="Piechart Profile Completeness" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_piechart_amrreview.html" class="btn btn-neutral float-left" title="Piechart AMR review" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

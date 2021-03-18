@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Statistical test - ADFULLER &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Statistical test - Correlation" href="plot_core_stats_correlation.html" />
+    <link rel="prev" title="Index - SARI" href="plot_core_sari.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The tutorial gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_core_asai.html">Index - ASAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_core_frequency.html">Index - Frequency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_core_sari.html">Index - SARI</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Statistical test - ADFULLER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_core_stats_correlation.html">Statistical test - Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_core_stats_kendall.html">Statistical test - Kendall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_core_stats_stationarity.html">Statistical test - Stationarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_greetings_01.html">Plotting greetings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sample_01.html">Plotting a gaussian (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sample_02.html">Plotting a gaussian (tutorial)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../indexes/index.html">Calculating AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Time-series forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">The tutorial gallery</a> &raquo;</li>
+        
+      <li>Statistical test - ADFULLER</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/_examples/tutorial/plot_core_stats_adfuller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-plot-core-stats-adfuller-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="statistical-test-adfuller">
+<span id="sphx-glr-examples-tutorial-plot-core-stats-adfuller-py"></span><h1>Statistical test - ADFULLER<a class="headerlink" href="#statistical-test-adfuller" title="Permalink to this headline">¶</a></h1>
+<p>Example using your package</p>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>adf-statistic                  -7.3211
+adf-pvalue                         0.0
+adf-nlags                            1
+adf-nobs                            98
+adf-stationary                    True
+adf-criticalvalue_1%           -4.0543
+adf-criticalvalue_5%           -3.4563
+adf-criticalvalue_10%          -3.1539
+adf-x                    [106.97793...
+adf-regression                      ct
+adf-model                (-7.321135...
+adf-id                         ADF(ct)
+dtype: object
+
+
+  adfuller test stationarity (ct)
+==================================
+statistic:                  -7.321
+pvalue:                    0.00000
+nlags:                          1.
+nobs:                          98.
+stationary (0.05):      stationary
+==================================
+
+Identifier
+ADF(ct)
+1/3. ADF(c)
+2/3. ADF(nc)
+3/3. ADF(ct)
+
+
+                            0              1              2
+adf-statistic         -7.3597        -0.0634        -7.3211
+adf-pvalue                0.0         0.6628            0.0
+adf-nlags                   1              9              1
+adf-nobs                   98             90             98
+adf-stationary           True          False           True
+adf-critica...        -3.4989         -2.591        -4.0543
+adf-critica...        -2.8915        -1.9444        -3.4563
+adf-critica...        -2.5828        -1.6142        -3.1539
+adf-regression              c             nc             ct
+adf-x           [106.97793...  [106.97793...  [106.97793...
+adf-model       (-7.359707...  (-0.063426...  (-7.321135...
+adf-id                 ADF(c)        ADF(nc)        ADF(ct)
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+ <span class="c1"># Import statsmodels</span>
+ <span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+
+ <span class="c1"># Import pyAMR</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.stats.adfuller</span> <span class="kn">import</span> <span class="n">ADFWrapper</span>
+
+
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># set basic configuration</span>
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># Set pandas configuration.</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># create data</span>
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># Constants</span>
+ <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
+ <span class="n">offset</span> <span class="o">=</span> <span class="mi">100</span>
+ <span class="n">slope</span> <span class="o">=</span> <span class="mi">10</span>
+
+ <span class="c1"># Create timeseries.</span>
+ <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+ <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">offset</span>
+
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># create adfuller object</span>
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># Create object</span>
+ <span class="n">adf</span> <span class="o">=</span> <span class="n">ADFWrapper</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">adfuller</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">regression</span><span class="o">=</span><span class="s1">&#39;ct&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Print series.</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+
+ <span class="c1"># Print summary.</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+
+ <span class="c1"># Print identifier.</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Identifier&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
+
+ <span class="c1"># -----------------</span>
+ <span class="c1"># Save and load</span>
+ <span class="c1"># -----------------</span>
+ <span class="c1"># File location</span>
+ <span class="c1">#fname = &#39;../examples/saved/adfuller-sample.pickle&#39;</span>
+
+ <span class="c1"># Save</span>
+ <span class="c1">#adf.save(fname=fname)</span>
+
+ <span class="c1"># Load</span>
+ <span class="c1">#adf = ADFWrapper().load(fname=fname)</span>
+
+
+ <span class="c1"># -----------</span>
+ <span class="c1"># Grid search</span>
+ <span class="c1"># -----------</span>
+ <span class="c1"># Create wrapper</span>
+ <span class="n">adf</span> <span class="o">=</span> <span class="n">ADFWrapper</span><span class="p">(</span><span class="n">adfuller</span><span class="p">)</span>
+
+ <span class="c1"># Grid parameters.</span>
+ <span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="s1">&#39;regression&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;nc&#39;</span><span class="p">,</span><span class="s1">&#39;ct&#39;</span><span class="p">]}</span>
+
+ <span class="c1"># Get wrappers.</span>
+ <span class="n">lwrappers</span> <span class="o">=</span> <span class="n">adf</span><span class="o">.</span><span class="n">grid_search</span><span class="p">(</span><span class="n">grid_params</span><span class="o">=</span><span class="n">grid_params</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+ <span class="c1"># Get summary.</span>
+ <span class="n">summary</span> <span class="o">=</span> <span class="n">adf</span><span class="o">.</span><span class="n">from_list_dataframe</span><span class="p">(</span><span class="n">lwrappers</span><span class="p">,</span> <span class="n">flabel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1"># Plot result.</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.170 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-plot-core-stats-adfuller-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/ca7b06728bf189acd09292e1d61fc55f/plot_core_stats_adfuller.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_stats_adfuller.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/a6ef7bad1c27631d00e6693dfbb68ea8/plot_core_stats_adfuller.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_stats_adfuller.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plot_core_stats_correlation.html" class="btn btn-neutral float-right" title="Statistical test - Correlation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_core_sari.html" class="btn btn-neutral float-left" title="Index - SARI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

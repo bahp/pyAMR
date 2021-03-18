@@ -20,7 +20,6 @@ from pyamr.core.freq import Frequency
 from pyamr.core.sari import SARI
 from pyamr.core.asai import ASAI
 
-
 # Configure seaborn style (context=talk)
 sns.set(style="white")
 
@@ -121,7 +120,6 @@ organisms = pd.read_csv(path_org)
 abx_map = create_mapper(antibiotics, 'antibioticCode', 'antibioticClass')
 org_map = create_mapper(organisms, 'organismCode', 'specieName')
 grm_map = create_mapper(organisms, 'organismCode', 'gramType')
-
 
 # Copy dataframe
 dataframe = sari_overall.copy(deep=True)

@@ -98,6 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="_examples/indexes/index.html">Calculating AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_examples/forecasting/index.html">Time-series forecasting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_examples/nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -180,6 +181,7 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
@@ -196,6 +198,8 @@
       <li><a href="_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.acronym">acronym() (in module pyamr.core.table.acronym)</a>
 </li>
       <li><a href="_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.AcronymBuilder">AcronymBuilder (class in pyamr.core.table.acronym)</a>
+</li>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper">ADFWrapper (class in pyamr.core.stats.adfuller)</a>
 </li>
       <li><a href="_apidoc/pyamr.graphics.html#pyamr.graphics.antibiogram.Antibiogram">Antibiogram (class in pyamr.graphics.antibiogram)</a>
 </li>
@@ -217,6 +221,14 @@
         <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.as_summary">(pyamr.core.regression.wbase.BaseWrapper method)</a>
 </li>
         <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.wls.WLSWrapper.as_summary">(pyamr.core.regression.wls.WLSWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.as_summary">(pyamr.core.stats.adfuller.ADFWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.as_summary">(pyamr.core.stats.correlation.CorrelationWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.as_summary">(pyamr.core.stats.kendall.KendallWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper.as_summary">(pyamr.core.stats.stationarity.StationarityWrapper method)</a>
 </li>
         <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.as_summary">(pyamr.core.stats.wbase.BaseWrapper method)</a>
 </li>
@@ -317,6 +329,8 @@
 </li>
       <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.wreg.RegressionWrapper.conf_int_insample">conf_int_insample() (pyamr.core.regression.wreg.RegressionWrapper method)</a>
 </li>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper">CorrelationWrapper (class in pyamr.core.stats.correlation)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -360,6 +374,14 @@
 </li>
         <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.wls.WLSWrapper.evaluate">(pyamr.core.regression.wls.WLSWrapper method)</a>
 </li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.evaluate">(pyamr.core.stats.adfuller.ADFWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.evaluate">(pyamr.core.stats.correlation.CorrelationWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.evaluate">(pyamr.core.stats.kendall.KendallWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper.evaluate">(pyamr.core.stats.stationarity.StationarityWrapper method)</a>
+</li>
         <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.evaluate">(pyamr.core.stats.wbase.BaseWrapper method)</a>
 </li>
       </ul></li>
@@ -385,6 +407,10 @@
         <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.wls.WLSWrapper.fit">(pyamr.core.regression.wls.WLSWrapper method)</a>
 </li>
         <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.wreg.RegressionWrapper.fit">(pyamr.core.regression.wreg.RegressionWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.fit">(pyamr.core.stats.correlation.CorrelationWrapper method)</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper.fit">(pyamr.core.stats.stationarity.StationarityWrapper method)</a>
 </li>
         <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.fit">(pyamr.core.stats.wbase.BaseWrapper method)</a>
 </li>
@@ -464,6 +490,22 @@
       <li><a href="_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.AcronymBuilder.inverse_transform">inverse_transform() (pyamr.core.table.acronym.AcronymBuilder method)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.is_stationary">is_stationary() (pyamr.core.stats.adfuller.ADFWrapper method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.kendall">kendall() (in module pyamr.core.stats.kendall)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper">KendallWrapper (class in pyamr.core.stats.kendall)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="L">L</h2>
@@ -522,6 +564,14 @@
         <li><a href="_apidoc/pyamr.core.html#module-pyamr.core.sari">pyamr.core.sari</a>
 </li>
         <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats">pyamr.core.stats</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.adfuller">pyamr.core.stats.adfuller</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.correlation">pyamr.core.stats.correlation</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.kendall">pyamr.core.stats.kendall</a>
+</li>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.stationarity">pyamr.core.stats.stationarity</a>
 </li>
         <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.wbase">pyamr.core.stats.wbase</a>
 </li>
@@ -670,6 +720,36 @@
 </li>
       </ul></li>
       <li>
+    pyamr.core.stats.adfuller
+
+      <ul>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.adfuller">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyamr.core.stats.correlation
+
+      <ul>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.correlation">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyamr.core.stats.kendall
+
+      <ul>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.kendall">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyamr.core.stats.stationarity
+
+      <ul>
+        <li><a href="_apidoc/pyamr.core.stats.html#module-pyamr.core.stats.stationarity">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     pyamr.core.stats.wbase
 
       <ul>
@@ -683,8 +763,6 @@
         <li><a href="_apidoc/pyamr.core.table.html#module-pyamr.core.table">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     pyamr.core.table.acronym
 
@@ -850,8 +928,6 @@
 </li>
       <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper">SARIMAXWrapper (class in pyamr.core.regression.sarimax)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper.save">save() (pyamr.core.regression.sarimax.SARIMAXWrapper method)</a>
 
       <ul>
@@ -860,11 +936,17 @@
         <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.save">(pyamr.core.stats.wbase.BaseWrapper method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_apidoc/pyamr.utils.html#pyamr.utils.display.show">show() (in module pyamr.utils.display)</a>
 </li>
       <li><a href="_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA">SigmoidA (class in pyamr.metrics.weights)</a>
 </li>
       <li><a href="_apidoc/pyamr.core.table.html#pyamr.core.table.utils.specie_abbreviation">specie_abbreviation() (in module pyamr.core.table.utils)</a>
+</li>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.stationarity">stationarity() (pyamr.core.stats.adfuller.ADFWrapper method)</a>
+</li>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper">StationarityWrapper (class in pyamr.core.stats.stationarity)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -876,13 +958,17 @@
 </li>
       <li><a href="_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_execution_widgets">test_script_execution_widgets() (in module pyamr.tests.test_scripts)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA.threshold">threshold() (pyamr.metrics.weights.SigmoidA method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.AcronymBuilder.transform">transform() (pyamr.core.table.acronym.AcronymBuilder method)</a>
 </li>
       <li><a href="_apidoc/pyamr.core.table.html#pyamr.core.table.utils.transform_rename">transform_rename() (in module pyamr.core.table.utils)</a>
+</li>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.trend_direction">trend_direction() (pyamr.core.stats.kendall.KendallWrapper method)</a>
+</li>
+      <li><a href="_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.trend_exists">trend_exists() (pyamr.core.stats.kendall.KendallWrapper method)</a>
 </li>
   </ul></td>
 </tr></table>

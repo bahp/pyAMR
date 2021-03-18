@@ -90,8 +90,9 @@
             
               <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
@@ -107,6 +108,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
             
@@ -189,10 +195,22 @@ to download the full example code</p>
 You should induce stationarity, choose a different model order, or you can
 pass your own start_params.
 3/128. ARIMA(0, 1, 0) [nc, False] ... failed: Estimation requires the inclusion of least one AR term, MA term, a constant or an exogenous variable.
+5/128. ARIMA(2, 2, 2) [nc, False] ... failed: The computed initial MA coefficients are not invertible
+You should induce invertibility, choose a different model order, or you can
+pass your own start_params.
 11/128. ARIMA(0, 3, 0) [nc, False] ... failed: d &gt; 2 is not supported
 12/128. ARIMA(0, 3, 0) [c, False] ... failed: d &gt; 2 is not supported
+13/128. ARIMA(2, 1, 3) [nc, False] ... failed: The computed initial AR coefficients are not stationary
+You should induce stationarity, choose a different model order, or you can
+pass your own start_params.
 15/128. ARIMA(0, 3, 3) [nc, False] ... failed: d &gt; 2 is not supported
 16/128. ARIMA(0, 3, 3) [c, False] ... failed: d &gt; 2 is not supported
+19/128. ARIMA(1, 2, 2) [nc, False] ... failed: The computed initial MA coefficients are not invertible
+You should induce invertibility, choose a different model order, or you can
+pass your own start_params.
+20/128. ARIMA(1, 2, 2) [c, False] ... failed: The computed initial MA coefficients are not invertible
+You should induce invertibility, choose a different model order, or you can
+pass your own start_params.
 21/128. ARIMA(1, 3, 3) [nc, False] ... failed: d &gt; 2 is not supported
 22/128. ARIMA(1, 3, 3) [c, False] ... failed: d &gt; 2 is not supported
 25/128. ARIMA(1, 3, 0) [nc, False] ... failed: d &gt; 2 is not supported
@@ -209,6 +227,9 @@ pass your own start_params.
 41/128. ARIMA(3, 0, 3) [nc, False] ... failed: The computed initial AR coefficients are not stationary
 You should induce stationarity, choose a different model order, or you can
 pass your own start_params.
+42/128. ARIMA(3, 0, 3) [c, False] ... failed: The computed initial AR coefficients are not stationary
+You should induce stationarity, choose a different model order, or you can
+pass your own start_params.
 43/128. ARIMA(1, 1, 3) [nc, False] ... failed: The computed initial AR coefficients are not stationary
 You should induce stationarity, choose a different model order, or you can
 pass your own start_params.
@@ -220,26 +241,25 @@ You should induce stationarity, choose a different model order, or you can
 pass your own start_params.
 55/128. ARIMA(0, 3, 2) [nc, False] ... failed: d &gt; 2 is not supported
 56/128. ARIMA(0, 3, 2) [c, False] ... failed: d &gt; 2 is not supported
+61/128. ARIMA(1, 2, 1) [nc, False] ... failed: The computed initial MA coefficients are not invertible
+You should induce invertibility, choose a different model order, or you can
+pass your own start_params.
+62/128. ARIMA(1, 2, 1) [c, False] ... failed: The computed initial MA coefficients are not invertible
+You should induce invertibility, choose a different model order, or you can
+pass your own start_params.
 63/128. ARIMA(3, 0, 1) [nc, False] ... failed: The computed initial AR coefficients are not stationary
 You should induce stationarity, choose a different model order, or you can
 pass your own start_params.
 65/128. ARIMA(1, 3, 2) [nc, False] ... failed: d &gt; 2 is not supported
 66/128. ARIMA(1, 3, 2) [c, False] ... failed: d &gt; 2 is not supported
-67/128. ARIMA(3, 2, 3) [nc, False] ... failed: The computed initial MA coefficients are not invertible
-You should induce invertibility, choose a different model order, or you can
-pass your own start_params.
-68/128. ARIMA(3, 2, 3) [c, False] ... failed: The computed initial MA coefficients are not invertible
-You should induce invertibility, choose a different model order, or you can
-pass your own start_params.
+67/128. ARIMA(3, 2, 3) [nc, False] ... failed: SVD did not converge
+68/128. ARIMA(3, 2, 3) [c, False] ... failed: SVD did not converge
 69/128. ARIMA(3, 3, 1) [nc, False] ... failed: d &gt; 2 is not supported
 70/128. ARIMA(3, 3, 1) [c, False] ... failed: d &gt; 2 is not supported
 73/128. ARIMA(0, 2, 0) [nc, False] ... failed: Estimation requires the inclusion of least one AR term, MA term, a constant or an exogenous variable.
 75/128. ARIMA(0, 0, 0) [nc, False] ... failed: Estimation requires the inclusion of least one AR term, MA term, a constant or an exogenous variable.
 77/128. ARIMA(2, 3, 2) [nc, False] ... failed: d &gt; 2 is not supported
 78/128. ARIMA(2, 3, 2) [c, False] ... failed: d &gt; 2 is not supported
-81/128. ARIMA(1, 1, 2) [nc, False] ... failed: The computed initial AR coefficients are not stationary
-You should induce stationarity, choose a different model order, or you can
-pass your own start_params.
 85/128. ARIMA(3, 0, 2) [nc, False] ... failed: The computed initial AR coefficients are not stationary
 You should induce stationarity, choose a different model order, or you can
 pass your own start_params.
@@ -256,12 +276,6 @@ pass your own start_params.
 102/128. ARIMA(0, 3, 1) [c, False] ... failed: d &gt; 2 is not supported
 107/128. ARIMA(1, 3, 1) [nc, False] ... failed: d &gt; 2 is not supported
 108/128. ARIMA(1, 3, 1) [c, False] ... failed: d &gt; 2 is not supported
-113/128. ARIMA(3, 2, 2) [nc, False] ... failed: The computed initial MA coefficients are not invertible
-You should induce invertibility, choose a different model order, or you can
-pass your own start_params.
-114/128. ARIMA(3, 2, 2) [c, False] ... failed: The computed initial MA coefficients are not invertible
-You should induce invertibility, choose a different model order, or you can
-pass your own start_params.
 115/128. ARIMA(3, 3, 3) [nc, False] ... failed: d &gt; 2 is not supported
 116/128. ARIMA(3, 3, 3) [c, False] ... failed: d &gt; 2 is not supported
 117/128. ARIMA(3, 3, 0) [nc, False] ... failed: d &gt; 2 is not supported
@@ -274,28 +288,28 @@ pass your own start_params.
 
 Summary:
    arima-order arima-trend  arima-aic  arima-bic
-0    (0, 2, 2)          nc   756.7474   763.8175
-1    (1, 2, 1)          nc   757.4151   764.4852
-2    (0, 2, 2)           c   756.3918   765.8187
-3    (2, 2, 1)          nc     756.56   765.9868
-4    (0, 2, 3)          nc    757.168   766.5948
+0    (0, 2, 2)          nc    767.192   774.2621
+1    (0, 2, 2)           c   766.6271   776.0539
+2    (0, 2, 3)          nc   768.1488   777.5757
+3    (2, 2, 1)          nc   769.4077   778.8346
+4    (0, 2, 3)           c   767.5176   779.3012
 ..         ...         ...        ...        ...
-66   (0, 0, 1)           c   936.2054   943.3515
-67   (0, 0, 3)          nc   959.4184   968.9465
-68   (0, 0, 0)           c  1013.4585  1018.2226
-69   (0, 0, 2)          nc  1012.4348  1019.5809
-70   (0, 0, 1)          nc  1074.6251  1079.3892
+64   (0, 0, 1)           c   948.0782   955.2243
+65   (0, 0, 3)          nc   969.5846   979.1127
+66   (0, 0, 2)          nc  1014.5892  1021.7352
+67   (0, 0, 0)           c  1017.6069   1022.371
+68   (0, 0, 1)          nc  1083.4332  1088.1973
 
-[71 rows x 4 columns]
- 0. Estimator (bic=763.82): ARIMA(0, 2, 2) [nc, False]
- 1. Estimator (bic=764.49): ARIMA(1, 2, 1) [nc, False]
- 2. Estimator (bic=765.82): ARIMA(0, 2, 2) [c, False]
- 3. Estimator (bic=765.99): ARIMA(2, 2, 1) [nc, False]
- 4. Estimator (bic=766.59): ARIMA(0, 2, 3) [nc, False]
- 5. Estimator (bic=766.71): ARIMA(1, 2, 1) [c, False]
- 6. Estimator (bic=767.10): ARIMA(1, 2, 2) [nc, False]
- 7. Estimator (bic=767.98): ARIMA(2, 2, 1) [c, False]
- 8. Estimator (bic=768.53): ARIMA(2, 2, 2) [nc, False]
+[69 rows x 4 columns]
+ 0. Estimator (bic=774.26): ARIMA(0, 2, 2) [nc, False]
+ 1. Estimator (bic=776.05): ARIMA(0, 2, 2) [c, False]
+ 2. Estimator (bic=777.58): ARIMA(0, 2, 3) [nc, False]
+ 3. Estimator (bic=778.83): ARIMA(2, 2, 1) [nc, False]
+ 4. Estimator (bic=779.30): ARIMA(0, 2, 3) [c, False]
+ 5. Estimator (bic=780.47): ARIMA(0, 1, 1) [c, False]
+ 6. Estimator (bic=780.52): ARIMA(2, 2, 1) [c, False]
+ 7. Estimator (bic=780.64): ARIMA(3, 2, 1) [nc, False]
+ 8. Estimator (bic=780.82): ARIMA(1, 2, 3) [nc, False]
 </pre></div>
 </div>
 <div class="line-block">
@@ -520,7 +534,7 @@ Summary:
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.339 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.984 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-arima-search-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/f25eac99ec6c51e75e4e36b79bfd228d/plot_arima_search.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_arima_search.py</span></code></a></p>

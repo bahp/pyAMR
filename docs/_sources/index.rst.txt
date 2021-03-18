@@ -9,7 +9,17 @@ Antimicrobial Resistance (AMR) statistics.
    :align: right
    :alt: DataBlend
 
+
+.. _PhD: https://spiral.imperial.ac.uk/handle/10044/1/73000
+
+.. _pyAMR: https://github.com/bahp/pyAMR
+
 The code of the project is on Github: https://github.com/bahp/pyAMR
+
+The PhD thesis is on Spiral: `PhD`_
+
+
+
 
 .. toctree::
    :maxdepth: 2
@@ -34,6 +44,7 @@ The code of the project is on Github: https://github.com/bahp/pyAMR
    _examples/indexes/index
    _examples/forecasting/index
    _examples/nhs/index
+   _examples/visualization/index
 
 .. toctree::
    :maxdepth: 2

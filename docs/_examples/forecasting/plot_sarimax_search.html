@@ -90,8 +90,9 @@
             
               <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
@@ -107,6 +108,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
             
@@ -188,28 +194,28 @@ to download the full example code</p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Summary:
     sarimax-order sarimax-seasonal_order sarimax-trend sarimax-aic sarimax-bic
-0       (1, 1, 0)  (0, 0, 0, 12)                    ct    728.2008    737.6786
-1       (1, 1, 0)  (0, 0, 0, 12)                     c    730.8361    737.9445
-2       (0, 1, 1)  (0, 0, 0, 12)                    ct    729.1303    738.6081
-3       (1, 1, 0)  (0, 0, 0, 12)                     n    734.0131     738.752
-4       (0, 1, 0)  (0, 0, 0, 12)                     n    736.7401    739.1096
+0       (0, 1, 1)  (0, 0, 0, 12)                     c     761.863    768.9714
+1       (0, 1, 1)  (0, 0, 0, 12)                    ct    759.5819    769.0597
+2       (1, 1, 0)  (0, 0, 0, 12)                     c    763.2837    770.3921
+3       (0, 1, 1)  (0, 0, 1, 12)                     c    761.1916    770.6694
+4       (0, 1, 1)  (1, 0, 0, 12)                     c    761.4117    770.8895
 ..            ...            ...                   ...         ...         ...
-282     (0, 0, 1)  (0, 0, 1, 12)                     n   1011.4953   1018.6414
-283     (0, 0, 2)  (0, 0, 0, 12)                     n   1052.1962   1059.3423
-284     (0, 0, 1)  (0, 0, 0, 12)                     n   1077.0814   1081.8455
-285     (0, 0, 0)  (0, 0, 1, 12)                     n   1101.4559     1106.22
-286     (0, 0, 0)  (0, 0, 0, 12)                     n   1173.3053   1175.6873
+304     (0, 0, 2)  (0, 0, 0, 12)                     n    1012.821    1019.967
+305     (0, 0, 1)  (0, 0, 1, 12)                     n   1018.9803   1026.1264
+306     (0, 0, 1)  (0, 0, 0, 12)                     n   1079.5925   1084.3566
+307     (0, 0, 0)  (0, 0, 1, 12)                     n    1102.263   1107.0271
+308     (0, 0, 0)  (0, 0, 0, 12)                     n   1173.7284   1176.1104
 
-[287 rows x 5 columns]
- 0. Estimator (bic=737.68): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [ct,False]
- 1. Estimator (bic=737.94): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [c,False]
- 2. Estimator (bic=738.61): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [ct,False]
- 3. Estimator (bic=738.75): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [n,False]
- 4. Estimator (bic=739.11): SARIMAX(0, 1, 0)x(0, 0, 0, 12) [n,False]
- 5. Estimator (bic=739.17): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [c,False]
- 6. Estimator (bic=739.93): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [n,False]
- 7. Estimator (bic=740.46): SARIMAX(0, 1, 0)x(0, 0, 0, 12) [c,False]
- 8. Estimator (bic=741.43): SARIMAX(1, 1, 0)x(1, 0, 0, 12) [ct,False]
+[309 rows x 5 columns]
+ 0. Estimator (bic=768.97): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [c,False]
+ 1. Estimator (bic=769.06): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [ct,False]
+ 2. Estimator (bic=770.39): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [c,False]
+ 3. Estimator (bic=770.67): SARIMAX(0, 1, 1)x(0, 0, 1, 12) [c,False]
+ 4. Estimator (bic=770.89): SARIMAX(0, 1, 1)x(1, 0, 0, 12) [c,False]
+ 5. Estimator (bic=771.13): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [n,False]
+ 6. Estimator (bic=771.36): SARIMAX(1, 1, 0)x(1, 0, 0, 12) [n,False]
+ 7. Estimator (bic=771.62): SARIMAX(1, 1, 0)x(0, 0, 1, 12) [n,False]
+ 8. Estimator (bic=771.66): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [n,False]
 </pre></div>
 </div>
 <div class="line-block">
@@ -450,7 +456,7 @@ to download the full example code</p>
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  20.599 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  14.443 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-sarimax-search-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c08b13688ee7761b730985f8d7d7a56a/plot_sarimax_search.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_sarimax_search.py</span></code></a></p>
