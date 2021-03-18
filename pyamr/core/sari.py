@@ -23,10 +23,28 @@ from pyamr.core.freq import Frequency
 # -------------------------------------------------------------------------
 #                            helper methods
 # -------------------------------------------------------------------------
+def _check_dataframe(dataframe):
+  """Ensure the three columns are available.
+  """
+  # Copy
+  aux = dataframe.copy(deep=True)
+
+  # Add missing columns
+  if not 'resistant' in dataframe:
+    aux['resistant'] = 0
+  if not 'intermediate' in  dataframe:
+    aux['intermediate'] = 0
+  if not 'sensitive' in dataframe:
+    aux['sensitivity'] = 0
+
+  # return
+  return aux
 
 def sari_soft(dataframe):
   """
   """
+  # Check
+  dataframe = _check_dataframe(dataframe)
   # Get values
   r = dataframe['resistant']
   i = dataframe['intermediate']
@@ -37,6 +55,8 @@ def sari_soft(dataframe):
 def sari_medium(dataframe):
   """
   """
+  # Check
+  dataframe = _check_dataframe(dataframe)
   # Get values
   r = dataframe['resistant']
   s = dataframe['sensitive']
@@ -46,6 +66,8 @@ def sari_medium(dataframe):
 def sari_hard(dataframe):
   """
   """
+  # Check
+  dataframe = _check_dataframe(dataframe)
   # Get values
   r = dataframe['resistant']
   i = dataframe['intermediate']
@@ -56,6 +78,8 @@ def sari_hard(dataframe):
 def sari_whard(dataframe, w=0.5):
   """
   """
+  # Check
+  dataframe = _check_dataframe(dataframe)
   # Get values
   r = dataframe['resistant']
   i = dataframe['intermediate']

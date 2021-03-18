@@ -20,14 +20,10 @@ import pandas as pd
 sys.path.append("../..")
 
 # Import base wrapper
-from wbase import BaseWrapper
+from pyamr.core.stats.wbase import BaseWrapper
 
 
 class CorrelationWrapper(BaseWrapper):
-
-
-
-
 
   # --------------------------------------------------------------------------
   #                          overriden methods

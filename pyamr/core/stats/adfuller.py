@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 
 # Import base wrapper
-from wbase import BaseWrapper
+from pyamr.core.stats.wbase import BaseWrapper
 
 class ADFWrapper(BaseWrapper):
 

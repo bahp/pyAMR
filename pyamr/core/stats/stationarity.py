@@ -17,8 +17,8 @@ import numpy as np
 import pandas as pd
 
 # Import base wrapper
-from wbase import BaseWrapper
-from wbase import fargs
+from pyamr.core.stats.wbase import BaseWrapper
+from pyamr.core.stats.wbase import fargs
 
 class StationarityWrapper(BaseWrapper):
 
