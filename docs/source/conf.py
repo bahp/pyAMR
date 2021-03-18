@@ -72,14 +72,16 @@ sphinx_gallery_conf = {
         '../../examples/tutorial',
         '../../examples/indexes',
         '../../examples/forecasting',
-        '../../examples/nhs'
+        '../../examples/nhs',
+        '../../examples/visualization'
     ],
     # path to where to save gallery generated output
     'gallery_dirs': [
         '../source/_examples/tutorial',
         '../source/_examples/indexes',
         '../source/_examples/forecasting',
-        '../source/_examples/nhs'],
+        '../source/_examples/nhs',
+        '../source/_examples/visualization'],
     # Other
     'line_numbers': True,
     'download_all_examples': False,
