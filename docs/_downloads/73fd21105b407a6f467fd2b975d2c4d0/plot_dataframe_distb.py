@@ -1,6 +1,6 @@
 """
-Table Graph
-===========
+Table Boxplot
+=============
 
 Example using your package
 """

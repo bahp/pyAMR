@@ -42,8 +42,8 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Step 02 -" href="plot_step_02.html" />
-    <link rel="prev" title="The tutorial gallery" href="../index.html" /> 
+    <link rel="next" title="Step 02 - Time Series Analysis" href="plot_step_02.html" />
+    <link rel="prev" title="Tutorial" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,7 +96,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">The tutorial gallery</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#guide">Guide</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Step 01 - Introduction</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#loading-data">Loading data</a></li>
@@ -106,8 +106,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#dirty-code-to-use-and-or-delete">Dirty code to use and or delete</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_02.html">Step 02 -</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 03 -</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_02.html">Step 02 - Time Series Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 03 - TSA for trends</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#indexes">Indexes</a></li>
@@ -171,7 +171,7 @@
     
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../index.html">The tutorial gallery</a> &raquo;</li>
+          <li><a href="../index.html">Tutorial</a> &raquo;</li>
         
       <li>Step 01 - Introduction</li>
     
@@ -1062,7 +1062,7 @@ AIMP           1.0  0.0      2.0   0.0   0.500000  0.000000  0.500000  0.000000
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\nsummary = data.agg(\n    norganisms=(\&#39;organismCode\&#39;, \&#39;nunique\&#39;),\n    nantibiotics=(\&#39;antibioticCode\&#39;, \&#39;nunique\&#39;),\n    ncultures=(\&#39;orderCode\&#39;, \&#39;nunique\&#39;),\n    ntests=(\&#39;labNumber\&#39;, \&#39;nunique\&#39;)\n)\n\nprint(summary)\n\nprint(data.nunique())\n\n\nprint(len(data.groupby([\&#39;organismCode\&#39;, \&#39;antibioticCode\&#39;])))\nprint(data.shape[0])\n\nsummary = pd.DataFrame\n\n\n#from analysis.microbiology.statistics.frequency import Frequency\n\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = &quot;freq_tests_pairs_year&quot;\nfname_isola = &quot;freq_isolates_pairs_year&quot;\nfpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests\nfpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\&#39;Tests\&#39;] = dff_tests[\&#39;freq_ris\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Isolates\&#39;] = dff_isola[\&#39;freq\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests\&#39;].div(dfy[\&#39;Isolates\&#39;])\ndfy[\&#39;Antibiotics\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).antibioticCode.nunique()\ndfy[\&#39;Organisms\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\&#39;Total\&#39;,:] = np.nan\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests\&#39;] = dfy[\&#39;Tests\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Isolates\&#39;] = dfy[\&#39;Isolates\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests/Isolates\&#39;].mean()\ndfy.loc[\&#39;Total\&#39;,\&#39;Antibiotics\&#39;] = dff_reset.antibioticCode.nunique()\ndfy.loc[\&#39;Total\&#39;,\&#39;Organisms\&#39;] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint(&quot;\n\n&quot;)\nprint(&quot;Pandas:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy)\n\n# Print dataframe latex format.\nprint(&quot;\n\n&quot;)\nprint(&quot;Latex:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy.to_latex())\n\n#print dff_isola.head(10)\nimport sys\nsys.exit()\n&#39;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.023 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.033 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-01-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/8ea231e13cc952cc3427bd7a21cea30e/plot_step_01.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_01.py</span></code></a></p>
@@ -1081,8 +1081,8 @@ AIMP           1.0  0.0      2.0   0.0   0.500000  0.000000  0.500000  0.000000
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="plot_step_02.html" class="btn btn-neutral float-right" title="Step 02 -" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="The tutorial gallery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_step_02.html" class="btn btn-neutral float-right" title="Step 02 - Time Series Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

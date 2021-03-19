@@ -1,26 +1,8 @@
 """
-Piechart Profile Completeness
-=============================
+Piechart Completeness
+=====================
 
-Example using your package
 """
-#######################################################################
-# Author: Bernard
-# Date: 19/08/2016
-# Description: This script creates PIECHARTS for the paper which 
-#              describes the infection risk inference: "Evaluating
-#              machine learning algorithms for infection risk inference
-#              using routinely collected pathology labotartory data".
-#
-# Notes: The values can be changed to display other data.
-#
-# Useful links:
-# @see: http://matplotlib.org/examples/color/named_colors.html
-# @see: http://matplotlib.org/examples/color/colormaps_reference.html
-# @see: http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge
-# @see: http://matplotlib.org/api/text_api.html#matplotlib.text.Text
-#
-#######################################################################
 
 # Libraries.
 import numpy as np
