@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Step 01 - Loading data &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Step 02 -" href="plot_step_02.html" />
+    <link rel="prev" title="Statistical test - Stationarity" href="../statistics/plot_core_stats_stationarity.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">The tutorial gallery</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#sphx-glr-examples-tutorial-steps">The tutorial gallery</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Step 01 - Loading data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_step_02.html">Step 02 -</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_step_03.html">Step 03 -</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Calculating AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Time-series forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">The tutorial gallery</a> &raquo;</li>
+        
+      <li>Step 01 - Loading data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/_examples/tutorial/steps/plot_step_01.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-steps-plot-step-01-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="step-01-loading-data">
+<span id="sphx-glr-examples-tutorial-steps-plot-step-01-py"></span><h1>Step 01 - Loading data<a class="headerlink" href="#step-01-loading-data" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Load data</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Path</span>
+ <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../../pyamr/datasets/other/susceptibility.csv&#39;</span>
+
+ <span class="c1"># Load data</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
+     <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">])</span>
+
+ <span class="c1"># Clean</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Show a brief description</span>
+ <span class="c1"># -------------------------------------------</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+     dateReceived  gender  age  dob  patientLocation  doctorsLocation  ...            antibioticNameOrig antibioticName antibioticCodeOrig antibioticCode sensitivity LukeCode
+0      2016-01-01     NaN  NaN  NaN              NaN              NaN  ...                      Amikacin       amikacin               AAMI           AAMI   sensitive     SMAR
+1      2016-01-01     NaN  NaN  NaN              NaN              NaN  ...                   Amoxycillin    amoxycillin               AAMO           AAMO   resistant     SMAR
+2      2016-01-01     NaN  NaN  NaN              NaN              NaN  ...  AMP C markers (SS = present)  amp c markers              AAMPC          AAMPC   resistant     SMAR
+3      2016-01-01     NaN  NaN  NaN              NaN              NaN  ...                     Augmentin      augmentin               AAUG           AAUG   resistant     SMAR
+4      2016-01-01     NaN  NaN  NaN              NaN              NaN  ...                     Aztreonam      aztreonam               AAZT           AAZT   sensitive     SMAR
+...           ...     ...  ...  ...              ...              ...  ...                           ...            ...                ...            ...         ...      ...
+5147   2016-01-11     NaN  NaN  NaN              NaN              NaN  ...                       Tazocin        tazocin               ATAZ           ATAZ   sensitive     ECOL
+5148   2016-01-11     NaN  NaN  NaN              NaN              NaN  ...                    Temocillin     temocillin               ATEM           ATEM   sensitive     ECOL
+5149   2016-01-11     NaN  NaN  NaN              NaN              NaN  ...                   Tigecycline    tigecycline               ATIG           ATIG   sensitive     ECOL
+5150   2016-01-11     NaN  NaN  NaN              NaN              NaN  ...                    Tobramycin     tobramycin               ATOB           ATOB   sensitive     ECOL
+5151   2016-01-11     NaN  NaN  NaN              NaN              NaN  ...                  Trimethoprim   trimethoprim               ATRI           ATRI   sensitive     ECOL
+
+[5152 rows x 24 columns]
+
+Columns
+Index([&#39;dateReceived&#39;, &#39;gender&#39;, &#39;age&#39;, &#39;dob&#39;, &#39;patientLocation&#39;,
+       &#39;doctorsLocation&#39;, &#39;setting&#39;, &#39;orderCode&#39;, &#39;orderName&#39;, &#39;specimenType&#39;,
+       &#39;labNumber&#39;, &#39;patNumber&#39;, &#39;organismNameOrig&#39;, &#39;organismName&#39;,
+       &#39;organismCodeOrig&#39;, &#39;organismCode&#39;, &#39;specieName&#39;, &#39;specieCode&#39;,
+       &#39;antibioticNameOrig&#39;, &#39;antibioticName&#39;, &#39;antibioticCodeOrig&#39;,
+       &#39;antibioticCode&#39;, &#39;sensitivity&#39;, &#39;LukeCode&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+<p>Compute the frequency…</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Compute Freq</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.freq</span> <span class="kn">import</span> <span class="n">Frequency</span>
+
+ <span class="c1"># Create instance</span>
+ <span class="n">freq</span> <span class="o">=</span> <span class="n">Frequency</span><span class="p">(</span><span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
+                  <span class="n">column_organism</span><span class="o">=</span><span class="s1">&#39;organismCode&#39;</span><span class="p">,</span>
+                  <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">,</span>
+                  <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Compute frequencies monthly</span>
+ <span class="n">monthly</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;ITI&#39;</span><span class="p">,</span>
+                              <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                              <span class="n">fs</span><span class="o">=</span><span class="s1">&#39;1M&#39;</span><span class="p">)</span>
+ <span class="c1"># Add freq</span>
+ <span class="n">monthly</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">monthly</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Freqs:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">monthly</span><span class="p">)</span>
+
+ <span class="c1"># Plot</span>
+ <span class="c1"># .. todo: Use bar plot or any other library to plot</span>
+ <span class="c1">#          the frequency in time. Ideally with bars</span>
+ <span class="c1">#          where x-axis is the time and y-axi is the</span>
+ <span class="c1">#          freq. Avoid too many x-labels, keep just</span>
+ <span class="c1">#          years?</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Freqs:
+SENSITIVITY                   &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  not done  resistant  sensitive  freq
+SPECIE ANTIBIOTIC DATE
+ABAU   AAMI       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ACIP       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ACOT       2016-01-31                0.0               0.0           0.0       0.0        1.0        1.0   2.0
+       AGEN       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       AMER       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+...                                         ...               ...           ...       ...        ...        ...   ...
+YEAST  ATAZ       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ATEM       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
+       ATIG       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
+       ATOB       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ATRI       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
+
+[627 rows x 7 columns]
+</pre></div>
+</div>
+<p>It can be computed with different strategies…</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>hard ..</p></li>
+<li><p>soft ..</p></li>
+<li><p>define your own…</p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Compute SARI</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+
+ <span class="c1"># Compute SARI</span>
+ <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">monthly</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Freqs:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">sari</span><span class="p">)</span>
+
+ <span class="c1"># Plot</span>
+ <span class="c1"># .. todo: Use bar plot or any other library to plot</span>
+ <span class="c1">#          the frequency in time. Ideally with bars</span>
+ <span class="c1">#          where x-axis is the time and y-axi is the</span>
+ <span class="c1">#          freq. Avoid too many x-labels, keep just</span>
+ <span class="c1">#          years?</span>
+
+
+
+ <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> summary = data.agg(</span>
+<span class="sd">     norganisms=(&#39;organismCode&#39;, &#39;nunique&#39;),</span>
+<span class="sd">     nantibiotics=(&#39;antibioticCode&#39;, &#39;nunique&#39;),</span>
+<span class="sd">     ncultures=(&#39;orderCode&#39;, &#39;nunique&#39;),</span>
+<span class="sd">     ntests=(&#39;labNumber&#39;, &#39;nunique&#39;)</span>
+<span class="sd"> )</span>
+
+<span class="sd"> print(summary)</span>
+
+<span class="sd"> print(data.nunique())</span>
+
+
+<span class="sd"> print(len(data.groupby([&#39;organismCode&#39;, &#39;antibioticCode&#39;])))</span>
+<span class="sd"> print(data.shape[0])</span>
+
+<span class="sd"> summary = pd.DataFrame</span>
+
+
+<span class="sd"> #from analysis.microbiology.statistics.frequency import Frequency</span>
+
+<span class="sd"> # -----------------------------------------------------------------------------</span>
+<span class="sd"> #                                 CONSTANTS</span>
+<span class="sd"> # -----------------------------------------------------------------------------</span>
+<span class="sd"> # Paths</span>
+<span class="sd"> fname_tests = &quot;freq_tests_pairs_year&quot;</span>
+<span class="sd"> fname_isola = &quot;freq_isolates_pairs_year&quot;</span>
+<span class="sd"> fpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests</span>
+<span class="sd"> fpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola</span>
+
+<span class="sd"> # Object</span>
+<span class="sd"> freq = Frequency()</span>
+
+<span class="sd"> # Read data</span>
+<span class="sd"> dff_tests = freq.load(fpath_tests)</span>
+<span class="sd"> dff_isola = freq.load(fpath_isola)</span>
+<span class="sd"> dff_reset = dff_tests.reset_index()</span>
+
+<span class="sd"> # Basic dataframe.</span>
+<span class="sd"> # IMPORTANT. Note that isolates refer to a single infectious organism which</span>
+<span class="sd"> # is tested against many different anttibiotics. Hence the only way the sum</span>
+<span class="sd"> # refers to isolate is by grouping the laboratory tests by infectious</span>
+<span class="sd"> # organisms.</span>
+<span class="sd"> dfy = pd.DataFrame()</span>
+<span class="sd"> dfy[&#39;Tests&#39;] = dff_tests[&#39;freq_ris&#39;].groupby(level=[0]).sum()</span>
+<span class="sd"> dfy[&#39;Isolates&#39;] = dff_isola[&#39;freq&#39;].groupby(level=[0]).sum()</span>
+<span class="sd"> dfy[&#39;Tests/Isolates&#39;] = dfy[&#39;Tests&#39;].div(dfy[&#39;Isolates&#39;])</span>
+<span class="sd"> dfy[&#39;Antibiotics&#39;] = dff_reset.groupby(&#39;dateReceived&#39;).antibioticCode.nunique()</span>
+<span class="sd"> dfy[&#39;Organisms&#39;] = dff_reset.groupby(&#39;dateReceived&#39;).organismCode.nunique()</span>
+
+<span class="sd"> # Fill last row.</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,:] = np.nan</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Tests&#39;] = dfy[&#39;Tests&#39;].sum(axis=0)</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Isolates&#39;] = dfy[&#39;Isolates&#39;].sum(axis=0)</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Tests/Isolates&#39;] = dfy[&#39;Tests/Isolates&#39;].mean()</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Antibiotics&#39;] = dff_reset.antibioticCode.nunique()</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Organisms&#39;] = dff_reset.organismCode.nunique()</span>
+
+<span class="sd"> # Print dataframe.</span>
+<span class="sd"> print(&quot;\n\n&quot;)</span>
+<span class="sd"> print(&quot;Pandas:&quot;)</span>
+<span class="sd"> print(&quot;-------&quot;)</span>
+<span class="sd"> print(dfy)</span>
+
+<span class="sd"> # Print dataframe latex format.</span>
+<span class="sd"> print(&quot;\n\n&quot;)</span>
+<span class="sd"> print(&quot;Latex:&quot;)</span>
+<span class="sd"> print(&quot;-------&quot;)</span>
+<span class="sd"> print(dfy.to_latex())</span>
+
+<span class="sd"> #print dff_isola.head(10)</span>
+<span class="sd"> import sys</span>
+<span class="sd"> sys.exit()</span>
+<span class="sd"> &quot;&quot;&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Freqs:
+SENSITIVITY                   &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  not done  resistant  sensitive  freq  sari
+SPECIE ANTIBIOTIC DATE
+ABAU   AAMI       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ACIP       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ACOT       2016-01-31                0.0               0.0           0.0       0.0        1.0        1.0   2.0   0.5
+       AGEN       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       AMER       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+...                                         ...               ...           ...       ...        ...        ...   ...   ...
+YEAST  ATAZ       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ATEM       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+       ATIG       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+       ATOB       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ATRI       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+
+[627 rows x 8 columns]
+
+&#39;\nsummary = data.agg(\n    norganisms=(\&#39;organismCode\&#39;, \&#39;nunique\&#39;),\n    nantibiotics=(\&#39;antibioticCode\&#39;, \&#39;nunique\&#39;),\n    ncultures=(\&#39;orderCode\&#39;, \&#39;nunique\&#39;),\n    ntests=(\&#39;labNumber\&#39;, \&#39;nunique\&#39;)\n)\n\nprint(summary)\n\nprint(data.nunique())\n\n\nprint(len(data.groupby([\&#39;organismCode\&#39;, \&#39;antibioticCode\&#39;])))\nprint(data.shape[0])\n\nsummary = pd.DataFrame\n\n\n#from analysis.microbiology.statistics.frequency import Frequency\n\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = &quot;freq_tests_pairs_year&quot;\nfname_isola = &quot;freq_isolates_pairs_year&quot;\nfpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests\nfpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\&#39;Tests\&#39;] = dff_tests[\&#39;freq_ris\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Isolates\&#39;] = dff_isola[\&#39;freq\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests\&#39;].div(dfy[\&#39;Isolates\&#39;])\ndfy[\&#39;Antibiotics\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).antibioticCode.nunique()\ndfy[\&#39;Organisms\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\&#39;Total\&#39;,:] = np.nan\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests\&#39;] = dfy[\&#39;Tests\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Isolates\&#39;] = dfy[\&#39;Isolates\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests/Isolates\&#39;].mean()\ndfy.loc[\&#39;Total\&#39;,\&#39;Antibiotics\&#39;] = dff_reset.antibioticCode.nunique()\ndfy.loc[\&#39;Total\&#39;,\&#39;Organisms\&#39;] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint(&quot;\n\n&quot;)\nprint(&quot;Pandas:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy)\n\n# Print dataframe latex format.\nprint(&quot;\n\n&quot;)\nprint(&quot;Latex:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy.to_latex())\n\n#print dff_isola.head(10)\nimport sys\nsys.exit()\n&#39;
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.223 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-steps-plot-step-01-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/ce94e47482acf0f9c842804782ed9bdb/plot_step_01.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_01.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/82104b7371a11b13115b2709eab45897/plot_step_01.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_step_01.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plot_step_02.html" class="btn btn-neutral float-right" title="Step 02 -" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../statistics/plot_core_stats_stationarity.html" class="btn btn-neutral float-left" title="Statistical test - Stationarity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

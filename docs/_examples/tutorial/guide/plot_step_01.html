@@ -1,0 +1,1129 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Step 01 - Introduction &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Step 02 -" href="plot_step_02.html" />
+    <link rel="prev" title="Plotting greetings" href="../plot_sample_03.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">The tutorial gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../plot_sample_01.html">Plotting a gaussian (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_sample_02.html">Plotting a gaussian (tutorial)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_sample_03.html">Plotting greetings</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#guide">Guide</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Step 01 - Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-data">Loading data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computing-freq">Computing Freq</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computing-sari">Computing SARI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computing-asai">Computing ASAI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dirty-code-to-use-and-or-delete">Dirty code to use and or delete</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_02.html">Step 02 -</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 03 -</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#indexes">Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Calculating AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Time-series forecasting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">EPIC IMPoC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">The tutorial gallery</a> &raquo;</li>
+        
+      <li>Step 01 - Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/_examples/tutorial/guide/plot_step_01.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="step-01-introduction">
+<span id="sphx-glr-examples-tutorial-guide-plot-step-01-py"></span><h1>Step 01 - Introduction<a class="headerlink" href="#step-01-introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="loading-data">
+<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Susceptibility</span></code> test records are composed by laboratory identification
+number (LID), patient identification number (PID), date, sample type or
+culture (e.g. blood or urine), pathogen, antimicrobial, reported status
+and outcome (resistant, sensitive or intermediate). In this research,
+the susceptibility test data were grouped firstly by sample type. Moreover,
+for each sample type, the data were grouped by pairs (pathogen, antimicrobial)
+since it is widely accepted by clinicians as detailed in the UK five year
+strategy in AMR</p>
+<p>A small dataset will be used for this example.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+ <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+ <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Load data</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Path</span>
+ <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../../pyamr/datasets/other/susceptibility.csv&#39;</span>
+ <span class="n">path_org</span> <span class="o">=</span> <span class="s1">&#39;../../../pyamr/datasets/other/organisms.csv&#39;</span>
+ <span class="n">path_abx</span> <span class="o">=</span> <span class="s1">&#39;../../../pyamr/datasets/other/antibiotics.csv&#39;</span>
+
+ <span class="c1"># Load data</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
+     <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">])</span>
+
+ <span class="c1"># Clean</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Show a brief description</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># .. todo: Compute basic information such as the number of unique organisms,</span>
+ <span class="c1">#          antimicrobials, pairs, species, isolates, tests, the range of</span>
+ <span class="c1">#          dates, ....</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+     dateReceived  gender  age  dob  patientLocation  doctorsLocation  setting  ...     specieCode            antibioticNameOrig antibioticName antibioticCodeOrig antibioticCode sensitivity LukeCode
+0      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                      Amikacin       amikacin               AAMI           AAMI   sensitive     SMAR
+1      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                   Amoxycillin    amoxycillin               AAMO           AAMO   resistant     SMAR
+2      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA  AMP C markers (SS = present)  amp c markers              AAMPC          AAMPC   resistant     SMAR
+3      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                     Augmentin      augmentin               AAUG           AAUG   resistant     SMAR
+4      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                     Aztreonam      aztreonam               AAZT           AAZT   sensitive     SMAR
+...           ...     ...  ...  ...              ...              ...      ...  ...            ...                           ...            ...                ...            ...         ...      ...
+5147   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                       Tazocin        tazocin               ATAZ           ATAZ   sensitive     ECOL
+5148   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                    Temocillin     temocillin               ATEM           ATEM   sensitive     ECOL
+5149   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                   Tigecycline    tigecycline               ATIG           ATIG   sensitive     ECOL
+5150   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                    Tobramycin     tobramycin               ATOB           ATOB   sensitive     ECOL
+5151   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                  Trimethoprim   trimethoprim               ATRI           ATRI   sensitive     ECOL
+
+[5152 rows x 24 columns]
+
+Columns:
+Index([&#39;dateReceived&#39;, &#39;gender&#39;, &#39;age&#39;, &#39;dob&#39;, &#39;patientLocation&#39;,
+       &#39;doctorsLocation&#39;, &#39;setting&#39;, &#39;orderCode&#39;, &#39;orderName&#39;, &#39;specimenType&#39;,
+       &#39;labNumber&#39;, &#39;patNumber&#39;, &#39;organismNameOrig&#39;, &#39;organismName&#39;,
+       &#39;organismCodeOrig&#39;, &#39;organismCode&#39;, &#39;specieName&#39;, &#39;specieCode&#39;,
+       &#39;antibioticNameOrig&#39;, &#39;antibioticName&#39;, &#39;antibioticCodeOrig&#39;,
+       &#39;antibioticCode&#39;, &#39;sensitivity&#39;, &#39;LukeCode&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="computing-freq">
+<h2>Computing Freq<a class="headerlink" href="#computing-freq" title="Permalink to this headline">¶</a></h2>
+<p>This section explains the main concepts in order to understand how the
+computation of frequencies using the <code class="docutils literal notranslate"><span class="pre">Frequency</span></code> class works. For more
+information see the documentation (xxx)</p>
+<p>The frequency can be computed using the <code class="docutils literal notranslate"><span class="pre">Frequency</span></code> class for three different
+categories; the <code class="docutils literal notranslate"><span class="pre">organisms</span></code>, <code class="docutils literal notranslate"><span class="pre">antibiotics</span></code> and <code class="docutils literal notranslate"><span class="pre">pairs</span></code> which are composed
+by an organism and an antibiotic. In addition, regarding to time, the susceptibility
+data can be grouped following different strategies:</p>
+<ul class="simple">
+<li><p><strong>Overall</strong> - <code class="docutils literal notranslate"><span class="pre">overall</span></code>
+All the data is used and therefore the outcome is a single number for
+the selected category (organisms, antibiotics or pairs)``. If no
+strategy is specified this will be used.</p></li>
+<li><p><strong>Independent time intervals</strong> - <code class="docutils literal notranslate"><span class="pre">ITI</span></code>
+This is the traditional method used in antimicrobial surveillance systems
+where the time spans considered are independent; that is, they do not overlap
+(e.g. month or year).</p></li>
+<li><p><strong>Overlapping time intervals</strong> - <code class="docutils literal notranslate"><span class="pre">OTI</span></code>
+This method is defined as a fixed region which is moved across time to compute
+consecutive resistance indexes. It is described by two parameters; the length
+of the region (period) and the distance between consecutive windows (shift).</p></li>
+</ul>
+<p>For more information see (link to API, manuscripts and examples).</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Compute Freq</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Import specific libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.freq</span> <span class="kn">import</span> <span class="n">Frequency</span>
+
+ <span class="c1"># Create instance</span>
+ <span class="n">freq</span> <span class="o">=</span> <span class="n">Frequency</span><span class="p">(</span><span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
+                  <span class="n">column_organism</span><span class="o">=</span><span class="s1">&#39;organismCode&#39;</span><span class="p">,</span>
+                  <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">,</span>
+                  <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Compute frequencies (overall)</span>
+ <span class="n">freq_overall</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Compute frequencies (monthly)</span>
+ <span class="n">freq_monthly</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;ITI&#39;</span><span class="p">,</span>
+                              <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                              <span class="n">fs</span><span class="o">=</span><span class="s1">&#39;1M&#39;</span><span class="p">)</span>
+ <span class="c1"># Add freq</span>
+ <span class="n">freq_overall</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq_overall</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+ <span class="n">freq_monthly</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq_monthly</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Freq (overall):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">freq_overall</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Freq (monthly):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">freq_monthly</span><span class="p">)</span>
+
+ <span class="c1"># Plot</span>
+ <span class="c1"># .. todo: Use bar plot or any other library to plot</span>
+ <span class="c1">#          the frequency in time. Ideally with bars</span>
+ <span class="c1">#          where x-axis is the time and y-axis is the</span>
+ <span class="c1">#          freq. Avoid too many x-labels, keep just</span>
+ <span class="c1">#          years?</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Freq (overall):
+SENSITIVITY        &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  not done  resistant  sensitive  freq
+SPECIE ANTIBIOTIC
+ABAU   AAMI                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ACIP                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ACOT                      0.0               0.0           0.0       0.0        1.0        1.0   2.0
+       AGEN                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       AMER                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
+...                              ...               ...           ...       ...        ...        ...   ...
+YEAST  ATAZ                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ATEM                      0.0               0.0           0.0       0.0        0.0        1.0   1.0
+       ATIG                      0.0               0.0           0.0       0.0        0.0        1.0   1.0
+       ATOB                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ATRI                      0.0               0.0           0.0       0.0        0.0        1.0   1.0
+
+[627 rows x 7 columns]
+
+Freq (monthly):
+SENSITIVITY                   &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  not done  resistant  sensitive  freq
+SPECIE ANTIBIOTIC DATE
+ABAU   AAMI       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ACIP       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ACOT       2016-01-31                0.0               0.0           0.0       0.0        1.0        1.0   2.0
+       AGEN       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       AMER       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+...                                         ...               ...           ...       ...        ...        ...   ...
+YEAST  ATAZ       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ATEM       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
+       ATIG       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
+       ATOB       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
+       ATRI       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
+
+[627 rows x 7 columns]
+</pre></div>
+</div>
+</div>
+<div class="section" id="computing-sari">
+<h2>Computing SARI<a class="headerlink" href="#computing-sari" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SARI can be computed very easily (class might not be needed)</p>
+</div>
+<p>The Single Antimicrobial Resistance Index - <code class="docutils literal notranslate"><span class="pre">SARI</span></code> - describes the proportion
+of resistant isolates for a given set of susceptibility tests. It provides a
+value within the range [0, 1] where values close to one indicate high resistance.
+It is agnostic to pathogen, antibiotic and/or time. The variables <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code> and
+<code class="docutils literal notranslate"><span class="pre">S</span></code> represent the number of susceptibility tests with Resistant, Intermediate and
+Susceptible outcomes respectively. The definition might vary slightly since the
+intermediate category is not always considered.</p>
+<p>The parameters strategy accepts three different options:</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">soft</span></code>   as R / R+I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">medium</span></code> as R / R+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hard</span></code>  as R+I / R+I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code>  as R+0.5I / R+0.5I+S</p></li>
+</ol>
+</div></blockquote>
+<p>For more information see (link to API, manuscripts and examples).</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Compute SARI</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Import specific libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+
+ <span class="c1"># Compute SARI</span>
+ <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">freq_overall</span><span class="p">)</span>
+ <span class="n">sari_monthly</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">freq_monthly</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (overall):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (monthly):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">sari_monthly</span><span class="p">)</span>
+
+ <span class="c1"># Plot</span>
+ <span class="c1"># .. todo: Use bar plot or any other library to plot</span>
+ <span class="c1">#          the frequency in time. Ideally with bars</span>
+ <span class="c1">#          where x-axis is the time and y-axi is the</span>
+ <span class="c1">#          freq. Avoid too many x-labels, keep just</span>
+ <span class="c1">#          years?</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (overall):
+SENSITIVITY        &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  not done  resistant  sensitive  freq  sari
+SPECIE ANTIBIOTIC
+ABAU   AAMI                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ACIP                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ACOT                      0.0               0.0           0.0       0.0        1.0        1.0   2.0   0.5
+       AGEN                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       AMER                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+...                              ...               ...           ...       ...        ...        ...   ...   ...
+YEAST  ATAZ                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ATEM                      0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+       ATIG                      0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+       ATOB                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ATRI                      0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+
+[627 rows x 8 columns]
+
+SARI (monthly):
+SENSITIVITY                   &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  not done  resistant  sensitive  freq  sari
+SPECIE ANTIBIOTIC DATE
+ABAU   AAMI       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ACIP       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ACOT       2016-01-31                0.0               0.0           0.0       0.0        1.0        1.0   2.0   0.5
+       AGEN       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       AMER       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+...                                         ...               ...           ...       ...        ...        ...   ...   ...
+YEAST  ATAZ       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ATEM       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+       ATIG       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+       ATOB       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
+       ATRI       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+
+[627 rows x 8 columns]
+</pre></div>
+</div>
+</div>
+<div class="section" id="computing-asai">
+<h2>Computing ASAI<a class="headerlink" href="#computing-asai" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ASAI…</p>
+</div>
+<p>The antimicrobial spectrum of activity refers to the range of microbe species
+that are susceptible to these agents and therefore can be treated. In general,
+antimicrobial agents are classified into broad, intermediate or narrow spectrum.
+Broad spectrum antimicrobials are active against both Gram-positive and
+Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited
+activity and are effective only against particular species of bacteria. While these
+profiles appeared in the mid-1950s, little effort has been made to define them.
+Furthermore, such ambiguous labels are overused for different and even contradictory
+purposes.</p>
+<p>In order to compute the antimicrobial spectrum of activity index - <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> -, it
+is necessary to previously obtain the overall resistance (SARI) for all the
+microbe-antimicrobial pairs. Furthermore, by following the criteria used in the
+narrow-broad approach, these pairs were grouped into Gram-positive and Gram-negative.
+Briefly, the weighted proportion of species to which the antimicrobial
+is effective is computed for each genus. These are later added up and normalized by
+the number of genera tested. An antimicrobial is considered effective to treat a
+particular species when the corresponding resistance index (SARI) is lower than
+a given threshold.</p>
+<p>For more information see (link to API, manuscripts and examples).</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Compute ASAI</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Import specific libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">ASAI</span>
+
+ <span class="c1"># Load default organisms dataset</span>
+ <span class="n">orgs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_org</span><span class="p">,</span>
+     <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ORGANISM_NAME&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;ORGANISM_CODE&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;GENUS_NAME&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;GENUS_CODE&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;GRAM_TYPE&#39;</span><span class="p">])</span>
+
+ <span class="c1"># Fill empty</span>
+ <span class="c1"># .. note: Leads to division by 0 (investigate)</span>
+ <span class="c1">#orgs.GRAM_TYPE = orgs.GRAM_TYPE.fillna(&#39;u&#39;)</span>
+
+ <span class="c1"># Format DataFrame</span>
+ <span class="n">dataframe</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ <span class="n">dataframe</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+ <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">orgs</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+     <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;ORGANISM_CODE&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Select interesting columns</span>
+ <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[[</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;GENUS_CODE&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;GRAM_TYPE&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;sari&#39;</span><span class="p">]]</span>
+
+ <span class="c1"># Create antimicrobial spectrum of activity instance</span>
+ <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+             <span class="n">threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+             <span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;GENUS_CODE&#39;</span><span class="p">,</span>
+             <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span>
+             <span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span>
+             <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Compute</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;GRAM_TYPE&#39;</span><span class="p">)</span>
+
+ <span class="c1"># .. note: In order to sort the scores we need to compute metrics</span>
+ <span class="c1">#          that combine the different subcategories (e.g. gram-negative</span>
+ <span class="c1">#          and gram-positive). Two possible options are: (i) use the</span>
+ <span class="c1">#          gmean or (ii) the width.</span>
+ <span class="c1"># Measures</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+ <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;n&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;p&#39;</span><span class="p">])</span>
+ <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;gmean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;n&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;p&#39;</span><span class="p">])</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;gmean&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+ <span class="c1"># Show scores</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data output:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+
+ <span class="c1"># ----------------</span>
+ <span class="c1"># Plot</span>
+ <span class="c1"># ----------------</span>
+ <span class="k">def</span> <span class="nf">scalar_colormap</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;This method creates a colormap based on values.</span>
+
+<span class="sd">     Parameters</span>
+<span class="sd">     ----------</span>
+<span class="sd">     values : array-like</span>
+<span class="sd">       The values to create the corresponding colors</span>
+
+<span class="sd">     cmap : str</span>
+<span class="sd">       The colormap</span>
+
+<span class="sd">     vmin, vmax : float</span>
+<span class="sd">       The minimum and maximum possible values</span>
+
+<span class="sd">     Returns</span>
+<span class="sd">     -------</span>
+<span class="sd">     scalar colormap</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="c1"># Create scalar mappable</span>
+     <span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+     <span class="n">mapper</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+     <span class="c1"># Gete color map</span>
+     <span class="n">colormap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">([</span><span class="n">mapper</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+     <span class="c1"># Return</span>
+     <span class="k">return</span> <span class="n">colormap</span>
+
+
+ <span class="c1"># Variables to plot.</span>
+ <span class="n">x</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+ <span class="n">y_n</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+ <span class="n">y_p</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+ <span class="c1">#y_u = scores[&#39;ASAI_SCORE&#39;][&#39;U&#39;].values</span>
+
+ <span class="c1"># Constants</span>
+ <span class="n">colormap_p</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+ <span class="n">colormap_n</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_n</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+ <span class="c1">#colormap_u = scalar_colormap(y_u, cmap=&#39;Greens&#39;, vmin=-0.1, vmax=1.1)</span>
+
+ <span class="c1"># ----------</span>
+ <span class="c1"># Example</span>
+ <span class="c1"># ----------</span>
+ <span class="c1"># This example shows an stacked figure using more than two categories.</span>
+ <span class="c1"># For instance, it uses gram-positive, gram-negative and gram-unknown.</span>
+ <span class="c1"># All the indexes go within the range [0,1].</span>
+ <span class="c1"># Create the figure</span>
+ <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+ <span class="c1"># Plot each category</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_p</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_p</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
+             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_n</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
+             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
+ <span class="c1">#sns.barplot(x=y_u, y=x, palette=colormap_u, ax=axes[2], orient=&#39;h&#39;,</span>
+ <span class="c1">#            saturation=0.5, label=&#39;Gram-unknown&#39;)</span>
+
+ <span class="c1"># Configure</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1"># Format figure</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+ <span class="c1"># Remove yticks</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+ <span class="c1"># Set title</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-unknown&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Set x-axis</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+
+ <span class="c1"># Adjust</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<img alt="Gram-positive, Gram-negative, Gram-unknown" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_step_01_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data output:
+           N_GENUS      N_SPECIE       ASAI_SCORE               width     gmean
+GRAM_TYPE        n    p        n     p          n         p
+ANTIBIOTIC
+ACHL           3.0  1.0      3.0   1.0   1.000000  1.000000  2.000000  1.000000
+AOFL           2.0  1.0      2.0   1.0   1.000000  1.000000  2.000000  1.000000
+ALIN           1.0  2.0      1.0   4.0   1.000000  1.000000  2.000000  1.000000
+APEN           1.0  2.0      1.0   9.0   1.000000  0.678571  1.678571  0.823754
+AVAN           2.0  3.0      2.0  12.0   1.000000  0.666667  1.666667  0.816497
+AERY           1.0  3.0      1.0  11.0   1.000000  0.633333  1.633333  0.795822
+ATIG           6.0  2.0     10.0   4.0   0.750000  0.833333  1.583333  0.790569
+ATET           1.0  3.0      1.0  12.0   1.000000  0.555556  1.555556  0.745356
+AMLS           1.0  3.0      1.0   7.0   1.000000  0.555556  1.555556  0.745356
+ACIP           9.0  3.0     16.0   9.0   0.592593  0.888889  1.481481  0.725775
+ATEI           1.0  2.0      1.0   3.0   1.000000  0.500000  1.500000  0.707107
+AGEN           6.0  4.0     13.0  12.0   0.555556  0.750000  1.305556  0.645497
+ANIT           2.0  3.0      2.0   5.0   0.500000  0.833333  1.333333  0.645497
+ATRI           5.0  3.0     10.0   8.0   0.433333  0.777778  1.211111  0.580549
+AAMO           5.0  2.0      6.0   3.0   0.400000  0.500000  0.900000  0.447214
+AOXA           0.0  1.0      0.0   1.0   0.000000  0.000000  0.000000  0.000000
+AMEC           3.0  0.0      3.0   0.0   0.333333  0.000000  0.333333  0.000000
+ARIF           0.0  3.0      0.0   7.0   0.000000  0.933333  0.933333  0.000000
+ATOB           6.0  0.0     12.0   0.0   0.694444  0.000000  0.694444  0.000000
+AMUP           0.0  3.0      0.0   7.0   0.000000  0.933333  0.933333  0.000000
+AMOX           0.0  1.0      0.0   1.0   0.000000  1.000000  1.000000  0.000000
+ATEM           5.0  0.0     10.0   0.0   0.533333  0.000000  0.533333  0.000000
+ASPE           1.0  0.0      1.0   0.0   1.000000  0.000000  1.000000  0.000000
+AMET           0.0  3.0      0.0   7.0   0.000000  0.800000  0.800000  0.000000
+ATAZ           6.0  0.0     13.0   0.0   0.583333  0.000000  0.583333  0.000000
+AMER           6.0  0.0     12.0   0.0   0.805556  0.000000  0.805556  0.000000
+ANAL           1.0  0.0      1.0   0.0   0.000000  0.000000  0.000000  0.000000
+AAMI           6.0  0.0     12.0   0.0   0.750000  0.000000  0.750000  0.000000
+ALEV           0.0  1.0      0.0   1.0   0.000000  1.000000  1.000000  0.000000
+AFUS           0.0  3.0      0.0   8.0   0.000000  0.777778  0.777778  0.000000
+AAMPC          4.0  0.0      6.0   0.0   0.250000  0.000000  0.250000  0.000000
+AAUG           5.0  0.0      7.0   0.0   0.200000  0.000000  0.200000  0.000000
+AAZI           1.0  0.0      1.0   0.0   1.000000  0.000000  1.000000  0.000000
+AAZT           6.0  0.0     10.0   0.0   0.527778  0.000000  0.527778  0.000000
+ACAZ           6.0  0.0     13.0   0.0   0.583333  0.000000  0.583333  0.000000
+ACELX          3.0  0.0      3.0   0.0   0.000000  0.000000  0.000000  0.000000
+ACIX           1.0  0.0      1.0   0.0   1.000000  0.000000  1.000000  0.000000
+ACLI           0.0  3.0      0.0  13.0   0.000000  0.771429  0.771429  0.000000
+ACOL           5.0  0.0      9.0   0.0   0.800000  0.000000  0.800000  0.000000
+ACONE          8.0  0.0     13.0   0.0   0.770833  0.000000  0.770833  0.000000
+ACPO           2.0  0.0      2.0   0.0   0.000000  0.000000  0.000000  0.000000
+ACTX           2.0  0.0      2.0   0.0   0.500000  0.000000  0.500000  0.000000
+ACXM           5.0  0.0      8.0   0.0   0.600000  0.000000  0.600000  0.000000
+ACXT           5.0  0.0      8.0   0.0   0.400000  0.000000  0.400000  0.000000
+ADAP           0.0  1.0      0.0   2.0   0.000000  0.000000  0.000000  0.000000
+AERT           5.0  0.0     10.0   0.0   0.633333  0.000000  0.633333  0.000000
+AESBL          3.0  0.0      3.0   0.0   0.000000  0.000000  0.000000  0.000000
+AIMP           1.0  0.0      2.0   0.0   0.500000  0.000000  0.500000  0.000000
+</pre></div>
+</div>
+</div>
+<div class="section" id="dirty-code-to-use-and-or-delete">
+<h2>Dirty code to use and or delete<a class="headerlink" href="#dirty-code-to-use-and-or-delete" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> summary = data.agg(</span>
+<span class="sd">     norganisms=(&#39;organismCode&#39;, &#39;nunique&#39;),</span>
+<span class="sd">     nantibiotics=(&#39;antibioticCode&#39;, &#39;nunique&#39;),</span>
+<span class="sd">     ncultures=(&#39;orderCode&#39;, &#39;nunique&#39;),</span>
+<span class="sd">     ntests=(&#39;labNumber&#39;, &#39;nunique&#39;)</span>
+<span class="sd"> )</span>
+
+<span class="sd"> print(summary)</span>
+
+<span class="sd"> print(data.nunique())</span>
+
+
+<span class="sd"> print(len(data.groupby([&#39;organismCode&#39;, &#39;antibioticCode&#39;])))</span>
+<span class="sd"> print(data.shape[0])</span>
+
+<span class="sd"> summary = pd.DataFrame</span>
+
+
+<span class="sd"> #from analysis.microbiology.statistics.frequency import Frequency</span>
+
+<span class="sd"> # -----------------------------------------------------------------------------</span>
+<span class="sd"> #                                 CONSTANTS</span>
+<span class="sd"> # -----------------------------------------------------------------------------</span>
+<span class="sd"> # Paths</span>
+<span class="sd"> fname_tests = &quot;freq_tests_pairs_year&quot;</span>
+<span class="sd"> fname_isola = &quot;freq_isolates_pairs_year&quot;</span>
+<span class="sd"> fpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests</span>
+<span class="sd"> fpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola</span>
+
+<span class="sd"> # Object</span>
+<span class="sd"> freq = Frequency()</span>
+
+<span class="sd"> # Read data</span>
+<span class="sd"> dff_tests = freq.load(fpath_tests)</span>
+<span class="sd"> dff_isola = freq.load(fpath_isola)</span>
+<span class="sd"> dff_reset = dff_tests.reset_index()</span>
+
+<span class="sd"> # Basic dataframe.</span>
+<span class="sd"> # IMPORTANT. Note that isolates refer to a single infectious organism which</span>
+<span class="sd"> # is tested against many different anttibiotics. Hence the only way the sum</span>
+<span class="sd"> # refers to isolate is by grouping the laboratory tests by infectious</span>
+<span class="sd"> # organisms.</span>
+<span class="sd"> dfy = pd.DataFrame()</span>
+<span class="sd"> dfy[&#39;Tests&#39;] = dff_tests[&#39;freq_ris&#39;].groupby(level=[0]).sum()</span>
+<span class="sd"> dfy[&#39;Isolates&#39;] = dff_isola[&#39;freq&#39;].groupby(level=[0]).sum()</span>
+<span class="sd"> dfy[&#39;Tests/Isolates&#39;] = dfy[&#39;Tests&#39;].div(dfy[&#39;Isolates&#39;])</span>
+<span class="sd"> dfy[&#39;Antibiotics&#39;] = dff_reset.groupby(&#39;dateReceived&#39;).antibioticCode.nunique()</span>
+<span class="sd"> dfy[&#39;Organisms&#39;] = dff_reset.groupby(&#39;dateReceived&#39;).organismCode.nunique()</span>
+
+<span class="sd"> # Fill last row.</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,:] = np.nan</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Tests&#39;] = dfy[&#39;Tests&#39;].sum(axis=0)</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Isolates&#39;] = dfy[&#39;Isolates&#39;].sum(axis=0)</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Tests/Isolates&#39;] = dfy[&#39;Tests/Isolates&#39;].mean()</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Antibiotics&#39;] = dff_reset.antibioticCode.nunique()</span>
+<span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Organisms&#39;] = dff_reset.organismCode.nunique()</span>
+
+<span class="sd"> # Print dataframe.</span>
+<span class="sd"> print(&quot;\n\n&quot;)</span>
+<span class="sd"> print(&quot;Pandas:&quot;)</span>
+<span class="sd"> print(&quot;-------&quot;)</span>
+<span class="sd"> print(dfy)</span>
+
+<span class="sd"> # Print dataframe latex format.</span>
+<span class="sd"> print(&quot;\n\n&quot;)</span>
+<span class="sd"> print(&quot;Latex:&quot;)</span>
+<span class="sd"> print(&quot;-------&quot;)</span>
+<span class="sd"> print(dfy.to_latex())</span>
+
+<span class="sd"> #print dff_isola.head(10)</span>
+<span class="sd"> import sys</span>
+<span class="sd"> sys.exit()</span>
+<span class="sd"> &quot;&quot;&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\nsummary = data.agg(\n    norganisms=(\&#39;organismCode\&#39;, \&#39;nunique\&#39;),\n    nantibiotics=(\&#39;antibioticCode\&#39;, \&#39;nunique\&#39;),\n    ncultures=(\&#39;orderCode\&#39;, \&#39;nunique\&#39;),\n    ntests=(\&#39;labNumber\&#39;, \&#39;nunique\&#39;)\n)\n\nprint(summary)\n\nprint(data.nunique())\n\n\nprint(len(data.groupby([\&#39;organismCode\&#39;, \&#39;antibioticCode\&#39;])))\nprint(data.shape[0])\n\nsummary = pd.DataFrame\n\n\n#from analysis.microbiology.statistics.frequency import Frequency\n\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = &quot;freq_tests_pairs_year&quot;\nfname_isola = &quot;freq_isolates_pairs_year&quot;\nfpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests\nfpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\&#39;Tests\&#39;] = dff_tests[\&#39;freq_ris\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Isolates\&#39;] = dff_isola[\&#39;freq\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests\&#39;].div(dfy[\&#39;Isolates\&#39;])\ndfy[\&#39;Antibiotics\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).antibioticCode.nunique()\ndfy[\&#39;Organisms\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\&#39;Total\&#39;,:] = np.nan\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests\&#39;] = dfy[\&#39;Tests\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Isolates\&#39;] = dfy[\&#39;Isolates\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests/Isolates\&#39;].mean()\ndfy.loc[\&#39;Total\&#39;,\&#39;Antibiotics\&#39;] = dff_reset.antibioticCode.nunique()\ndfy.loc[\&#39;Total\&#39;,\&#39;Organisms\&#39;] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint(&quot;\n\n&quot;)\nprint(&quot;Pandas:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy)\n\n# Print dataframe latex format.\nprint(&quot;\n\n&quot;)\nprint(&quot;Latex:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy.to_latex())\n\n#print dff_isola.head(10)\nimport sys\nsys.exit()\n&#39;
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.033 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-01-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/8ea231e13cc952cc3427bd7a21cea30e/plot_step_01.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_01.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/b9143effe488f26de08e9eb8dbdb3460/plot_step_01.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_step_01.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plot_step_02.html" class="btn btn-neutral float-right" title="Step 02 -" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../plot_sample_03.html" class="btn btn-neutral float-left" title="Plotting greetings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
