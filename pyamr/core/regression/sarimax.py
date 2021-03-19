@@ -297,7 +297,7 @@ class SARIMAXWrapper(RegressionWrapper):
                                           np.arange(0, max_d + 1),
                                           np.arange(0, max_ma + 1)]))
 
-        # Similar than previous steps but with seasonal orders.
+        # Similar than previous guide but with seasonal orders.
         seasonal_orders = list(itertools.product(*[np.arange(0, max_P + 1),
                                                    np.arange(0, max_D + 1),
                                                    np.arange(0, max_Q + 1),

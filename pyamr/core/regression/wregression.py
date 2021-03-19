@@ -27,7 +27,7 @@ from sklearn.model_selection import ParameterGrid
 sys.path.append("../..")
 
 # Import base wrapper
-from wbase import BaseWrapper
+from pyamr.core.regression.wbase import BaseWrapper
 
 
 class BaseRegressionWrapper(BaseWrapper):

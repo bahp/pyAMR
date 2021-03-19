@@ -101,6 +101,8 @@ def _check_asai_dataframe_columns(dataframe, required_columns):
 def _asai(dataframe, threshold=None, weights='uniform'):
   """Computes the antimicrobial spectrum of activity.
 
+  .. todo: There is an error when W_GENUS = 1 / GENUS.nunique()
+
   Parameters
   ----------
   dataframe : dataframe-like
