@@ -2,6 +2,10 @@
 Statistical test - ADFuller
 ============================
 
+.. todo: Instead of calling the adf.from_list_dataframe,
+         incude an option in grid_search to return the
+         result as a dataframe (to_dataframe).
+
 The Augmented Dickey-Fuller test...
 
 """
