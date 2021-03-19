@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Regression - WLS &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Statistical test - ADFuller" href="../statistics/plot_core_stats_adfuller.html" />
+    <link rel="prev" title="Regression - Theil-Sen" href="plot_core_regression_theilsens.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide">Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#indexes">Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regression">Regression</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_arima.html">Regression - ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_sarimax.html">Regression - SARIMAX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_theilsens.html">Regression - Theil-Sen</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Regression - WLS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Tutorial</a> &raquo;</li>
+        
+      <li>Regression - WLS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_wls.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-regression-plot-core-regression-wls-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="regression-wls">
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-wls-py"></span><h1>Regression - WLS<a class="headerlink" href="#regression-wls" title="Permalink to this headline">¶</a></h1>
+<img alt="plot core regression wls" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_core_regression_wls_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\regression\linear_model.py:764: RuntimeWarning: divide by zero encountered in log
+  llf += 0.5 * np.sum(np.log(self.weights))
+
+Series:
+wls-rsquared                  0.5341
+wls-rsquared_adj              0.5294
+wls-fvalue                  112.3588
+wls-fprob                        0.0
+wls-aic                          inf
+wls-bic                          inf
+wls-llf                         -inf
+wls-mse_model            137378.7869
+wls-mse_resid              1222.6795
+wls-mse_total              2597.9937
+wls-const_coef              275.7151
+wls-const_std                16.2007
+wls-const_tvalue             17.0188
+wls-const_tprob                  0.0
+wls-const_cil               243.5655
+wls-const_ciu               307.8648
+wls-x1_coef                   2.3979
+wls-x1_std                    0.2262
+wls-x1_tvalue                10.5999
+wls-x1_tprob                     0.0
+wls-x1_cil                     1.949
+wls-x1_ciu                    2.8468
+wls-s_dw               Jarque-Ber...
+wls-s_jb_value             Prob(JB):
+wls-s_jb_prob              Cond. No.
+wls-s_skew                 Kurtosis:
+wls-s_kurtosis
+wls-s_omnibus_value    Prob(Omnib...
+wls-s_omnibus_prob             Skew:
+wls-m_dw                      0.1055
+wls-m_jb_value                7.8301
+wls-m_jb_prob                 0.0199
+wls-m_skew                   -0.6702
+wls-m_kurtosis                 3.287
+wls-m_nm_value                8.0628
+wls-m_nm_prob                 0.0177
+wls-m_ks_value                0.5937
+wls-m_ks_prob                    0.0
+wls-m_shp_value               0.9223
+wls-m_shp_prob                   0.0
+wls-m_ad_value                3.6638
+wls-m_ad_nnorm                 False
+wls-missing                    raise
+wls-exog               [[1.0, 0.0...
+wls-endog              [60.571328...
+wls-trend                          c
+wls-weights            [0.0051158...
+wls-W                  &lt;pyamr.met...
+wls-model              &lt;statsmode...
+wls-id                 WLS(c,Sig(...
+dtype: object
+
+Regression line:
+[275.71511869 278.11301721 280.51091572 282.90881424 285.30671276
+ 287.70461128 290.1025098  292.50040832 294.89830684 297.29620535]
+
+Summary:
+                            WLS Regression Results
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.534
+Model:                            WLS   Adj. R-squared:                  0.529
+Method:                 Least Squares   F-statistic:                     112.4
+Date:                Fri, 19 Mar 2021   Prob (F-statistic):           6.06e-18
+Time:                        18:22:57   Log-Likelihood:                   -inf
+No. Observations:                 100   AIC:                               inf
+Df Residuals:                      98   BIC:                               inf
+Df Model:                           1
+Covariance Type:            nonrobust
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const        275.7151     16.201     17.019      0.000     243.565     307.865
+x1             2.3979      0.226     10.600      0.000       1.949       2.847
+==============================================================================
+Omnibus:                       11.540   Durbin-Watson:                   0.555
+Prob(Omnibus):                  0.003   Jarque-Bera (JB):               12.850
+Skew:                           0.673   Prob(JB):                      0.00162
+Kurtosis:                       4.127   Cond. No.                         232.
+Normal (N):                     8.063   Prob(N):                         0.018
+==============================================================================
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import class.</span>
+ <span class="kn">import</span> <span class="nn">sys</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+ <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+ <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+ <span class="kn">import</span> <span class="nn">statsmodels.robust.norms</span> <span class="k">as</span> <span class="nn">norms</span>
+
+ <span class="c1"># import weights.</span>
+ <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_timeseries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.regression.wls</span> <span class="kn">import</span> <span class="n">WLSWrapper</span>
+ <span class="kn">from</span> <span class="nn">pyamr.metrics.weights</span> <span class="kn">import</span> <span class="n">SigmoidA</span>
+
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># set basic configuration</span>
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># Matplotlib options</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+ <span class="c1"># Set pandas configuration.</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># create data</span>
+ <span class="c1"># ----------------------------</span>
+ <span class="c1"># Create timeseries data</span>
+ <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">()</span>
+
+ <span class="c1"># Create method to compute weights from frequencies</span>
+ <span class="n">W</span> <span class="o">=</span> <span class="n">SigmoidA</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+ <span class="c1"># Note that the function fit will call M.weights(weights) inside and will</span>
+ <span class="c1"># store the M converter in the instance. Therefore, the code execute is</span>
+ <span class="c1"># equivalent to &lt;weights=M.weights(f)&gt; with the only difference being that</span>
+ <span class="c1"># the weight converter is not saved.</span>
+ <span class="n">wls</span> <span class="o">=</span> <span class="n">WLSWrapper</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">WLS</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span> \
+     <span class="n">exog</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">endog</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">f</span><span class="p">,</span>
+     <span class="n">W</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">missing</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Print series.</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Series:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">wls</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+
+ <span class="c1"># Print regression line.</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Regression line:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">wls</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+
+ <span class="c1"># Print summary.</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">wls</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+
+ <span class="c1"># -----------------</span>
+ <span class="c1"># Save &amp; Load</span>
+ <span class="c1"># -----------------</span>
+ <span class="c1"># File location</span>
+ <span class="c1">#fname = &#39;../../examples/saved/wls-sample.pickle&#39;</span>
+
+ <span class="c1"># Save</span>
+ <span class="c1">#wls.save(fname=fname)</span>
+
+ <span class="c1"># Load</span>
+ <span class="c1">#wls = WLSWrapper().load(fname=fname)</span>
+
+ <span class="c1"># -------------</span>
+ <span class="c1">#  Example I</span>
+ <span class="c1"># -------------</span>
+ <span class="c1"># This example shows how to make predictions using the wrapper and how</span>
+ <span class="c1"># to plot the resultin data. In addition, it compares the intervales</span>
+ <span class="c1"># provided by get_prediction (confidence intervals) and the intervals</span>
+ <span class="c1"># provided by wls_prediction_std (prediction intervals).</span>
+ <span class="c1">#</span>
+ <span class="c1"># To Do: Implement methods to compute CI and PI (see regression).</span>
+
+ <span class="c1"># Variables.</span>
+ <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">180</span>
+
+ <span class="c1"># Compute predictions (exogenous?). It returns a 2D array</span>
+ <span class="c1"># where the rows contain the time (t), the mean, the lower</span>
+ <span class="c1"># and upper confidence (or prediction?) interval.</span>
+ <span class="n">preds</span> <span class="o">=</span> <span class="n">wls</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+
+
+ <span class="c1"># Create figure</span>
+ <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+ <span class="c1"># Plotting confidence intervals</span>
+ <span class="c1"># -----------------------------</span>
+ <span class="c1"># Plot truth values.</span>
+ <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+               <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+               <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Plot forecasted values.</span>
+ <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
+                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">wls</span><span class="o">.</span><span class="n">_identifier</span><span class="p">(</span><span class="n">short</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+ <span class="c1"># Plot the confidence intervals.</span>
+ <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span>
+                 <span class="n">preds</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
+                 <span class="n">preds</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+ <span class="c1"># Legend</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.116 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-wls-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/5d5330f9f571a99056b21e613bebf4d0/plot_core_regression_wls.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_wls.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/875243631f19e002f9473aa1369e5718/plot_core_regression_wls.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_wls.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../statistics/plot_core_stats_adfuller.html" class="btn btn-neutral float-right" title="Statistical test - ADFuller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_core_regression_theilsens.html" class="btn btn-neutral float-left" title="Regression - Theil-Sen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

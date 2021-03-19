@@ -21,10 +21,278 @@
 Step 02 - Time Series Analysis
 ==============================
 
+.. warning:: Verify tests with conditions from stattools.
+
+.. GENERATED FROM PYTHON SOURCE LINES 10-15
+
+Create time series (TS)
+-----------------------
+
+First lets create an artificial series. The series has been plotted
+ad the end of the tutorial.
+
+.. GENERATED FROM PYTHON SOURCE LINES 16-27
+
+.. code-block:: default
+   :lineno-start: 17
+
+
+    # ----------------------------
+    # create data
+    # ----------------------------
+    # Import specific
+    from pyamr.datasets.load import make_timeseries
+
+    # Create timeseries data
+    x, y, f = make_timeseries()
+
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 28-36
+
+Pearson correlation coefficient
+-------------------------------
+
+It measures the linear correlation between two variables with a value within the range
+[-1,1]. Coefficient values of -1, 0 and 1 indicate total negative linear correlation, no
+linear correlation and total positive correlation respectively. In this study, the
+coefficient is used to assess whether or not there is a linear correlation between the
+number of observations (susceptibility test records) and the computed resistance index.
+
+.. GENERATED FROM PYTHON SOURCE LINES 37-51
+
+.. code-block:: default
+   :lineno-start: 38
+
+
+    # -------------------------------
+    # Pearson correlation coefficient
+    # -------------------------------
+    # Import pyAMR
+    from pyamr.core.stats.correlation import CorrelationWrapper
+
+    # Create object
+    correlation = CorrelationWrapper().fit(x1=y, x2=f)
+
+    # Print summary.
+    print("\n")
+    print(correlation.as_summary())
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+
+             Correlation
+    ==============================
+    Pearson:                 0.719
+    Spearman:                0.734
+    Cross correlation: 4879866.486
+    ==============================
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 52-60
+
+Augmented Dickey-Fuller test
+----------------------------
+The augmented Dickey–Fuller test (ADF) was used to determine the presence of a unit root.
+When the other roots of the characteristic function lie inside the unit circle the first
+difference of the process is stationary. Due to this property, these are also called
+difference-stationary processes
+
+https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.adfuller.html
+
+.. GENERATED FROM PYTHON SOURCE LINES 61-78
+
+.. code-block:: default
+   :lineno-start: 62
+
+
+    # ----------------------------
+    # ADFuller
+    # ----------------------------
+    # Import statsmodels
+    from statsmodels.tsa.stattools import adfuller
+
+    # Import pyAMR
+    from pyamr.core.stats.adfuller import ADFWrapper
+
+    # Create wrapper
+    adf = ADFWrapper(adfuller).fit(x=y, regression='ct')
+
+    print("\n")
+    print(adf.as_summary())
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+
+      adfuller test stationarity (ct) 
+    ==================================
+    statistic:                  -1.780 
+    pvalue:                    0.71413 
+    nlags:                          2. 
+    nobs:                          97. 
+    stationary (0.05):  non-stationary
+    ==================================
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 79-83
+
+Kwiatkowski-Phillips-Schmidt-Shin test
+--------------------------------------
+
+https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.kpss.html
+
+.. GENERATED FROM PYTHON SOURCE LINES 84-90
+
+.. code-block:: default
+   :lineno-start: 85
+
+
+    # ----------------------------
+    # Kpss
+    # ----------------------------
+
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 91-106
+
+Trend and stationarity in TS
+----------------------------
+
+An analysis of stationarity around a trend was carried out to identify time series
+satisfying the assumptions posed by ARIMA. The augmented Dickey–Fuller test (ADF) was
+used to determine the presence of a unit root. When the other roots of the characteristic
+function lie inside the unit circle the first difference of the process is stationary. Due
+to this property, these are also called difference-stationary processes. Since the absence
+of unit root is not a proof of non-stationarity, the Kwiatkowski–Phillips–Schmidt–Shin
+(KPSS) test was used to identify the existence of an underlying trend which can also be
+removed to obtain a stationary process. These are called trend-stationary processes. In
+both, unit-root and trend-stationary processes, the mean can be increasing or decreasing
+over time; however, in the presence of a shock, trend-stationary processes revert to this
+mean tendency in the long run (deterministic trend) while unit-root processes have a
+permanent impact (stochastic trend). The significance level of the tests was set to 0.05.
+
+.. GENERATED FROM PYTHON SOURCE LINES 107-156
+
+.. code-block:: default
+   :lineno-start: 108
+
+
+    # ----------------------------
+    # Stationarity
+    # ----------------------------
+    # Generic
+    import matplotlib.pyplot as plt
+
+    # Import pyAMR
+    from pyamr.core.stats.stationarity import StationarityWrapper
+
+    # Define kwargs
+    adf_kwargs = {'maxlag':12, 'autolag':'BIC'}
+    kpss_kwargs = {}
+
+    # Compute stationarity
+    stationarity = StationarityWrapper().fit(x=y,
+        adf_kwargs=adf_kwargs, kpss_kwargs=kpss_kwargs)
+
+    # Print summary.
+    print("\n")
+    print(stationarity.as_summary())
+
+
+    # ----------------
+    # plot
+    # ----------------
+    # Font type.
+    font = {
+        'family': 'monospace',
+        'weight': 'normal',
+        'size': 10,
+    }
+
+    # Create figure
+    fig, ax = plt.subplots(1, 1, figsize=(10, 4))
+
+    # Plot truth values.
+    ax.plot(y, color='#A6CEE3', alpha=0.5, marker='o',
+             markeredgecolor='k', markeredgewidth=0.5,
+             markersize=4, linewidth=0.75,
+             label=stationarity.as_summary())
+
+    # Format axes
+    ax.grid(color='gray', linestyle='--', linewidth=0.2, alpha=0.5)
+    ax.legend(prop=font, loc=4)
+
+    # Addd title
+    plt.suptitle("Study of Stationarity")
+
+    plt.show()
+
+
+.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_001.png
+    :alt: Study of Stationarity
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\tsa\stattools.py:1875: FutureWarning: The behavior of using nlags=None will change in release 0.13.Currently nlags=None is the same as nlags="legacy", and so a sample-size lag length is used. After the next release, the default will change to be the same as nlags="auto" which uses an automatic lag length selection method. To silence this warning, either use "auto" or "legacy"
+      warnings.warn(msg, FutureWarning)
+
+
+          stationarity (alpha=0.05)   
+    ==================================
+              root           trend    
+    ----------------------------------
+    c     True (0.138)   False (0.013)
+    ct    True (0.702)   False (0.015)
+    ==================================
+
+
+
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.000 seconds)
+   **Total running time of the script:** ( 0 minutes  0.705 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_02.py:

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<!-- CSS styling-->
+<style>
+
+  svg {
+    font: 10px sans-serif;
+  }
+
+  .tree_map {
+    width:40%;
+    margin-right:5px;
+    margin-left:5px;
+    margin-top:5px;
+    float: left;
+  }
+
+  .tree_img {
+    width:50%;
+    margin-top:5px;
+    float: left;
+  }
+</style>
+
+<!-- Tree MAP -->
+<div class='tree_map'>
+  <svg id='svg' width="500" height="600"></svg>
+  <div id='cultures'>
+    <input type="radio" name="culture" value="blood" checked>Blood
+    <input type="radio" name="culture" value="urine">Urine
+    <input type="radio" name="culture" value="wound">Wound
+  </div>
+</div>
+
+<!-- Descriptive Image -->
+<div class='tree_img'>
+  <iframe id='img' src='' width=742 height=600 
+          scrolling='no' frameborder='1'></iframe>
+</div>
+
+<!-- Load javascript -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="./treemap-input-bldcul.js"></script>
+<script src="./treemap-input-uricul.js"></script>
+<script src="./treemap-input-woucul.js"></script>
+<script>
+
+// ----------------------------------------------------------------------------
+//                             FUNCTIONS
+// ----------------------------------------------------------------------------
+// This function resizes the content in the iframe.
+function resizeIframe(obj) {
+  obj.style.height = obj.contentWindow
+                        .document
+                        .body
+                        .scrollHeight + 'px';
+}
+
+// This function returns the combo name given a tree node object.
+function getComboName(d) {
+  return d.parent.data.name + '-A' + d.data.name + '-combo.pdf'
+}
+
+// This method gets the select radiobutton value.
+function getSelectedCulture() {
+  // Get culture.
+  var radios = document.getElementsByName('culture');
+  // Return checked one.
+  for (var i=0; i<radios.length; i++)
+    if (radios[i].checked)
+      return radios[i].value
+}
+
+// This function updates the image.
+function updateImage(d) {
+  // Create url
+  var culture = getSelectedCulture();
+  var combo = d.getAttribute('name')
+  var url = 'figures/' + culture + '/' + combo
+  console.log(url)
+  // Set url in the image html object.
+  document.getElementById('img').src = url
+}
+
+// Fader
+var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.3); },
+    color = d3.scaleOrdinal(d3.schemeCategory20.map(fader)),
+    format = d3.format(",d");
+
+// Sum by count
+function sumByCount(d) {
+  return d.children ? 0 : 1;
+}
+
+// Sum by size.
+function sumBySize(d) {
+  return d.size;
+}
+
+// The radio button has been pressed
+function changed(sum) {
+
+  // Remove content.
+  document.getElementById('svg').innerHTML = ""
+
+  // Set data to interesting culture
+  var culture = getSelectedCulture()
+  if (culture=='blood') data = databld;
+  if (culture=='wound') data = datawou;
+  if (culture=='urine') data = datauri;
+
+  // Create hierarchy.
+  var root = d3.hierarchy(data)
+      .eachBefore(function(d) { 
+          d.data.id = (d.parent ? d.parent.data.id + "." : "") + d.data.name; })
+      .sum(sumBySize)
+      .sort(function(a, b) { 
+          return b.height - a.height || b.value - a.value; });
+
+  // Execute treemap
+  treemap(root);
+
+  // Configure cell
+  var cell = svg.selectAll("g")
+      .data(root.leaves())
+      .enter().append("g")
+      .attr("transform", function(d) { 
+          return "translate(" + d.x0 + "," + d.y0 + ")"; });
+
+  // Append a rectangle
+  cell.append("rect")
+      .attr("id", function(d) { return d.data.id; })
+      .attr("name", function(d) { return getComboName(d); })
+      .attr("fill", function(d) { return color(d.parent.data.id); })
+      .attr("width", function(d) { return d.x1-d.x0; })
+      .attr("height", function(d) { return d.y1-d.y0; })
+      .attr("onclick", function(d) { return 'updateImage(this)'; });
+
+  // Append clippath.
+  cell.append("clipPath")
+      .attr("id", function(d) { return "clip-" + d.data.id; })
+      .append("use")
+      .attr("xlink:href", function(d) { return "#" + d.data.id; });
+
+  // Append text.
+  cell.append("text")
+      .attr("clip-path", function(d) { return "url(#clip-" + d.data.id + ")"; })
+      .selectAll("tspan")
+      .data(function(d) { 
+          return d.data.name.split(/(?=[A-Z][^A-Z])/g); })
+      .enter()
+        .append("tspan")
+        .attr("x", 4)
+        .attr("y", function(d, i) { return 13 + i * 10; })
+        .text(function(d) { return d; });
+
+  // Append title
+  cell.append("title")
+      .text(function(d) { 
+        return d.data.id + "\n" + format(d.value); });
+
+  // Hide text of those which are very small.
+  cell.selectAll("text").each(function(d) {
+      if (d.value<1000)   
+          d3.select(this).style("visibility", "hidden");})
+
+}
+
+// ----------------------------------------------------------------------------
+//                              Create Tree
+// ----------------------------------------------------------------------------
+
+// Configure svg size from its attributes.
+var svg = d3.select("svg"),
+    width =+ svg.attr("width"),
+    height =+ svg.attr("height");
+
+// Create tree mao object.
+var treemap = d3.treemap()
+    .tile(d3.treemapResquarify)
+    .size([width, height])
+    .round(true)
+    .paddingInner(1);
+
+// Enable radio buttons.
+d3.selectAll("input")
+  .on("change", changed);
+
+
+// Create tree
+changed()
+
+
+
+// Deprecated
+// ----------
+// This function gets the full link (deprecated)
+//function getImageLink(d) {
+//  return 'figures/blood/' + d.parent.data.name + '-A' 
+//                          + d.data.name + '-combo.pdf';
+//}
+
+// This loads the image in ref in a new tab (not used).
+//cell.append("a")
+//    .attr("href", function(d) { return getImageLink(d); })
+//    .append("rect")
+//    . continue..
+
+</script>
+

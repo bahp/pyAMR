@@ -53,6 +53,13 @@ The PhD thesis is on Spiral: `PhD`_
 
    _apidoc/modules
 
+.. raw:: html
+
+   <a href="./_static/htmls/treemap-graph-simplified-sample/treemap-visualizer.html" target="_blank"> Example </a>
+   <br>
+   <br>
+
+
 Indices and tables
 ==================
 
