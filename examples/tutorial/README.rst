@@ -1,4 +1,4 @@
-The tutorial gallery
-====================
+Tutorial
+========
 
 Below is a gallery of examples

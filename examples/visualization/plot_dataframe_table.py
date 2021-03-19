@@ -1,6 +1,6 @@
 """
-Table Graph
-===========
+Table Scatterplot
+=================
 
 Example using your package
 """

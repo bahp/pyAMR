@@ -1,5 +1,5 @@
-Time-series forecasting
------------------------
+Examples with TSA
+-----------------
 
 The examples presented in the gallery below show how to use some of the
 tools provided in this module to forecast trend. The forecast methods

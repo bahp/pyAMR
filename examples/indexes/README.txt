@@ -1,5 +1,5 @@
-Calculating AMR indexes
------------------------
+Examples with Indexes
+=====================
 
 .. todo:: Create ``sub-galleries`` for each of the indexes when the
           number of samples grow.
