@@ -2,7 +2,11 @@
 Index - SARI
 ============================
 
-Example using your package
+.. warning::
+        - Improve visualization.
+        - Create further examples with temporal visualization.
+        - Create further examples with general heatmap.
+        - Create further examples with animation?
 """
 
 

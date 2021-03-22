@@ -2,7 +2,11 @@
 Index - Frequency
 ============================
 
-Example using your package
+.. warning::
+        - Improve visualization.
+        - Create further examples with temporal visualization.
+        - Create further examples with general heatmap.
+        - Create further examples with animation?
 """
 
 
@@ -54,7 +58,7 @@ data = pd.concat([  \
 #          one (organism, antimicrobial) pair.
 
 # Selected
-orgs = ['ECOL']
+orgs = ['ECOL', 'PAER']
 abxs = ['ATAZ', 'ATRI', 'AGEN', 'AAUG']
 
 # Filter for two examples
