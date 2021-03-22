@@ -21,7 +21,6 @@ from statsmodels.tsa.stattools import adfuller
 # Import pyAMR
 from pyamr.core.stats.adfuller import ADFWrapper
 
-
 # ----------------------------
 # set basic configuration
 # ----------------------------
@@ -55,6 +54,7 @@ print(adf.as_series())
 # Print summary.
 print("\n")
 print(adf.as_summary())
+print(adf.as_summary(verbose=10))
 
 # Print identifier.
 print("\nIdentifier")

@@ -89,26 +89,51 @@ class ADFWrapper(BaseWrapper):
         # Return
         return d
 
-    def as_summary(self, alpha=0.05, **kwargs):
+    def as_summary(self, alpha=0.05, verbose=1, **kwargs):
         """This method creates the summary to display.
-        """
-        # Create templates
-        summary = '  adfuller test stationarity ({r}) \n'
-        summary += "==================================\n"
-        summary += "statistic:       {statistic:>17.3f}\n"
-        summary += "pvalue:          {pvalue:>17.5f}   \n"
-        summary += "nlags:           {nlags:>17.0f}    \n"
-        summary += "nobs:            {nobs:>17.0f}     \n"
-        summary += "stationary ({alpha}): {stationarity:>15s}\n"
-        summary += "=================================="
 
-        #print(self.__dict__)
+        .. note: Use self.__dict__ to pass all the parameters
+                 to format? Note however that the parameters
+                 used are in self._result.
+        """
+        # Symbols
+        alpha_symbol = '\u03B1'
+
+        # Template start
+        summary = '    adfuller test stationarity ({r})    \n'
+        summary += "=======================================\n"
+        summary += "statistic:           {statistic:>18.3f}\n"
+        summary += "pvalue:              {pvalue:>18.5f}   \n"
+        summary += "nlags:               {nlags:>18.0f}    \n"
+        summary += "nobs:                {nobs:>18.0f}     \n"
+        summary += "stationarity ({s}={alpha}): {stationarity:>16s}\n"
+
+        if verbose > 5:
+            # Add critical values
+            summary += "---------------------------------------\n"
+            summary += "critical value (1%):  {cc1:>17.5f} \n"
+            summary += "critical value (5%):  {cc5:>17.5f} \n"
+            summary += "critical value (10%): {cc10:>17.5f}\n"
+
+        if verbose > 7:
+            # Add hypothesis description
+            summary += "---------------------------------------\n"
+            summary += "H0:                    Exists unit-root\n"
+            summary += "H1:                 No Exists unit-root\n"
+            summary += "pvalue <= {s}:                  Reject H0\n"
+
+        # Template end
+        summary += "======================================="
 
         # Format
         summary = summary.format(r=self.regression,
             statistic=self.statistic, pvalue=self.pvalue,
             nlags=self.nlags, nobs=self.nobs, alpha=alpha,
-            stationarity=self.stationarity(alpha), feo=0)
+            stationarity=self.stationarity(alpha),
+            cc1=self._result['criticalvalue_1%'],
+            cc5=self._result['criticalvalue_5%'],
+            cc10=self._result['criticalvalue_10%'],
+            s=alpha_symbol)
 
         # Return
         return summary
@@ -155,6 +180,7 @@ if __name__ == '__main__':
     # Print summary.
     print("\n")
     print(adf.as_summary())
+    print(adf.as_summary(verbose=10))
 
     # Print identifier.
     print("\n")
