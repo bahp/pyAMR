@@ -33,6 +33,7 @@ The PhD thesis is on Spiral: `PhD`_
    usage/introduction
    usage/installation
    usage/quickstart
+   usage/todo
 
 
 .. toctree::
