@@ -16,7 +16,24 @@ import pandas as pd
 from pyamr.core.stats.wbase import BaseWrapper
 
 class ADFWrapper(BaseWrapper):
+  """This class...
 
+  H0: The series has unit root
+  H1: The series has no unit root.
+
+  if pvalue <= alpha
+    The hypothesis H0 is rejected.
+
+
+  If H0 is failed to be rejected, this test might provide evidencce of non-stationarity
+
+  Refs
+  ----
+  [1] https://machinelearningmastery.com/time-series-data-stationary-python/
+  [2] https://www.statsmodels.org/stable/examples/notebooks/generated/stationarity_detrending_adf_kpss.html
+
+  .. todo: .
+  """
 
 
   def _identifier(self):

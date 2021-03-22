@@ -21,7 +21,21 @@ from pyamr.core.stats.wbase import BaseWrapper
 from pyamr.core.stats.wbase import fargs
 
 class StationarityWrapper(BaseWrapper):
+  """This method....
 
+
+  Types of stationarity in time-series:
+    - Trend stationary
+    - Seasonal stationary
+    - Strictly stationary
+
+  Refs
+  ----
+  [1] https://machinelearningmastery.com/time-series-data-stationary-python/
+  [2]
+  [3]
+
+  """
 
   # --------------------------------------------------------------------------
   #                          overriden methods
