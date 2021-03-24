@@ -46,8 +46,6 @@ class ADFWrapper(BaseWrapper):
     processes revert to this mean tendency in the long run (deterministic trend)
     while unit-root processes have a permanent impact (stochastic trend).
 
-    Refs
-    ----
     [1] https://machinelearningmastery.com/time-series-data-stationary-python/
     [2] https://www.statsmodels.org/stable/examples/notebooks/generated/stationarity_detrending_adf_kpss.html
 

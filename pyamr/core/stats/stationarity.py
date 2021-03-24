@@ -40,8 +40,6 @@ class StationarityWrapper(BaseWrapper):
     Stationary     Non-Stationary Difference-Stationary Check differenced-series
     ============== ============== ===================== ========================
 
-    Refs
-    ----
     [1] https://machinelearningmastery.com/time-series-data-stationary-python/
     [2]
     [3]
