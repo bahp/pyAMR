@@ -1,6 +1,6 @@
 """
-SARI - Antibiogram (overall)
-----------------------------
+SARI - Clustermap (by culture)
+------------------------------
 
 .. todo:: Explain...
 
@@ -8,14 +8,15 @@ SARI - Antibiogram (overall)
 
 # Libraries
 import sys
-import numpy as np 
-import pandas as pd 
+import numpy as np
+import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# Import own libraries
-from pyamr.graphics.antibiogram import Antibiogram
+# Import specific libraries
+from pyamr.core.sari import SARI
+from pyamr.core.freq import Frequency
 
 # -------------------------
 # Configuration
@@ -37,18 +38,42 @@ pd.set_option('display.precision', 4)
 # Numpy configuration
 np.set_printoptions(precision=2)
 
+# ------------------
+# Methods
+# ------------------
+def get_category_colors(index, category, cmap='tab10'):
+    """This method creates the colors for the different elements in
+    categorical feature vector.
 
-# -------------------------------
-# Load data
-# -------------------------------
-# Load
-dataframe = pd.read_csv('../_data/data-antibiogram.csv')
+    Parameters
+    ----------
+    values : array-like
+        The vector with the categorical values
 
-# Show data
-print("Data input:")
-print(dataframe.head(10))
+    cmap: string-like
+        The colormap to use
 
-print(dataframe.columns)
+    default: string-like
+        The color to be used for the first value. Note that this
+        value needs to appear first on the the sorted list, as such
+        it is recommended to set is as _default.
+
+    Returns
+    -------
+    """
+    # Get categories
+    categories = index.get_level_values(category)
+    # Get unique elements
+    unique = np.unique(categories)
+    # Create the palette
+    palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
+    # Create mappers from category to color
+    mapper = dict(zip(map(str, unique), palette))
+    # Create list with colors for each category
+    colors = pd.Series(categories, index=index).map(mapper)
+    # Return
+    return colors
+
 
 # -------------------------------------------
 # Load data
@@ -84,124 +109,88 @@ print("\nColumns:")
 print(data.columns)
 
 # -------------------------------------------
-# Compute Freq
+# For each culture type
 # -------------------------------------------
-# Import specific libraries
-from pyamr.core.freq import Frequency
+# Count records per order code
+order_code_count = data.orderCode.value_counts()
 
-# Create instance
-freq = Frequency(column_antibiotic='antibioticCode',
-              column_organism='organismCode',
-              column_date='dateReceived',
-              column_outcome='sensitivity')
+# Filter most frequent order codes
+data = data[data.orderCode.isin( \
+    order_code_count.index.values[:5])]
 
-# Compute frequencies (overall)
-freq_overall = freq.compute(data, by_category='pairs')
+# Loop
+for order_code, df in data.groupby(by='orderCode'):
 
-# -------------------------------------------
-# Compute SARI
-# -------------------------------------------
-# Import specific libraries
-from pyamr.core.sari import SARI
+    # -------------------------------------------
+    # Compute Freq and SARI
+    # -------------------------------------------
+    # Create instance
+    freq = Frequency(column_antibiotic='antibioticCode',
+                     column_organism='organismCode',
+                     column_date='dateReceived',
+                     column_outcome='sensitivity')
 
-# Compute SARI
-sari_overall = SARI(strategy='hard').compute(freq_overall)
+    # Compute frequencies (overall)
+    freq_overall = freq.compute(df, by_category='pairs')
 
+    # Compute SARI
+    sari_overall = SARI(strategy='hard').compute(freq_overall)
 
-# -------------------------------------------
-# Plot antibiogram clustered
-# -------------------------------------------
+    # -------------------------------
+    # Create matrix
+    # -------------------------------
+    # Load default datasets
+    orgs = pd.read_csv(path_org)
+    abxs = pd.read_csv(path_abx)
 
-# -------------------------------
-# Create matrix
-# -------------------------------
-# Load default datasets
-orgs = pd.read_csv(path_org)
-abxs = pd.read_csv(path_abx)
+    # Format DataFrame
+    matrix = sari_overall.reset_index()
+    matrix = matrix.merge(orgs, how='left',
+        left_on='SPECIE', right_on='organism_code')
+    matrix = matrix.merge(abxs, how='left',
+        left_on='ANTIBIOTIC', right_on='antibiotic_code')
 
-# Format DataFrame
-matrix = sari_overall.reset_index()
-matrix = matrix.merge(orgs, how='left',
-    left_on='SPECIE', right_on='organism_code')
-matrix = matrix.merge(abxs, how='left',
-    left_on='ANTIBIOTIC', right_on='antibiotic_code')
+    # Pivot table
+    matrix = pd.pivot_table(matrix, values='sari',
+       index=['organism_code', 'genus_name'],
+       columns=['antibiotic_code', 'antibiotic_class'])
 
-# Pivot table
-matrix = pd.pivot_table(matrix, values='sari',
-   index=['organism_code', 'genus_name'],
-   columns=['antibiotic_code', 'antibiotic_class'])
+    # Convert to percent
+    matrix = matrix * 100
 
-# Convert to percent
-matrix = matrix * 100
+    # Create mask
+    mask = pd.isnull(matrix)
 
-# Create mask
-mask = pd.isnull(matrix)
+    # Fill missing (error when computing distance)
+    matrix = matrix.fillna(1e-10)
 
-# Fill missing (error when computing distance)
-matrix = matrix.fillna(1e-10)
+    # Show
+    print("\n\n\nData (%s)" % order_code)
+    print(matrix.astype(int))
 
-# Show
-print("\nData")
-print(matrix.astype(int))
+    # Create colormap
+    cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
-# ------------------
-# Plot
-# ------------------
-def get_category_colors(index, category, cmap='tab10'):
-    """This method creates the colors for the different elements in
-    categorical feature vector.
+    # Row and col colors
+    col_colors = get_category_colors( \
+        index=matrix.columns, category=matrix.columns.names[1])
+    row_colors = get_category_colors( \
+        index=matrix.index, category=matrix.index.names[1])
 
-    Parameters
-    ----------
-    values : array-like
-        The vector with the categorical values
-
-    cmap: string-like
-        The colormap to use
-
-    default: string-like
-        The color to be used for the first value. Note that this
-        value needs to appear first on the the sorted list, as such
-        it is recommended to set is as _default.
-
-    Returns
-    -------
-    """
-    # Get categories
-    categories = index.get_level_values(category)
-    # Get unique elements
-    unique = np.unique(categories)
-    # Create the palette
-    palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
-    # Create mappers from category to color
-    mapper = dict(zip(map(str, unique), palette))
-    # Create list with colors for each category
-    colors = pd.Series(categories, index=index).map(mapper)
-    # Return
-    return colors
-
-# Create colormap
-cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
-
-# Row and col colors
-col_colors = get_category_colors( \
-    index=matrix.columns, category=matrix.columns.names[1])
-row_colors = get_category_colors( \
-    index=matrix.index, category=matrix.index.names[1])
-
-# .. note: It is possible to also pass kwargs that would
-#          be used by sns.heatmap function (annot, fmt,
-#          annot_kws, ...
-
-# Plot cluster map
-grid = sns.clustermap(data=matrix, vmin=0, vmax=100,
-    method='centroid', metric='euclidean', cmap=cmap,
-    linewidth=0.05, mask=mask,
-    row_colors=row_colors, col_colors=col_colors)
-
-# Configuration
-plt.suptitle('Antibiogram (clustered)')
-plt.tight_layout()
+    # .. note: It is possible to also pass kwargs that would
+    #          be used by sns.heatmap function (annot, fmt,
+    #          annot_kws, ...
+    try:
+        # Plot cluster map
+        grid = sns.clustermap(data=matrix, vmin=0, vmax=100,
+            method='centroid', metric='euclidean', cmap=cmap,
+            linewidth=0.05, mask=mask, square=True,
+            row_colors=row_colors, col_colors=col_colors)
+    except Exception as e:
+        print("Exception: %s" % e)
+    # Configuration
+    plt.suptitle('Antibiogram (clustered) - %s' % order_code)
+    plt.tight_layout()
 
 # Show
 plt.show()
