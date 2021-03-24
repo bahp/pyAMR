@@ -56,17 +56,18 @@ usecols = ['dateReceived',
            'antibioticCode',
            'sensitivity']
 
+# -----------------------
+# Load data
+# -----------------------
 # Path
-path = '../../../resources/data/nhs/susceptibility/complete/'
+# Path
+path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
 
-# -------------------------
-# Main
-# -------------------------
 # Load all files
-data = pd.concat([  \
-    pd.read_csv(f, parse_dates=['dateReceived'],
-        usecols=usecols, nrows=100000)
-            for f in glob.glob(path + "/*.csv")])
+data = pd.read_csv(path,
+    usecols=usecols,
+    parse_dates=['dateReceived'],
+    low_memory=False)
 
 # Replace
 data.organismCode = \

@@ -34,14 +34,13 @@ mpl.rcParams['legend.fontsize'] = 9
 # Load data
 # -----------------------
 # Path
-path = '../../../resources/data/nhs/susceptibility/complete/'
+# Path
+path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
 
 # Load all files
-data = pd.concat([  \
-    pd.read_csv(f, parse_dates=['dateReceived'],
-        low_memory=False, nrows=200000)
-            for f in glob.glob(path + "/*.csv")])
-
+data = pd.read_csv(path,
+    parse_dates=['dateReceived'],
+    low_memory=False)
 
 # -------------------------
 # Main

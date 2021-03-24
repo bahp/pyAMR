@@ -1,6 +1,6 @@
 """
-SARI - Clustermap (by culture)
-------------------------------
+SARI - Relplot (by culture)
+----------------------------
 
 .. todo:: Explain...
 
@@ -14,7 +14,7 @@ import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# Import specific libraries
+# Import own libraries
 from pyamr.core.sari import SARI
 from pyamr.core.freq import Frequency
 from pyamr.datasets.load import make_susceptibility
@@ -39,46 +39,9 @@ pd.set_option('display.precision', 4)
 # Numpy configuration
 np.set_printoptions(precision=2)
 
-# ------------------
+# -------------------------------------------
 # Methods
-# ------------------
-def get_category_colors(index, category, cmap='tab10'):
-    """This method creates the colors for the different elements in
-    categorical feature vector.
-
-    Parameters
-    ----------
-    values : array-like
-        The vector with the categorical values
-
-    cmap: string-like
-        The colormap to use
-
-    default: string-like
-        The color to be used for the first value. Note that this
-        value needs to appear first on the the sorted list, as such
-        it is recommended to set is as _default.
-
-    Returns
-    -------
-    """
-    # Get categories
-    categories = index.get_level_values(category)
-    # Get unique elements
-    unique = np.unique(categories)
-    # Create the palette
-    palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
-    # Create mappers from category to color
-    mapper = dict(zip(map(str, unique), palette))
-    # Create list with colors for each category
-    colors = pd.Series(categories, index=index).map(mapper)
-    # Return
-    return colors
-
-
-# ------------------------
-# Methods
-# ------------------------
+# -------------------------------------------
 def create_mapper(dataframe, column_key, column_value):
     """This method constructs a mapper
 
@@ -101,11 +64,18 @@ def create_mapper(dataframe, column_key, column_value):
     dataframe = dataframe.drop_duplicates()
     return dict(zip(dataframe[column_key], dataframe[column_value]))
 
+
 # -------------------------------------------
 # Load data
 # -------------------------------------------
 # Load data
 data = make_susceptibility()
+
+# Show
+print("\nData:")
+print(data)
+print("\nColumns:")
+print(data.columns)
 
 # Show
 print("\nData:")
@@ -149,52 +119,58 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     org_map = create_mapper(data, 'microorganism_code', 'microorganism_genus')
 
     # Create matrix
-    matrix = sari_overall.reset_index()
+    matrix = sari_overall
+    matrix['freq'] = freq_overall.sum(axis=1)
+    matrix = matrix.reset_index()
     matrix['microorganism_genus'] = matrix.SPECIE.map(org_map)
     matrix['antimicrobial_class'] = matrix.ANTIBIOTIC.map(abx_map)
 
-    # Pivot table
-    matrix = pd.pivot_table(matrix, values='sari',
-        index=['SPECIE', 'microorganism_genus'],
-         columns=['ANTIBIOTIC', 'antimicrobial_class'])
-
-    # Convert to percent
-    matrix = matrix * 100
-
-    # Create mask
-    mask = pd.isnull(matrix)
-
-    # Fill missing (error when computing distance)
-    matrix = matrix.fillna(1e-10)
-
     # Show
-    print("\n\n\nData (%s)" % specimen_code)
-    print(matrix.astype(int))
+    print("\nData:")
+    print(matrix)
+    print("\nColumns:")
+    print(matrix.columns)
+    print("\nFrequencies:")
+    print(matrix.freq.describe())
 
     # Create colormap
     cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
-    # Row and col colors
-    col_colors = get_category_colors( \
-        index=matrix.columns, category=matrix.columns.names[1])
-    row_colors = get_category_colors( \
-        index=matrix.index, category=matrix.index.names[1])
+    # Configura
+    sizes = (matrix.freq.min(), matrix.freq.max())
 
-    # .. note: It is possible to also pass kwargs that would
-    #          be used by sns.heatmap function (annot, fmt,
-    #          annot_kws, ...
-    try:
-        # Plot cluster map
-        grid = sns.clustermap(data=matrix, vmin=0, vmax=100,
-            method='centroid', metric='euclidean', cmap=cmap,
-            linewidth=0.05, mask=mask, square=True,
-            row_colors=row_colors, col_colors=col_colors)
-    except Exception as e:
-        print("Exception: %s" % e)
+    # Plot
+    g = sns.relplot(data=matrix, x='SPECIE',
+        y='ANTIBIOTIC', hue="sari", size="freq",
+        palette='Reds', hue_norm=(0, 1), edgecolor="gray",
+        linewidth=0.5, sizes=sizes, #size_norm=sizes,
+        dashes=True, legend='brief', height=10
+    )
 
-    # Configuration
-    plt.suptitle('Antibiogram (clustered) - %s' % specimen_code,
-        fontsize=12)
+    # Configure plot
+    g.set(xlabel="Antimicrobial",
+          ylabel="Microorganism",
+          title='Antibiogram (with frequency)')
+          #aspect="equal")
+    g.despine(left=True, bottom=True)
+    g.ax.margins(.1)
+
+    # Configure xticks
+    for label in g.ax.get_xticklabels():
+        label.set_rotation(90)
+
+    # Configure legend
+    for artist in g.legend.legendHandles:
+        artist.set_edgecolor("k")
+        artist.set_linewidth(0.5)
+
+    # Suptitle
+    plt.suptitle(specimen_code)
+
+    # Add grid lines.
+    #plt.grid(linestyle='-', linewidth=0.5, color='.7')
+
+    # Adjust
     plt.tight_layout()
 
 # Show

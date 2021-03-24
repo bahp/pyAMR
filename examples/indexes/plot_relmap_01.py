@@ -1,6 +1,6 @@
 """
-SARI - Clustermap (overall)
----------------------------
+SARI - Relplot (overall)
+-------------------------
 
 .. todo:: Explain...
 
@@ -8,13 +8,13 @@ SARI - Clustermap (overall)
 
 # Libraries
 import sys
-import numpy as np 
-import pandas as pd 
+import numpy as np
+import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# Import own libraries
+# Import specific libraries
 from pyamr.core.sari import SARI
 from pyamr.core.freq import Frequency
 from pyamr.datasets.load import make_susceptibility
@@ -38,7 +38,6 @@ pd.set_option('display.precision', 4)
 
 # Numpy configuration
 np.set_printoptions(precision=2)
-
 
 # ------------------------
 # Methods
@@ -70,6 +69,7 @@ def create_mapper(dataframe, column_key, column_value):
 # -------------------------------------------
 # Load data
 data = make_susceptibility()
+data = data.head(10000)
 
 # Show
 print("\nData:")
@@ -105,86 +105,90 @@ abx_map = create_mapper(data, 'antimicrobial_code', 'antimicrobial_class')
 org_map = create_mapper(data, 'microorganism_code', 'microorganism_genus')
 
 # Create matrix
-matrix = sari_overall.reset_index()
+matrix = sari_overall.copy(deep=True)
+matrix['freq'] = freq_overall.sum(axis=1)
+matrix = matrix.reset_index()
 matrix['microorganism_genus'] = matrix.SPECIE.map(org_map)
 matrix['antimicrobial_class'] = matrix.ANTIBIOTIC.map(abx_map)
 
-# Pivot table
-matrix = pd.pivot_table(matrix, values='sari',
-   index=['SPECIE', 'microorganism_genus'],
-   columns=['ANTIBIOTIC', 'antimicrobial_class'])
-
-# Convert to percent
-matrix = matrix * 100
-
-# Create mask
-mask = pd.isnull(matrix)
-
-# Fill missing (error when computing distance)
-matrix = matrix.fillna(1e-10)
-
 # Show
-print("\nData")
-print(matrix.astype(int))
+print("\nData:")
+print(matrix)
+print("\nColumns:")
+print(matrix.columns)
+print("\nFrequencies:")
+print(matrix.freq.describe())
 
-# ------------------
+
+# -------------------------------
 # Plot
-# ------------------
-def get_category_colors(index, category, cmap='tab10'):
-    """This method creates the colors for the different elements in
-    categorical feature vector.
-
-    Parameters
-    ----------
-    values : array-like
-        The vector with the categorical values
-
-    cmap: string-like
-        The colormap to use
-
-    default: string-like
-        The color to be used for the first value. Note that this
-        value needs to appear first on the the sorted list, as such
-        it is recommended to set is as _default.
-
-    Returns
-    -------
-    """
-    # Get categories
-    categories = index.get_level_values(category)
-    # Get unique elements
-    unique = np.unique(categories)
-    # Create the palette
-    palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
-    # Create mappers from category to color
-    mapper = dict(zip(map(str, unique), palette))
-    # Create list with colors for each category
-    colors = pd.Series(categories, index=index).map(mapper)
-    # Return
-    return colors
-
+# -------------------------------
 # Create colormap
 cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
-# Row and col colors
-col_colors = get_category_colors( \
-    index=matrix.columns, category=matrix.columns.names[1])
-row_colors = get_category_colors( \
-    index=matrix.index, category=matrix.index.names[1])
+# Configura
+sizes = (matrix.freq.min(), matrix.freq.max())
 
-# .. note: It is possible to also pass kwargs that would
-#          be used by sns.heatmap function (annot, fmt,
-#          annot_kws, ...
+# Plot
+g = sns.relplot(data=matrix, x='SPECIE',
+    y='ANTIBIOTIC', hue="sari", size="freq",
+    palette='Reds', hue_norm=(0, 1), edgecolor=".7", # 'k'
+    linewidth=1.0, height=10, sizes=sizes, # size_norm=(0, 100000),
+    dashes=True, legend='brief',
+)
 
-# Plot cluster map
-grid = sns.clustermap(data=matrix, vmin=0, vmax=100,
-    method='centroid', metric='euclidean', cmap=cmap,
-    linewidth=0.05, mask=mask,
-    row_colors=row_colors, col_colors=col_colors)
+# Configure plot
+g.set(xlabel="Microorganisms",
+      ylabel="Antimicrobials",
+      aspect="equal")
+g.despine(left=True, bottom=True)
+g.ax.margins(.02)
 
-# Configuration
-plt.suptitle('Antibiogram (clustered)', fontsize=12)
+# Configure xticks
+for label in g.ax.get_xticklabels():
+    label.set_rotation(90)
+
+# Configure legend
+for artist in g.legend.legendHandles:
+    artist.set_edgecolor(".7")
+    artist.set_linewidth(1.0)
+
+# Set suptitle
+plt.suptitle('Antibiogram (with frequency)', fontsize=12)
+
+# Add grid lines.
+#plt.grid(linestyle='-', linewidth=0.5, color='.7')
+
+# Tight layout
 plt.tight_layout()
+
+# ----------------------------------
+# Plotting a useless piece of art!
+# ----------------------------------
+# Plot piece of art
+g = sns.relplot(data=matrix, x='SPECIE',
+    y='ANTIBIOTIC', hue="sari", size="freq",
+    palette="Reds", hue_norm=(0, 1),
+    linewidth=0.5, kind='line',
+    height=10, sizes=sizes)
+
+# Configure plot
+g.set(xlabel="", ylabel="",
+      title='Artist: Bernard Hernandez \n '
+            'Collection: Through the (AM) resistance glass \n '
+            'Exhibition: The fight for our lives \n'
+            'Location: Tate-Modern',
+      aspect="equal")
+g.despine(left=True, bottom=True)
+g.ax.margins(.02)
+
+# Configure xticks
+for label in g.ax.get_xticklabels():
+    label.set_rotation(90)
+
+# Configure legend
+for artist in g.legend.legendHandles:
+    artist.set_linewidth(0.5)
 
 # Show
 plt.show()

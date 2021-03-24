@@ -1,6 +1,6 @@
 """
-SARI - Antibiogram
-------------------
+SARI - Antibiogram (by culture)
+-------------------------------
 
 .. todo:: Explain...
 
@@ -8,14 +8,16 @@ SARI - Antibiogram
 
 # Libraries
 import sys
-import numpy as np 
-import pandas as pd 
+import numpy as np
+import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# Import own libraries
-from pyamr.graphics.antibiogram import Antibiogram
+# Import specific libraries
+from pyamr.core.sari import SARI
+from pyamr.core.freq import Frequency
+from pyamr.datasets.load import make_susceptibility
 
 # -------------------------
 # Configuration
@@ -37,33 +39,48 @@ pd.set_option('display.precision', 4)
 # Numpy configuration
 np.set_printoptions(precision=2)
 
+# ------------------
+# Methods
+# ------------------
+def get_category_colors(index, category, cmap='tab10'):
+    """This method creates the colors for the different elements in
+    categorical feature vector.
+
+    Parameters
+    ----------
+    values : array-like
+        The vector with the categorical values
+
+    cmap: string-like
+        The colormap to use
+
+    default: string-like
+        The color to be used for the first value. Note that this
+        value needs to appear first on the the sorted list, as such
+        it is recommended to set is as _default.
+
+    Returns
+    -------
+    """
+    # Get categories
+    categories = index.get_level_values(category)
+    # Get unique elements
+    unique = np.unique(categories)
+    # Create the palette
+    palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
+    # Create mappers from category to color
+    mapper = dict(zip(map(str, unique), palette))
+    # Create list with colors for each category
+    colors = pd.Series(categories, index=index).map(mapper)
+    # Return
+    return colors
+
 
 # -------------------------------------------
 # Load data
 # -------------------------------------------
-# Path
-path = '../../pyamr/datasets/other/susceptibility.csv'
-path_org = '../../pyamr/datasets/other/organisms.csv'
-path_abx = '../../pyamr/datasets/other/antibiotics.csv'
-
-# Columns
-usecols = ['dateReceived',
-           'labNumber',
-           'patNumber',
-           'orderName',
-           'orderCode',
-           'organismName',
-           'organismCode',
-           'antibioticName',
-           'antibioticCode',
-           'sensitivity']
-
 # Load data
-data = pd.read_csv(path, usecols=usecols,
-    parse_dates=['dateReceived'])
-
-# Clean
-data = data.drop_duplicates()
+data = make_susceptibility()
 
 # Show
 print("\nData:")
@@ -72,176 +89,70 @@ print("\nColumns:")
 print(data.columns)
 
 # -------------------------------------------
-# Compute Freq
+# For each culture type
 # -------------------------------------------
-# Import specific libraries
-from pyamr.core.freq import Frequency
+# Count records per order code
+specimen_code_count = data.specimen_code.value_counts()
 
-# Create instance
-freq = Frequency(column_antibiotic='antibioticCode',
-              column_organism='organismCode',
-              column_date='dateReceived',
-              column_outcome='sensitivity')
+# Filter most frequent order codes
+data = data[data.specimen_code.isin( \
+    specimen_code_count.index.values[:5])]
 
-# Compute frequencies (overall)
-freq_overall = freq.compute(data, by_category='pairs')
+# Loop
+for specimen_code, df in data.groupby(by='specimen_code'):
 
-# -------------------------------------------
-# Compute SARI
-# -------------------------------------------
-# Import specific libraries
-from pyamr.core.sari import SARI
+    # -------------------------------------------
+    # Compute Freq and SARI
+    # -------------------------------------------
+    # Create instance
+    freq = Frequency(column_antibiotic='antimicrobial_code',
+                     column_organism='microorganism_code',
+                     column_date='date_received',
+                     column_outcome='sensitivity')
 
-# Compute SARI
-sari_overall = SARI(strategy='hard').compute(freq_overall)
+    # Compute frequencies (overall)
+    freq_overall = freq.compute(df, by_category='pairs')
 
+    # Compute SARI
+    sari_overall = SARI(strategy='hard').compute(freq_overall)
 
-# -------------------------------------------
-# Plot antibiogram clustered
-# -------------------------------------------
-#
-# .. note:: See seaborn clustermap for configuration.
-#
-# .. warning:: nan converted to 1e-10 and used for distance.
-#
-#
-# methods = ['single', 'complete', 'average', 'weighted',
-#            'centroid', 'median', 'ward']
-#
-#
-#
+    # ------------
+    # Plot Heatmap
+    # ------------
+    # Create matrix
+    matrix = sari_overall[['sari']]
+    matrix = matrix.unstack() * 100
+    matrix.columns = matrix.columns.droplevel()
 
-def create_mapper(dataframe, column_key, column_value):
-    """This method constructs a mapper
+    # Create figure
+    f, ax = plt.subplots(1, 1, figsize=(8,8))
 
-    Parameters
-    ----------
-    dataframe: dataframe-like
-      The dataframe from which the columns are extracted
+    # Create colormap
+    cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
-    column_key: string-like
-      The name of the column with the values for the keys of the mapper
+    # Specify cbar axes
+    #cbar_ax = f.add_axes([.925, .3, .05, .3])
 
-    column_value: string-like
-      The name of the column with the values for the values of the mapper
+    # Plot
+    ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+                     annot_kws={'fontsize': 7}, cmap=cmap,
+                     linewidth=0.5, vmin=0, vmax=100, ax=ax,
+                     xticklabels=1, yticklabels=1)
+                     # cbar_ax=cbar_ax)
 
-    Returns
-    -------
-    dictionary
-    """
-    dataframe = dataframe[[column_key, column_value]]
-    dataframe = dataframe.drop_duplicates()
-    return dict(zip(dataframe[column_key], dataframe[column_value]))
+    # Configure axes
+    ax.set(aspect="equal")
 
+    # Set rotation
+    plt.yticks(rotation=0)
 
-def _get_category_colors(series, cmap='tab20b', default='gray'):
-  """This method creates the colors for the different elements in
-  categorical feature vector.
+    # Add title
+    plt.suptitle("Antibiogram (%s)" % specimen_code,
+        fontsize=15)
 
-  Parameters
-  ----------
-  values : array-like
-    The vector with the categorical values
-
-  cmap: string-like
-    The colormap to use
-
-  default: string-like
-    The color to be used for the first value. Note that this
-    value needs to appear first on the the sorted list, as such
-    it is recommended to set is as _default.
-
-  Returns
-  -------
-  """
-  # Get unique elements
-  unique = np.unique(series)
-  # Sort unique values
-  unique.sort()
-  # Create the palette (gray for _na)
-  palette = [default] + sns.husl_palette(len(unique), s=.45)
-  # Create mappers from category to color
-  mapper = dict(zip(map(str, unique), palette))
-  # Create list with colors for each category.
-  colors = pd.Series(series).map(mapper)
-  # Return
-  return colors
-
-# Load datasets
-abxs = pd.read_csv(path_abx)
-orgs = pd.read_csv(path_org)
-
-# Create mappers
-abx_map = create_mapper(abxs, 'ANTIBIOTIC_CODE', 'ANTIBIOTIC_CLASS')
-org_map = create_mapper(orgs, 'ORGANISM_CODE', 'GENUS_NAME')
-grm_map = create_mapper(orgs, 'ORGANISM_CODE', 'GRAM_TYPE')
-
-# Copy dataframe
-dataframe = sari_overall.copy(deep=True)
-dataframe = dataframe.reset_index()
-
-# Include categories
-dataframe['category'] = dataframe['ANTIBIOTIC'].map(abx_map)
-dataframe['genus'] = dataframe['SPECIE'].map(org_map)
-dataframe['gram'] = dataframe['SPECIE'].map(grm_map)
-
-# Create matrix
-matrix = sari_overall[['sari']]
-matrix = matrix.unstack() * 100
-matrix.columns = matrix.columns.droplevel()
-
-# Create mask
-mask = pd.isnull(matrix)
-
-# Fill na
-matrix = matrix.fillna(1e-10)
+    # Tight layout
+    plt.tight_layout()
+    #plt.subplots_adjust(right=0.91)
 
 # Show
-print(matrix.astype(int))
-
-# Create colormap
-cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
-
-# Get categories
-abx_class = matrix.columns \
-    .to_series().replace(org_map).astype(str)
-org_genus = matrix.index \
-    .to_series().replace(org_map).astype(str)
-
-# .. note: It is possible to also pass kwargs that would
-#          be used by sns.heatmap function like annot, fmt,
-#          annot_kws, ...
-
-# Plot cluster map
-grid = sns.clustermap(data=matrix, vmin=0, vmax=100,
-    method='single', metric='euclidean', cmap=cmap,
-    linewidth=0.05, mask=mask,
-    row_colors=_get_category_colors(org_genus),
-    col_colors=_get_category_colors(abx_class))
-
-#
-
-# Get tick labels.
-yticklabels = pd.Series([e.get_text() \
-    for e in grid.ax_heatmap.get_yticklabels()])
-xticklabels = pd.Series([e.get_text() \
-    for e in grid.ax_heatmap.get_xticklabels()])
-
-# Create new
-g = yticklabels.replace(org_map).astype(str)
-c = xticklabels.replace(abx_map).astype(str)
-
-yticklabels = ['{0} ({1})'.format(org, genus) \
-    for genus, org in zip(g, yticklabels)]
-#xticklabels = ['{0} ({1})'.format(abx, clss) \
-#    for clss, abx in zip(c, yticklabels)]
-
-
-grid.ax_heatmap.set_yticklabels(yticklabels)
-#grid.ax_heatmap.set_yticklabels(xticklabels)
-
-#
-plt.suptitle('Antibiogram (clustered)')
-plt.tight_layout()
-
 plt.show()

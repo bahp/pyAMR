@@ -41,9 +41,9 @@ import matplotlib.pyplot as plt
 # Load data
 # -------------------------------------------
 # Path
-path = '../../../pyamr/datasets/other/susceptibility.csv'
-path_org = '../../../pyamr/datasets/other/organisms.csv'
-path_abx = '../../../pyamr/datasets/other/antibiotics.csv'
+path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
+path_org = '../../../pyamr/datasets/microbiology/db_microorganisms.csv'
+path_abx = '../../../pyamr/datasets/microbiology/db_antimicrobials.csv'
 
 # Columns
 usecols = ['dateReceived',
@@ -249,11 +249,10 @@ from pyamr.core.asai import ASAI
 
 # Load default organisms dataset
 orgs = pd.read_csv(path_org,
-    usecols=['ORGANISM_NAME',
-             'ORGANISM_CODE',
-             'GENUS_NAME',
-             'GENUS_CODE',
-             'GRAM_TYPE'])
+    usecols=['organism_name',
+             'organism_code',
+             'genus_name',
+             'gram_type'])
 
 # Fill empty
 # .. note: Leads to division by 0 (investigate)
@@ -263,25 +262,25 @@ orgs = pd.read_csv(path_org,
 dataframe = sari_overall.copy(deep=True)
 dataframe = sari_overall.reset_index()
 dataframe = dataframe.merge(orgs, how='left',
-    left_on='SPECIE', right_on='ORGANISM_CODE')
+    left_on='SPECIE', right_on='organism_code')
 
 # Select interesting columns
 dataframe = dataframe[['SPECIE',
                        'ANTIBIOTIC',
-                       'GENUS_CODE',
-                       'GRAM_TYPE',
+                       'genus_name',
+                       'gram_type',
                        'sari']]
 
 # Create antimicrobial spectrum of activity instance
 asai = ASAI(weights='uniform',
             threshold=0.05,
-            column_genus='GENUS_CODE',
+            column_genus='genus_name',
             column_specie='SPECIE',
             column_antibiotic='ANTIBIOTIC',
             column_resistance='sari')
 
 # Compute
-scores = asai.compute(dataframe, by_category='GRAM_TYPE')
+scores = asai.compute(dataframe, by_category='gram_type')
 
 # .. note: In order to sort the scores we need to compute metrics
 #          that combine the different subcategories (e.g. gram-negative

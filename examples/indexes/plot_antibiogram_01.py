@@ -1,6 +1,6 @@
 """
-SARI - Antibiogram
-------------------
+SARI - Antibiogram (overall)
+----------------------------
 
 .. warning:: Explain..?
 
@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 # Import own libraries
 from pyamr.core.sari import SARI
 from pyamr.core.freq import Frequency
+from pyamr.datasets.load import make_susceptibility
 
 # -------------------------
 # Configuration
@@ -43,27 +44,8 @@ np.set_printoptions(precision=2)
 # -------------------------------------------
 # Load data
 # -------------------------------------------
-# Path
-path = '../../pyamr/datasets/microbiology/susceptibility.csv'
-
-# Columns
-usecols = ['dateReceived',
-           'labNumber',
-           'patNumber',
-           'orderName',
-           'orderCode',
-           'organismName',
-           'organismCode',
-           'antibioticName',
-           'antibioticCode',
-           'sensitivity']
-
 # Load data
-data = pd.read_csv(path, usecols=usecols,
-    parse_dates=['dateReceived'])
-
-# Clean
-data = data.drop_duplicates()
+data = make_susceptibility()
 
 # Show
 print("\nData:")
@@ -76,10 +58,10 @@ print(data.columns)
 # Compute Freq and SARI
 # -------------------------------------------
 # Create instance
-freq = Frequency(column_antibiotic='antibioticCode',
-              column_organism='organismCode',
-              column_date='dateReceived',
-              column_outcome='sensitivity')
+freq = Frequency(column_antibiotic='antimicrobial_code',
+                 column_organism='microorganism_code',
+                 column_date='date_received',
+                 column_outcome='sensitivity')
 
 # Compute frequencies (overall)
 freq_overall = freq.compute(data, by_category='pairs')
@@ -97,20 +79,26 @@ matrix = matrix.unstack() * 100
 matrix.columns = matrix.columns.droplevel()
 
 # Create figure
-f, ax = plt.subplots(1, 1, figsize=(18, 11))
+f, ax = plt.subplots(1, 1, figsize=(18, 10))
 
 # Create colormap
 cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
 # Plot
-ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
-    annot_kws={'fontsize': 'small'}, cmap=cmap,
+ax = sns.heatmap(data=matrix.T, annot=True, fmt=".0f",
+    annot_kws={'fontsize': 5}, cmap=cmap,
     linewidth=0.5, vmin=0, vmax=100, ax=ax,
     xticklabels=1, yticklabels=1)
+
+# Configure axes
+#ax.set(aspect='equal')
 
 # Add title
 plt.suptitle("Antibiogram", fontsize='xx-large')
 
 # Tight layout
 plt.tight_layout()
-plt.subplots_adjust(right=1.05)
+#plt.subplots_adjust(right=0.0)
+
+# Show
+plt.show()

@@ -1,5 +1,5 @@
-Examples with Indexes
-=====================
+Examples with AMR indexes
+=========================
 
 .. todo:: Create ``sub-galleries`` for each of the indexes when the
           number of samples grow.
