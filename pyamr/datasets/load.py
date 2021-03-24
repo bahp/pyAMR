@@ -53,7 +53,9 @@ other_shampoo_sales = './other/shampoo_sales.csv'
 
 
 def make_timeseries():
-  """This method creates a time series
+  """This method creates a time series.
+
+  .. warning: Hard coded.
 
   Parameters
   ----------
@@ -78,6 +80,13 @@ def make_timeseries():
                       np.random.rand(35)*50+150))
   # Return
   return x, y, f
+
+def make_susceptibility():
+  """This method loads susceptibility."""
+  # Define path
+  path = './microbiology/sample/susceptibility-20210324-194524.csv'
+  # Load
+  return pd.read_csv("{0}/{1}".format(dirname, path))
 
 # --------------------------------------
 # METHODS TO LOAD DATABASES
