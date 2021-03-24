@@ -93,11 +93,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/nhs/index.html">Examples with datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
@@ -390,8 +391,63 @@ the differenced endogenous variables.</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="pyamr-core-regression-pyarima2-module">
-<h2>pyamr.core.regression.pyarima2 module<a class="headerlink" href="#pyamr-core-regression-pyarima2-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyamr.core.regression.pyarima2">
+<span id="pyamr-core-regression-pyarima2-module"></span><h2>pyamr.core.regression.pyarima2 module<a class="headerlink" href="#module-pyamr.core.regression.pyarima2" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.regression.pyarima2.PyramidWrapper">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.regression.pyarima2.</span></code><code class="sig-name descname"><span class="pre">PyramidWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.regression.wreg.RegressionWrapper</span></code></a></p>
+<dl class="py method">
+<dt id="pyamr.core.regression.pyarima2.PyramidWrapper.as_summary">
+<code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method displays the summary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.pyarima2.PyramidWrapper.auto">
+<code class="sig-name descname"><span class="pre">auto</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper.auto" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method finds the best arima.</p>
+<p>&#64;see pyrmid.arima.auto_arima</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.pyarima2.PyramidWrapper.evaluate">
+<code class="sig-name descname"><span class="pre">evaluate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method set all the variables into this class.</p>
+<p>&#64;see: statsmodels.Arima
+&#64;see: statsmodels.ArimaResults</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alpha</strong></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.pyarima2.PyramidWrapper.from_instance">
+<code class="sig-name descname"><span class="pre">from_instance</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arima</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper.from_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method constructs a PyramidWrapper object from pyramid.ARIMA</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.pyarima2.PyramidWrapper.get_prediction">
+<code class="sig-name descname"><span class="pre">get_prediction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper.get_prediction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.regression.pyarima2.PyramidWrapper.resid">
+<code class="sig-name descname"><span class="pre">resid</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper.resid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the residual</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-pyamr.core.regression.sarimax">
 <span id="pyamr-core-regression-sarimax-module"></span><h2>pyamr.core.regression.sarimax module<a class="headerlink" href="#module-pyamr.core.regression.sarimax" title="Permalink to this headline">¶</a></h2>
@@ -653,17 +709,15 @@ results are stored in an array with the corresponding wrapper instances.</p>
 <dt id="pyamr.core.regression.wls.WLSWrapper.evaluate">
 <code class="sig-name descname"><span class="pre">evaluate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method set all the variables into this class.</p>
-<dl>
+<dl class="simple">
 <dt>Notes:</dt><dd><ul class="simple">
-<li><p>if instead of having the attribute series it is desired to set</p></li>
+<li><p>if instead of having the attribute series it is desired to set
+each element of the series as an attribute, just used the following
+statement: setattr(self, name, value).</p></li>
+<li><p>Note the difference between the resid and wresid since they will
+also have different statistical properties. Furthermore, there is
+a vector with normalized residuals resid_pearson.</p></li>
 </ul>
-<p>each element of the series as an attribute, just used the following
-statement: setattr(self, name, value).</p>
-<ul class="simple">
-<li><p>Note the difference between the resid and wresid since they will</p></li>
-</ul>
-<p>also have different statistical properties. Furthermore, there is
-a vector with normalized residuals resid_pearson.</p>
 </dd>
 </dl>
 <p>&#64;see: statsmodels.WLS

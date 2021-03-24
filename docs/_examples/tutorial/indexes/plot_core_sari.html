@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
@@ -105,10 +106,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regression">Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">Examples with datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
@@ -192,11 +194,19 @@ to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="index-sari">
 <span id="sphx-glr-examples-tutorial-indexes-plot-core-sari-py"></span><h1>Index - SARI<a class="headerlink" href="#index-sari" title="Permalink to this headline">¶</a></h1>
-<p>Example using your package</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>Improve visualization.</p></li>
+<li><p>Create further examples with temporal visualization.</p></li>
+<li><p>Create further examples with general heatmap.</p></li>
+<li><p>Create further examples with animation?</p></li>
+</ul>
+</div>
 <img alt="SARI (Single Antibiotic Resistance Index)" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_core_sari_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\sphinx_gallery\gen_gallery.py:201: DtypeWarning: Columns (11) have mixed types.Specify dtype option on import or set low_memory=False.
-  return 0., func()
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\pandas\plotting\_matplotlib\core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
 No handles with labels found to put in legend.
 No handles with labels found to put in legend.
 </pre></div>
@@ -204,11 +214,7 @@ No handles with labels found to put in legend.
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  9</span>
-<span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 13</span>
 <span class="normal"> 14</span>
 <span class="normal"> 15</span>
 <span class="normal"> 16</span>
@@ -364,7 +370,12 @@ No handles with labels found to put in legend.
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
-<span class="normal">169</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
  <span class="kn">import</span> <span class="nn">sys</span>
  <span class="kn">import</span> <span class="nn">glob</span>
  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -410,17 +421,18 @@ No handles with labels found to put in legend.
             <span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
             <span class="s1">&#39;sensitivity&#39;</span><span class="p">]</span>
 
+ <span class="c1"># -----------------------</span>
+ <span class="c1"># Load data</span>
+ <span class="c1"># -----------------------</span>
  <span class="c1"># Path</span>
- <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../../resources/data/nhs/susceptibility/complete/&#39;</span>
+ <span class="c1"># Path</span>
+ <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../../pyamr/datasets/microbiology/susceptibility.csv&#39;</span>
 
- <span class="c1"># -------------------------</span>
- <span class="c1"># Main</span>
- <span class="c1"># -------------------------</span>
  <span class="c1"># Load all files</span>
- <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>  \
-     <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">],</span>
-         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
-             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/*.csv&quot;</span><span class="p">)])</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
+     <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
+     <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">],</span>
+     <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
  <span class="c1"># Replace</span>
  <span class="n">data</span><span class="o">.</span><span class="n">organismCode</span> <span class="o">=</span> \
@@ -527,7 +539,7 @@ No handles with labels found to put in legend.
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.995 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.309 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-sari-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/f544ae4a9bcc6b238994e78f200b3851/plot_core_sari.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_sari.py</span></code></a></p>

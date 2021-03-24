@@ -40,7 +40,7 @@ The Augmented Dickey-Fuller test...
 
 
 
-    adf-statistic                 -10.1776
+    adf-statistic                 -10.0423
     adf-pvalue                         0.0
     adf-nlags                            0
     adf-nobs                            99
@@ -48,21 +48,37 @@ The Augmented Dickey-Fuller test...
     adf-criticalvalue_1%           -4.0533
     adf-criticalvalue_5%           -3.4558
     adf-criticalvalue_10%          -3.1536
-    adf-x                    [108.18172...
+    adf-x                    [102.48125...
     adf-regression                      ct
-    adf-model                (-10.17760...
+    adf-model                (-10.04233...
     adf-id                         ADF(ct)
     dtype: object
 
 
-      adfuller test stationarity (ct) 
-    ==================================
-    statistic:                 -10.178 
-    pvalue:                    0.00000 
-    nlags:                          0. 
-    nobs:                          99. 
-    stationary (0.05):      stationary
-    ==================================
+        adfuller test stationarity (ct)    
+    =======================================
+    statistic:                      -10.042
+    pvalue:                         0.00000   
+    nlags:                                0    
+    nobs:                                99     
+    stationarity (α=0.05):       stationary
+    =======================================
+        adfuller test stationarity (ct)    
+    =======================================
+    statistic:                      -10.042
+    pvalue:                         0.00000   
+    nlags:                                0    
+    nobs:                                99     
+    stationarity (α=0.05):       stationary
+    ---------------------------------------
+    critical value (1%):           -4.05325 
+    critical value (5%):           -3.45581 
+    critical value (10%):          -3.15359
+    ---------------------------------------
+    H0:                    Exists unit-root
+    H1:                 No Exists unit-root
+    pvalue <= α:                  Reject H0
+    =======================================
 
     Identifier
     ADF(ct)
@@ -72,17 +88,17 @@ The Augmented Dickey-Fuller test...
 
 
                                 0              1              2
-    adf-statistic        -10.2279        -0.3781       -10.1776
-    adf-pvalue                0.0         0.5454            0.0
-    adf-nlags                   0              4              0
-    adf-nobs                   99             95             99
+    adf-statistic        -10.0529         0.0304       -10.0423
+    adf-pvalue                0.0         0.6943            0.0
+    adf-nlags                   0             10              0
+    adf-nobs                   99             89             99
     adf-stationary           True          False           True
-    adf-critica...        -3.4982        -2.5897        -4.0533
-    adf-critica...        -2.8912        -1.9442        -3.4558
-    adf-critica...        -2.5826        -1.6143        -3.1536
+    adf-critica...        -3.4982        -2.5913        -4.0533
+    adf-critica...        -2.8912        -1.9444        -3.4558
+    adf-critica...        -2.5826        -1.6141        -3.1536
     adf-regression              c             nc             ct
-    adf-x           [108.18172...  [108.18172...  [108.18172...
-    adf-model       (-10.22789...  (-0.378134...  (-10.17760...
+    adf-x           [102.48125...  [102.48125...  [102.48125...
+    adf-model       (-10.05290...  (0.0303944...  (-10.04233...
     adf-id                 ADF(c)        ADF(nc)        ADF(ct)
 
 
@@ -106,7 +122,6 @@ The Augmented Dickey-Fuller test...
 
     # Import pyAMR
     from pyamr.core.stats.adfuller import ADFWrapper
-
 
     # ----------------------------
     # set basic configuration
@@ -141,6 +156,7 @@ The Augmented Dickey-Fuller test...
     # Print summary.
     print("\n")
     print(adf.as_summary())
+    print(adf.as_summary(verbose=10))
 
     # Print identifier.
     print("\nIdentifier")
@@ -180,7 +196,7 @@ The Augmented Dickey-Fuller test...
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.040 seconds)
+   **Total running time of the script:** ( 0 minutes  0.035 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_statistics_plot_core_stats_adfuller.py:

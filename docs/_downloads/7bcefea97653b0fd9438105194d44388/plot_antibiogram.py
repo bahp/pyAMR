@@ -2,20 +2,22 @@
 SARI - Antibiogram
 ------------------
 
-.. todo:: Explain...
+.. warning:: Explain..?
 
 """
 
+
 # Libraries
 import sys
-import numpy as np 
-import pandas as pd 
+import numpy as np
+import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 # Import own libraries
-from pyamr.graphics.antibiogram import Antibiogram
+from pyamr.core.sari import SARI
+from pyamr.core.freq import Frequency
 
 # -------------------------
 # Configuration
@@ -38,39 +40,77 @@ pd.set_option('display.precision', 4)
 np.set_printoptions(precision=2)
 
 
-# -------------------------------
+# -------------------------------------------
 # Load data
-# -------------------------------
-# Load
-dataframe = pd.read_csv('../_data/data-antibiogram.csv')
+# -------------------------------------------
+# Path
+path = '../../pyamr/datasets/microbiology/susceptibility.csv'
 
-# Show data
-print("Data input:")
-print(dataframe.head(10))
+# Columns
+usecols = ['dateReceived',
+           'labNumber',
+           'patNumber',
+           'orderName',
+           'orderCode',
+           'organismName',
+           'organismCode',
+           'antibioticName',
+           'antibioticCode',
+           'sensitivity']
 
-# -------------------------------
-# Create object
-# -------------------------------
-# Antibiogram plotter
-antibiogram = Antibiogram(column_organism='organismCode',
-                          column_antibiotic='antibioticCode',
-                          column_genus='specieName',
-                          column_category='antibioticClass',
-                          column_index='sari')
+# Load data
+data = pd.read_csv(path, usecols=usecols,
+    parse_dates=['dateReceived'])
 
-# Fit antibiogram
-antibiogram = antibiogram.fit(dataframe)
-
-# ---------
-# Example 1
-# ----------
-antibiogram.plot(genera=['staphylococcus',
-                         'klebsiella',
-                         'streptococcus',
-                         'enterococcus'],
-                 method='weighted',
-                 metric='euclidean',
-                 figsize=(15,8))
+# Clean
+data = data.drop_duplicates()
 
 # Show
-plt.show()
+print("\nData:")
+print(data)
+print("\nColumns:")
+print(data.columns)
+
+
+# -------------------------------------------
+# Compute Freq and SARI
+# -------------------------------------------
+# Create instance
+freq = Frequency(column_antibiotic='antibioticCode',
+              column_organism='organismCode',
+              column_date='dateReceived',
+              column_outcome='sensitivity')
+
+# Compute frequencies (overall)
+freq_overall = freq.compute(data, by_category='pairs')
+
+# Compute SARI
+sari_overall = SARI(strategy='hard').compute(freq_overall)
+
+
+# ------------
+# Plot Heatmap
+# ------------
+# Create matrix
+matrix = sari_overall[['sari']]
+matrix = matrix.unstack() * 100
+matrix.columns = matrix.columns.droplevel()
+
+# Create figure
+f, ax = plt.subplots(1, 1, figsize=(18, 11))
+
+# Create colormap
+cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
+
+# Plot
+ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+    annot_kws={'fontsize': 'small'}, cmap=cmap,
+    linewidth=0.5, vmin=0, vmax=100, ax=ax,
+    xticklabels=1, yticklabels=1)
+
+# Add title
+plt.suptitle("Antibiogram", fontsize='xx-large')
+
+# Tight layout
+plt.tight_layout()
+plt.subplots_adjust(right=1.05)

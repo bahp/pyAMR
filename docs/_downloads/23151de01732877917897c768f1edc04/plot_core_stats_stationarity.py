@@ -4,8 +4,6 @@ Statistical test - Stationarity
 
 Example using your package
 """
-
-
 # Libraries
 import numpy as np
 import pandas as pd
@@ -13,6 +11,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 # Import pyAMR
+from pyamr.datasets.load import make_timeseries
 from pyamr.core.stats.stationarity import StationarityWrapper
 
 # ----------------------------
@@ -58,88 +57,54 @@ y_c = np.ones(length)*offset
 y_t = x*slope+n
 y_ct = x*slope+offset+n*20
 y_r = np.concatenate((y_ct[:50], y_ct[50:]-offset))
+x_s, y_s, f_s = make_timeseries()
 
 # ----------------------------
-# create stationarity objects
+# Example of stationarity
 # ----------------------------
-stationarity_n = StationarityWrapper().fit(x=y_n)
-stationarity_c = StationarityWrapper().fit(x=y_c)
-stationarity_t = StationarityWrapper().fit(x=y_t)
-stationarity_r = StationarityWrapper().fit(x=y_r)
-stationarity_ct = StationarityWrapper().fit(x=y_ct,
-                adf_kwargs={'maxlag':12, 'autolag':'BIC'})
+# Single example
+stationarity = StationarityWrapper()\
+    .fit(y_r, adf_kwargs={}, kpss_kwargs={})
 
-# Print series.
-print("\n")
-print(stationarity_ct.as_series())
+# Show
+print("\nSeries:")
+print(stationarity.as_series())
 
-# Print summary.
-print("\n")
-print(stationarity_ct.as_summary())
-
-# Print identifier.
-print("\n")
-print(stationarity_ct._identifier())
+print("\nIdentifier:")
+print(stationarity._identifier())
 
 
-# ----------------
-# plot
-# ----------------
+# ---------------------------
+# Plot
+# ---------------------------
+# Create array of time series
+timeseries = [y_n, y_c, y_t, y_ct, y_r, y_s]
+
 # Create figure
-fig, axes = plt.subplots(3,2, figsize=(10,4))
+fig, axes = plt.subplots(3,2, figsize=(10,8))
 axes = axes.flatten()
 
-# Plot truth values.
-axes[0].plot(y_n, color='#A6CEE3', alpha=0.5, marker='o',
-             markeredgecolor='k', markeredgewidth=0.5,
-             markersize=2, linewidth=0.75,
-             label=stationarity_n.as_summary())
+# Loop
+for i,ts in enumerate(timeseries):
 
-axes[1].plot(y_c, color='#A6CEE3', alpha=0.5, marker='o',
-             markeredgecolor='k', markeredgewidth=0.5,
-             markersize=2, linewidth=0.75,
-             label=stationarity_c.as_summary())
+    # Create stationarity wrapper.
+    stationarity = StationarityWrapper().fit(x=ts)
 
-# Plot truth values.
-axes[2].plot(y_t, color='#A6CEE3', alpha=0.5, marker='o',
-             markeredgecolor='k', markeredgewidth=0.5,
-             markersize=2, linewidth=0.75,
-             label=stationarity_t.as_summary())
+    # Plot
+    axes[i].plot(ts, color='#A6CEE3', alpha=0.5, marker='o',
+                 markeredgecolor='k', markeredgewidth=0.5,
+                 markersize=2, linewidth=0.75,
+                 label=stationarity.as_summary())
 
-# Plot truth values.
-axes[3].plot(y_ct, color='#A6CEE3', alpha=0.5, marker='o',
-             markeredgecolor='k', markeredgewidth=0.5,
-             markersize=2, linewidth=0.75,
-             label=stationarity_ct.as_summary())
+    # Set grid
+    axes[i].grid(color='gray', linestyle='--',
+                 linewidth=0.2, alpha=0.5)
 
-# Plot truth values.
-axes[4].plot(y_r, color='#A6CEE3', alpha=0.5, marker='o',
-             markeredgecolor='k', markeredgewidth=0.5,
-             markersize=2, linewidth=0.75,
-             label=stationarity_r.as_summary())
-
-# Add grid
-for ax in axes:
-    ax.grid(color='gray', linestyle='--', linewidth=0.2, alpha=0.5)
-
-# Add legend
-for ax in axes:
-    ax.legend(prop=font, loc=2)
+    # Set legend
+    axes[i].legend(prop=font, loc=4)
 
 # Study of Stationarity
 plt.suptitle("Study of Stationarity")
-
-# -----------------
-# Save and load
-# -----------------
-# File location
-#fname = '../examples/saved/stationarity-sample.pickle'
-
-# Save
-#stationarity_ct.save(fname=fname)
-
-# Load
-#stationarity_ct = StationarityWrapper().load(fname=fname)
 
 # Show
 plt.show()

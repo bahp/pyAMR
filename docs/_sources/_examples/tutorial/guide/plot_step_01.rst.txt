@@ -45,7 +45,7 @@ strategy in AMR
 
 A small dataset will be used for this example.
 
-.. GENERATED FROM PYTHON SOURCE LINES 31-68
+.. GENERATED FROM PYTHON SOURCE LINES 31-80
 
 .. code-block:: default
    :lineno-start: 33
@@ -63,12 +63,24 @@ A small dataset will be used for this example.
     # Load data
     # -------------------------------------------
     # Path
-    path = '../../../pyamr/datasets/other/susceptibility.csv'
-    path_org = '../../../pyamr/datasets/other/organisms.csv'
-    path_abx = '../../../pyamr/datasets/other/antibiotics.csv'
+    path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
+    path_org = '../../../pyamr/datasets/microbiology/db_microorganisms.csv'
+    path_abx = '../../../pyamr/datasets/microbiology/db_antimicrobials.csv'
+
+    # Columns
+    usecols = ['dateReceived',
+               'labNumber',
+               'patNumber',
+               'orderName',
+               'orderCode',
+               'organismName',
+               'organismCode',
+               'antibioticName',
+               'antibioticCode',
+               'sensitivity']
 
     # Load data
-    data = pd.read_csv(path,
+    data = pd.read_csv(path, usecols=usecols,
         parse_dates=['dateReceived'])
 
     # Clean
@@ -99,34 +111,31 @@ A small dataset will be used for this example.
 
 
     Data:
-         dateReceived  gender  age  dob  patientLocation  doctorsLocation  setting  ...     specieCode            antibioticNameOrig antibioticName antibioticCodeOrig antibioticCode sensitivity LukeCode
-    0      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                      Amikacin       amikacin               AAMI           AAMI   sensitive     SMAR
-    1      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                   Amoxycillin    amoxycillin               AAMO           AAMO   resistant     SMAR
-    2      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA  AMP C markers (SS = present)  amp c markers              AAMPC          AAMPC   resistant     SMAR
-    3      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                     Augmentin      augmentin               AAUG           AAUG   resistant     SMAR
-    4      2016-01-01     NaN  NaN  NaN              NaN              NaN      NaN  ...     A_SERRATIA                     Aztreonam      aztreonam               AAZT           AAZT   sensitive     SMAR
-    ...           ...     ...  ...  ...              ...              ...      ...  ...            ...                           ...            ...                ...            ...         ...      ...
-    5147   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                       Tazocin        tazocin               ATAZ           ATAZ   sensitive     ECOL
-    5148   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                    Temocillin     temocillin               ATEM           ATEM   sensitive     ECOL
-    5149   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                   Tigecycline    tigecycline               ATIG           ATIG   sensitive     ECOL
-    5150   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                    Tobramycin     tobramycin               ATOB           ATOB   sensitive     ECOL
-    5151   2016-01-11     NaN  NaN  NaN              NaN              NaN      NaN  ...  A_ESCHERICHIA                  Trimethoprim   trimethoprim               ATRI           ATRI   sensitive     ECOL
+         dateReceived orderCode       orderName labNumber  patNumber         organismName organismCode antibioticName antibioticCode sensitivity
+    0      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR       amikacin           AAMI   sensitive
+    1      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR    amoxycillin           AAMO   resistant
+    2      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR  amp c markers          AAMPC   resistant
+    3      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR      augmentin           AAUG   resistant
+    4      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR      aztreonam           AAZT   sensitive
+    ...           ...       ...             ...       ...        ...                  ...          ...            ...            ...         ...
+    5147   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL        tazocin           ATAZ   sensitive
+    5148   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL     temocillin           ATEM   sensitive
+    5149   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL    tigecycline           ATIG   sensitive
+    5150   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL     tobramycin           ATOB   sensitive
+    5151   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL   trimethoprim           ATRI   sensitive
 
-    [5152 rows x 24 columns]
+    [5152 rows x 10 columns]
 
     Columns:
-    Index(['dateReceived', 'gender', 'age', 'dob', 'patientLocation',
-           'doctorsLocation', 'setting', 'orderCode', 'orderName', 'specimenType',
-           'labNumber', 'patNumber', 'organismNameOrig', 'organismName',
-           'organismCodeOrig', 'organismCode', 'specieName', 'specieCode',
-           'antibioticNameOrig', 'antibioticName', 'antibioticCodeOrig',
-           'antibioticCode', 'sensitivity', 'LukeCode'],
+    Index(['dateReceived', 'orderCode', 'orderName', 'labNumber', 'patNumber',
+           'organismName', 'organismCode', 'antibioticName', 'antibioticCode',
+           'sensitivity'],
           dtype='object')
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-99
+.. GENERATED FROM PYTHON SOURCE LINES 81-110
 
 Computing Freq
 --------------
@@ -135,12 +144,11 @@ Computing Freq
 
 This section explains the main concepts in order to understand how the
 computation of frequencies using the ``Frequency`` class works. For more
-information see the documentation (xxx)
-
-The frequency can be computed using the ``Frequency`` class for three different
-categories; the ``organisms``, ``antibiotics`` and ``pairs`` which are composed
-by an organism and an antibiotic. In addition, regarding to time, the susceptibility
-data can be grouped following different strategies:
+information see the documentation (xxx). The frequency can be computed using the
+``Frequency`` class for three different categories; the ``organisms``,
+``antibiotics`` and ``pairs`` which are composed by an organism and an antibiotic.
+In addition, regarding to time, the susceptibility data can be grouped following
+different strategies:
 
 - **Overall** - ``overall``
   All the data is used and therefore the outcome is a single number for
@@ -157,12 +165,12 @@ data can be grouped following different strategies:
   consecutive resistance indexes. It is described by two parameters; the length
   of the region (period) and the distance between consecutive windows (shift).
 
-For more information see (link to API, manuscripts and examples).
+For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_frequency.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 100-137
+.. GENERATED FROM PYTHON SOURCE LINES 111-148
 
 .. code-block:: default
-   :lineno-start: 101
+   :lineno-start: 112
 
 
     # -------------------------------------------
@@ -249,7 +257,7 @@ For more information see (link to API, manuscripts and examples).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 138-159
+.. GENERATED FROM PYTHON SOURCE LINES 149-170
 
 Computing SARI
 --------------
@@ -264,19 +272,19 @@ It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` a
 Susceptible outcomes respectively. The definition might vary slightly since the
 intermediate category is not always considered.
 
-The parameters strategy accepts three different options:
+The parameter strategy accepts three different options:
 
  (i) ``soft``   as R / R+I+S
  (ii) ``medium`` as R / R+S
  (iii) ``hard``  as R+I / R+I+S
  (iv) ``other``  as R+0.5I / R+0.5I+S
 
-For more information see (link to API, manuscripts and examples).
+For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 160-185
+.. GENERATED FROM PYTHON SOURCE LINES 171-215
 
 .. code-block:: default
-   :lineno-start: 161
+   :lineno-start: 172
 
 
     # -------------------------------------------
@@ -295,16 +303,39 @@ For more information see (link to API, manuscripts and examples).
     print("\nSARI (monthly):")
     print(sari_monthly)
 
+    # Plot Heatmap
+    # ------------
+    # Create matrix
+    matrix = sari_overall[['sari']]
+    matrix = matrix.unstack() * 100
+    matrix.columns = matrix.columns.droplevel()
+
+    # Create figure
+    f, ax = plt.subplots(1, 1, figsize=(18, 11))
+
+    # Create colormap
+    cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
+
     # Plot
-    # .. todo: Use bar plot or any other library to plot
-    #          the frequency in time. Ideally with bars
-    #          where x-axis is the time and y-axi is the
-    #          freq. Avoid too many x-labels, keep just
-    #          years?
+    ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+        annot_kws={'fontsize': 'small'}, cmap=cmap,
+        linewidth=0.5, vmin=0, vmax=100, ax=ax,
+        xticklabels=1, yticklabels=1)
+
+    # Add title
+    plt.suptitle("Antibiogram", fontsize='xx-large')
+
+    # Tight layout
+    plt.tight_layout()
+    plt.subplots_adjust(right=1.05)
 
 
 
 
+
+.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_001.png
+    :alt: Antibiogram
+    :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -351,7 +382,7 @@ For more information see (link to API, manuscripts and examples).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 186-212
+.. GENERATED FROM PYTHON SOURCE LINES 216-242
 
 Computing ASAI
 --------------
@@ -378,12 +409,12 @@ the number of genera tested. An antimicrobial is considered effective to treat a
 particular species when the corresponding resistance index (SARI) is lower than
 a given threshold.
 
-For more information see (link to API, manuscripts and examples).
+For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 213-356
+.. GENERATED FROM PYTHON SOURCE LINES 243-385
 
 .. code-block:: default
-   :lineno-start: 214
+   :lineno-start: 244
 
 
     # -------------------------------------------
@@ -394,11 +425,10 @@ For more information see (link to API, manuscripts and examples).
 
     # Load default organisms dataset
     orgs = pd.read_csv(path_org,
-        usecols=['ORGANISM_NAME',
-                 'ORGANISM_CODE',
-                 'GENUS_NAME',
-                 'GENUS_CODE',
-                 'GRAM_TYPE'])
+        usecols=['organism_name',
+                 'organism_code',
+                 'genus_name',
+                 'gram_type'])
 
     # Fill empty
     # .. note: Leads to division by 0 (investigate)
@@ -408,25 +438,25 @@ For more information see (link to API, manuscripts and examples).
     dataframe = sari_overall.copy(deep=True)
     dataframe = sari_overall.reset_index()
     dataframe = dataframe.merge(orgs, how='left',
-        left_on='SPECIE', right_on='ORGANISM_CODE')
+        left_on='SPECIE', right_on='organism_code')
 
     # Select interesting columns
     dataframe = dataframe[['SPECIE',
                            'ANTIBIOTIC',
-                           'GENUS_CODE',
-                           'GRAM_TYPE',
+                           'genus_name',
+                           'gram_type',
                            'sari']]
 
     # Create antimicrobial spectrum of activity instance
     asai = ASAI(weights='uniform',
                 threshold=0.05,
-                column_genus='GENUS_CODE',
+                column_genus='genus_name',
                 column_specie='SPECIE',
                 column_antibiotic='ANTIBIOTIC',
                 column_resistance='sari')
 
     # Compute
-    scores = asai.compute(dataframe, by_category='GRAM_TYPE')
+    scores = asai.compute(dataframe, by_category='gram_type')
 
     # .. note: In order to sort the scores we need to compute metrics
     #          that combine the different subcategories (e.g. gram-negative
@@ -531,7 +561,7 @@ For more information see (link to API, manuscripts and examples).
 
 
 
-.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_001.png
+.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_002.png
     :alt: Gram-positive, Gram-negative, Gram-unknown
     :class: sphx-glr-single-img
 
@@ -544,13 +574,13 @@ For more information see (link to API, manuscripts and examples).
 
     Data output:
                N_GENUS      N_SPECIE       ASAI_SCORE               width     gmean
-    GRAM_TYPE        n    p        n     p          n         p                    
+    gram_type        n    p        n     p          n         p                    
     ANTIBIOTIC                                                                     
     ACHL           3.0  1.0      3.0   1.0   1.000000  1.000000  2.000000  1.000000
     AOFL           2.0  1.0      2.0   1.0   1.000000  1.000000  2.000000  1.000000
     ALIN           1.0  2.0      1.0   4.0   1.000000  1.000000  2.000000  1.000000
-    APEN           1.0  2.0      1.0   9.0   1.000000  0.678571  1.678571  0.823754
-    AVAN           2.0  3.0      2.0  12.0   1.000000  0.666667  1.666667  0.816497
+    AVAN           2.0  3.0      2.0  11.0   1.000000  0.666667  1.666667  0.816497
+    APEN           1.0  2.0      1.0   8.0   1.000000  0.666667  1.666667  0.816497
     AERY           1.0  3.0      1.0  11.0   1.000000  0.633333  1.633333  0.795822
     ATIG           6.0  2.0     10.0   4.0   0.750000  0.833333  1.583333  0.790569
     ATET           1.0  3.0      1.0  12.0   1.000000  0.555556  1.555556  0.745356
@@ -583,7 +613,7 @@ For more information see (link to API, manuscripts and examples).
     ACAZ           6.0  0.0     13.0   0.0   0.583333  0.000000  0.583333  0.000000
     ACELX          3.0  0.0      3.0   0.0   0.000000  0.000000  0.000000  0.000000
     ACIX           1.0  0.0      1.0   0.0   1.000000  0.000000  1.000000  0.000000
-    ACLI           0.0  3.0      0.0  13.0   0.000000  0.771429  0.771429  0.000000
+    ACLI           0.0  3.0      0.0  12.0   0.000000  0.755556  0.755556  0.000000
     ACOL           5.0  0.0      9.0   0.0   0.800000  0.000000  0.800000  0.000000
     ACONE          8.0  0.0     13.0   0.0   0.770833  0.000000  0.770833  0.000000
     ACPO           2.0  0.0      2.0   0.0   0.000000  0.000000  0.000000  0.000000
@@ -598,15 +628,22 @@ For more information see (link to API, manuscripts and examples).
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 357-359
+.. GENERATED FROM PYTHON SOURCE LINES 386-390
+
+Computing SART
+--------------
+
+.. warning:: To include.
+
+.. GENERATED FROM PYTHON SOURCE LINES 394-396
 
 Dirty code to use and or delete
 -------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 360-434
+.. GENERATED FROM PYTHON SOURCE LINES 397-471
 
 .. code-block:: default
-   :lineno-start: 361
+   :lineno-start: 398
 
 
     """
@@ -700,7 +737,7 @@ Dirty code to use and or delete
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.033 seconds)
+   **Total running time of the script:** ( 0 minutes  4.236 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:

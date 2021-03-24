@@ -93,11 +93,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/nhs/index.html">Examples with datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
@@ -294,11 +295,213 @@ approach to create acronyms does not ensure they are always unique.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="pyamr-core-table-antibiotic-module">
-<h2>pyamr.core.table.antibiotic module<a class="headerlink" href="#pyamr-core-table-antibiotic-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyamr.core.table.antibiotic">
+<span id="pyamr-core-table-antibiotic-module"></span><h2>pyamr.core.table.antibiotic module<a class="headerlink" href="#module-pyamr.core.table.antibiotic" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.table.antibiotic.AntibioticTable">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.table.antibiotic.</span></code><code class="sig-name descname"><span class="pre">AntibioticTable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_lowercase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_uppercase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_spaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_parenthesis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="pyamr.core.table.antibiotic.AntibioticTable.fit">
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticTable.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.table.antibiotic.</span></code><code class="sig-name descname"><span class="pre">AntibioticsTable</span></code><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.codeF">
+<code class="sig-name descname"><span class="pre">codeF</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'antibioticCode'</span></em><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.codeF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.codeO">
+<code class="sig-name descname"><span class="pre">codeO</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'antibioticCodeOrig'</span></em><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.codeO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes/updates a table from data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_path</strong> (<em>the path with the data.</em>)</p></li>
+<li><p><strong>output_path</strong> (<em>the path to store the table.</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.create_table">
+<code class="sig-name descname"><span class="pre">create_table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.create_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates the table from input data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.fit">
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acronym</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.l">
+<code class="sig-name descname"><span class="pre">l</span></code><em class="property"> <span class="pre">=</span> <span class="pre">8</span></em><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.l" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.merge_table">
+<code class="sig-name descname"><span class="pre">merge_table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conflicts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.merge_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function merges the two basic columns name and code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df1</strong> (<em>the old dataframe with name and code.</em>)</p></li>
+<li><p><strong>df2</strong> (<em>the new dataframe with name and code.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_m</strong> (<em>merged dataframe.</em>)</p></li>
+<li><p><strong>df_c</strong> (<em>conflicts dataframe.</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.nameF">
+<code class="sig-name descname"><span class="pre">nameF</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'antibioticName'</span></em><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.nameF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.nameO">
+<code class="sig-name descname"><span class="pre">nameO</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'antibioticNameOrig'</span></em><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.nameO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.show_information">
+<code class="sig-name descname"><span class="pre">show_information</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.show_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method shows important information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.update">
+<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.antibiotic.AntibioticsTable.usecols">
+<code class="sig-name descname"><span class="pre">usecols</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['antibioticNameOrig',</span> <span class="pre">'antibioticCodeOrig']</span></em><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.usecols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pyamr-core-table-organism-module">
-<h2>pyamr.core.table.organism module<a class="headerlink" href="#pyamr-core-table-organism-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyamr.core.table.organism">
+<span id="pyamr-core-table-organism-module"></span><h2>pyamr.core.table.organism module<a class="headerlink" href="#module-pyamr.core.table.organism" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyamr.core.table.organism.OrganismsTable">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.table.organism.</span></code><code class="sig-name descname"><span class="pre">OrganismsTable</span></code><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.codeF">
+<code class="sig-name descname"><span class="pre">codeF</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'organismCode'</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.codeF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.codeO">
+<code class="sig-name descname"><span class="pre">codeO</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'organismCodeOrig'</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.codeO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.codeS">
+<code class="sig-name descname"><span class="pre">codeS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'specieCode'</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.codeS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.organism.OrganismsTable.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method computes/updates a table from data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_path</strong> (<em>the path with the data.</em>)</p></li>
+<li><p><strong>output_path</strong> (<em>the path to store the table.</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.organism.OrganismsTable.create_table">
+<code class="sig-name descname"><span class="pre">create_table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.create_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method creates the table from input data</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.len_sp">
+<code class="sig-name descname"><span class="pre">len_sp</span></code><em class="property"> <span class="pre">=</span> <span class="pre">8</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.len_sp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.len_tp">
+<code class="sig-name descname"><span class="pre">len_tp</span></code><em class="property"> <span class="pre">=</span> <span class="pre">8</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.len_tp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.organism.OrganismsTable.merge_table">
+<code class="sig-name descname"><span class="pre">merge_table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conflicts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.merge_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function merges the two basic columns name and code.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df1</strong> (<em>the old dataframe with name and code.</em>)</p></li>
+<li><p><strong>df2</strong> (<em>the new dataframe with name and code.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_m</strong> (<em>merged dataframe.</em>)</p></li>
+<li><p><strong>df_c</strong> (<em>conflicts dataframe.</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.nameF">
+<code class="sig-name descname"><span class="pre">nameF</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'organismName'</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.nameF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.nameO">
+<code class="sig-name descname"><span class="pre">nameO</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'organismNameOrig'</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.nameO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.nameS">
+<code class="sig-name descname"><span class="pre">nameS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'specieName'</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.nameS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.table.organism.OrganismsTable.show_information">
+<code class="sig-name descname"><span class="pre">show_information</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.show_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method shows important information.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.table.organism.OrganismsTable.usecols">
+<code class="sig-name descname"><span class="pre">usecols</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['organismNameOrig',</span> <span class="pre">'organismCodeOrig']</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.usecols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-pyamr.core.table.utils">
 <span id="pyamr-core-table-utils-module"></span><h2>pyamr.core.table.utils module<a class="headerlink" href="#module-pyamr.core.table.utils" title="Permalink to this headline">¶</a></h2>

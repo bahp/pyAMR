@@ -41,12 +41,24 @@ import matplotlib.pyplot as plt
 # Load data
 # -------------------------------------------
 # Path
-path = '../../../pyamr/datasets/other/susceptibility.csv'
-path_org = '../../../pyamr/datasets/other/organisms.csv'
-path_abx = '../../../pyamr/datasets/other/antibiotics.csv'
+path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
+path_org = '../../../pyamr/datasets/microbiology/db_microorganisms.csv'
+path_abx = '../../../pyamr/datasets/microbiology/db_antimicrobials.csv'
+
+# Columns
+usecols = ['dateReceived',
+           'labNumber',
+           'patNumber',
+           'orderName',
+           'orderCode',
+           'organismName',
+           'organismCode',
+           'antibioticName',
+           'antibioticCode',
+           'sensitivity']
 
 # Load data
-data = pd.read_csv(path,
+data = pd.read_csv(path, usecols=usecols,
     parse_dates=['dateReceived'])
 
 # Clean
@@ -74,12 +86,11 @@ print(data.columns)
 #
 # This section explains the main concepts in order to understand how the
 # computation of frequencies using the ``Frequency`` class works. For more
-# information see the documentation (xxx)
-#
-# The frequency can be computed using the ``Frequency`` class for three different
-# categories; the ``organisms``, ``antibiotics`` and ``pairs`` which are composed
-# by an organism and an antibiotic. In addition, regarding to time, the susceptibility
-# data can be grouped following different strategies:
+# information see the documentation (xxx). The frequency can be computed using the
+# ``Frequency`` class for three different categories; the ``organisms``,
+# ``antibiotics`` and ``pairs`` which are composed by an organism and an antibiotic.
+# In addition, regarding to time, the susceptibility data can be grouped following
+# different strategies:
 #
 # - **Overall** - ``overall``
 #   All the data is used and therefore the outcome is a single number for
@@ -96,7 +107,7 @@ print(data.columns)
 #   consecutive resistance indexes. It is described by two parameters; the length
 #   of the region (period) and the distance between consecutive windows (shift).
 #
-# For more information see (link to API, manuscripts and examples).
+# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_frequency.py`.
 
 # -------------------------------------------
 # Compute Freq
@@ -149,14 +160,14 @@ print(freq_monthly)
 # Susceptible outcomes respectively. The definition might vary slightly since the
 # intermediate category is not always considered.
 #
-# The parameters strategy accepts three different options:
+# The parameter strategy accepts three different options:
 #
 #  (i) ``soft``   as R / R+I+S
 #  (ii) ``medium`` as R / R+S
 #  (iii) ``hard``  as R+I / R+I+S
 #  (iv) ``other``  as R+0.5I / R+0.5I+S
 #
-# For more information see (link to API, manuscripts and examples).
+# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`.
 
 # -------------------------------------------
 # Compute SARI
@@ -174,12 +185,31 @@ print(sari_overall)
 print("\nSARI (monthly):")
 print(sari_monthly)
 
+# Plot Heatmap
+# ------------
+# Create matrix
+matrix = sari_overall[['sari']]
+matrix = matrix.unstack() * 100
+matrix.columns = matrix.columns.droplevel()
+
+# Create figure
+f, ax = plt.subplots(1, 1, figsize=(18, 11))
+
+# Create colormap
+cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
+
 # Plot
-# .. todo: Use bar plot or any other library to plot
-#          the frequency in time. Ideally with bars
-#          where x-axis is the time and y-axi is the
-#          freq. Avoid too many x-labels, keep just
-#          years?
+ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+    annot_kws={'fontsize': 'small'}, cmap=cmap,
+    linewidth=0.5, vmin=0, vmax=100, ax=ax,
+    xticklabels=1, yticklabels=1)
+
+# Add title
+plt.suptitle("Antibiogram", fontsize='xx-large')
+
+# Tight layout
+plt.tight_layout()
+plt.subplots_adjust(right=1.05)
 
 
 #######################################################################
@@ -209,7 +239,7 @@ print(sari_monthly)
 # particular species when the corresponding resistance index (SARI) is lower than
 # a given threshold.
 #
-# For more information see (link to API, manuscripts and examples).
+# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
 
 # -------------------------------------------
 # Compute ASAI
@@ -219,11 +249,10 @@ from pyamr.core.asai import ASAI
 
 # Load default organisms dataset
 orgs = pd.read_csv(path_org,
-    usecols=['ORGANISM_NAME',
-             'ORGANISM_CODE',
-             'GENUS_NAME',
-             'GENUS_CODE',
-             'GRAM_TYPE'])
+    usecols=['organism_name',
+             'organism_code',
+             'genus_name',
+             'gram_type'])
 
 # Fill empty
 # .. note: Leads to division by 0 (investigate)
@@ -233,25 +262,25 @@ orgs = pd.read_csv(path_org,
 dataframe = sari_overall.copy(deep=True)
 dataframe = sari_overall.reset_index()
 dataframe = dataframe.merge(orgs, how='left',
-    left_on='SPECIE', right_on='ORGANISM_CODE')
+    left_on='SPECIE', right_on='organism_code')
 
 # Select interesting columns
 dataframe = dataframe[['SPECIE',
                        'ANTIBIOTIC',
-                       'GENUS_CODE',
-                       'GRAM_TYPE',
+                       'genus_name',
+                       'gram_type',
                        'sari']]
 
 # Create antimicrobial spectrum of activity instance
 asai = ASAI(weights='uniform',
             threshold=0.05,
-            column_genus='GENUS_CODE',
+            column_genus='genus_name',
             column_specie='SPECIE',
             column_antibiotic='ANTIBIOTIC',
             column_resistance='sari')
 
 # Compute
-scores = asai.compute(dataframe, by_category='GRAM_TYPE')
+scores = asai.compute(dataframe, by_category='gram_type')
 
 # .. note: In order to sort the scores we need to compute metrics
 #          that combine the different subcategories (e.g. gram-negative
@@ -351,6 +380,14 @@ plt.tight_layout()
 
 # Show
 plt.show()
+
+
+#######################################################################
+#
+# Computing SART
+# --------------
+#
+# .. warning:: To include.
 
 
 #######################################################################

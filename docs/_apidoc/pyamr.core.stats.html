@@ -93,11 +93,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/nhs/index.html">Examples with datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
@@ -204,9 +205,32 @@
 <dt id="pyamr.core.stats.adfuller.ADFWrapper">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.stats.adfuller.</span></code><code class="sig-name descname"><span class="pre">ADFWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.stats.adfuller.ADFWrapper" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<p>The ADF wrapper.</p>
+<p>The Augmented Dickey-Fuller test can be used to test for a unit root in
+a univariate process in the presence of serial correlation. It tests the
+null hypothesis that a unit root is present in a time series sample. The
+alternative hypothesis is different depending on which version of the test
+is used, but is usually stationarity or trend-stationarity. The more
+negative the statistic, the stronger the rejection of the hypothesis that
+there is a unit root at some level of confidence.</p>
+<p class="rubric">Notes</p>
+<p>H0: The series has a unit root =&gt; Non-stationary
+H1: The series has no unit root =&gt; Stationary / Trend-Stationary</p>
+<p>If p-value &gt; 0.05: Failed to reject H0.
+If p-value &lt;= 0.05: Reject H0.</p>
+<p>The absence of unit root is not a proof of non-stationarity. As such, it
+is also possible to use the Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test
+to identify the existence of an underlying trend which can also be removed
+to obtain a stationary process. These are called trend-stationary processes.</p>
+<p>In both, unit-root and trend-stationary processes, the mean can be increasing
+or decreasing over time; however, in the presence of a shock, trend-stationary
+processes revert to this mean tendency in the long run (deterministic trend)
+while unit-root processes have a permanent impact (stochastic trend).</p>
+<p>[1] <a class="reference external" href="https://machinelearningmastery.com/time-series-data-stationary-python/">https://machinelearningmastery.com/time-series-data-stationary-python/</a>
+[2] <a class="reference external" href="https://www.statsmodels.org/stable/examples/notebooks/generated/stationarity_detrending_adf_kpss.html">https://www.statsmodels.org/stable/examples/notebooks/generated/stationarity_detrending_adf_kpss.html</a></p>
 <dl class="py method">
 <dt id="pyamr.core.stats.adfuller.ADFWrapper.as_summary">
-<code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.stats.adfuller.ADFWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.stats.adfuller.ADFWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method creates the summary to display.</p>
 </dd></dl>
 
@@ -220,9 +244,6 @@
 <dt id="pyamr.core.stats.adfuller.ADFWrapper.is_stationary">
 <code class="sig-name descname"><span class="pre">is_stationary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.stats.adfuller.ADFWrapper.is_stationary" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method returns a boolean with the stationarity outocme.</p>
-<p>The method rejects the null hypothesis when the value is less than a
-specified significance level. The null hypothesis is unit root exists
-and the alternative is that series is (trend) stationary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>alpha</strong> (<em>float</em>) – The statistical significance</p>
@@ -357,6 +378,26 @@ and the alternative is that series is (trend) stationary.</p>
 <dt id="pyamr.core.stats.stationarity.StationarityWrapper">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.stats.stationarity.</span></code><code class="sig-name descname"><span class="pre">StationarityWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.stats.stationarity.StationarityWrapper" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<p>This method….</p>
+<dl class="simple">
+<dt>Types of stationarity in time-series:</dt><dd><ul class="simple">
+<li><p>Trend stationary</p></li>
+<li><p>Seasonal stationary</p></li>
+<li><p>Strictly stationary</p></li>
+</ul>
+</dd>
+</dl>
+<p>Applies both ADF and KPSS tests.</p>
+<p>ADF            KPSS           Outcome               Note
+============== ============== ===================== ========================
+Non-Stationary Non-Stationary Non-Stationary
+Stationary     Stationary     Stationary
+Non-Stationary Stationary     Trend-Stationary      Check de-trended series
+Stationary     Non-Stationary Difference-Stationary Check differenced-series
+============== ============== ===================== ========================</p>
+<p>[1] <a class="reference external" href="https://machinelearningmastery.com/time-series-data-stationary-python/">https://machinelearningmastery.com/time-series-data-stationary-python/</a>
+[2]
+[3]</p>
 <dl class="py method">
 <dt id="pyamr.core.stats.stationarity.StationarityWrapper.as_summary">
 <code class="sig-name descname"><span class="pre">as_summary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.stats.stationarity.StationarityWrapper.as_summary" title="Permalink to this definition">¶</a></dt>
