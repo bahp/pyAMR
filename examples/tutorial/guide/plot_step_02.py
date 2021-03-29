@@ -4,6 +4,11 @@ Step 02 - Time Series Analysis
 
 .. warning:: Verify tests with conditions from stattools.
 
+.. warning:: Useful references:
+
+    - https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
+    - https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
+
 """
 
 ###################################################################

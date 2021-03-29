@@ -18,7 +18,9 @@ The code of the project is on Github: https://github.com/bahp/pyAMR
 
 The PhD thesis is on Spiral: `PhD`_
 
+Examples visualisations to implement:
 
+ - https://ig.ft.com/coronavirus-lockdowns/
 
 
 .. toctree::
