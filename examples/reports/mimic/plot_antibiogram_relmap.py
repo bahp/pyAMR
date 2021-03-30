@@ -1,6 +1,6 @@
 """
-SARI - Antibiogram (clustered)
-------------------------------
+SARI - Antibiogram (relmap)
+---------------------------
 
 .. todo:: Explain and Simplify
 
@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 # Import own libraries
 from pyamr.core.freq import Frequency
 from pyamr.core.sari import SARI
-from pyamr.datasets.load import load_data_nhs
+from pyamr.datasets.load import load_data_mimic
 
 # -------------------------
 # Configuration
@@ -108,7 +108,7 @@ def create_mapper(dataframe, column_key, column_value):
 #                               Main
 # --------------------------------------------------------------------
 # Load data
-data, antibiotics, organisms = load_data_nhs()
+data, antibiotics, organisms = load_data_mimic()
 
 # Count records per specimen code
 specimen_code_count = data \
@@ -149,61 +149,69 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     org_map = create_mapper(organisms, 'microorganism_code', 'genus')
 
     # Create matrix
-    matrix = sari_overall.reset_index()
+    matrix = sari_overall
+    matrix['freq'] = freq_overall.sum(axis=1)
+    matrix = matrix.reset_index()
     matrix['microorganism_genus'] = matrix.SPECIE.map(org_map)
     matrix['antimicrobial_class'] = matrix.ANTIBIOTIC.map(abx_map)
 
-    # Pivot table
-    matrix = pd.pivot_table(matrix, values='sari',
-        index=['SPECIE', 'microorganism_genus'],
-        columns=['ANTIBIOTIC', 'antimicrobial_class'])
-
-    # Convert to percent
-    matrix = matrix * 100
-
-    # Create mask
-    mask = pd.isnull(matrix)
-
-    # Fill missing (error when computing distance)
-    matrix = matrix.fillna(1e-10)
-
     # Show
-    print("\n\n\nData (%s)" % specimen_code)
-    print(matrix.astype(int))
+    print("\nData:")
+    print(matrix)
+    print("\nColumns:")
+    print(matrix.columns)
+    print("\nFrequencies:")
+    print(matrix.freq.describe())
 
     # Create colormap
     cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
-    # Row and col colors
-    col_colors = get_category_colors( \
-        index=matrix.columns, category=matrix.columns.names[1])
-    row_colors = get_category_colors( \
-        index=matrix.index, category=matrix.index.names[1])
-
-    # .. note: It is possible to also pass kwargs that would
-    #          be used by sns.heatmap function (annot, fmt,
-    #          annot_kws, ...
-    try:
-        # Plot cluster map
-        grid = sns.clustermap(data=matrix, vmin=0, vmax=100,
-            cmap=cmap, #method='centroid', metric='euclidean',
-            linewidth=0.05, mask=mask, square=True,
-            row_colors=row_colors, col_colors=col_colors,
-            yticklabels=1, xticklabels=1)
-
-        # Set size
-        #grid.fig.set_size_inches(20, 40)
-        #grid.fig.subplots_adjust(right=0.5)
-
-        # Set square heatmap.
-        #grid.ax_heatmap.set(aspect="equal")
-
-    except Exception as e:
-        print("Exception: %s" % e)
+    # Format frequency
+    #matrix.freq = np.log(matrix.freq)
+    matrix.freq = matrix.freq / 100
 
     # Configuration
-    plt.suptitle('Antibiogram (clustered) - %s' % specimen_code,
-        fontsize=12)
+    sizes = (
+        matrix.freq.min(),
+        matrix.freq.max()
+    )
+
+    size_norm = (
+        matrix.freq.min(),
+        matrix.freq.max()
+    )
+
+    # Plot
+    g = sns.relplot(data=matrix, x='SPECIE',
+                    y='ANTIBIOTIC', hue="sari", size="freq",
+                    palette='Reds', hue_norm=(0, 1), edgecolor="gray",
+                    linewidth=0.5, sizes=sizes,  #size_norm=size_norm,
+                    dashes=True, legend='brief', height=10)
+
+    # Configure plot
+    g.set(xlabel="Antimicrobial",
+          ylabel="Microorganism",
+          title='Antibiogram (with frequency)')#,
+          #aspect="equal")
+    g.despine(left=True, bottom=True)
+    g.ax.margins(.1)
+
+    # Configure xticks
+    for label in g.ax.get_xticklabels():
+        label.set_rotation(90)
+
+    # Configure legend
+    for artist in g.legend.legendHandles:
+        artist.set_edgecolor("k")
+        artist.set_linewidth(0.5)
+
+    # Suptitle
+    plt.suptitle(specimen_code)
+
+    # Add grid lines.
+    # plt.grid(linestyle='-', linewidth=0.5, color='.7')
+
+    # Adjust
     plt.tight_layout()
 
 # Show

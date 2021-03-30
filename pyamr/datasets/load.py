@@ -102,7 +102,7 @@ def load_registry_antimicrobials():
     return pd.read_csv("{0}/{1}".format(dirname, path))
 
 
-def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
+def load_microbiology_folder(path, folder, **kwargs):
     """This method loads the susceptibility data.
 
     Parameters
@@ -122,7 +122,7 @@ def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
         The registry with the microorganisms
     """
     # Define paths
-    path = Path("{0}/{1}".format(dirname, './microbiology/nhs/aggregated/'))
+    path = Path("{0}/{1}".format(dirname, path))
     path_sus = path / folder
     path_abx = path / folder / 'antimicrobials.csv'
     path_org = path / folder / 'microorganisms.csv'
@@ -139,6 +139,23 @@ def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
     # Return
     return data, db_abxs, db_orgs
 
+
+def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
+    """This method loads the susceptibility data.
+
+    """
+    return load_microbiology_folder( \
+        path='./microbiology/nhs/aggregated/',
+        folder=folder, **kwargs)
+
+
+def load_data_mimic(folder='susceptibility-v0.0.1', **kwargs):
+    """This method loads the susceptibility data.
+
+    """
+    return load_microbiology_folder( \
+        path='./microbiology/mimic/aggregated/',
+        folder=folder, **kwargs)
 
 # --------------------------------------
 # METHODS TO LOAD DATABASES

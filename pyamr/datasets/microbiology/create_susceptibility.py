@@ -224,6 +224,7 @@ if __name__ == '__main__':
     # PyAMR specific methods
     from pyamr.datasets.clean import clean_clwsql008
     from pyamr.datasets.clean import clean_legacy
+    from pyamr.datasets.clean import clean_mimic
 
     # Configure logging
     with open('./logging.yaml', 'rt') as f:
@@ -254,8 +255,9 @@ if __name__ == '__main__':
     path = './nhs/clwsql008/'
 
     tuples = [
-        ('./nhs/legacy', clean_legacy),
-        ('./nhs/clwsql008', clean_clwsql008)
+        #('./nhs/legacy', clean_legacy),
+        #('./nhs/clwsql008', clean_clwsql008),
+        ('./mimic/mimic-iv-v0.4', clean_mimic)
     ]
 
     # Combined data

@@ -35,6 +35,7 @@ MICROORGANISM_CODE_MAP = {
 }
 
 SENSITIVITY_MAP = {
+    'S': 'sensitive',
     'SS': 'sensitive',
     'R': 'resistant',
     'I': 'intermediate',
@@ -352,6 +353,65 @@ def clean_legacy(data):
 
     # Drop duplicates
     data = data.drop_duplicates()
+
+    # Return
+    return data
+
+
+def clean_mimic(data):
+    """This method...
+
+    .. note: Need to merge datetime for date and datetime for time
+             as done in the datablend package if want full info.
+
+    """
+    # ---------------------------------
+    # Constants
+    # ---------------------------------
+    # Rename columns
+    rename = {
+        'subject_id': 'patient_id',
+        'micro_specimen_id': 'laboratory_number',
+        'spec_type_desc': 'specimen_description',
+        'test_seq': 'microorganism_piece_counter',
+        'org_name': 'microorganism_name',
+        'ab_name': 'antimicrobial_name',
+        'test_name' : 'sensitivity_method',
+        'interpretation': 'sensitivity',
+        'chartdate': 'date_received',
+        'storedate': 'date_ouctome'
+    }
+
+    # Replace values
+    replace = {
+        'sensitivity': SENSITIVITY_MAP,
+        'microorganism_code': MICROORGANISM_CODE_MAP,
+        'microorganism_name': MICROORGANISM_NAME_MAP,
+        'antimicrobial_code': ANTIMICROBIAL_CODE_MAP
+    }
+
+    # Rename
+    data = data.rename(columns=rename)
+
+    # Replace
+    data = data.replace(replace)
+
+    # Format
+    data.microorganism_name = data.microorganism_name.str.capitalize()
+    data.antimicrobial_name = data.antimicrobial_name.str.capitalize()
+    data['microorganism_code'] = data.microorganism_name
+    data['antimicrobial_code'] = data.antimicrobial_name
+    data['specimen_code'] = data.specimen_description
+
+    # Format date
+    if 'date_received' in data:
+
+        # Convert to datetime.
+        data.date_received = \
+            pd.to_datetime(data.date_received, errors='coerce')
+
+        # Ignore those without result
+        data = data[data.sensitivity.notna()]
 
     # Return
     return data

@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 # Import own libraries
 from pyamr.core.freq import Frequency
 from pyamr.core.sari import SARI
-from pyamr.datasets.load import load_data_nhs
+from pyamr.datasets.load import load_data_mimic
 
 # -------------------------
 # Configuration
@@ -108,7 +108,7 @@ def create_mapper(dataframe, column_key, column_value):
 #                               Main
 # --------------------------------------------------------------------
 # Load data
-data, antibiotics, organisms = load_data_nhs()
+data, antibiotics, organisms = load_data_mimic()
 
 # Count records per specimen code
 specimen_code_count = data \

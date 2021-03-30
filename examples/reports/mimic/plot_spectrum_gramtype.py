@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from pyamr.core.freq import Frequency
 from pyamr.core.sari import SARI
 from pyamr.core.asai import ASAI
-from pyamr.datasets.load import load_data_nhs
+from pyamr.datasets.load import load_data_mimic
 
 # Configure seaborn style (context=talk)
 sns.set(style="white")
@@ -94,11 +94,10 @@ def create_mapper(dataframe, column_key, column_value):
 #                               Main
 # --------------------------------------------------------------------
 # Load data
-data, antibiotics, organisms = load_data_nhs()
+data, antibiotics, organisms = load_data_mimic()
 
 # Count records per specimen code
 specimen_code_count = data \
-    .groupby('laboratory_number').head(1) \
     .specimen_code.value_counts(normalize=True) \
     .sort_values(ascending=False)
 
@@ -186,7 +185,7 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     # values in the range [-1,0] while the gram-positive category has values
     # within the range [0, 1]
     # Create figure
-    f, ax = plt.subplots(1, 1, figsize=(5, 12))
+    f, ax = plt.subplots(1, 1, figsize=(5, 6))
 
     # Plot
     sns.barplot(x=y_p, y=x, palette=colormap_p, ax=ax, orient='h',

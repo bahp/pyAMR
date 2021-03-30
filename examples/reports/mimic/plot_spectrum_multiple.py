@@ -1,10 +1,11 @@
 """
-SART - Spectrum (gram type)
----------------------------
+SART - Spectrum (multiple)
+--------------------------
 
 .. todo: Simplify and explain
 """
 
+# Import libraries
 import sys
 import glob
 import numpy as np
@@ -17,7 +18,7 @@ import matplotlib.pyplot as plt
 from pyamr.core.freq import Frequency
 from pyamr.core.sari import SARI
 from pyamr.core.asai import ASAI
-from pyamr.datasets.load import load_data_nhs
+from pyamr.datasets.load import load_data_mimic
 
 # Configure seaborn style (context=talk)
 sns.set(style="white")
@@ -94,11 +95,10 @@ def create_mapper(dataframe, column_key, column_value):
 #                               Main
 # --------------------------------------------------------------------
 # Load data
-data, antibiotics, organisms = load_data_nhs()
+data, antibiotics, organisms = load_data_mimic()
 
 # Count records per specimen code
 specimen_code_count = data \
-    .groupby('laboratory_number').head(1) \
     .specimen_code.value_counts(normalize=True) \
     .sort_values(ascending=False)
 
@@ -108,6 +108,7 @@ data = data[data.specimen_code.isin( \
 
 # Loop for each specimen
 for specimen_code, df in data.groupby(by='specimen_code'):
+
     # ----------------------------
     # Compute frequencies and SARI
     # ----------------------------
@@ -119,14 +120,14 @@ for specimen_code, df in data.groupby(by='specimen_code'):
 
     # Compute frequencies overall
     freq_overall = freq.compute(df, strategy='overall',
-                                by_category='pairs')
+                                    by_category='pairs')
 
     # Compute sari
     sari_overall = SARI(strategy='medium').compute(freq_overall)
 
     # ------------------------
     # Format dataframe
-    # -------------------------
+    #-------------------------
     # Create mappers
     abx_map = create_mapper(antibiotics, 'antimicrobial_code', 'category')
     org_map = create_mapper(organisms, 'microorganism_code', 'genus')
@@ -151,10 +152,10 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     # ------------------------
     # Create antimicrobial spectrum of activity instance
     asai = ASAI(weights='uniform', threshold=0.05,
-                column_genus='genus',
-                column_specie='SPECIE',
-                column_antibiotic='ANTIBIOTIC',
-                column_resistance='sari')
+                                   column_genus='genus',
+                                   column_specie='SPECIE',
+                                   column_antibiotic='ANTIBIOTIC',
+                                   column_resistance='sari')
 
     # Compute
     scores = asai.compute(dataframe, by_category='gram')
@@ -165,18 +166,20 @@ for specimen_code, df in data.groupby(by='specimen_code'):
 
     # Sort
     scores = scores.fillna(0.0)
-    scores['width'] = np.abs(scores['ASAI_SCORE']['n'] + scores['ASAI_SCORE']['p'])
-    scores['gmean'] = np.sqrt(scores['ASAI_SCORE']['n'] * scores['ASAI_SCORE']['p'])
+    scores['width'] = np.abs(scores['ASAI_SCORE']['n']+scores['ASAI_SCORE']['p'])
+    scores['gmean'] = np.sqrt(scores['ASAI_SCORE']['n']*scores['ASAI_SCORE']['p'])
     scores = scores.sort_values(by='gmean', ascending=False)
 
     # Variables to plot.
     x = scores.index.values
     y_n = scores['ASAI_SCORE']['n'].values
     y_p = scores['ASAI_SCORE']['p'].values
+    y_u = scores['ASAI_SCORE']['u'].values
 
     # Constants
     colormap_p = scalar_colormap(y_p, cmap='Blues', vmin=-0.1, vmax=1.1)
     colormap_n = scalar_colormap(y_n, cmap='Reds', vmin=-0.1, vmax=1.1)
+    colormap_u = scalar_colormap(y_u, cmap='Greens', vmin=-0.1, vmax=1.1)
 
     # ----------
     # Example
@@ -186,19 +189,30 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     # values in the range [-1,0] while the gram-positive category has values
     # within the range [0, 1]
     # Create figure
-    f, ax = plt.subplots(1, 1, figsize=(5, 12))
+    f, axes = plt.subplots(1, 3, figsize=(7, 6), sharey=True)
 
     # Plot
-    sns.barplot(x=y_p, y=x, palette=colormap_p, ax=ax, orient='h',
+    sns.barplot(x=y_p, y=x, palette=colormap_p, ax=axes[0], orient='h',
      saturation=0.5, label='Gram-positive')
-    sns.barplot(x=-y_n, y=x, palette=colormap_n, ax=ax, orient='h',
+    sns.barplot(x=y_n, y=x, palette=colormap_n, ax=axes[1], orient='h',
      saturation=0.5, label='Gram-negative')
+    sns.barplot(x=y_u, y=x, palette=colormap_u, ax=axes[2], orient='h',
+      saturation=0.5, label='Gram-unknown')
 
     # Configure
     sns.despine(bottom=True)
 
+    # Set x-axis
+    axes[0].set_xlim([0, 1.1])
+    axes[1].set_xlim([0, 1.1])
+    axes[2].set_xlim([0, 1.1])
+
+    # Set title
+    axes[0].set_title('Gram-positive')
+    axes[1].set_title('Gram-negative')
+    axes[2].set_title('Gram-unknown')
+
     # Show legend.
-    plt.legend(loc=8)
     plt.suptitle(specimen_code)
     plt.tight_layout()
 

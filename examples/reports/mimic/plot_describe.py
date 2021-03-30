@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 # Import pyamr
 from pyamr.core.freq import Frequency
-from pyamr.datasets.load import load_data_nhs
+from pyamr.datasets.load import load_data_mimic
 
 # Configure seaborn style (context=talk)
 sns.set(style="white")
@@ -55,7 +55,7 @@ replace_codes = {
 #                       Main
 # ----------------------------------------------------------
 # Load data
-data, antibiotics, organisms = load_data_nhs()
+data, antibiotics, organisms = load_data_mimic()
 
 # Replace
 data.specimen_code = \
