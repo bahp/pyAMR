@@ -26,7 +26,7 @@ SARI - Antibiogram (clustered)
 .. todo: Frequency might not be working?
          Frequency can be computed as sum of columns.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-207
+.. GENERATED FROM PYTHON SOURCE LINES 11-210
 
 
 
@@ -42,25 +42,25 @@ SARI - Antibiogram (clustered)
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_clustermap_002.png
-          :alt: Antibiogram (clustered) - SPTCUL
+          :alt: Antibiogram (clustered) - GUMCUL
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_clustermap_003.png
-          :alt: Antibiogram (clustered) - URICUL
+          :alt: Antibiogram (clustered) - SPTCUL
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_clustermap_004.png
-          :alt: Antibiogram (clustered) - WOUCUL
+          :alt: Antibiogram (clustered) - URICUL
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_clustermap_005.png
-          :alt: Antibiogram (clustered) - XINCUL
+          :alt: Antibiogram (clustered) - WOUCUL
           :class: sphx-glr-multi-img
 
 
@@ -102,6 +102,17 @@ SARI - Antibiogram (clustered)
     SPNE   Streptococcus                     0                0           0              0                0          0            0              0  ...           0           8            0           0             7             0               0            0
 
     [23 rows x 30 columns]
+    /Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/seaborn/matrix.py:1216: UserWarning: ``square=True`` ignored in clustermap
+      warnings.warn(msg)
+
+
+
+    Data (GUMCUL)
+    ANTIBIOTIC                       AAZI             ACIP           ACIX          ACONE           ACXM             ANAL          ATET
+    antimicrobial_class        Macrolides Fluoroquinolones Cephalosporins Cephalosporins Cephalosporins Fluoroquinolones Tetracyclines
+    SPECIE microorganism_genus                                                                                                        
+    NGON   Neisseria                    0               39              0              0              3               38            76
+    NMEN   Neisseria                    1                8              0              0              0                5             0
     /Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/seaborn/matrix.py:1216: UserWarning: ``square=True`` ignored in clustermap
       warnings.warn(msg)
 
@@ -235,29 +246,6 @@ SARI - Antibiogram (clustered)
 
 
 
-    Data (XINCUL)
-    ANTIBIOTIC                            AAMI             AAMO        AAZT           ACAZ             ACIP       ACLI         ACOL          ACONE  ...        AMET        APEN         ATEI        ATEM          ATET          ATIG            ATOB         AVAN
-    antimicrobial_class        Aminoglycosides Aminopenicillins Monobactams Cephalosporins Fluoroquinolones Macrolides Polypeptides Cephalosporins  ... Penicillins Penicillins Glycopeptide Penicillins Tetracyclines Tetracyclines Aminoglycosides Glycopeptide
-    SPECIE microorganism_genus                                                                                                                      ...                                                                                                          
-    ABAU   Acinetobacter                    53               98           0             98               70          0            3              0  ...           0           0            0           0             0             0              77            0
-    EAER   Enterobacter                      0                0           0              0                0          0            0              0  ...           0           0            0           0             0             0               0            0
-    ECLO   Enterobacter                      7                0          66             74               24          0            0              0  ...           0           0            0          50             0            24              21            0
-    ECOL   Escherichia                       8               91          62             63               62          0            1             66  ...           0           0            0          47             0             2              45            0
-    ENTB   Enterobacter                      0               96          45             60                6          0            4              0  ...           0           0            0          21             0            12               9            0
-    ENTC   Enterococcus                      0               77           0              0                0          0            0              0  ...           0           0           78           0            75             2               0           81
-    KLEBS  Klebsiella                        6               98          47             51               34          0            6              0  ...           0           0            0          23             0            18              35            0
-    KOXY   Klebsiella                        0                0           0              0                0          0            0              0  ...           0           0            0           0             0             0               0            0
-    KPNE   Klebsiella                       43               99          84             88               85          0            1             78  ...           0           0            0          81             0            40              83            0
-    PAER   Pseudomonas                      14                0          90             27               38          0            0              0  ...           0           0            0           0             0             0              21            0
-    SAUR   Staphylococcus                    0                0           0              0               84         64            0              0  ...          97          99            0           0             7             0               0            0
-    SMAL   Stenotrophomonas                  0                0           0              0                0          0            0              0  ...           0           0            0           0             0             0               0            0
-
-    [12 rows x 26 columns]
-    /Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/seaborn/matrix.py:1216: UserWarning: ``square=True`` ignored in clustermap
-      warnings.warn(msg)
-
-
-
 
 
 
@@ -369,7 +357,10 @@ SARI - Antibiogram (clustered)
     data, antibiotics, organisms = load_data_nhs()
 
     # Count records per specimen code
-    specimen_code_count = data.specimen_code.value_counts()
+    specimen_code_count = data \
+        .groupby('laboratory_number').head(1) \
+        .specimen_code.value_counts(normalize=True) \
+        .sort_values(ascending=False)
 
     # Filter most frequent specimens
     data = data[data.specimen_code.isin( \
@@ -466,7 +457,7 @@ SARI - Antibiogram (clustered)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.623 seconds)
+   **Total running time of the script:** ( 0 minutes  14.350 seconds)
 
 
 .. _sphx_glr_download__examples_reports_nhs_plot_antibiogram_clustermap.py:

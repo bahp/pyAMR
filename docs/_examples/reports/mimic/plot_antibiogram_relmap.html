@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>SARI - Antibiogram (relmap) &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Describe" href="plot_describe.html" />
+    <link rel="prev" title="SARI - Antibiogram (clustered)" href="plot_antibiogram_clustermap.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reports</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#mimic-critical-care">MIMIC Critical Care</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_antibiogram.html">SARI - Antibiogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_antibiogram_clustermap.html">SARI - Antibiogram (clustered)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SARI - Antibiogram (relmap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_describe.html">Describe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_spectrum_gramtype.html">SART - Spectrum (gram type)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_spectrum_multiple.html">SART - Spectrum (multiple)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#imperial-college-nhs-trust">Imperial College NHS Trust</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Reports</a> &raquo;</li>
+        
+      <li>SARI - Antibiogram (relmap)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/_examples/reports/mimic/plot_antibiogram_relmap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-reports-mimic-plot-antibiogram-relmap-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="sari-antibiogram-relmap">
+<span id="sphx-glr-examples-reports-mimic-plot-antibiogram-relmap-py"></span><h1>SARI - Antibiogram (relmap)<a class="headerlink" href="#sari-antibiogram-relmap" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Explain and Simplify</p>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img alt="ABSCESS, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_001.png" />
+</li>
+<li><img alt="BLOOD CULTURE, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_002.png" />
+</li>
+<li><img alt="SWAB, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_003.png" />
+</li>
+<li><img alt="Staph aureus Screen, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_004.png" />
+</li>
+<li><img alt="URINE, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_005.png" />
+</li>
+</ul>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+SENSITIVITY                                   SPECIE            ANTIBIOTIC  intermediate  resistant  sensitive    sari    freq microorganism_genus antimicrobial_class
+0                                   Enterococcus sp.            Ampicillin           0.0      121.0      184.0  0.3967   305.0        Enterococcus                 NaN
+1                                   Enterococcus sp.             Linezolid           2.0        1.0      106.0  0.0275   109.0        Enterococcus      Oxazolidinones
+2                                   Enterococcus sp.          Penicillin g           0.0      123.0      182.0  0.4033   305.0        Enterococcus                 NaN
+3                                   Enterococcus sp.            Vancomycin           1.0      104.0      200.0  0.3443   305.0        Enterococcus        Glycopeptide
+4                                   Escherichia coli            Ampicillin           5.0      364.0      241.0  0.6049   610.0         Escherichia                 NaN
+5                                   Escherichia coli  Ampicillin/sulbactam         107.0      210.0      295.0  0.5180   612.0         Escherichia                 NaN
+6                                   Escherichia coli             Cefazolin           5.0      203.0      404.0  0.3399   612.0         Escherichia                 NaN
+7                                   Escherichia coli              Cefepime          19.0       81.0      510.0  0.1639   610.0         Escherichia                 NaN
+8                                   Escherichia coli           Ceftazidime          11.0       98.0      503.0  0.1781   612.0         Escherichia      Cephalosporins
+9                                   Escherichia coli           Ceftriaxone           2.0      132.0      478.0  0.2190   612.0         Escherichia      Cephalosporins
+10                                  Escherichia coli         Ciprofloxacin           2.0      239.0      371.0  0.3938   612.0         Escherichia    Fluoroquinolones
+11                                  Escherichia coli            Gentamicin           1.0       96.0      515.0  0.1585   612.0         Escherichia     Aminoglycosides
+12                                  Escherichia coli             Meropenem           1.0        1.0      610.0  0.0033   612.0         Escherichia          Meropenems
+13                                  Escherichia coli     Piperacillin/tazo          13.0       11.0      481.0  0.0475   505.0         Escherichia                 NaN
+14                                  Escherichia coli            Tobramycin          74.0       63.0      475.0  0.2239   612.0         Escherichia     Aminoglycosides
+15                                  Escherichia coli    Trimethoprim/sulfa           0.0      202.0      409.0  0.3306   611.0         Escherichia                 NaN
+16                             Klebsiella pneumoniae  Ampicillin/sulbactam           8.0       20.0       98.0  0.2222   126.0          Klebsiella                 NaN
+17                             Klebsiella pneumoniae             Cefazolin           0.0       17.0      109.0  0.1349   126.0          Klebsiella                 NaN
+18                             Klebsiella pneumoniae              Cefepime           4.0        8.0      113.0  0.0960   125.0          Klebsiella                 NaN
+19                             Klebsiella pneumoniae           Ceftazidime           2.0       12.0      112.0  0.1111   126.0          Klebsiella      Cephalosporins
+20                             Klebsiella pneumoniae           Ceftriaxone           0.0       13.0      113.0  0.1032   126.0          Klebsiella      Cephalosporins
+21                             Klebsiella pneumoniae         Ciprofloxacin           4.0        9.0      113.0  0.1032   126.0          Klebsiella    Fluoroquinolones
+22                             Klebsiella pneumoniae            Gentamicin           0.0        5.0      121.0  0.0397   126.0          Klebsiella     Aminoglycosides
+23                             Klebsiella pneumoniae             Meropenem           0.0        3.0      123.0  0.0238   126.0          Klebsiella          Meropenems
+24                             Klebsiella pneumoniae     Piperacillin/tazo           3.0        1.0      101.0  0.0381   105.0          Klebsiella                 NaN
+25                             Klebsiella pneumoniae            Tobramycin           0.0        7.0      119.0  0.0556   126.0          Klebsiella     Aminoglycosides
+26                             Klebsiella pneumoniae    Trimethoprim/sulfa           0.0       12.0      114.0  0.0952   126.0          Klebsiella                 NaN
+27                            Pseudomonas aeruginosa              Cefepime          14.0       12.0      113.0  0.1871   139.0         Pseudomonas                 NaN
+28                            Pseudomonas aeruginosa           Ceftazidime           6.0       17.0      116.0  0.1655   139.0         Pseudomonas      Cephalosporins
+29                            Pseudomonas aeruginosa         Ciprofloxacin          11.0       25.0      103.0  0.2590   139.0         Pseudomonas    Fluoroquinolones
+30                            Pseudomonas aeruginosa            Gentamicin           9.0       11.0      118.0  0.1449   138.0         Pseudomonas     Aminoglycosides
+31                            Pseudomonas aeruginosa             Meropenem          11.0       18.0      110.0  0.2086   139.0         Pseudomonas          Meropenems
+32                            Pseudomonas aeruginosa     Piperacillin/tazo           7.0       12.0      118.0  0.1387   137.0         Pseudomonas                 NaN
+33                            Pseudomonas aeruginosa            Tobramycin           0.0       12.0      127.0  0.0863   139.0         Pseudomonas     Aminoglycosides
+34                               Staph aureus coag +           Clindamycin           0.0      288.0      756.0  0.2759  1044.0               Staph          Macrolides
+35                               Staph aureus coag +          Erythromycin           1.0      643.0      466.0  0.5802  1110.0               Staph          Macrolides
+36                               Staph aureus coag +            Gentamicin           1.0        6.0     1105.0  0.0063  1112.0               Staph     Aminoglycosides
+37                               Staph aureus coag +          Levofloxacin           0.0      296.0      802.0  0.2696  1098.0               Staph    Fluoroquinolones
+38                               Staph aureus coag +             Oxacillin           0.0      463.0      648.0  0.4167  1111.0               Staph         Penicillins
+39                               Staph aureus coag +              Rifampin           0.0        2.0      469.0  0.0042   471.0               Staph                 NaN
+40                               Staph aureus coag +          Tetracycline           0.0       63.0      867.0  0.0677   930.0               Staph       Tetracyclines
+41                               Staph aureus coag +    Trimethoprim/sulfa           1.0       20.0     1090.0  0.0189  1111.0               Staph                 NaN
+42                               Staph aureus coag +            Vancomycin           1.0        0.0      465.0  0.0021   466.0               Staph        Glycopeptide
+43                Staphylococcus, coagulase negative           Clindamycin           8.0       38.0       69.0  0.4000   115.0     Staphylococcus,          Macrolides
+44                Staphylococcus, coagulase negative          Erythromycin           0.0       66.0       52.0  0.5593   118.0     Staphylococcus,          Macrolides
+45                Staphylococcus, coagulase negative            Gentamicin           6.0        5.0      107.0  0.0932   118.0     Staphylococcus,     Aminoglycosides
+46                Staphylococcus, coagulase negative          Levofloxacin           0.0       38.0       78.0  0.3276   116.0     Staphylococcus,    Fluoroquinolones
+47                Staphylococcus, coagulase negative             Oxacillin           0.0       71.0       46.0  0.6068   117.0     Staphylococcus,         Penicillins
+48                Staphylococcus, coagulase negative          Tetracycline           0.0       14.0      103.0  0.1197   117.0     Staphylococcus,       Tetracyclines
+49                Staphylococcus, coagulase negative            Vancomycin           0.0        0.0      117.0  0.0000   117.0     Staphylococcus,        Glycopeptide
+50           Streptococcus anginosus (milleri) group           Ceftriaxone           5.0        2.0      113.0  0.0583   120.0       Streptococcus      Cephalosporins
+51           Streptococcus anginosus (milleri) group           Clindamycin           3.0       42.0      192.0  0.1899   237.0       Streptococcus          Macrolides
+52           Streptococcus anginosus (milleri) group          Erythromycin           2.0       54.0      183.0  0.2343   239.0       Streptococcus          Macrolides
+53           Streptococcus anginosus (milleri) group          Penicillin g          17.0        3.0      216.0  0.0847   236.0       Streptococcus                 NaN
+54           Streptococcus anginosus (milleri) group            Vancomycin           0.0        0.0      237.0  0.0000   237.0       Streptococcus        Glycopeptide
+
+Columns:
+Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;intermediate&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
+
+Frequencies:
+count      55.0000
+mean      380.5455
+std       329.7267
+min       105.0000
+25%       126.0000
+50%       236.0000
+75%       612.0000
+max      1112.0000
+Name: freq, dtype: float64
+
+Data:
+SENSITIVITY                        SPECIE    ANTIBIOTIC  intermediate  resistant  sensitive    sari   freq microorganism_genus antimicrobial_class
+0              Beta streptococcus group b   Clindamycin           2.0       66.0      125.0  0.3523  193.0                Beta          Macrolides
+1              Beta streptococcus group b  Erythromycin           0.0       85.0      110.0  0.4359  195.0                Beta          Macrolides
+2              Beta streptococcus group b  Penicillin g           0.0        0.0      192.0  0.0000  192.0                Beta                 NaN
+3              Beta streptococcus group b    Vancomycin           0.0        0.0      195.0  0.0000  195.0                Beta        Glycopeptide
+4            Enterobacter cloacae complex      Cefepime           3.0       12.0      136.0  0.0993  151.0        Enterobacter                 NaN
+..                                    ...           ...           ...        ...        ...     ...    ...                 ...                 ...
+126              Streptococcus pneumoniae    Vancomycin           0.0        0.0      161.0  0.0000  161.0       Streptococcus        Glycopeptide
+127                 Viridans streptococci   Clindamycin           7.0       47.0      233.0  0.1882  287.0            Viridans          Macrolides
+128                 Viridans streptococci  Erythromycin           8.0      166.0      113.0  0.6063  287.0            Viridans          Macrolides
+129                 Viridans streptococci  Penicillin g          87.0       12.0      195.0  0.3367  294.0            Viridans                 NaN
+130                 Viridans streptococci    Vancomycin           0.0        0.0      292.0  0.0000  292.0            Viridans        Glycopeptide
+
+[131 rows x 9 columns]
+
+Columns:
+Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;intermediate&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
+
+Frequencies:
+count     131.0000
+mean      689.3969
+std       730.1422
+min       116.0000
+25%       153.5000
+50%       292.0000
+75%      1030.5000
+max      2349.0000
+Name: freq, dtype: float64
+
+Data:
+SENSITIVITY                                   SPECIE     ANTIBIOTIC  intermediate  resistant  sensitive    sari   freq microorganism_genus antimicrobial_class
+0                               Enterobacter cloacae       Cefepime           1.0        4.0      127.0  0.0379  132.0        Enterobacter                 NaN
+1                               Enterobacter cloacae    Ceftazidime           3.0       25.0      104.0  0.2121  132.0        Enterobacter      Cephalosporins
+2                               Enterobacter cloacae    Ceftriaxone           6.0       24.0      102.0  0.2273  132.0        Enterobacter      Cephalosporins
+3                               Enterobacter cloacae  Ciprofloxacin           0.0       15.0      117.0  0.1136  132.0        Enterobacter    Fluoroquinolones
+4                               Enterobacter cloacae     Gentamicin           3.0        6.0      123.0  0.0682  132.0        Enterobacter     Aminoglycosides
+..                                               ...            ...           ...        ...        ...     ...    ...                 ...                 ...
+91                Staphylococcus, coagulase negative     Vancomycin           0.0        0.0      470.0  0.0000  470.0     Staphylococcus,        Glycopeptide
+92           Streptococcus anginosus (milleri) group    Clindamycin           0.0       45.0      127.0  0.2616  172.0       Streptococcus          Macrolides
+93           Streptococcus anginosus (milleri) group   Erythromycin           4.0       58.0      112.0  0.3563  174.0       Streptococcus          Macrolides
+94           Streptococcus anginosus (milleri) group   Penicillin g          10.0        0.0      162.0  0.0581  172.0       Streptococcus                 NaN
+95           Streptococcus anginosus (milleri) group     Vancomycin           0.0        0.0      173.0  0.0000  173.0       Streptococcus        Glycopeptide
+
+[96 rows x 9 columns]
+
+Columns:
+Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;intermediate&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
+
+Frequencies:
+count      96.0000
+mean      839.7396
+std      1586.3044
+min       103.0000
+25%       172.7500
+50%       286.5000
+75%       633.0000
+max      6560.0000
+Name: freq, dtype: float64
+
+Data:
+SENSITIVITY                                   SPECIE          ANTIBIOTIC  intermediate  resistant  sensitive    sari    freq microorganism_genus antimicrobial_class
+0            Positive for methicillin resistant s...         Clindamycin           1.0      105.0       65.0  0.6199   171.0            Positive          Macrolides
+1            Positive for methicillin resistant s...        Erythromycin           0.0      149.0       25.0  0.8563   174.0            Positive          Macrolides
+2            Positive for methicillin resistant s...          Gentamicin           1.0        1.0      172.0  0.0115   174.0            Positive     Aminoglycosides
+3            Positive for methicillin resistant s...        Levofloxacin           0.0      127.0       44.0  0.7427   171.0            Positive    Fluoroquinolones
+4            Positive for methicillin resistant s...           Oxacillin           0.0      174.0        0.0  1.0000   174.0            Positive         Penicillins
+5            Positive for methicillin resistant s...            Rifampin           0.0        2.0      172.0  0.0115   174.0            Positive                 NaN
+6            Positive for methicillin resistant s...        Tetracycline           0.0       14.0      160.0  0.0805   174.0            Positive       Tetracyclines
+7            Positive for methicillin resistant s...  Trimethoprim/sulfa           0.0        3.0      171.0  0.0172   174.0            Positive                 NaN
+8            Positive for methicillin resistant s...          Vancomycin           0.0        0.0      174.0  0.0000   174.0            Positive        Glycopeptide
+9                                Staph aureus coag +         Clindamycin           4.0      627.0     2006.0  0.2393  2637.0               Staph          Macrolides
+10                               Staph aureus coag +        Erythromycin          10.0      917.0     1776.0  0.3430  2703.0               Staph          Macrolides
+11                               Staph aureus coag +          Gentamicin           5.0        5.0     2700.0  0.0037  2710.0               Staph     Aminoglycosides
+12                               Staph aureus coag +        Levofloxacin           1.0      267.0     2414.0  0.0999  2682.0               Staph    Fluoroquinolones
+13                               Staph aureus coag +           Oxacillin           0.0      233.0     2482.0  0.0858  2715.0               Staph         Penicillins
+14                               Staph aureus coag +            Rifampin           1.0        1.0      229.0  0.0087   231.0               Staph                 NaN
+15                               Staph aureus coag +        Tetracycline           0.0       76.0     2029.0  0.0361  2105.0               Staph       Tetracyclines
+16                               Staph aureus coag +  Trimethoprim/sulfa           0.0       21.0     2686.0  0.0078  2707.0               Staph                 NaN
+17                               Staph aureus coag +          Vancomycin           0.0        0.0      235.0  0.0000   235.0               Staph        Glycopeptide
+
+Columns:
+Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;intermediate&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
+
+Frequencies:
+count      18.0000
+mean     1126.9444
+std      1223.4530
+min       171.0000
+25%       174.0000
+50%       202.5000
+75%      2670.7500
+max      2715.0000
+Name: freq, dtype: float64
+
+Data:
+SENSITIVITY                              SPECIE          ANTIBIOTIC    P  intermediate  resistant  sensitive    sari    freq microorganism_genus antimicrobial_class
+0                  Citrobacter freundii complex            Cefepime  0.0          13.0       31.0      550.0  0.0741   594.0         Citrobacter                 NaN
+1                  Citrobacter freundii complex         Ceftazidime  0.0           9.0      118.0      469.0  0.2131   596.0         Citrobacter      Cephalosporins
+2                  Citrobacter freundii complex         Ceftriaxone  0.0          13.0      120.0      460.0  0.2243   593.0         Citrobacter      Cephalosporins
+3                  Citrobacter freundii complex       Ciprofloxacin  0.0          17.0       41.0      538.0  0.0973   596.0         Citrobacter    Fluoroquinolones
+4                  Citrobacter freundii complex          Gentamicin  0.0           0.0       42.0      554.0  0.0705   596.0         Citrobacter     Aminoglycosides
+..                                          ...                 ...  ...           ...        ...        ...     ...     ...                 ...                 ...
+167          Staphylococcus, coagulase negative           Oxacillin  0.0           0.0      563.0      440.0  0.5613  1003.0     Staphylococcus,         Penicillins
+168          Staphylococcus, coagulase negative        Penicillin g  0.0           0.0      120.0       17.0  0.8759   137.0     Staphylococcus,                 NaN
+169          Staphylococcus, coagulase negative        Tetracycline  0.0          17.0      114.0      807.0  0.1397   938.0     Staphylococcus,       Tetracyclines
+170          Staphylococcus, coagulase negative          Vancomycin  0.0           0.0        0.0      939.0  0.0000   939.0     Staphylococcus,        Glycopeptide
+171                Stenotrophomonas maltophilia  Trimethoprim/sulfa  0.0           0.0        1.0      107.0  0.0093   108.0    Stenotrophomonas                 NaN
+
+[172 rows x 10 columns]
+
+Columns:
+Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;P&#39;, &#39;intermediate&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
+
+Frequencies:
+count      172.0000
+mean      3283.4593
+std       6594.3569
+min        104.0000
+25%        369.7500
+50%        656.5000
+75%       2618.0000
+max      25581.0000
+Name: freq, dtype: float64
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
+ <span class="kn">import</span> <span class="nn">sys</span>
+ <span class="kn">import</span> <span class="nn">glob</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+ <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+ <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+ <span class="c1"># Import own libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.freq</span> <span class="kn">import</span> <span class="n">Frequency</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+ <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">load_data_mimic</span>
+
+ <span class="c1"># -------------------------</span>
+ <span class="c1"># Configuration</span>
+ <span class="c1"># -------------------------</span>
+ <span class="c1"># Configure seaborn style (context=talk)</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Set matplotlib</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+ <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+
+ <span class="c1"># Pandas configuration</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+ <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+ <span class="c1"># Numpy configuration</span>
+ <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+ <span class="c1"># ------------------------------------------------------------</span>
+ <span class="c1"># Methods</span>
+ <span class="c1"># ------------------------------------------------------------</span>
+ <span class="k">def</span> <span class="nf">get_category_colors</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hls&#39;</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;This method creates the colors for the different elements in</span>
+<span class="sd">     categorical feature vector.</span>
+
+<span class="sd">     Parameters</span>
+<span class="sd">     ----------</span>
+<span class="sd">     values : array-like</span>
+<span class="sd">         The vector with the categorical values</span>
+
+<span class="sd">     cmap: string-like</span>
+<span class="sd">         The colormap to use</span>
+
+<span class="sd">     default: string-like</span>
+<span class="sd">         The color to be used for the first value. Note that this</span>
+<span class="sd">         value needs to appear first on the the sorted list, as such</span>
+<span class="sd">         it is recommended to set is as _default.</span>
+
+<span class="sd">     Returns</span>
+<span class="sd">     -------</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="c1"># Get categories</span>
+     <span class="n">categories</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+     <span class="c1"># Get unique elements</span>
+     <span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span>
+     <span class="c1"># Create the palette</span>
+     <span class="n">palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="n">unique</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+     <span class="c1"># Create mappers from category to color</span>
+     <span class="n">mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unique</span><span class="p">),</span> <span class="n">palette</span><span class="p">))</span>
+     <span class="c1"># Create list with colors for each category</span>
+     <span class="n">colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">)</span>
+     <span class="c1"># Return</span>
+     <span class="k">return</span> <span class="n">colors</span>
+
+
+ <span class="k">def</span> <span class="nf">create_mapper</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">column_key</span><span class="p">,</span> <span class="n">column_value</span><span class="p">):</span>
+   <span class="sd">&quot;&quot;&quot;This method constructs a mapper</span>
+
+<span class="sd">   Parameters</span>
+<span class="sd">   ----------</span>
+<span class="sd">   dataframe: dataframe-like</span>
+<span class="sd">     The dataframe from which the columns are extracted</span>
+
+<span class="sd">   column_key: string-like</span>
+<span class="sd">     The name of the column with the values for the keys of the mapper</span>
+
+<span class="sd">   column_value: string-like</span>
+<span class="sd">     The name of the column with the values for the values of the mapper</span>
+
+<span class="sd">   Returns</span>
+<span class="sd">   -------</span>
+<span class="sd">   dictionary</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[[</span><span class="n">column_key</span><span class="p">,</span> <span class="n">column_value</span><span class="p">]]</span>
+   <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+   <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">column_key</span><span class="p">],</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">column_value</span><span class="p">]))</span>
+
+
+ <span class="c1"># --------------------------------------------------------------------</span>
+ <span class="c1">#                               Main</span>
+ <span class="c1"># --------------------------------------------------------------------</span>
+ <span class="c1"># Load data</span>
+ <span class="n">data</span><span class="p">,</span> <span class="n">antibiotics</span><span class="p">,</span> <span class="n">organisms</span> <span class="o">=</span> <span class="n">load_data_mimic</span><span class="p">()</span>
+
+ <span class="c1"># Count records per specimen code</span>
+ <span class="n">specimen_code_count</span> <span class="o">=</span> <span class="n">data</span> \
+     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;laboratory_number&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> \
+     <span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> \
+     <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+ <span class="c1"># Filter most frequent specimens</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span> \
+     <span class="n">specimen_code_count</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">5</span><span class="p">])]</span>
+
+ <span class="c1"># Loop for each specimen</span>
+ <span class="k">for</span> <span class="n">specimen_code</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">):</span>
+
+     <span class="c1"># -------------------------------------------</span>
+     <span class="c1"># Compute Freq and SARI</span>
+     <span class="c1"># -------------------------------------------</span>
+     <span class="c1"># Create instance</span>
+     <span class="n">freq</span> <span class="o">=</span> <span class="n">Frequency</span><span class="p">(</span><span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+                      <span class="n">column_organism</span><span class="o">=</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+                      <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+                      <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">)</span>
+
+     <span class="c1"># Compute frequencies (overall)</span>
+     <span class="n">freq_overall</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">)</span>
+
+     <span class="c1"># Filter</span>
+     <span class="n">freq_overall</span> <span class="o">=</span> <span class="n">freq_overall</span><span class="p">[</span><span class="n">freq_overall</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">]</span>
+
+     <span class="c1"># Compute SARI</span>
+     <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">freq_overall</span><span class="p">)</span>
+
+     <span class="c1"># -------------------------------</span>
+     <span class="c1"># Create matrix</span>
+     <span class="c1"># -------------------------------</span>
+     <span class="c1"># Create mappers</span>
+     <span class="n">abx_map</span> <span class="o">=</span> <span class="n">create_mapper</span><span class="p">(</span><span class="n">antibiotics</span><span class="p">,</span> <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">)</span>
+     <span class="n">org_map</span> <span class="o">=</span> <span class="n">create_mapper</span><span class="p">(</span><span class="n">organisms</span><span class="p">,</span> <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span> <span class="s1">&#39;genus&#39;</span><span class="p">)</span>
+
+     <span class="c1"># Create matrix</span>
+     <span class="n">matrix</span> <span class="o">=</span> <span class="n">sari_overall</span>
+     <span class="n">matrix</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq_overall</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+     <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+     <span class="n">matrix</span><span class="p">[</span><span class="s1">&#39;microorganism_genus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">SPECIE</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">org_map</span><span class="p">)</span>
+     <span class="n">matrix</span><span class="p">[</span><span class="s1">&#39;antimicrobial_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">ANTIBIOTIC</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">abx_map</span><span class="p">)</span>
+
+     <span class="c1"># Show</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Frequencies:&quot;</span><span class="p">)</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+     <span class="c1"># Create colormap</span>
+     <span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+     <span class="c1"># Format frequency</span>
+     <span class="c1">#matrix.freq = np.log(matrix.freq)</span>
+     <span class="n">matrix</span><span class="o">.</span><span class="n">freq</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">freq</span> <span class="o">/</span> <span class="mi">100</span>
+
+     <span class="c1"># Configuration</span>
+     <span class="n">sizes</span> <span class="o">=</span> <span class="p">(</span>
+         <span class="n">matrix</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+         <span class="n">matrix</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+     <span class="p">)</span>
+
+     <span class="n">size_norm</span> <span class="o">=</span> <span class="p">(</span>
+         <span class="n">matrix</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+         <span class="n">matrix</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+     <span class="p">)</span>
+
+     <span class="c1"># Plot</span>
+     <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span>
+                     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sari&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;freq&quot;</span><span class="p">,</span>
+                     <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">hue_norm</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+                     <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sizes</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span>  <span class="c1">#size_norm=size_norm,</span>
+                     <span class="n">dashes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s1">&#39;brief&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+     <span class="c1"># Configure plot</span>
+     <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Antimicrobial&quot;</span><span class="p">,</span>
+           <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Microorganism&quot;</span><span class="p">,</span>
+           <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Antibiogram (with frequency)&#39;</span><span class="p">)</span><span class="c1">#,</span>
+           <span class="c1">#aspect=&quot;equal&quot;)</span>
+     <span class="n">g</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+     <span class="n">g</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
+
+     <span class="c1"># Configure xticks</span>
+     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">():</span>
+         <span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+
+     <span class="c1"># Configure legend</span>
+     <span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">legend</span><span class="o">.</span><span class="n">legendHandles</span><span class="p">:</span>
+         <span class="n">artist</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+         <span class="n">artist</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+     <span class="c1"># Suptitle</span>
+     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">specimen_code</span><span class="p">)</span>
+
+     <span class="c1"># Add grid lines.</span>
+     <span class="c1"># plt.grid(linestyle=&#39;-&#39;, linewidth=0.5, color=&#39;.7&#39;)</span>
+
+     <span class="c1"># Adjust</span>
+     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.012 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-reports-mimic-plot-antibiogram-relmap-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/2d23fe11c6d254b2fecf4cd134e1d991/plot_antibiogram_relmap.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_antibiogram_relmap.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/ffcb39e2be767bdbe6298bb17f9c403d/plot_antibiogram_relmap.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_antibiogram_relmap.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plot_describe.html" class="btn btn-neutral float-right" title="Describe" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_antibiogram_clustermap.html" class="btn btn-neutral float-left" title="SARI - Antibiogram (clustered)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

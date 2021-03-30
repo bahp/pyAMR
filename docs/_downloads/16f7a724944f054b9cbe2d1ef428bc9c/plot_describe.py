@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 
 # Import pyamr
 from pyamr.core.freq import Frequency
+from pyamr.datasets.load import load_data_nhs
 
 # Configure seaborn style (context=talk)
 sns.set(style="white")
@@ -39,7 +40,7 @@ np.set_printoptions(precision=2)
 # -------------------------
 # Replace codes
 replace_codes = {
-  '9MRSN':'MRSCUL',
+  '9MRSN': 'MRSCUL',
   'URINE CULTURE': 'URICUL',
   'WOUND CULTURE': 'WOUCUL',
   'BLOOD CULTURE': 'BLDCUL',
@@ -50,26 +51,11 @@ replace_codes = {
   'NEONATAL SCREEN': 'NEOCUL',
 }
 
-# Interesting columns
-usecols = ['date_received',
-           'laboratory_number',
-           'patient_id',
-           'specimen_code',
-           'microorganism_code',
-           'antimicrobial_code',
-           'sensitivity']
-
-# Path
-path = '../../../pyamr/datasets/microbiology/nhs/aggregated/susceptibility-v0.0.1/'
-
-# -------------------------
-# Main
-# -------------------------
-# Load all files
-data = pd.concat([  \
-    pd.read_csv(f, parse_dates=['date_received'],
-        usecols=usecols, nrows=1000)
-            for f in glob.glob(path + "/susceptibility-*.csv")])
+# ----------------------------------------------------------
+#                       Main
+# ----------------------------------------------------------
+# Load data
+data, antibiotics, organisms = load_data_nhs()
 
 # Replace
 data.specimen_code = \
@@ -134,3 +120,10 @@ print("\n\nFreqs:")
 print(freq_pairs)
 print("Count")
 print(freq_pairs.sum(axis=1).sort_values(ascending=False))
+
+
+
+pspecimens.plot(kind='pie', ylabel='')
+plt.suptitle('SPECIMEN')
+
+plt.show()

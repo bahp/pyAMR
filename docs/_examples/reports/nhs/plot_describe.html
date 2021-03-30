@@ -190,125 +190,98 @@ to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="describe">
 <span id="sphx-glr-examples-reports-nhs-plot-describe-py"></span><h1>Describe<a class="headerlink" href="#describe" title="Permalink to this headline">¶</a></h1>
+<img alt="SPECIMEN" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_describe_0011.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Total cultures: 864
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Total cultures: 326984
 
 Specimens (proportions)
-URICUL    0.2905
-WOUCUL    0.2234
-BLDCUL    0.1042
-SPTCUL    0.0926
-XINCUL    0.0440
-URNCUL    0.0370
-MRSCUL    0.0243
-TIPCUL    0.0197
-T&amp;FCUL    0.0197
-EYECUL    0.0185
-ENTCUL    0.0174
-VAGCUL    0.0162
-NEOCUL    0.0139
-9TIPCS    0.0081
-TISCUL    0.0081
-MNGCUL    0.0069
-BFLCUL    0.0058
-LVSCUL    0.0046
-GNGCUL    0.0046
-9EARCS    0.0035
-9THRCS    0.0035
-ETTCUL    0.0035
-CSFCUL    0.0035
-DRFCUL    0.0023
-9ETTCS    0.0023
-9BWCS     0.0023
-9MRSG     0.0023
-PSWCUL    0.0023
-CROCUL    0.0023
-PUSCUL    0.0023
-9PENCS    0.0012
-FAECUL    0.0012
-EARCUL    0.0012
-BALCUL    0.0012
-9PUSCS    0.0012
-SKNCUL    0.0012
-9DERCS    0.0012
-SEMCUL    0.0012
-PDFCUL    0.0012
-Name: specimen_code, dtype: float64
+URICUL    3.9848e-01
+WOUCUL    2.1401e-01
+SPTCUL    5.5853e-02
+BLDCUL    4.7816e-02
+GUMCUL    4.4042e-02
+             ...
+9CPAP     3.0583e-06
+9MRSWE    3.0583e-06
+URISCH    3.0583e-06
+WICCUL    3.0583e-06
+PNCUL     3.0583e-06
+Name: specimen_code, Length: 122, dtype: float64
 
 Microorganisms (proportions)
-SAUR           0.2645
-ECOL           0.1868
-CNS            0.0835
-KPNE           0.0613
-PAER           0.0536
-                ...
-GHAEM          0.0003
-CAMPY          0.0003
-A_ISOLATED     0.0002
-PANA           0.0001
-A_MANAEROBE    0.0001
-Name: microorganism_code, Length: 63, dtype: float64
+SAUR           2.6864e-01
+ECOL           2.1908e-01
+PAER           6.0153e-02
+COLIF          5.1335e-02
+NGON           4.6888e-02
+                  ...
+A_MMALMOENS    5.4140e-07
+A_AGPB         2.7070e-07
+A_MSIMAE       2.7070e-07
+FUSOB          2.7070e-07
+QISO           2.7070e-07
+Name: microorganism_code, Length: 357, dtype: float64
 
 Antimicrobials (proportions)
-ACIP    0.0751
-AGEN    0.0711
-ATRI    0.0633
-AAUG    0.0442
-ATET    0.0394
-         ...
-AITR    0.0001
-ACLZ    0.0001
-ADAP    0.0001
-ABAC    0.0001
-APCZ    0.0001
-Name: antimicrobial_code, Length: 67, dtype: float64
+ACIP          8.6948e-02
+AGEN          7.5419e-02
+ATRI          7.0210e-02
+AAUG          4.6010e-02
+ATET          3.8434e-02
+                 ...
+AGEN2         5.4140e-07
+A_RIFABUTI    2.7070e-07
+A_KETOCONA    2.7070e-07
+A_CEPHAZOL    2.7070e-07
+A_TERBINAF    2.7070e-07
+Name: antimicrobial_code, Length: 93, dtype: float64
 
 Pairs (proportions
 microorganism_code  antimicrobial_code
-SAUR                AMET                  0.0224
-                    ACLI                  0.0212
-                    APEN                  0.0212
-                    AERY                  0.0212
-                    AFUS                  0.0212
-                                           ...
-EFAS                ACHL                  0.0001
-ECLO                AFOS                  0.0001
-                    ACZA                  0.0001
-EAER                AESBL                 0.0001
-VIRST               ATET                  0.0001
-Length: 853, dtype: float64
+ECOL                AAUG                  2.5175e-02
+                    ACIP                  2.5175e-02
+                    ATRI                  2.4684e-02
+SAUR                AMET                  2.3324e-02
+                    APEN                  2.2273e-02
+                                             ...
+A_YPSEUDOTU         ACXM                  2.7070e-07
+                    ACXT                  2.7070e-07
+                    AGEN                  2.7070e-07
+                    AIMP                  2.7070e-07
+YSTPCA              AVOR                  2.7070e-07
+Length: 7185, dtype: float64
 
 
 Freqs:
-SENSITIVITY        highly resistant  intermediate  not done  resistant  sensitive
+SENSITIVITY        fix  hide  highly resistant  intermediate  not done  resistant  sensitive
 SPECIE ANTIBIOTIC
-ABAU   AAMI                     0.0           0.0       0.0        4.0        7.0
-       AAMO                     0.0           0.0       0.0        7.0        0.0
-       AAMPC                    0.0           0.0       0.0        1.0        0.0
-       AAUG                     0.0           0.0       0.0        5.0        2.0
-       AAZT                     0.0           0.0       0.0        2.0        0.0
-...                             ...           ...       ...        ...        ...
-VIRST  ACLI                     0.0           0.0       0.0        0.0        1.0
-       AERY                     0.0           0.0       0.0        1.0        0.0
-       AMLS                     0.0           0.0       0.0        1.0        0.0
-       APEN                     0.0           0.0       0.0        0.0        1.0
-       ATET                     0.0           0.0       0.0        0.0        1.0
+ABAU   AAMI        0.0   0.0               0.0          10.0       0.0      378.0      659.0
+       AAMO        0.0   0.0               0.0           2.0       0.0      720.0       28.0
+       AAMP        0.0   0.0               0.0           0.0       0.0       12.0        0.0
+       AAMPC       0.0   0.0               0.0           0.0       0.0       34.0       84.0
+       AAUG        0.0   0.0               0.0           6.0       1.0      638.0      195.0
+...                ...   ...               ...           ...       ...        ...        ...
+YSTPCA ATET        0.0   0.0               0.0           0.0       0.0        2.0        3.0
+       ATIG        0.0   0.0               0.0           0.0       0.0        0.0        1.0
+       ATRI        0.0   0.0               0.0           0.0       0.0        0.0        3.0
+       AVAN        0.0   0.0               0.0           0.0       0.0        1.0        1.0
+       AVOR        0.0   0.0               0.0           0.0       0.0        0.0        1.0
 
-[853 rows x 5 columns]
+[7185 rows x 7 columns]
 Count
-SPECIE  ANTIBIOTIC
-SAUR    AMET          220.0
-        ACLI          208.0
-        APEN          208.0
-        AERY          208.0
-        AFUS          208.0
-                      ...
-EFAS    ACHL            1.0
-ECLO    AFOS            1.0
-        ACZA            1.0
-EAER    AESBL           1.0
-VIRST   ATET            1.0
-Length: 853, dtype: float64
+SPECIE       ANTIBIOTIC
+ECOL         AAUG          93001.0
+             ACIP          93000.0
+             ATRI          91187.0
+SAUR         AMET          86164.0
+             APEN          82280.0
+                            ...
+A_YPSEUDOTU  ACXM              1.0
+             ACXT              1.0
+             AGEN              1.0
+             AIMP              1.0
+YSTPCA       AVOR              1.0
+Length: 7185, dtype: float64
 </pre></div>
 </div>
 <div class="line-block">
@@ -435,14 +408,7 @@ Length: 853, dtype: float64
 <span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
  <span class="kn">import</span> <span class="nn">sys</span>
  <span class="kn">import</span> <span class="nn">glob</span>
  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -453,6 +419,7 @@ Length: 853, dtype: float64
 
  <span class="c1"># Import pyamr</span>
  <span class="kn">from</span> <span class="nn">pyamr.core.freq</span> <span class="kn">import</span> <span class="n">Frequency</span>
+ <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">load_data_nhs</span>
 
  <span class="c1"># Configure seaborn style (context=talk)</span>
  <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
@@ -476,7 +443,7 @@ Length: 853, dtype: float64
  <span class="c1"># -------------------------</span>
  <span class="c1"># Replace codes</span>
  <span class="n">replace_codes</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="s1">&#39;9MRSN&#39;</span><span class="p">:</span><span class="s1">&#39;MRSCUL&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;9MRSN&#39;</span><span class="p">:</span> <span class="s1">&#39;MRSCUL&#39;</span><span class="p">,</span>
    <span class="s1">&#39;URINE CULTURE&#39;</span><span class="p">:</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span>
    <span class="s1">&#39;WOUND CULTURE&#39;</span><span class="p">:</span> <span class="s1">&#39;WOUCUL&#39;</span><span class="p">,</span>
    <span class="s1">&#39;BLOOD CULTURE&#39;</span><span class="p">:</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span>
@@ -487,26 +454,11 @@ Length: 853, dtype: float64
    <span class="s1">&#39;NEONATAL SCREEN&#39;</span><span class="p">:</span> <span class="s1">&#39;NEOCUL&#39;</span><span class="p">,</span>
  <span class="p">}</span>
 
- <span class="c1"># Interesting columns</span>
- <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;patient_id&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;sensitivity&#39;</span><span class="p">]</span>
-
- <span class="c1"># Path</span>
- <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../../pyamr/datasets/microbiology/nhs/aggregated/susceptibility-v0.0.1/&#39;</span>
-
- <span class="c1"># -------------------------</span>
- <span class="c1"># Main</span>
- <span class="c1"># -------------------------</span>
- <span class="c1"># Load all files</span>
- <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>  \
-     <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">],</span>
-         <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/susceptibility-*.csv&quot;</span><span class="p">)])</span>
+ <span class="c1"># ----------------------------------------------------------</span>
+ <span class="c1">#                       Main</span>
+ <span class="c1"># ----------------------------------------------------------</span>
+ <span class="c1"># Load data</span>
+ <span class="n">data</span><span class="p">,</span> <span class="n">antibiotics</span><span class="p">,</span> <span class="n">organisms</span> <span class="o">=</span> <span class="n">load_data_nhs</span><span class="p">()</span>
 
  <span class="c1"># Replace</span>
  <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span> <span class="o">=</span> \
@@ -571,9 +523,16 @@ Length: 853, dtype: float64
  <span class="nb">print</span><span class="p">(</span><span class="n">freq_pairs</span><span class="p">)</span>
  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
  <span class="nb">print</span><span class="p">(</span><span class="n">freq_pairs</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+
+
+ <span class="n">pspecimens</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;pie&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">)</span>
+
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.146 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.303 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-reports-nhs-plot-describe-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/16f7a724944f054b9cbe2d1ef428bc9c/plot_describe.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_describe.py</span></code></a></p>

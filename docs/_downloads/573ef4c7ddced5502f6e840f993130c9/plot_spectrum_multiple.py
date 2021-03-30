@@ -98,7 +98,10 @@ def create_mapper(dataframe, column_key, column_value):
 data, antibiotics, organisms = load_data_nhs()
 
 # Count records per specimen code
-specimen_code_count = data.specimen_code.value_counts()
+specimen_code_count = data \
+    .groupby('laboratory_number').head(1) \
+    .specimen_code.value_counts(normalize=True) \
+    .sort_values(ascending=False)
 
 # Filter most frequent specimens
 data = data[data.specimen_code.isin( \
@@ -200,8 +203,17 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     # Configure
     sns.despine(bottom=True)
 
+    # Set x-axis
+    axes[0].set_xlim([0, 1.1])
+    axes[1].set_xlim([0, 1.1])
+    axes[2].set_xlim([0, 1.1])
+
+    # Set title
+    axes[0].set_title('Gram-positive')
+    axes[1].set_title('Gram-negative')
+    axes[2].set_title('Gram-unknown')
+
     # Show legend.
-    plt.legend(loc=8)
     plt.suptitle(specimen_code)
     plt.tight_layout()
 

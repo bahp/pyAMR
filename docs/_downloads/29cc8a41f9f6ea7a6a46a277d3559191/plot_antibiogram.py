@@ -50,7 +50,10 @@ np.set_printoptions(precision=2)
 data, antibiotics, organisms = load_data_nhs()
 
 # Count records per specimen code
-specimen_code_count = data.specimen_code.value_counts()
+specimen_code_count = data \
+    .groupby('laboratory_number').head(1) \
+    .specimen_code.value_counts(normalize=True) \
+    .sort_values(ascending=False)
 
 # Filter most frequent specimens
 data = data[data.specimen_code.isin( \

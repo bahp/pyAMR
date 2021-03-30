@@ -23,7 +23,7 @@ SART - Spectrum (multiple)
 
 .. todo: Simplify and explain
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-209
+.. GENERATED FROM PYTHON SOURCE LINES 7-221
 
 
 
@@ -33,31 +33,31 @@ SART - Spectrum (multiple)
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_multiple_001.png
-          :alt: BLDCUL
+          :alt: BLDCUL, Gram-positive, Gram-negative, Gram-unknown
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_multiple_002.png
-          :alt: SPTCUL
+          :alt: GUMCUL, Gram-positive, Gram-negative, Gram-unknown
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_multiple_003.png
-          :alt: URICUL
+          :alt: SPTCUL, Gram-positive, Gram-negative, Gram-unknown
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_multiple_004.png
-          :alt: WOUCUL
+          :alt: URICUL, Gram-positive, Gram-negative, Gram-unknown
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_multiple_005.png
-          :alt: XINCUL
+          :alt: WOUCUL, Gram-positive, Gram-negative, Gram-unknown
           :class: sphx-glr-multi-img
 
 
@@ -83,6 +83,22 @@ SART - Spectrum (multiple)
     Caspofungin       NaN  NaN   3.0      NaN   NaN  10.0        NaN     NaN  1.0000
     Cefixime          1.0  NaN   NaN      1.0   NaN   NaN     1.0000     NaN     NaN
     Cefotaxime       18.0  5.0  23.0     37.0  16.0  42.0     0.5370  0.6000  0.6275
+
+
+    Data ASAI (GUMCUL):
+                  N_GENUS          N_SPECIE          ASAI_SCORE         
+    gram                n   p    u        n   p    u          n   p    u
+    ANTIBIOTIC                                                          
+    Amikacin          1.0 NaN  NaN      1.0 NaN  NaN       1.00 NaN  NaN
+    Amoxycillin       1.0 NaN  NaN      2.0 NaN  NaN       1.00 NaN  NaN
+    Amphotericin      NaN NaN  1.0      NaN NaN  1.0        NaN NaN  1.0
+    Anidulafungin     NaN NaN  1.0      NaN NaN  1.0        NaN NaN  0.0
+    Azithromycin      1.0 NaN  NaN      2.0 NaN  NaN       1.00 NaN  NaN
+    Aztreonam         1.0 NaN  NaN      1.0 NaN  NaN       1.00 NaN  NaN
+    Caspofungin       NaN NaN  1.0      NaN NaN  1.0        NaN NaN  1.0
+    Cefixime          1.0 NaN  NaN      3.0 NaN  NaN       1.00 NaN  NaN
+    Cefotaxime        2.0 NaN  NaN      3.0 NaN  NaN       0.75 NaN  NaN
+    Cefoxitin         1.0 NaN  NaN      1.0 NaN  NaN       1.00 NaN  NaN
 
 
     Data ASAI (SPTCUL):
@@ -131,22 +147,6 @@ SART - Spectrum (multiple)
     Bacitracin        2.0  2.0   1.0      2.0   7.0   1.0     1.0000  1.0000  0.0000
     Caspofungin       NaN  NaN   2.0      NaN   NaN   6.0        NaN     NaN  0.9000
     Cefixime          1.0  NaN   NaN      4.0   NaN   NaN     1.0000     NaN     NaN
-
-
-    Data ASAI (XINCUL):
-                  N_GENUS            N_SPECIE            ASAI_SCORE             
-    gram                n    p     u        n    p     u          n    p       u
-    ANTIBIOTIC                                                                  
-    Amikacin          9.0  1.0  11.0     20.0  1.0  20.0     0.6296  1.0  0.7803
-    Amoxycillin       9.0  1.0   7.0     12.0  2.0   8.0     0.1667  0.0  0.5714
-    Amp c markers     8.0  NaN   5.0     14.0  NaN   9.0     0.3750  NaN  0.5500
-    Amphotericin      NaN  NaN   1.0      NaN  NaN   2.0        NaN  NaN  1.0000
-    Aztreonam         9.0  1.0   6.0     17.0  1.0  12.0     0.1944  1.0  0.4167
-    Bacitracin        NaN  1.0   NaN      NaN  1.0   NaN        NaN  1.0     NaN
-    Caspofungin       NaN  NaN   1.0      NaN  NaN   2.0        NaN  NaN  1.0000
-    Cefepime          NaN  NaN   1.0      NaN  NaN   1.0        NaN  NaN  0.0000
-    Cefixime          NaN  NaN   1.0      NaN  NaN   1.0        NaN  NaN  0.0000
-    Cefotaxime        9.0  1.0   7.0     16.0  1.0  12.0     0.0556  1.0  0.4762
 
 
 
@@ -252,7 +252,10 @@ SART - Spectrum (multiple)
     data, antibiotics, organisms = load_data_nhs()
 
     # Count records per specimen code
-    specimen_code_count = data.specimen_code.value_counts()
+    specimen_code_count = data \
+        .groupby('laboratory_number').head(1) \
+        .specimen_code.value_counts(normalize=True) \
+        .sort_values(ascending=False)
 
     # Filter most frequent specimens
     data = data[data.specimen_code.isin( \
@@ -354,8 +357,17 @@ SART - Spectrum (multiple)
         # Configure
         sns.despine(bottom=True)
 
+        # Set x-axis
+        axes[0].set_xlim([0, 1.1])
+        axes[1].set_xlim([0, 1.1])
+        axes[2].set_xlim([0, 1.1])
+
+        # Set title
+        axes[0].set_title('Gram-positive')
+        axes[1].set_title('Gram-negative')
+        axes[2].set_title('Gram-unknown')
+
         # Show legend.
-        plt.legend(loc=8)
         plt.suptitle(specimen_code)
         plt.tight_layout()
 
@@ -364,7 +376,7 @@ SART - Spectrum (multiple)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  19.466 seconds)
+   **Total running time of the script:** ( 0 minutes  17.704 seconds)
 
 
 .. _sphx_glr_download__examples_reports_nhs_plot_spectrum_multiple.py:

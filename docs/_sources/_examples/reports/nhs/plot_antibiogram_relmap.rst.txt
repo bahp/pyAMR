@@ -26,7 +26,7 @@ SARI - Antibiogram (relmap)
 .. todo: Frequency might not be working?
          Frequency can be computed as sum of columns.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-215
+.. GENERATED FROM PYTHON SOURCE LINES 11-218
 
 
 
@@ -42,25 +42,25 @@ SARI - Antibiogram (relmap)
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_relmap_002.png
-          :alt: SPTCUL, Antibiogram (with frequency)
+          :alt: GUMCUL, Antibiogram (with frequency)
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_relmap_003.png
-          :alt: URICUL, Antibiogram (with frequency)
+          :alt: SPTCUL, Antibiogram (with frequency)
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_relmap_004.png
-          :alt: WOUCUL, Antibiogram (with frequency)
+          :alt: URICUL, Antibiogram (with frequency)
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_relmap_005.png
-          :alt: XINCUL, Antibiogram (with frequency)
+          :alt: WOUCUL, Antibiogram (with frequency)
           :class: sphx-glr-multi-img
 
 
@@ -99,6 +99,38 @@ SARI - Antibiogram (relmap)
     50%       270.0000
     75%       617.7500
     max      5781.0000
+    Name: freq, dtype: float64
+
+    Data:
+    SENSITIVITY SPECIE ANTIBIOTIC  hide  intermediate  not done  resistant  sensitive    sari     freq microorganism_genus antimicrobial_class
+    0             NGON       AAZI  10.0           3.0       5.0       87.0    15620.0  0.0057  15725.0           Neisseria          Macrolides
+    1             NGON       ACIP   0.0           0.0       4.0     6727.0    10461.0  0.3914  17192.0           Neisseria    Fluoroquinolones
+    2             NGON       ACIX  42.0           0.0       4.0       13.0    14979.0  0.0009  15038.0           Neisseria      Cephalosporins
+    3             NGON      ACONE  45.0           1.0       4.0        5.0    15012.0  0.0004  15067.0           Neisseria      Cephalosporins
+    4             NGON       ACXM   3.0           0.0       1.0      356.0    10155.0  0.0339  10515.0           Neisseria      Cephalosporins
+    5             NGON       ANAL   3.0           2.0       1.0     6019.0     9739.0  0.3820  15764.0           Neisseria    Fluoroquinolones
+    6             NGON       ASPE   0.0           0.0       4.0       10.0    15741.0  0.0006  15755.0           Neisseria                 NaN
+    7             NGON       ATET   0.0           0.0       0.0     1093.0      334.0  0.7659   1427.0           Neisseria       Tetracyclines
+    8             NMEN       AAZI   0.0           0.0       0.0        3.0      202.0  0.0146    205.0           Neisseria          Macrolides
+    9             NMEN       ACIP   0.0           0.0       0.0       20.0      223.0  0.0823    243.0           Neisseria    Fluoroquinolones
+    10            NMEN       ACIX   0.0           0.0       0.0        0.0      201.0  0.0000    201.0           Neisseria      Cephalosporins
+    11            NMEN      ACONE   0.0           0.0       0.0        0.0      204.0  0.0000    204.0           Neisseria      Cephalosporins
+    12            NMEN       ACXM   0.0           0.0       0.0        1.0      121.0  0.0082    122.0           Neisseria      Cephalosporins
+    13            NMEN       ANAL   0.0           0.0       0.0       13.0      213.0  0.0575    226.0           Neisseria    Fluoroquinolones
+    14            NMEN       ASPE   0.0           0.0       0.0        0.0      211.0  0.0000    211.0           Neisseria                 NaN
+
+    Columns:
+    Index(['SPECIE', 'ANTIBIOTIC', 'hide', 'intermediate', 'not done', 'resistant', 'sensitive', 'sari', 'freq', 'microorganism_genus', 'antimicrobial_class'], dtype='object', name='SENSITIVITY')
+
+    Frequencies:
+    count       15.0000
+    mean      7193.0000
+    std       7697.5253
+    min        122.0000
+    25%        208.0000
+    50%       1427.0000
+    75%      15396.0000
+    max      17192.0000
     Name: freq, dtype: float64
 
     Data:
@@ -189,36 +221,6 @@ SARI - Antibiogram (relmap)
     50%        364.0000
     75%       1018.0000
     max      40916.0000
-    Name: freq, dtype: float64
-
-    Data:
-    SENSITIVITY SPECIE ANTIBIOTIC  fix  hide  highly resistant  intermediate  not done  resistant  sensitive    sari    freq microorganism_genus antimicrobial_class
-    0             ABAU       AAMI  0.0   0.0               0.0           0.0       0.0      106.0       94.0  0.5300   200.0       Acinetobacter     Aminoglycosides
-    1             ABAU       AAMO  0.0   0.0               0.0           0.0       0.0      122.0        2.0  0.9839   124.0       Acinetobacter    Aminopenicillins
-    2             ABAU       AAUG  0.0   0.0               0.0           0.0       0.0      111.0       13.0  0.8952   124.0       Acinetobacter                 NaN
-    3             ABAU       ACAZ  0.0   0.0               0.0           4.0       0.0      119.0        2.0  0.9840   125.0       Acinetobacter      Cephalosporins
-    4             ABAU       ACIP  0.0   0.0               0.0           0.0       0.0      142.0       59.0  0.7065   201.0       Acinetobacter    Fluoroquinolones
-    ..             ...        ...  ...   ...               ...           ...       ...        ...        ...     ...     ...                 ...                 ...
-    142           SAUR       ATEI  0.0   0.0               0.0           0.0       0.0        0.0     2142.0  0.0000  2142.0      Staphylococcus        Glycopeptide
-    143           SAUR       ATET  0.0   0.0               0.0           0.0       0.0      460.0     5539.0  0.0767  5999.0      Staphylococcus       Tetracyclines
-    144           SAUR       ATRI  0.0   0.0               0.0           0.0       0.0      625.0     4887.0  0.1134  5512.0      Staphylococcus                 NaN
-    145           SAUR       AVAN  0.0   0.0               0.0           0.0       0.0        0.0     5388.0  0.0000  5388.0      Staphylococcus        Glycopeptide
-    146           SMAL       ACOT  0.0   1.0               0.0           0.0       0.0       16.0      164.0  0.0889   181.0    Stenotrophomonas        Sulfonamides
-
-    [147 rows x 13 columns]
-
-    Columns:
-    Index(['SPECIE', 'ANTIBIOTIC', 'fix', 'hide', 'highly resistant', 'intermediate', 'not done', 'resistant', 'sensitive', 'sari', 'freq', 'microorganism_genus', 'antimicrobial_class'], dtype='object', name='SENSITIVITY')
-
-    Frequencies:
-    count     147.0000
-    mean      861.7619
-    std      1609.4900
-    min       101.0000
-    25%       154.5000
-    50%       252.0000
-    75%       651.5000
-    max      7020.0000
     Name: freq, dtype: float64
 
 
@@ -334,7 +336,10 @@ SARI - Antibiogram (relmap)
     data, antibiotics, organisms = load_data_nhs()
 
     # Count records per specimen code
-    specimen_code_count = data.specimen_code.value_counts()
+    specimen_code_count = data \
+        .groupby('laboratory_number').head(1) \
+        .specimen_code.value_counts(normalize=True) \
+        .sort_values(ascending=False)
 
     # Filter most frequent specimens
     data = data[data.specimen_code.isin( \
@@ -439,7 +444,7 @@ SARI - Antibiogram (relmap)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.426 seconds)
+   **Total running time of the script:** ( 0 minutes  13.585 seconds)
 
 
 .. _sphx_glr_download__examples_reports_nhs_plot_antibiogram_relmap.py:

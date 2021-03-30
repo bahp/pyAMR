@@ -26,7 +26,7 @@ SARI - Antibiogram
 .. todo: Frequency might not be working?
          Frequency can be computed as sum of columns.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-119
+.. GENERATED FROM PYTHON SOURCE LINES 11-122
 
 
 
@@ -42,25 +42,25 @@ SARI - Antibiogram
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_002.png
-          :alt: Antibiogram (SPTCUL)
+          :alt: Antibiogram (GUMCUL)
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_003.png
-          :alt: Antibiogram (URICUL)
+          :alt: Antibiogram (SPTCUL)
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_004.png
-          :alt: Antibiogram (WOUCUL)
+          :alt: Antibiogram (URICUL)
           :class: sphx-glr-multi-img
 
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_antibiogram_005.png
-          :alt: Antibiogram (XINCUL)
+          :alt: Antibiogram (WOUCUL)
           :class: sphx-glr-multi-img
 
 
@@ -112,7 +112,10 @@ SARI - Antibiogram
     data, antibiotics, organisms = load_data_nhs()
 
     # Count records per specimen code
-    specimen_code_count = data.specimen_code.value_counts()
+    specimen_code_count = data \
+        .groupby('laboratory_number').head(1) \
+        .specimen_code.value_counts(normalize=True) \
+        .sort_values(ascending=False)
 
     # Filter most frequent specimens
     data = data[data.specimen_code.isin( \
@@ -182,7 +185,7 @@ SARI - Antibiogram
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.966 seconds)
+   **Total running time of the script:** ( 0 minutes  14.377 seconds)
 
 
 .. _sphx_glr_download__examples_reports_nhs_plot_antibiogram.py:
