@@ -18,7 +18,7 @@ Step 01 - Introduction
 # Loading data
 # ------------
 #
-# ``Susceptibility`` test records are composed by laboratory identification
+# A ``Susceptibility test`` record is composed by laboratory identification
 # number (LID), patient identification number (PID), date, sample type or
 # culture (e.g. blood or urine), pathogen, antimicrobial, reported status
 # and outcome (resistant, sensitive or intermediate). In this research,
@@ -37,19 +37,29 @@ import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# -------------------------------------------
-# Load data
-# -------------------------------------------
-# Path
-path = '../../../pyamr/datasets/other/susceptibility.csv'
-path_org = '../../../pyamr/datasets/other/organisms.csv'
-path_abx = '../../../pyamr/datasets/other/antibiotics.csv'
+# Import from pyAMR
+from pyamr.datasets.load import make_susceptibility
 
+# -------------------------------------------
+# Constants
+# -------------------------------------------
+# Sensitivities to keep
+sensitivities = ['sensitive',
+                 'intermediate',
+                 'resistant']
+
+# Specimens
+specimen = ['BLDCUL']
+
+# -------------------------------------------
 # Load data
-data = pd.read_csv(path,
-    parse_dates=['dateReceived'])
+# -------------------------------------------
+# Load data
+data = make_susceptibility()
 
 # Clean
+data = data[data.sensitivity.isin(sensitivities)]
+data = data[data.specimen_code.isin(specimen)]
 data = data.drop_duplicates()
 
 # Show
@@ -74,12 +84,11 @@ print(data.columns)
 #
 # This section explains the main concepts in order to understand how the
 # computation of frequencies using the ``Frequency`` class works. For more
-# information see the documentation (xxx)
-#
-# The frequency can be computed using the ``Frequency`` class for three different
-# categories; the ``organisms``, ``antibiotics`` and ``pairs`` which are composed
-# by an organism and an antibiotic. In addition, regarding to time, the susceptibility
-# data can be grouped following different strategies:
+# information see the documentation (xxx). The frequency can be computed using the
+# ``Frequency`` class for three different categories; the ``organisms``,
+# ``antibiotics`` and ``pairs`` which are composed by an organism and an antibiotic.
+# In addition, regarding to time, the susceptibility data can be grouped following
+# different strategies:
 #
 # - **Overall** - ``overall``
 #   All the data is used and therefore the outcome is a single number for
@@ -96,7 +105,7 @@ print(data.columns)
 #   consecutive resistance indexes. It is described by two parameters; the length
 #   of the region (period) and the distance between consecutive windows (shift).
 #
-# For more information see (link to API, manuscripts and examples).
+# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_frequency.py`.
 
 # -------------------------------------------
 # Compute Freq
@@ -105,9 +114,9 @@ print(data.columns)
 from pyamr.core.freq import Frequency
 
 # Create instance
-freq = Frequency(column_antibiotic='antibioticCode',
-                 column_organism='organismCode',
-                 column_date='dateReceived',
+freq = Frequency(column_antibiotic='antimicrobial_code',
+                 column_organism='microorganism_code',
+                 column_date='date_received',
                  column_outcome='sensitivity')
 
 # Compute frequencies (overall)
@@ -149,14 +158,14 @@ print(freq_monthly)
 # Susceptible outcomes respectively. The definition might vary slightly since the
 # intermediate category is not always considered.
 #
-# The parameters strategy accepts three different options:
+# The parameter strategy accepts three different options:
 #
 #  (i) ``soft``   as R / R+I+S
 #  (ii) ``medium`` as R / R+S
 #  (iii) ``hard``  as R+I / R+I+S
 #  (iv) ``other``  as R+0.5I / R+0.5I+S
 #
-# For more information see (link to API, manuscripts and examples).
+# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`.
 
 # -------------------------------------------
 # Compute SARI
@@ -174,12 +183,36 @@ print(sari_overall)
 print("\nSARI (monthly):")
 print(sari_monthly)
 
+
+matrix = sari_overall[sari_overall.freq > 100]
+
+# Plot Heatmap
+# ------------
+# Create matrix
+matrix = sari_overall.copy(deep=True)
+matrix = matrix[matrix.freq > 100]
+matrix = matrix[['sari']]
+matrix = matrix.unstack() * 100
+matrix.columns = matrix.columns.droplevel()
+
+# Create figure
+f, ax = plt.subplots(1, 1, figsize=(10, 4))
+
+# Create colormap
+cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
+
 # Plot
-# .. todo: Use bar plot or any other library to plot
-#          the frequency in time. Ideally with bars
-#          where x-axis is the time and y-axi is the
-#          freq. Avoid too many x-labels, keep just
-#          years?
+ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+    annot_kws={'fontsize': 'small'}, cmap=cmap,
+    linewidth=0.5, vmin=0, vmax=100, ax=ax,
+    xticklabels=1, yticklabels=1)
+
+# Add title
+plt.suptitle("Antibiogram", fontsize='xx-large')
+
+# Tight layout
+plt.tight_layout()
+plt.subplots_adjust(right=1.05)
 
 
 #######################################################################
@@ -209,7 +242,7 @@ print(sari_monthly)
 # particular species when the corresponding resistance index (SARI) is lower than
 # a given threshold.
 #
-# For more information see (link to API, manuscripts and examples).
+# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
 
 # -------------------------------------------
 # Compute ASAI
@@ -217,41 +250,34 @@ print(sari_monthly)
 # Import specific libraries
 from pyamr.core.asai import ASAI
 
-# Load default organisms dataset
-orgs = pd.read_csv(path_org,
-    usecols=['ORGANISM_NAME',
-             'ORGANISM_CODE',
-             'GENUS_NAME',
-             'GENUS_CODE',
-             'GRAM_TYPE'])
-
-# Fill empty
-# .. note: Leads to division by 0 (investigate)
-#orgs.GRAM_TYPE = orgs.GRAM_TYPE.fillna('u')
-
 # Format DataFrame
 dataframe = sari_overall.copy(deep=True)
 dataframe = sari_overall.reset_index()
-dataframe = dataframe.merge(orgs, how='left',
-    left_on='SPECIE', right_on='ORGANISM_CODE')
+dataframe = dataframe.merge(data, how='left',
+    left_on='SPECIE', right_on='microorganism_code')
 
 # Select interesting columns
 dataframe = dataframe[['SPECIE',
                        'ANTIBIOTIC',
-                       'GENUS_CODE',
-                       'GRAM_TYPE',
+                       'microorganism_genus',
+                       'microorganism_gram_type',
                        'sari']]
+
+# Fill empty
+# .. note: Leads to division by 0 (investigate)
+dataframe.microorganism_gram_type = \
+    dataframe.microorganism_gram_type.fillna('u')
 
 # Create antimicrobial spectrum of activity instance
 asai = ASAI(weights='uniform',
             threshold=0.05,
-            column_genus='GENUS_CODE',
+            column_genus='microorganism_genus',
             column_specie='SPECIE',
             column_antibiotic='ANTIBIOTIC',
             column_resistance='sari')
 
 # Compute
-scores = asai.compute(dataframe, by_category='GRAM_TYPE')
+scores = asai.compute(dataframe, by_category='microorganism_gram_type')
 
 # .. note: In order to sort the scores we need to compute metrics
 #          that combine the different subcategories (e.g. gram-negative
@@ -302,12 +328,12 @@ def scalar_colormap(values, cmap, vmin, vmax):
 x = scores.index.values
 y_n = scores['ASAI_SCORE']['n'].values
 y_p = scores['ASAI_SCORE']['p'].values
-#y_u = scores['ASAI_SCORE']['U'].values
+y_u = scores['ASAI_SCORE']['u'].values
 
 # Constants
 colormap_p = scalar_colormap(y_p, cmap='Blues', vmin=-0.1, vmax=1.1)
 colormap_n = scalar_colormap(y_n, cmap='Reds', vmin=-0.1, vmax=1.1)
-#colormap_u = scalar_colormap(y_u, cmap='Greens', vmin=-0.1, vmax=1.1)
+colormap_u = scalar_colormap(y_u, cmap='Greens', vmin=-0.1, vmax=1.1)
 
 # ----------
 # Example
@@ -323,8 +349,8 @@ sns.barplot(x=y_p, y=x, palette=colormap_p, ax=axes[0], orient='h',
             saturation=0.5, label='Gram-positive')
 sns.barplot(x=y_n, y=x, palette=colormap_n, ax=axes[1], orient='h',
             saturation=0.5, label='Gram-negative')
-#sns.barplot(x=y_u, y=x, palette=colormap_u, ax=axes[2], orient='h',
-#            saturation=0.5, label='Gram-unknown')
+sns.barplot(x=y_u, y=x, palette=colormap_u, ax=axes[2], orient='h',
+            saturation=0.5, label='Gram-unknown')
 
 # Configure
 sns.despine(bottom=True)
@@ -351,6 +377,14 @@ plt.tight_layout()
 
 # Show
 plt.show()
+
+
+#######################################################################
+#
+# Computing SART
+# --------------
+#
+# .. warning:: To include.
 
 
 #######################################################################

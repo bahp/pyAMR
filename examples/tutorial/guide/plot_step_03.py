@@ -20,8 +20,8 @@ Step 03 - TSA for trends
 # analysis was used to quantify its tendency
 #
 # .. image:: ../../../_static/imgs/sart-diagram.png
-#   :width: 500
-#   :align: right
+#   :width: 600
+#   :align: center
 #   :alt: Diagram
 #
 # |
