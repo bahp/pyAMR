@@ -25,7 +25,7 @@ from scipy.stats import norm
 from operator import attrgetter
 
 # Import pyramid arima
-from pyramid.arima import ARIMA as PYARIMA
+#from pyramid.arima import ARIMA as PYARIMA
 
 
 # Libraries wrapper.

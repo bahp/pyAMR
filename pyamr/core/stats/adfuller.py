@@ -18,6 +18,39 @@ from pyamr.core.stats.wbase import BaseWrapper
 
 
 class ADFWrapper(BaseWrapper):
+    """The ADF wrapper.
+
+    The Augmented Dickey-Fuller test can be used to test for a unit root in
+    a univariate process in the presence of serial correlation. It tests the
+    null hypothesis that a unit root is present in a time series sample. The
+    alternative hypothesis is different depending on which version of the test
+    is used, but is usually stationarity or trend-stationarity. The more
+    negative the statistic, the stronger the rejection of the hypothesis that
+    there is a unit root at some level of confidence.
+
+    Notes
+    -----
+    H0: The series has a unit root => Non-stationary
+    H1: The series has no unit root => Stationary / Trend-Stationary
+
+    If p-value > 0.05: Failed to reject H0.
+    If p-value <= 0.05: Reject H0.
+
+    The absence of unit root is not a proof of non-stationarity. As such, it
+    is also possible to use the Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test
+    to identify the existence of an underlying trend which can also be removed
+    to obtain a stationary process. These are called trend-stationary processes.
+
+    In both, unit-root and trend-stationary processes, the mean can be increasing
+    or decreasing over time; however, in the presence of a shock, trend-stationary
+    processes revert to this mean tendency in the long run (deterministic trend)
+    while unit-root processes have a permanent impact (stochastic trend).
+
+    [1] https://machinelearningmastery.com/time-series-data-stationary-python/
+    [2] https://www.statsmodels.org/stable/examples/notebooks/generated/stationarity_detrending_adf_kpss.html
+
+    .. todo: .
+    """
 
     def _identifier(self):
         """Description of the model"""
@@ -28,18 +61,6 @@ class ADFWrapper(BaseWrapper):
     # --------------------------------------------------------------------------
     def is_stationary(self, alpha=0.05):
         """This method returns a boolean with the stationarity outocme.
-
-        The method rejects the null hypothesis when the value is less than a
-        specified significance level. The null hypothesis is unit root exists
-        and the alternative is that series is (trend) stationary.
-
-        Notes
-        -----
-        H0: There is a unit root' hence non-stationary.
-        H1: The series does not have a unit root; hence stationary.
-
-        If p-value > 0.05: Failed to reject H0.
-        If p-value <= 0.05: Reject H0. Stationary.
 
         Parameters
         ----------
