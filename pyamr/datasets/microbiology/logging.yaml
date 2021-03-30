@@ -1,0 +1,34 @@
+version: 1
+disable_existing_loggers: true
+
+formatters:
+  simple:
+    format: "%(asctime)s %(name)s: %(message)s"
+  extended:
+    format: "%(asctime)s %(name)s %(levelname)s: %(message)s"
+  complete:
+    format: "%(asctime)s - %(filename)s:%(lineno)s - %(levelname)s - %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: complete
+
+  file_handler:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: complete
+    filename: _output.log
+    encoding: utf8
+    mode: w
+
+loggers:
+  dev:
+    level: DEBUG
+    handlers: [console, file_handler]
+    propagate: false
+
+
+root:
+  handlers: [file_handler]

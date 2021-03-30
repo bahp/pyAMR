@@ -1,0 +1,78 @@
+Data sources:
+ar122_taxonomy_r95.tsv [1]
+bac120_taxonomy.tsv    [2]
+gram_positive.txt      [3] https://en.wikipedia.org/wiki/Category:Gram-positive_bacteria
+gram_negative.txt      [4] https://en.wikipedia.org/wiki/Category:Gram-negative_bacteria
+Genomic databases      [5] https://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/
+                       [6] https://ftp.ncbi.nlm.nih.gov/genomes/genbank/
+
+Outputs:
+registry_microorganisms.csv
+    This database contains all the classification columns for the
+    microorganisms. It is automatically constructed from the sub
+    databases (e.g. db_gram_stain or db_taxonomy).
+
+registry_additions.csv
+    This database has the same structure as the db_classification.csv
+    but contains examples that have been recorded manually by us. It
+    could be new species not found in the database or corrections that
+    we wanna overwrite.
+
+Taxonomy structure:
+  - life
+  - domain
+  - kingdom
+  - phylum
+  - class
+  - order
+  - family
+  - genus
+  - species
+  - subspecies (missing in dataset)
+
+Interesting classes:
+  - gram_stain
+	- positive (p)
+	- negative (n)
+  - shape/morphology
+	- cocci
+	- bacilli
+  - growth
+	- aerobic
+	- anaerobic
+	- haemolysis patterns
+  - hemolysis
+    - alpha-haemolytic
+    - beta-haemolytic
+    - gamma-haemolytic
+  - coagulase_production
+    - positive
+    - negative
+  - group
+    - A
+    - B
+    - C
+    - D
+  - arrangement
+  - endospores
+  - mobility?
+  - salinity
+  - oxygen_requirements
+  - habitat
+  - temp_range
+  - temp_optima
+  - disease
+  - host
+    - human
+    - animals
+    - swine
+    - cattle
+  - fermenting
+    - lactose
+    - non-lactose
+
+Other possible stains?
+  - acid_fastness
+  - ziehl-nealson
+
+What are the groups? For isntance Enterococcus faecalis is called group D Strep.
