@@ -31,7 +31,7 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
+    #'sphinx.ext.autodoc',
     #'sphinx.ext.coverage',
     'sphinx.ext.napoleon',        # docstrings
     'sphinx.ext.todo',
@@ -72,7 +72,7 @@ sphinx_gallery_conf = {
         '../../examples/tutorial',
         '../../examples/indexes',
         '../../examples/forecasting',
-        '../../examples/nhs',
+        '../../examples/reports',
         '../../examples/visualization'
     ],
     # path to where to save gallery generated output
@@ -80,7 +80,7 @@ sphinx_gallery_conf = {
         '../source/_examples/tutorial',
         '../source/_examples/indexes',
         '../source/_examples/forecasting',
-        '../source/_examples/nhs',
+        '../source/_examples/reports',
         '../source/_examples/visualization'],
     # Other
     'line_numbers': True,

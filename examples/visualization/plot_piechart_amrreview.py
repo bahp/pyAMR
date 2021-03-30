@@ -5,6 +5,7 @@ Piechart AMR review
 """
 
 #######################################################################
+#
 # Author: Bernard
 # Date: 19/08/2016
 # Description: This script creates PIECHARTS for the paper which
@@ -24,17 +25,14 @@ Piechart AMR review
 
 from __future__ import division
 
-# Libraries.
-import sys
-import numpy as np
-import pandas as pd
+# Libraries
 import seaborn as sns
 import matplotlib as mpl
-import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 
 # Matplotlib font size configuration.
 mpl.rcParams['font.size'] = 9.0
+
 
 # ------------------------------------------------------------------------
 #                            HELPER METHODS

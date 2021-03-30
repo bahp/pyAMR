@@ -4,13 +4,15 @@ from __future__ import division
 # Generic libraries
 import os
 import sys
+import glob
 import warnings
 import numpy as np
 import pandas as pd
-#import cPickle as pickle # no needed in python 3.x
+# import cPickle as pickle # no needed in python 3.x
 
 # Import specific
 from os.path import dirname
+from pathlib import Path
 
 # Import own module
 sys.path.append('../../')
@@ -47,37 +49,98 @@ epicimpoc_susceptibility_type = './nhs/susceptibility/by_cultures'
 # Other
 other_shampoo_sales = './other/shampoo_sales.csv'
 
+
 # -----------------------------------------------------------------------------
 #                              HELPER METHODS
 # -----------------------------------------------------------------------------
-
-
 def make_timeseries():
-  """This method creates a time series
+    """This method creates a hard-coded time series.
 
-  Parameters
-  ----------
-  n_observations:
+    Returns
+    -------
+    x, y, f:
+      The x values, the y values and the frequencies.
 
-  offset:
+    """
+    # Create exogenous variable
+    x = np.arange(100)
+    # Create endogenous variable
+    y = np.concatenate((np.arange(50) * 10 + np.random.randn(50) * 20 + 40,
+                        np.arange(50) * 2 + np.random.randn(50) * 20 + 400))
+    # Create frequency variable
+    f = np.concatenate((np.random.rand(35) * 50 + 50,
+                        np.random.rand(30) * 50 + 100,
+                        np.random.rand(35) * 50 + 150))
+    # Return
+    return x, y, f
 
-  slope:
 
-  Returns
-  -------
+def make_susceptibility():
+    """This method loads susceptibility.
 
-  """
-  # Create exogenous variable
-  x = np.arange(100)
-  # Create endogenous variable
-  y = np.concatenate((np.arange(50)*10+np.random.randn(50)*20+40,
-                      np.arange(50)*2+np.random.randn(50)*20+400))
-  # Create frequency variable
-  f = np.concatenate((np.random.rand(35)*50+50,
-                      np.random.rand(30)*50+100,
-                      np.random.rand(35)*50+150))
-  # Return
-  return x, y, f
+    .. note: Default path
+    """
+    # Define path
+    path = './microbiology/sample/susceptibility-20210324-194524.csv'
+    # Load
+    return pd.read_csv("{0}/{1}".format(dirname, path))
+
+
+def load_registry_microorganisms():
+    """This method returns the microorganisms registry"""
+    # Define path
+    path = './microbiology/registry/microorganisms/registry_microorganisms.csv'
+    # Return
+    return pd.read_csv("{0}/{1}".format(dirname, path))
+
+
+def load_registry_antimicrobials():
+    """This method returns the antimicrobials registry"""
+    # Define path
+    path = './microbiology/registry/antimicrobials/registry_antimicrobials.csv'
+    # Return
+    return pd.read_csv("{0}/{1}".format(dirname, path))
+
+
+def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
+    """This method loads the susceptibility data.
+
+    Parameters
+    ----------
+    name: string
+        Name of the folder with the data.
+    kwargs:
+        Arguments to pass to pd.read_csv
+
+    Returns
+    -------
+    susceptibility
+        The susceptibility test data
+    db_abxs
+        The registries with the antimicrobials
+    db_orgs
+        The registry with the microorganisms
+    """
+    # Define paths
+    path = Path("{0}/{1}".format(dirname, './microbiology/nhs/aggregated/'))
+    path_sus = path / folder
+    path_abx = path / folder / 'antimicrobials.csv'
+    path_org = path / folder / 'microorganisms.csv'
+
+    # Load data
+    data = pd.concat([ \
+        pd.read_csv(f, parse_dates=['date_received'], **kwargs)
+            for f in glob.glob(str(path_sus / "susceptibility-*.csv"))])
+
+    # Load databases (registries)
+    db_abxs = pd.read_csv(path_abx)
+    db_orgs = pd.read_csv(path_org)
+
+    # Return
+    return data, db_abxs, db_orgs
+
+
+
 
 # --------------------------------------
 # METHODS TO LOAD DATABASES
@@ -86,66 +149,66 @@ def make_timeseries():
 # epic impoc basic
 # -----------------
 def dataset_epicimpoc_antibiotics(**kwargs):
-  return pd.read_csv('%s/%s' % (dirname, epicimpoc_antibiotics), *kwargs)
+    return pd.read_csv('%s/%s' % (dirname, epicimpoc_antibiotics), *kwargs)
 
 def dataset_epicimpoc_organisms(**kwargs):
-  return pd.read_csv('%s/%s' % (dirname, epicimpoc_organisms), *kwargs)
+    return pd.read_csv('%s/%s' % (dirname, epicimpoc_organisms), *kwargs)
 
 
 # -----------------------------------
 # epic impoc susceptibility test data
 # -----------------------------------
 def dataset_epicimpoc_susceptibility(**kwargs):
-  """
-  """
-  return pd_read.read_csv('%s/%s' % \
-    (dirname, epicimpoc_susceptibility_comp), **kwargs)
+    """
+    """
+    return pd_read.read_csv('%s/%s' % \
+      (dirname, epicimpoc_susceptibility_comp), **kwargs)
 
 def dataset_epicimpoc_susceptibility_year(year='2014', **kwargs):
-  """
-  """
-  return pd_read.read_csv('%s/%s/%s' % \
-    (dirname, epicimpoc_susceptibility_year, str(year)), **kwargs)
+    """
+    """
+    return pd_read.read_csv('%s/%s/%s' % \
+      (dirname, epicimpoc_susceptibility_year, str(year)), **kwargs)
 
 def dataset_epicimpoc_susceptibility_culture(cultures=['bldcul']):
-  """
-  """
-  pass
+    """
+    """
+    pass
 
 
 
 def dataset_shampoo_sales(**kwargs):
-  return pd.read_csv('%s/%s' % (dirname, other_shampoo_sales), **kwargs)
+    return pd.read_csv('%s/%s' % (dirname, other_shampoo_sales), **kwargs)
 
 
 
 if __name__ == '__main__':
 
-  # Import
-  import warnings
+    # Import
+    import warnings
 
-  # Suppress warnings
-  warnings.simplefilter('ignore')
+    # Suppress warnings
+    warnings.simplefilter('ignore')
 
-  # Set numpy options
-  np.set_printoptions(threshold=np.nan)
+    # Set numpy options
+    np.set_printoptions(threshold=np.nan)
 
-  # ----------------------------------- 
-  # Loading default datasets
-  # -----------------------------------
-  # Load antibiotics
-  antibiotics = dataset_epicimpoc_antibiotics()
+    # -----------------------------------
+    # Loading default datasets
+    # -----------------------------------
+    # Load antibiotics
+    antibiotics = dataset_epicimpoc_antibiotics()
 
-  # Load organisms
-  organisms = dataset_epicimpoc_organisms()
+    # Load organisms
+    organisms = dataset_epicimpoc_organisms()
 
-  # Load profiles
-  #microbiology = dataset_epicimpoc_susceptibility_year(year=2014)
+    # Load profiles
+    #microbiology = dataset_epicimpoc_susceptibility_year(year=2014)
 
 
-  # Show information
-  print(antibiotics.head(5))
-  print(organisms.head(5))
-  print(len(microbiology))
+    # Show information
+    print(antibiotics.head(5))
+    print(organisms.head(5))
+    print(len(microbiology))
 
-  print(dataset_shampoo_sales())
+    print(dataset_shampoo_sales())
