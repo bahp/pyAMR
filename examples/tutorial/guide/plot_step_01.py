@@ -43,6 +43,23 @@ from pyamr.datasets.load import make_susceptibility
 # -------------------------------------------
 # Constants
 # -------------------------------------------
+# Path
+path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
+path_org = '../../../pyamr/datasets/microbiology/db_microorganisms.csv'
+path_abx = '../../../pyamr/datasets/microbiology/db_antimicrobials.csv'
+
+# Columns
+usecols = ['dateReceived',
+           'labNumber',
+           'patNumber',
+           'orderName',
+           'orderCode',
+           'organismName',
+           'organismCode',
+           'antibioticName',
+           'antibioticCode',
+           'sensitivity']
+
 # Sensitivities to keep
 sensitivities = ['sensitive',
                  'intermediate',
@@ -183,9 +200,6 @@ print(sari_overall)
 print("\nSARI (monthly):")
 print(sari_monthly)
 
-
-matrix = sari_overall[sari_overall.freq > 100]
-
 # Plot Heatmap
 # ------------
 # Create matrix
@@ -250,34 +264,31 @@ plt.subplots_adjust(right=1.05)
 # Import specific libraries
 from pyamr.core.asai import ASAI
 
+
 # Format DataFrame
 dataframe = sari_overall.copy(deep=True)
 dataframe = sari_overall.reset_index()
 dataframe = dataframe.merge(data, how='left',
     left_on='SPECIE', right_on='microorganism_code')
 
-# Select interesting columns
-dataframe = dataframe[['SPECIE',
-                       'ANTIBIOTIC',
-                       'microorganism_genus',
-                       'microorganism_gram_type',
-                       'sari']]
-
 # Fill empty
 # .. note: Leads to division by 0 (investigate)
 dataframe.microorganism_gram_type = \
     dataframe.microorganism_gram_type.fillna('u')
 
+print(dataframe.columns)
+
 # Create antimicrobial spectrum of activity instance
 asai = ASAI(weights='uniform',
             threshold=0.05,
-            column_genus='microorganism_genus',
+            column_genus='microorganism_name',
             column_specie='SPECIE',
             column_antibiotic='ANTIBIOTIC',
             column_resistance='sari')
 
 # Compute
-scores = asai.compute(dataframe, by_category='microorganism_gram_type')
+scores = asai.compute(dataframe,
+            by_category='microorganism_gram_type')
 
 # .. note: In order to sort the scores we need to compute metrics
 #          that combine the different subcategories (e.g. gram-negative

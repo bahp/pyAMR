@@ -107,7 +107,7 @@ def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
 
     Parameters
     ----------
-    name: string
+    folder: string
         Name of the folder with the data.
     kwargs:
         Arguments to pass to pd.read_csv
@@ -138,8 +138,6 @@ def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
 
     # Return
     return data, db_abxs, db_orgs
-
-
 
 
 # --------------------------------------

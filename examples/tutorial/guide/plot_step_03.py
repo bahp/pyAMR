@@ -19,6 +19,7 @@ Step 03 - TSA for trends
 # a trend was carried out to identify interesting combinations and regression
 # analysis was used to quantify its tendency
 #
+
 # .. image:: ../../../_static/imgs/sart-diagram.png
 #   :width: 600
 #   :align: center

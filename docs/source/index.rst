@@ -5,6 +5,7 @@ Welcome to pyAMR's documentation!
    :width: 100
    :align: right
    :alt: pyAMR
+<<<<<<< HEAD
 
 This repository contains the documentation of the lightweight library ``pyAMR`` which
 facilitates the computation of various Antimicrobial Resistance (AMR) statistics and
