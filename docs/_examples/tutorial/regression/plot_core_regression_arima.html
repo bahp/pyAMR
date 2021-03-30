@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
@@ -111,14 +112,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
             
@@ -198,37 +195,37 @@ to download the full example code</p>
 <img alt="ARIMA non-dynamic, ARIMA dynamic" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_core_regression_arima_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-arima-aic                    781.1075
-arima-bic                    788.2536
-arima-hqic                   783.9726
-arima-llf                   -387.5538
-arima-const_coef             281.3401
-arima-const_std              146.0484
-arima-const_tvalue             1.9263
-arima-const_tprob              0.0541
-arima-const_cil               -4.9095
-arima-const_ciu              567.5898
-arima-ar.L1.y_coef              0.986
-arima-ar.L1.y_std              0.0154
-arima-ar.L1.y_tvalue          63.9447
+arima-aic                    808.5665
+arima-bic                    815.7126
+arima-hqic                   811.4316
+arima-llf                   -401.2832
+arima-const_coef             297.9839
+arima-const_std              135.1236
+arima-const_tvalue             2.2053
+arima-const_tprob              0.0274
+arima-const_cil               33.1464
+arima-const_ciu              562.8213
+arima-ar.L1.y_coef               0.98
+arima-ar.L1.y_std              0.0203
+arima-ar.L1.y_tvalue          48.3904
 arima-ar.L1.y_tprob               0.0
-arima-ar.L1.y_cil              0.9558
-arima-ar.L1.y_ciu              1.0162
-arima-m_dw                      1.792
-arima-m_jb_value             953.6457
+arima-ar.L1.y_cil              0.9403
+arima-ar.L1.y_ciu              1.0197
+arima-m_dw                     1.8743
+arima-m_jb_value             535.3083
 arima-m_jb_prob                   0.0
-arima-m_skew                  -2.9027
-arima-m_kurtosis              18.8868
-arima-m_nm_value              80.0225
+arima-m_skew                   -2.342
+arima-m_kurtosis              14.7751
+arima-m_nm_value              65.7278
 arima-m_nm_prob                   0.0
-arima-m_ks_value               0.5373
+arima-m_ks_value               0.5334
 arima-m_ks_prob                   0.0
-arima-m_shp_value               0.771
+arima-m_shp_value              0.8201
 arima-m_shp_prob                  0.0
-arima-m_ad_value               3.0231
+arima-m_ad_value               2.1325
 arima-m_ad_nnorm                False
 arima-converged                  True
-arima-endog             [39.659354...
+arima-endog             [44.046701...
 arima-order                 (1, 0, 0)
 arima-trend                         c
 arima-disp                          0
@@ -240,25 +237,25 @@ Summary:
                               ARMA Model Results
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                   80
-Model:                     ARMA(1, 0)   Log Likelihood                -387.554
-Method:                       css-mle   S.D. of innovations             30.057
-Date:                Fri, 19 Mar 2021   AIC                            781.108
-Time:                        18:44:36   BIC                            788.254
-Sample:                             0   HQIC                           783.973
+Model:                     ARMA(1, 0)   Log Likelihood                -401.283
+Method:                       css-mle   S.D. of innovations             35.763
+Date:                Tue, 30 Mar 2021   AIC                            808.566
+Time:                        14:34:19   BIC                            815.713
+Sample:                             0   HQIC                           811.432
 
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        281.3401    146.048      1.926      0.054      -4.910     567.590
-ar.L1.y        0.9860      0.015     63.945      0.000       0.956       1.016
+const        297.9839    135.124      2.205      0.027      33.146     562.821
+ar.L1.y        0.9800      0.020     48.390      0.000       0.940       1.020
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000  Durbin-Watson:                    1.792
-Prob(Omnibus):                  0.000  Jarque-Bera (JB):               953.646
-Skew:                          -2.903  Prob(JB):                         0.000
-Kurtosis_m:                    18.887  Cond No:
-Normal (N):                    80.022  Prob(N):                          0.000
+Omnibus:                        0.000  Durbin-Watson:                    1.874
+Prob(Omnibus):                  0.000  Jarque-Bera (JB):               535.308
+Skew:                          -2.342  Prob(JB):                         0.000
+Kurtosis_m:                    14.775  Cond No:
+Normal (N):                    65.728  Prob(N):                          0.000
 ==============================================================================
 </pre></div>
 </div>
@@ -548,13 +545,13 @@ Normal (N):                    80.022  Prob(N):                          0.000
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.915 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.225 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/9f70fd5d7ecb53ea9cefdac4ecad676e/plot_core_regression_arima.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_arima.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/2001417af432b95d68831cdd664f0313/plot_core_regression_arima.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_arima.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/7d4efc8877c33be7838fce27eaff1be0/plot_core_regression_arima.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_arima.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/33d870081a7f34d8203f1695ad92446b/plot_core_regression_arima.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_arima.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
@@ -102,6 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#regression">Regression</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="plot_core_regression_arima.html">Regression - ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_ensemble.html">Regression - WLSARMA</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_core_regression_sarimax.html">Regression - SARIMAX</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Regression - Theil-Sen</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_core_regression_wls.html">Regression - WLS</a></li>
@@ -110,14 +112,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
             
@@ -197,35 +195,35 @@ to download the full example code</p>
 <img alt="plot core regression theilsens" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_core_regression_theilsens_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-theilsens-slope               3.6617
-theilsens-intercept         242.2415
-theilsens-ci_lower            3.0729
-theilsens-ci_upper            4.2824
+theilsens-slope               3.7913
+theilsens-intercept         229.4598
+theilsens-ci_lower             3.128
+theilsens-ci_upper            4.4403
 theilsens-x            [0, 1, 2, ...
-theilsens-y            [48.757153...
-theilsens-model        (3.6617086...
+theilsens-y            [33.818595...
+theilsens-model        (3.7913251...
 theilsens-id               THEILSENS
 dtype: object
 
 Summary:
          TheilSens Slope
 ==================================
-slope:                      3.6617
-intercept:                242.2415
-ci_lower:                   3.0729
-ci_upper:                   4.2824
+slope:                      3.7913
+intercept:                229.4598
+ci_lower:                    3.128
+ci_upper:                   4.4403
 ==================================
 UEVAAA
 Grid Search:
                             0              1
-theilsens-s...         3.6617         3.6617
-theilsens-i...       242.2415       242.2415
-theilsens-c...         3.0729         3.1766
-theilsens-c...         4.2824         4.1798
+theilsens-s...         3.7913         3.7913
+theilsens-i...       229.4598       229.4598
+theilsens-c...          3.128         3.2414
+theilsens-c...         4.4403         4.3376
 theilsens-a...           0.05            0.1
 theilsens-x     [0, 1, 2, ...  [0, 1, 2, ...
-theilsens-y     [48.757153...  [48.757153...
-theilsens-m...  (3.6617086...  (3.6617086...
+theilsens-y     [33.818595...  [33.818595...
+theilsens-m...  (3.7913251...  (3.7913251...
 theilsens-id        THEILSENS      THEILSENS
 </pre></div>
 </div>
@@ -423,13 +421,13 @@ theilsens-id        THEILSENS      THEILSENS
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.822 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.149 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-theilsens-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/4d218687d6dc11304c55ee458c0fb371/plot_core_regression_theilsens.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_theilsens.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/8011f301f194f8a14c93436999934771/plot_core_regression_theilsens.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_theilsens.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/655cff147a082b1afc74ee386082ba18/plot_core_regression_theilsens.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_theilsens.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/048678c8051bfb3fa8890f32690e40c7/plot_core_regression_theilsens.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_theilsens.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

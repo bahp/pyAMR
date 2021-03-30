@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
@@ -105,17 +106,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regression">Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
             
@@ -192,7 +190,15 @@ to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="index-frequency">
 <span id="sphx-glr-examples-tutorial-indexes-plot-core-frequency-py"></span><h1>Index - Frequency<a class="headerlink" href="#index-frequency" title="Permalink to this headline">¶</a></h1>
-<p>Example using your package</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>Improve visualization.</p></li>
+<li><p>Create further examples with temporal visualization.</p></li>
+<li><p>Create further examples with general heatmap.</p></li>
+<li><p>Create further examples with animation?</p></li>
+</ul>
+</div>
 <img alt="Frequency (daily, monthly and overlapping intervals)" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_core_frequency_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>--------------------------------------------------------------------------------
@@ -200,25 +206,30 @@ Show OVERALL frequencies:
 --------------------------------------------------------------------------------
 
 Pairs:
-SENSITIVITY        highly resistant  intermediate  not done  resistant  sensitive
+SENSITIVITY        &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  resistant  sensitive
 SPECIE ANTIBIOTIC
-ECOL   AAUG                     0.0          50.0       0.0     5457.0    36043.0
-       AGEN                     0.0          79.0       0.0     2770.0    24657.0
-       ATAZ                     3.0         218.0       1.0     1025.0     5893.0
-       ATRI                     0.0           5.0       0.0    15249.0    25936.0
+ECOL   AAUG                      0.0               0.0           0.0       27.0       85.0
+       AGEN                      0.0               0.0           0.0       15.0       97.0
+       ATAZ                      0.0               3.0           2.0       12.0       20.0
+       ATRI                      0.0               0.0           0.0       49.0       63.0
+PAER   AAUG                      0.0               0.0           0.0        1.0        0.0
+       AGEN                      0.0               0.0           0.0        4.0       30.0
+       ATAZ                      1.0               0.0           0.0        5.0       27.0
+       ATRI                      0.0               0.0           0.0        1.0        0.0
 
 Antibiotics:
-SENSITIVITY  highly resistant  intermediate  not done  resistant  sensitive
+SENSITIVITY  &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  resistant  sensitive
 ANTIBIOTIC
-AAUG                      0.0          50.0       0.0     5457.0    36043.0
-AGEN                      0.0          79.0       0.0     2770.0    24657.0
-ATAZ                      3.0         218.0       1.0     1025.0     5893.0
-ATRI                      0.0           5.0       0.0    15249.0    25936.0
+AAUG                       0.0               0.0           0.0       28.0       85.0
+AGEN                       0.0               0.0           0.0       19.0      127.0
+ATAZ                       1.0               3.0           2.0       17.0       47.0
+ATRI                       0.0               0.0           0.0       50.0       63.0
 
 Organisms:
-SENSITIVITY  highly resistant  intermediate  not done  resistant  sensitive
+SENSITIVITY  &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  resistant  sensitive
 SPECIE
-ECOL                        3           352         1      24501      92529
+ECOL                       0.0               3.0           2.0      103.0      265.0
+PAER                       1.0               0.0           0.0       11.0       57.0
 
 
 --------------------------------------------------------------------------------
@@ -226,38 +237,49 @@ Show TEMPORAL frequencies:
 --------------------------------------------------------------------------------
 
 Daily:
-SENSITIVITY                   highly resistant  intermediate  not done  resistant  sensitive
+SENSITIVITY                   &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  resistant  sensitive
 SPECIE ANTIBIOTIC DATE
-ECOL   AAUG       2009-01-03               0.0           0.0       0.0        1.0        0.0
-                  2009-01-04               0.0           0.0       0.0        0.0        0.0
-                  2009-01-05               0.0           0.0       0.0        0.0        0.0
-                  2009-01-06               0.0           0.0       0.0        0.0        0.0
-                  2009-01-07               0.0           0.0       0.0        0.0        0.0
-...                                        ...           ...       ...        ...        ...
-       ATRI       2016-01-07               0.0           0.0       0.0       12.0       15.0
-                  2016-01-08               0.0           0.0       0.0        5.0       11.0
-                  2016-01-09               0.0           0.0       0.0       10.0        4.0
-                  2016-01-10               0.0           0.0       0.0        2.0        9.0
-                  2016-01-11               0.0           0.0       0.0        0.0        1.0
+ECOL   AAUG       2016-01-01                0.0               0.0           0.0        3.0       10.0
+                  2016-01-02                0.0               0.0           0.0        2.0        3.0
+                  2016-01-03                0.0               0.0           0.0        2.0        2.0
+                  2016-01-04                0.0               0.0           0.0        0.0        2.0
+                  2016-01-05                0.0               0.0           0.0        0.0        0.0
+...                                         ...               ...           ...        ...        ...
+PAER   ATAZ       2016-01-07                1.0               0.0           0.0        0.0        5.0
+                  2016-01-08                0.0               0.0           0.0        0.0        6.0
+                  2016-01-09                0.0               0.0           0.0        0.0        4.0
+                  2016-01-10                0.0               0.0           0.0        2.0        1.0
+       ATRI       2016-01-06                0.0               0.0           0.0        1.0        0.0
 
-[10229 rows x 5 columns]
+[66 rows x 5 columns]
 
 Monthly:
-SENSITIVITY                   highly resistant  intermediate  not done  resistant  sensitive
+SENSITIVITY                   &lt;&lt;do not report&gt;&gt;  highly resistant  intermediate  resistant  sensitive
 SPECIE ANTIBIOTIC DATE
-ECOL   AAUG       2009-01-31               0.0           0.0       0.0        1.0        0.0
-                  2009-02-28               0.0           0.0       0.0        1.0        5.0
-                  2009-03-31               0.0           0.0       0.0       21.0      785.0
-                  2009-04-30               0.0           0.0       0.0       18.0      756.0
-                  2009-05-31               0.0           0.0       0.0       42.0      749.0
-...                                        ...           ...       ...        ...        ...
-       ATRI       2015-09-30               0.0           0.0       0.0      104.0      158.0
-                  2015-10-31               0.0           0.0       0.0       74.0      121.0
-                  2015-11-30               0.0           0.0       0.0       70.0      104.0
-                  2015-12-31               0.0           0.0       0.0      104.0      147.0
-                  2016-01-31               0.0           0.0       0.0       49.0       63.0
-
-[339 rows x 5 columns]
+ECOL   AAUG       2016-01-31                0.0               0.0           0.0       27.0       85.0
+       AGEN       2016-01-31                0.0               0.0           0.0       15.0       97.0
+       ATAZ       2016-01-31                0.0               3.0           2.0       12.0       20.0
+       ATRI       2016-01-31                0.0               0.0           0.0       49.0       63.0
+PAER   AAUG       2016-01-31                0.0               0.0           0.0        1.0        0.0
+       AGEN       2016-01-31                0.0               0.0           0.0        4.0       30.0
+       ATAZ       2016-01-31                1.0               0.0           0.0        5.0       27.0
+       ATRI       2016-01-31                0.0               0.0           0.0        1.0        0.0
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
+/Users/cbit/Desktop/repositories/environments/venv-py37-pyamr/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1167: UserWarning: Attempting to set identical left == right == 552.0 results in singular transformations; automatically expanding.
+  ax.set_xlim(left, right)
 No handles with labels found to put in legend.
 No handles with labels found to put in legend.
 </pre></div>
@@ -265,11 +287,7 @@ No handles with labels found to put in legend.
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  9</span>
-<span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 13</span>
 <span class="normal"> 14</span>
 <span class="normal"> 15</span>
 <span class="normal"> 16</span>
@@ -454,7 +472,10 @@ No handles with labels found to put in legend.
 <span class="normal">195</span>
 <span class="normal">196</span>
 <span class="normal">197</span>
-<span class="normal">198</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
  <span class="kn">import</span> <span class="nn">sys</span>
  <span class="kn">import</span> <span class="nn">glob</span>
  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -478,14 +499,13 @@ No handles with labels found to put in legend.
  <span class="c1"># Load data</span>
  <span class="c1"># -----------------------</span>
  <span class="c1"># Path</span>
- <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../../resources/data/nhs/susceptibility/complete/&#39;</span>
+ <span class="c1"># Path</span>
+ <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../../pyamr/datasets/microbiology/susceptibility.csv&#39;</span>
 
  <span class="c1"># Load all files</span>
- <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>  \
-     <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">],</span>
-         <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">200000</span><span class="p">)</span>
-             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/*.csv&quot;</span><span class="p">)])</span>
-
+ <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
+     <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">],</span>
+     <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
  <span class="c1"># -------------------------</span>
  <span class="c1"># Main</span>
@@ -502,7 +522,7 @@ No handles with labels found to put in legend.
  <span class="c1">#          one (organism, antimicrobial) pair.</span>
 
  <span class="c1"># Selected</span>
- <span class="n">orgs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ECOL&#39;</span><span class="p">]</span>
+ <span class="n">orgs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;PAER&#39;</span><span class="p">]</span>
  <span class="n">abxs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ATAZ&#39;</span><span class="p">,</span> <span class="s1">&#39;ATRI&#39;</span><span class="p">,</span> <span class="s1">&#39;AGEN&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">]</span>
 
  <span class="c1"># Filter for two examples</span>
@@ -646,13 +666,13 @@ No handles with labels found to put in legend.
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.961 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.663 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-frequency-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/0d8ff7837e2b0d0671d8380f14385c46/plot_core_frequency.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_frequency.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/cf959ba675d0b6cfaac9fcfb539ea817/plot_core_frequency.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_frequency.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/40f2dd41ff501ba4fcb8350385c9d9ce/plot_core_frequency.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_frequency.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/c1d8dcc03ac645988839edf90751a4e4/plot_core_frequency.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_frequency.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

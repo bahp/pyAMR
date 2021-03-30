@@ -93,11 +93,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#guide">Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_step_00.html">Step 00 - Registries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_step_01.html">Step 01 - Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_step_02.html">Step 02 - Time Series Analysis</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Step 03 - TSA for trends</a></li>
@@ -109,14 +111,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
             
@@ -207,62 +205,122 @@ xxx). The time series were linearly interpolated to fill sporadic missing value
 additional filters or preprocessing steps were applied. An analysis of stationarity around
 a trend was carried out to identify interesting combinations and regression
 analysis was used to quantify its tendency</p>
-<a class="reference internal image-reference" href="../_static/imgs/sart-diagram.png"><img alt="Diagram" class="align-right" src="../_static/imgs/sart-diagram.png" style="width: 500px;" /></a>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>The linear model (see Equation 4.3) has been selected to quantify resistance tendency
-for several reasons: (i) the development of resistance in pathogens is an evolutionary
-response to the selective pressure of antimicrobials, hence large variations in short
-periods (e.g. consecutive days or months) are not expected (ii) the slope parameter can
-be directly translated to change over time increasing its practicability and (iii) the
-offset parameter is highly related with the overall resistance. Hence, the response variable
-in regression analysis (resistance index) is described by the explanatory variable (time).
-The slope (m) ranges within the interval [-1,1] where sign and absolute value capture
-direction and rate of change respectively. The unit of the slope is represented by ∆y/∆x.</p>
-<ul>
-<li><p><strong>Least Squares Regression</strong></p>
-<p>The optimization problem in ordinary least squares - <code class="docutils literal notranslate"><span class="pre">OLS</span></code> - regression minimizes the least
-square errors to find the best fitting model. Ordinary least squares - OLS - assumes
-identical weights (wi) and independently distributed residuals with a normal distribution.
-It is frequent to observe that some residuals might have higher variance than others,
-meaning that those observations are effectively less certain. To contemplate such variability,
-weighted linear squares - <code class="docutils literal notranslate"><span class="pre">WLS</span></code> - regression (see Equation 4.4) applies a weighting
-function to the residuals. The confidence of the computed resistance index (observed
-variable) relies on the number of susceptibility test records manipulated. Hence, the
-sigmoid function has been used to define weights proportional to the population size.</p>
-</li>
-<li><p><strong>Auto Regressive Integrated Moving Average</strong> - <code class="docutils literal notranslate"><span class="pre">ARIMA</span></code></p>
-<p>An autoregressive integrated moving average (ARIMA) model is a generalization of an
-autoregressive moving average (ARMA) model which can be also applied in scenarios
-where data show evidence of non-stationarity. The autoregressive (AR) part expresses
-the variable of interest (resistance index) as a function of past values of the variable.
-The moving average (MA) indicates that the regression error is a linear combination of
-error terms which occurred contemporaneously and at various times in the past. An
-ARIMA(p,d,q) model is described by: p is the number of autoregressive terms,
-d is the number of differences needed for stationarity and q is the
-number of lagged forecast errors.</p>
-<p>Include formula.</p>
-<p>The interpretation of the parameter µ depends on the ARIMA model used for the
-fitting. In order to estimate the linear trend, it was interesting to consider exclusively
-MA models so that the expected value of µ was the mean of the one-time differenced
-series; that is, the slope coefficient of the un-differenced series. The Bayesian information
-criterion (BIC) was used to select the best ARIMA(0,1,q) model, being the one with the
-lowest BIC the preferred.</p>
-</li>
-</ul>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">74</span>
-<span class="normal">75</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import</span>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># .. image:: ../../../_static/imgs/sart-diagram.png</span>
+ <span class="c1">#   :width: 600</span>
+ <span class="c1">#   :align: center</span>
+ <span class="c1">#   :alt: Diagram</span>
+ <span class="c1">#</span>
+ <span class="c1"># |</span>
+ <span class="c1">#</span>
+ <span class="c1"># The linear model (see Equation 4.3) has been selected to quantify resistance tendency</span>
+ <span class="c1"># for several reasons: (i) the development of resistance in pathogens is an evolutionary</span>
+ <span class="c1"># response to the selective pressure of antimicrobials, hence large variations in short</span>
+ <span class="c1"># periods (e.g. consecutive days or months) are not expected (ii) the slope parameter can</span>
+ <span class="c1"># be directly translated to change over time increasing its practicability and (iii) the</span>
+ <span class="c1"># offset parameter is highly related with the overall resistance. Hence, the response variable</span>
+ <span class="c1"># in regression analysis (resistance index) is described by the explanatory variable (time).</span>
+ <span class="c1"># The slope (m) ranges within the interval [-1,1] where sign and absolute value capture</span>
+ <span class="c1"># direction and rate of change respectively. The unit of the slope is represented by ∆y/∆x.</span>
+ <span class="c1">#</span>
+ <span class="c1"># - **Least Squares Regression**</span>
+ <span class="c1">#</span>
+ <span class="c1">#   The optimization problem in ordinary least squares - ``OLS`` - regression minimizes the least</span>
+ <span class="c1">#   square errors to find the best fitting model. Ordinary least squares - OLS - assumes</span>
+ <span class="c1">#   identical weights (wi) and independently distributed residuals with a normal distribution.</span>
+ <span class="c1">#   It is frequent to observe that some residuals might have higher variance than others,</span>
+ <span class="c1">#   meaning that those observations are effectively less certain. To contemplate such variability,</span>
+ <span class="c1">#   weighted linear squares - ``WLS`` - regression (see Equation 4.4) applies a weighting</span>
+ <span class="c1">#   function to the residuals. The confidence of the computed resistance index (observed</span>
+ <span class="c1">#   variable) relies on the number of susceptibility test records manipulated. Hence, the</span>
+ <span class="c1">#   sigmoid function has been used to define weights proportional to the population size.</span>
+ <span class="c1">#</span>
+ <span class="c1"># - **Auto Regressive Integrated Moving Average** - ``ARIMA``</span>
+ <span class="c1">#</span>
+ <span class="c1">#   An autoregressive integrated moving average (ARIMA) model is a generalization of an</span>
+ <span class="c1">#   autoregressive moving average (ARMA) model which can be also applied in scenarios</span>
+ <span class="c1">#   where data show evidence of non-stationarity. The autoregressive (AR) part expresses</span>
+ <span class="c1">#   the variable of interest (resistance index) as a function of past values of the variable.</span>
+ <span class="c1">#   The moving average (MA) indicates that the regression error is a linear combination of</span>
+ <span class="c1">#   error terms which occurred contemporaneously and at various times in the past. An</span>
+ <span class="c1">#   ARIMA(p,d,q) model is described by: p is the number of autoregressive terms,</span>
+ <span class="c1">#   d is the number of differences needed for stationarity and q is the</span>
+ <span class="c1">#   number of lagged forecast errors.</span>
+ <span class="c1">#</span>
+ <span class="c1">#   Include formula.</span>
+ <span class="c1">#</span>
+ <span class="c1">#   The interpretation of the parameter µ depends on the ARIMA model used for the</span>
+ <span class="c1">#   fitting. In order to estimate the linear trend, it was interesting to consider exclusively</span>
+ <span class="c1">#   MA models so that the expected value of µ was the mean of the one-time differenced</span>
+ <span class="c1">#   series; that is, the slope coefficient of the un-differenced series. The Bayesian information</span>
+ <span class="c1">#   criterion (BIC) was used to select the best ARIMA(0,1,q) model, being the one with the</span>
+ <span class="c1">#   lowest BIC the preferred.</span>
+ <span class="c1">#</span>
+ <span class="c1">#</span>
+
+ <span class="c1"># Import</span>
  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.323 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-03-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/34f8dd7f9daab94f32998ae8371f2b22/plot_step_03.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_03.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/fb7d8c53e71d819d5b8b4b63b4dff6d8/plot_step_03.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_03.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/909710904bbf1b3494cd8d6f7d1132b9/plot_step_03.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_step_03.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/293f6683ed3890ad168f2db6d3dbd8bd/plot_step_03.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_step_03.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
