@@ -13,6 +13,7 @@ from __future__ import division
 
 # Libraries
 import sys
+import warnings
 import numpy as np 
 import pandas as pd 
 
@@ -98,7 +99,7 @@ def _check_asai_dataframe_columns(dataframe, required_columns):
                   % missing)
 
 
-def _asai(dataframe, threshold=None, weights='uniform'):
+def _asai(dataframe, threshold=None, weights='uniform2'):
   """Computes the antimicrobial spectrum of activity.
 
   .. todo: There is an error when W_GENUS = 1 / GENUS.nunique()
@@ -157,6 +158,7 @@ def _asai(dataframe, threshold=None, weights='uniform'):
   weights_genus = dataframe.W_GENUS
   weights_specie = dataframe.W_SPECIE
 
+
   # Create results
   d = {'N_GENUS': dataframe.GENUS.nunique(),
        'N_SPECIE': dataframe.SPECIE.nunique(),
@@ -192,6 +194,150 @@ def _asai_score(weights_genus, weights_specie, resistance, threshold):
   """
   return np.sum(weights_genus*weights_specie*(resistance<=threshold))
 
+
+def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
+    """Computes the ASAI.
+
+    .. warning:: Should the duplicated check only for the columns
+                 GENUS and SPECIE? What if we do not group by
+                 antibiotic? It has to be unique for the antibiotic
+                 also. It is up to the user to make the right use
+                 of this?
+
+    Parameters
+    ----------
+    dataframe: pd.DataFrame
+        The pandas dataframe with the information. The following columns
+        are always required [RESISTANCE, GENUS and SPECIE]. In addition,
+        [W_GENUS and W_SPECIE] are required if weights is None.
+
+    weights: string (default None)
+        The method to automatically compute the weights. The methods
+        supported are 'uniform' in which all genus have the same
+        weights and all species within a genus have the same weight.
+        In order to use the specified weights [W_GENUS, W_SPECIE]
+        keep weights as None. Please remember that the following
+        rules must be fulfilled by the weights:
+           - consistent weight for a given genus
+           - all genus weights must add up to one.
+           - all specie weights within a genus must add up to one.
+
+    threshold: float (default None)
+        The threshold value to consider the microorganism as
+        resistant to the antimicrobial. Thus, for a threshold of 0.5,
+        if a pair <o,a> has a resistance value of 0.4, the microorganism
+        will be considered sensitive to the antimicrobial and will
+        count towards the ASAI computation. In order to use specific
+        thresholds [THRESHOLD] keep threshold as None.
+
+    tol: float (default 1e-6)
+        The tolerance in order to check that all conditions (uniqueness
+        and sums) are satisfied. Note that that float precision varies
+        and therefore not always adds up to exactly one.
+
+    verbose: int (default 0)
+        The level of verbosity.
+
+    Returns
+    -------
+    """
+    # Required columns
+    required = ['RESISTANCE', 'GENUS', 'SPECIE']
+
+    # Add weight columns
+    if weights is None:
+        required += ['W_GENUS', 'W_SPECIE']
+
+    # Bad input type
+    if not isinstance(dataframe, pd.DataFrame):
+        raise TypeError("The instance passed as argument needs to be a pandas "
+                        "DataFrame. Instead, a <%s> was found. Please convert "
+                        "the input accordingly." % type(dataframe))
+
+    # Check columns
+    if set(required).difference(dataframe.columns):
+        raise ValueError("The following columns are missing: {0} " \
+                .format(set(required).difference(dataframe.columns)))
+
+    # Check duplicates
+    if dataframe.duplicated().any():
+        raise ValueError("There are duplicate rows in the dataframe.")
+
+    # Check threshold
+    if 'THRESHOLD' in dataframe.columns:
+        if threshold is not None:
+            warnings.warn("""\n
+                  The threshold has been defined both as an 
+                  input parameter (threshold={0}) and a dataframe 
+                  column 'THRESHOLD'. The latter will be used.""" \
+                  .format(threshold))
+    else:
+        if threshold is None:
+            warnings.warn("""\n
+                  The threshold has not been defined using either 
+                  an input parameter (threshold={0}) or a column in the 
+                  dataframe 'THRESHOLD'. Thus a default threshold value 
+                  of '0.5' will be used.""".format(threshold))
+            threshold = 0.5
+        dataframe['THRESHOLD'] = threshold
+
+    # Copy dataframe
+    dataframe = dataframe.copy(deep=True)
+
+    # Set uniform weights
+    if weights == 'uniform':
+        # Set uniform weights
+        dataframe['W_GENUS'] = 1. / dataframe.GENUS.nunique()
+        dataframe['W_SPECIE'] =  1. / dataframe.GENUS.map( \
+            dataframe.groupby(['GENUS']).W_SPECIE.count())
+
+    # Set frequency weights
+    if weights == 'frequency':
+        # Set frequency weights
+        fgn = dataframe.groupby(['GENUS']).FREQUENCY.sum()
+        dataframe['S_GENUS'] = dataframe.GENUS.map(fgn)
+        dataframe['W_GENUS'] = dataframe.GENUS.map(fgn / fgn.sum())
+        dataframe['W_SPECIE'] = dataframe.FREQUENCY / dataframe.S_GENUS
+
+    # Check sums
+    report = pd.DataFrame()
+    report['W_GENUS_UNIQUE_OK'] = dataframe.groupby('GENUS').W_GENUS.nunique()
+    report['W_GENUS_SUM_OK'] = dataframe.groupby('GENUS').head(1).W_GENUS.sum()
+    report['W_SPECIE_SUM_OK'] = dataframe.groupby(['GENUS']).W_SPECIE.sum()
+
+    # Condition
+    condition = (1 - report).abs() < tol
+
+    # Report
+    if not condition.all().all():
+        raise ValueError("""
+            The weights imputed do not fulfill all the requirements. Please
+            check the report below and correct the weights accordingly. Note
+            a given genus must have a consistent weight and the sum of weights
+            must add up to 1.\n\n\t\t{0}""" \
+            .format(condition.to_string().replace("\n", "\n\t\t")))
+
+    # Show
+    if verbose > 5:
+        print("\nweights={0} | threshold={1}".format(weights, threshold))
+        print(dataframe)
+
+    # Extract vectors
+    wgn = dataframe.W_GENUS
+    wsp = dataframe.W_SPECIE
+    sari = dataframe.RESISTANCE
+    th = dataframe.THRESHOLD
+
+    # Compute score
+    score = np.sum(wgn * wsp * (sari <= th))
+
+    # Create results
+    d = {'N_GENUS': dataframe.GENUS.nunique(),
+         'N_SPECIE': dataframe.SPECIE.nunique(),
+         'ASAI_SCORE': score}
+
+    # Default weights
+    return pd.Series(d)
 
 
 

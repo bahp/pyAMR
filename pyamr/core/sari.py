@@ -88,6 +88,60 @@ def sari_whard(dataframe, w=0.5):
   return (r+w*i) / (r+w*i+s)  
 
 
+
+def sari(dataframe, strategy='hard', **kwargs):
+    """Computes the sari index.
+
+    Parameters
+    ----------
+    dataframe: pd.DataFrame
+        A dataframe with the susceptibility test interpretations
+        as columns. The default strategies expect the following
+        columns: 'sensitive', 'intermediate', 'resistant'.
+
+    strategy: string or func (default hard)
+        The method used to compute sari. The possible options
+        are 'soft', 'medium' and 'hard'. In addition, a function
+        with the following signature can be passed:
+           dataframe
+           arguments
+
+    **kwargs: arguments to pass the strategy function.
+
+    Returns
+    --------
+    """
+    # Ensure that exists
+    aux = _check_dataframe(dataframe)
+
+    # Extract vectors
+    r = aux['resistant']
+    i = aux['intermediate']
+    s = aux['sensitive']
+
+    # Call the function
+    if callable(strategy):
+        return strategy(aux, **kwargs)
+
+    # Check strategy.
+    if strategy not in ['soft', 'medium', 'hard']:
+        raise ValueError("""
+              The strategy '{0}' is not supported and
+              therefore the strategy 'hard' will be used.""" \
+              .format(strategy))
+
+    # Compute
+    if strategy == 'hard':
+        return (r + i) / (r + i + s)
+    elif strategy == 'medium':
+        return r / (r + s)
+    elif strategy == 'soft':
+        return r / (r + i + s)
+
+
+
+
+
 # Default methods
 _DEFAULT_STRATEGIES = {
   'soft': sari_soft,
