@@ -55,6 +55,13 @@ napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True
 
+# ------------------
+# Plotly outcomes
+# ------------------
+# Include plotly
+import plotly.io as pio
+pio.renderers.default = 'sphinx_gallery'
+
 
 # ------------------
 # Sphinx gallery
