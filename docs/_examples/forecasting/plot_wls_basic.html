@@ -193,32 +193,34 @@ to download the full example code</p>
 <span id="sphx-glr-examples-forecasting-plot-wls-basic-py"></span><h1>WLS basic<a class="headerlink" href="#wls-basic" title="Permalink to this headline">¶</a></h1>
 <img alt="plot wls basic" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_wls_basic_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\regression\linear_model.py:764: RuntimeWarning: divide by zero encountered in log
-  llf += 0.5 * np.sum(np.log(self.weights))
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\regression\linear_model.py:764: RuntimeWarning:
+
+divide by zero encountered in log
+
 
 Series:
-wls-rsquared                  0.4935
-wls-rsquared_adj              0.4884
-wls-fvalue                   95.5017
+wls-rsquared                   0.527
+wls-rsquared_adj              0.5222
+wls-fvalue                  109.1905
 wls-fprob                        0.0
 wls-aic                          inf
 wls-bic                          inf
 wls-llf                         -inf
-wls-mse_model            146953.3238
-wls-mse_resid              1538.7514
-wls-mse_total              3007.5855
-wls-const_coef              276.0482
-wls-const_std                 17.722
-wls-const_tvalue             15.5766
+wls-mse_model            140326.5093
+wls-mse_resid              1285.1526
+wls-mse_total              2689.6108
+wls-const_coef              279.5638
+wls-const_std                16.1436
+wls-const_tvalue             17.3173
 wls-const_tprob                  0.0
-wls-const_cil               240.8794
-wls-const_ciu                311.217
-wls-x1_coef                   2.4227
-wls-x1_std                    0.2479
-wls-x1_tvalue                 9.7725
+wls-const_cil               247.5272
+wls-const_ciu               311.6003
+wls-x1_coef                   2.3797
+wls-x1_std                    0.2277
+wls-x1_tvalue                10.4494
 wls-x1_tprob                     0.0
-wls-x1_cil                    1.9307
-wls-x1_ciu                    2.9147
+wls-x1_cil                    1.9278
+wls-x1_ciu                    2.8317
 wls-s_dw               Jarque-Ber...
 wls-s_jb_value             Prob(JB):
 wls-s_jb_prob              Cond. No.
@@ -226,40 +228,40 @@ wls-s_skew                 Kurtosis:
 wls-s_kurtosis
 wls-s_omnibus_value    Prob(Omnib...
 wls-s_omnibus_prob             Skew:
-wls-m_dw                      0.1289
-wls-m_jb_value                7.9533
-wls-m_jb_prob                 0.0187
-wls-m_skew                   -0.6597
-wls-m_kurtosis                3.4097
-wls-m_nm_value                8.2804
-wls-m_nm_prob                 0.0159
+wls-m_dw                      0.1098
+wls-m_jb_value                8.8603
+wls-m_jb_prob                 0.0119
+wls-m_skew                   -0.6991
+wls-m_kurtosis                3.4145
+wls-m_nm_value                9.0438
+wls-m_nm_prob                 0.0109
 wls-m_ks_value                   0.6
 wls-m_ks_prob                    0.0
-wls-m_shp_value               0.9209
+wls-m_shp_value               0.9261
 wls-m_shp_prob                   0.0
-wls-m_ad_value                3.5681
+wls-m_ad_value                3.4655
 wls-m_ad_nnorm                 False
 wls-missing                    raise
 wls-exog               [[1.0, 0.0...
-wls-endog              [61.100357...
+wls-endog              [50.242967...
 wls-trend                          c
-wls-weights            [0.0116222...
+wls-weights            [0.1290173...
 wls-W                  &lt;pyamr.met...
 wls-model              &lt;statsmode...
 wls-id                 WLS(c,Sig(...
 dtype: object
 
 Regression line:
-[276.05 278.47 280.89 283.32 285.74 288.16 290.58 293.01 295.43 297.85]
+[279.56 281.94 284.32 286.7  289.08 291.46 293.84 296.22 298.6  300.98]
 
 Summary:
                             WLS Regression Results
 ==============================================================================
-Dep. Variable:                      y   R-squared:                       0.494
-Model:                            WLS   Adj. R-squared:                  0.488
-Method:                 Least Squares   F-statistic:                     95.50
-Date:                Wed, 24 Mar 2021   Prob (F-statistic):           3.77e-16
-Time:                        15:39:42   Log-Likelihood:                   -inf
+Dep. Variable:                      y   R-squared:                       0.527
+Model:                            WLS   Adj. R-squared:                  0.522
+Method:                 Least Squares   F-statistic:                     109.2
+Date:                Wed, 31 Mar 2021   Prob (F-statistic):           1.28e-17
+Time:                        22:55:20   Log-Likelihood:                   -inf
 No. Observations:                 100   AIC:                               inf
 Df Residuals:                      98   BIC:                               inf
 Df Model:                           1
@@ -267,14 +269,14 @@ Covariance Type:            nonrobust
 ==============================================================================
                  coef    std err          t      P&gt;|t|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        276.0482     17.722     15.577      0.000     240.879     311.217
-x1             2.4227      0.248      9.772      0.000       1.931       2.915
+const        279.5638     16.144     17.317      0.000     247.527     311.600
+x1             2.3797      0.228     10.449      0.000       1.928       2.832
 ==============================================================================
-Omnibus:                        8.061   Durbin-Watson:                   0.500
-Prob(Omnibus):                  0.018   Jarque-Bera (JB):                9.614
-Skew:                           0.434   Prob(JB):                      0.00817
-Kurtosis:                       4.246   Cond. No.                         229.
-Normal (N):                     8.280   Prob(N):                         0.016
+Omnibus:                       12.683   Durbin-Watson:                   0.470
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               14.201
+Skew:                           0.735   Prob(JB):                     0.000825
+Kurtosis:                       4.118   Cond. No.                         227.
+Normal (N):                     9.044   Prob(N):                         0.011
 ==============================================================================
 </pre></div>
 </div>
@@ -506,7 +508,7 @@ Normal (N):                     8.280   Prob(N):                         0.016
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.116 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.110 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-wls-basic-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c1c73619aeee0a3bd86caad234cc157f/plot_wls_basic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_wls_basic.py</span></code></a></p>

@@ -340,18 +340,18 @@ strategy in AMR</p>
 </td></tr></table></div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-              date_received         date_outcome LastActDateODBC  ...  microorganism_specie microorganism_gram_type antimicrobial_class
-24      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p                 NaN
-25      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p    fluoroquinolones
-26      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p          macrolides
-27      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p          macrolides
-28      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p                 NaN
-...                     ...                  ...             ...  ...                   ...                     ...                 ...
-124584  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p         penicillins
-124585  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p                 NaN
-124586  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p                 NaN
-124587  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p       tetracyclines
-124588  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p                 NaN
+              date_received         date_outcome LastActDateODBC  patient_id  ... microorganism_genus microorganism_specie microorganism_gram_type antimicrobial_class
+24      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p                 NaN
+25      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p    fluoroquinolones
+26      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p          macrolides
+27      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p          macrolides
+28      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p                 NaN
+...                     ...                  ...             ...         ...  ...                 ...                  ...                     ...                 ...
+124584  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p         penicillins
+124585  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p                 NaN
+124586  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p                 NaN
+124587  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p       tetracyclines
+124588  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p                 NaN
 
 [12438 rows x 22 columns]
 
@@ -1164,7 +1164,7 @@ AVOR                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.0
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\nsummary = data.agg(\n    norganisms=(\&#39;organismCode\&#39;, \&#39;nunique\&#39;),\n    nantibiotics=(\&#39;antibioticCode\&#39;, \&#39;nunique\&#39;),\n    ncultures=(\&#39;orderCode\&#39;, \&#39;nunique\&#39;),\n    ntests=(\&#39;labNumber\&#39;, \&#39;nunique\&#39;)\n)\n\nprint(summary)\n\nprint(data.nunique())\n\n\nprint(len(data.groupby([\&#39;organismCode\&#39;, \&#39;antibioticCode\&#39;])))\nprint(data.shape[0])\n\nsummary = pd.DataFrame\n\n\n#from analysis.microbiology.statistics.frequency import Frequency\n\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = &quot;freq_tests_pairs_year&quot;\nfname_isola = &quot;freq_isolates_pairs_year&quot;\nfpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests\nfpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\&#39;Tests\&#39;] = dff_tests[\&#39;freq_ris\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Isolates\&#39;] = dff_isola[\&#39;freq\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests\&#39;].div(dfy[\&#39;Isolates\&#39;])\ndfy[\&#39;Antibiotics\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).antibioticCode.nunique()\ndfy[\&#39;Organisms\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\&#39;Total\&#39;,:] = np.nan\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests\&#39;] = dfy[\&#39;Tests\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Isolates\&#39;] = dfy[\&#39;Isolates\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests/Isolates\&#39;].mean()\ndfy.loc[\&#39;Total\&#39;,\&#39;Antibiotics\&#39;] = dff_reset.antibioticCode.nunique()\ndfy.loc[\&#39;Total\&#39;,\&#39;Organisms\&#39;] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint(&quot;\n\n&quot;)\nprint(&quot;Pandas:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy)\n\n# Print dataframe latex format.\nprint(&quot;\n\n&quot;)\nprint(&quot;Latex:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy.to_latex())\n\n#print dff_isola.head(10)\nimport sys\nsys.exit()\n&#39;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.892 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.673 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-01-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/8ea231e13cc952cc3427bd7a21cea30e/plot_step_01.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_01.py</span></code></a></p>
