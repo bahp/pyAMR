@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
@@ -112,7 +113,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
@@ -194,40 +195,114 @@ to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="index-asai">
 <span id="sphx-glr-examples-tutorial-indexes-plot-core-asai-py"></span><h1>Index - ASAI<a class="headerlink" href="#index-asai" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
 <ul class="simple">
+<li><p>Create data as in the example shown in the figure.</p></li>
 <li><p>Improve visualization.</p></li>
 <li><p>Create further examples with temporal visualization.</p></li>
 <li><p>Create further examples with general heatmap.</p></li>
 <li><p>Create further examples with animation?</p></li>
 </ul>
 </div>
+<p>The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
+these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
+intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both Gram-positive
+and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited activity and are
+effective only against particular species of bacteria. While these profiles appeared in the mid-1950s,
+little effort has been made to define them. Furthermore, such ambiguous labels are overused for different
+and even contradictory purposes.</p>
+<img alt="ASAI" class="align-right" src="../../../_images/index-asai.png" />
 <img alt="plot core asai" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_core_asai_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>             N_GENUS      N_SPECIE       ASAI_SCORE
-GRAM               N    P        N     P          N    P
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+             GENUS              SPECIE    ANTIBIOTIC GRAM  RESISTANCE  FREQUENCY  THRESHOLD  W_SPECIE  W_GENUS
+0   Staphylococcus  coagulase negative  ANTIBIOTIC_1    P        0.88          1        0.2    0.1000   0.3333
+1   Staphylococcus         epidermidis  ANTIBIOTIC_1    P        0.11          1        0.2    0.1000   0.3333
+2   Staphylococcus        haemolyticus  ANTIBIOTIC_1    P        0.32          1        0.2    0.1000   0.3333
+3   Staphylococcus         lugdumensis  ANTIBIOTIC_1    P        0.45          1        0.2    0.1000   0.3333
+4   Staphylococcus       saporphyticus  ANTIBIOTIC_1    P        0.18          1        0.2    0.1000   0.3333
+5   Staphylococcus              aureus  ANTIBIOTIC_1    P        0.13          5        0.2    0.5000   0.3333
+6     Enterococcus              durans  ANTIBIOTIC_1    N        0.64          1        0.2    0.2500   0.3333
+7     Enterococcus             faecium  ANTIBIOTIC_1    N        0.48          1        0.2    0.2500   0.3333
+8     Enterococcus         gallinarium  ANTIBIOTIC_1    N        0.10          1        0.2    0.2500   0.3333
+9     Enterococcus            faecalis  ANTIBIOTIC_1    N        0.09          1        0.2    0.2500   0.3333
+10   Streptococcus           viridians  ANTIBIOTIC_1    P        0.08          1        0.2    0.3333   0.3333
+11   Streptococcus          pneumoniae  ANTIBIOTIC_1    P        0.89          2        0.2    0.6667   0.3333
+
+
+Handling errors:
+The following columns are missing: {&#39;RESISTANCE&#39;}
+The following columns are missing: {&#39;GENUS&#39;}
+The following columns are missing: {&#39;SPECIE&#39;}
+The following columns are missing: {&#39;W_GENUS&#39;}
+The following columns are missing: {&#39;SPECIE&#39;, &#39;RESISTANCE&#39;}
+
+            The weights imputed do not fulfill all the requirements. Please
+            check the report below and correct the weights accordingly. Note
+            a given genus must have a consistent weight and the sum of weights
+            must add up to 1.
+
+                              W_GENUS_UNIQUE_OK  W_GENUS_SUM_OK  W_SPECIE_SUM_OK
+                GENUS
+                Enterococcus               True           False             True
+
+
+Show warnings:
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:276: UserWarning:
+
+
+
+                  The threshold has not been defined using either
+                  an input parameter (threshold=None) or a column in the
+                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
+                  of &#39;0.5&#39; will be used.
+
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:269: UserWarning:
+
+
+
+                  The threshold has been defined both as an
+                  input parameter (threshold=0.5) and a dataframe
+                  column &#39;THRESHOLD&#39;. The latter will be used.
+
+
+
+No errors or warnings:
+
+
+ASAI (weights):
+              N_GENUS  N_SPECIE  ASAI_SCORE
 ANTIBIOTIC
-ANTIBIOTIC_1     4.0  5.0     10.0  10.0     0.5833  1.0
+ANTIBIOTIC_1      3.0      12.0      0.5111
+
+
+ASAI (uniform):
+                   N_GENUS  N_SPECIE  ASAI_SCORE
+ANTIBIOTIC   GRAM
+ANTIBIOTIC_1 N         1.0       4.0         0.5
+             P         2.0       8.0         0.5
+
+
+ASAI (frequency):
+                   N_GENUS  N_SPECIE  ASAI_SCORE
+ANTIBIOTIC   GRAM
+ANTIBIOTIC_1 N         1.0       4.0      0.5000
+             P         2.0       8.0      0.6154
+
+ASAI:
+             N_GENUS      N_SPECIE      ASAI_SCORE
+GRAM               N    P        N    P          N       P
+ANTIBIOTIC
+ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
+
+&lt;matplotlib.legend.Legend object at 0x0000029F7F2AD1F0&gt;
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
-<span class="normal"> 19</span>
-<span class="normal"> 20</span>
-<span class="normal"> 21</span>
-<span class="normal"> 22</span>
-<span class="normal"> 23</span>
-<span class="normal"> 24</span>
-<span class="normal"> 25</span>
-<span class="normal"> 26</span>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 26</span>
 <span class="normal"> 27</span>
 <span class="normal"> 28</span>
 <span class="normal"> 29</span>
@@ -355,7 +430,126 @@ ANTIBIOTIC_1     4.0  5.0     10.0  10.0     0.5833  1.0
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
-<span class="normal">154</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
  <span class="kn">import</span> <span class="nn">sys</span>
  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -365,6 +559,7 @@ ANTIBIOTIC_1     4.0  5.0     10.0  10.0     0.5833  1.0
 
  <span class="c1"># Import specific libraries</span>
  <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">ASAI</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">asai</span>
 
  <span class="c1"># Configure seaborn style (context=talk)</span>
  <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
@@ -418,27 +613,21 @@ ANTIBIOTIC_1     4.0  5.0     10.0  10.0     0.5833  1.0
  <span class="c1"># Create data</span>
  <span class="c1"># ---------------------</span>
  <span class="c1"># Create data</span>
- <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;GENUS_1&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.6000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0064</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_5&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0073</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_6&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0056</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_3&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_7&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_8&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0518</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_9&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_10&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0595</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Staphylococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;coagulase negative&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Staphylococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;epidermidis&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.11</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Staphylococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;haemolyticus&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Staphylococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;lugdumensis&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Staphylococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;saporphyticus&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Staphylococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;aureus&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
 
-         <span class="p">[</span><span class="s1">&#39;GENUS_1&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_5&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_6&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_3&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_7&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_8&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_9&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
-         <span class="p">[</span><span class="s1">&#39;GENUS_5&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_10&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]]</span>
+         <span class="p">[</span><span class="s1">&#39;Enterococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;durans&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Enterococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;faecium&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Enterococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;gallinarium&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Enterococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;faecalis&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+
+         <span class="p">[</span><span class="s1">&#39;Streptococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;viridians&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+         <span class="p">[</span><span class="s1">&#39;Streptococcus&#39;</span><span class="p">,</span> <span class="s1">&#39;pneumoniae&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.89</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">]]</span>
+
 
  <span class="c1"># Create dataframe</span>
  <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span>
@@ -446,23 +635,134 @@ ANTIBIOTIC_1     4.0  5.0     10.0  10.0     0.5833  1.0
                                          <span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span>
                                          <span class="s1">&#39;GRAM&#39;</span><span class="p">,</span>
                                          <span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span>
-                                         <span class="s1">&#39;THRESHOLD&#39;</span><span class="p">])</span>
+                                         <span class="s1">&#39;FREQUENCY&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;THRESHOLD&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;W_SPECIE&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;W_GENUS&#39;</span><span class="p">])</span>
+
+ <span class="c1"># Show data</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+
+ <span class="c1"># ----------------------------------------------------</span>
+ <span class="c1"># ASAI (must raise error)</span>
+ <span class="c1"># ----------------------------------------------------</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Handling errors:&quot;</span><span class="p">)</span>
+
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">asai</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span>
+ <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">asai</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GENUS&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span>
+ <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">asai</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span>
+ <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">asai</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span>
+ <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">asai</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span>
+ <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+ <span class="k">try</span><span class="p">:</span>
+     <span class="n">asai</span> <span class="o">=</span> <span class="n">dataframe</span> \
+         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="s1">&#39;GRAM&#39;</span><span class="p">])</span> \
+         <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span>
+ <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+     <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+ <span class="c1"># ----------------------------------------------------</span>
+ <span class="c1"># ASAI (must show warning)</span>
+ <span class="c1"># ----------------------------------------------------</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Show warnings:&quot;</span><span class="p">)</span>
+
+ <span class="n">asai_5</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">])</span> \
+     <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+     <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span>
+
+ <span class="n">asai_6</span> <span class="o">=</span> <span class="n">dataframe</span> \
+     <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+     <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+
+ <span class="c1"># ----------------------------------------------------</span>
+ <span class="c1"># ASAI</span>
+ <span class="c1"># ----------------------------------------------------</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">No errors or warnings:&quot;</span><span class="p">)</span>
+
+ <span class="c1"># -------</span>
+ <span class="c1"># DEFAULT</span>
+ <span class="c1"># -------</span>
+ <span class="n">asai_7</span> <span class="o">=</span> <span class="n">dataframe</span> \
+     <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
+     <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">ASAI (weights):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">asai_7</span><span class="p">)</span>
+
+ <span class="c1"># -------</span>
+ <span class="c1"># UNIFORM</span>
+ <span class="c1"># -------</span>
+ <span class="n">asai_8</span> <span class="o">=</span> <span class="n">dataframe</span> \
+     <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="s1">&#39;GRAM&#39;</span><span class="p">])</span> \
+     <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">ASAI (uniform):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">asai_8</span><span class="p">)</span>
+
+ <span class="c1"># ---------</span>
+ <span class="c1"># FREQUENCY</span>
+ <span class="c1"># ---------</span>
+ <span class="n">asai_9</span> <span class="o">=</span> <span class="n">dataframe</span> \
+     <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="s1">&#39;GRAM&#39;</span><span class="p">])</span> \
+     <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">ASAI (frequency):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">asai_9</span><span class="p">)</span>
+
 
  <span class="c1"># -------------------------------</span>
  <span class="c1"># Create antimicrobial spectrum</span>
  <span class="c1"># -------------------------------</span>
  <span class="c1"># Create antimicrobial spectrum of activity instance</span>
- <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+ <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.21</span><span class="p">,</span>
              <span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span>
              <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span>
              <span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span>
              <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span>
-             <span class="n">column_threshold</span><span class="o">=</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">)</span>
+             <span class="n">column_frequency</span><span class="o">=</span><span class="s1">&#39;FREQUENCY&#39;</span><span class="p">,</span>
+             <span class="n">column_threshold</span><span class="o">=</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">,</span>
+             <span class="n">column_wgenus</span><span class="o">=</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">,</span>
+             <span class="n">column_wspecie</span><span class="o">=</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">)</span>
 
  <span class="c1"># Compute</span>
  <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;GRAM&#39;</span><span class="p">)</span>
 
  <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI:&quot;</span><span class="p">)</span>
  <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 
  <span class="c1"># -----------------------------</span>
@@ -496,10 +796,10 @@ ANTIBIOTIC_1     4.0  5.0     10.0  10.0     0.5833  1.0
  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
  <span class="c1"># Display</span>
- <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ <span class="c1">#plt.show()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.100 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.653 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-asai-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/23f4fe24d7ffcce6b9458be0b5d46f7c/plot_core_asai.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_asai.py</span></code></a></p>

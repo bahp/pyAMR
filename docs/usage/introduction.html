@@ -90,9 +90,13 @@
             
               <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-amr-indexes">The AMR indexes</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
@@ -100,7 +104,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
@@ -175,6 +179,113 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The growing threat of antimicrobial resistance (AMR) is a leading patient health and
+safety issue, with estimates that AMR will be responsible for more than 10 million deaths
+by 2050. A major driver of AMR has been the misuse of antimicrobials in humans. Whilst reasons
+for the misuse of antimicrobials are complex and multifaceted, a number of factors have been
+described and investigated. At the individual level, physicians often prioritise the management
+of the patient being treated, paying little regard to the long-term consequences of overusing
+antimicrobials. Moreover, the majority of antimicrobials are prescribed by individuals who are
+not experts in infection management and may have limited understanding of antimicrobials and the
+potential consequences of AMR.</p>
+<p>For such reason, numerous health organizations have promoted antimicrobial surveillance to regulate
+prescriptions within clinical practice. At national level, Public Health England implemented the
+English surveillance program for antimicrobial utilisation and resistance (ESPAUR) which
+provides annual reports as a benchmark to determine appropriate local action [11–14].
+At international level, the European Centre for Disease Prevention and Control through
+the European antimicrobial resistance surveillance network (EARS-Net) has created the
+largest publicly funded system for antimicrobial surveillance in Europe. Furthermore, the World Health
+Organization has recently implemented the global antimicrobial resistance surveillance system (GLASS)
+to strengthen the evidence base on AMR and inform decision-making.</p>
+<p>With increasing electronic recording of data, there is a growing interest in the potential secondary
+use of microbiology records to provide the necessary information to support antimicrobial stewardship
+programs [20]. These programs are crucial to guide health care organizations designing evidence-based
+policies to combat AMR [21, 22]. In particular, susceptibility reporting has shown to be a determinant
+data source to inform empiric antimicrobial therapy selection</p>
+<a class="reference internal image-reference" href="../_images/susceptibility-test-record.png"><img alt="ASAI" class="align-right" src="../_images/susceptibility-test-record.png" style="width: 200px;" /></a>
+<p>Susceptibility test records (see Figure 4.1) are composed by laboratory identification
+number (LID), patient identification number (PID), date, sample type or culture (e.g.
+blood or urine), pathogen, antimicrobial, reported status and outcome (resistant, sensitive
+or intermediate). In research, the susceptibility test data is usually first grouped by
+specimen or culture type, and further grouped by pairs (pathogen, antimicrobial)
+since it is widely accepted by clinicians as detailed in the UK five year strategy in AMR [21].</p>
+<div class="section" id="the-amr-indexes">
+<h2>The AMR indexes<a class="headerlink" href="#the-amr-indexes" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 69%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Acronym</p></th>
+<th class="head"><p>Full name</p></th>
+<th class="head"><p>Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SARI</span></code></p></td>
+<td><p>Single Antimicrobial Resistance Index</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MARI</span></code></p></td>
+<td><p>Multiple Antimicrobial Resistance Index</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Pending</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DRI</span></code></p></td>
+<td><p>Drug Resistance Index</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Pending</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SART</span></code></p></td>
+<td><p>Single Antimicrobial Resistance Trend</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ASAI</span></code></p></td>
+<td><p>Antimicrobial Spectrum of Activity Index</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Single Antibiotic Resistance Index (SARI)</p>
+<blockquote>
+<div><p>This index describes the proportion of resistant isolates for a given set of susceptibility
+tests. It provides a value within the range [0,1] where values close to one indicate high
+resistance. It is agnostic to pathogen, antibiotic and time. The variables R, I and S represent
+the number of susceptibility tests with Resistant, Intermediate and Susceptible outcomes
+respectively. The definition might vary slightly since the intermediate category is not always
+considered.</p>
+<p>SARI = R + I / R + I + S</p>
+<p>Examples: XXX | XXX | XXX</p>
+</div></blockquote>
+</li>
+<li><p>Multiple Antibiotic Resistance Index (MARI)</p>
+<blockquote>
+<div><p>This index describes the ratio of antimicrobials tested (T) to which a pathogen is resistant (R).
+It provides a value within the range [0,1] where values close to one indicate high multi-drug
+resistance. It highly depends on the antimicrobials to which the pathogen is tested. Since
+tested antimicrobials vary among health care centres and time, comparison and analysis of its
+evolution in time is not straight forward. In addition, antibiotics which are intrinsically resistant
+should not be considered.</p>
+<p>MARI_{ISO} = R / T</p>
+</div></blockquote>
+</li>
+<li><p>Drug Resistance Index (DRI)</p>
+<blockquote>
+<div><p>This index measures the proportion of pathogens that are resistant to the antimicrobials used
+to treat them. It provides a value within the range [0,1] where values close to one indicate
+high resistant for frequent antimicrobials. The variable ρik is the proportion of resistance
+among organism i to antimicrobial k and qik is the frequency of drug k used to treat organism i.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Add formula and/or reference.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Single Antibiotic Resistance Trend (SART)</p></li>
+<li><p>Antimicrobial Spectrum of Activity Index (ASAI)</p></li>
+</ul>
+</div>
 </div>
 
 

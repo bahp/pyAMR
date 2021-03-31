@@ -34,7 +34,7 @@ Step 01 - Introduction
 Loading data
 ------------
 
-``Susceptibility`` test records are composed by laboratory identification
+A ``Susceptibility test`` record is composed by laboratory identification
 number (LID), patient identification number (PID), date, sample type or
 culture (e.g. blood or urine), pathogen, antimicrobial, reported status
 and outcome (resistant, sensitive or intermediate). In this research,
@@ -45,7 +45,7 @@ strategy in AMR
 
 A small dataset will be used for this example.
 
-.. GENERATED FROM PYTHON SOURCE LINES 31-80
+.. GENERATED FROM PYTHON SOURCE LINES 31-95
 
 .. code-block:: default
    :lineno-start: 33
@@ -59,8 +59,11 @@ A small dataset will be used for this example.
     import matplotlib as mpl
     import matplotlib.pyplot as plt
 
+    # Import from pyAMR
+    from pyamr.datasets.load import make_susceptibility
+
     # -------------------------------------------
-    # Load data
+    # Constants
     # -------------------------------------------
     # Path
     path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
@@ -79,11 +82,23 @@ A small dataset will be used for this example.
                'antibioticCode',
                'sensitivity']
 
+    # Sensitivities to keep
+    sensitivities = ['sensitive',
+                     'intermediate',
+                     'resistant']
+
+    # Specimens
+    specimen = ['BLDCUL']
+
+    # -------------------------------------------
     # Load data
-    data = pd.read_csv(path, usecols=usecols,
-        parse_dates=['dateReceived'])
+    # -------------------------------------------
+    # Load data
+    data = make_susceptibility()
 
     # Clean
+    data = data[data.sensitivity.isin(sensitivities)]
+    data = data[data.specimen_code.isin(specimen)]
     data = data.drop_duplicates()
 
     # Show
@@ -111,31 +126,36 @@ A small dataset will be used for this example.
 
 
     Data:
-         dateReceived orderCode       orderName labNumber  patNumber         organismName organismCode antibioticName antibioticCode sensitivity
-    0      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR       amikacin           AAMI   sensitive
-    1      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR    amoxycillin           AAMO   resistant
-    2      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR  amp c markers          AAMPC   resistant
-    3      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR      augmentin           AAUG   resistant
-    4      2016-01-01    SPTCUL  sputum culture  F2403455          0  serratia marcescens         SMAR      aztreonam           AAZT   sensitive
-    ...           ...       ...             ...       ...        ...                  ...          ...            ...            ...         ...
-    5147   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL        tazocin           ATAZ   sensitive
-    5148   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL     temocillin           ATEM   sensitive
-    5149   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL    tigecycline           ATIG   sensitive
-    5150   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL     tobramycin           ATOB   sensitive
-    5151   2016-01-11    BLDCUL   blood culture  X1721650        400     escherichia coli         ECOL   trimethoprim           ATRI   sensitive
+                  date_received         date_outcome LastActDateODBC  ...  microorganism_specie microorganism_gram_type antimicrobial_class
+    24      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p                 NaN
+    25      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p    fluoroquinolones
+    26      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p          macrolides
+    27      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p          macrolides
+    28      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020  ...                aureus                       p                 NaN
+    ...                     ...                  ...             ...  ...                   ...                     ...                 ...
+    124584  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p         penicillins
+    124585  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p                 NaN
+    124586  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p                 NaN
+    124587  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p       tetracyclines
+    124588  2021-01-18 12:08:00                  NaN      2021-01-24  ...    coagulase negative                       p                 NaN
 
-    [5152 rows x 10 columns]
+    [12438 rows x 22 columns]
 
     Columns:
-    Index(['dateReceived', 'orderCode', 'orderName', 'labNumber', 'patNumber',
-           'organismName', 'organismCode', 'antibioticName', 'antibioticCode',
-           'sensitivity'],
+    Index(['date_received', 'date_outcome', 'LastActDateODBC', 'patient_id',
+           'laboratory_number', 'specimen_code', 'specimen_name',
+           'specimen_description', 'microorganism_piece_counter',
+           'microorganism_code', 'microorganism_name', 'antimicrobial_code',
+           'antimicrobial_name', 'sensitivity_method', 'sensitivity_code', 'mic',
+           'reported', 'sensitivity', 'microorganism_genus',
+           'microorganism_specie', 'microorganism_gram_type',
+           'antimicrobial_class'],
           dtype='object')
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-110
+.. GENERATED FROM PYTHON SOURCE LINES 96-125
 
 Computing Freq
 --------------
@@ -167,10 +187,10 @@ different strategies:
 
 For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_frequency.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 111-148
+.. GENERATED FROM PYTHON SOURCE LINES 126-163
 
 .. code-block:: default
-   :lineno-start: 112
+   :lineno-start: 127
 
 
     # -------------------------------------------
@@ -180,9 +200,9 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_fre
     from pyamr.core.freq import Frequency
 
     # Create instance
-    freq = Frequency(column_antibiotic='antibioticCode',
-                     column_organism='organismCode',
-                     column_date='dateReceived',
+    freq = Frequency(column_antibiotic='antimicrobial_code',
+                     column_organism='microorganism_code',
+                     column_date='date_received',
                      column_outcome='sensitivity')
 
     # Compute frequencies (overall)
@@ -221,43 +241,43 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_fre
 
 
     Freq (overall):
-    SENSITIVITY        <<do not report>>  highly resistant  intermediate  not done  resistant  sensitive  freq
-    SPECIE ANTIBIOTIC                                                                                         
-    ABAU   AAMI                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ACIP                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ACOT                      0.0               0.0           0.0       0.0        1.0        1.0   2.0
-           AGEN                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           AMER                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
-    ...                              ...               ...           ...       ...        ...        ...   ...
-    YEAST  ATAZ                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ATEM                      0.0               0.0           0.0       0.0        0.0        1.0   1.0
-           ATIG                      0.0               0.0           0.0       0.0        0.0        1.0   1.0
-           ATOB                      0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ATRI                      0.0               0.0           0.0       0.0        0.0        1.0   1.0
+    SENSITIVITY        intermediate  resistant  sensitive  freq
+    SPECIE ANTIBIOTIC                                          
+    ABAU   AAMI                 0.0        0.0        1.0   1.0
+           ACIP                 1.0        0.0        0.0   1.0
+           ACOT                 0.0        0.0        1.0   1.0
+           AGEN                 0.0        0.0        1.0   1.0
+           AMER                 0.0        0.0        1.0   1.0
+    ...                         ...        ...        ...   ...
+    STREP  AVAN                 0.0        0.0        5.0   5.0
+    SVES   ACLI                 0.0        0.0        1.0   1.0
+           APEN                 0.0        0.0        1.0   1.0
+           ATET                 0.0        0.0        1.0   1.0
+           AVAN                 0.0        0.0        1.0   1.0
 
-    [627 rows x 7 columns]
+    [688 rows x 4 columns]
 
     Freq (monthly):
-    SENSITIVITY                   <<do not report>>  highly resistant  intermediate  not done  resistant  sensitive  freq
-    SPECIE ANTIBIOTIC DATE                                                                                               
-    ABAU   AAMI       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ACIP       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ACOT       2016-01-31                0.0               0.0           0.0       0.0        1.0        1.0   2.0
-           AGEN       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           AMER       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
-    ...                                         ...               ...           ...       ...        ...        ...   ...
-    YEAST  ATAZ       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ATEM       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
-           ATIG       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
-           ATOB       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0
-           ATRI       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0
+    SENSITIVITY                   intermediate  resistant  sensitive  freq
+    SPECIE ANTIBIOTIC DATE                                                
+    ABAU   AAMI       2020-08-31           0.0        0.0        1.0   1.0
+           ACIP       2020-08-31           1.0        0.0        0.0   1.0
+           ACOT       2020-08-31           0.0        0.0        1.0   1.0
+           AGEN       2020-08-31           0.0        0.0        1.0   1.0
+           AMER       2020-08-31           0.0        0.0        1.0   1.0
+    ...                                    ...        ...        ...   ...
+    STREP  AVAN       2021-01-31           0.0        0.0        1.0   1.0
+    SVES   ACLI       2021-01-31           0.0        0.0        1.0   1.0
+           APEN       2021-01-31           0.0        0.0        1.0   1.0
+           ATET       2021-01-31           0.0        0.0        1.0   1.0
+           AVAN       2021-01-31           0.0        0.0        1.0   1.0
 
-    [627 rows x 7 columns]
-
-
+    [2935 rows x 4 columns]
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 149-170
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 164-185
 
 Computing SARI
 --------------
@@ -281,10 +301,10 @@ The parameter strategy accepts three different options:
 
 For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 171-215
+.. GENERATED FROM PYTHON SOURCE LINES 186-232
 
 .. code-block:: default
-   :lineno-start: 172
+   :lineno-start: 187
 
 
     # -------------------------------------------
@@ -306,12 +326,14 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sar
     # Plot Heatmap
     # ------------
     # Create matrix
-    matrix = sari_overall[['sari']]
+    matrix = sari_overall.copy(deep=True)
+    matrix = matrix[matrix.freq > 100]
+    matrix = matrix[['sari']]
     matrix = matrix.unstack() * 100
     matrix.columns = matrix.columns.droplevel()
 
     # Create figure
-    f, ax = plt.subplots(1, 1, figsize=(18, 11))
+    f, ax = plt.subplots(1, 1, figsize=(10, 4))
 
     # Create colormap
     cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
@@ -346,43 +368,43 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sar
 
 
     SARI (overall):
-    SENSITIVITY        <<do not report>>  highly resistant  intermediate  not done  resistant  sensitive  freq  sari
-    SPECIE ANTIBIOTIC                                                                                               
-    ABAU   AAMI                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ACIP                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ACOT                      0.0               0.0           0.0       0.0        1.0        1.0   2.0   0.5
-           AGEN                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           AMER                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-    ...                              ...               ...           ...       ...        ...        ...   ...   ...
-    YEAST  ATAZ                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ATEM                      0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
-           ATIG                      0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
-           ATOB                      0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ATRI                      0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+    SENSITIVITY        intermediate  resistant  sensitive  freq  sari
+    SPECIE ANTIBIOTIC                                                
+    ABAU   AAMI                 0.0        0.0        1.0   1.0   0.0
+           ACIP                 1.0        0.0        0.0   1.0   1.0
+           ACOT                 0.0        0.0        1.0   1.0   0.0
+           AGEN                 0.0        0.0        1.0   1.0   0.0
+           AMER                 0.0        0.0        1.0   1.0   0.0
+    ...                         ...        ...        ...   ...   ...
+    STREP  AVAN                 0.0        0.0        5.0   5.0   0.0
+    SVES   ACLI                 0.0        0.0        1.0   1.0   0.0
+           APEN                 0.0        0.0        1.0   1.0   0.0
+           ATET                 0.0        0.0        1.0   1.0   0.0
+           AVAN                 0.0        0.0        1.0   1.0   0.0
 
-    [627 rows x 8 columns]
+    [688 rows x 5 columns]
 
     SARI (monthly):
-    SENSITIVITY                   <<do not report>>  highly resistant  intermediate  not done  resistant  sensitive  freq  sari
-    SPECIE ANTIBIOTIC DATE                                                                                                     
-    ABAU   AAMI       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ACIP       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ACOT       2016-01-31                0.0               0.0           0.0       0.0        1.0        1.0   2.0   0.5
-           AGEN       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           AMER       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-    ...                                         ...               ...           ...       ...        ...        ...   ...   ...
-    YEAST  ATAZ       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ATEM       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
-           ATIG       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
-           ATOB       2016-01-31                0.0               0.0           0.0       0.0        0.0        2.0   2.0   0.0
-           ATRI       2016-01-31                0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+    SENSITIVITY                   intermediate  resistant  sensitive  freq  sari
+    SPECIE ANTIBIOTIC DATE                                                      
+    ABAU   AAMI       2020-08-31           0.0        0.0        1.0   1.0   0.0
+           ACIP       2020-08-31           1.0        0.0        0.0   1.0   1.0
+           ACOT       2020-08-31           0.0        0.0        1.0   1.0   0.0
+           AGEN       2020-08-31           0.0        0.0        1.0   1.0   0.0
+           AMER       2020-08-31           0.0        0.0        1.0   1.0   0.0
+    ...                                    ...        ...        ...   ...   ...
+    STREP  AVAN       2021-01-31           0.0        0.0        1.0   1.0   0.0
+    SVES   ACLI       2021-01-31           0.0        0.0        1.0   1.0   0.0
+           APEN       2021-01-31           0.0        0.0        1.0   1.0   0.0
+           ATET       2021-01-31           0.0        0.0        1.0   1.0   0.0
+           AVAN       2021-01-31           0.0        0.0        1.0   1.0   0.0
 
-    [627 rows x 8 columns]
-
-
+    [2935 rows x 5 columns]
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 216-242
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 233-259
 
 Computing ASAI
 --------------
@@ -411,10 +433,10 @@ a given threshold.
 
 For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 243-385
+.. GENERATED FROM PYTHON SOURCE LINES 260-393
 
 .. code-block:: default
-   :lineno-start: 244
+   :lineno-start: 261
 
 
     # -------------------------------------------
@@ -423,40 +445,31 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
     # Import specific libraries
     from pyamr.core.asai import ASAI
 
-    # Load default organisms dataset
-    orgs = pd.read_csv(path_org,
-        usecols=['organism_name',
-                 'organism_code',
-                 'genus_name',
-                 'gram_type'])
-
-    # Fill empty
-    # .. note: Leads to division by 0 (investigate)
-    #orgs.GRAM_TYPE = orgs.GRAM_TYPE.fillna('u')
 
     # Format DataFrame
     dataframe = sari_overall.copy(deep=True)
     dataframe = sari_overall.reset_index()
-    dataframe = dataframe.merge(orgs, how='left',
-        left_on='SPECIE', right_on='organism_code')
+    dataframe = dataframe.merge(data, how='left',
+        left_on='SPECIE', right_on='microorganism_code')
 
-    # Select interesting columns
-    dataframe = dataframe[['SPECIE',
-                           'ANTIBIOTIC',
-                           'genus_name',
-                           'gram_type',
-                           'sari']]
+    # Fill empty
+    # .. note: Leads to division by 0 (investigate)
+    dataframe.microorganism_gram_type = \
+        dataframe.microorganism_gram_type.fillna('u')
+
+    print(dataframe.columns)
 
     # Create antimicrobial spectrum of activity instance
     asai = ASAI(weights='uniform',
                 threshold=0.05,
-                column_genus='genus_name',
+                column_genus='microorganism_name',
                 column_specie='SPECIE',
                 column_antibiotic='ANTIBIOTIC',
                 column_resistance='sari')
 
     # Compute
-    scores = asai.compute(dataframe, by_category='gram_type')
+    scores = asai.compute(dataframe,
+                by_category='microorganism_gram_type')
 
     # .. note: In order to sort the scores we need to compute metrics
     #          that combine the different subcategories (e.g. gram-negative
@@ -507,12 +520,12 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
     x = scores.index.values
     y_n = scores['ASAI_SCORE']['n'].values
     y_p = scores['ASAI_SCORE']['p'].values
-    #y_u = scores['ASAI_SCORE']['U'].values
+    y_u = scores['ASAI_SCORE']['u'].values
 
     # Constants
     colormap_p = scalar_colormap(y_p, cmap='Blues', vmin=-0.1, vmax=1.1)
     colormap_n = scalar_colormap(y_n, cmap='Reds', vmin=-0.1, vmax=1.1)
-    #colormap_u = scalar_colormap(y_u, cmap='Greens', vmin=-0.1, vmax=1.1)
+    colormap_u = scalar_colormap(y_u, cmap='Greens', vmin=-0.1, vmax=1.1)
 
     # ----------
     # Example
@@ -528,8 +541,8 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
                 saturation=0.5, label='Gram-positive')
     sns.barplot(x=y_n, y=x, palette=colormap_n, ax=axes[1], orient='h',
                 saturation=0.5, label='Gram-negative')
-    #sns.barplot(x=y_u, y=x, palette=colormap_u, ax=axes[2], orient='h',
-    #            saturation=0.5, label='Gram-unknown')
+    sns.barplot(x=y_u, y=x, palette=colormap_u, ax=axes[2], orient='h',
+                saturation=0.5, label='Gram-unknown')
 
     # Configure
     sns.despine(bottom=True)
@@ -572,78 +585,89 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
 
  .. code-block:: none
 
+    Index(['SPECIE', 'ANTIBIOTIC', 'intermediate', 'resistant', 'sensitive',
+           'freq', 'sari', 'date_received', 'date_outcome', 'LastActDateODBC',
+           'patient_id', 'laboratory_number', 'specimen_code', 'specimen_name',
+           'specimen_description', 'microorganism_piece_counter',
+           'microorganism_code', 'microorganism_name', 'antimicrobial_code',
+           'antimicrobial_name', 'sensitivity_method', 'sensitivity_code', 'mic',
+           'reported', 'sensitivity', 'microorganism_genus',
+           'microorganism_specie', 'microorganism_gram_type',
+           'antimicrobial_class'],
+          dtype='object')
     Data output:
-               N_GENUS      N_SPECIE       ASAI_SCORE               width     gmean
-    gram_type        n    p        n     p          n         p                    
-    ANTIBIOTIC                                                                     
-    ACHL           3.0  1.0      3.0   1.0   1.000000  1.000000  2.000000  1.000000
-    AOFL           2.0  1.0      2.0   1.0   1.000000  1.000000  2.000000  1.000000
-    ALIN           1.0  2.0      1.0   4.0   1.000000  1.000000  2.000000  1.000000
-    AVAN           2.0  3.0      2.0  11.0   1.000000  0.666667  1.666667  0.816497
-    APEN           1.0  2.0      1.0   8.0   1.000000  0.666667  1.666667  0.816497
-    AERY           1.0  3.0      1.0  11.0   1.000000  0.633333  1.633333  0.795822
-    ATIG           6.0  2.0     10.0   4.0   0.750000  0.833333  1.583333  0.790569
-    ATET           1.0  3.0      1.0  12.0   1.000000  0.555556  1.555556  0.745356
-    AMLS           1.0  3.0      1.0   7.0   1.000000  0.555556  1.555556  0.745356
-    ACIP           9.0  3.0     16.0   9.0   0.592593  0.888889  1.481481  0.725775
-    ATEI           1.0  2.0      1.0   3.0   1.000000  0.500000  1.500000  0.707107
-    AGEN           6.0  4.0     13.0  12.0   0.555556  0.750000  1.305556  0.645497
-    ANIT           2.0  3.0      2.0   5.0   0.500000  0.833333  1.333333  0.645497
-    ATRI           5.0  3.0     10.0   8.0   0.433333  0.777778  1.211111  0.580549
-    AAMO           5.0  2.0      6.0   3.0   0.400000  0.500000  0.900000  0.447214
-    AOXA           0.0  1.0      0.0   1.0   0.000000  0.000000  0.000000  0.000000
-    AMEC           3.0  0.0      3.0   0.0   0.333333  0.000000  0.333333  0.000000
-    ARIF           0.0  3.0      0.0   7.0   0.000000  0.933333  0.933333  0.000000
-    ATOB           6.0  0.0     12.0   0.0   0.694444  0.000000  0.694444  0.000000
-    AMUP           0.0  3.0      0.0   7.0   0.000000  0.933333  0.933333  0.000000
-    AMOX           0.0  1.0      0.0   1.0   0.000000  1.000000  1.000000  0.000000
-    ATEM           5.0  0.0     10.0   0.0   0.533333  0.000000  0.533333  0.000000
-    ASPE           1.0  0.0      1.0   0.0   1.000000  0.000000  1.000000  0.000000
-    AMET           0.0  3.0      0.0   7.0   0.000000  0.800000  0.800000  0.000000
-    ATAZ           6.0  0.0     13.0   0.0   0.583333  0.000000  0.583333  0.000000
-    AMER           6.0  0.0     12.0   0.0   0.805556  0.000000  0.805556  0.000000
-    ANAL           1.0  0.0      1.0   0.0   0.000000  0.000000  0.000000  0.000000
-    AAMI           6.0  0.0     12.0   0.0   0.750000  0.000000  0.750000  0.000000
-    ALEV           0.0  1.0      0.0   1.0   0.000000  1.000000  1.000000  0.000000
-    AFUS           0.0  3.0      0.0   8.0   0.000000  0.777778  0.777778  0.000000
-    AAMPC          4.0  0.0      6.0   0.0   0.250000  0.000000  0.250000  0.000000
-    AAUG           5.0  0.0      7.0   0.0   0.200000  0.000000  0.200000  0.000000
-    AAZI           1.0  0.0      1.0   0.0   1.000000  0.000000  1.000000  0.000000
-    AAZT           6.0  0.0     10.0   0.0   0.527778  0.000000  0.527778  0.000000
-    ACAZ           6.0  0.0     13.0   0.0   0.583333  0.000000  0.583333  0.000000
-    ACELX          3.0  0.0      3.0   0.0   0.000000  0.000000  0.000000  0.000000
-    ACIX           1.0  0.0      1.0   0.0   1.000000  0.000000  1.000000  0.000000
-    ACLI           0.0  3.0      0.0  12.0   0.000000  0.755556  0.755556  0.000000
-    ACOL           5.0  0.0      9.0   0.0   0.800000  0.000000  0.800000  0.000000
-    ACONE          8.0  0.0     13.0   0.0   0.770833  0.000000  0.770833  0.000000
-    ACPO           2.0  0.0      2.0   0.0   0.000000  0.000000  0.000000  0.000000
-    ACTX           2.0  0.0      2.0   0.0   0.500000  0.000000  0.500000  0.000000
-    ACXM           5.0  0.0      8.0   0.0   0.600000  0.000000  0.600000  0.000000
-    ACXT           5.0  0.0      8.0   0.0   0.400000  0.000000  0.400000  0.000000
-    ADAP           0.0  1.0      0.0   2.0   0.000000  0.000000  0.000000  0.000000
-    AERT           5.0  0.0     10.0   0.0   0.633333  0.000000  0.633333  0.000000
-    AESBL          3.0  0.0      3.0   0.0   0.000000  0.000000  0.000000  0.000000
-    AIMP           1.0  0.0      2.0   0.0   0.500000  0.000000  0.500000  0.000000
+                            N_GENUS             N_SPECIE             ASAI_SCORE                         width     gmean
+    microorganism_gram_type       n     p     u        n     p     u          n         p         u                    
+    ANTIBIOTIC                                                                                                         
+    ANIT                        1.0   1.0   1.0      1.0   1.0   1.0   1.000000  1.000000  1.000000  2.000000  1.000000
+    AMER                       12.0   1.0  14.0     12.0   1.0  14.0   0.750000  1.000000  1.000000  1.750000  0.866025
+    AFOX                        6.0   1.0   4.0      6.0   1.0   4.0   0.500000  1.000000  1.000000  1.500000  0.707107
+    ACOT                        8.0   1.0  12.0      8.0   1.0  12.0   0.500000  1.000000  0.916667  1.500000  0.707107
+    ATIG                        8.0   4.0   8.0      8.0   4.0   8.0   0.625000  0.500000  1.000000  1.125000  0.559017
+    ACIP                       11.0   4.0  12.0     11.0   4.0  12.0   0.545455  0.500000  1.000000  1.045455  0.522233
+    ATRI                        1.0   5.0   2.0      1.0   5.0   2.0   1.000000  0.200000  0.500000  1.200000  0.447214
+    AAUG                        5.0   1.0   4.0      5.0   1.0   4.0   0.200000  1.000000  1.000000  1.200000  0.447214
+    AGEN                       12.0   6.0  13.0     12.0   6.0  13.0   0.583333  0.333333  1.000000  0.916667  0.440959
+    AMET                        0.0   4.0   2.0      0.0   4.0   2.0   0.000000  0.250000  1.000000  0.250000  0.000000
+    AMF                         0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
+    AMLS                        0.0   5.0   0.0      0.0   5.0   0.0   0.000000  0.200000  0.000000  0.200000  0.000000
+    AMTZ                        0.0   2.0   1.0      0.0   2.0   1.0   0.000000  0.500000  1.000000  0.500000  0.000000
+    AMUP                        0.0   7.0   0.0      0.0   7.0   0.0   0.000000  0.714286  0.000000  0.714286  0.000000
+    ANEO                        0.0   7.0   2.0      0.0   7.0   2.0   0.000000  0.571429  1.000000  0.571429  0.000000
+    ARIF                        0.0   9.0   3.0      0.0   9.0   3.0   0.000000  0.555556  1.000000  0.555556  0.000000
+    APCZ                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
+    APEN                        0.0  23.0   5.0      0.0  23.0   5.0   0.000000  0.695652  1.000000  0.695652  0.000000
+    ALEV                        0.0   1.0   1.0      0.0   1.0   1.0   0.000000  1.000000  1.000000  1.000000  0.000000
+    ATAZ                       11.0   0.0   7.0     11.0   0.0   7.0   0.454545  0.000000  0.857143  0.454545  0.000000
+    ATEI                        0.0   6.0   0.0      0.0   6.0   0.0   0.000000  0.666667  0.000000  0.666667  0.000000
+    ATEM                        9.0   0.0   5.0      9.0   0.0   5.0   0.666667  0.000000  1.000000  0.666667  0.000000
+    ATET                        0.0  14.0   7.0      0.0  14.0   7.0   0.000000  0.642857  1.000000  0.642857  0.000000
+    ATOB                        3.0   0.0   0.0      3.0   0.0   0.0   0.666667  0.000000  0.000000  0.666667  0.000000
+    AVAN                        0.0  25.0   4.0      0.0  25.0   4.0   0.000000  0.960000  1.000000  0.960000  0.000000
+    ALIN                        0.0  13.0   4.0      0.0  13.0   4.0   0.000000  1.000000  1.000000  1.000000  0.000000
+    AAMI                       12.0   0.0  12.0     12.0   0.0  12.0   0.916667  0.000000  1.000000  0.916667  0.000000
+    AITR                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
+    AIMP                        3.0   0.0   2.0      3.0   0.0   2.0   0.666667  0.000000  1.000000  0.666667  0.000000
+    AAMPH                       0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
+    AAND                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
+    AAZT                        9.0   0.0   5.0      9.0   0.0   5.0   0.444444  0.000000  0.800000  0.444444  0.000000
+    ACAZ                       10.0   0.0   5.0     10.0   0.0   5.0   0.400000  0.000000  0.800000  0.400000  0.000000
+    ACHL                        0.0   9.0   3.0      0.0   9.0   3.0   0.000000  0.888889  1.000000  0.888889  0.000000
+    ACLI                        0.0  21.0   4.0      0.0  21.0   4.0   0.000000  0.428571  0.750000  0.428571  0.000000
+    ACLZ                        3.0   0.0   0.0      3.0   0.0   0.0   0.666667  0.000000  0.000000  0.666667  0.000000
+    ACONE                       7.0   0.0   7.0      7.0   0.0   7.0   0.428571  0.000000  0.857143  0.428571  0.000000
+    ACPIM                       4.0   0.0   1.0      4.0   0.0   1.0   0.750000  0.000000  1.000000  0.750000  0.000000
+    ACPO                        1.0   0.0   0.0      1.0   0.0   0.0   1.000000  0.000000  0.000000  1.000000  0.000000
+    ACXM                        6.0   0.0   7.0      6.0   0.0   7.0   0.166667  0.000000  0.857143  0.166667  0.000000
+    ACZA                       10.0   0.0   3.0     10.0   0.0   3.0   0.900000  0.000000  1.000000  0.900000  0.000000
+    ADAP                        0.0   2.0   0.0      0.0   2.0   0.0   0.000000  1.000000  0.000000  1.000000  0.000000
+    AERT                        9.0   0.0   8.0      9.0   0.0   8.0   0.777778  0.000000  1.000000  0.777778  0.000000
+    AERY                        0.0  12.0   2.0      0.0  12.0   2.0   0.000000  0.416667  0.500000  0.416667  0.000000
+    AESBL                       3.0   0.0   0.0      3.0   0.0   0.0   0.333333  0.000000  0.000000  0.333333  0.000000
+    AFLUZ                       0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
+    AFUS                        0.0   8.0   2.0      0.0   8.0   2.0   0.000000  0.500000  1.000000  0.500000  0.000000
+    AAMP                        2.0   3.0   2.0      2.0   3.0   2.0   0.000000  0.666667  1.000000  0.666667  0.000000
+    AVOR                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 386-390
+.. GENERATED FROM PYTHON SOURCE LINES 394-398
 
 Computing SART
 --------------
 
 .. warning:: To include.
 
-.. GENERATED FROM PYTHON SOURCE LINES 394-396
+.. GENERATED FROM PYTHON SOURCE LINES 402-404
 
 Dirty code to use and or delete
 -------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 397-471
+.. GENERATED FROM PYTHON SOURCE LINES 405-479
 
 .. code-block:: default
-   :lineno-start: 398
+   :lineno-start: 406
 
 
     """
@@ -737,7 +761,7 @@ Dirty code to use and or delete
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  4.236 seconds)
+   **Total running time of the script:** ( 0 minutes  5.892 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:

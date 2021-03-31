@@ -42,7 +42,7 @@ np.set_printoptions(precision=2)
 # ------------------
 # Methods
 # ------------------
-def get_category_colors(index, category, cmap='tab10'):
+def get_category_colors(index, category, cmap='hls'):
     """This method creates the colors for the different elements in
     categorical feature vector.
 

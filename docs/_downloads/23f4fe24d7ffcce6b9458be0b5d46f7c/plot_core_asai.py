@@ -2,11 +2,24 @@
 Index - ASAI
 ============================
 
-.. warning::
-        - Improve visualization.
-        - Create further examples with temporal visualization.
-        - Create further examples with general heatmap.
-        - Create further examples with animation?
+.. todo::
+    - Create data as in the example shown in the figure.
+    - Improve visualization.
+    - Create further examples with temporal visualization.
+    - Create further examples with general heatmap.
+    - Create further examples with animation?
+
+The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
+these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
+intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both Gram-positive
+and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited activity and are
+effective only against particular species of bacteria. While these profiles appeared in the mid-1950s,
+little effort has been made to define them. Furthermore, such ambiguous labels are overused for different
+and even contradictory purposes.
+
+.. image:: ../../_static/imgs/index-asai.png
+   :align: right
+   :alt: ASAI
 """
 
 
@@ -20,6 +33,7 @@ import matplotlib.pyplot as plt
 
 # Import specific libraries
 from pyamr.core.asai import ASAI
+from pyamr.core.asai import asai
 
 # Configure seaborn style (context=talk)
 sns.set(style="white")
@@ -73,27 +87,21 @@ def scalar_colormap(values, cmap, vmin, vmax):
 # Create data
 # ---------------------
 # Create data
-data = [['GENUS_1', 'SPECIE_1', 'ANTIBIOTIC_1', 'N', 0.6000, 0.05],
-        ['GENUS_2', 'SPECIE_2', 'ANTIBIOTIC_1', 'N', 0.0000, 0.05],
-        ['GENUS_2', 'SPECIE_3', 'ANTIBIOTIC_1', 'N', 0.0000, 0.05],
-        ['GENUS_2', 'SPECIE_4', 'ANTIBIOTIC_1', 'N', 0.0064, 0.05],
-        ['GENUS_2', 'SPECIE_5', 'ANTIBIOTIC_1', 'N', 0.0073, 0.05],
-        ['GENUS_2', 'SPECIE_6', 'ANTIBIOTIC_1', 'N', 0.0056, 0.05],
-        ['GENUS_3', 'SPECIE_7', 'ANTIBIOTIC_1', 'N', 0.0000, 0.05],
-        ['GENUS_4', 'SPECIE_8', 'ANTIBIOTIC_1', 'N', 0.0518, 0.05],
-        ['GENUS_4', 'SPECIE_9', 'ANTIBIOTIC_1', 'N', 0.0000, 0.05],
-        ['GENUS_4', 'SPECIE_10', 'ANTIBIOTIC_1', 'N', 0.0595, 0.05],
+data = [['Staphylococcus', 'coagulase negative', 'ANTIBIOTIC_1', 'P', 0.88, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'epidermidis', 'ANTIBIOTIC_1', 'P', 0.11, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'haemolyticus', 'ANTIBIOTIC_1', 'P', 0.32, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'lugdumensis', 'ANTIBIOTIC_1', 'P', 0.45, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'saporphyticus', 'ANTIBIOTIC_1', 'P', 0.18, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'aureus', 'ANTIBIOTIC_1', 'P', 0.13, 5, 0.20, 5/10, 1/3],
 
-        ['GENUS_1', 'SPECIE_1', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_2', 'SPECIE_2', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_2', 'SPECIE_3', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_2', 'SPECIE_4', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_2', 'SPECIE_5', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_2', 'SPECIE_6', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_3', 'SPECIE_7', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_4', 'SPECIE_8', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_4', 'SPECIE_9', 'ANTIBIOTIC_1', 'P', 0.0, 0.05],
-        ['GENUS_5', 'SPECIE_10', 'ANTIBIOTIC_1', 'P', 0.0, 0.05]]
+        ['Enterococcus', 'durans', 'ANTIBIOTIC_1', 'N', 0.64, 1, 0.20, 1/4, 1/3],
+        ['Enterococcus', 'faecium', 'ANTIBIOTIC_1', 'N', 0.48, 1, 0.20, 1/4, 1/3],
+        ['Enterococcus', 'gallinarium', 'ANTIBIOTIC_1', 'N', 0.10, 1, 0.20, 1/4, 1/3],
+        ['Enterococcus', 'faecalis', 'ANTIBIOTIC_1', 'N', 0.09, 1, 0.20, 1/4, 1/3],
+
+        ['Streptococcus', 'viridians', 'ANTIBIOTIC_1', 'P', 0.08, 1, 0.20, 1/3, 1/3],
+        ['Streptococcus', 'pneumoniae', 'ANTIBIOTIC_1', 'P', 0.89, 2, 0.20, 2/3, 1/3]]
+
 
 # Create dataframe
 dataframe = pd.DataFrame(data, columns=['GENUS',
@@ -101,23 +109,134 @@ dataframe = pd.DataFrame(data, columns=['GENUS',
                                         'ANTIBIOTIC',
                                         'GRAM',
                                         'RESISTANCE',
-                                        'THRESHOLD'])
+                                        'FREQUENCY',
+                                        'THRESHOLD',
+                                        'W_SPECIE',
+                                        'W_GENUS'])
+
+# Show data
+print("\nData:")
+print(dataframe)
+
+# ----------------------------------------------------
+# ASAI (must raise error)
+# ----------------------------------------------------
+print("\n\nHandling errors:")
+
+try:
+    asai = dataframe.drop(columns=['RESISTANCE']) \
+        .groupby(['ANTIBIOTIC']) \
+        .apply(asai)
+except Exception as e:
+    print(e)
+
+try:
+    asai = dataframe.drop(columns=['GENUS']) \
+        .groupby(['ANTIBIOTIC']) \
+        .apply(asai)
+except Exception as e:
+    print(e)
+
+try:
+    asai = dataframe.drop(columns=['SPECIE']) \
+        .groupby(['ANTIBIOTIC']) \
+        .apply(asai)
+except Exception as e:
+    print(e)
+
+try:
+    asai = dataframe.drop(columns=['W_GENUS']) \
+        .groupby(['ANTIBIOTIC']) \
+        .apply(asai)
+except Exception as e:
+    print(e)
+
+try:
+    asai = dataframe.drop(columns=['RESISTANCE', 'SPECIE']) \
+        .groupby(['ANTIBIOTIC']) \
+        .apply(asai)
+except Exception as e:
+    print(e)
+
+
+try:
+    asai = dataframe \
+        .groupby(['ANTIBIOTIC', 'GRAM']) \
+        .apply(asai)
+except Exception as e:
+    print(e)
+
+# ----------------------------------------------------
+# ASAI (must show warning)
+# ----------------------------------------------------
+print("\n\nShow warnings:")
+
+asai_5 = dataframe.drop(columns=['THRESHOLD']) \
+    .groupby(['ANTIBIOTIC']) \
+    .apply(asai)
+
+asai_6 = dataframe \
+    .groupby(['ANTIBIOTIC']) \
+    .apply(asai, threshold=0.5)
+
+
+# ----------------------------------------------------
+# ASAI
+# ----------------------------------------------------
+print("\n\nNo errors or warnings:")
+
+# -------
+# DEFAULT
+# -------
+asai_7 = dataframe \
+    .groupby(['ANTIBIOTIC']) \
+    .apply(asai, verbose=0)
+
+# Show
+print("\n\nASAI (weights):")
+print(asai_7)
+
+# -------
+# UNIFORM
+# -------
+asai_8 = dataframe \
+    .groupby(['ANTIBIOTIC', 'GRAM']) \
+    .apply(asai, weights='uniform')
+
+print("\n\nASAI (uniform):")
+print(asai_8)
+
+# ---------
+# FREQUENCY
+# ---------
+asai_9 = dataframe \
+    .groupby(['ANTIBIOTIC', 'GRAM']) \
+    .apply(asai, weights='frequency')
+
+# Show
+print("\n\nASAI (frequency):")
+print(asai_9)
+
 
 # -------------------------------
 # Create antimicrobial spectrum
 # -------------------------------
 # Create antimicrobial spectrum of activity instance
-asai = ASAI(weights='uniform', threshold=0.05,
+asai = ASAI(weights='uniform', threshold=0.21,
             column_genus='GENUS',
             column_specie='SPECIE',
             column_antibiotic='ANTIBIOTIC',
             column_resistance='RESISTANCE',
-            column_threshold='THRESHOLD')
+            column_frequency='FREQUENCY',
+            column_threshold='THRESHOLD',
+            column_wgenus='W_GENUS',
+            column_wspecie='W_SPECIE')
 
 # Compute
 scores = asai.compute(dataframe, by_category='GRAM')
 
 # Show
+print("\nASAI:")
 print(scores)
 
 # -----------------------------
@@ -151,4 +270,4 @@ ax.set_xlim([-1, 1])
 plt.legend()
 
 # Display
-plt.show()
+#plt.show()

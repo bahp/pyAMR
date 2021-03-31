@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
@@ -100,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with AMR indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/nhs/index.html">Examples with datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
@@ -335,6 +336,53 @@ resistance outcome within the range [0,1].</p></li>
 
 </dd></dl>
 
+<dl class="py function">
+<dt id="pyamr.core.asai.asai">
+<code class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></code><code class="sig-name descname"><span class="pre">asai</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.asai" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the ASAI.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Should the duplicated check only for the columns
+GENUS and SPECIE? What if we do not group by
+antibiotic? It has to be unique for the antibiotic
+also. It is up to the user to make the right use
+of this?</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – The pandas dataframe with the information. The following columns
+are always required [RESISTANCE, GENUS and SPECIE]. In addition,
+[W_GENUS and W_SPECIE] are required if weights is None.</p></li>
+<li><p><strong>weights</strong> (<em>string (default None)</em>) – The method to automatically compute the weights. The methods
+supported are ‘uniform’ in which all genus have the same
+weights and all species within a genus have the same weight.
+In order to use the specified weights [W_GENUS, W_SPECIE]
+keep weights as None. Please remember that the following
+rules must be fulfilled by the weights:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>consistent weight for a given genus</p></li>
+<li><p>all genus weights must add up to one.</p></li>
+<li><p>all specie weights within a genus must add up to one.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>threshold</strong> (<em>float (default None)</em>) – The threshold value to consider the microorganism as
+resistant to the antimicrobial. Thus, for a threshold of 0.5,
+if a pair &lt;o,a&gt; has a resistance value of 0.4, the microorganism
+will be considered sensitive to the antimicrobial and will
+count towards the ASAI computation. In order to use specific
+thresholds [THRESHOLD] keep threshold as None.</p></li>
+<li><p><strong>tol</strong> (<em>float (default 1e-6)</em>) – The tolerance in order to check that all conditions (uniqueness
+and sums) are satisfied. Note that that float precision varies
+and therefore not always adds up to exactly one.</p></li>
+<li><p><strong>verbose</strong> (<em>int (default 0)</em>) – The level of verbosity.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="section" id="module-pyamr.core.freq">
 <span id="pyamr-core-freq-module"></span><h2>pyamr.core.freq module<a class="headerlink" href="#module-pyamr.core.freq" title="Permalink to this headline">¶</a></h2>
@@ -467,6 +515,30 @@ also grouped by organisms or antibiotics.</p></li>
 <dd><p>This method computes the single antibitic resistance index</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyamr.core.sari.sari">
+<code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">sari</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.sari" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the sari index.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – A dataframe with the susceptibility test interpretations
+as columns. The default strategies expect the following
+columns: ‘sensitive’, ‘intermediate’, ‘resistant’.</p></li>
+<li><p><strong>strategy</strong> (<em>string or func (default hard)</em>) – The method used to compute sari. The possible options
+are ‘soft’, ‘medium’ and ‘hard’. In addition, a function
+with the following signature can be passed:</p>
+<blockquote>
+<div><p>dataframe
+arguments</p>
+</div></blockquote>
+</li>
+<li><p><strong>**kwargs</strong> (<em>arguments to pass the strategy function.</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

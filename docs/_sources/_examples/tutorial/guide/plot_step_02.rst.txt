@@ -23,7 +23,12 @@ Step 02 - Time Series Analysis
 
 .. warning:: Verify tests with conditions from stattools.
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-15
+.. warning:: Useful references:
+
+    - https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
+    - https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
+
+.. GENERATED FROM PYTHON SOURCE LINES 15-20
 
 Create time series (TS)
 -----------------------
@@ -31,10 +36,10 @@ Create time series (TS)
 First lets create an artificial series. The series has been plotted
 ad the end of the tutorial.
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-29
+.. GENERATED FROM PYTHON SOURCE LINES 21-34
 
 .. code-block:: default
-   :lineno-start: 17
+   :lineno-start: 22
 
 
     # ----------------------------
@@ -56,7 +61,7 @@ ad the end of the tutorial.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-40
+.. GENERATED FROM PYTHON SOURCE LINES 35-45
 
 Pearson correlation coefficient
 -------------------------------
@@ -69,10 +74,10 @@ number of observations (susceptibility test records) and the computed resistance
 
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlation.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-55
+.. GENERATED FROM PYTHON SOURCE LINES 46-60
 
 .. code-block:: default
-   :lineno-start: 42
+   :lineno-start: 47
 
 
     # -------------------------------
@@ -102,15 +107,15 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlatio
 
              Correlation
     ==============================
-    Pearson:                 0.733
-    Spearman:                0.764
-    Cross correlation: 4992855.170
+    Pearson:                 0.762
+    Spearman:                0.765
+    Cross correlation: 5027077.280
     ==============================
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-79
+.. GENERATED FROM PYTHON SOURCE LINES 61-84
 
 Augmented Dickey-Fuller test
 ----------------------------
@@ -136,10 +141,10 @@ H      Hypothesis                  Stationarity
 
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 80-97
+.. GENERATED FROM PYTHON SOURCE LINES 85-102
 
 .. code-block:: default
-   :lineno-start: 81
+   :lineno-start: 86
 
 
     # ----------------------------
@@ -172,17 +177,17 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.p
 
         adfuller test stationarity (ct)    
     =======================================
-    statistic:                       -2.168
-    pvalue:                         0.50786   
-    nlags:                                1    
-    nobs:                                98     
+    statistic:                       -1.895
+    pvalue:                         0.65721   
+    nlags:                                2    
+    nobs:                                97     
     stationarity (α=0.05):   non-stationary
     =======================================
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 98-126
+.. GENERATED FROM PYTHON SOURCE LINES 103-131
 
 Kwiatkowski-Phillips-Schmidt-Shin test
 --------------------------------------
@@ -213,10 +218,10 @@ H      Hypothesis                  Stationarity
 
 .. See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_kpss.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 127-133
+.. GENERATED FROM PYTHON SOURCE LINES 132-138
 
 .. code-block:: default
-   :lineno-start: 128
+   :lineno-start: 133
 
 
     # ----------------------------
@@ -231,7 +236,7 @@ H      Hypothesis                  Stationarity
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 134-152
+.. GENERATED FROM PYTHON SOURCE LINES 139-157
 
 Trend and stationarity in TS
 ----------------------------
@@ -252,10 +257,10 @@ permanent impact (stochastic trend). The significance level of the tests was set
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationarity.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 153-203
+.. GENERATED FROM PYTHON SOURCE LINES 158-208
 
 .. code-block:: default
-   :lineno-start: 154
+   :lineno-start: 159
 
 
     # ----------------------------
@@ -329,8 +334,8 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
     ==================================
               root           trend    
     ----------------------------------
-    c   False (0.067)   False (0.011)
-    ct  False (0.508)   False (0.016)
+    c   False (0.067)   False (0.013)
+    ct  False (0.657)   False (0.019)
     ==================================
 
 
@@ -339,7 +344,7 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.248 seconds)
+   **Total running time of the script:** ( 0 minutes  0.683 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_02.py:

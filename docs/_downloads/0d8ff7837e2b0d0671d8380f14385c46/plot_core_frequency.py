@@ -194,8 +194,5 @@ axes[3].set_ylabel('OTI(1M,2)')
 # Despine
 sns.despine(bottom=True, left=True)
 
-# Set title
-plt.suptitle("Frequency (daily, monthly and overlapping intervals)")
-
 # Show
 plt.show()

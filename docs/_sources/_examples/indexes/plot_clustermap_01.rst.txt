@@ -40,18 +40,18 @@ SARI - Clustermap (overall)
 
 
     Data:
-                  date_received         date_outcome LastActDateODBC  patient_id laboratory_number specimen_code  ... reported sensitivity  microorganism_genus microorganism_specie microorganism_gram_type antimicrobial_class
-    0       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192        URNCUL  ...        Y   sensitive             coliform                  NaN                     NaN                 NaN
-    1       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192        URNCUL  ...        Y   sensitive             coliform                  NaN                     NaN      cephalosporins
-    2       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192        URNCUL  ...        N   sensitive             coliform                  NaN                     NaN    fluoroquinolones
-    3       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192        URNCUL  ...        N   sensitive             coliform                  NaN                     NaN     aminoglycosides
-    4       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192        URNCUL  ...        Y   sensitive             coliform                  NaN                     NaN                 NaN
-    ...                     ...                  ...             ...         ...               ...           ...  ...      ...         ...                  ...                  ...                     ...                 ...
-    124640  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071        CROCUL  ...        N         NaN          citrobacter                  NaN                     NaN          meropenems
-    124641  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071        CROCUL  ...        N         NaN          citrobacter                  NaN                     NaN                 NaN
-    124642  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071        CROCUL  ...        N         NaN          citrobacter                  NaN                     NaN         penicillins
-    124643  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071        CROCUL  ...        N         NaN          citrobacter                  NaN                     NaN                 NaN
-    124644  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071        CROCUL  ...        N         NaN          citrobacter                  NaN                     NaN     aminoglycosides
+                  date_received         date_outcome LastActDateODBC  ...  microorganism_specie microorganism_gram_type antimicrobial_class
+    0       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN                 NaN
+    1       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN      cephalosporins
+    2       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN    fluoroquinolones
+    3       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN     aminoglycosides
+    4       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN                 NaN
+    ...                     ...                  ...             ...  ...                   ...                     ...                 ...
+    124640  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN          meropenems
+    124641  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN                 NaN
+    124642  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN         penicillins
+    124643  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN                 NaN
+    124644  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN     aminoglycosides
 
     [124645 rows x 22 columns]
 
@@ -61,20 +61,20 @@ SARI - Clustermap (overall)
           dtype='object')
 
     Data
-    ANTIBIOTIC                            AAMI       AAZI        AAZT           ACAZ          ACELX             ACIP  ...         ATEI        ATEM          ATET          ATIG            ATOB         AVAN
-    antimicrobial_class        aminoglycosides macrolides monobactams cephalosporins cephalosporins fluoroquinolones  ... glycopeptide penicillins tetracyclines tetracyclines aminoglycosides glycopeptide
-    SPECIE microorganism_genus                                                                                        ...                                                                                  
-    ABAU   acinetobacter                    11          0         100            100            100               63  ...            0         100             0             0               0            0
-    ABREVI brevibacterium                    0          0           0              0              0                0  ...            0           0             0             0               0            0
-    ACAV   aeromonas                         0          0           0              0              0                0  ...            0           0             0             0               0            0
-    ACHRO  achromobacter                    50          0         100             50              0               50  ...            0           0             0             0               0            0
-    ACINE  acinetobacter                     3          0           0              0              0               48  ...            0           0             0             0               0            0
-    ...                                    ...        ...         ...            ...            ...              ...  ...          ...         ...           ...           ...             ...          ...
-    SSAL   streptococcus                     0          0           0              0              0                0  ...            0           0             0             0               0            0
-    SSAN   streptococcus                     0          0           0              0              0                0  ...            0           0             0             0               0            0
-    STAPH  staphylococcus                    0          0           0              0              0                0  ...            0           0             9             0               0            0
-    STREP  streptococcus                     0          0           0              0              0                0  ...            0           0             0             0               0            0
-    SVES   streptococcus                     0          0           0              0              0                0  ...            0           0             0             0               0            0
+    ANTIBIOTIC                            AAMI       AAZI        AAZT           ACAZ  ...          ATET          ATIG            ATOB         AVAN
+    antimicrobial_class        aminoglycosides macrolides monobactams cephalosporins  ... tetracyclines tetracyclines aminoglycosides glycopeptide
+    SPECIE microorganism_genus                                                        ...                                                         
+    ABAU   acinetobacter                    11          0         100            100  ...             0             0               0            0
+    ABREVI brevibacterium                    0          0           0              0  ...             0             0               0            0
+    ACAV   aeromonas                         0          0           0              0  ...             0             0               0            0
+    ACHRO  achromobacter                    50          0         100             50  ...             0             0               0            0
+    ACINE  acinetobacter                     3          0           0              0  ...             0             0               0            0
+    ...                                    ...        ...         ...            ...  ...           ...           ...             ...          ...
+    SSAL   streptococcus                     0          0           0              0  ...             0             0               0            0
+    SSAN   streptococcus                     0          0           0              0  ...             0             0               0            0
+    STAPH  staphylococcus                    0          0           0              0  ...             9             0               0            0
+    STREP  streptococcus                     0          0           0              0  ...             0             0               0            0
+    SVES   streptococcus                     0          0           0              0  ...             0             0               0            0
 
     [115 rows x 35 columns]
 
@@ -213,7 +213,7 @@ SARI - Clustermap (overall)
     # ------------------
     # Plot
     # ------------------
-    def get_category_colors(index, category, cmap='tab10'):
+    def get_category_colors(index, category, cmap='hls'):
         """This method creates the colors for the different elements in
         categorical feature vector.
 
@@ -274,7 +274,7 @@ SARI - Clustermap (overall)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.437 seconds)
+   **Total running time of the script:** ( 0 minutes  1.502 seconds)
 
 
 .. _sphx_glr_download__examples_indexes_plot_clustermap_01.py:
