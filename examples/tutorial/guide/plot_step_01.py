@@ -75,10 +75,13 @@ print(data.columns)
 #          antimicrobials, pairs, species, isolates, tests, the range of
 #          dates, ....
 
+
 #######################################################################
 #
 # Computing Freq
 # --------------
+#
+# .. warning :: Skip! Not necessary anymore.
 #
 # .. note: Double check if the category 'isolate' is also valid.
 #
@@ -148,8 +151,6 @@ print(freq_monthly)
 # Computing SARI
 # --------------
 #
-# .. note:: SARI can be computed very easily (class might not be needed)
-#
 # The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
 # of resistant isolates for a given set of susceptibility tests. It provides a
 # value within the range [0, 1] where values close to one indicate high resistance.
@@ -170,27 +171,36 @@ print(freq_monthly)
 # -------------------------------------------
 # Compute SARI
 # -------------------------------------------
-# Import specific libraries
+# Libraries
 from pyamr.core.sari import SARI
 
-# Compute SARI
-sari_overall = SARI(strategy='hard').compute(freq_overall)
-sari_monthly = SARI(strategy='hard').compute(freq_monthly)
+# Create sari instance
+sari = SARI(groupby=['specimen_code',
+                     'microorganism_code',
+                     'antimicrobial_code',
+                     'sensitivity'])
+
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=True)
 
 # Show
-print("\nSARI (overall):")
+print("SARI (overall):")
 print(sari_overall)
-print("\nSARI (monthly):")
-print(sari_monthly)
 
 # Plot Heatmap
 # ------------
-# Create matrix
+# Filter
 matrix = sari_overall.copy(deep=True)
+matrix = matrix.reset_index()
 matrix = matrix[matrix.freq > 100]
-matrix = matrix[['sari']]
-matrix = matrix.unstack() * 100
-matrix.columns = matrix.columns.droplevel()
+matrix = matrix[matrix.specimen_code.isin(['BLDCUL'])]
+
+# Pivot table
+matrix = pd.pivot_table(matrix,
+    index='microorganism_code',
+    columns='antimicrobial_code',
+    values='sari')
 
 # Create figure
 f, ax = plt.subplots(1, 1, figsize=(10, 4))
@@ -199,7 +209,7 @@ f, ax = plt.subplots(1, 1, figsize=(10, 4))
 cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
 # Plot
-ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+ax = sns.heatmap(data=matrix*100, annot=True, fmt=".0f",
     annot_kws={'fontsize': 'small'}, cmap=cmap,
     linewidth=0.5, vmin=0, vmax=100, ax=ax,
     xticklabels=1, yticklabels=1)
@@ -210,7 +220,6 @@ plt.suptitle("Antibiogram", fontsize='xx-large')
 # Tight layout
 plt.tight_layout()
 plt.subplots_adjust(right=1.05)
-
 
 #######################################################################
 #
@@ -247,29 +256,44 @@ plt.subplots_adjust(right=1.05)
 # Import specific libraries
 from pyamr.core.asai import ASAI
 
+# Select portion of data (avoid _x)
+portion = data[['microorganism_code',
+                'microorganism_genus',
+                'microorganism_specie',
+                'microorganism_gram_type']]
+
+# Fill missing gram
+portion.microorganism_gram_type = \
+    portion.microorganism_gram_type.fillna('u')
+
 # Format DataFrame
 dataframe = sari_overall.copy(deep=True)
 dataframe = sari_overall.reset_index()
-dataframe = dataframe.merge(data, how='left',
-    left_on='SPECIE', right_on='microorganism_code')
+dataframe = dataframe.merge(portion,
+    how='left',
+    left_on='microorganism_code',
+    right_on='microorganism_code')
 
-# Fill empty
-# .. note: Leads to division by 0 (investigate)
-dataframe.microorganism_gram_type = \
-    dataframe.microorganism_gram_type.fillna('u')
+# Create asai instance
+asai = ASAI(column_genus='microorganism_genus',
+            column_specie='microorganism_specie',
+            column_resistance='sari',
+            column_frequency='freq')
 
-# Create antimicrobial spectrum of activity instance
-asai = ASAI(column_genus='microorganism_name',
-            column_specie='SPECIE',
-            column_resistance='sari')
 
 # Compute
 scores = asai.compute(dataframe,
-    groupby=['ANTIBIOTIC', 'microorganism_gram_type'],
-    weights='uniform', threshold=0.05)
+    groupby=['antimicrobial_code', 'microorganism_gram_type'],
+    weights='uniform',
+    threshold=None,
+    min_freq=0)
 
-# Unstack
+# Stack
 scores = scores.unstack()
+
+# Show
+print("\nASAI (overall):")
+print(scores)
 
 # .. note: In order to sort the scores we need to compute metrics
 #          that combine the different subcategories (e.g. gram-negative
