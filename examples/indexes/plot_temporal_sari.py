@@ -4,6 +4,7 @@ SARI - Timeseries
 
 .. |1D30| replace:: 1D\ :sub:`30`
 .. |1M1| replace:: 1M\ :sub:`1`
+.. |3M1| replace:: 3M\ :sub:`1`
 .. |1M30| replace:: 1M\ :sub:`30`
 .. |7D4| replace:: 7D\ :sub:`4`
 .. |1M12| replace:: 1M\ :sub:`12`
@@ -121,41 +122,61 @@ data = data[data.date_received.between('2008-01-01', '2016-12-31')]
 #
 # This is the traditional method used in antimicrobial surveillance systems where
 # the time spans considered are independent; that is, they do not overlap (e.g.
-# month - |1M1| or year - |12M1|).
+# monthly time series - |1M1| or yearly timeseries - |12M1|).
 
 # -------------------------------------------
 # Compute ITI sari (temporal)
 # -------------------------------------------
-# Variables
-shift = '1M'
-period = 1 # Always 1 for ITI.
+from pyamr.core.sari import SARI
 
-# Create grouper
-grouper = pd.Grouper(freq=shift, key='date_received')
+# Create SARI instance
+sar = SARI(groupby=['specimen_code',
+                     'microorganism_code',
+                     'antimicrobial_code',
+                     'sensitivity'])
 
-# Create DataFrame
-iti = data.groupby([grouper,
-                    'specimen_code',
-                    'microorganism_code',
-                    'antimicrobial_code',
-                    'sensitivity']) \
-          .size().unstack().fillna(0)
+# Create constants
+shift, period = '1M', 1
 
-# Compute frequency
-iti['freq'] = iti.sum(axis=1)
+# Compute sari timeseries
+iti = sar.compute(data, shift=shift,
+    period=period, cdate='date_received')
 
-# Compute sari
-iti['sari'] = sari(iti, strategy='hard')
+# Reset index
+iti = iti.reset_index()
 
+
+# --------------
 # Plot
-sns.lineplot(data=iti, x='date_received', y='sari',
-    palette="tab10", linewidth=0.75,
-    hue='antimicrobial_code')
+# --------------
+# Create figure
+fig, axes = plt.subplots(2, 1, sharex=True,
+        gridspec_kw={'height_ratios': [2, 1]})
+axes = axes.flatten()
+
+# Plot line
+sns.lineplot(x=iti.date_received, y=iti.sari,
+    palette="tab10", linewidth=0.75, linestyle='--',
+    marker='o', markersize=3, markeredgecolor='k',
+    markeredgewidth=0.5, markerfacecolor=None,
+    alpha=0.5, ax=axes[0])
+
+# Compute widths
+widths = [d.days for d in np.diff(iti.date_received.tolist())]
+
+# Plot bars
+axes[1].bar(x=iti.date_received, height=iti.freq,
+    width=.8*widths[0], linewidth=0.75, alpha=0.5)
 
 # Configure
-plt.title('Time-series $%s_{%s}$' % (shift, period))
-plt.ylim([-0.1, 1.1])
+axes[0].set(ylim=[-0.1, 1.1],
+    title='Time-series $%s_{%s}$' % (shift, period))
+
+# Despine
 sns.despine(bottom=True)
+
+# Tight layout
+plt.tight_layout()
 
 # Show
 print("\nTemporal (ITI):")
@@ -168,44 +189,58 @@ print(iti)
 #
 # This method is defined as a fixed region which is moved across time to compute consecutive
 # resistance indexes. It is described by two parameters |SP| where ``period`` denotes the
-# length of the window and ``shift`` the distance between consecutive windows.
+# length of the window and ``shift`` the distance between consecutive windows. This approach
+# it is more versatile and allows to include larger number of susceptibility tests when
+# computing ``sari``. Therefore, this is useful in scenarios in which pairs do
+# not have a large number of records in the dataset.
+#
+# Note how the ``sari`` values are now larger than in the previous example!!
 #
 
 # -------------------------------------------
 # Compute OTI sari (temporal)
 # -------------------------------------------
 # Variables
-shift = '1M'
-period = 6
+shift, period = '30D', '180D'
 
-# Create grouper
-grouper = pd.Grouper(freq=shift, key='date_received')
+# Compute sari timeseries
+oti = sar.compute(data, shift=shift,
+    period=period, cdate='date_received')
 
-# Create DataFrame
-oti = data.groupby([grouper,
-                    'specimen_code',
-                    'microorganism_code',
-                    'antimicrobial_code',
-                    'sensitivity']) \
-          .size() \
-          .rolling(window=period, min_periods=1) \
-          .sum().unstack().fillna(0)
+# Reset index
+oti = oti.reset_index()
 
-# Compute frequency
-oti['freq'] = oti.sum(axis=1)
-
-# Compute sari
-oti['sari'] = sari(oti, strategy='hard')
-
+# --------------
 # Plot
-sns.lineplot(data=oti, x='date_received', y='sari',
-    palette="tab10", linewidth=0.75,
-    hue='antimicrobial_code')
+# --------------
+# Create figure
+fig, axes = plt.subplots(2, 1, sharex=True,
+        gridspec_kw={'height_ratios': [2, 1]})
+axes = axes.flatten()
+
+# Plot line
+sns.lineplot(x=oti.date_received, y=oti.sari,
+    palette="tab10", linewidth=0.75, linestyle='--',
+    marker='o', markersize=3, markeredgecolor='k',
+    markeredgewidth=0.5, markerfacecolor=None,
+    alpha=0.5, ax=axes[0])
+
+# Compute widths
+widths = [d.days for d in np.diff(oti.date_received.tolist())]
+
+# Plot bars
+axes[1].bar(x=oti.date_received, height=oti.freq,
+    width=.8*widths[0], linewidth=0.75, alpha=0.5)
 
 # Configure
-plt.title('Time-series $%s_{%s}$' % (shift, period))
-plt.ylim([-0.1, 1.1])
+axes[0].set(ylim=[-0.1, 1.1],
+    title='Time-series $%s_{%s}$' % (shift, period))
+
+# Despine
 sns.despine(bottom=True)
+
+# Tight layout
+plt.tight_layout()
 
 # Show
 print("\nTemporal (OTI):")
@@ -213,35 +248,9 @@ print(oti)
 
 ######################################################################################
 #
-# Lets compare them graphically
-#
-
-# -------------------------------------------
-# Display
-# -------------------------------------------
-"""
-sns.lineplot(data=iti, x='date_received', y='sari',
-    palette="tab10", linewidth=0.75,
-    hue='antimicrobial_code',
-    label='')
-
-sns.lineplot(data=iti, x='date_received', y='sari_rolling',
-    linewidth=0.75, color='g',
-    label='iti-rolling')
-
-sns.lineplot(data=oti, x='date_received', y='sari',
-    linewidth=0.75, color='k',
-    label='oti')
-"""
-plt.show()
-
-######################################################################################
-#
 # Important considerations
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# .. todo :: Would it be any useful to use plotly to allow readers to
-#          toggle which timeseries to be shown/hidden?
 #
 # .. warning ::
 #
@@ -255,50 +264,44 @@ plt.show()
 #         depending on the function applied we might want to fill gaps with
 #         different values (e.g. NaN, 0, ...)
 #
+#     ``Implemented``
+#
+# As mentioned before, by using the |SP| approach you can define both
+# strategies to generate time-series (ITI and OTI). The ITI strategy
+# is limited in the number of samples that can be used to compute the
+# index and therefore you have to trade between granularity and
+# accuracy whereas the latter is more flexible.
+#
+# For instance, in examples with low number of records ``sari``  might
+# go up from barely 0.1 (in ITI) to 0.4 (in OTI) when more records are
+# used. The most noticeable increase from |1M1| to |1M3|, that is when
+# instead of records for a month we considered records for three months
+# and reached certain stability on |1M6| approximately (ish?).
+#
+# .. note ::
+#   - Ideally shift and period same unit (eg. D).
+#   - Period should be always larger than shift.
+
 
 # --------------------------------
 # Comparison
 # --------------------------------
 # Configuration
-shift = '1M'
+shift = '30D'
 
 # Create figure
-f, axes = plt.subplots(2, 2, figsize=(10, 10), sharey=True)
+f, axes = plt.subplots(2, 2, figsize=(10, 6), sharey=True)
 axes = axes.flatten()
 
 # Loop
-for period in [1, 3, 6, 9, 12]:
+for period in ['30D', '90D', '180D', '365D']:
 
-    # Create groupers
-    grouper_iti = pd.Grouper(freq='%sM' % period, key='date_received')
-    grouper_oti = pd.Grouper(freq='%s' % shift, key='date_received')
+    # Compute sari time-series
+    iti = sar.compute(data, shift=period,
+        period=1, cdate='date_received')
+    oti = sar.compute(data, shift=shift,
+        period=period, cdate='date_received')
 
-    # Create DataFrame ITI
-    iti = data.groupby([grouper_iti,
-                        'specimen_code',
-                        'microorganism_code',
-                        'antimicrobial_code',
-                        'sensitivity']) \
-              .size().unstack().fillna(0)
-
-    # Create DataFrame OTI
-    oti = data.groupby([grouper_oti,
-                        'specimen_code',
-                        'microorganism_code',
-                        'antimicrobial_code',
-                        'sensitivity']) \
-              .size() \
-              .rolling(window=period, min_periods=1) \
-              .sum().unstack().fillna(0)
-
-    # Compute frequency
-    iti['freq'] = iti.sum(axis=1)
-    oti['freq'] = oti.sum(axis=1)
-
-    # Compute sari
-    iti['sari'] = sari(iti, strategy='hard')
-    oti['sari'] = sari(oti, strategy='hard')
-    
     # Compute rolling mean
     iti['sari_rolling'] = iti.sari.rolling(window=3,
         win_type='gaussian', min_periods=1).mean(std=3)
@@ -307,16 +310,20 @@ for period in [1, 3, 6, 9, 12]:
 
     # Plot
     sns.lineplot(data=iti, x='date_received', y='sari',
-                 linewidth=0.75, ax=axes[0], marker='o',
+                 linewidth=0.75, linestyle='--', ax=axes[0], marker='o',
+                 markersize=3, markeredgecolor='k', markeredgewidth=0.5,
+                 markerfacecolor=None, alpha=0.5,
                  label='$%sM_{%s}$' % (period, 1))
 
     sns.lineplot(data=oti, x='date_received', y='sari',
-                 linewidth=0.75, ax=axes[1], marker='o',
+                 linewidth=0.75, linestyle='--', ax=axes[1], marker='o',
+                 markersize=3, markeredgecolor='k', markeredgewidth=0.5,
+                 markerfacecolor=None, alpha=0.5,
                  label='$%s_{%s}$' % (shift, period))
 
     sns.lineplot(data=iti, x='date_received', y='sari_rolling',
                  linewidth=0.75, ax=axes[2],
-                 label='$%sM_{%s}$ - smooth' % (period, 1))
+                 label='$%s_{%s}$ - smooth' % (period, 1))
 
     sns.lineplot(data=oti, x='date_received', y='sari_rolling',
                  linewidth=0.75, ax=axes[3],
@@ -326,10 +333,8 @@ for period in [1, 3, 6, 9, 12]:
 sns.despine(bottom=True)
 
 # Configure axes
-axes[0].set(title='Independent Time Intervals',
-            xlabel='date', ylabel='sari')
-axes[1].set(title='Overlapping Time Intervals',
-            xlabel='date', ylabel='sari')
+axes[0].set(title='Independent Time Intervals')
+axes[1].set(title='Overlapping Time Intervals')
 
 # Adjust
 plt.tight_layout()
@@ -338,11 +343,6 @@ plt.tight_layout()
 plt.show()
 
 
-"""
-# Compute rolling
-iti['sari_rolling'] = iti.sari.rolling(3,
-    win_type='gaussian', min_periods=1).mean(std=3)
-"""
 ####################################################################
 #
 # Plotting multiple pairs using FaceGrid.

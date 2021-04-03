@@ -1,5 +1,5 @@
 """
-SARI - Timeseries
+ASAI - Timeseries
 -----------------
 
 .. |1D30| replace:: 1D\ :sub:`30`
@@ -191,6 +191,7 @@ iti['gram'] = iti['microorganism_code'].map(grm_map)
 # Empty grams are a new category (unknown - u)
 iti.gram = iti.gram.fillna('u')
 
+print(iti[iti.gram=='u'].microorganism_code.unique())
 
 # -------------------------
 # Compute ASAI
@@ -258,7 +259,7 @@ sns.lineplot(data=aux2.reset_index(),
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # This method is defined as a fixed region which is moved across time to compute consecutive
-# resistance indexes. It is described by two parameters; the length of the region (period)
+# resistance indexes. It is described by two parameters; the length of the region (period)
 # and the distance between consecutive windows (shift).
 
 # -------------------------------------------

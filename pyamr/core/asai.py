@@ -247,6 +247,8 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
     # Add weight columns
     if weights is None:
         required += ['W_GENUS', 'W_SPECIE']
+    if weights == 'frequency':
+        required += ['FREQUENCY']
 
     # Bad input type
     if not isinstance(dataframe, pd.DataFrame):
@@ -261,9 +263,22 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
 
     # Check duplicates
     if dataframe.duplicated().any():
-        raise ValueError("There are duplicate rows in the dataframe.")
+        raise ValueError("There are duplicated rows in the dataframe.")
 
-    # Copy dataframe
+    # Get NaN idxs
+    idxs = dataframe[required].isna().any(axis=1)
+
+    # Show warning and correct
+    if idxs.any():
+        raise ValueError("""\n
+              There are NULL values in columns that are required.
+              Please correct this issue and try again. See below 
+              for more information:\n\n\t\t{0}""".format(
+                dataframe.loc[idxs, required] \
+                    .to_string().replace("\n", "\n\t\t")
+        ))
+
+    # Copy DataFrame
     aux = dataframe.copy(deep=True)
 
     # Check threshold
@@ -342,7 +357,150 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
 
 
 
+
+
+
 class ASAI():
+
+    # Attributes
+    c_gen = 'GENUS'
+    c_spe = 'SPECIE'
+    c_res = 'RESISTANCE'
+    c_thr = 'THRESHOLD'
+    c_fre = 'FREQUENCY'
+    c_wgen = 'W_GENUS'
+    c_wspe = 'W_SPECIE'
+
+    def __init__(self, column_genus=c_gen,
+                       column_specie=c_spe,
+                       column_resistance=c_res,
+                       column_threshold=c_thr,
+                       column_frequency=c_fre,
+                       column_wgenus=c_wgen,
+                       column_wspecie=c_wspe):
+        """The constructor.
+
+        Parameters
+        ----------
+        column_genus : string
+          The column name with the genus values
+
+        column_specie : string
+          The column name with the specie values
+
+        column_resistance : string
+          The column name with the resistance values
+
+        column_threshold : string
+          The column name with the threshold values
+
+        column_frequency : string
+          The column name with the frequency values
+
+        Returns
+        -------
+        none
+        """
+        # Create dictionary to rename columns
+        self.rename = {column_genus: self.c_gen,
+                       column_specie: self.c_spe,
+                       column_resistance: self.c_res,
+                       column_threshold: self.c_thr,
+                       column_frequency: self.c_fre,
+                       column_wgenus: self.c_wgen,
+                       column_wspecie: self.c_wspe}
+
+        # Columns that are required
+        self.required = [self.c_gen, self.c_spe, self.c_res]
+
+
+    def compute(self, dataframe, groupby=None, min_freq=None, **kwargs):
+        """Computes the ASAI index (safely).
+
+        .. note: Review first NaN and then duplicated?
+        .. note: Review extreme values in resistance?
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        """
+        # Bad input type
+        if not isinstance(dataframe, pd.DataFrame):
+            raise TypeError("The instance passed as argument needs to be a pandas "
+                            "DataFrame. Instead, a <%s> was found. Please convert "
+                            "the input accordingly." % type(dataframe))
+
+        if isinstance(groupby, str):
+            groupby = [groupby]
+
+        # Create auxiliary variable
+        required = groupby + self.required
+
+        # Rename columns
+        aux = dataframe.rename(columns=self.rename, copy=True)
+
+        # Filter by freq
+        if min_freq is not None:
+            if not self.c_fre in aux:
+                warnings.warn("""\n
+                The min_freq={0} cannot be applied because the frequency
+                columns 'FREQUENCY' does not exist in the DataFrame."""
+                    .format(min_freq))
+            else:
+                aux = aux[aux[self.c_fre] >= min_freq]
+
+        # Check duplicates
+        if aux.duplicated(subset=required).any():
+            warnings.warn("""\n
+                 There are duplicated rows in the DataFrame. These rows
+                 will be removed to safely compute ASAI. Please review
+                 the DataFrame and address this inconsistencies. The 
+                 duplicated columns investigated are: 
+                 {0}\n""".format(required))
+            aux = aux.drop_duplicates(required)
+
+        # Check extreme resistance values
+        if aux.RESISTANCE.isin([0.0, 1.0]).any():
+            warnings.warn("""\n
+                 Extreme resistances were found in the DataFrame. These rows
+                 should be reviewed since these resistance might correspond
+                 to pairs with low number of records. For more information 
+                 see below:\n""")
+                 #\n\n\t\t{0}"""
+                 #.format(aux[aux.RESISTANCE.isin([0.0, 1.1])] \
+                 #.to_string().replace("\n", "\n\t\t")))
+            #aux = aux[aux[self.c_res] != 1.0]
+
+        # Get NaN indexes
+        idxs = aux[required].isna().any(axis=1)
+
+        # Show warning and correct
+        if idxs.any():
+            warnings.warn("""\n
+                 There are NULL values in columns that are required. These
+                 rows will be removed to safely compute ASAI. Please review
+                 the DataFrame and address this inconsistencies. The 
+                 duplicated columns investigated are: 
+                 {0}\n""".format(required))
+            aux = aux.dropna(subset=required)
+
+        # Compute
+        scores = aux.groupby(groupby) \
+                    .apply(asai, **kwargs)
+
+        # Return
+        return scores
+
+
+
+
+
+
+
+
+class ASAI_old():
   """This class computes the antimicrobial spectrum of activity. 
 
   The antimicrobial spectrum of activity (ASAI) represents ....

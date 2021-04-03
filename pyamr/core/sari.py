@@ -141,6 +141,94 @@ def sari(dataframe, strategy='hard', **kwargs):
 
 
 
+class SARI:
+
+    # Attributes
+    c_spe = 'SPECIMEN'
+    c_org = 'SPECIE'
+    c_abx = 'ANTIBIOTIC'
+    c_dat = 'DATE'
+    c_out = 'SENSITIVITY'
+
+
+
+    def __init__(self, groupby=[c_spe,
+                                c_org,
+                                c_abx,
+                                c_out]):
+        """Constructor
+
+        Parameters
+        ----------
+
+        Returns
+        --------
+        """
+        self.groupby = groupby
+
+    def compute(self, dataframe, shift=None, period=None, cdate=None,
+                return_frequencies=True, **kwargs):
+        """Computes single antibiotic resistance index.
+
+        .. todo: Add parameters to rolling!
+        .. todo: Place value at the left, center, right of window?
+        .. todo: Ensure that works when time gaps present!
+        .. todo: Carefull with various indexes!
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+
+        """
+
+        # Copy DataFrame
+        aux = dataframe.copy(deep=True)
+
+        # If dates.... warning if na
+        # Warning nan for elements in groupby!
+
+        # Create grouper
+        grouper = []
+        if shift is not None:
+            grouper = [pd.Grouper(freq=shift, key=cdate)]
+        grouper = grouper + self.groupby
+
+        # ------------------------------------------
+        # Frequencies
+        # ------------------------------------------
+        # Compute frequencies
+        if shift is None:
+            freqs = aux.groupby(grouper) \
+                .size().unstack().fillna(0)
+
+        else:
+            # Format as datetime
+            aux[cdate] = pd.to_datetime(aux[cdate])
+
+            # Compute frequencies
+            freqs = aux.groupby(grouper) \
+                .size().unstack().reset_index() \
+                .set_index(cdate).groupby(grouper[1:-1]) \
+                .rolling(window=period, min_periods=1) \
+                .sum().fillna(0)
+
+        # -------------------
+        # Sari
+        # -------------------
+        # Compute sari
+        s = sari(freqs, **kwargs)
+
+        # Return
+        if return_frequencies:
+            freqs['freq'] = freqs.sum(axis=1)
+            freqs['sari'] = sari(freqs, **kwargs)
+            return freqs
+        return s.rename('sari')
+
+
+
 
 # Default methods
 _DEFAULT_STRATEGIES = {
@@ -151,7 +239,7 @@ _DEFAULT_STRATEGIES = {
 
 
 
-class SARI():
+class SARI_old():
 
   # Attributes
   c_abx = 'ANTIBIOTIC'

@@ -121,6 +121,8 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     freq_overall = freq.compute(df, strategy='overall',
                                 by_category='pairs')
 
+    freq_overall['freq'] = freq_overall.sum(axis=1)
+
     # Compute sari
     sari_overall = SARI(strategy='medium').compute(freq_overall)
 
@@ -146,22 +148,31 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     # Empty grams are a new category (unknown - u)
     dataframe.gram = dataframe.gram.fillna('u')
 
+    # Reset index
+    dataframe = dataframe.reset_index()
+
     # ------------------------
     # Compute spectrum index
     # ------------------------
-    # Create antimicrobial spectrum of activity instance
-    asai = ASAI(weights='uniform', threshold=0.05,
-                column_genus='genus',
+    # Create ASAI instance
+    asai = ASAI(column_genus='genus',
                 column_specie='SPECIE',
-                column_antibiotic='ANTIBIOTIC',
-                column_resistance='sari')
+                column_resistance='sari',
+                column_frequency='freq')
 
-    # Compute
-    scores = asai.compute(dataframe, by_category='gram')
+    # Compute scores
+    scores = asai.compute(dataframe,
+          groupby=['ANTIBIOTIC', 'gram'],
+          weights='uniform',
+          threshold=0.5,
+          min_freq=0)
+
+    # Unstack
+    scores = scores.unstack()
 
     # Show scores
     print("\n\nData ASAI (%s):" % specimen_code)
-    print(scores.head(10))
+    print(scores.to_string())
 
     # Sort
     scores = scores.fillna(0.0)
@@ -204,3 +215,5 @@ for specimen_code, df in data.groupby(by='specimen_code'):
 
 # Show
 plt.show()
+
+a = 101
