@@ -118,9 +118,13 @@ dataframe = pd.DataFrame(data, columns=['GENUS',
 print("\nData:")
 print(dataframe)
 
-# ----------------------------------------------------
-# ASAI (must raise error)
-# ----------------------------------------------------
+# ---------------------------------------------------------------------
+# ASAI - Errors
+# ---------------------------------------------------------------------
+# .. note: In the examples below, the method asai is meant to raise
+#          an error either because any of the required missing columns
+#          is missing or because the weight configuration is not
+#          correct.
 print("\n\nHandling errors:")
 
 try:
@@ -166,9 +170,13 @@ try:
 except Exception as e:
     print(e)
 
-# ----------------------------------------------------
-# ASAI (must show warning)
-# ----------------------------------------------------
+
+# ---------------------------------------------------------------------
+# ASAI - Warnings
+# ---------------------------------------------------------------------
+# .. note: In the examples below, the method asai is meant to show a
+#          warning message either no threshold has been specified or
+#          because thresholds have been specified twice.
 print("\n\nShow warnings:")
 
 asai_5 = dataframe.drop(columns=['THRESHOLD']) \
@@ -180,9 +188,11 @@ asai_6 = dataframe \
     .apply(asai, threshold=0.5)
 
 
-# ----------------------------------------------------
+# ---------------------------------------------------------------------
 # ASAI
-# ----------------------------------------------------
+# ---------------------------------------------------------------------
+# .. note: In the examples below, the method asai should be working
+#          properly and return the expected results.
 print("\n\nNo errors or warnings:")
 
 # -------

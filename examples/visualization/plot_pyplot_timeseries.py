@@ -1,6 +1,6 @@
 """
 Plotly - Timeseries
-------------------
+-------------------
 
 .. todo:: Explain and Simplify
 

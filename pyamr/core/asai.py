@@ -263,13 +263,16 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
     if dataframe.duplicated().any():
         raise ValueError("There are duplicate rows in the dataframe.")
 
+    # Copy dataframe
+    aux = dataframe.copy(deep=True)
+
     # Check threshold
-    if 'THRESHOLD' in dataframe.columns:
+    if 'THRESHOLD' in aux.columns:
         if threshold is not None:
             warnings.warn("""\n
                   The threshold has been defined both as an 
                   input parameter (threshold={0}) and a dataframe 
-                  column 'THRESHOLD'. The latter will be used.""" \
+                  column 'THRESHOLD'. The latter will be used."""
                   .format(threshold))
     else:
         if threshold is None:
@@ -279,31 +282,28 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
                   dataframe 'THRESHOLD'. Thus a default threshold value 
                   of '0.5' will be used.""".format(threshold))
             threshold = 0.5
-        dataframe['THRESHOLD'] = threshold
-
-    # Copy dataframe
-    dataframe = dataframe.copy(deep=True)
+        aux['THRESHOLD'] = threshold
 
     # Set uniform weights
     if weights == 'uniform':
         # Set uniform weights
-        dataframe['W_GENUS'] = 1. / dataframe.GENUS.nunique()
-        dataframe['W_SPECIE'] =  1. / dataframe.GENUS.map( \
-            dataframe.groupby(['GENUS']).W_SPECIE.count())
+        aux['W_GENUS'] = 1. / aux.GENUS.nunique()
+        aux['W_SPECIE'] = 1. / aux.GENUS.map(
+            aux.groupby(['GENUS']).SPECIE.count())
 
     # Set frequency weights
     if weights == 'frequency':
         # Set frequency weights
-        fgn = dataframe.groupby(['GENUS']).FREQUENCY.sum()
-        dataframe['S_GENUS'] = dataframe.GENUS.map(fgn)
-        dataframe['W_GENUS'] = dataframe.GENUS.map(fgn / fgn.sum())
-        dataframe['W_SPECIE'] = dataframe.FREQUENCY / dataframe.S_GENUS
+        fgn = aux.groupby(['GENUS']).FREQUENCY.sum()
+        aux['S_GENUS'] = aux.GENUS.map(fgn)
+        aux['W_GENUS'] = aux.GENUS.map(fgn / fgn.sum())
+        aux['W_SPECIE'] = aux.FREQUENCY / aux.S_GENUS
 
     # Check sums
     report = pd.DataFrame()
-    report['W_GENUS_UNIQUE_OK'] = dataframe.groupby('GENUS').W_GENUS.nunique()
-    report['W_GENUS_SUM_OK'] = dataframe.groupby('GENUS').head(1).W_GENUS.sum()
-    report['W_SPECIE_SUM_OK'] = dataframe.groupby(['GENUS']).W_SPECIE.sum()
+    report['W_GENUS_UNIQUE_OK'] = aux.groupby('GENUS').W_GENUS.nunique()
+    report['W_GENUS_SUM_OK'] = aux.groupby('GENUS').head(1).W_GENUS.sum()
+    report['W_SPECIE_SUM_OK'] = aux.groupby(['GENUS']).W_SPECIE.sum()
 
     # Condition
     condition = (1 - report).abs() < tol
@@ -320,20 +320,20 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
     # Show
     if verbose > 5:
         print("\nweights={0} | threshold={1}".format(weights, threshold))
-        print(dataframe)
+        print(aux)
 
     # Extract vectors
-    wgn = dataframe.W_GENUS
-    wsp = dataframe.W_SPECIE
-    sari = dataframe.RESISTANCE
-    th = dataframe.THRESHOLD
+    wgn = aux.W_GENUS
+    wsp = aux.W_SPECIE
+    sari = aux.RESISTANCE
+    th = aux.THRESHOLD
 
     # Compute score
     score = np.sum(wgn * wsp * (sari <= th))
 
     # Create results
-    d = {'N_GENUS': dataframe.GENUS.nunique(),
-         'N_SPECIE': dataframe.SPECIE.nunique(),
+    d = {'N_GENUS': aux.GENUS.nunique(),
+         'N_SPECIE': aux.SPECIE.nunique(),
          'ASAI_SCORE': score}
 
     # Default weights

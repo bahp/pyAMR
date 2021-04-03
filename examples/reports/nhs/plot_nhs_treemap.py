@@ -62,8 +62,11 @@ print(dataframe.columns)
 # -------------------------------------------
 # Plot
 # -------------------------------------------
+# Explain...
+#
+#
 # Show
-fig = px.treemap(dataframe,
+fig1 = px.treemap(dataframe,
     path=['specimen_code',
           'microorganism_code',
           'antimicrobial_code'],
@@ -78,13 +81,41 @@ fig = px.treemap(dataframe,
     title='Treemap of <Microorganisms, Antimicrobials> pairs (NHS)')
 
 # Save as html (to be used anyware in docs)
-fig.write_html("../../../docs/source/_static/htmls/{0}.html" \
+fig1.write_html("../../../docs/source/_static/htmls/{0}.html" \
     .format('plot_nhs_treemap'))
 
 # Show (script)
-#fig.show()
+#fig1.show()
 
 # Show (sphinx)
-fig
+fig1
+
+# Explain...
+#
+#
+# Show
+fig2 = px.treemap(dataframe,
+    path=['specimen_code',
+          'antimicrobial_code',
+          'microorganism_code'],
+    #hover_name=,
+    hover_data=['microorganism_name',
+                'name',
+                'sari_medium',
+                'sari_soft'],
+    values='freq',
+    color='sari',
+    color_continuous_scale='Reds',
+    title='Treemap of <Microorganisms, Antimicrobials> pairs (NHS)')
+
+# Save as html (to be used anyware in docs)
+fig2.write_html("../../../docs/source/_static/htmls/{0}.html" \
+    .format('plot_nhs_treemap_sam'))
+
+# Show (script)
+#fig1.show()
+
+# Show (sphinx)
+fig2
 
 a = 1
