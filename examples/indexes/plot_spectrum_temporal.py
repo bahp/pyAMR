@@ -109,15 +109,6 @@ pd.set_option('display.precision', 4)
 np.set_printoptions(precision=2)
 
 # -------------------------------------------
-# Constants
-# -------------------------------------------
-# Create grouper
-grouper = pd.Grouper(freq='3M', key='date_received')
-
-# Define window
-window = 12
-
-# -------------------------------------------
 # Load data
 # -------------------------------------------
 # Load data
@@ -147,31 +138,52 @@ data = data[data.date_received.between('2008-01-01', '2016-12-31')]
 # Independent Time Intervals (ITI)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
-# This is the traditional method used in antimicrobial surveillance systems where the
-# time spans considered are independent; that is, they do not overlap (e.g. month or year).
+# This is the traditional method used in antimicrobial surveillance systems where
+# the time spans considered are independent; that is, they do not overlap (e.g.
+# monthly time series - |1M1| or yearly timeseries - |12M1|).
 #
-#
-#
-#
-# Keep only those subsepecies that appears consistently in all times.
+# .. todo :: Include in ASAI an option to filter and keep only those genus
+#            and species that have values over all the time period? or at
+#            least for more than 80 percent of the period?
 
 # -------------------------------------------
 # Compute ITI sari (temporal)
 # -------------------------------------------
-# Create DataFrame
-iti = data.groupby([grouper,
-                    'specimen_code',
+from pyamr.core.sari import SARI
+
+# Create SARI instance
+sari = SARI(groupby=['specimen_code',
                     'microorganism_code',
                     'antimicrobial_code',
-                    'sensitivity']) \
-          .size().unstack().fillna(0) \
-          .reset_index()
+                    'sensitivity'])
 
-# Compute frequency
-iti['freq'] = iti.sum(axis=1)
+# Create constants
+shift, period = '6M', '800D'
 
-# Compute sari
-iti['sari'] = sari(iti, strategy='hard')
+# Compute sari timeseries
+temp = sari.compute(data, shift=shift,
+    period=period, cdate='date_received')
+
+# Reset index
+temp = temp.reset_index()
+
+# Show
+print("\nSARI (temporal)")
+print(temp)
+
+
+# -------------------------------------------
+# Filter for sari (temporal)
+# -------------------------------------------
+# Appearance of organisms by date (or even freq instead of 1/0).
+s = pd.crosstab(temp['microorganism_code'], temp['date_received'])
+
+# Filter
+#temp = temp[temp['microorganism_code'].isin(s[s.all(axis=1)].index)]
+
+# Show
+print("Remaining microorganisms:")
+print(temp.microorganism_code.unique())
 
 # -------------------------
 # Format dataframe
@@ -181,17 +193,61 @@ abx_map = create_mapper(antimicrobials, 'antimicrobial_code', 'category')
 org_map = create_mapper(microorganisms, 'microorganism_code', 'genus')
 grm_map = create_mapper(microorganisms, 'microorganism_code', 'gram_stain')
 
-iti = iti[['date_received', 'freq', 'sari', 'antimicrobial_code', 'microorganism_code']]
+#iti = iti[['date_received', 'freq', 'sari', 'antimicrobial_code', 'microorganism_code']]
 
 # Include categories
-iti['category'] = iti['antimicrobial_code'].map(abx_map)
-iti['genus'] = iti['microorganism_code'].map(org_map)
-iti['gram'] = iti['microorganism_code'].map(grm_map)
+temp['category'] = temp['antimicrobial_code'].map(abx_map)
+temp['genus'] = temp['microorganism_code'].map(org_map)
+temp['gram'] = temp['microorganism_code'].map(grm_map)
 
 # Empty grams are a new category (unknown - u)
-iti.gram = iti.gram.fillna('u')
+temp.gram = temp.gram.fillna('u')
 
-print(iti[iti.gram=='u'].microorganism_code.unique())
+# Show
+print("\nMicroorganisms without gram stain:")
+print(temp[temp.gram=='u'].microorganism_code.unique())
+
+# -------------------------------
+# Create antimicrobial spectrum
+# -------------------------------
+# Libraries
+from pyamr.core.asai import ASAI
+
+# Create antimicrobial spectrum of activity instance
+asai = ASAI(column_genus='genus',
+            column_specie='microorganism_code',
+            column_resistance='sari',
+            column_frequency='freq')
+# Compute
+scores = asai.compute(temp,
+    groupby=['date_received',
+             'antimicrobial_code',
+             'gram'],
+    weights='uniform',
+    threshold=None,
+    min_freq=0)
+
+# Unstack
+scores = scores
+
+# Show scores
+print("\nASAI:")
+print(scores.unstack())
+
+# Plot
+# ----
+# Create figure
+fig, axes = plt.subplots(1, 2, figsize=(10, 3), sharey=True)
+
+# Show
+sns.lineplot(data=scores, x='date_received', y='ASAI_SCORE',
+             hue='gram', palette="tab10", linewidth=0.75, linestyle='--',
+             marker='o', markersize=3, markeredgecolor='k',
+             markeredgewidth=0.5, markerfacecolor=None,
+             alpha=0.5, ax=axes[0])
+
+
+plt.show()
 
 # -------------------------
 # Compute ASAI
@@ -214,6 +270,9 @@ aux = aux.groupby(['date_received',
                    'antimicrobial_code',
                    'gram'])\
          .apply(asai, weights='uniform', threshold=0.5)
+
+
+plt.show()
 
 # Create aux (filtered)
 aux2 = iti.copy(deep=True)
@@ -251,120 +310,3 @@ sns.lineplot(data=aux2.reset_index(),
              hue='gram',
              marker='o',
              ax=axes[1])
-
-
-######################################################################################
-#
-# Overlapping Time Intervals (OTI)
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# This method is defined as a fixed region which is moved across time to compute consecutive
-# resistance indexes. It is described by two parameters; the length of the region (period)
-# and the distance between consecutive windows (shift).
-
-# -------------------------------------------
-# Compute OTI sari (temporal)
-# -------------------------------------------
-# Create DataFrame
-oti = data.groupby([grouper,
-                    'specimen_code',
-                    'microorganism_code',
-                    'antimicrobial_code',
-                    'sensitivity']) \
-          .size() \
-          .rolling(window=window, min_periods=1) \
-          .sum().unstack().fillna(0)
-
-# Compute frequency
-oti['freq'] = oti.sum(axis=1)
-
-# Compute sari
-oti['sari'] = sari(oti, strategy='hard')
-
-oti = oti.reset_index()
-
-# Show
-print("\nTemporal (OTI):")
-print(oti)
-
-
-
-# -------------------------
-# Format dataframe
-# -------------------------
-# Create mappers
-abx_map = create_mapper(antimicrobials, 'antimicrobial_code', 'category')
-org_map = create_mapper(microorganisms, 'microorganism_code', 'genus')
-grm_map = create_mapper(microorganisms, 'microorganism_code', 'gram_stain')
-
-oti = oti[['date_received', 'freq', 'sari', 'antimicrobial_code', 'microorganism_code']]
-
-# Include categories
-oti['category'] = oti['antimicrobial_code'].map(abx_map)
-oti['genus'] = oti['microorganism_code'].map(org_map)
-oti['gram'] = oti['microorganism_code'].map(grm_map)
-
-# Empty grams are a new category (unknown - u)
-oti.gram = oti.gram.fillna('u')
-
-
-# -------------------------
-# Compute ASAI
-# -------------------------
-oti = oti.rename(columns={
-    'microorganism_code': 'SPECIE',
-    'sari': 'RESISTANCE',
-    'genus': 'GENUS'
-})
-fig, axes = plt.subplots(1, 2, figsize=(10, 3), sharey=True)
-
-# Variable for filtering
-s = pd.crosstab(iti['SPECIE'], iti['date_received'])
-
-# Create aux (non filtered)
-aux = oti.copy(deep=True)
-aux = aux.groupby(['date_received',
-                   'antimicrobial_code',
-                   'gram'])\
-         .apply(asai, weights='uniform', threshold=0.5)
-
-print(s.value_counts(normalize=True)[1])
-
-# Create aux (filtered)
-aux2 = oti.copy(deep=True)
-aux2 = aux2[aux2['SPECIE'].isin(s[s.all(axis=1)].index)]
-aux2 = aux2.groupby(['date_received',
-                   'antimicrobial_code',
-                   'gram'])\
-         .apply(asai, weights='uniform', threshold=0.5)
-
-
-# Display
-print("\nCrosstab:")
-print(s)
-print("\nSelected:")
-print(s[s.all(axis=1)])
-print("\nRemaining:")
-print(iti)
-print(aux.unstack())
-print(aux2.unstack())
-
-sns.lineplot(data=aux.reset_index(),
-             x='date_received',
-             y='ASAI_SCORE',
-             palette="tab10",
-             linewidth=0.75,
-             hue='gram',
-             marker='o',
-             ax=axes[0])
-
-sns.lineplot(data=aux2.reset_index(),
-             x='date_received',
-             y='ASAI_SCORE',
-             palette="tab10",
-             linewidth=0.75,
-             hue='gram',
-             marker='o',
-             ax=axes[1])
-
-plt.show()

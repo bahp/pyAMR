@@ -1,6 +1,6 @@
 """
-SARI - Clustermap (by culture)
-------------------------------
+SARI - Clustermap (by specimen)
+-------------------------------
 
 .. todo:: Explain...
 
@@ -114,32 +114,48 @@ print("\nColumns:")
 print(data.columns)
 
 # -------------------------------------------
-# For each culture type
+# Compute SARI
 # -------------------------------------------
-# Count records per order code
-specimen_code_count = data.specimen_code.value_counts()
+# Libraries
+from pyamr.core.sari import SARI
 
-# Filter most frequent order codes
-data = data[data.specimen_code.isin( \
-    specimen_code_count.index.values[:5])]
+# Create sari instance
+sari = SARI(groupby=['specimen_code',
+                     'microorganism_code',
+                     'antimicrobial_code',
+                     'sensitivity'])
+
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=True)
+
+# Show
+print("SARI (overall):")
+print(sari_overall)
+
+
+# -------------------------------------------
+# Plot
+# -------------------------------------------
+# Reset
+sari_overall = sari_overall.reset_index()
+
+# Count records per specimen
+specimen_count = sari_overall \
+    .groupby('specimen_code').freq.sum() \
+    .sort_values(ascending=False)
+
+# Show
+print("Cultures:")
+print(specimen_count)
+
+# Filter
+sari_overall = sari_overall[sari_overall \
+    .specimen_code.isin( \
+        specimen_count.index.values[:5])]
 
 # Loop
-for specimen_code, df in data.groupby(by='specimen_code'):
-
-    # -------------------------------------------
-    # Compute Freq and SARI
-    # -------------------------------------------
-    # Create instance
-    freq = Frequency(column_antibiotic='antimicrobial_code',
-                     column_organism='microorganism_code',
-                     column_date='date_received',
-                     column_outcome='sensitivity')
-
-    # Compute frequencies (overall)
-    freq_overall = freq.compute(df, by_category='pairs')
-
-    # Compute SARI
-    sari_overall = SARI(strategy='hard').compute(freq_overall)
+for specimen, df in sari_overall.groupby(by='specimen_code'):
 
     # -------------------------------
     # Create matrix
@@ -148,15 +164,18 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     abx_map = create_mapper(data, 'antimicrobial_code', 'antimicrobial_class')
     org_map = create_mapper(data, 'microorganism_code', 'microorganism_genus')
 
-    # Create matrix
-    matrix = sari_overall.reset_index()
-    matrix['microorganism_genus'] = matrix.SPECIE.map(org_map)
-    matrix['antimicrobial_class'] = matrix.ANTIBIOTIC.map(abx_map)
+    # Filter
+    matrix = df.copy(deep=True)
+    matrix = df.reset_index()
+    matrix['microorganism_genus'] = matrix.microorganism_code.map(org_map)
+    matrix['antimicrobial_class'] = matrix.antimicrobial_code.map(abx_map)
+    #matrix = matrix[matrix.freq > 100]
 
     # Pivot table
-    matrix = pd.pivot_table(matrix, values='sari',
-        index=['SPECIE', 'microorganism_genus'],
-         columns=['ANTIBIOTIC', 'antimicrobial_class'])
+    matrix = pd.pivot_table(matrix,
+         index=['microorganism_code', 'microorganism_genus'],
+         columns=['antimicrobial_code', 'antimicrobial_class'],
+         values='sari')
 
     # Convert to percent
     matrix = matrix * 100
@@ -168,7 +187,7 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     matrix = matrix.fillna(1e-10)
 
     # Show
-    print("\n\n\nData (%s)" % specimen_code)
+    print("\n\n\nData (%s)" % specimen)
     print(matrix.astype(int))
 
     # Create colormap
@@ -193,8 +212,7 @@ for specimen_code, df in data.groupby(by='specimen_code'):
         print("Exception: %s" % e)
 
     # Configuration
-    plt.suptitle('Antibiogram (clustered) - %s' % specimen_code,
-        fontsize=12)
+    plt.suptitle('Antibiogram (clustered) - %s' % specimen, fontsize=12)
     plt.tight_layout()
 
 # Show

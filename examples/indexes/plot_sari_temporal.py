@@ -82,15 +82,6 @@ pd.set_option('display.precision', 4)
 np.set_printoptions(precision=2)
 
 # -------------------------------------------
-# Constants
-# -------------------------------------------
-# Create grouper
-grouper = pd.Grouper(freq='M', key='date_received')
-
-# Define window
-window = 12
-
-# -------------------------------------------
 # Load data
 # -------------------------------------------
 # Load data

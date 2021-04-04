@@ -1,5 +1,5 @@
 """
-SARI - Relplot (by culture)
+SARI - Relplot (by specimen)
 ----------------------------
 
 .. todo:: Explain...
@@ -77,81 +77,72 @@ print(data)
 print("\nColumns:")
 print(data.columns)
 
+# -------------------------------------------
+# Compute SARI
+# -------------------------------------------
+# Libraries
+from pyamr.core.sari import SARI
+
+# Create sari instance
+sari = SARI(groupby=['specimen_code',
+                     'microorganism_code',
+                     'antimicrobial_code',
+                     'sensitivity'])
+
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=True)
+
 # Show
-print("\nData:")
-print(data)
-print("\nColumns:")
-print(data.columns)
+print("SARI (overall):")
+print(sari_overall)
+
 
 # -------------------------------------------
-# For each culture type
+# Plot
 # -------------------------------------------
-# Count records per order code
-specimen_code_count = data.specimen_code.value_counts()
+# Reset
+sari_overall = sari_overall.reset_index()
 
-# Filter most frequent order codes
-data = data[data.specimen_code.isin( \
-    specimen_code_count.index.values[:5])]
+# Count records per specimen
+specimen_count = sari_overall \
+    .groupby('specimen_code').freq.sum() \
+    .sort_values(ascending=False)
+
+# Show
+print("Cultures:")
+print(specimen_count)
+
+# Filter
+sari_overall = sari_overall[sari_overall \
+    .specimen_code.isin( \
+        specimen_count.index.values[:5])]
 
 # Loop
-for specimen_code, df in data.groupby(by='specimen_code'):
+for specimen, df in sari_overall.groupby(by='specimen_code'):
 
-    # -------------------------------------------
-    # Compute Freq and SARI
-    # -------------------------------------------
-    # Create instance
-    freq = Frequency(column_antibiotic='antimicrobial_code',
-                     column_organism='microorganism_code',
-                     column_date='date_received',
-                     column_outcome='sensitivity')
-
-    # Compute frequencies (overall)
-    freq_overall = freq.compute(df, by_category='pairs')
-
-    # Compute SARI
-    sari_overall = SARI(strategy='hard').compute(freq_overall)
-
-    # -------------------------------
-    # Create matrix
-    # -------------------------------
-    # Create mappers
-    abx_map = create_mapper(data, 'antimicrobial_code', 'antimicrobial_class')
-    org_map = create_mapper(data, 'microorganism_code', 'microorganism_genus')
-
-    # Create matrix
-    matrix = sari_overall
-    matrix['freq'] = freq_overall.sum(axis=1)
-    matrix = matrix.reset_index()
-    matrix['microorganism_genus'] = matrix.SPECIE.map(org_map)
-    matrix['antimicrobial_class'] = matrix.ANTIBIOTIC.map(abx_map)
-
-    # Show
-    print("\nData:")
-    print(matrix)
-    print("\nColumns:")
-    print(matrix.columns)
-    print("\nFrequencies:")
-    print(matrix.freq.describe())
-
+    # ------------
+    # Plot Heatmap
+    # ------------
     # Create colormap
     cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
     # Configura
-    sizes = (matrix.freq.min(), matrix.freq.max())
+    sizes = (df.freq.min(), df.freq.max())
 
     # Plot
-    g = sns.relplot(data=matrix, x='SPECIE',
-        y='ANTIBIOTIC', hue="sari", size="freq",
-        palette='Reds', hue_norm=(0, 1), edgecolor="gray",
-        linewidth=0.5, sizes=sizes, #size_norm=sizes,
-        dashes=True, legend='brief', height=10
-    )
+    g = sns.relplot(data=df.reset_index(), x='microorganism_code',
+                    y='antimicrobial_code', hue="sari", size="freq",
+                    palette='Reds', hue_norm=(0, 1), edgecolor="gray",
+                    linewidth=0.5, sizes=sizes,  # size_norm=sizes,
+                    dashes=True, legend='brief', height=10)
 
     # Configure plot
     g.set(xlabel="Antimicrobial",
           ylabel="Microorganism",
-          title='Antibiogram (with frequency)')
-          #aspect="equal")
+          title='Antibiogram (with frequency)',
+          #aspect='equal'
+    )
     g.despine(left=True, bottom=True)
     g.ax.margins(.1)
 
@@ -164,11 +155,11 @@ for specimen_code, df in data.groupby(by='specimen_code'):
         artist.set_edgecolor("k")
         artist.set_linewidth(0.5)
 
-    # Suptitle
-    plt.suptitle(specimen_code)
+    # Superior title
+    plt.suptitle(specimen)
 
     # Add grid lines.
-    #plt.grid(linestyle='-', linewidth=0.5, color='.7')
+    # plt.grid(linestyle='-', linewidth=0.5, color='.7')
 
     # Adjust
     plt.tight_layout()
