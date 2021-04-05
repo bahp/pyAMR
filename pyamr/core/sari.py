@@ -150,8 +150,6 @@ class SARI:
     c_dat = 'DATE'
     c_out = 'SENSITIVITY'
 
-
-
     def __init__(self, groupby=[c_spe,
                                 c_org,
                                 c_abx,
@@ -186,8 +184,8 @@ class SARI:
         # Copy DataFrame
         aux = dataframe.copy(deep=True)
 
-        # If dates.... warning if na
-        # Warning nan for elements in groupby!
+        # Warning if dates NaN
+        # Warning if elements in groupby any all NaN!
 
         # Create grouper
         grouper = []

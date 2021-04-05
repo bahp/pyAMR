@@ -444,33 +444,31 @@ class ASAI():
         # Filter by freq
         if min_freq is not None:
             if not self.c_fre in aux:
-                warnings.warn("""\n
+                warnings.warn("""
                 The min_freq={0} cannot be applied because the frequency
-                columns 'FREQUENCY' does not exist in the DataFrame."""
+                columns 'FREQUENCY' does not exist in the DataFrame.\n"""
                     .format(min_freq))
             else:
                 aux = aux[aux[self.c_fre] >= min_freq]
 
+
         # Check duplicates
         if aux.duplicated(subset=required).any():
-            warnings.warn("""\n
-                 There are duplicated rows in the DataFrame. These rows
-                 will be removed to safely compute ASAI. Please review
-                 the DataFrame and address this inconsistencies. The 
-                 duplicated columns investigated are: 
-                 {0}\n""".format(required))
-            aux = aux.drop_duplicates(required)
+            warnings.warn("""
+                 There are duplicated rows in the DataFrame. These is
+                 usually not expected. Please review the DataFrame and 
+                 address this inconsistencies. Maybe you should include
+                 more columns in the groupby (e.g. specimen_cde). The 
+                 columns used to compute duplicated are: 
+                 {0}.\n""".format(required))
+            #aux = aux.drop_duplicates(required)
 
         # Check extreme resistance values
         if aux.RESISTANCE.isin([0.0, 1.0]).any():
-            warnings.warn("""\n
+            warnings.warn("""
                  Extreme resistances were found in the DataFrame. These rows
-                 should be reviewed since these resistance might correspond
-                 to pairs with low number of records. For more information 
-                 see below:\n""")
-                 #\n\n\t\t{0}"""
-                 #.format(aux[aux.RESISTANCE.isin([0.0, 1.1])] \
-                 #.to_string().replace("\n", "\n\t\t")))
+                 should be reviewed since these resistances might correspond
+                 to pairs with low number of records.\n""")
             #aux = aux[aux[self.c_res] != 1.0]
 
         # Get NaN indexes
@@ -478,12 +476,13 @@ class ASAI():
 
         # Show warning and correct
         if idxs.any():
-            warnings.warn("""\n
+            warnings.warn("""
                  There are NULL values in columns that are required. These
-                 rows will be removed to safely compute ASAI. Please review
-                 the DataFrame and address this inconsistencies. The 
-                 duplicated columns investigated are: 
-                 {0}\n""".format(required))
+                 rows will be ignored to safely compute ASAI. Please review
+                 the DataFrame and address this inconsistencies. See below
+                 for more information: \n\n\t\t\t{0}\n""".format( \
+                    aux[required].isna().sum(axis=0) \
+                        .to_string().replace("\n", "\n\t\t\t")))
             aux = aux.dropna(subset=required)
 
         # Compute

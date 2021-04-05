@@ -4,6 +4,10 @@ import pandas as pd
 # Import specific
 from itertools import product
 
+# Load
+from pyamr.datasets.load import load_registry_microorganisms
+from pyamr.datasets.load import load_registry_antimicrobials
+
 # -----------------------------------------
 # Helper methods
 # -----------------------------------------
@@ -224,6 +228,8 @@ class MicroorganismRegistry:
                 'species',
                 'subspecies']
 
+    reg = None
+
     def __init__(self, path=None):
         """Load dataframe registry.
 
@@ -232,7 +238,71 @@ class MicroorganismRegistry:
         path: string
             The path to the csv file.
         """
-        pass
+        # Load registry information
+        self.reg = load_registry_microorganisms()
+
+    def combine(self, dataframe):
+        """Combines an external dataframe with the registry.
+
+        .. note: The dataframe must contain genus, species..
+
+        Parameters
+        ----------
+
+        Returns
+        --------
+        """
+        # Check
+        if not 'genus' in dataframe:
+            raise ValueError("Missing <genus> column.")
+        if not 'species' in dataframe:
+            raise ValueError("Missing <species> column.")
+
+        # Copy dataframe
+        dataframe = dataframe.copy(deep=True)
+
+        # Format
+        dataframe.genus = dataframe.genus.str.capitalize()
+        dataframe.species = dataframe.species.str.lower()
+
+        # --------------
+        # Step 1
+        # --------------
+        # First, merge those rows within gram_stain and taxonomy
+        # that have equal genus and species. Note that we are
+        # only merging if both values exist and are equal.
+        # Merge
+        dataframe = pd.merge(dataframe, self.reg,
+            how='left',
+            left_on=['genus', 'species'],
+            right_on=['genus', 'species']
+        )
+
+        # Those merged exist in registry.
+        dataframe['exists_in_registry'] = dataframe.acronym.notna()
+
+        # --------------
+        # Step 2
+        # --------------
+        # Second, for those values whose taxonomy-related columns
+        # are null, use the taxonomy information based only on the
+        # genus. This does not overwrite step 1.
+        # Create aux
+        aux = pd.merge(dataframe[['genus']],
+            self.reg.drop(columns=['species', 'acronym']) \
+                .drop_duplicates() \
+                .groupby('genus') \
+                .head(1),
+            how='left',
+            left_on=['genus'],
+            right_on=['genus']
+        )
+
+        # Update dataframe
+        dataframe.update(aux)
+
+        # Return
+        return dataframe
 
     def binomial_name(self):
         pass
@@ -242,8 +312,57 @@ class MicroorganismRegistry:
 
 class AntimicrobialRegistry:
     """This class..."""
-    pass
 
+    reg = None
+
+    def __init__(self, path=None):
+        """Load dataframe registry.
+
+        Parameters
+        ----------
+        path: string
+            The path to the csv file.
+        """
+        # Load registry information
+        self.reg = load_registry_antimicrobials()
+
+    def combine(self, dataframe):
+        """Combines an external dataframe with the registry.
+
+        .. note: The dataframe must contain genus, species..
+
+        Parameters
+        ----------
+
+        Returns
+        --------
+        """
+        # Check
+        if not 'antimicrobial_name' in dataframe:
+            raise ValueError("Missing <antimicrobial_name> column.")
+
+        # Copy dataframe
+        dataframe = dataframe.copy(deep=True)
+
+        # Format
+        dataframe.antimicrobial_name = \
+            dataframe.antimicrobial_name.str.capitalize()
+
+        # --------------
+        # Step 1
+        # --------------
+        # First, merge those rows within gram_stain and taxonomy
+        # that have equal genus and species. Note that we are
+        # only merging if both values exist and are equal.
+        # Merge
+        dataframe = pd.merge(dataframe, self.reg,
+            how='left',
+            left_on=['antimicrobial_name'],
+            right_on=['name']
+        )
+
+        # Return
+        return dataframe
 
 
 
