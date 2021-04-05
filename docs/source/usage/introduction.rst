@@ -48,7 +48,7 @@ Acronym  Full name                                      Status
 ``SARI`` Single Antimicrobial Resistance Index          ``Ok``
 ``MARI`` Multiple Antimicrobial Resistance Index        ``Pending``
 ``DRI``  Drug Resistance Index                          ``Pending``
-``SART`` Single Antimicrobial Resistance Trend          ``Ok``
+``SART`` Single Antimicrobial Resistance Trend          ``Pending``
 ``ASAI`` Antimicrobial Spectrum of Activity Index       ``Ok``
 ======== ============================================== =============
 
