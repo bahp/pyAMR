@@ -21,35 +21,32 @@
 Step 01 - Introduction
 ============================
 
-.. note: Done quickly, needs review.
-
-.. todo:
-    1. Load data
-    2. Plot summary
-    3. Compute SARI
-    4.
-
-.. GENERATED FROM PYTHON SOURCE LINES 17-30
+.. GENERATED FROM PYTHON SOURCE LINES 8-27
 
 Loading data
 ------------
 
-A ``Susceptibility test`` record is composed by laboratory identification
-number (LID), patient identification number (PID), date, sample type or
-culture (e.g. blood or urine), pathogen, antimicrobial, reported status
-and outcome (resistant, sensitive or intermediate). In this research,
-the susceptibility test data were grouped firstly by sample type. Moreover,
+
+.. image:: ../../_static/imgs/susceptibility-test-record.png
+   :width: 200
+   :align: right
+   :alt: ASAI
+
+A ``Susceptibility test`` record (see figure 4.1) is composed by laboratory
+identification number (LID), patient identification number (PID), date, sample
+type, specimen or culture (e.g. blood or urine), pathogen, antimicrobial, reported
+status and outcome (resistant, sensitive or intermediate). In this research,
+the susceptibility test data were grouped firstly by specimen type. Moreover,
 for each sample type, the data were grouped by pairs (pathogen, antimicrobial)
 since it is widely accepted by clinicians as detailed in the UK five year
 strategy in AMR
 
 A small dataset will be used for this example.
 
-.. GENERATED FROM PYTHON SOURCE LINES 31-95
+.. GENERATED FROM PYTHON SOURCE LINES 28-59
 
 .. code-block:: default
-   :lineno-start: 33
-
+   :lineno-start: 29
 
 
     # Libraries
@@ -63,49 +60,17 @@ A small dataset will be used for this example.
     from pyamr.datasets.load import make_susceptibility
 
     # -------------------------------------------
-    # Constants
-    # -------------------------------------------
-    # Path
-    path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
-    path_org = '../../../pyamr/datasets/microbiology/db_microorganisms.csv'
-    path_abx = '../../../pyamr/datasets/microbiology/db_antimicrobials.csv'
-
-    # Columns
-    usecols = ['dateReceived',
-               'labNumber',
-               'patNumber',
-               'orderName',
-               'orderCode',
-               'organismName',
-               'organismCode',
-               'antibioticName',
-               'antibioticCode',
-               'sensitivity']
-
-    # Sensitivities to keep
-    sensitivities = ['sensitive',
-                     'intermediate',
-                     'resistant']
-
-    # Specimens
-    specimen = ['BLDCUL']
-
-    # -------------------------------------------
     # Load data
     # -------------------------------------------
     # Load data
     data = make_susceptibility()
-
-    # Clean
-    data = data[data.sensitivity.isin(sensitivities)]
-    data = data[data.specimen_code.isin(specimen)]
     data = data.drop_duplicates()
 
     # Show
     print("\nData:")
     print(data)
     print("\nColumns:")
-    print(data.columns)
+    print(data.dtypes)
 
     # -------------------------------------------
     # Show a brief description
@@ -126,163 +91,46 @@ A small dataset will be used for this example.
 
 
     Data:
-                  date_received         date_outcome LastActDateODBC  patient_id  ... microorganism_genus microorganism_specie microorganism_gram_type antimicrobial_class
-    24      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p                 NaN
-    25      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p    fluoroquinolones
-    26      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p          macrolides
-    27      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p          macrolides
-    28      2020-04-24 11:50:00  2020-04-28 00:00:00      28/04/2020           2  ...      staphylococcus               aureus                       p                 NaN
-    ...                     ...                  ...             ...         ...  ...                 ...                  ...                     ...                 ...
-    124584  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p         penicillins
-    124585  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p                 NaN
-    124586  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p                 NaN
-    124587  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p       tetracyclines
-    124588  2021-01-18 12:08:00                  NaN      2021-01-24        7495  ...      staphylococcus   coagulase negative                       p                 NaN
+           date_received  date_outcome  patient_id laboratory_number  ... sensitivity_method  sensitivity mic reported
+    0         2009-01-03           NaN       20091           X428501  ...                NaN    sensitive NaN      NaN
+    1         2009-01-03           NaN       20091           X428501  ...                NaN    resistant NaN      NaN
+    2         2009-01-03           NaN       20091           X428501  ...                NaN    sensitive NaN      NaN
+    3         2009-01-03           NaN       20091           X428501  ...                NaN    sensitive NaN      NaN
+    4         2009-01-03           NaN       20091           X428501  ...                NaN    sensitive NaN      NaN
+    ...              ...           ...         ...               ...  ...                ...          ...  ..      ...
+    319117    2009-12-31           NaN       24645          H2012337  ...                NaN    sensitive NaN      NaN
+    319118    2009-12-31           NaN       24645          H2012337  ...                NaN    sensitive NaN      NaN
+    319119    2009-12-31           NaN       24645          H2012337  ...                NaN    resistant NaN      NaN
+    319120    2009-12-31           NaN       24645          H2012337  ...                NaN    sensitive NaN      NaN
+    319121    2009-12-31           NaN       24645          H2012337  ...                NaN    sensitive NaN      NaN
 
-    [12438 rows x 22 columns]
+    [319122 rows x 15 columns]
 
     Columns:
-    Index(['date_received', 'date_outcome', 'LastActDateODBC', 'patient_id',
-           'laboratory_number', 'specimen_code', 'specimen_name',
-           'specimen_description', 'microorganism_piece_counter',
-           'microorganism_code', 'microorganism_name', 'antimicrobial_code',
-           'antimicrobial_name', 'sensitivity_method', 'sensitivity_code', 'mic',
-           'reported', 'sensitivity', 'microorganism_genus',
-           'microorganism_specie', 'microorganism_gram_type',
-           'antimicrobial_class'],
-          dtype='object')
+    date_received            object
+    date_outcome            float64
+    patient_id                int64
+    laboratory_number        object
+    specimen_code            object
+    specimen_name           float64
+    specimen_description     object
+    microorganism_code       object
+    microorganism_name       object
+    antimicrobial_code       object
+    antimicrobial_name       object
+    sensitivity_method      float64
+    sensitivity              object
+    mic                     float64
+    reported                float64
+    dtype: object
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 96-125
-
-Computing Freq
---------------
-
-.. note: Double check if the category 'isolate' is also valid.
-
-This section explains the main concepts in order to understand how the
-computation of frequencies using the ``Frequency`` class works. For more
-information see the documentation (xxx). The frequency can be computed using the
-``Frequency`` class for three different categories; the ``organisms``,
-``antibiotics`` and ``pairs`` which are composed by an organism and an antibiotic.
-In addition, regarding to time, the susceptibility data can be grouped following
-different strategies:
-
-- **Overall** - ``overall``
-  All the data is used and therefore the outcome is a single number for
-  the selected category (organisms, antibiotics or pairs)``. If no
-  strategy is specified this will be used.
-
-- **Independent time intervals** - ``ITI``
-  This is the traditional method used in antimicrobial surveillance systems
-  where the time spans considered are independent; that is, they do not overlap
-  (e.g. month or year).
-
-- **Overlapping time intervals** - ``OTI``
-  This method is defined as a fixed region which is moved across time to compute
-  consecutive resistance indexes. It is described by two parameters; the length
-  of the region (period) and the distance between consecutive windows (shift).
-
-For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_frequency.py`.
-
-.. GENERATED FROM PYTHON SOURCE LINES 126-163
-
-.. code-block:: default
-   :lineno-start: 127
-
-
-    # -------------------------------------------
-    # Compute Freq
-    # -------------------------------------------
-    # Import specific libraries
-    from pyamr.core.freq import Frequency
-
-    # Create instance
-    freq = Frequency(column_antibiotic='antimicrobial_code',
-                     column_organism='microorganism_code',
-                     column_date='date_received',
-                     column_outcome='sensitivity')
-
-    # Compute frequencies (overall)
-    freq_overall = freq.compute(data, by_category='pairs')
-
-    # Compute frequencies (monthly)
-    freq_monthly = freq.compute(data, strategy='ITI',
-                                 by_category='pairs',
-                                 fs='1M')
-    # Add freq
-    freq_overall['freq'] = freq_overall.sum(axis=1)
-    freq_monthly['freq'] = freq_monthly.sum(axis=1)
-
-    # Show
-    print("\nFreq (overall):")
-    print(freq_overall)
-    print("\nFreq (monthly):")
-    print(freq_monthly)
-
-    # Plot
-    # .. todo: Use bar plot or any other library to plot
-    #          the frequency in time. Ideally with bars
-    #          where x-axis is the time and y-axis is the
-    #          freq. Avoid too many x-labels, keep just
-    #          years?
-
-
-
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    Freq (overall):
-    SENSITIVITY        intermediate  resistant  sensitive  freq
-    SPECIE ANTIBIOTIC                                          
-    ABAU   AAMI                 0.0        0.0        1.0   1.0
-           ACIP                 1.0        0.0        0.0   1.0
-           ACOT                 0.0        0.0        1.0   1.0
-           AGEN                 0.0        0.0        1.0   1.0
-           AMER                 0.0        0.0        1.0   1.0
-    ...                         ...        ...        ...   ...
-    STREP  AVAN                 0.0        0.0        5.0   5.0
-    SVES   ACLI                 0.0        0.0        1.0   1.0
-           APEN                 0.0        0.0        1.0   1.0
-           ATET                 0.0        0.0        1.0   1.0
-           AVAN                 0.0        0.0        1.0   1.0
-
-    [688 rows x 4 columns]
-
-    Freq (monthly):
-    SENSITIVITY                   intermediate  resistant  sensitive  freq
-    SPECIE ANTIBIOTIC DATE                                                
-    ABAU   AAMI       2020-08-31           0.0        0.0        1.0   1.0
-           ACIP       2020-08-31           1.0        0.0        0.0   1.0
-           ACOT       2020-08-31           0.0        0.0        1.0   1.0
-           AGEN       2020-08-31           0.0        0.0        1.0   1.0
-           AMER       2020-08-31           0.0        0.0        1.0   1.0
-    ...                                    ...        ...        ...   ...
-    STREP  AVAN       2021-01-31           0.0        0.0        1.0   1.0
-    SVES   ACLI       2021-01-31           0.0        0.0        1.0   1.0
-           APEN       2021-01-31           0.0        0.0        1.0   1.0
-           ATET       2021-01-31           0.0        0.0        1.0   1.0
-           AVAN       2021-01-31           0.0        0.0        1.0   1.0
-
-    [2935 rows x 4 columns]
-
-
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 164-185
+.. GENERATED FROM PYTHON SOURCE LINES 60-79
 
 Computing SARI
 --------------
-
-.. note:: SARI can be computed very easily (class might not be needed)
 
 The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a
@@ -301,36 +149,45 @@ The parameter strategy accepts three different options:
 
 For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 186-232
+.. GENERATED FROM PYTHON SOURCE LINES 80-134
 
 .. code-block:: default
-   :lineno-start: 187
+   :lineno-start: 81
 
 
     # -------------------------------------------
     # Compute SARI
     # -------------------------------------------
-    # Import specific libraries
+    # Libraries
     from pyamr.core.sari import SARI
 
-    # Compute SARI
-    sari_overall = SARI(strategy='hard').compute(freq_overall)
-    sari_monthly = SARI(strategy='hard').compute(freq_monthly)
+    # Create sari instance
+    sari = SARI(groupby=['specimen_code',
+                         'microorganism_name',
+                         'antimicrobial_name',
+                         'sensitivity'])
+
+    # Compute SARI overall
+    sari_overall = sari.compute(data,
+        return_frequencies=True)
 
     # Show
-    print("\nSARI (overall):")
+    print("SARI (overall):")
     print(sari_overall)
-    print("\nSARI (monthly):")
-    print(sari_monthly)
 
     # Plot Heatmap
     # ------------
-    # Create matrix
+    # Filter
     matrix = sari_overall.copy(deep=True)
+    matrix = matrix.reset_index()
     matrix = matrix[matrix.freq > 100]
-    matrix = matrix[['sari']]
-    matrix = matrix.unstack() * 100
-    matrix.columns = matrix.columns.droplevel()
+    matrix = matrix[matrix.specimen_code.isin(['BLDCUL'])]
+
+    # Pivot table
+    matrix = pd.pivot_table(matrix,
+        index='microorganism_name',
+        columns='antimicrobial_name',
+        values='sari')
 
     # Create figure
     f, ax = plt.subplots(1, 1, figsize=(10, 4))
@@ -339,7 +196,7 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sar
     cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
     # Plot
-    ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+    ax = sns.heatmap(data=matrix*100, annot=True, fmt=".0f",
         annot_kws={'fontsize': 'small'}, cmap=cmap,
         linewidth=0.5, vmin=0, vmax=100, ax=ax,
         xticklabels=1, yticklabels=1)
@@ -350,7 +207,6 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sar
     # Tight layout
     plt.tight_layout()
     plt.subplots_adjust(right=1.05)
-
 
 
 
@@ -366,50 +222,30 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sar
 
  .. code-block:: none
 
-
     SARI (overall):
-    SENSITIVITY        intermediate  resistant  sensitive  freq  sari
-    SPECIE ANTIBIOTIC                                                
-    ABAU   AAMI                 0.0        0.0        1.0   1.0   0.0
-           ACIP                 1.0        0.0        0.0   1.0   1.0
-           ACOT                 0.0        0.0        1.0   1.0   0.0
-           AGEN                 0.0        0.0        1.0   1.0   0.0
-           AMER                 0.0        0.0        1.0   1.0   0.0
-    ...                         ...        ...        ...   ...   ...
-    STREP  AVAN                 0.0        0.0        5.0   5.0   0.0
-    SVES   ACLI                 0.0        0.0        1.0   1.0   0.0
-           APEN                 0.0        0.0        1.0   1.0   0.0
-           ATET                 0.0        0.0        1.0   1.0   0.0
-           AVAN                 0.0        0.0        1.0   1.0   0.0
+    sensitivity                                                             intermediate  resistant  ...  freq      sari
+    specimen_code microorganism_name                    antimicrobial_name                           ...                
+    BFLCUL        anaerobes                             metronidazole                0.0        0.0  ...   1.0  0.000000
+                  bacillus                              ciprofloxacin                0.0        0.0  ...   1.0  0.000000
+                                                        clindamycin                  0.0        3.0  ...   4.0  0.750000
+                                                        erythromycin                 0.0        1.0  ...   4.0  0.250000
+                                                        fusidic acid                 0.0        3.0  ...   4.0  0.750000
+    ...                                                                              ...        ...  ...   ...       ...
+    XINCUL        streptococcus beta-haemolytic group b cephalexin                   0.0        1.0  ...   1.0  1.000000
+                                                        clindamycin                  0.0        1.0  ...   9.0  0.111111
+                                                        erythromycin                 0.0        1.0  ...   9.0  0.111111
+                                                        penicillin                   0.0        0.0  ...   9.0  0.000000
+                                                        tetracycline                 0.0        8.0  ...   9.0  0.888889
 
-    [688 rows x 5 columns]
-
-    SARI (monthly):
-    SENSITIVITY                   intermediate  resistant  sensitive  freq  sari
-    SPECIE ANTIBIOTIC DATE                                                      
-    ABAU   AAMI       2020-08-31           0.0        0.0        1.0   1.0   0.0
-           ACIP       2020-08-31           1.0        0.0        0.0   1.0   1.0
-           ACOT       2020-08-31           0.0        0.0        1.0   1.0   0.0
-           AGEN       2020-08-31           0.0        0.0        1.0   1.0   0.0
-           AMER       2020-08-31           0.0        0.0        1.0   1.0   0.0
-    ...                                    ...        ...        ...   ...   ...
-    STREP  AVAN       2021-01-31           0.0        0.0        1.0   1.0   0.0
-    SVES   ACLI       2021-01-31           0.0        0.0        1.0   1.0   0.0
-           APEN       2021-01-31           0.0        0.0        1.0   1.0   0.0
-           ATET       2021-01-31           0.0        0.0        1.0   1.0   0.0
-           AVAN       2021-01-31           0.0        0.0        1.0   1.0   0.0
-
-    [2935 rows x 5 columns]
+    [4491 rows x 5 columns]
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 233-259
+.. GENERATED FROM PYTHON SOURCE LINES 135-167
 
 Computing ASAI
 --------------
-
-.. note:: ASAI...
 
 The antimicrobial spectrum of activity refers to the range of microbe species
 that are susceptible to these agents and therefore can be treated. In general,
@@ -431,12 +267,63 @@ the number of genera tested. An antimicrobial is considered effective to treat a
 particular species when the corresponding resistance index (SARI) is lower than
 a given threshold.
 
+In order to compute ``ASAI``, we need to at least have columns with the following
+information: ``antimicrobial``, ``microorganism genus``, ``microorganism species``
+and ``resistance``. Moreover, in this example we will compute the ASAI for each
+``gram_stain`` category independently.
+
+
+Lets include all this information using the ``MicroorganismRegistry``.
+
 For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-393
+.. GENERATED FROM PYTHON SOURCE LINES 168-194
 
 .. code-block:: default
-   :lineno-start: 261
+   :lineno-start: 169
+
+
+    # ------------------------------
+    # Include gram stain
+    # ------------------------------
+    # Libraries
+    from pyamr.datasets.registries import MicroorganismRegistry
+
+    # Load registry
+    mreg = MicroorganismRegistry()
+
+    # Format sari dataframe
+    dataframe = sari_overall.copy(deep=True)
+    dataframe = dataframe.reset_index()
+
+    # Create genus and species
+    dataframe[['genus', 'species']] = \
+        dataframe.microorganism_name \
+            .str.capitalize() \
+            .str.split(expand=True, n=1)
+
+    # Combine with registry information
+    dataframe = mreg.combine(dataframe)
+
+    # Fill missing gram stain
+    dataframe.gram_stain = dataframe.gram_stain.fillna('u')
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 195-197
+
+Now that we have the ``gram_stain`` information, lets compute ``ASAI``.
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 198-231
+
+.. code-block:: default
+   :lineno-start: 199
 
 
     # -------------------------------------------
@@ -445,49 +332,128 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
     # Import specific libraries
     from pyamr.core.asai import ASAI
 
-
-    # Format DataFrame
-    dataframe = sari_overall.copy(deep=True)
-    dataframe = sari_overall.reset_index()
-    dataframe = dataframe.merge(data, how='left',
-        left_on='SPECIE', right_on='microorganism_code')
-
-    # Fill empty
-    # .. note: Leads to division by 0 (investigate)
-    dataframe.microorganism_gram_type = \
-        dataframe.microorganism_gram_type.fillna('u')
-
-    print(dataframe.columns)
-
-    # Create antimicrobial spectrum of activity instance
-    asai = ASAI(weights='uniform',
-                threshold=0.05,
-                column_genus='microorganism_name',
-                column_specie='SPECIE',
-                column_antibiotic='ANTIBIOTIC',
-                column_resistance='sari')
+    # Create asai instance
+    asai = ASAI(column_genus='genus',
+                column_specie='species',
+                column_resistance='sari',
+                column_frequency='freq')
 
     # Compute
     scores = asai.compute(dataframe,
-                by_category='microorganism_gram_type')
+        groupby=['specimen_code',
+                 'antimicrobial_name',
+                 'gram_stain'],
+        weights='uniform',
+        threshold=0.5,
+        min_freq=0)
 
-    # .. note: In order to sort the scores we need to compute metrics
-    #          that combine the different subcategories (e.g. gram-negative
-    #          and gram-positive). Two possible options are: (i) use the
-    #          gmean or (ii) the width.
-    # Measures
-    scores = scores.fillna(0.0)
-    scores['width'] = np.abs(scores['ASAI_SCORE']['n'] + scores['ASAI_SCORE']['p'])
-    scores['gmean'] = np.sqrt(scores['ASAI_SCORE']['n'] * scores['ASAI_SCORE']['p'])
-    scores = scores.sort_values(by='gmean', ascending=False)
+    # Stack
+    scores = scores.unstack()
 
-    # Show scores
-    print("Data output:")
+    # Filter and drop index.
+    scores = scores.filter(like='URICUL', axis=0)
+    scores.index = scores.index.droplevel()
+
+    # Show
+    print("\nASAI (overall):")
     print(scores)
 
 
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:468: UserWarning:
+
+
+                     Extreme resistances were found in the DataFrame. These rows
+                     should be reviewed since these resistances might correspond
+                     to pairs with low number of records.
+
+
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:479: UserWarning:
+
+
+                     There are NULL values in columns that are required. These
+                     rows will be ignored to safely compute ASAI. Please review
+                     the DataFrame and address this inconsistencies. See below
+                     for more information: 
+
+                            specimen_code            0
+                            antimicrobial_name       0
+                            gram_stain               0
+                            GENUS                    0
+                            SPECIE                2414
+                            RESISTANCE               0
+
+
+
+    ASAI (overall):
+                       N_GENUS          N_SPECIE          ASAI_SCORE              
+    gram_stain               n    p   u        n    p   u          n         p   u
+    antimicrobial_name                                                            
+    amikacin               5.0  NaN NaN      5.0  NaN NaN   1.000000       NaN NaN
+    amoxycillin            2.0  2.0 NaN      2.0  7.0 NaN   0.500000  0.833333 NaN
+    amp c markers          4.0  NaN NaN      4.0  NaN NaN   0.250000       NaN NaN
+    augmentin              5.0  2.0 NaN      5.0  7.0 NaN   0.200000  1.000000 NaN
+    aztreonam              3.0  NaN NaN      3.0  NaN NaN   0.666667       NaN NaN
+    cefotaxime             5.0  NaN NaN      5.0  NaN NaN   0.200000       NaN NaN
+    cefoxitin              5.0  NaN NaN      5.0  NaN NaN   0.400000       NaN NaN
+    cefpodoxime            5.0  2.0 NaN      5.0  5.0 NaN   0.400000  0.833333 NaN
+    ceftazidime            5.0  NaN NaN      5.0  NaN NaN   0.600000       NaN NaN
+    cefuroxime             5.0  NaN NaN      5.0  NaN NaN   0.000000       NaN NaN
+    cephalexin             5.0  2.0 NaN      5.0  7.0 NaN   0.200000  0.875000 NaN
+    ciprofloxacin          6.0  2.0 NaN      6.0  7.0 NaN   0.833333  1.000000 NaN
+    clindamycin            NaN  2.0 NaN      NaN  4.0 NaN        NaN  1.000000 NaN
+    colistin sulphate      5.0  NaN NaN      5.0  NaN NaN   0.800000       NaN NaN
+    cotrimoxazole          3.0  NaN NaN      3.0  NaN NaN   0.666667       NaN NaN
+    ertapenem              3.0  NaN NaN      3.0  NaN NaN   0.666667       NaN NaN
+    erythromycin           NaN  2.0 NaN      NaN  6.0 NaN        NaN  0.833333 NaN
+    esbl markers           5.0  NaN NaN      5.0  NaN NaN   0.200000       NaN NaN
+    flucloxacillin         1.0  1.0 NaN      1.0  3.0 NaN   0.000000  1.000000 NaN
+    fusidic acid           NaN  1.0 NaN      NaN  3.0 NaN        NaN  0.666667 NaN
+    gentamicin             5.0  1.0 NaN      5.0  3.0 NaN   0.800000  1.000000 NaN
+    imipenem               5.0  NaN NaN      5.0  NaN NaN   0.800000       NaN NaN
+    linezolid              NaN  1.0 NaN      NaN  3.0 NaN        NaN  1.000000 NaN
+    mecillinam             5.0  NaN NaN      5.0  NaN NaN   0.400000       NaN NaN
+    meropenem              5.0  NaN NaN      5.0  NaN NaN   0.600000       NaN NaN
+    mls markers            NaN  1.0 NaN      NaN  3.0 NaN        NaN  0.333333 NaN
+    mupirocin              NaN  1.0 NaN      NaN  2.0 NaN        NaN  1.000000 NaN
+    naladixic acid         1.0  NaN NaN      1.0  NaN NaN   1.000000       NaN NaN
+    nitrofurantoin         5.0  2.0 NaN      5.0  7.0 NaN   0.200000  1.000000 NaN
+    novobiocin             1.0  1.0 NaN      1.0  3.0 NaN   0.000000  0.666667 NaN
+    penicillin             1.0  2.0 NaN      1.0  6.0 NaN   0.000000  0.500000 NaN
+    rifampicin             NaN  1.0 NaN      NaN  3.0 NaN        NaN  1.000000 NaN
+    sulphamethoxazole      2.0  NaN NaN      2.0  NaN NaN   0.500000       NaN NaN
+    tazocin                5.0  NaN NaN      5.0  NaN NaN   1.000000       NaN NaN
+    teicoplanin            NaN  2.0 NaN      NaN  7.0 NaN        NaN  1.000000 NaN
+    temocillin             3.0  NaN NaN      3.0  NaN NaN   0.666667       NaN NaN
+    tetracycline           1.0  2.0 NaN      1.0  6.0 NaN   1.000000  0.833333 NaN
+    timentin               4.0  NaN NaN      4.0  NaN NaN   0.750000       NaN NaN
+    tobramycin             5.0  NaN NaN      5.0  NaN NaN   0.600000       NaN NaN
+    trimethoprim           5.0  2.0 NaN      5.0  7.0 NaN   0.200000  1.000000 NaN
+    vancomycin             NaN  2.0 NaN      NaN  7.0 NaN        NaN  1.000000 NaN
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 232-233
+
+Lets plot it now!
+
+.. GENERATED FROM PYTHON SOURCE LINES 234-329
+
+.. code-block:: default
+   :lineno-start: 235
+
+
     # ----------------
-    # Plot
+    # Helper method
     # ----------------
     def scalar_colormap(values, cmap, vmin, vmax):
         """This method creates a colormap based on values.
@@ -515,6 +481,15 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
         # Return
         return colormap
 
+    # ---------------------------------------------------------------
+    # Plot
+    # ---------------------------------------------------------------
+    # .. note: In order to sort the scores we need to compute metrics
+    #          that combine the different subcategories (e.g. gram-negative
+    #          and gram-positive). Two possible options are: (i) use the
+    #          gmean or (ii) the width.
+    # Measures
+    scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
 
     # Variables to plot.
     x = scores.index.values
@@ -534,7 +509,7 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
     # For instance, it uses gram-positive, gram-negative and gram-unknown.
     # All the indexes go within the range [0,1].
     # Create the figure
-    f, axes = plt.subplots(1, 3, figsize=(7, 7))
+    f, axes = plt.subplots(1, 3, figsize=(7, 9))
 
     # Plot each category
     sns.barplot(x=y_p, y=x, palette=colormap_p, ax=axes[0], orient='h',
@@ -579,98 +554,31 @@ For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asa
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Index(['SPECIE', 'ANTIBIOTIC', 'intermediate', 'resistant', 'sensitive',
-           'freq', 'sari', 'date_received', 'date_outcome', 'LastActDateODBC',
-           'patient_id', 'laboratory_number', 'specimen_code', 'specimen_name',
-           'specimen_description', 'microorganism_piece_counter',
-           'microorganism_code', 'microorganism_name', 'antimicrobial_code',
-           'antimicrobial_name', 'sensitivity_method', 'sensitivity_code', 'mic',
-           'reported', 'sensitivity', 'microorganism_genus',
-           'microorganism_specie', 'microorganism_gram_type',
-           'antimicrobial_class'],
-          dtype='object')
-    Data output:
-                            N_GENUS             N_SPECIE             ASAI_SCORE                         width     gmean
-    microorganism_gram_type       n     p     u        n     p     u          n         p         u                    
-    ANTIBIOTIC                                                                                                         
-    ANIT                        1.0   1.0   1.0      1.0   1.0   1.0   1.000000  1.000000  1.000000  2.000000  1.000000
-    AMER                       12.0   1.0  14.0     12.0   1.0  14.0   0.750000  1.000000  1.000000  1.750000  0.866025
-    AFOX                        6.0   1.0   4.0      6.0   1.0   4.0   0.500000  1.000000  1.000000  1.500000  0.707107
-    ACOT                        8.0   1.0  12.0      8.0   1.0  12.0   0.500000  1.000000  0.916667  1.500000  0.707107
-    ATIG                        8.0   4.0   8.0      8.0   4.0   8.0   0.625000  0.500000  1.000000  1.125000  0.559017
-    ACIP                       11.0   4.0  12.0     11.0   4.0  12.0   0.545455  0.500000  1.000000  1.045455  0.522233
-    ATRI                        1.0   5.0   2.0      1.0   5.0   2.0   1.000000  0.200000  0.500000  1.200000  0.447214
-    AAUG                        5.0   1.0   4.0      5.0   1.0   4.0   0.200000  1.000000  1.000000  1.200000  0.447214
-    AGEN                       12.0   6.0  13.0     12.0   6.0  13.0   0.583333  0.333333  1.000000  0.916667  0.440959
-    AMET                        0.0   4.0   2.0      0.0   4.0   2.0   0.000000  0.250000  1.000000  0.250000  0.000000
-    AMF                         0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
-    AMLS                        0.0   5.0   0.0      0.0   5.0   0.0   0.000000  0.200000  0.000000  0.200000  0.000000
-    AMTZ                        0.0   2.0   1.0      0.0   2.0   1.0   0.000000  0.500000  1.000000  0.500000  0.000000
-    AMUP                        0.0   7.0   0.0      0.0   7.0   0.0   0.000000  0.714286  0.000000  0.714286  0.000000
-    ANEO                        0.0   7.0   2.0      0.0   7.0   2.0   0.000000  0.571429  1.000000  0.571429  0.000000
-    ARIF                        0.0   9.0   3.0      0.0   9.0   3.0   0.000000  0.555556  1.000000  0.555556  0.000000
-    APCZ                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
-    APEN                        0.0  23.0   5.0      0.0  23.0   5.0   0.000000  0.695652  1.000000  0.695652  0.000000
-    ALEV                        0.0   1.0   1.0      0.0   1.0   1.0   0.000000  1.000000  1.000000  1.000000  0.000000
-    ATAZ                       11.0   0.0   7.0     11.0   0.0   7.0   0.454545  0.000000  0.857143  0.454545  0.000000
-    ATEI                        0.0   6.0   0.0      0.0   6.0   0.0   0.000000  0.666667  0.000000  0.666667  0.000000
-    ATEM                        9.0   0.0   5.0      9.0   0.0   5.0   0.666667  0.000000  1.000000  0.666667  0.000000
-    ATET                        0.0  14.0   7.0      0.0  14.0   7.0   0.000000  0.642857  1.000000  0.642857  0.000000
-    ATOB                        3.0   0.0   0.0      3.0   0.0   0.0   0.666667  0.000000  0.000000  0.666667  0.000000
-    AVAN                        0.0  25.0   4.0      0.0  25.0   4.0   0.000000  0.960000  1.000000  0.960000  0.000000
-    ALIN                        0.0  13.0   4.0      0.0  13.0   4.0   0.000000  1.000000  1.000000  1.000000  0.000000
-    AAMI                       12.0   0.0  12.0     12.0   0.0  12.0   0.916667  0.000000  1.000000  0.916667  0.000000
-    AITR                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
-    AIMP                        3.0   0.0   2.0      3.0   0.0   2.0   0.666667  0.000000  1.000000  0.666667  0.000000
-    AAMPH                       0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
-    AAND                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
-    AAZT                        9.0   0.0   5.0      9.0   0.0   5.0   0.444444  0.000000  0.800000  0.444444  0.000000
-    ACAZ                       10.0   0.0   5.0     10.0   0.0   5.0   0.400000  0.000000  0.800000  0.400000  0.000000
-    ACHL                        0.0   9.0   3.0      0.0   9.0   3.0   0.000000  0.888889  1.000000  0.888889  0.000000
-    ACLI                        0.0  21.0   4.0      0.0  21.0   4.0   0.000000  0.428571  0.750000  0.428571  0.000000
-    ACLZ                        3.0   0.0   0.0      3.0   0.0   0.0   0.666667  0.000000  0.000000  0.666667  0.000000
-    ACONE                       7.0   0.0   7.0      7.0   0.0   7.0   0.428571  0.000000  0.857143  0.428571  0.000000
-    ACPIM                       4.0   0.0   1.0      4.0   0.0   1.0   0.750000  0.000000  1.000000  0.750000  0.000000
-    ACPO                        1.0   0.0   0.0      1.0   0.0   0.0   1.000000  0.000000  0.000000  1.000000  0.000000
-    ACXM                        6.0   0.0   7.0      6.0   0.0   7.0   0.166667  0.000000  0.857143  0.166667  0.000000
-    ACZA                       10.0   0.0   3.0     10.0   0.0   3.0   0.900000  0.000000  1.000000  0.900000  0.000000
-    ADAP                        0.0   2.0   0.0      0.0   2.0   0.0   0.000000  1.000000  0.000000  1.000000  0.000000
-    AERT                        9.0   0.0   8.0      9.0   0.0   8.0   0.777778  0.000000  1.000000  0.777778  0.000000
-    AERY                        0.0  12.0   2.0      0.0  12.0   2.0   0.000000  0.416667  0.500000  0.416667  0.000000
-    AESBL                       3.0   0.0   0.0      3.0   0.0   0.0   0.333333  0.000000  0.000000  0.333333  0.000000
-    AFLUZ                       0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
-    AFUS                        0.0   8.0   2.0      0.0   8.0   2.0   0.000000  0.500000  1.000000  0.500000  0.000000
-    AAMP                        2.0   3.0   2.0      2.0   3.0   2.0   0.000000  0.666667  1.000000  0.666667  0.000000
-    AVOR                        0.0   0.0   1.0      0.0   0.0   1.0   0.000000  0.000000  1.000000  0.000000  0.000000
 
 
 
-
-.. GENERATED FROM PYTHON SOURCE LINES 394-398
+.. GENERATED FROM PYTHON SOURCE LINES 330-334
 
 Computing SART
 --------------
 
 .. warning:: To include.
 
-.. GENERATED FROM PYTHON SOURCE LINES 402-404
+.. GENERATED FROM PYTHON SOURCE LINES 338-340
 
 Dirty code to use and or delete
 -------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 405-479
+.. GENERATED FROM PYTHON SOURCE LINES 341-420
 
 .. code-block:: default
-   :lineno-start: 406
+   :lineno-start: 342
 
 
     """
+
+    Summary
+
     summary = data.agg(
         norganisms=('organismCode', 'nunique'),
         nantibiotics=('antibioticCode', 'nunique'),
@@ -743,6 +651,8 @@ Dirty code to use and or delete
     #print dff_isola.head(10)
     import sys
     sys.exit()
+
+
     """
 
 
@@ -754,14 +664,14 @@ Dirty code to use and or delete
  .. code-block:: none
 
 
-    '\nsummary = data.agg(\n    norganisms=(\'organismCode\', \'nunique\'),\n    nantibiotics=(\'antibioticCode\', \'nunique\'),\n    ncultures=(\'orderCode\', \'nunique\'),\n    ntests=(\'labNumber\', \'nunique\')\n)\n\nprint(summary)\n\nprint(data.nunique())\n\n\nprint(len(data.groupby([\'organismCode\', \'antibioticCode\'])))\nprint(data.shape[0])\n\nsummary = pd.DataFrame\n\n\n#from analysis.microbiology.statistics.frequency import Frequency\n\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = "freq_tests_pairs_year"\nfname_isola = "freq_isolates_pairs_year"\nfpath_tests = "../../results/microbiology/frequencies/%s.csv" % fname_tests\nfpath_isola = "../../results/microbiology/frequencies/%s.csv" % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\'Tests\'] = dff_tests[\'freq_ris\'].groupby(level=[0]).sum()\ndfy[\'Isolates\'] = dff_isola[\'freq\'].groupby(level=[0]).sum()\ndfy[\'Tests/Isolates\'] = dfy[\'Tests\'].div(dfy[\'Isolates\'])\ndfy[\'Antibiotics\'] = dff_reset.groupby(\'dateReceived\').antibioticCode.nunique()\ndfy[\'Organisms\'] = dff_reset.groupby(\'dateReceived\').organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\'Total\',:] = np.nan\ndfy.loc[\'Total\',\'Tests\'] = dfy[\'Tests\'].sum(axis=0)\ndfy.loc[\'Total\',\'Isolates\'] = dfy[\'Isolates\'].sum(axis=0)\ndfy.loc[\'Total\',\'Tests/Isolates\'] = dfy[\'Tests/Isolates\'].mean()\ndfy.loc[\'Total\',\'Antibiotics\'] = dff_reset.antibioticCode.nunique()\ndfy.loc[\'Total\',\'Organisms\'] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint("\n\n")\nprint("Pandas:")\nprint("-------")\nprint(dfy)\n\n# Print dataframe latex format.\nprint("\n\n")\nprint("Latex:")\nprint("-------")\nprint(dfy.to_latex())\n\n#print dff_isola.head(10)\nimport sys\nsys.exit()\n'
+    '\n\nSummary\n\nsummary = data.agg(\n    norganisms=(\'organismCode\', \'nunique\'),\n    nantibiotics=(\'antibioticCode\', \'nunique\'),\n    ncultures=(\'orderCode\', \'nunique\'),\n    ntests=(\'labNumber\', \'nunique\')\n)\n\nprint(summary)\n\nprint(data.nunique())\n\n\nprint(len(data.groupby([\'organismCode\', \'antibioticCode\'])))\nprint(data.shape[0])\n\nsummary = pd.DataFrame\n\n\n#from analysis.microbiology.statistics.frequency import Frequency\n\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = "freq_tests_pairs_year"\nfname_isola = "freq_isolates_pairs_year"\nfpath_tests = "../../results/microbiology/frequencies/%s.csv" % fname_tests\nfpath_isola = "../../results/microbiology/frequencies/%s.csv" % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\'Tests\'] = dff_tests[\'freq_ris\'].groupby(level=[0]).sum()\ndfy[\'Isolates\'] = dff_isola[\'freq\'].groupby(level=[0]).sum()\ndfy[\'Tests/Isolates\'] = dfy[\'Tests\'].div(dfy[\'Isolates\'])\ndfy[\'Antibiotics\'] = dff_reset.groupby(\'dateReceived\').antibioticCode.nunique()\ndfy[\'Organisms\'] = dff_reset.groupby(\'dateReceived\').organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\'Total\',:] = np.nan\ndfy.loc[\'Total\',\'Tests\'] = dfy[\'Tests\'].sum(axis=0)\ndfy.loc[\'Total\',\'Isolates\'] = dfy[\'Isolates\'].sum(axis=0)\ndfy.loc[\'Total\',\'Tests/Isolates\'] = dfy[\'Tests/Isolates\'].mean()\ndfy.loc[\'Total\',\'Antibiotics\'] = dff_reset.antibioticCode.nunique()\ndfy.loc[\'Total\',\'Organisms\'] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint("\n\n")\nprint("Pandas:")\nprint("-------")\nprint(dfy)\n\n# Print dataframe latex format.\nprint("\n\n")\nprint("Latex:")\nprint("-------")\nprint(dfy.to_latex())\n\n#print dff_isola.head(10)\nimport sys\nsys.exit()\n\n\n'
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.673 seconds)
+   **Total running time of the script:** ( 0 minutes  7.866 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:

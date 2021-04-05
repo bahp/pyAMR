@@ -241,42 +241,8 @@
 <span id="pyamr-core-asai-module"></span><h2>pyamr.core.asai module<a class="headerlink" href="#module-pyamr.core.asai" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="pyamr.core.asai.ASAI">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></code><code class="sig-name descname"><span class="pre">ASAI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_specie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_antibiotic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIBIOTIC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'THRESHOLD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FREQUENCY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wgenus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wspecie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_SPECIE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></code><code class="sig-name descname"><span class="pre">ASAI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_specie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'THRESHOLD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FREQUENCY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wgenus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wspecie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_SPECIE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This class computes the antimicrobial spectrum of activity.</p>
-<p>The antimicrobial spectrum of activity (ASAI) represents ….</p>
-<p>The mathematical definition is…</p>
-<p>An example is to compute the ASAI for gram-positive and gram-negative
-bacteria. In that example, the ASAI indicates whether or not
-the antimicrobial is effective against (i) different grams (n/p) which
-is often denoted as broad spectrum (ii) different species within the
-same gram often denoted as intermediate spectrum or (iii) a particular
-species in a particular gram often denoted as narrow spectrum.</p>
-<p>input.csv</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">,</span><span class="n">gram</span><span class="p">,</span><span class="n">specie</span><span class="p">,</span><span class="n">genus</span><span class="p">,</span><span class="n">antibiotic</span><span class="p">,</span><span class="n">resistance</span>
-<span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">8</span>
-<span class="mi">2</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusb</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">10</span>
-<span class="mi">3</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusc</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">50</span>
-<span class="mi">4</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie2</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">20</span>
-<span class="mi">5</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie3</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">aantibiotic1</span><span class="p">,</span><span class="mi">50</span>
-</pre></div>
-</div>
-<p>output.csv</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">antibiotic</span><span class="p">,</span> <span class="n">gramn</span><span class="p">,</span> <span class="n">gramp</span><span class="o">.</span>
-<span class="n">antibiotic1</span><span class="p">,</span> <span class="n">NaN</span><span class="p">,</span> <span class="mf">5.6667</span>
-<span class="n">antibiotic2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0000</span>
-<span class="n">antibiotic3</span><span class="p">,</span> <span class="n">NaN</span><span class="p">,</span> <span class="mf">5.6667</span>
-</pre></div>
-</div>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Add an example (executable)</p>
-</div>
-<dl class="py attribute">
-<dt id="pyamr.core.asai.ASAI.c_abx">
-<code class="sig-name descname"><span class="pre">c_abx</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_abx" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
 <dt id="pyamr.core.asai.ASAI.c_fre">
 <code class="sig-name descname"><span class="pre">c_fre</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'FREQUENCY'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_fre" title="Permalink to this definition">¶</a></dt>
@@ -314,7 +280,88 @@ species in a particular gram often denoted as narrow spectrum.</p>
 
 <dl class="py method">
 <dt id="pyamr.core.asai.ASAI.compute">
-<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_category</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI.compute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the ASAI index (safely).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyamr.core.asai.ASAI_old">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></code><code class="sig-name descname"><span class="pre">ASAI_old</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_specie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_antibiotic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIBIOTIC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'THRESHOLD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FREQUENCY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wgenus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wspecie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_SPECIE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI_old" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class computes the antimicrobial spectrum of activity.</p>
+<p>The antimicrobial spectrum of activity (ASAI) represents ….</p>
+<p>The mathematical definition is…</p>
+<p>An example is to compute the ASAI for gram-positive and gram-negative
+bacteria. In that example, the ASAI indicates whether or not
+the antimicrobial is effective against (i) different grams (n/p) which
+is often denoted as broad spectrum (ii) different species within the
+same gram often denoted as intermediate spectrum or (iii) a particular
+species in a particular gram often denoted as narrow spectrum.</p>
+<p>input.csv</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">,</span><span class="n">gram</span><span class="p">,</span><span class="n">specie</span><span class="p">,</span><span class="n">genus</span><span class="p">,</span><span class="n">antibiotic</span><span class="p">,</span><span class="n">resistance</span>
+<span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">8</span>
+<span class="mi">2</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusb</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">10</span>
+<span class="mi">3</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie1</span><span class="p">,</span><span class="n">genusc</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">50</span>
+<span class="mi">4</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie2</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">antibiotic1</span><span class="p">,</span><span class="mi">20</span>
+<span class="mi">5</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">specie3</span><span class="p">,</span><span class="n">genusa</span><span class="p">,</span><span class="n">aantibiotic1</span><span class="p">,</span><span class="mi">50</span>
+</pre></div>
+</div>
+<p>output.csv</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">antibiotic</span><span class="p">,</span> <span class="n">gramn</span><span class="p">,</span> <span class="n">gramp</span><span class="o">.</span>
+<span class="n">antibiotic1</span><span class="p">,</span> <span class="n">NaN</span><span class="p">,</span> <span class="mf">5.6667</span>
+<span class="n">antibiotic2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0000</span>
+<span class="n">antibiotic3</span><span class="p">,</span> <span class="n">NaN</span><span class="p">,</span> <span class="mf">5.6667</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Add an example (executable)</p>
+</div>
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_abx">
+<code class="sig-name descname"><span class="pre">c_abx</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_abx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_fre">
+<code class="sig-name descname"><span class="pre">c_fre</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'FREQUENCY'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_fre" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_gen">
+<code class="sig-name descname"><span class="pre">c_gen</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'GENUS'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_gen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_res">
+<code class="sig-name descname"><span class="pre">c_res</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'RESISTANCE'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_res" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_spe">
+<code class="sig-name descname"><span class="pre">c_spe</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SPECIE'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_spe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_thr">
+<code class="sig-name descname"><span class="pre">c_thr</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'THRESHOLD'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_thr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_wgen">
+<code class="sig-name descname"><span class="pre">c_wgen</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'W_GENUS'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_wgen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.asai.ASAI_old.c_wspe">
+<code class="sig-name descname"><span class="pre">c_wspe</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'W_SPECIE'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_wspe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.asai.ASAI_old.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_category</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.asai.ASAI_old.compute" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function computes the asai index by category.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -487,7 +534,7 @@ also grouped by organisms or antibiotics.</p></li>
 <span id="pyamr-core-sari-module"></span><h2>pyamr.core.sari module<a class="headerlink" href="#module-pyamr.core.sari" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="pyamr.core.sari.SARI">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">SARI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">SARI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['SPECIMEN',</span> <span class="pre">'SPECIE',</span> <span class="pre">'ANTIBIOTIC',</span> <span class="pre">'SENSITIVITY']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt id="pyamr.core.sari.SARI.c_abx">
@@ -509,9 +556,46 @@ also grouped by organisms or antibiotics.</p></li>
 <code class="sig-name descname"><span class="pre">c_out</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SENSITIVITY'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI.c_out" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI.c_spe">
+<code class="sig-name descname"><span class="pre">c_spe</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SPECIMEN'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI.c_spe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="pyamr.core.sari.SARI.compute">
-<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI.compute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes single antibiotic resistance index.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyamr.core.sari.SARI_old">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></code><code class="sig-name descname"><span class="pre">SARI_old</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI_old" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI_old.c_abx">
+<code class="sig-name descname"><span class="pre">c_abx</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI_old.c_abx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI_old.c_dat">
+<code class="sig-name descname"><span class="pre">c_dat</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'DATE'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI_old.c_dat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI_old.c_org">
+<code class="sig-name descname"><span class="pre">c_org</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SPECIE'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI_old.c_org" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyamr.core.sari.SARI_old.c_out">
+<code class="sig-name descname"><span class="pre">c_out</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SENSITIVITY'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI_old.c_out" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyamr.core.sari.SARI_old.compute">
+<code class="sig-name descname"><span class="pre">compute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.core.sari.SARI_old.compute" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method computes the single antibitic resistance index</p>
 </dd></dl>
 

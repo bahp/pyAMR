@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>SARI - Antibiogram (by culture) &mdash; pyamr 0.0.1 documentation</title>
+  <title>SARI - Antibiogram (by specimen) &mdash; pyamr 0.0.1 documentation</title>
   
 
   
@@ -42,8 +42,8 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="SARI - Clustermap (overall)" href="plot_clustermap_01.html" />
-    <link rel="prev" title="SARI - Antibiogram (overall)" href="plot_antibiogram_01.html" /> 
+    <link rel="next" title="SARI - Clustermap (by specimen)" href="plot_clustermap_02.html" />
+    <link rel="prev" title="Examples with AMR indexes" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,14 +100,13 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with AMR indexes</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="plot_antibiogram_01.html">SARI - Antibiogram (overall)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">SARI - Antibiogram (by culture)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_clustermap_01.html">SARI - Clustermap (overall)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_clustermap_02.html">SARI - Clustermap (by culture)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_relmap_01.html">SARI - Relplot (overall)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_relmap_02.html">SARI - Relplot (by culture)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SARI - Antibiogram (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_clustermap_02.html">SARI - Clustermap (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_relmap_02.html">SARI - Relplot (by specimen)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_spectrum_gramtype.html">ASAI - gram type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_spectrum_multiple.html">ASAI - Multiple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_temporal_asai.html">ASAI - Timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_temporal_sari.html">SARI - Timeseries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_wls_basic.html">SART - through WLS</a></li>
 </ul>
 </li>
@@ -168,7 +167,7 @@
         
           <li><a href="index.html">Examples with AMR indexes</a> &raquo;</li>
         
-      <li>SARI - Antibiogram (by culture)</li>
+      <li>SARI - Antibiogram (by specimen)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -192,8 +191,8 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-antibiogram-02-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="sari-antibiogram-by-culture">
-<span id="sphx-glr-examples-indexes-plot-antibiogram-02-py"></span><h1>SARI - Antibiogram (by culture)<a class="headerlink" href="#sari-antibiogram-by-culture" title="Permalink to this headline">¶</a></h1>
+<div class="sphx-glr-example-title section" id="sari-antibiogram-by-specimen">
+<span id="sphx-glr-examples-indexes-plot-antibiogram-02-py"></span><h1>SARI - Antibiogram (by specimen)<a class="headerlink" href="#sari-antibiogram-by-specimen" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>Explain…</p>
@@ -212,18 +211,18 @@ to download the full example code</p>
 </ul>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-              date_received         date_outcome LastActDateODBC  ...  microorganism_specie microorganism_gram_type antimicrobial_class
-0       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN                 NaN
-1       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN      cephalosporins
-2       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN    fluoroquinolones
-3       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN     aminoglycosides
-4       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN                 NaN
-...                     ...                  ...             ...  ...                   ...                     ...                 ...
-124640  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN          meropenems
-124641  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN                 NaN
-124642  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN         penicillins
-124643  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN                 NaN
-124644  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN     aminoglycosides
+              date_received         date_outcome LastActDateODBC  patient_id laboratory_number  ... sensitivity microorganism_genus microorganism_specie  microorganism_gram_type antimicrobial_class
+0       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN                 NaN
+1       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN      cephalosporins
+2       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN    fluoroquinolones
+3       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN     aminoglycosides
+4       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN                 NaN
+...                     ...                  ...             ...         ...               ...  ...         ...                 ...                  ...                      ...                 ...
+124640  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN          meropenems
+124641  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN                 NaN
+124642  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN         penicillins
+124643  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN                 NaN
+124644  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN     aminoglycosides
 
 [124645 rows x 22 columns]
 
@@ -231,6 +230,70 @@ Columns:
 Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;LastActDateODBC&#39;, &#39;patient_id&#39;, &#39;laboratory_number&#39;, &#39;specimen_code&#39;, &#39;specimen_name&#39;, &#39;specimen_description&#39;, &#39;microorganism_piece_counter&#39;, &#39;microorganism_code&#39;, &#39;microorganism_name&#39;, &#39;antimicrobial_code&#39;, &#39;antimicrobial_name&#39;, &#39;sensitivity_method&#39;,
        &#39;sensitivity_code&#39;, &#39;mic&#39;, &#39;reported&#39;, &#39;sensitivity&#39;, &#39;microorganism_genus&#39;, &#39;microorganism_specie&#39;, &#39;microorganism_gram_type&#39;, &#39;antimicrobial_class&#39;],
       dtype=&#39;object&#39;)
+SARI (overall):
+sensitivity                                          hide  highly resistant  intermediate  not determined  resistant  sensitive  freq  sari
+specimen_code microorganism_code antimicrobial_code
+ASFCUL        CALB               AAMPH                0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                 AAND                 0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                 AFLUZ                0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                 AITR                 0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                 AMF                  0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+...                                                   ...               ...           ...             ...        ...        ...   ...   ...
+WOUCUL        PROTE              AERT                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+                                 AFOX                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+                                 ATAZ                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+                                 ATEM                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+              PANA               AMTZ                 0.0               0.0           0.0             2.0        0.0        1.0   3.0   0.0
+
+[7656 rows x 8 columns]
+Cultures:
+specimen_code
+URNCUL    19714.0
+WOUCUL    12848.0
+BLDCUL    12563.0
+SPTCUL     8615.0
+URICUL     7690.0
+TIPCUL     3842.0
+TISCUL     3597.0
+MNGCUL     3171.0
+ITUCUL     2631.0
+NEOCUL     2016.0
+BALCUL     1866.0
+PSWCUL     1649.0
+CROCUL     1521.0
+VAGCUL     1401.0
+BFLCUL     1276.0
+SKNCUL     1189.0
+ETTCUL      990.0
+LVSCUL      875.0
+GNGCUL      846.0
+DRFCUL      823.0
+EARCUL      721.0
+PUSCUL      656.0
+EYECUL      568.0
+PDFCUL      318.0
+FBCUL       304.0
+MRSCUL      283.0
+THRCUL      258.0
+CSCCUL      257.0
+ASFCUL      227.0
+JFLCUL      210.0
+NOSCUL      183.0
+SEMCUL      122.0
+CSFCUL      109.0
+NPACUL      108.0
+GLNCUL      104.0
+PLFCUL      103.0
+MTHCUL       75.0
+IUDCUL       61.0
+CLCUL        60.0
+BILCUL       51.0
+FAECUL       34.0
+URECUL       32.0
+WICCUL       25.0
+PNCUL        13.0
+FSTCUL       11.0
+Name: freq, dtype: float64
 </pre></div>
 </div>
 <div class="line-block">
@@ -370,22 +433,7 @@ Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;LastActDateODBC&#39
 <span class="normal">140</span>
 <span class="normal">141</span>
 <span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
+<span class="normal">143</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
  <span class="kn">import</span> <span class="nn">sys</span>
  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -418,42 +466,6 @@ Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;LastActDateODBC&#39
  <span class="c1"># Numpy configuration</span>
  <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
- <span class="c1"># ------------------</span>
- <span class="c1"># Methods</span>
- <span class="c1"># ------------------</span>
- <span class="k">def</span> <span class="nf">get_category_colors</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;tab10&#39;</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;This method creates the colors for the different elements in</span>
-<span class="sd">     categorical feature vector.</span>
-
-<span class="sd">     Parameters</span>
-<span class="sd">     ----------</span>
-<span class="sd">     values : array-like</span>
-<span class="sd">         The vector with the categorical values</span>
-
-<span class="sd">     cmap: string-like</span>
-<span class="sd">         The colormap to use</span>
-
-<span class="sd">     default: string-like</span>
-<span class="sd">         The color to be used for the first value. Note that this</span>
-<span class="sd">         value needs to appear first on the the sorted list, as such</span>
-<span class="sd">         it is recommended to set is as _default.</span>
-
-<span class="sd">     Returns</span>
-<span class="sd">     -------</span>
-<span class="sd">     &quot;&quot;&quot;</span>
-     <span class="c1"># Get categories</span>
-     <span class="n">categories</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
-     <span class="c1"># Get unique elements</span>
-     <span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span>
-     <span class="c1"># Create the palette</span>
-     <span class="n">palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="n">unique</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-     <span class="c1"># Create mappers from category to color</span>
-     <span class="n">mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unique</span><span class="p">),</span> <span class="n">palette</span><span class="p">))</span>
-     <span class="c1"># Create list with colors for each category</span>
-     <span class="n">colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">)</span>
-     <span class="c1"># Return</span>
-     <span class="k">return</span> <span class="n">colors</span>
-
 
  <span class="c1"># -------------------------------------------</span>
  <span class="c1"># Load data</span>
@@ -468,57 +480,80 @@ Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;LastActDateODBC&#39
  <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 
  <span class="c1"># -------------------------------------------</span>
- <span class="c1"># For each culture type</span>
+ <span class="c1"># Compute SARI</span>
  <span class="c1"># -------------------------------------------</span>
- <span class="c1"># Count records per order code</span>
- <span class="n">specimen_code_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+ <span class="c1"># Libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
 
- <span class="c1"># Filter most frequent order codes</span>
- <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span> \
-     <span class="n">specimen_code_count</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">5</span><span class="p">])]</span>
+ <span class="c1"># Create sari instance</span>
+ <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
+
+ <span class="c1"># Compute SARI overall</span>
+ <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SARI (overall):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
+
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Plot</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Reset</span>
+ <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+ <span class="c1"># Count records per specimen</span>
+ <span class="n">specimen_count</span> <span class="o">=</span> <span class="n">sari_overall</span> \
+     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> \
+     <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cultures:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">specimen_count</span><span class="p">)</span>
+
+ <span class="c1"># Filter</span>
+ <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="p">[</span><span class="n">sari_overall</span> \
+     <span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span> \
+         <span class="n">specimen_count</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">5</span><span class="p">])]</span>
 
  <span class="c1"># Loop</span>
- <span class="k">for</span> <span class="n">specimen_code</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">):</span>
+ <span class="k">for</span> <span class="n">specimen</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">):</span>
 
-     <span class="c1"># -------------------------------------------</span>
-     <span class="c1"># Compute Freq and SARI</span>
-     <span class="c1"># -------------------------------------------</span>
-     <span class="c1"># Create instance</span>
-     <span class="n">freq</span> <span class="o">=</span> <span class="n">Frequency</span><span class="p">(</span><span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
-                      <span class="n">column_organism</span><span class="o">=</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
-                      <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
-                      <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">)</span>
+     <span class="c1"># -------------</span>
+     <span class="c1"># Create matrix</span>
+     <span class="c1"># -------------</span>
+     <span class="c1"># Filter</span>
+     <span class="n">matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+     <span class="n">matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+     <span class="c1">#matrix = matrix[matrix.freq &gt; 100]</span>
 
-     <span class="c1"># Compute frequencies (overall)</span>
-     <span class="n">freq_overall</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">)</span>
-
-     <span class="c1"># Compute SARI</span>
-     <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">freq_overall</span><span class="p">)</span>
+     <span class="c1"># Pivot table</span>
+     <span class="n">matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span>
+          <span class="n">index</span><span class="o">=</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+          <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+          <span class="n">values</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">)</span>
 
      <span class="c1"># ------------</span>
      <span class="c1"># Plot Heatmap</span>
      <span class="c1"># ------------</span>
-     <span class="c1"># Create matrix</span>
-     <span class="n">matrix</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="p">[[</span><span class="s1">&#39;sari&#39;</span><span class="p">]]</span>
-     <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
-     <span class="n">matrix</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
-
      <span class="c1"># Create figure</span>
-     <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+     <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
      <span class="c1"># Create colormap</span>
      <span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
      <span class="c1"># Specify cbar axes</span>
-     <span class="c1">#cbar_ax = f.add_axes([.925, .3, .05, .3])</span>
+     <span class="c1"># cbar_ax = f.add_axes([.925, .3, .05, .3])</span>
 
      <span class="c1"># Plot</span>
-     <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.0f&quot;</span><span class="p">,</span>
+     <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">matrix</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.0f&quot;</span><span class="p">,</span>
                       <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">},</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
                       <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                      <span class="c1">#cbar_ax=cbar_ax,</span>
                       <span class="n">xticklabels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                      <span class="c1"># cbar_ax=cbar_ax)</span>
-
      <span class="c1"># Configure axes</span>
      <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
 
@@ -526,18 +561,16 @@ Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;LastActDateODBC&#39
      <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
      <span class="c1"># Add title</span>
-     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Antibiogram (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">specimen_code</span><span class="p">,</span>
-         <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Antibiogram (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">specimen</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
      <span class="c1"># Tight layout</span>
      <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-     <span class="c1">#plt.subplots_adjust(right=0.91)</span>
 
  <span class="c1"># Show</span>
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.162 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.169 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-antibiogram-02-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c868c6d9a436cf8860481623ba486f3a/plot_antibiogram_02.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_antibiogram_02.py</span></code></a></p>
@@ -555,8 +588,8 @@ Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;LastActDateODBC&#39
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="plot_clustermap_01.html" class="btn btn-neutral float-right" title="SARI - Clustermap (overall)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="plot_antibiogram_01.html" class="btn btn-neutral float-left" title="SARI - Antibiogram (overall)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_clustermap_02.html" class="btn btn-neutral float-right" title="SARI - Clustermap (by specimen)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Examples with AMR indexes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -99,7 +99,7 @@
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reports</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#mimic-critical-care">MIMIC Critical Care</a></li>
@@ -200,170 +200,10 @@ to download the full example code</p>
 <p class="admonition-title">Todo</p>
 <p>Explain and Simplify</p>
 </div>
-<ul class="sphx-glr-horizontal">
-<li><img alt="BLDCUL, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_0011.png" />
-</li>
-<li><img alt="GUMCUL, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_0021.png" />
-</li>
-<li><img alt="SPTCUL, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_0031.png" />
-</li>
-<li><img alt="URICUL, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_0041.png" />
-</li>
-<li><img alt="WOUCUL, Antibiogram (with frequency)" class="sphx-glr-multi-img" src="../../../_images/sphx_glr_plot_antibiogram_relmap_0051.png" />
-</li>
-</ul>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-SENSITIVITY SPECIE ANTIBIOTIC  fix  hide  highly resistant  ...  sensitive    sari   freq  microorganism_genus  antimicrobial_class
-0              AHS       ACLI  0.0   0.0               0.0  ...      296.0  0.1470  347.0        Streptococcus           Macrolides
-1              AHS       AERY  0.0   0.0               0.0  ...      234.0  0.4361  415.0        Streptococcus           Macrolides
-2              AHS       APEN  0.0   0.0               0.0  ...      354.0  0.1490  416.0        Streptococcus          Penicillins
-3              AHS       ATEI  0.0   0.0               0.0  ...      398.0  0.0149  404.0        Streptococcus         Glycopeptide
-4              AHS       ATET  0.0   0.0               0.0  ...      262.0  0.2384  344.0        Streptococcus        Tetracyclines
-..             ...        ...  ...   ...               ...  ...        ...     ...    ...                  ...                  ...
-263           SPNE       ALEV  0.0   0.0               0.0  ...      317.0  0.0094  320.0        Streptococcus     Fluoroquinolones
-264           SPNE       AMOX  0.0   0.0               0.0  ...      306.0  0.0192  312.0        Streptococcus     Fluoroquinolones
-265           SPNE       APEN  0.0   6.0               0.0  ...      352.0  0.0833  390.0        Streptococcus          Penicillins
-266           SPNE       ATET  0.0   0.0               0.0  ...      350.0  0.0765  379.0        Streptococcus        Tetracyclines
-267           SPNE       AVAN  0.0   0.0               0.0  ...      358.0  0.0000  358.0        Streptococcus         Glycopeptide
-
-[268 rows x 13 columns]
-
-Columns:
-Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;fix&#39;, &#39;hide&#39;, &#39;highly resistant&#39;, &#39;intermediate&#39;, &#39;not done&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
-
-Frequencies:
-count     268.0000
-mean      773.2500
-std      1254.2408
-min       101.0000
-25%       152.7500
-50%       270.0000
-75%       617.7500
-max      5781.0000
-Name: freq, dtype: float64
-
-Data:
-SENSITIVITY SPECIE ANTIBIOTIC  hide  intermediate  not done  resistant  sensitive    sari     freq microorganism_genus antimicrobial_class
-0             NGON       AAZI  10.0           3.0       5.0       87.0    15620.0  0.0057  15725.0           Neisseria          Macrolides
-1             NGON       ACIP   0.0           0.0       4.0     6727.0    10461.0  0.3914  17192.0           Neisseria    Fluoroquinolones
-2             NGON       ACIX  42.0           0.0       4.0       13.0    14979.0  0.0009  15038.0           Neisseria      Cephalosporins
-3             NGON      ACONE  45.0           1.0       4.0        5.0    15012.0  0.0004  15067.0           Neisseria      Cephalosporins
-4             NGON       ACXM   3.0           0.0       1.0      356.0    10155.0  0.0339  10515.0           Neisseria      Cephalosporins
-5             NGON       ANAL   3.0           2.0       1.0     6019.0     9739.0  0.3820  15764.0           Neisseria    Fluoroquinolones
-6             NGON       ASPE   0.0           0.0       4.0       10.0    15741.0  0.0006  15755.0           Neisseria                 NaN
-7             NGON       ATET   0.0           0.0       0.0     1093.0      334.0  0.7659   1427.0           Neisseria       Tetracyclines
-8             NMEN       AAZI   0.0           0.0       0.0        3.0      202.0  0.0146    205.0           Neisseria          Macrolides
-9             NMEN       ACIP   0.0           0.0       0.0       20.0      223.0  0.0823    243.0           Neisseria    Fluoroquinolones
-10            NMEN       ACIX   0.0           0.0       0.0        0.0      201.0  0.0000    201.0           Neisseria      Cephalosporins
-11            NMEN      ACONE   0.0           0.0       0.0        0.0      204.0  0.0000    204.0           Neisseria      Cephalosporins
-12            NMEN       ACXM   0.0           0.0       0.0        1.0      121.0  0.0082    122.0           Neisseria      Cephalosporins
-13            NMEN       ANAL   0.0           0.0       0.0       13.0      213.0  0.0575    226.0           Neisseria    Fluoroquinolones
-14            NMEN       ASPE   0.0           0.0       0.0        0.0      211.0  0.0000    211.0           Neisseria                 NaN
-
-Columns:
-Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;hide&#39;, &#39;intermediate&#39;, &#39;not done&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
-
-Frequencies:
-count       15.0000
-mean      7193.0000
-std       7697.5253
-min        122.0000
-25%        208.0000
-50%       1427.0000
-75%      15396.0000
-max      17192.0000
-Name: freq, dtype: float64
-
-Data:
-SENSITIVITY SPECIE ANTIBIOTIC  hide  intermediate  not done  resistant  sensitive    sari    freq microorganism_genus antimicrobial_class
-0             ABAU       AAMI   0.0           0.0       0.0       71.0       71.0  0.5000   142.0       Acinetobacter     Aminoglycosides
-1             ABAU       AAMO   0.0           0.0       0.0      117.0        2.0  0.9832   119.0       Acinetobacter    Aminopenicillins
-2             ABAU       AAUG   0.0           1.0       0.0      106.0       13.0  0.8917   120.0       Acinetobacter                 NaN
-3             ABAU       ACAZ   0.0          10.0       0.0      107.0        4.0  0.9669   121.0       Acinetobacter      Cephalosporins
-4             ABAU       ACIP   0.0           2.0       0.0      105.0       50.0  0.6815   157.0       Acinetobacter    Fluoroquinolones
-..             ...        ...   ...           ...       ...        ...        ...     ...     ...                 ...                 ...
-365           SPNE       AMOX   0.0           0.0       0.0       10.0     1113.0  0.0089  1123.0       Streptococcus    Fluoroquinolones
-366           SPNE       AOXA   7.0           1.0       0.0       26.0       69.0  0.2812   103.0       Streptococcus         Penicillins
-367           SPNE       APEN   0.0         130.0       2.0      108.0     1035.0  0.1870  1275.0       Streptococcus         Penicillins
-368           SPNE       ATET   0.0           0.0       0.0      322.0      973.0  0.2486  1295.0       Streptococcus       Tetracyclines
-369           SPNE       AVAN   0.0           0.0       0.0        0.0     1132.0  0.0000  1132.0       Streptococcus        Glycopeptide
-
-[370 rows x 11 columns]
-
-Columns:
-Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;hide&#39;, &#39;intermediate&#39;, &#39;not done&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
-
-Frequencies:
-count     370.0000
-mean      645.1000
-std       947.0264
-min       101.0000
-25%       150.0000
-50%       331.0000
-75%       546.7500
-max      5356.0000
-Name: freq, dtype: float64
-
-Data:
-SENSITIVITY SPECIE ANTIBIOTIC  hide  intermediate  not done  resistant  sensitive    sari    freq microorganism_genus antimicrobial_class
-0             ABAU       ACIP   0.0           3.0       0.0       32.0       67.0  0.3431   102.0       Acinetobacter    Fluoroquinolones
-1            ACINE       AAMI   0.0           0.0       0.0        5.0      105.0  0.0455   110.0       Acinetobacter     Aminoglycosides
-2            ACINE       AAUG   0.0           0.0       2.0       10.0      116.0  0.0794   128.0       Acinetobacter                 NaN
-3            ACINE      ACELX   0.0           0.0       2.0       59.0       65.0  0.4758   126.0       Acinetobacter      Cephalosporins
-4            ACINE       ACIP   0.0           4.0       0.0       11.0      163.0  0.0843   178.0       Acinetobacter    Fluoroquinolones
-..             ...        ...   ...           ...       ...        ...        ...     ...     ...                 ...                 ...
-393           SSAP       APEN   1.0           0.0       0.0      525.0       96.0  0.8454   622.0      Staphylococcus         Penicillins
-394           SSAP       ARIF   0.0           0.0       0.0        4.0      139.0  0.0280   143.0      Staphylococcus                 NaN
-395           SSAP       ATET   2.0           0.0       0.0       40.0      378.0  0.0957   420.0      Staphylococcus       Tetracyclines
-396           SSAP       ATRI   0.0           0.0       0.0       71.0     1085.0  0.0614  1156.0      Staphylococcus                 NaN
-397           SSAP       AVAN   0.0           0.0       0.0        2.0      129.0  0.0153   131.0      Staphylococcus        Glycopeptide
-
-[398 rows x 11 columns]
-
-Columns:
-Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;hide&#39;, &#39;intermediate&#39;, &#39;not done&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
-
-Frequencies:
-count      398.0000
-mean      2630.1181
-std       9791.2119
-min        102.0000
-25%        214.0000
-50%        541.0000
-75%       1150.5000
-max      79771.0000
-Name: freq, dtype: float64
-
-Data:
-SENSITIVITY SPECIE ANTIBIOTIC  hide  highly resistant  intermediate  ...  sensitive    sari   freq  microorganism_genus  antimicrobial_class
-0             ABAU       AAMI   0.0               0.0           7.0  ...      188.0  0.3262  279.0        Acinetobacter      Aminoglycosides
-1             ABAU       AAMO   0.0               0.0           0.0  ...        6.0  0.9779  271.0        Acinetobacter     Aminopenicillins
-2             ABAU       AAUG   0.0               0.0           1.0  ...       53.0  0.8015  267.0        Acinetobacter                  NaN
-3             ABAU       AAZT   0.0               0.0           1.0  ...        9.0  0.9497  179.0        Acinetobacter          Monobactams
-4             ABAU       ACAZ   0.0               0.0          10.0  ...       20.0  0.9267  273.0        Acinetobacter       Cephalosporins
-..             ...        ...   ...               ...           ...  ...        ...     ...    ...                  ...                  ...
-502           SPNE       ALEV   0.0               0.0           0.0  ...      126.0  0.0000  126.0        Streptococcus     Fluoroquinolones
-503           SPNE       AMOX   0.0               0.0           0.0  ...      126.0  0.0000  126.0        Streptococcus     Fluoroquinolones
-504           SPNE       APEN   0.0               0.0           4.0  ...      132.0  0.0638  141.0        Streptococcus          Penicillins
-505           SPNE       ATET   0.0               0.0           0.0  ...      124.0  0.1329  143.0        Streptococcus        Tetracyclines
-506           SPNE       AVAN   0.0               0.0           0.0  ...      126.0  0.0000  126.0        Streptococcus         Glycopeptide
-
-[507 rows x 12 columns]
-
-Columns:
-Index([&#39;SPECIE&#39;, &#39;ANTIBIOTIC&#39;, &#39;hide&#39;, &#39;highly resistant&#39;, &#39;intermediate&#39;, &#39;not done&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;sari&#39;, &#39;freq&#39;, &#39;microorganism_genus&#39;, &#39;antimicrobial_class&#39;], dtype=&#39;object&#39;, name=&#39;SENSITIVITY&#39;)
-
-Frequencies:
-count      507.0000
-mean      1786.6469
-std       5762.5748
-min        101.0000
-25%        205.5000
-50%        364.0000
-75%       1018.0000
-max      40916.0000
-Name: freq, dtype: float64
+<div class="sphx-glr-script-out highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\reports\nhs\plot_antibiogram_relmap.py&quot;</span>, line <span class="m">142</span>, in <span class="n">&lt;module&gt;</span>
+    <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">freq_overall</span><span class="p">)</span>
+<span class="gr">TypeError</span>: <span class="n">__init__() got an unexpected keyword argument &#39;strategy&#39;</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -784,7 +624,7 @@ Name: freq, dtype: float64
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.366 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.482 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-reports-nhs-plot-antibiogram-relmap-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/ab5c4b4c2dab176d5a31279b98343010/plot_antibiogram_relmap.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_antibiogram_relmap.py</span></code></a></p>

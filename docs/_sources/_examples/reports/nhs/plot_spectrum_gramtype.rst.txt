@@ -23,7 +23,7 @@ SART - Spectrum (gram type)
 
 .. todo: Simplify and explain
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-206
+.. GENERATED FROM PYTHON SOURCE LINES 7-184
 
 
 
@@ -39,25 +39,25 @@ SART - Spectrum (gram type)
     *
 
       .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_gramtype_002.png
-          :alt: GUMCUL
-          :class: sphx-glr-multi-img
-
-    *
-
-      .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_gramtype_003.png
           :alt: SPTCUL
           :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_gramtype_004.png
+      .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_gramtype_003.png
           :alt: URICUL
           :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_gramtype_005.png
+      .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_gramtype_004.png
           :alt: WOUCUL
+          :class: sphx-glr-multi-img
+
+    *
+
+      .. image:: /_examples/reports/nhs/images/sphx_glr_plot_spectrum_gramtype_005.png
+          :alt: XINCUL
           :class: sphx-glr-multi-img
 
 
@@ -67,86 +67,200 @@ SART - Spectrum (gram type)
 
  .. code-block:: none
 
+    SARI (overall):
+    sensitivity                                          fix  hide  highly resistant  intermediate  not done  resistant  sensitive  freq  sari
+    specimen_code microorganism_name antimicrobial_name                                                                                       
+    BLDCUL        abiotrophia        clindamycin         0.0   0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+                                     erythromycin        0.0   0.0               0.0           0.0       0.0        1.0        0.0   1.0   1.0
+                                     penicillin          0.0   0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+                                     teicoplanin         0.0   0.0               0.0           0.0       0.0        1.0        0.0   1.0   1.0
+                                     vancomycin          0.0   0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+    ...                                                  ...   ...               ...           ...       ...        ...        ...   ...   ...
+    XINCUL        yeasts             gentamicin          0.0   0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+                                     linezolid           0.0   0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+                                     teicoplanin         0.0   0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+                                     tetracycline        0.0   0.0               0.0           0.0       0.0        1.0        0.0   1.0   1.0
+                                     vancomycin          0.0   0.0               0.0           0.0       0.0        0.0        1.0   1.0   0.0
+
+    [12012 rows x 9 columns]
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:468: UserWarning:
 
 
-    Data ASAI (BLDCUL):
-                  N_GENUS            N_SPECIE             ASAI_SCORE                
-    gram                n    p     u        n     p     u          n       p       u
-    ANTIBIOTIC                                                                      
-    Amikacin         17.0  2.0  20.0     40.0   2.0  43.0     0.7843  1.0000  0.8250
-    Amoxycillin      19.0  6.0  24.0     35.0  26.0  38.0     0.2404  0.6667  0.5833
-    Amp c markers     9.0  NaN   8.0     17.0   NaN  13.0     0.4907     NaN  0.3125
-    Amphotericin      NaN  NaN   3.0      NaN   NaN   9.0        NaN     NaN  0.9524
-    Anidulafungin     NaN  NaN   4.0      NaN   NaN   9.0        NaN     NaN  0.0833
-    Azithromycin      3.0  NaN   1.0      3.0   NaN   1.0     0.6667     NaN  1.0000
-    Aztreonam        14.0  1.0  12.0     32.0   1.0  26.0     0.5381  0.0000  0.3972
-    Caspofungin       NaN  NaN   3.0      NaN   NaN  10.0        NaN     NaN  1.0000
-    Cefixime          1.0  NaN   NaN      1.0   NaN   NaN     1.0000     NaN     NaN
-    Cefotaxime       18.0  5.0  23.0     37.0  16.0  42.0     0.5370  0.6000  0.6275
+                     Extreme resistances were found in the DataFrame. These rows
+                     should be reviewed since these resistances might correspond
+                     to pairs with low number of records.
 
 
-    Data ASAI (GUMCUL):
-                  N_GENUS          N_SPECIE          ASAI_SCORE         
-    gram                n   p    u        n   p    u          n   p    u
-    ANTIBIOTIC                                                          
-    Amikacin          1.0 NaN  NaN      1.0 NaN  NaN       1.00 NaN  NaN
-    Amoxycillin       1.0 NaN  NaN      2.0 NaN  NaN       1.00 NaN  NaN
-    Amphotericin      NaN NaN  1.0      NaN NaN  1.0        NaN NaN  1.0
-    Anidulafungin     NaN NaN  1.0      NaN NaN  1.0        NaN NaN  0.0
-    Azithromycin      1.0 NaN  NaN      2.0 NaN  NaN       1.00 NaN  NaN
-    Aztreonam         1.0 NaN  NaN      1.0 NaN  NaN       1.00 NaN  NaN
-    Caspofungin       NaN NaN  1.0      NaN NaN  1.0        NaN NaN  1.0
-    Cefixime          1.0 NaN  NaN      3.0 NaN  NaN       1.00 NaN  NaN
-    Cefotaxime        2.0 NaN  NaN      3.0 NaN  NaN       0.75 NaN  NaN
-    Cefoxitin         1.0 NaN  NaN      1.0 NaN  NaN       1.00 NaN  NaN
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:479: UserWarning:
 
 
-    Data ASAI (SPTCUL):
-                  N_GENUS            N_SPECIE            ASAI_SCORE                
-    gram                n    p     u        n    p     u          n       p       u
-    ANTIBIOTIC                                                                     
-    Amikacin         10.0  3.0  22.0     30.0  4.0  34.0     0.6750  0.6667  0.7727
-    Amoxycillin      13.0  3.0  18.0     28.0  6.0  29.0     0.1115  0.7222  0.2222
-    Amp c markers     9.0  1.0  12.0     17.0  1.0  17.0     0.1556  0.0000  0.3542
-    Amphotericin      NaN  NaN   2.0      NaN  NaN   7.0        NaN     NaN  0.9167
-    Anidulafungin     NaN  NaN   2.0      NaN  NaN   7.0        NaN     NaN  0.0000
-    Azithromycin      1.0  NaN   NaN      1.0  NaN   NaN     1.0000     NaN     NaN
-    Aztreonam        10.0  3.0  17.0     25.0  4.0  27.0     0.4700  0.1667  0.5490
-    Caspofungin       NaN  NaN   2.0      NaN  NaN   7.0        NaN     NaN  0.9167
-    Cefepime          1.0  NaN   NaN      2.0  NaN   NaN     0.0000     NaN     NaN
-    Cefotaxime       14.0  4.0  25.0     30.0  4.0  39.0     0.4905  1.0000  0.6533
+                     There are NULL values in columns that are required. These
+                     rows will be ignored to safely compute ASAI. Please review
+                     the DataFrame and address this inconsistencies. See below
+                     for more information: 
+
+                            specimen_code            0
+                            antimicrobial_name       0
+                            gram_stain               0
+                            GENUS                    0
+                            SPECIE                3594
+                            RESISTANCE             169
 
 
-    Data ASAI (URICUL):
-                  N_GENUS            N_SPECIE             ASAI_SCORE                
-    gram                n    p     u        n     p     u          n       p       u
-    ANTIBIOTIC                                                                      
-    Amikacin         11.0  3.0  14.0     28.0   4.0  24.0     0.7197  0.6667  0.9048
-    Amoxycillin       9.0  5.0   8.0     10.0  26.0  11.0     0.5556  0.7367  0.7500
-    Amp c markers     9.0  NaN   9.0     19.0   NaN  16.0     0.1667     NaN  0.5278
-    Amphotericin      NaN  NaN   2.0      NaN   NaN   9.0        NaN     NaN  1.0000
-    Anidulafungin     NaN  NaN   2.0      NaN   NaN   9.0        NaN     NaN  0.0625
-    Azithromycin      1.0  NaN   NaN      1.0   NaN   NaN     1.0000     NaN     NaN
-    Aztreonam         8.0  NaN   1.0     11.0   NaN   1.0     0.4792     NaN  0.0000
-    Caspofungin       NaN  NaN   2.0      NaN   NaN   9.0        NaN     NaN  1.0000
-    Cefixime          1.0  NaN   NaN      1.0   NaN   NaN     1.0000     NaN     NaN
-    Cefotaxime       11.0  5.0  12.0     25.0   6.0  20.0     0.2258  0.8000  0.7014
+
+    ASAI (overall):
+                                     N_GENUS            N_SPECIE             ASAI_SCORE                   width   gmean
+    gram_stain                             n     p    u        n     p     u          n       p       u                
+    specimen_code antimicrobial_name                                                                                   
+    BLDCUL        amikacin              30.0   2.0  6.0     53.0   2.0  10.0     0.8000  0.5000  0.8333  2.1333  0.5774
+                  amoxycillin           32.0  10.0  6.0     56.0  26.0  11.0     0.3693  0.6300  0.0952  1.0945  0.1488
+                  amp c markers         19.0   1.0  4.0     27.0   1.0   6.0     0.3684  0.0000  0.6250  0.9934  0.0000
+                  amphotericin           NaN   NaN  2.0      NaN   NaN   8.0        NaN     NaN  0.9286  0.9286  0.9636
+                  anidulafungin          NaN   NaN  1.0      NaN   NaN   2.0        NaN     NaN  1.0000  1.0000  1.0000
+    ...                                  ...   ...  ...      ...   ...   ...        ...     ...     ...     ...     ...
+    XINCUL        timentin               5.0   NaN  NaN      5.0   NaN   NaN     0.2000     NaN     NaN  0.2000  0.4472
+                  tobramycin            11.0   NaN  4.0     19.0   NaN   6.0     0.6818     NaN  0.6250  1.3068  0.6528
+                  trimethoprim          11.0   3.0  4.0     17.0   4.0   4.0     0.2424  0.6667  0.5000  1.4091  0.2843
+                  vancomycin             1.0   4.0  2.0      1.0  11.0   2.0     1.0000  0.8333  1.0000  2.8333  0.9129
+                  voriconazole           NaN   NaN  1.0      NaN   NaN   2.0        NaN     NaN  1.0000  1.0000  1.0000
+
+    [339 rows x 11 columns]
 
 
-    Data ASAI (WOUCUL):
-                  N_GENUS            N_SPECIE             ASAI_SCORE                
-    gram                n    p     u        n     p     u          n       p       u
-    ANTIBIOTIC                                                                      
-    Amikacin         13.0  7.0  24.0     35.0  11.0  42.0     0.8462  0.8571  0.8646
-    Amoxycillin      15.0  4.0  26.0     37.0  16.0  42.0     0.3667  0.2679  0.3462
-    Amp c markers    10.0  2.0  15.0     20.0   3.0  23.0     0.3500  1.0000  0.4222
-    Amphotericin      NaN  NaN   2.0      NaN   NaN   6.0        NaN     NaN  1.0000
-    Anidulafungin     NaN  NaN   2.0      NaN   NaN   5.0        NaN     NaN  0.0000
-    Azithromycin      1.0  NaN   NaN      4.0   NaN   NaN     1.0000     NaN     NaN
-    Aztreonam        14.0  4.0  18.0     32.0   6.0  34.0     0.6071  1.0000  0.4296
-    Bacitracin        2.0  2.0   1.0      2.0   7.0   1.0     1.0000  1.0000  0.0000
-    Caspofungin       NaN  NaN   2.0      NaN   NaN   6.0        NaN     NaN  0.9000
-    Cefixime          1.0  NaN   NaN      4.0   NaN   NaN     1.0000     NaN     NaN
+    ASAI (BLDCUL)
+               specimen_code antimicrobial_name N_GENUS           N_SPECIE            ASAI_SCORE                width   gmean
+    gram_stain                                        n    p    u        n     p    u          n       p    u                
+    66                BLDCUL            tazocin    35.0  3.0  6.0     58.0   3.0  8.0     0.9419  1.0000  1.0  2.9419  0.9705
+    70                BLDCUL        tigecycline    28.0  4.0  4.0     48.0   8.0  7.0     0.9196  1.0000  1.0  2.9196  0.9590
+    45                BLDCUL          meropenem    36.0  2.0  5.0     59.0   2.0  7.0     0.9528  1.0000  0.8  2.7528  0.8731
+    46                BLDCUL      metronidazole     4.0  3.0  3.0      7.0   4.0  5.0     1.0000  0.6667  1.0  2.6667  0.8165
+    43                BLDCUL          linezolid     3.0  8.0  2.0      3.0  24.0  7.0     1.0000  1.0000  0.5  2.5000  0.7071
+    ..                   ...                ...     ...  ...  ...      ...   ...  ...        ...     ...  ...     ...     ...
+    27                BLDCUL         cpo marker     3.0  NaN  NaN      3.0   NaN  NaN     0.0000     NaN  NaN  0.0000  0.0000
+    55                BLDCUL         novobiocin     NaN  1.0  NaN      NaN   2.0  NaN        NaN  0.0000  NaN  0.0000  0.0000
+    63                BLDCUL      spectinomycin     1.0  NaN  NaN      1.0   NaN  NaN     0.0000     NaN  NaN  0.0000  0.0000
+    62                BLDCUL            septrin     1.0  NaN  NaN      1.0   NaN  NaN     0.0000     NaN  NaN  0.0000  0.0000
+    56                BLDCUL           optochin     NaN  1.0  NaN      NaN   2.0  NaN        NaN  0.0000  NaN  0.0000  0.0000
+
+    [76 rows x 13 columns]
+
+
+    ASAI (SPTCUL)
+               specimen_code       antimicrobial_name N_GENUS           N_SPECIE             ASAI_SCORE                   width   gmean
+    gram_stain                                              n    p    u        n     p     u          n       p       u                
+    117               SPTCUL             moxifloxacin     1.0  2.0  1.0      1.0   3.0   1.0     1.0000  1.0000  1.0000  3.0000  1.0000
+    129               SPTCUL              tigecycline    17.0  4.0  9.0     30.0   5.0   9.0     0.9294  1.0000  1.0000  2.9294  0.9641
+    125               SPTCUL                  tazocin    19.0  4.0  9.0     37.0   5.0  10.0     0.9211  1.0000  1.0000  2.9211  0.9597
+    91                SPTCUL              ceftriaxone    12.0  3.0  3.0     18.0   4.0   2.0     0.9167  1.0000  1.0000  2.9167  0.9574
+    85                SPTCUL               cefotaxime    20.0  4.0  9.0     36.0   4.0   9.0     0.7800  1.0000  1.0000  2.7800  0.8832
+    112               SPTCUL             levofloxacin     4.0  2.0  2.0      7.0   3.0   2.0     1.0000  0.7500  1.0000  2.7500  0.8660
+    131               SPTCUL               tobramycin    17.0  4.0  9.0     34.0   5.0   9.0     0.8235  1.0000  0.8889  2.7124  0.8556
+    76                SPTCUL                 amikacin    17.0  4.0  9.0     35.0   5.0   9.0     0.9412  0.7500  1.0000  2.6912  0.8402
+    114               SPTCUL                meropenem    19.0  4.0  9.0     37.0   5.0   9.0     0.9211  0.8750  0.8889  2.6849  0.8464
+    110               SPTCUL                 imipenem    10.0  3.0  6.0     16.0   4.0   7.0     0.8000  1.0000  0.8333  2.6333  0.8165
+    124               SPTCUL               rifampicin     3.0  5.0  3.0      4.0   9.0   4.0     0.8333  0.7500  1.0000  2.5833  0.7906
+    88                SPTCUL              ceftazidime    17.0  4.0  9.0     34.0   5.0  10.0     0.9294  0.7500  0.8889  2.5683  0.7872
+    105               SPTCUL           flucloxacillin     2.0  4.0  3.0      2.0   8.0   4.0     1.0000  0.5625  1.0000  2.5625  0.7500
+    108               SPTCUL             fusidic acid     2.0  5.0  3.0      2.0   9.0   4.0     1.0000  0.5500  1.0000  2.5500  0.7416
+    118               SPTCUL                mupirocin     2.0  4.0  3.0      2.0   8.0   4.0     1.0000  0.5000  1.0000  2.5000  0.7071
+    109               SPTCUL               gentamicin    17.0  8.0  9.0     35.0  14.0  10.0     0.8235  0.7812  0.8889  2.4937  0.7562
+    128               SPTCUL             tetracycline     7.0  6.0  3.0     12.0  23.0   4.0     1.0000  0.4643  1.0000  2.4643  0.6814
+    94                SPTCUL            ciprofloxacin    20.0  7.0  9.0     41.0  11.0  10.0     0.8250  0.6071  1.0000  2.4321  0.7077
+    127               SPTCUL               temocillin    17.0  3.0  9.0     30.0   3.0  10.0     0.8235  0.6667  0.8889  2.3791  0.6986
+    96                SPTCUL              clindamycin     3.0  5.0  3.0      3.0  20.0   4.0     0.6667  0.7000  1.0000  2.3667  0.6831
+    98                SPTCUL        colistin sulphate    17.0  4.0  9.0     33.0   5.0   9.0     0.7059  0.7500  0.8889  2.3448  0.6860
+    92                SPTCUL               cefuroxime    20.0  4.0  9.0     38.0   6.0  10.0     0.6983  0.7500  0.8889  2.3372  0.6823
+    119               SPTCUL           naladixic acid     5.0  1.0  2.0     11.0   3.0   3.0     1.0000  0.3333  1.0000  2.3333  0.5774
+    102               SPTCUL                ertapenem    18.0  3.0  9.0     31.0   3.0  10.0     0.7667  0.6667  0.8889  2.3222  0.6740
+    99                SPTCUL            cotrimoxazole    16.0  2.0  4.0     22.0   2.0   4.0     0.8125  0.5000  1.0000  2.3125  0.6374
+    80                SPTCUL                augmentin    20.0  4.0  9.0     38.0   6.0  10.0     0.5100  0.7500  0.8889  2.1489  0.5831
+    86                SPTCUL                cefoxitin    17.0  3.0  9.0     30.0   3.0  10.0     0.5412  0.6667  0.8889  2.0967  0.5663
+    95                SPTCUL           clarithromycin     5.0  1.0  2.0      9.0   3.0   3.0     0.6000  0.6667  0.7500  2.0167  0.5477
+    82                SPTCUL                aztreonam    17.0  4.0  9.0     34.0   5.0   9.0     0.7451  0.3750  0.8889  2.0090  0.4984
+    113               SPTCUL                linezolid     NaN  5.0  1.0      NaN   8.0   1.0        NaN  1.0000  1.0000  2.0000  1.0000
+    126               SPTCUL              teicoplanin     NaN  3.0  2.0      NaN  16.0   2.0        NaN  1.0000  1.0000  2.0000  1.0000
+    133               SPTCUL               vancomycin     NaN  6.0  2.0      NaN  20.0   2.0        NaN  1.0000  1.0000  2.0000  1.0000
+    103               SPTCUL             erythromycin     6.0  5.0  3.0      9.0  20.0   4.0     0.5556  0.4192  1.0000  1.9748  0.4826
+    123               SPTCUL  piperacillin-tazobactam    11.0  1.0  NaN     17.0   1.0   NaN     0.9091  1.0000     NaN  1.9091  0.9535
+    132               SPTCUL             trimethoprim    17.0  7.0  9.0     30.0  11.0  10.0     0.5490  0.5000  0.8333  1.8824  0.4783
+    89                SPTCUL    ceftazidime-avibactam    10.0  1.0  NaN     13.0   1.0   NaN     0.8000  1.0000     NaN  1.8000  0.8944
+    97                SPTCUL             co-amoxiclav    12.0  1.0  NaN     19.0   1.0   NaN     0.6111  1.0000     NaN  1.6111  0.7817
+    78                SPTCUL            amp c markers    16.0  2.0  8.0     26.0   2.0   7.0     0.5292  0.5000  0.5000  1.5292  0.3637
+    93                SPTCUL          chloramphenicol     2.0  3.0  NaN      3.0   3.0   NaN     0.5000  1.0000     NaN  1.5000  0.7071
+    122               SPTCUL               penicillin     6.0  5.0  3.0      7.0  20.0   4.0     0.3333  0.4000  0.3333  1.0667  0.2108
+    81                SPTCUL             azithromycin     1.0  1.0  NaN      1.0   1.0   NaN     1.0000  0.0000     NaN  1.0000  0.0000
+    120               SPTCUL                 neomycin     NaN  2.0  NaN      NaN   2.0   NaN        NaN  1.0000     NaN  1.0000  1.0000
+    121               SPTCUL                oxacillin     NaN  2.0  NaN      NaN   2.0   NaN        NaN  1.0000     NaN  1.0000  1.0000
+    79                SPTCUL             amphotericin     NaN  NaN  2.0      NaN   NaN   6.0        NaN     NaN  1.0000  1.0000  1.0000
+    134               SPTCUL             voriconazole     NaN  NaN  2.0      NaN   NaN   6.0        NaN     NaN  1.0000  1.0000  1.0000
+    115               SPTCUL            metronidazole     NaN  NaN  2.0      NaN   NaN   2.0        NaN     NaN  1.0000  1.0000  1.0000
+    83                SPTCUL              caspofungin     NaN  NaN  2.0      NaN   NaN   6.0        NaN     NaN  1.0000  1.0000  1.0000
+    77                SPTCUL              amoxycillin    20.0  5.0  9.0     36.0   8.0  10.0     0.3350  0.5000  0.1111  0.9461  0.1364
+    106               SPTCUL              fluconazole     NaN  NaN  2.0      NaN   NaN   6.0        NaN     NaN  0.9000  0.9000  0.9487
+    111               SPTCUL             itraconazole     NaN  NaN  2.0      NaN   NaN   6.0        NaN     NaN  0.8000  0.8000  0.8944
+    116               SPTCUL              mls markers     NaN  5.0  3.0      NaN  16.0   4.0        NaN  0.1067  0.5000  0.6067  0.2309
+    87                SPTCUL              cefpodoxime     7.0  NaN  NaN      7.0   NaN   NaN     0.5714     NaN     NaN  0.5714  0.7559
+    90                SPTCUL   ceftolozane-tazobactam     2.0  NaN  NaN      2.0   NaN   NaN     0.5000     NaN     NaN  0.5000  0.7071
+    84                SPTCUL                 cefepime     3.0  NaN  NaN      4.0   NaN   NaN     0.5000     NaN     NaN  0.5000  0.7071
+    130               SPTCUL                 timentin     7.0  NaN  NaN      7.0   NaN   NaN     0.4286     NaN     NaN  0.4286  0.6547
+    104               SPTCUL             esbl markers    14.0  1.0  8.0     24.0   1.0   7.0     0.2143  0.0000  0.1250  0.3393  0.0000
+    107               SPTCUL              flucytosine     NaN  NaN  2.0      NaN   NaN   6.0        NaN     NaN  0.3000  0.3000  0.5477
+    101               SPTCUL              cpo markers     1.0  NaN  NaN      1.0   NaN   NaN     0.0000     NaN     NaN  0.0000  0.0000
+    100               SPTCUL               cpo marker     6.0  1.0  1.0      8.0   1.0   1.0     0.0000  0.0000  0.0000  0.0000  0.0000
+
+
+    ASAI (URICUL)
+               specimen_code antimicrobial_name N_GENUS           N_SPECIE            ASAI_SCORE                width   gmean
+    gram_stain                                        n    p    u        n     p    u          n       p    u                
+    178               URICUL          meropenem    19.0  4.0  3.0     34.0   4.0  3.0     0.9474  1.0000  1.0  2.9474  0.9733
+    194               URICUL            tazocin    18.0  3.0  4.0     33.0   3.0  4.0     0.8750  1.0000  1.0  2.8750  0.9354
+    202               URICUL         vancomycin     5.0  4.0  2.0      5.0  21.0  2.0     0.8000  1.0000  1.0  2.8000  0.8944
+    164               URICUL          ertapenem    17.0  4.0  3.0     30.0   4.0  3.0     0.7059  1.0000  1.0  2.7059  0.8402
+    197               URICUL       tetracycline     3.0  7.0  1.0      3.0  24.0  1.0     1.0000  0.6667  1.0  2.6667  0.8165
+    ..                   ...                ...     ...  ...  ...      ...   ...  ...        ...     ...  ...     ...     ...
+    180               URICUL        mls markers     NaN  3.0  NaN      NaN  15.0  NaN        NaN  0.1407  NaN  0.1407  0.3752
+    144               URICUL           cefepime     3.0  NaN  NaN      3.0   NaN  NaN     0.0000     NaN  NaN  0.0000  0.0000
+    156               URICUL     clarithromycin     1.0  NaN  NaN      1.0   NaN  NaN     0.0000     NaN  NaN  0.0000  0.0000
+    163               URICUL         daptomycin     NaN  1.0  NaN      NaN   1.0  NaN        NaN  0.0000  NaN  0.0000  0.0000
+    162               URICUL        cpo markers     3.0  NaN  NaN      3.0   NaN  NaN     0.0000     NaN  NaN  0.0000  0.0000
+
+    [69 rows x 13 columns]
+
+
+    ASAI (WOUCUL)
+               specimen_code antimicrobial_name N_GENUS           N_SPECIE             ASAI_SCORE                width   gmean
+    gram_stain                                        n    p    u        n     p     u          n       p    u                
+    249               WOUCUL      metronidazole     6.0  4.0  8.0      8.0   8.0  16.0     1.0000  1.0000  1.0  3.0000  1.0000
+    245               WOUCUL       levofloxacin     3.0  2.0  1.0      3.0   4.0   1.0     1.0000  1.0000  1.0  3.0000  1.0000
+    267               WOUCUL            tazocin    25.0  6.0  7.0     48.0  10.0  11.0     0.9900  1.0000  1.0  2.9900  0.9950
+    248               WOUCUL          meropenem    24.0  6.0  7.0     46.0   8.0   9.0     0.9514  1.0000  1.0  2.9514  0.9754
+    255               WOUCUL           neomycin     8.0  3.0  2.0     10.0   9.0   2.0     1.0000  0.8333  1.0  2.8333  0.9129
+    ..                   ...                ...     ...  ...  ...      ...   ...   ...        ...     ...  ...     ...     ...
+    226               WOUCUL     clarithromycin     4.0  NaN  1.0      6.0   NaN   1.0     0.3333     NaN  0.0  0.3333  0.0000
+    231               WOUCUL         cpo marker     6.0  NaN  NaN      7.0   NaN   NaN     0.1667     NaN  NaN  0.1667  0.4082
+    237               WOUCUL       esbl markers    13.0  2.0  5.0     27.0   2.0   4.0     0.1474  0.0000  0.0  0.1474  0.0000
+    251               WOUCUL        mls markers     3.0  8.0  8.0      3.0  30.0  11.0     0.0000  0.0688  0.0  0.0688  0.0000
+    264               WOUCUL          sulbactam     1.0  NaN  NaN      1.0   NaN   NaN     0.0000     NaN  NaN  0.0000  0.0000
+
+    [73 rows x 13 columns]
+
+
+    ASAI (XINCUL)
+               specimen_code antimicrobial_name N_GENUS           N_SPECIE            ASAI_SCORE                 width   gmean
+    gram_stain                                        n    p    u        n     p    u          n       p     u                
+    311               XINCUL          linezolid     1.0  2.0  2.0      1.0   5.0  2.0     1.0000  1.0000  1.00  3.0000  1.0000
+    337               XINCUL         vancomycin     1.0  4.0  2.0      1.0  11.0  2.0     1.0000  0.8333  1.00  2.8333  0.9129
+    330               XINCUL        teicoplanin     1.0  3.0  2.0      1.0   9.0  3.0     1.0000  0.7778  0.75  2.5278  0.7638
+    333               XINCUL        tigecycline    11.0  1.0  4.0     17.0   3.0  5.0     0.9091  1.0000  0.50  2.4091  0.6742
+    307               XINCUL         gentamicin    12.0  4.0  5.0     22.0   7.0  8.0     0.7708  0.8333  0.72  2.3242  0.6801
+    ..                   ...                ...     ...  ...  ...      ...   ...  ...        ...     ...   ...     ...     ...
+    295               XINCUL     clarithromycin     1.0  NaN  NaN      1.0   NaN  NaN     0.0000     NaN   NaN  0.0000  0.0000
+    327               XINCUL          sulbactam     1.0  NaN  NaN      1.0   NaN  NaN     0.0000     NaN   NaN  0.0000  0.0000
+    326               XINCUL            septrin     1.0  NaN  NaN      1.0   NaN  NaN     0.0000     NaN   NaN  0.0000  0.0000
+    288               XINCUL        cefpodoxime     4.0  NaN  NaN      4.0   NaN  NaN     0.0000     NaN   NaN  0.0000  0.0000
+    322               XINCUL           optochin     NaN  1.0  NaN      NaN   1.0  NaN        NaN  0.0000   NaN  0.0000  0.0000
+
+    [62 rows x 13 columns]
 
 
 
@@ -168,10 +282,11 @@ SART - Spectrum (gram type)
     import matplotlib.pyplot as plt
 
     # Import specific libraries
-    from pyamr.core.freq import Frequency
     from pyamr.core.sari import SARI
     from pyamr.core.asai import ASAI
     from pyamr.datasets.load import load_data_nhs
+    from pyamr.datasets.registries import MicroorganismRegistry
+    from pyamr.utils.plot import scalar_colormap
 
     # Configure seaborn style (context=talk)
     sns.set(style="white")
@@ -190,60 +305,6 @@ SART - Spectrum (gram type)
     # Numpy configuration
     np.set_printoptions(precision=2)
 
-
-    # --------------------------------------------------------------------
-    #                             Methods
-    # --------------------------------------------------------------------
-    def scalar_colormap(values, cmap, vmin, vmax):
-        """This method creates a colormap based on values.
-
-        Parameters
-        ----------
-        values : array-like
-          The values to create the corresponding colors
-
-        cmap : str
-          The colormap
-
-        vmin, vmax : float
-          The minimum and maximum possible values
-
-        Returns
-        -------
-        scalar colormap
-        """
-        # Create scalar mappable
-        norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax, clip=True)
-        mapper = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
-        # Gete color map
-        colormap = sns.color_palette([mapper.to_rgba(i) for i in values])
-        # Return
-        return colormap
-
-
-    def create_mapper(dataframe, column_key, column_value):
-        """This method constructs a mapper
-
-        Parameters
-        ----------
-        dataframe: dataframe-like
-        The dataframe from which the columns are extracted
-
-        column_key: string-like
-        The name of the column with the values for the keys of the mapper
-
-        column_value: string-like
-        The name of the column with the values for the values of the mapper
-
-        Returns
-        -------
-        dictionary
-        """
-        dataframe = dataframe[[column_key, column_value]]
-        dataframe = dataframe.drop_duplicates()
-        return dict(zip(dataframe[column_key], dataframe[column_value]))
-
-
     # --------------------------------------------------------------------
     #                               Main
     # --------------------------------------------------------------------
@@ -252,7 +313,6 @@ SART - Spectrum (gram type)
 
     # Count records per specimen code
     specimen_code_count = data \
-        .groupby('laboratory_number').head(1) \
         .specimen_code.value_counts(normalize=True) \
         .sort_values(ascending=False)
 
@@ -260,73 +320,99 @@ SART - Spectrum (gram type)
     data = data[data.specimen_code.isin( \
         specimen_code_count.index.values[:5])]
 
-    # Loop for each specimen
-    for specimen_code, df in data.groupby(by='specimen_code'):
-        # ----------------------------
-        # Compute frequencies and SARI
-        # ----------------------------
-        # Create instance
-        freq = Frequency(column_antibiotic='antimicrobial_code',
-                         column_organism='microorganism_code',
-                         column_date='date_received',
-                         column_outcome='sensitivity')
+    # -------------------
+    # Compute SARI
+    # -------------------
+    # Create sari instance
+    sari = SARI(groupby=['specimen_code',
+                         'microorganism_name',
+                         'antimicrobial_name',
+                         'sensitivity'])
 
-        # Compute frequencies overall
-        freq_overall = freq.compute(df, strategy='overall',
-                                    by_category='pairs')
+    # Compute SARI overall
+    sari_overall = sari.compute(data,
+        return_frequencies=True)
 
-        # Compute sari
-        sari_overall = SARI(strategy='medium').compute(freq_overall)
+    # Show
+    print("SARI (overall):")
+    print(sari_overall)
 
-        # ------------------------
-        # Format dataframe
-        # -------------------------
-        # Create mappers
-        abx_map = create_mapper(antibiotics, 'antimicrobial_code', 'category')
-        org_map = create_mapper(organisms, 'microorganism_code', 'genus')
-        grm_map = create_mapper(organisms, 'microorganism_code', 'gram_stain')
-        name_map = create_mapper(antibiotics, 'antimicrobial_code', 'name')
+    # ------------------------------
+    # Include registry information
+    # ------------------------------
+    # Load registry
+    mreg = MicroorganismRegistry()
 
-        # Copy dataframe
-        dataframe = sari_overall.copy(deep=True)
-        dataframe = dataframe.reset_index()
+    # Format sari dataframe
+    dataframe = sari_overall.copy(deep=True)
+    dataframe = dataframe.reset_index()
 
-        # Include categories
-        dataframe['category'] = dataframe['ANTIBIOTIC'].map(abx_map)
-        dataframe['genus'] = dataframe['SPECIE'].map(org_map)
-        dataframe['gram'] = dataframe['SPECIE'].map(grm_map)
-        dataframe['ANTIBIOTIC'] = dataframe.ANTIBIOTIC.map(name_map)
+    # Create genus and species
+    dataframe[['genus', 'species']] = \
+        dataframe.microorganism_name \
+            .str.capitalize() \
+            .str.split(expand=True, n=1)
 
-        # Empty grams are a new category (unknown - u)
-        dataframe.gram = dataframe.gram.fillna('u')
+    # Combine with registry information
+    dataframe = mreg.combine(dataframe)
 
-        # ------------------------
-        # Compute spectrum index
-        # ------------------------
-        # Create antimicrobial spectrum of activity instance
-        asai = ASAI(weights='uniform', threshold=0.05,
-                    column_genus='genus',
-                    column_specie='SPECIE',
-                    column_antibiotic='ANTIBIOTIC',
-                    column_resistance='sari')
+    # Fill missing gram stain
+    dataframe.gram_stain = dataframe.gram_stain.fillna('u')
 
-        # Compute
-        scores = asai.compute(dataframe, by_category='gram')
+    # -------------------------------
+    # Compute ASAI
+    # -------------------------------
+    # Create asai instance
+    asai = ASAI(column_genus='genus',
+                column_specie='species',
+                column_resistance='sari',
+                column_frequency='freq')
 
-        # Show scores
-        print("\n\nData ASAI (%s):" % specimen_code)
-        print(scores.head(10))
+    # Compute
+    scores = asai.compute(dataframe,
+        groupby=['specimen_code',
+                 'antimicrobial_name',
+                 'gram_stain'],
+        weights='uniform',
+        threshold=0.5,
+        min_freq=0)
+
+    # Stack
+    scores = scores.unstack()
+
+    # .. note: In order to sort the scores we need to compute metrics
+    #          that combine the different subcategories (e.g. gram-negative
+    #          and gram-positive). Two possible options are: (i) use the
+    #          gmean or (ii) the width.
+    # Measures
+    scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
+    scores['gmean'] = np.sqrt(scores['ASAI_SCORE'].product(axis=1))
+
+    # Show
+    print("\nASAI (overall):")
+    print(scores)
+
+
+    # -------------------------------------------
+    # Plot
+    # -------------------------------------------
+    # Reset
+    scores = scores.reset_index()
+
+    # Loop
+    for specimen, df in scores.groupby(by='specimen_code'):
 
         # Sort
-        scores = scores.fillna(0.0)
-        scores['width'] = np.abs(scores['ASAI_SCORE']['n'] + scores['ASAI_SCORE']['p'])
-        scores['gmean'] = np.sqrt(scores['ASAI_SCORE']['n'] * scores['ASAI_SCORE']['p'])
-        scores = scores.sort_values(by='gmean', ascending=False)
+        df = df.sort_values(by='width', ascending=False)
+
+        # Show
+        print("\n\nASAI (%s)" % specimen)
+        print(df)
 
         # Variables to plot.
-        x = scores.index.values
-        y_n = scores['ASAI_SCORE']['n'].values
-        y_p = scores['ASAI_SCORE']['p'].values
+        x = df.antimicrobial_name
+        y_n = df['ASAI_SCORE']['n'].values
+        y_p = df['ASAI_SCORE']['p'].values
 
         # Constants
         colormap_p = scalar_colormap(y_p, cmap='Blues', vmin=-0.1, vmax=1.1)
@@ -335,33 +421,39 @@ SART - Spectrum (gram type)
         # ----------
         # Example
         # ----------
-        # This example shows a diverging figure using exclusively the gram-positive
-        # and gram-negative categories. Note that the gram negative categories has
-        # values in the range [-1,0] while the gram-positive category has values
-        # within the range [0, 1]
+        # This example shows an stacked figure using more than two categories.
+        # For instance, it uses gram-positive, gram-negative and gram-unknown.
+        # All the indexes go within the range [0,1].
         # Create figure
-        f, ax = plt.subplots(1, 1, figsize=(5, 12))
+        f, ax = plt.subplots(1, 1, figsize=(5, 6))
 
         # Plot
         sns.barplot(x=y_p, y=x, palette=colormap_p, ax=ax, orient='h',
-         saturation=0.5, label='Gram-positive')
+            saturation=0.5, label='Gram-positive')
         sns.barplot(x=-y_n, y=x, palette=colormap_n, ax=ax, orient='h',
-         saturation=0.5, label='Gram-negative')
+            saturation=0.5, label='Gram-negative')
 
         # Configure
         sns.despine(bottom=True)
 
-        # Show legend.
+        # Format figure
+        plt.subplots_adjust(wspace=0.0, hspace=0.0)
+
+        # Set x-axis
+        ax.set_xlim([-1, 1])
+
+        # Adjust
         plt.legend(loc=8)
-        plt.suptitle(specimen_code)
+        plt.suptitle(specimen)
         plt.tight_layout()
 
     # Show
     plt.show()
 
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.907 seconds)
+   **Total running time of the script:** ( 0 minutes  17.612 seconds)
 
 
 .. _sphx_glr_download__examples_reports_nhs_plot_spectrum_gramtype.py:

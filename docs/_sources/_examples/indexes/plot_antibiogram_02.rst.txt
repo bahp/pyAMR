@@ -18,12 +18,12 @@
 .. _sphx_glr__examples_indexes_plot_antibiogram_02.py:
 
 
-SARI - Antibiogram (by culture)
--------------------------------
+SARI - Antibiogram (by specimen)
+--------------------------------
 
 .. todo:: Explain...
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-158
+.. GENERATED FROM PYTHON SOURCE LINES 8-143
 
 
 
@@ -69,18 +69,18 @@ SARI - Antibiogram (by culture)
 
 
     Data:
-                  date_received         date_outcome LastActDateODBC  ...  microorganism_specie microorganism_gram_type antimicrobial_class
-    0       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN                 NaN
-    1       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN      cephalosporins
-    2       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN    fluoroquinolones
-    3       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN     aminoglycosides
-    4       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020  ...                   NaN                     NaN                 NaN
-    ...                     ...                  ...             ...  ...                   ...                     ...                 ...
-    124640  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN          meropenems
-    124641  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN                 NaN
-    124642  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN         penicillins
-    124643  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN                 NaN
-    124644  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22  ...                   NaN                     NaN     aminoglycosides
+                  date_received         date_outcome LastActDateODBC  patient_id laboratory_number  ... sensitivity microorganism_genus microorganism_specie  microorganism_gram_type antimicrobial_class
+    0       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN                 NaN
+    1       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN      cephalosporins
+    2       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN    fluoroquinolones
+    3       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN     aminoglycosides
+    4       2020-04-24 18:09:00  2020-04-27 00:00:00      27/04/2020           0          F1394192  ...   sensitive            coliform                  NaN                      NaN                 NaN
+    ...                     ...                  ...             ...         ...               ...  ...         ...                 ...                  ...                      ...                 ...
+    124640  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN          meropenems
+    124641  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN                 NaN
+    124642  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN         penicillins
+    124643  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN                 NaN
+    124644  2021-01-18 16:09:00  2021-01-22 00:00:00      2021-01-22        7785           X873071  ...         NaN         citrobacter                  NaN                      NaN     aminoglycosides
 
     [124645 rows x 22 columns]
 
@@ -88,6 +88,70 @@ SARI - Antibiogram (by culture)
     Index(['date_received', 'date_outcome', 'LastActDateODBC', 'patient_id', 'laboratory_number', 'specimen_code', 'specimen_name', 'specimen_description', 'microorganism_piece_counter', 'microorganism_code', 'microorganism_name', 'antimicrobial_code', 'antimicrobial_name', 'sensitivity_method',
            'sensitivity_code', 'mic', 'reported', 'sensitivity', 'microorganism_genus', 'microorganism_specie', 'microorganism_gram_type', 'antimicrobial_class'],
           dtype='object')
+    SARI (overall):
+    sensitivity                                          hide  highly resistant  intermediate  not determined  resistant  sensitive  freq  sari
+    specimen_code microorganism_code antimicrobial_code                                                                                        
+    ASFCUL        CALB               AAMPH                0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                     AAND                 0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                     AFLUZ                0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                     AITR                 0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+                                     AMF                  0.0               0.0           0.0             0.0        0.0        3.0   3.0   0.0
+    ...                                                   ...               ...           ...             ...        ...        ...   ...   ...
+    WOUCUL        PROTE              AERT                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+                                     AFOX                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+                                     ATAZ                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+                                     ATEM                 0.0               0.0           0.0             0.0        0.0        1.0   1.0   0.0
+                  PANA               AMTZ                 0.0               0.0           0.0             2.0        0.0        1.0   3.0   0.0
+
+    [7656 rows x 8 columns]
+    Cultures:
+    specimen_code
+    URNCUL    19714.0
+    WOUCUL    12848.0
+    BLDCUL    12563.0
+    SPTCUL     8615.0
+    URICUL     7690.0
+    TIPCUL     3842.0
+    TISCUL     3597.0
+    MNGCUL     3171.0
+    ITUCUL     2631.0
+    NEOCUL     2016.0
+    BALCUL     1866.0
+    PSWCUL     1649.0
+    CROCUL     1521.0
+    VAGCUL     1401.0
+    BFLCUL     1276.0
+    SKNCUL     1189.0
+    ETTCUL      990.0
+    LVSCUL      875.0
+    GNGCUL      846.0
+    DRFCUL      823.0
+    EARCUL      721.0
+    PUSCUL      656.0
+    EYECUL      568.0
+    PDFCUL      318.0
+    FBCUL       304.0
+    MRSCUL      283.0
+    THRCUL      258.0
+    CSCCUL      257.0
+    ASFCUL      227.0
+    JFLCUL      210.0
+    NOSCUL      183.0
+    SEMCUL      122.0
+    CSFCUL      109.0
+    NPACUL      108.0
+    GLNCUL      104.0
+    PLFCUL      103.0
+    MTHCUL       75.0
+    IUDCUL       61.0
+    CLCUL        60.0
+    BILCUL       51.0
+    FAECUL       34.0
+    URECUL       32.0
+    WICCUL       25.0
+    PNCUL        13.0
+    FSTCUL       11.0
+    Name: freq, dtype: float64
 
 
 
@@ -133,42 +197,6 @@ SARI - Antibiogram (by culture)
     # Numpy configuration
     np.set_printoptions(precision=2)
 
-    # ------------------
-    # Methods
-    # ------------------
-    def get_category_colors(index, category, cmap='tab10'):
-        """This method creates the colors for the different elements in
-        categorical feature vector.
-
-        Parameters
-        ----------
-        values : array-like
-            The vector with the categorical values
-
-        cmap: string-like
-            The colormap to use
-
-        default: string-like
-            The color to be used for the first value. Note that this
-            value needs to appear first on the the sorted list, as such
-            it is recommended to set is as _default.
-
-        Returns
-        -------
-        """
-        # Get categories
-        categories = index.get_level_values(category)
-        # Get unique elements
-        unique = np.unique(categories)
-        # Create the palette
-        palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
-        # Create mappers from category to color
-        mapper = dict(zip(map(str, unique), palette))
-        # Create list with colors for each category
-        colors = pd.Series(categories, index=index).map(mapper)
-        # Return
-        return colors
-
 
     # -------------------------------------------
     # Load data
@@ -183,57 +211,80 @@ SARI - Antibiogram (by culture)
     print(data.columns)
 
     # -------------------------------------------
-    # For each culture type
+    # Compute SARI
     # -------------------------------------------
-    # Count records per order code
-    specimen_code_count = data.specimen_code.value_counts()
+    # Libraries
+    from pyamr.core.sari import SARI
 
-    # Filter most frequent order codes
-    data = data[data.specimen_code.isin( \
-        specimen_code_count.index.values[:5])]
+    # Create sari instance
+    sari = SARI(groupby=['specimen_code',
+                         'microorganism_code',
+                         'antimicrobial_code',
+                         'sensitivity'])
+
+    # Compute SARI overall
+    sari_overall = sari.compute(data,
+        return_frequencies=True)
+
+    # Show
+    print("SARI (overall):")
+    print(sari_overall)
+
+    # -------------------------------------------
+    # Plot
+    # -------------------------------------------
+    # Reset
+    sari_overall = sari_overall.reset_index()
+
+    # Count records per specimen
+    specimen_count = sari_overall \
+        .groupby('specimen_code').freq.sum() \
+        .sort_values(ascending=False)
+
+    # Show
+    print("Cultures:")
+    print(specimen_count)
+
+    # Filter
+    sari_overall = sari_overall[sari_overall \
+        .specimen_code.isin( \
+            specimen_count.index.values[:5])]
 
     # Loop
-    for specimen_code, df in data.groupby(by='specimen_code'):
+    for specimen, df in sari_overall.groupby(by='specimen_code'):
 
-        # -------------------------------------------
-        # Compute Freq and SARI
-        # -------------------------------------------
-        # Create instance
-        freq = Frequency(column_antibiotic='antimicrobial_code',
-                         column_organism='microorganism_code',
-                         column_date='date_received',
-                         column_outcome='sensitivity')
+        # -------------
+        # Create matrix
+        # -------------
+        # Filter
+        matrix = df.copy(deep=True)
+        matrix = df.reset_index()
+        #matrix = matrix[matrix.freq > 100]
 
-        # Compute frequencies (overall)
-        freq_overall = freq.compute(df, by_category='pairs')
-
-        # Compute SARI
-        sari_overall = SARI(strategy='hard').compute(freq_overall)
+        # Pivot table
+        matrix = pd.pivot_table(matrix,
+             index='microorganism_code',
+             columns='antimicrobial_code',
+             values='sari')
 
         # ------------
         # Plot Heatmap
         # ------------
-        # Create matrix
-        matrix = sari_overall[['sari']]
-        matrix = matrix.unstack() * 100
-        matrix.columns = matrix.columns.droplevel()
-
         # Create figure
-        f, ax = plt.subplots(1, 1, figsize=(8,8))
+        f, ax = plt.subplots(1, 1, figsize=(10, 10))
 
         # Create colormap
         cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
         # Specify cbar axes
-        #cbar_ax = f.add_axes([.925, .3, .05, .3])
+        # cbar_ax = f.add_axes([.925, .3, .05, .3])
 
         # Plot
-        ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+        ax = sns.heatmap(data=matrix*100, annot=True, fmt=".0f",
                          annot_kws={'fontsize': 7}, cmap=cmap,
                          linewidth=0.5, vmin=0, vmax=100, ax=ax,
+                         #cbar_ax=cbar_ax,
                          xticklabels=1, yticklabels=1)
-                         # cbar_ax=cbar_ax)
-
         # Configure axes
         ax.set(aspect="equal")
 
@@ -241,19 +292,17 @@ SARI - Antibiogram (by culture)
         plt.yticks(rotation=0)
 
         # Add title
-        plt.suptitle("Antibiogram (%s)" % specimen_code,
-            fontsize=15)
+        plt.suptitle("Antibiogram (%s)" % specimen, fontsize=15)
 
         # Tight layout
         plt.tight_layout()
-        #plt.subplots_adjust(right=0.91)
 
     # Show
     plt.show()
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.162 seconds)
+   **Total running time of the script:** ( 0 minutes  9.169 seconds)
 
 
 .. _sphx_glr_download__examples_indexes_plot_antibiogram_02.py:

@@ -1,15 +1,6 @@
 """
 Step 01 - Introduction
 ============================
-
-.. note: Done quickly, needs review.
-
-.. todo:
-    1. Load data
-    2. Plot summary
-    3. Compute SARI
-    4.
-
 """
 
 
@@ -18,17 +9,22 @@ Step 01 - Introduction
 # Loading data
 # ------------
 #
-# A ``Susceptibility test`` record is composed by laboratory identification
-# number (LID), patient identification number (PID), date, sample type or
-# culture (e.g. blood or urine), pathogen, antimicrobial, reported status
-# and outcome (resistant, sensitive or intermediate). In this research,
-# the susceptibility test data were grouped firstly by sample type. Moreover,
+#
+# .. image:: ../../_static/imgs/susceptibility-test-record.png
+#    :width: 200
+#    :align: right
+#    :alt: ASAI
+#
+# A ``Susceptibility test`` record (see figure 4.1) is composed by laboratory
+# identification number (LID), patient identification number (PID), date, sample
+# type, specimen or culture (e.g. blood or urine), pathogen, antimicrobial, reported
+# status and outcome (resistant, sensitive or intermediate). In this research,
+# the susceptibility test data were grouped firstly by specimen type. Moreover,
 # for each sample type, the data were grouped by pairs (pathogen, antimicrobial)
 # since it is widely accepted by clinicians as detailed in the UK five year
 # strategy in AMR
 #
 # A small dataset will be used for this example.
-
 
 # Libraries
 import numpy as np
@@ -41,49 +37,17 @@ import matplotlib.pyplot as plt
 from pyamr.datasets.load import make_susceptibility
 
 # -------------------------------------------
-# Constants
-# -------------------------------------------
-# Path
-path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
-path_org = '../../../pyamr/datasets/microbiology/db_microorganisms.csv'
-path_abx = '../../../pyamr/datasets/microbiology/db_antimicrobials.csv'
-
-# Columns
-usecols = ['dateReceived',
-           'labNumber',
-           'patNumber',
-           'orderName',
-           'orderCode',
-           'organismName',
-           'organismCode',
-           'antibioticName',
-           'antibioticCode',
-           'sensitivity']
-
-# Sensitivities to keep
-sensitivities = ['sensitive',
-                 'intermediate',
-                 'resistant']
-
-# Specimens
-specimen = ['BLDCUL']
-
-# -------------------------------------------
 # Load data
 # -------------------------------------------
 # Load data
 data = make_susceptibility()
-
-# Clean
-data = data[data.sensitivity.isin(sensitivities)]
-data = data[data.specimen_code.isin(specimen)]
 data = data.drop_duplicates()
 
 # Show
 print("\nData:")
 print(data)
 print("\nColumns:")
-print(data.columns)
+print(data.dtypes)
 
 # -------------------------------------------
 # Show a brief description
@@ -94,78 +58,8 @@ print(data.columns)
 
 #######################################################################
 #
-# Computing Freq
-# --------------
-#
-# .. note: Double check if the category 'isolate' is also valid.
-#
-# This section explains the main concepts in order to understand how the
-# computation of frequencies using the ``Frequency`` class works. For more
-# information see the documentation (xxx). The frequency can be computed using the
-# ``Frequency`` class for three different categories; the ``organisms``,
-# ``antibiotics`` and ``pairs`` which are composed by an organism and an antibiotic.
-# In addition, regarding to time, the susceptibility data can be grouped following
-# different strategies:
-#
-# - **Overall** - ``overall``
-#   All the data is used and therefore the outcome is a single number for
-#   the selected category (organisms, antibiotics or pairs)``. If no
-#   strategy is specified this will be used.
-#
-# - **Independent time intervals** - ``ITI``
-#   This is the traditional method used in antimicrobial surveillance systems
-#   where the time spans considered are independent; that is, they do not overlap
-#   (e.g. month or year).
-#
-# - **Overlapping time intervals** - ``OTI``
-#   This method is defined as a fixed region which is moved across time to compute
-#   consecutive resistance indexes. It is described by two parameters; the length
-#   of the region (period) and the distance between consecutive windows (shift).
-#
-# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_frequency.py`.
-
-# -------------------------------------------
-# Compute Freq
-# -------------------------------------------
-# Import specific libraries
-from pyamr.core.freq import Frequency
-
-# Create instance
-freq = Frequency(column_antibiotic='antimicrobial_code',
-                 column_organism='microorganism_code',
-                 column_date='date_received',
-                 column_outcome='sensitivity')
-
-# Compute frequencies (overall)
-freq_overall = freq.compute(data, by_category='pairs')
-
-# Compute frequencies (monthly)
-freq_monthly = freq.compute(data, strategy='ITI',
-                             by_category='pairs',
-                             fs='1M')
-# Add freq
-freq_overall['freq'] = freq_overall.sum(axis=1)
-freq_monthly['freq'] = freq_monthly.sum(axis=1)
-
-# Show
-print("\nFreq (overall):")
-print(freq_overall)
-print("\nFreq (monthly):")
-print(freq_monthly)
-
-# Plot
-# .. todo: Use bar plot or any other library to plot
-#          the frequency in time. Ideally with bars
-#          where x-axis is the time and y-axis is the
-#          freq. Avoid too many x-labels, keep just
-#          years?
-
-#######################################################################
-#
 # Computing SARI
 # --------------
-#
-# .. note:: SARI can be computed very easily (class might not be needed)
 #
 # The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
 # of resistant isolates for a given set of susceptibility tests. It provides a
@@ -187,27 +81,36 @@ print(freq_monthly)
 # -------------------------------------------
 # Compute SARI
 # -------------------------------------------
-# Import specific libraries
+# Libraries
 from pyamr.core.sari import SARI
 
-# Compute SARI
-sari_overall = SARI(strategy='hard').compute(freq_overall)
-sari_monthly = SARI(strategy='hard').compute(freq_monthly)
+# Create sari instance
+sari = SARI(groupby=['specimen_code',
+                     'microorganism_name',
+                     'antimicrobial_name',
+                     'sensitivity'])
+
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=True)
 
 # Show
-print("\nSARI (overall):")
+print("SARI (overall):")
 print(sari_overall)
-print("\nSARI (monthly):")
-print(sari_monthly)
 
 # Plot Heatmap
 # ------------
-# Create matrix
+# Filter
 matrix = sari_overall.copy(deep=True)
+matrix = matrix.reset_index()
 matrix = matrix[matrix.freq > 100]
-matrix = matrix[['sari']]
-matrix = matrix.unstack() * 100
-matrix.columns = matrix.columns.droplevel()
+matrix = matrix[matrix.specimen_code.isin(['BLDCUL'])]
+
+# Pivot table
+matrix = pd.pivot_table(matrix,
+    index='microorganism_name',
+    columns='antimicrobial_name',
+    values='sari')
 
 # Create figure
 f, ax = plt.subplots(1, 1, figsize=(10, 4))
@@ -216,7 +119,7 @@ f, ax = plt.subplots(1, 1, figsize=(10, 4))
 cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
 # Plot
-ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+ax = sns.heatmap(data=matrix*100, annot=True, fmt=".0f",
     annot_kws={'fontsize': 'small'}, cmap=cmap,
     linewidth=0.5, vmin=0, vmax=100, ax=ax,
     xticklabels=1, yticklabels=1)
@@ -228,13 +131,10 @@ plt.suptitle("Antibiogram", fontsize='xx-large')
 plt.tight_layout()
 plt.subplots_adjust(right=1.05)
 
-
 #######################################################################
 #
 # Computing ASAI
 # --------------
-#
-# .. note:: ASAI...
 #
 # The antimicrobial spectrum of activity refers to the range of microbe species
 # that are susceptible to these agents and therefore can be treated. In general,
@@ -256,7 +156,45 @@ plt.subplots_adjust(right=1.05)
 # particular species when the corresponding resistance index (SARI) is lower than
 # a given threshold.
 #
+# In order to compute ``ASAI``, we need to at least have columns with the following
+# information: ``antimicrobial``, ``microorganism genus``, ``microorganism species``
+# and ``resistance``. Moreover, in this example we will compute the ASAI for each
+# ``gram_stain`` category independently.
+#
+#
+# Lets include all this information using the ``MicroorganismRegistry``.
+#
 # For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
+
+# ------------------------------
+# Include gram stain
+# ------------------------------
+# Libraries
+from pyamr.datasets.registries import MicroorganismRegistry
+
+# Load registry
+mreg = MicroorganismRegistry()
+
+# Format sari dataframe
+dataframe = sari_overall.copy(deep=True)
+dataframe = dataframe.reset_index()
+
+# Create genus and species
+dataframe[['genus', 'species']] = \
+    dataframe.microorganism_name \
+        .str.capitalize() \
+        .str.split(expand=True, n=1)
+
+# Combine with registry information
+dataframe = mreg.combine(dataframe)
+
+# Fill missing gram stain
+dataframe.gram_stain = dataframe.gram_stain.fillna('u')
+
+##############################################################################
+#
+# Now that we have the ``gram_stain`` information, lets compute ``ASAI``.
+#
 
 # -------------------------------------------
 # Compute ASAI
@@ -264,49 +202,38 @@ plt.subplots_adjust(right=1.05)
 # Import specific libraries
 from pyamr.core.asai import ASAI
 
-
-# Format DataFrame
-dataframe = sari_overall.copy(deep=True)
-dataframe = sari_overall.reset_index()
-dataframe = dataframe.merge(data, how='left',
-    left_on='SPECIE', right_on='microorganism_code')
-
-# Fill empty
-# .. note: Leads to division by 0 (investigate)
-dataframe.microorganism_gram_type = \
-    dataframe.microorganism_gram_type.fillna('u')
-
-print(dataframe.columns)
-
-# Create antimicrobial spectrum of activity instance
-asai = ASAI(weights='uniform',
-            threshold=0.05,
-            column_genus='microorganism_name',
-            column_specie='SPECIE',
-            column_antibiotic='ANTIBIOTIC',
-            column_resistance='sari')
+# Create asai instance
+asai = ASAI(column_genus='genus',
+            column_specie='species',
+            column_resistance='sari',
+            column_frequency='freq')
 
 # Compute
 scores = asai.compute(dataframe,
-            by_category='microorganism_gram_type')
+    groupby=['specimen_code',
+             'antimicrobial_name',
+             'gram_stain'],
+    weights='uniform',
+    threshold=0.5,
+    min_freq=0)
 
-# .. note: In order to sort the scores we need to compute metrics
-#          that combine the different subcategories (e.g. gram-negative
-#          and gram-positive). Two possible options are: (i) use the
-#          gmean or (ii) the width.
-# Measures
-scores = scores.fillna(0.0)
-scores['width'] = np.abs(scores['ASAI_SCORE']['n'] + scores['ASAI_SCORE']['p'])
-scores['gmean'] = np.sqrt(scores['ASAI_SCORE']['n'] * scores['ASAI_SCORE']['p'])
-scores = scores.sort_values(by='gmean', ascending=False)
+# Stack
+scores = scores.unstack()
 
-# Show scores
-print("Data output:")
+# Filter and drop index.
+scores = scores.filter(like='URICUL', axis=0)
+scores.index = scores.index.droplevel()
+
+# Show
+print("\nASAI (overall):")
 print(scores)
 
+#######################################################################
+#
+# Lets plot it now!
 
 # ----------------
-# Plot
+# Helper method
 # ----------------
 def scalar_colormap(values, cmap, vmin, vmax):
     """This method creates a colormap based on values.
@@ -334,6 +261,15 @@ def scalar_colormap(values, cmap, vmin, vmax):
     # Return
     return colormap
 
+# ---------------------------------------------------------------
+# Plot
+# ---------------------------------------------------------------
+# .. note: In order to sort the scores we need to compute metrics
+#          that combine the different subcategories (e.g. gram-negative
+#          and gram-positive). Two possible options are: (i) use the
+#          gmean or (ii) the width.
+# Measures
+scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
 
 # Variables to plot.
 x = scores.index.values
@@ -353,7 +289,7 @@ colormap_u = scalar_colormap(y_u, cmap='Greens', vmin=-0.1, vmax=1.1)
 # For instance, it uses gram-positive, gram-negative and gram-unknown.
 # All the indexes go within the range [0,1].
 # Create the figure
-f, axes = plt.subplots(1, 3, figsize=(7, 7))
+f, axes = plt.subplots(1, 3, figsize=(7, 9))
 
 # Plot each category
 sns.barplot(x=y_p, y=x, palette=colormap_p, ax=axes[0], orient='h',
@@ -404,6 +340,9 @@ plt.show()
 # -------------------------------
 
 """
+
+Summary
+
 summary = data.agg(
     norganisms=('organismCode', 'nunique'),
     nantibiotics=('antibioticCode', 'nunique'),
@@ -476,4 +415,6 @@ print(dfy.to_latex())
 #print dff_isola.head(10)
 import sys
 sys.exit()
+
+
 """

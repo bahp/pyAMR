@@ -18,87 +18,327 @@
 .. _sphx_glr__examples_tutorial_guide_plot_step_03.py:
 
 
-Step 03 - TSA for trends
-========================
+Step 02 - Time Series Analysis
+==============================
 
-.. warning:: To be completed!
+.. warning:: Verify tests with conditions from stattools.
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-21
+.. warning:: Useful references:
 
-The diagram in Figure 4.7 describes the methodology implemented to estimate secular
-trends in AMR from susceptibility data. Since data corruption might occur in clinical
-environments, those susceptibility test records wrongly reported (human or device errors)
-or duplicated were discarded. The remaining records were divided into combinations
-(tuples defined by sample type, pathogen and antimicrobial) for which a resistance time
-series signal was generated using either independent or overlapping time intervals (see
-xxx). The time series were linearly interpolated to fill sporadic missing values. No
-additional filters or preprocessing steps were applied. An analysis of stationarity around
-a trend was carried out to identify interesting combinations and regression
-analysis was used to quantify its tendency
+    - https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
+    - https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
 
+.. GENERATED FROM PYTHON SOURCE LINES 15-20
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-76
+Create time series (TS)
+-----------------------
+
+First lets create an artificial series. The series has been plotted
+ad the end of the tutorial.
+
+.. GENERATED FROM PYTHON SOURCE LINES 21-34
 
 .. code-block:: default
-   :lineno-start: 23
+   :lineno-start: 22
 
 
-    # .. image:: ../../../_static/imgs/sart-diagram.png
-    #   :width: 600
-    #   :align: center
-    #   :alt: Diagram
-    #
-    # |
-    #
-    # The linear model (see Equation 4.3) has been selected to quantify resistance tendency
-    # for several reasons: (i) the development of resistance in pathogens is an evolutionary
-    # response to the selective pressure of antimicrobials, hence large variations in short
-    # periods (e.g. consecutive days or months) are not expected (ii) the slope parameter can
-    # be directly translated to change over time increasing its practicability and (iii) the
-    # offset parameter is highly related with the overall resistance. Hence, the response variable
-    # in regression analysis (resistance index) is described by the explanatory variable (time).
-    # The slope (m) ranges within the interval [-1,1] where sign and absolute value capture
-    # direction and rate of change respectively. The unit of the slope is represented by ∆y/∆x.
-    #
-    # - **Least Squares Regression**
-    #
-    #   The optimization problem in ordinary least squares - ``OLS`` - regression minimizes the least
-    #   square errors to find the best fitting model. Ordinary least squares - OLS - assumes
-    #   identical weights (wi) and independently distributed residuals with a normal distribution.
-    #   It is frequent to observe that some residuals might have higher variance than others,
-    #   meaning that those observations are effectively less certain. To contemplate such variability,
-    #   weighted linear squares - ``WLS`` - regression (see Equation 4.4) applies a weighting
-    #   function to the residuals. The confidence of the computed resistance index (observed
-    #   variable) relies on the number of susceptibility test records manipulated. Hence, the
-    #   sigmoid function has been used to define weights proportional to the population size.
-    #
-    # - **Auto Regressive Integrated Moving Average** - ``ARIMA``
-    #
-    #   An autoregressive integrated moving average (ARIMA) model is a generalization of an
-    #   autoregressive moving average (ARMA) model which can be also applied in scenarios
-    #   where data show evidence of non-stationarity. The autoregressive (AR) part expresses
-    #   the variable of interest (resistance index) as a function of past values of the variable.
-    #   The moving average (MA) indicates that the regression error is a linear combination of
-    #   error terms which occurred contemporaneously and at various times in the past. An
-    #   ARIMA(p,d,q) model is described by: p is the number of autoregressive terms,
-    #   d is the number of differences needed for stationarity and q is the
-    #   number of lagged forecast errors.
-    #
-    #   Include formula.
-    #
-    #   The interpretation of the parameter µ depends on the ARIMA model used for the
-    #   fitting. In order to estimate the linear trend, it was interesting to consider exclusively
-    #   MA models so that the expected value of µ was the mean of the one-time differenced
-    #   series; that is, the slope coefficient of the un-differenced series. The Bayesian information
-    #   criterion (BIC) was used to select the best ARIMA(0,1,q) model, being the one with the
-    #   lowest BIC the preferred.
-    #
-    #
-
+    # ----------------------------
+    # create data
+    # ----------------------------
     # Import
-    import pandas as pd
+    import numpy as np
+
+    # Import specific
+    from pyamr.datasets.load import make_timeseries
+
+    # Create timeseries data
+    x, y, f = make_timeseries()
 
 
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 35-45
+
+Pearson correlation coefficient
+-------------------------------
+
+It measures the linear correlation between two variables with a value within the range
+[-1,1]. Coefficient values of -1, 0 and 1 indicate total negative linear correlation, no
+linear correlation and total positive correlation respectively. In this study, the
+coefficient is used to assess whether or not there is a linear correlation between the
+number of observations (susceptibility test records) and the computed resistance index.
+
+See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlation.py`
+
+.. GENERATED FROM PYTHON SOURCE LINES 46-60
+
+.. code-block:: default
+   :lineno-start: 47
+
+
+    # -------------------------------
+    # Pearson correlation coefficient
+    # -------------------------------
+    # Import pyAMR
+    from pyamr.core.stats.correlation import CorrelationWrapper
+
+    # Create object
+    correlation = CorrelationWrapper().fit(x1=y, x2=f)
+
+    # Print summary.
+    print("\n")
+    print(correlation.as_summary())
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+
+             Correlation
+    ==============================
+    Pearson:                 0.714
+    Spearman:                0.778
+    Cross correlation: 4961591.439
+    ==============================
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 61-84
+
+Augmented Dickey-Fuller test
+----------------------------
+
+The Augmented Dickey-Fuller - ``ADF`` - test can be used to test for a unit root
+in a univariate process in the presence of serial correlation. The intuition behind
+a unit root test is that it determines how strongly a time series is defined by a trend.
+``ADF`` tests the null hypothesis that a unit root is present in a time series sample.
+The alternative hypothesis is different depending on which version of the test is used,
+but is usually stationarity or trend-stationarity. The more negative the statistic, the
+stronger the rejection of the hypothesis that there is a unit root at some level
+of confidence.
+
+====== =========================== =====================================
+H      Hypothesis                  Stationarity
+====== =========================== =====================================
+**H0** The series has a unit root  ``Non-stationary``
+**H1** The series has no unit root ``Stationary`` / ``Trend-Stationary``
+====== =========================== =====================================
+
+| If p-value > 0.05: Failed to reject H0.
+| If p-value <= 0.05: Reject H0.
+
+See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.py`
+
+.. GENERATED FROM PYTHON SOURCE LINES 85-102
+
+.. code-block:: default
+   :lineno-start: 86
+
+
+    # ----------------------------
+    # ADFuller
+    # ----------------------------
+    # Import statsmodels
+    from statsmodels.tsa.stattools import adfuller
+
+    # Import pyAMR
+    from pyamr.core.stats.adfuller import ADFWrapper
+
+    # Create wrapper
+    adf = ADFWrapper(adfuller).fit(x=y, regression='ct')
+
+    print("\n")
+    print(adf.as_summary())
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+
+        adfuller test stationarity (ct)    
+    =======================================
+    statistic:                       -1.695
+    pvalue:                         0.75285   
+    nlags:                                3    
+    nobs:                                96     
+    stationarity (α=0.05):   non-stationary
+    =======================================
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 103-131
+
+Kwiatkowski-Phillips-Schmidt-Shin test
+--------------------------------------
+
+The Kwiatkowski–Phillips–Schmidt–Shin - ``KPSS`` - test is used to identify
+whether a time series is stationary around a deterministic trend (thus
+trend stationary) against the alternative of a unit root.
+
+In the KPSS test, the absence of a unit root is not a proof of stationarity
+but, by design, of trend stationarity. This is an important distinction since
+it is possible for a time series to be non-stationary, have no unit root yet
+be trend-stationary.
+
+In both, unit-root and trend-stationary processes, the mean can be increasing
+or decreasing over time; however, in the presence of a shock, trend-stationary
+processes revert to this mean tendency in the long run (deterministic trend)
+while unit-root processes have a permanent impact (stochastic trend).
+
+====== =========================== =====================================
+H      Hypothesis                  Stationarity
+====== =========================== =====================================
+**H0** The series has no unit root ``Trend-stationary``
+**H1** The series has a unit root  ``No Trend-Stationary``
+====== =========================== =====================================
+
+| If p-value > alpha: Failed to reject H0
+| If p-value <= alpha: Reject H0
+
+.. See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_kpss.py`
+
+.. GENERATED FROM PYTHON SOURCE LINES 132-138
+
+.. code-block:: default
+   :lineno-start: 133
+
+
+    # ----------------------------
+    # Kpss
+    # ----------------------------
+
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 139-157
+
+Trend and stationarity in TS
+----------------------------
+
+An analysis of stationarity around a trend was carried out to identify time series
+satisfying the assumptions posed by ARIMA. The augmented Dickey–Fuller test (ADF) was
+used to determine the presence of a unit root. When the other roots of the characteristic
+function lie inside the unit circle the first difference of the process is stationary. Due
+to this property, these are also called difference-stationary processes. Since the absence
+of unit root is not a proof of non-stationarity, the Kwiatkowski–Phillips–Schmidt–Shin
+(KPSS) test was used to identify the existence of an underlying trend which can also be
+removed to obtain a stationary process. These are called trend-stationary processes. In
+both, unit-root and trend-stationary processes, the mean can be increasing or decreasing
+over time; however, in the presence of a shock, trend-stationary processes revert to this
+mean tendency in the long run (deterministic trend) while unit-root processes have a
+permanent impact (stochastic trend). The significance level of the tests was set to 0.05.
+
+See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationarity.py`
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 158-208
+
+.. code-block:: default
+   :lineno-start: 159
+
+
+    # ----------------------------
+    # Stationarity
+    # ----------------------------
+    # Import generic
+    import matplotlib.pyplot as plt
+
+    # Import pyAMR
+    from pyamr.core.stats.stationarity import StationarityWrapper
+
+    # Define kwargs
+    adf_kwargs = {}
+    kpss_kwargs = {}
+
+    # Compute stationarity
+    stationarity = StationarityWrapper().fit(x=y,
+        adf_kwargs=adf_kwargs, kpss_kwargs=kpss_kwargs)
+
+    # Print summary.
+    print("\n")
+    print(stationarity.as_summary())
+
+
+    # ----------------
+    # plot
+    # ----------------
+    # Font type.
+    font = {
+        'family': 'monospace',
+        'weight': 'normal',
+        'size': 10,
+    }
+
+    # Create figure
+    fig, ax = plt.subplots(1, 1, figsize=(10, 4))
+
+    # Plot truth values.
+    ax.plot(y, color='#A6CEE3', alpha=0.5, marker='o',
+             markeredgecolor='k', markeredgewidth=0.5,
+             markersize=4, linewidth=0.75,
+             label=stationarity.as_summary())
+
+    # Format axes
+    ax.grid(color='gray', linestyle='--', linewidth=0.2, alpha=0.5)
+    ax.legend(prop=font, loc=4)
+
+    # Addd title
+    plt.suptitle("Study of Stationarity")
+
+    plt.show()
+
+
+
+.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_03_001.png
+    :alt: Study of Stationarity
+    :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\tsa\stattools.py:1875: FutureWarning:
+
+    The behavior of using nlags=None will change in release 0.13.Currently nlags=None is the same as nlags="legacy", and so a sample-size lag length is used. After the next release, the default will change to be the same as nlags="auto" which uses an automatic lag length selection method. To silence this warning, either use "auto" or "legacy"
+
+
+
+          stationarity (alpha=0.05)   
+    ==================================
+              root           trend    
+    ----------------------------------
+    c   False (0.072)   False (0.013)
+    ct  False (0.753)   False (0.015)
+    ==================================
 
 
 
@@ -106,7 +346,7 @@ analysis was used to quantify its tendency
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.001 seconds)
+   **Total running time of the script:** ( 0 minutes  0.237 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_03.py:

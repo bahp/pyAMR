@@ -1,6 +1,6 @@
 """
-SARI - Antibiogram (by culture)
--------------------------------
+SARI - Antibiogram (by specimen)
+--------------------------------
 
 .. todo:: Explain...
 
@@ -39,42 +39,6 @@ pd.set_option('display.precision', 4)
 # Numpy configuration
 np.set_printoptions(precision=2)
 
-# ------------------
-# Methods
-# ------------------
-def get_category_colors(index, category, cmap='tab10'):
-    """This method creates the colors for the different elements in
-    categorical feature vector.
-
-    Parameters
-    ----------
-    values : array-like
-        The vector with the categorical values
-
-    cmap: string-like
-        The colormap to use
-
-    default: string-like
-        The color to be used for the first value. Note that this
-        value needs to appear first on the the sorted list, as such
-        it is recommended to set is as _default.
-
-    Returns
-    -------
-    """
-    # Get categories
-    categories = index.get_level_values(category)
-    # Get unique elements
-    unique = np.unique(categories)
-    # Create the palette
-    palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
-    # Create mappers from category to color
-    mapper = dict(zip(map(str, unique), palette))
-    # Create list with colors for each category
-    colors = pd.Series(categories, index=index).map(mapper)
-    # Return
-    return colors
-
 
 # -------------------------------------------
 # Load data
@@ -89,57 +53,80 @@ print("\nColumns:")
 print(data.columns)
 
 # -------------------------------------------
-# For each culture type
+# Compute SARI
 # -------------------------------------------
-# Count records per order code
-specimen_code_count = data.specimen_code.value_counts()
+# Libraries
+from pyamr.core.sari import SARI
 
-# Filter most frequent order codes
-data = data[data.specimen_code.isin( \
-    specimen_code_count.index.values[:5])]
+# Create sari instance
+sari = SARI(groupby=['specimen_code',
+                     'microorganism_code',
+                     'antimicrobial_code',
+                     'sensitivity'])
+
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=True)
+
+# Show
+print("SARI (overall):")
+print(sari_overall)
+
+# -------------------------------------------
+# Plot
+# -------------------------------------------
+# Reset
+sari_overall = sari_overall.reset_index()
+
+# Count records per specimen
+specimen_count = sari_overall \
+    .groupby('specimen_code').freq.sum() \
+    .sort_values(ascending=False)
+
+# Show
+print("Cultures:")
+print(specimen_count)
+
+# Filter
+sari_overall = sari_overall[sari_overall \
+    .specimen_code.isin( \
+        specimen_count.index.values[:5])]
 
 # Loop
-for specimen_code, df in data.groupby(by='specimen_code'):
+for specimen, df in sari_overall.groupby(by='specimen_code'):
 
-    # -------------------------------------------
-    # Compute Freq and SARI
-    # -------------------------------------------
-    # Create instance
-    freq = Frequency(column_antibiotic='antimicrobial_code',
-                     column_organism='microorganism_code',
-                     column_date='date_received',
-                     column_outcome='sensitivity')
+    # -------------
+    # Create matrix
+    # -------------
+    # Filter
+    matrix = df.copy(deep=True)
+    matrix = df.reset_index()
+    #matrix = matrix[matrix.freq > 100]
 
-    # Compute frequencies (overall)
-    freq_overall = freq.compute(df, by_category='pairs')
-
-    # Compute SARI
-    sari_overall = SARI(strategy='hard').compute(freq_overall)
+    # Pivot table
+    matrix = pd.pivot_table(matrix,
+         index='microorganism_code',
+         columns='antimicrobial_code',
+         values='sari')
 
     # ------------
     # Plot Heatmap
     # ------------
-    # Create matrix
-    matrix = sari_overall[['sari']]
-    matrix = matrix.unstack() * 100
-    matrix.columns = matrix.columns.droplevel()
-
     # Create figure
-    f, ax = plt.subplots(1, 1, figsize=(8,8))
+    f, ax = plt.subplots(1, 1, figsize=(10, 10))
 
     # Create colormap
     cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
     # Specify cbar axes
-    #cbar_ax = f.add_axes([.925, .3, .05, .3])
+    # cbar_ax = f.add_axes([.925, .3, .05, .3])
 
     # Plot
-    ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+    ax = sns.heatmap(data=matrix*100, annot=True, fmt=".0f",
                      annot_kws={'fontsize': 7}, cmap=cmap,
                      linewidth=0.5, vmin=0, vmax=100, ax=ax,
+                     #cbar_ax=cbar_ax,
                      xticklabels=1, yticklabels=1)
-                     # cbar_ax=cbar_ax)
-
     # Configure axes
     ax.set(aspect="equal")
 
@@ -147,12 +134,10 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     plt.yticks(rotation=0)
 
     # Add title
-    plt.suptitle("Antibiogram (%s)" % specimen_code,
-        fontsize=15)
+    plt.suptitle("Antibiogram (%s)" % specimen, fontsize=15)
 
     # Tight layout
     plt.tight_layout()
-    #plt.subplots_adjust(right=0.91)
 
 # Show
 plt.show()

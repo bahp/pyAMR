@@ -26,7 +26,7 @@ SARI - Antibiogram (clustered)
 .. todo: Frequency might not be working?
          Frequency can be computed as sum of columns.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-210
+.. GENERATED FROM PYTHON SOURCE LINES 11-171
 
 
 
@@ -70,22 +70,42 @@ SARI - Antibiogram (clustered)
 
  .. code-block:: none
 
+    SARI (overall):
+    sensitivity                                               P  intermediate  resistant  sensitive  freq    sari
+    specimen_code microorganism_name    antimicrobial_name                                                       
+    ABSCESS       Achromobacter species Cefepime            0.0           0.0        1.0        0.0   1.0  1.0000
+                                        Ceftazidime         0.0           1.0        0.0        0.0   1.0  1.0000
+                                        Ceftriaxone         0.0           0.0        1.0        0.0   1.0  1.0000
+                                        Ciprofloxacin       0.0           0.0        0.0        1.0   1.0  0.0000
+                                        Gentamicin          0.0           1.0        0.0        0.0   1.0  1.0000
+    ...                                                     ...           ...        ...        ...   ...     ...
+    URINE         Viridans streptococci Clindamycin         0.0           2.0        0.0        8.0  10.0  0.2000
+                                        Erythromycin        0.0           0.0        4.0        6.0  10.0  0.4000
+                                        Levofloxacin        0.0           0.0        0.0        1.0   1.0  0.0000
+                                        Penicillin g        0.0           2.0        0.0        9.0  11.0  0.1818
+                                        Vancomycin          0.0           0.0        0.0       11.0  11.0  0.0000
+
+    [4307 rows x 6 columns]
 
 
 
     Data (ABSCESS)
-    ANTIBIOTIC                                                     Ceftazidime    Ceftriaxone  ...      Tobramycin   Vancomycin
-    antimicrobial_class                                         Cephalosporins Cephalosporins  ... Aminoglycosides Glycopeptide
-    SPECIE                                  microorganism_genus                                ...                             
-    Enterococcus sp.                        Enterococcus                     0              0  ...               0           34
-    Escherichia coli                        Escherichia                     17             21  ...              22            0
-    Klebsiella pneumoniae                   Klebsiella                      11             10  ...               5            0
-    Pseudomonas aeruginosa                  Pseudomonas                     16              0  ...               8            0
-    Staph aureus coag +                     Staph                            0              0  ...               0            0
-    Staphylococcus, coagulase negative      Staphylococcus,                  0              0  ...               0            0
-    Streptococcus anginosus (milleri) group Streptococcus                    0              5  ...               0            0
+    antimicrobial_name                               Amikacin    Ceftazidime    Ceftriaxone     Cefuroxime    Ciprofloxacin  ...  Meropenem   Oxacillin  Tetracycline      Tobramycin   Vancomycin
+    category                                  Aminoglycosides Cephalosporins Cephalosporins Cephalosporins Fluoroquinolones  ... Meropenems Penicillins Tetracyclines Aminoglycosides Glycopeptide
+    microorganism_name          genus                                                                                        ...                                                                  
+    Achromobacter species       Achromobacter               0            100            100              0                0  ...        100           0             0               0            0
+    Acinetobacter baumannii     Acinetobacter               0              0              0              0                0  ...          0           0             0               0            0
+    Actinomyces israelii        Actinomyces                 0              0              0              0                0  ...          0           0             0               0            0
+    Actinomyces odontolyticus   Actinomyces                 0              0              0              0                0  ...          0           0             0               0            0
+    Aeromonas species           Aeromonas                   0              0              0              0                0  ...        100           0             0               0            0
+    ...                                                   ...            ...            ...            ...              ...  ...        ...         ...           ...             ...          ...
+    Streptococcus milleri group Streptococcus               0              0              0              0                0  ...          0           0             0               0            0
+    Streptococcus pneumoniae    Streptococcus               0              0              0              0                0  ...          0           0            50               0            0
+    Streptococcus sanguinis     Streptococcus               0              0              0              0                0  ...          0           0             0               0            0
+    Streptococcus species       Streptococcus               0              0              0              0                0  ...          0           0             0               0            0
+    Viridans streptococci       Viridans                    0              0              0              0                0  ...          0           0             0               0            0
 
-    [7 rows x 13 columns]
+    [71 rows x 16 columns]
     c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\seaborn\matrix.py:1216: UserWarning:
 
     ``square=True`` ignored in clustermap
@@ -94,27 +114,22 @@ SARI - Antibiogram (clustered)
 
 
     Data (BLOOD CULTURE)
-    ANTIBIOTIC                                                         Amikacin    Ceftazidime    Ceftriaxone  ...  Tetracycline      Tobramycin   Vancomycin
-    antimicrobial_class                                         Aminoglycosides Cephalosporins Cephalosporins  ... Tetracyclines Aminoglycosides Glycopeptide
-    SPECIE                                  microorganism_genus                                                ...                                           
-    Beta streptococcus group b              Beta                              0              0              0  ...             0               0            0
-    Enterobacter cloacae complex            Enterobacter                      0             27             32  ...             0               6            0
-    Enterococcus faecalis                   Enterococcus                      0              0              0  ...             0               0            6
-    Enterococcus faecium                    Enterococcus                      0              0              0  ...             0               0           80
-    Escherichia coli                        Escherichia                       1             16             21  ...             0              19            0
-    Klebsiella oxytoca                      Klebsiella                        0              5              9  ...             0               7            0
-    Klebsiella pneumoniae                   Klebsiella                        0             14             16  ...             0              12            0
-    Proteus mirabilis                       Proteus                           0              1              1  ...             0               9            0
-    Pseudomonas aeruginosa                  Pseudomonas                       0             23              0  ...             0               9            0
-    Serratia marcescens                     Serratia                          0              1              2  ...             0              11            0
-    Staph aureus coag +                     Staph                             0              0              0  ...             3               0            0
-    Staphylococcus epidermidis              Staphylococcus                    0              0              0  ...            13               0            0
-    Staphylococcus, coagulase negative      Staphylococcus,                   0              0              0  ...            13               0            0
-    Streptococcus anginosus (milleri) group Streptococcus                     0              0              0  ...             0               0            0
-    Streptococcus pneumoniae                Streptococcus                     0              0              2  ...            18               0            0
-    Viridans streptococci                   Viridans                          0              0              0  ...             0               0            0
+    antimicrobial_name                                                         Amikacin    Ceftazidime    Ceftriaxone     Cefuroxime  ...   Oxacillin  Tetracycline      Tobramycin   Vancomycin
+    category                                                            Aminoglycosides Cephalosporins Cephalosporins Cephalosporins  ... Penicillins Tetracyclines Aminoglycosides Glycopeptide
+    microorganism_name                       genus                                                                                    ...                                                       
+    Abiotrophia/granulicatella species       Abiotrophia/granulicatella               0              0             14              0  ...           0             0               0            0
+    Achromobacter (alcaligenes) dentrificans Achromobacter                           50              0            100              0  ...           0             0             100            0
+    Achromobacter (alcaligenes) xylosoxid... Achromobacter                           50             50             50              0  ...           0             0             100            0
+    Achromobacter sp.                        Achromobacter                          100             33            100              0  ...           0             0             100            0
+    Achromobacter species                    Achromobacter                          100             50            100              0  ...           0             0             100            0
+    ...                                                                             ...            ...            ...            ...  ...         ...           ...             ...          ...
+    Streptococcus species                    Streptococcus                            0              0              0              0  ...           0             0               0            0
+    Streptococcus vestibularis               Streptococcus                            0              0              0              0  ...           0             0               0            0
+    Veillonella species                      Veillonella                              0              0              0              0  ...           0             0               0            0
+    Viridans streptococci                    Viridans                                 0              0             12              0  ...           0            42               0            0
+    Wautersiella falsenii                    Wautersiella                           100              0              0              0  ...           0             0             100            0
 
-    [16 rows x 15 columns]
+    [198 rows x 16 columns]
     c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\seaborn\matrix.py:1216: UserWarning:
 
     ``square=True`` ignored in clustermap
@@ -123,22 +138,22 @@ SARI - Antibiogram (clustered)
 
 
     Data (SWAB)
-    ANTIBIOTIC                                                     Ceftazidime    Ceftriaxone     Cefuroxime  ...  Tetracycline      Tobramycin   Vancomycin
-    antimicrobial_class                                         Cephalosporins Cephalosporins Cephalosporins  ... Tetracyclines Aminoglycosides Glycopeptide
-    SPECIE                                  microorganism_genus                                               ...                                           
-    Enterobacter cloacae                    Enterobacter                    21             22              0  ...             0               6            0
-    Enterobacter cloacae complex            Enterobacter                    20             23              0  ...             0               5            0
-    Enterococcus sp.                        Enterococcus                     0              0              0  ...             0               0           69
-    Escherichia coli                        Escherichia                     14             19             21  ...             0              17            0
-    Klebsiella pneumoniae                   Klebsiella                      19             21              0  ...             0              18            0
-    Proteus mirabilis                       Proteus                          0              0              0  ...             0               6            0
-    Pseudomonas aeruginosa                  Pseudomonas                     17              0              0  ...             0               7            0
-    Serratia marcescens                     Serratia                         0              0              0  ...             0               9            0
-    Staph aureus coag +                     Staph                            0              0              0  ...             6               0            0
-    Staphylococcus, coagulase negative      Staphylococcus,                  0              0              0  ...            17               0            0
-    Streptococcus anginosus (milleri) group Streptococcus                    0              0              0  ...             0               0            0
+    antimicrobial_name                                            Amikacin    Ceftazidime    Ceftriaxone     Cefuroxime  ...   Oxacillin  Tetracycline      Tobramycin   Vancomycin
+    category                                               Aminoglycosides Cephalosporins Cephalosporins Cephalosporins  ... Penicillins Tetracyclines Aminoglycosides Glycopeptide
+    microorganism_name                       genus                                                                       ...                                                       
+    Achromobacter (alcaligenes) dentrificans Achromobacter              50             50            100              0  ...           0             0             100            0
+    Achromobacter (alcaligenes) xylosoxid... Achromobacter             100            100            100              0  ...           0             0             100            0
+    Achromobacter sp.                        Achromobacter             100             22            100              0  ...           0             0              88            0
+    Achromobacter species                    Achromobacter             100              0            100              0  ...           0             0             100            0
+    Acinetobacter baumannii                  Acinetobacter               0             75              0              0  ...           0             0              50            0
+    ...                                                                ...            ...            ...            ...  ...         ...           ...             ...          ...
+    Streptococcus milleri group              Streptococcus               0              0              0              0  ...           0             0               0            0
+    Streptococcus mitis                      Streptococcus               0              0              0              0  ...           0             0               0            0
+    Streptococcus pneumoniae                 Streptococcus               0              0             20              0  ...           0            20               0            0
+    Streptococcus species                    Streptococcus               0              0              0              0  ...           0             0               0            0
+    Viridans streptococci                    Viridans                    0              0              0              0  ...           0             0               0            0
 
-    [11 rows x 14 columns]
+    [103 rows x 16 columns]
     c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\seaborn\matrix.py:1216: UserWarning:
 
     ``square=True`` ignored in clustermap
@@ -147,13 +162,11 @@ SARI - Antibiogram (clustered)
 
 
     Data (Staph aureus Screen)
-    ANTIBIOTIC                                                   Clindamycin Erythromycin      Gentamicin  ...   Oxacillin  Tetracycline   Vancomycin
-    antimicrobial_class                                           Macrolides   Macrolides Aminoglycosides  ... Penicillins Tetracyclines Glycopeptide
-    SPECIE                                   microorganism_genus                                           ...                                       
-    Positive for methicillin resistant st... Positive                     61           85               1  ...         100             8            0
-    Staph aureus coag +                      Staph                        23           34               0  ...           8             3            0
-
-    [2 rows x 7 columns]
+    antimicrobial_name                                   Ciprofloxacin Clindamycin Erythromycin      Gentamicin     Levofloxacin   Oxacillin  Tetracycline   Vancomycin
+    category                                          Fluoroquinolones  Macrolides   Macrolides Aminoglycosides Fluoroquinolones Penicillins Tetracyclines Glycopeptide
+    microorganism_name                       genus                                                                                                                     
+    Positive for methicillin resistant st... Positive                0          61           85               1               74         100             8            0
+    Staph aureus coag +                      Staph                 100          23           34               0                9           8             3            0
     c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\seaborn\matrix.py:1216: UserWarning:
 
     ``square=True`` ignored in clustermap
@@ -162,29 +175,22 @@ SARI - Antibiogram (clustered)
 
 
     Data (URINE)
-    ANTIBIOTIC                                                      Amikacin    Ceftazidime    Ceftriaxone  ...  Tetracycline      Tobramycin   Vancomycin
-    antimicrobial_class                                      Aminoglycosides Cephalosporins Cephalosporins  ... Tetracyclines Aminoglycosides Glycopeptide
-    SPECIE                               microorganism_genus                                                ...                                           
-    Citrobacter freundii complex         Citrobacter                       0             21             22  ...             0               5            0
-    Citrobacter koseri                   Citrobacter                       0              0              1  ...             0               0            0
-    Corynebacterium urealyticum sp. nov. Corynebacterium                   0              0              0  ...             0               0            0
-    Enterobacter aerogenes               Enterobacter                      0             15             14  ...             0               0            0
-    Enterobacter cloacae                 Enterobacter                      0             34             36  ...             0               7            0
-    Enterobacter cloacae complex         Enterobacter                      0             30             34  ...             0               8            0
-    Enterococcus faecalis                Enterococcus                      0              0              0  ...            84               0           13
-    Enterococcus faecium                 Enterococcus                      0              0              0  ...            80               0           87
-    Enterococcus sp.                     Enterococcus                      0              0              0  ...            77               0           21
-    Escherichia coli                     Escherichia                       1              7             11  ...             0               9            0
-    Klebsiella oxytoca                   Klebsiella                        0              2              6  ...             0               3            0
-    Klebsiella pneumoniae                Klebsiella                        9             11             12  ...             0              10            0
-    Morganella morganii                  Morganella                        0             16             11  ...             0               9            0
-    Proteus mirabilis                    Proteus                           0              1              2  ...             0               7            0
-    Pseudomonas aeruginosa               Pseudomonas                       7             14              0  ...             0              13            0
-    Serratia marcescens                  Serratia                          0              1              5  ...             0              14            0
-    Staph aureus coag +                  Staph                             0              0              0  ...             3               0            0
-    Staphylococcus, coagulase negative   Staphylococcus,                   0              0              0  ...            13               0            0
+    antimicrobial_name                                               Amikacin    Ceftazidime    Ceftriaxone     Cefuroxime  ...   Oxacillin  Tetracycline      Tobramycin   Vancomycin
+    category                                                  Aminoglycosides Cephalosporins Cephalosporins Cephalosporins  ... Penicillins Tetracyclines Aminoglycosides Glycopeptide
+    microorganism_name                       genus                                                                          ...                                                       
+    Achromobacter (alcaligenes) dentrificans Achromobacter                 50              0            100              0  ...           0             0             100            0
+    Achromobacter (alcaligenes) xylosoxidans Achromobacter                100             50            100              0  ...           0             0              50            0
+    Achromobacter sp.                        Achromobacter                 80             12            100              0  ...           0             0              62            0
+    Achromobacter species                    Achromobacter                100             66             66              0  ...           0             0             100            0
+    Achromobacter xylosoxidans               Achromobacter                  0              0            100              0  ...           0             0             100            0
+    ...                                                                   ...            ...            ...            ...  ...         ...           ...             ...          ...
+    Stenotrophomonas maltophilia             Stenotrophomonas               0             68              0              0  ...           0             0               0            0
+    Streptococcus anginosus                  Streptococcus                  0              0              0              0  ...           0             0               0            0
+    Streptococcus anginosus (milleri) group  Streptococcus                  0              0              0              0  ...           0             0               0            0
+    Streptococcus bovis group                Streptococcus                  0              0              0              0  ...           0             0               0            0
+    Viridans streptococci                    Viridans                       0              0              0              0  ...           0             0               0            0
 
-    [18 rows x 15 columns]
+    [110 rows x 16 columns]
     c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\seaborn\matrix.py:1216: UserWarning:
 
     ``square=True`` ignored in clustermap
@@ -236,66 +242,6 @@ SARI - Antibiogram (clustered)
     np.set_printoptions(precision=2)
 
 
-    # ------------------------------------------------------------
-    # Methods
-    # ------------------------------------------------------------
-    def get_category_colors(index, category, cmap='hls'):
-        """This method creates the colors for the different elements in
-        categorical feature vector.
-
-        Parameters
-        ----------
-        values : array-like
-            The vector with the categorical values
-
-        cmap: string-like
-            The colormap to use
-
-        default: string-like
-            The color to be used for the first value. Note that this
-            value needs to appear first on the the sorted list, as such
-            it is recommended to set is as _default.
-
-        Returns
-        -------
-        """
-        # Get categories
-        categories = index.get_level_values(category)
-        # Get unique elements
-        unique = np.unique(categories)
-        # Create the palette
-        palette = sns.color_palette(cmap, desat=0.5, n_colors=unique.shape[0])
-        # Create mappers from category to color
-        mapper = dict(zip(map(str, unique), palette))
-        # Create list with colors for each category
-        colors = pd.Series(categories, index=index).map(mapper)
-        # Return
-        return colors
-
-
-    def create_mapper(dataframe, column_key, column_value):
-      """This method constructs a mapper
-
-      Parameters
-      ----------
-      dataframe: dataframe-like
-        The dataframe from which the columns are extracted
-
-      column_key: string-like
-        The name of the column with the values for the keys of the mapper
-
-      column_value: string-like
-        The name of the column with the values for the values of the mapper
-
-      Returns
-      -------
-      dictionary
-      """
-      dataframe = dataframe[[column_key, column_value]]
-      dataframe = dataframe.drop_duplicates()
-      return dict(zip(dataframe[column_key], dataframe[column_value]))
-
-
     # --------------------------------------------------------------------
     #                               Main
     # --------------------------------------------------------------------
@@ -312,43 +258,71 @@ SARI - Antibiogram (clustered)
     data = data[data.specimen_code.isin( \
         specimen_code_count.index.values[:5])]
 
-    # Loop for each specimen
-    for specimen_code, df in data.groupby(by='specimen_code'):
+    # Create sari instance
+    sari = SARI(groupby=['specimen_code',
+                         'microorganism_name',
+                         'antimicrobial_name',
+                         'sensitivity'])
 
-        # -------------------------------------------
-        # Compute Freq and SARI
-        # -------------------------------------------
-        # Create instance
-        freq = Frequency(column_antibiotic='antimicrobial_code',
-                         column_organism='microorganism_code',
-                         column_date='date_received',
-                         column_outcome='sensitivity')
+    # Compute SARI overall
+    sari_overall = sari.compute(data,
+        return_frequencies=True)
 
-        # Compute frequencies (overall)
-        freq_overall = freq.compute(df, by_category='pairs')
+    # Show
+    print("SARI (overall):")
+    print(sari_overall)
 
+
+    # ------------------------------
+    # Include registries information
+    # ------------------------------
+    # Libraries
+    from pyamr.datasets.registries import MicroorganismRegistry
+    from pyamr.datasets.registries import AntimicrobialRegistry
+
+    # Load registry
+    mreg = MicroorganismRegistry()
+    areg = AntimicrobialRegistry()
+
+    # Format sari dataframe
+    dataframe = sari_overall.copy(deep=True)
+    dataframe = dataframe.reset_index()
+
+    # Create genus and species
+    dataframe[['genus', 'species']] = \
+        dataframe.microorganism_name \
+            .str.capitalize() \
+            .str.split(expand=True, n=1)
+
+    # Combine with registry information
+    dataframe = mreg.combine(dataframe)
+    dataframe = areg.combine(dataframe)
+
+
+    # -------------------------------------------
+    # Plot
+    # -------------------------------------------
+    # Libraries
+    from pyamr.utils.plot import get_category_colors
+
+    # Reset
+    sari_overall = dataframe.reset_index()
+
+    # Loop
+    for specimen, df in sari_overall.groupby(by='specimen_code'):
+
+        # -------------------------------
+        # Create matrix
+        # -------------------------------
         # Filter
-        freq_overall = freq_overall[freq_overall.sum(axis=1) > 100]
-
-        # Compute SARI
-        sari_overall = SARI(strategy='hard').compute(freq_overall)
-
-        # -------------------------------
-        # Create matrix
-        # -------------------------------
-        # Create mappers
-        abx_map = create_mapper(antibiotics, 'antimicrobial_code', 'category')
-        org_map = create_mapper(organisms, 'microorganism_code', 'genus')
-
-        # Create matrix
-        matrix = sari_overall.reset_index()
-        matrix['microorganism_genus'] = matrix.SPECIE.map(org_map)
-        matrix['antimicrobial_class'] = matrix.ANTIBIOTIC.map(abx_map)
+        matrix = df.copy(deep=True)
+        matrix = df.reset_index()
 
         # Pivot table
-        matrix = pd.pivot_table(matrix, values='sari',
-            index=['SPECIE', 'microorganism_genus'],
-            columns=['ANTIBIOTIC', 'antimicrobial_class'])
+        matrix = pd.pivot_table(matrix,
+             index=['microorganism_name', 'genus'],
+             columns=['antimicrobial_name', 'category'],
+             values='sari')
 
         # Convert to percent
         matrix = matrix * 100
@@ -360,9 +334,12 @@ SARI - Antibiogram (clustered)
         matrix = matrix.fillna(1e-10)
 
         # Show
-        print("\n\n\nData (%s)" % specimen_code)
+        print("\n\n\nData (%s)" % specimen)
         print(matrix.astype(int))
 
+        # -------------------------------
+        # Plot
+        # -------------------------------
         # Create colormap
         cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
@@ -378,24 +355,14 @@ SARI - Antibiogram (clustered)
         try:
             # Plot cluster map
             grid = sns.clustermap(data=matrix, vmin=0, vmax=100,
-                cmap=cmap, #method='centroid', metric='euclidean',
+                method='centroid', metric='euclidean', cmap=cmap,
                 linewidth=0.05, mask=mask, square=True,
-                row_colors=row_colors, col_colors=col_colors,
-                yticklabels=1, xticklabels=1)
-
-            # Set size
-            #grid.fig.set_size_inches(20, 40)
-            #grid.fig.subplots_adjust(right=0.5)
-
-            # Set square heatmap.
-            #grid.ax_heatmap.set(aspect="equal")
-
+                row_colors=row_colors, col_colors=col_colors)
         except Exception as e:
             print("Exception: %s" % e)
 
         # Configuration
-        plt.suptitle('Antibiogram (clustered) - %s' % specimen_code,
-            fontsize=12)
+        plt.suptitle('Antibiogram (clustered) - %s' % specimen, fontsize=12)
         plt.tight_layout()
 
     # Show
@@ -403,7 +370,7 @@ SARI - Antibiogram (clustered)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.687 seconds)
+   **Total running time of the script:** ( 0 minutes  7.417 seconds)
 
 
 .. _sphx_glr_download__examples_reports_mimic_plot_antibiogram_clustermap.py:

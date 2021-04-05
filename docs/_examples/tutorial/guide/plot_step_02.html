@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Step 02 - Time Series Analysis &mdash; pyamr 0.0.1 documentation</title>
+  <title>Step 02 - Temporal evolution &mdash; pyamr 0.0.1 documentation</title>
   
 
   
@@ -42,7 +42,7 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Step 03 - TSA for trends" href="plot_step_03.html" />
+    <link rel="next" title="Step 02 - Time Series Analysis" href="plot_step_03.html" />
     <link rel="prev" title="Step 01 - Introduction" href="plot_step_01.html" /> 
 </head>
 
@@ -102,15 +102,15 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#guide">Guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="plot_step_00.html">Step 00 - Registries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_step_01.html">Step 01 - Introduction</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Step 02 - Time Series Analysis</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#create-time-series-ts">Create time series (TS)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pearson-correlation-coefficient">Pearson correlation coefficient</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#augmented-dickey-fuller-test">Augmented Dickey-Fuller test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#kwiatkowski-phillips-schmidt-shin-test">Kwiatkowski-Phillips-Schmidt-Shin test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#trend-and-stationarity-in-ts">Trend and stationarity in TS</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Step 02 - Temporal evolution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-data">Loading data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computing-sari-timeseries">Computing SARI timeseries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computing-asai-timeseries">Computing ASAI timeseries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#considerations">Considerations</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 03 - TSA for trends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 02 - Time Series Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_04.html">Step 03 - TSA for trends</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#indexes">Indexes</a></li>
@@ -119,7 +119,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
@@ -177,7 +177,7 @@
         
           <li><a href="../index.html">Tutorial</a> &raquo;</li>
         
-      <li>Step 02 - Time Series Analysis</li>
+      <li>Step 02 - Temporal evolution</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -201,25 +201,19 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-guide-plot-step-02-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="step-02-time-series-analysis">
-<span id="sphx-glr-examples-tutorial-guide-plot-step-02-py"></span><h1>Step 02 - Time Series Analysis<a class="headerlink" href="#step-02-time-series-analysis" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Verify tests with conditions from stattools.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Useful references:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/">https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/</a></p></li>
-<li><p><a class="reference external" href="https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html">https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html</a></p></li>
-</ul>
-</div>
-<div class="section" id="create-time-series-ts">
-<h2>Create time series (TS)<a class="headerlink" href="#create-time-series-ts" title="Permalink to this headline">¶</a></h2>
-<p>First lets create an artificial series. The series has been plotted
-ad the end of the tutorial.</p>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">22</span>
+<div class="sphx-glr-example-title section" id="step-02-temporal-evolution">
+<span id="sphx-glr-examples-tutorial-guide-plot-step-02-py"></span><h1>Step 02 - Temporal evolution<a class="headerlink" href="#step-02-temporal-evolution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="loading-data">
+<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
+<p>A small dataset will be used for this example.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
@@ -229,219 +223,297 @@ ad the end of the tutorial.</p>
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># ----------------------------</span>
- <span class="c1"># create data</span>
- <span class="c1"># ----------------------------</span>
- <span class="c1"># Import</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+ <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+ <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
- <span class="c1"># Import specific</span>
- <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_timeseries</span>
+ <span class="c1"># Import from pyAMR</span>
+ <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_susceptibility</span>
 
- <span class="c1"># Create timeseries data</span>
- <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">()</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-<div class="section" id="pearson-correlation-coefficient">
-<h2>Pearson correlation coefficient<a class="headerlink" href="#pearson-correlation-coefficient" title="Permalink to this headline">¶</a></h2>
-<p>It measures the linear correlation between two variables with a value within the range
-[-1,1]. Coefficient values of -1, 0 and 1 indicate total negative linear correlation, no
-linear correlation and total positive correlation respectively. In this study, the
-coefficient is used to assess whether or not there is a linear correlation between the
-number of observations (susceptibility test records) and the computed resistance index.</p>
-<p>See also <a class="reference internal" href="../statistics/plot_core_stats_correlation.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-correlation-py"><span class="std std-ref">Statistical test - Correlation</span></a></p>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -------------------------------</span>
- <span class="c1"># Pearson correlation coefficient</span>
- <span class="c1"># -------------------------------</span>
- <span class="c1"># Import pyAMR</span>
- <span class="kn">from</span> <span class="nn">pyamr.core.stats.correlation</span> <span class="kn">import</span> <span class="n">CorrelationWrapper</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Load data</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Load data</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">make_susceptibility</span><span class="p">()</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
 
- <span class="c1"># Create object</span>
- <span class="n">correlation</span> <span class="o">=</span> <span class="n">CorrelationWrapper</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x1</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+ <span class="c1"># Convert date to datetime</span>
+ <span class="n">data</span><span class="o">.</span><span class="n">date_received</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">date_received</span><span class="p">)</span>
 
- <span class="c1"># Print summary.</span>
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
- <span class="nb">print</span><span class="p">(</span><span class="n">correlation</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+ <span class="c1"># Filter (speeds up the execution)</span>
+ <span class="n">idxs_spec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;URICUL&#39;</span><span class="p">])</span>
+ <span class="n">idxs_abxs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">antimicrobial_name</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;augmentin&#39;</span><span class="p">])</span>
+
+ <span class="c1"># Filter</span>
+ <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idxs_spec</span> <span class="o">&amp;</span> <span class="n">idxs_abxs</span><span class="p">]</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>         Correlation
-==============================
-Pearson:                 0.761
-Spearman:                0.772
-Cross correlation: 5029316.389
-==============================
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+       date_received  date_outcome  patient_id laboratory_number  ... sensitivity_method  sensitivity mic reported
+113       2009-01-03           NaN       20099           X428892  ...                NaN    sensitive NaN      NaN
+119       2009-01-03           NaN       20100           X429141  ...                NaN    sensitive NaN      NaN
+164       2009-01-03           NaN       22571           X429323  ...                NaN    sensitive NaN      NaN
+268       2009-01-03           NaN       22576           X428467  ...                NaN    sensitive NaN      NaN
+293       2009-01-03           NaN       24017           X429325  ...                NaN    sensitive NaN      NaN
+...              ...           ...         ...               ...  ...                ...          ...  ..      ...
+318940    2009-12-31           NaN       20088          H2011867  ...                NaN    sensitive NaN      NaN
+318946    2009-12-31           NaN       20089          H2012653  ...                NaN    sensitive NaN      NaN
+318983    2009-12-31           NaN       22565          F1741389  ...                NaN    sensitive NaN      NaN
+319048    2009-12-31           NaN       24013          H2012150  ...                NaN    sensitive NaN      NaN
+319070    2009-12-31           NaN       24015          H2012340  ...                NaN    sensitive NaN      NaN
+
+[15269 rows x 15 columns]
+
+Columns:
+date_received           datetime64[ns]
+date_outcome                   float64
+patient_id                       int64
+laboratory_number               object
+specimen_code                   object
+specimen_name                  float64
+specimen_description            object
+microorganism_code              object
+microorganism_name              object
+antimicrobial_code              object
+antimicrobial_name              object
+sensitivity_method             float64
+sensitivity                     object
+mic                            float64
+reported                       float64
+dtype: object
 </pre></div>
 </div>
 </div>
-<div class="section" id="augmented-dickey-fuller-test">
-<h2>Augmented Dickey-Fuller test<a class="headerlink" href="#augmented-dickey-fuller-test" title="Permalink to this headline">¶</a></h2>
-<p>The Augmented Dickey-Fuller - <code class="docutils literal notranslate"><span class="pre">ADF</span></code> - test can be used to test for a unit root
-in a univariate process in the presence of serial correlation. The intuition behind
-a unit root test is that it determines how strongly a time series is defined by a trend.
-<code class="docutils literal notranslate"><span class="pre">ADF</span></code> tests the null hypothesis that a unit root is present in a time series sample.
-The alternative hypothesis is different depending on which version of the test is used,
-but is usually stationarity or trend-stationarity. The more negative the statistic, the
-stronger the rejection of the hypothesis that there is a unit root at some level
-of confidence.</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 39%" />
-<col style="width: 53%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>H</p></th>
-<th class="head"><p>Hypothesis</p></th>
-<th class="head"><p>Stationarity</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>H0</strong></p></td>
-<td><p>The series has a unit root</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Non-stationary</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>H1</strong></p></td>
-<td><p>The series has no unit root</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Stationary</span></code> / <code class="docutils literal notranslate"><span class="pre">Trend-Stationary</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="line-block">
-<div class="line">If p-value &gt; 0.05: Failed to reject H0.</div>
-<div class="line">If p-value &lt;= 0.05: Reject H0.</div>
-</div>
-<p>See also <a class="reference internal" href="../statistics/plot_core_stats_adfuller.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-adfuller-py"><span class="std std-ref">Statistical test - ADFuller</span></a></p>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span>
-<span class="normal">98</span>
-<span class="normal">99</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># ----------------------------</span>
- <span class="c1"># ADFuller</span>
- <span class="c1"># ----------------------------</span>
- <span class="c1"># Import statsmodels</span>
- <span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+<div class="section" id="computing-sari-timeseries">
+<h2>Computing SARI timeseries<a class="headerlink" href="#computing-sari-timeseries" title="Permalink to this headline">¶</a></h2>
+<p>In order to study the temporal evolution of AMR, it is necessary to generate
+a resistance time series from the susceptibility test data. This is often
+achieved by calculating the resistance index  (e.g. <code class="docutils literal notranslate"><span class="pre">SARI</span></code>) on consecutive
+partitions of the data. Note that each partition contains the susceptibility
+tests that will be used to compute the resistance index.</p>
+<p>The notation to define the time series generation methodology (SHIFT<sub>period</sub>). For instance,
+1M<sub>1</sub> defines a time series with monthly resistance indexes and 7D<sub>4</sub> defines a time series
+with weekly resistance indexes (7D) calculated using the microbiology records available for
+the previous four weeks (4x7D).</p>
+<p>For more information see <a class="reference internal" href="../../indexes/plot_sari_temporal.html#sphx-glr-examples-indexes-plot-sari-temporal-py"><span class="std std-ref">SARI - Timeseries</span></a>.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -----------------------------------------</span>
+ <span class="c1"># Compute  sari (temporal)</span>
+ <span class="c1"># -----------------------------------------</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
 
- <span class="c1"># Import pyAMR</span>
- <span class="kn">from</span> <span class="nn">pyamr.core.stats.adfuller</span> <span class="kn">import</span> <span class="n">ADFWrapper</span>
+ <span class="c1"># Create SARI instance</span>
+ <span class="n">sar</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
 
- <span class="c1"># Create wrapper</span>
- <span class="n">adf</span> <span class="o">=</span> <span class="n">ADFWrapper</span><span class="p">(</span><span class="n">adfuller</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">regression</span><span class="o">=</span><span class="s1">&#39;ct&#39;</span><span class="p">)</span>
+ <span class="c1"># Create constants</span>
+ <span class="n">shift</span><span class="p">,</span> <span class="n">period</span> <span class="o">=</span> <span class="s1">&#39;1M&#39;</span><span class="p">,</span> <span class="mi">1</span>
 
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
- <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+ <span class="c1"># Compute sari timeseries</span>
+ <span class="n">iti</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
+      <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Reset index</span>
+ <span class="n">iti</span> <span class="o">=</span> <span class="n">iti</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (temporal):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">iti</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>    adfuller test stationarity (ct)
-=======================================
-statistic:                       -1.876
-pvalue:                         0.66713
-nlags:                                1
-nobs:                                98
-stationarity (α=0.05):   non-stationary
-=======================================
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (temporal):
+sensitivity specimen_code                       microorganism_name antimicrobial_name  ... sensitive  freq  sari
+0                  URICUL                            acinetobacter          augmentin  ...       1.0   1.0   0.0
+1                  URICUL                            acinetobacter          augmentin  ...       1.0   1.0   0.0
+2                  URICUL                            acinetobacter          augmentin  ...       1.0   1.0   0.0
+3                  URICUL                  acinetobacter baumannii          augmentin  ...       0.0   1.0   1.0
+4                  URICUL                  acinetobacter baumannii          augmentin  ...       1.0   2.0   0.5
+..                    ...                                      ...                ...  ...       ...   ...   ...
+162                URICUL    streptococcus beta-haemolytic group b          augmentin  ...      48.0  48.0   0.0
+163                URICUL    streptococcus beta-haemolytic group b          augmentin  ...      53.0  53.0   0.0
+164                URICUL    streptococcus beta-haemolytic group b          augmentin  ...      36.0  36.0   0.0
+165                URICUL  streptococcus beta-haemolytic group c/g          augmentin  ...       2.0   2.0   0.0
+166                URICUL  streptococcus beta-haemolytic group c/g          augmentin  ...       1.0   1.0   0.0
+
+[167 rows x 8 columns]
 </pre></div>
 </div>
-</div>
-<div class="section" id="kwiatkowski-phillips-schmidt-shin-test">
-<h2>Kwiatkowski-Phillips-Schmidt-Shin test<a class="headerlink" href="#kwiatkowski-phillips-schmidt-shin-test" title="Permalink to this headline">¶</a></h2>
-<p>The Kwiatkowski–Phillips–Schmidt–Shin - <code class="docutils literal notranslate"><span class="pre">KPSS</span></code> - test is used to identify
-whether a time series is stationary around a deterministic trend (thus
-trend stationary) against the alternative of a unit root.</p>
-<p>In the KPSS test, the absence of a unit root is not a proof of stationarity
-but, by design, of trend stationarity. This is an important distinction since
-it is possible for a time series to be non-stationary, have no unit root yet
-be trend-stationary.</p>
-<p>In both, unit-root and trend-stationary processes, the mean can be increasing
-or decreasing over time; however, in the presence of a shock, trend-stationary
-processes revert to this mean tendency in the long run (deterministic trend)
-while unit-root processes have a permanent impact (stochastic trend).</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 39%" />
-<col style="width: 53%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>H</p></th>
-<th class="head"><p>Hypothesis</p></th>
-<th class="head"><p>Stationarity</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>H0</strong></p></td>
-<td><p>The series has no unit root</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Trend-stationary</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>H1</strong></p></td>
-<td><p>The series has a unit root</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Trend-Stationary</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="line-block">
-<div class="line">If p-value &gt; alpha: Failed to reject H0</div>
-<div class="line">If p-value &lt;= alpha: Reject H0</div>
-</div>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">133</span>
+<p>Let’s plot the evolution of a single combination …</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
 <span class="normal">134</span>
-<span class="normal">135</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># ----------------------------</span>
- <span class="c1"># Kpss</span>
- <span class="c1"># ----------------------------</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># --------------</span>
+ <span class="c1"># Filter</span>
+ <span class="c1"># --------------</span>
+ <span class="c1"># Filter</span>
+ <span class="n">idxs_spec</span> <span class="o">=</span> <span class="n">iti</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;URICUL&#39;</span><span class="p">])</span>
+ <span class="n">idxs_orgs</span> <span class="o">=</span> <span class="n">iti</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;escherichia coli&#39;</span><span class="p">])</span>
+ <span class="n">idxs_abxs</span> <span class="o">=</span> <span class="n">iti</span><span class="o">.</span><span class="n">antimicrobial_name</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;augmentin&#39;</span><span class="p">])</span>
+
+ <span class="c1"># Filter</span>
+ <span class="n">aux</span> <span class="o">=</span> <span class="n">iti</span><span class="p">[</span><span class="n">idxs_spec</span> <span class="o">&amp;</span> <span class="n">idxs_orgs</span> <span class="o">&amp;</span> <span class="n">idxs_abxs</span><span class="p">]</span>
+
+ <span class="c1"># --------------</span>
+ <span class="c1"># Plot</span>
+ <span class="c1"># --------------</span>
+ <span class="c1"># Create figure</span>
+ <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+      <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+ <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+ <span class="c1"># Plot line</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">date_received</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">sari</span><span class="p">,</span>
+     <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+     <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+     <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+ <span class="c1"># Compute widths</span>
+ <span class="n">widths</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">days</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">date_received</span><span class="o">.</span><span class="n">tolist</span><span class="p">())]</span>
+
+ <span class="c1"># Plot bars</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">date_received</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">freq</span><span class="p">,</span>
+     <span class="n">width</span><span class="o">=.</span><span class="mi">8</span><span class="o">*</span><span class="n">widths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+ <span class="c1"># Configure</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Time-series $</span><span class="si">%s</span><span class="s1">_{</span><span class="si">%s</span><span class="s1">}$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
+
+ <span class="c1"># Despine</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1"># Tight layout</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Temporal (ITI):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
+<img alt="Time-series $1M_{1}$" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_step_02_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (ITI):
+sensitivity specimen_code microorganism_name antimicrobial_name date_received  resistant  sensitive    freq      sari
+49                 URICUL   escherichia coli          augmentin    2009-01-31        5.0       32.0    37.0  0.135135
+50                 URICUL   escherichia coli          augmentin    2009-02-28        6.0       50.0    56.0  0.107143
+51                 URICUL   escherichia coli          augmentin    2009-03-31       27.0      909.0   936.0  0.028846
+52                 URICUL   escherichia coli          augmentin    2009-04-30       21.0      830.0   851.0  0.024677
+53                 URICUL   escherichia coli          augmentin    2009-05-31       49.0      834.0   883.0  0.055493
+54                 URICUL   escherichia coli          augmentin    2009-06-30       65.0      867.0   932.0  0.069742
+55                 URICUL   escherichia coli          augmentin    2009-07-31       55.0      848.0   903.0  0.060908
+56                 URICUL   escherichia coli          augmentin    2009-08-31       58.0      820.0   878.0  0.066059
+57                 URICUL   escherichia coli          augmentin    2009-09-30       62.0      951.0  1013.0  0.061204
+58                 URICUL   escherichia coli          augmentin    2009-10-31       56.0      948.0  1004.0  0.055777
+59                 URICUL   escherichia coli          augmentin    2009-11-30      103.0      775.0   878.0  0.117312
+60                 URICUL   escherichia coli          augmentin    2009-12-31       95.0      697.0   792.0  0.119949
+</pre></div>
 </div>
-<div class="section" id="trend-and-stationarity-in-ts">
-<h2>Trend and stationarity in TS<a class="headerlink" href="#trend-and-stationarity-in-ts" title="Permalink to this headline">¶</a></h2>
-<p>An analysis of stationarity around a trend was carried out to identify time series
-satisfying the assumptions posed by ARIMA. The augmented Dickey–Fuller test (ADF) was
-used to determine the presence of a unit root. When the other roots of the characteristic
-function lie inside the unit circle the first difference of the process is stationary. Due
-to this property, these are also called difference-stationary processes. Since the absence
-of unit root is not a proof of non-stationarity, the Kwiatkowski–Phillips–Schmidt–Shin
-(KPSS) test was used to identify the existence of an underlying trend which can also be
-removed to obtain a stationary process. These are called trend-stationary processes. In
-both, unit-root and trend-stationary processes, the mean can be increasing or decreasing
-over time; however, in the presence of a shock, trend-stationary processes revert to this
-mean tendency in the long run (deterministic trend) while unit-root processes have a
-permanent impact (stochastic trend). The significance level of the tests was set to 0.05.</p>
-<p>See also <a class="reference internal" href="../statistics/plot_core_stats_stationarity.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"><span class="std std-ref">Statistical test - Stationarity</span></a></p>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
+</div>
+<div class="section" id="computing-asai-timeseries">
+<h2>Computing ASAI timeseries<a class="headerlink" href="#computing-asai-timeseries" title="Permalink to this headline">¶</a></h2>
+<p>Once we have computed <code class="docutils literal notranslate"><span class="pre">SARI</span></code> on a temporal fashion, it is possible
+to input such DataFrame to compute <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> in a temporal fashion too.
+Let’s see how to do it with an example.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>Needs a lot of data!</p></li>
+<li><p>What if species do not appear on all periods?</p></li>
+</ul>
+</div>
+<p>Lets include all this information using the <code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry</span></code>.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">172</span>
 <span class="normal">173</span>
 <span class="normal">174</span>
 <span class="normal">175</span>
@@ -464,87 +536,285 @@ permanent impact (stochastic trend). The significance level of the tests was set
 <span class="normal">192</span>
 <span class="normal">193</span>
 <span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
-<span class="normal">200</span>
-<span class="normal">201</span>
-<span class="normal">202</span>
-<span class="normal">203</span>
-<span class="normal">204</span>
+<span class="normal">195</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># ------------------------------</span>
+ <span class="c1"># Include gram stain</span>
+ <span class="c1"># ------------------------------</span>
+ <span class="c1"># Libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">MicroorganismRegistry</span>
+
+ <span class="c1"># Load registry</span>
+ <span class="n">mreg</span> <span class="o">=</span> <span class="n">MicroorganismRegistry</span><span class="p">()</span>
+
+ <span class="c1"># Format sari dataframe</span>
+ <span class="n">dataframe</span> <span class="o">=</span> <span class="n">iti</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+ <span class="c1"># Create genus and species</span>
+ <span class="n">dataframe</span><span class="p">[[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]]</span> <span class="o">=</span> \
+     <span class="n">dataframe</span><span class="o">.</span><span class="n">microorganism_name</span> \
+         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> \
+         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+ <span class="c1"># Combine with registry information</span>
+ <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+
+ <span class="c1"># Fill missing gram stain</span>
+ <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Now that we have the <code class="docutils literal notranslate"><span class="pre">gram_stain</span></code> information, lets compute <code class="docutils literal notranslate"><span class="pre">ASAI</span></code>. It
+is important to highlight that now the date is also included in the
+groupby parameter when calling the compute method.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">204</span>
 <span class="normal">205</span>
 <span class="normal">206</span>
-<span class="normal">207</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># ----------------------------</span>
- <span class="c1"># Stationarity</span>
- <span class="c1"># ----------------------------</span>
- <span class="c1"># Import generic</span>
- <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Compute ASAI</span>
+ <span class="c1"># -------------------------------------------</span>
+ <span class="c1"># Import specific libraries</span>
+ <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">ASAI</span>
 
- <span class="c1"># Import pyAMR</span>
- <span class="kn">from</span> <span class="nn">pyamr.core.stats.stationarity</span> <span class="kn">import</span> <span class="n">StationarityWrapper</span>
+ <span class="c1"># Create asai instance</span>
+ <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span>
+             <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
+             <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+             <span class="n">column_frequency</span><span class="o">=</span><span class="s1">&#39;freq&#39;</span><span class="p">)</span>
 
- <span class="c1"># Define kwargs</span>
- <span class="n">adf_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
- <span class="n">kpss_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+ <span class="c1"># Compute</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
+     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;gram_stain&#39;</span><span class="p">],</span>
+     <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+     <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+     <span class="n">min_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
- <span class="c1"># Compute stationarity</span>
- <span class="n">stationarity</span> <span class="o">=</span> <span class="n">StationarityWrapper</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
-     <span class="n">adf_kwargs</span><span class="o">=</span><span class="n">adf_kwargs</span><span class="p">,</span> <span class="n">kpss_kwargs</span><span class="o">=</span><span class="n">kpss_kwargs</span><span class="p">)</span>
+ <span class="c1"># Stack</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span>
 
- <span class="c1"># Print summary.</span>
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
- <span class="nb">print</span><span class="p">(</span><span class="n">stationarity</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (overall):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+</pre></div>
+</td></tr></table></div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:468: UserWarning:
 
 
- <span class="c1"># ----------------</span>
- <span class="c1"># plot</span>
- <span class="c1"># ----------------</span>
- <span class="c1"># Font type.</span>
- <span class="n">font</span> <span class="o">=</span> <span class="p">{</span>
-     <span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;monospace&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;normal&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
- <span class="p">}</span>
+                 Extreme resistances were found in the DataFrame. These rows
+                 should be reviewed since these resistances might correspond
+                 to pairs with low number of records.
 
- <span class="c1"># Create figure</span>
- <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
- <span class="c1"># Plot truth values.</span>
- <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-          <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-          <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
-          <span class="n">label</span><span class="o">=</span><span class="n">stationarity</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:479: UserWarning:
 
- <span class="c1"># Format axes</span>
- <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
- <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">prop</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
- <span class="c1"># Addd title</span>
- <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Study of Stationarity&quot;</span><span class="p">)</span>
+                 There are NULL values in columns that are required. These
+                 rows will be ignored to safely compute ASAI. Please review
+                 the DataFrame and address this inconsistencies. See below
+                 for more information:
 
+                        date_received          0
+                        specimen_code          0
+                        antimicrobial_name     0
+                        gram_stain             0
+                        GENUS                  0
+                        SPECIE                85
+                        RESISTANCE             0
+
+
+
+ASAI (overall):
+                                               N_GENUS      N_SPECIE      ASAI_SCORE
+gram_stain                                           n    p        n    p          n     p
+date_received specimen_code antimicrobial_name
+2009-01-31    URICUL        augmentin              2.0  2.0      2.0  3.0   0.500000  1.00
+2009-02-28    URICUL        augmentin              2.0  2.0      2.0  2.0   0.500000  1.00
+2009-03-31    URICUL        augmentin              1.0  2.0      1.0  5.0   1.000000  1.00
+2009-04-30    URICUL        augmentin              3.0  2.0      3.0  6.0   0.666667  1.00
+2009-05-31    URICUL        augmentin              3.0  2.0      3.0  5.0   0.666667  1.00
+2009-06-30    URICUL        augmentin              3.0  2.0      3.0  4.0   0.333333  1.00
+2009-07-31    URICUL        augmentin              4.0  2.0      4.0  6.0   0.250000  1.00
+2009-08-31    URICUL        augmentin              1.0  2.0      1.0  5.0   1.000000  1.00
+2009-09-30    URICUL        augmentin              2.0  2.0      2.0  4.0   0.500000  1.00
+2009-10-31    URICUL        augmentin              1.0  2.0      1.0  6.0   1.000000  1.00
+2009-11-30    URICUL        augmentin              3.0  2.0      3.0  5.0   0.333333  0.75
+2009-12-31    URICUL        augmentin              2.0  2.0      2.0  4.0   0.500000  1.00
+</pre></div>
+</div>
+<p>Let’s plot the evolution of a single combination …</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Libraries</span>
+ <span class="kn">import</span> <span class="nn">calendar</span>
+
+ <span class="c1"># Month numbers to abbr</span>
+ <span class="k">def</span> <span class="nf">month_abbr</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+     <span class="k">return</span> <span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">month_abbr</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>
+
+ <span class="c1"># --------------</span>
+ <span class="c1"># Filter</span>
+ <span class="c1"># --------------</span>
+ <span class="c1"># Filter and drop index.</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;augmentin&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+ <span class="n">scores</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+ <span class="c1"># Show</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (overall):&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+
+ <span class="c1"># ----------</span>
+ <span class="c1"># Plot</span>
+ <span class="c1"># ----------</span>
+ <span class="c1"># Initialize the matplotlib figure</span>
+ <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+ <span class="c1"># Show</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">scores</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">,</span>
+              <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;gram_stain&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+              <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+              <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+              <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="c1">#, ax=axes[0])</span>
+
+ <span class="c1"># Create aux table for visualization</span>
+ <span class="n">aux</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[[</span><span class="s1">&#39;N_GENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;N_SPECIE&#39;</span><span class="p">]]</span> \
+      <span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> \
+      <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;nan&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">})</span>
+
+ <span class="c1"># Rename columns</span>
+ <span class="n">aux</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">month_abbr</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+ <span class="c1"># Draw table</span>
+ <span class="n">table</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">cellText</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+                   <span class="n">rowLabels</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                   <span class="n">colLabels</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+                   <span class="n">cellLoc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+ <span class="n">table</span><span class="o">.</span><span class="n">auto_set_font_size</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+ <span class="n">table</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="mf">7.5</span><span class="p">)</span>
+ <span class="n">table</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+
+ <span class="c1"># Sns config</span>
+ <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1"># Add a legend and informative axis label</span>
+ <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;ASAI&#39;</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ASAI evolution 2009&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Tight layout()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+ <span class="c1"># Show</span>
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<img alt="Study of Stationarity" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_step_02_001.png" />
+<img alt="ASAI evolution 2009" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_step_02_002.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\tsa\stattools.py:1875: FutureWarning:
-
-The behavior of using nlags=None will change in release 0.13.Currently nlags=None is the same as nlags=&quot;legacy&quot;, and so a sample-size lag length is used. After the next release, the default will change to be the same as nlags=&quot;auto&quot; which uses an automatic lag length selection method. To silence this warning, either use &quot;auto&quot; or &quot;legacy&quot;
-
-
-
-      stationarity (alpha=0.05)
-==================================
-          root           trend
-----------------------------------
-c   False (0.134)   False (0.012)
-ct  False (0.667)   False (0.015)
-==================================
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ASAI (overall):
+              N_GENUS      N_SPECIE      ASAI_SCORE
+gram_stain          n    p        n    p          n     p
+date_received
+2009-01-31        2.0  2.0      2.0  3.0   0.500000  1.00
+2009-02-28        2.0  2.0      2.0  2.0   0.500000  1.00
+2009-03-31        1.0  2.0      1.0  5.0   1.000000  1.00
+2009-04-30        3.0  2.0      3.0  6.0   0.666667  1.00
+2009-05-31        3.0  2.0      3.0  5.0   0.666667  1.00
+2009-06-30        3.0  2.0      3.0  4.0   0.333333  1.00
+2009-07-31        4.0  2.0      4.0  6.0   0.250000  1.00
+2009-08-31        1.0  2.0      1.0  5.0   1.000000  1.00
+2009-09-30        2.0  2.0      2.0  4.0   0.500000  1.00
+2009-10-31        1.0  2.0      1.0  6.0   1.000000  1.00
+2009-11-30        3.0  2.0      3.0  5.0   0.333333  0.75
+2009-12-31        2.0  2.0      2.0  4.0   0.500000  1.00
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.501 seconds)</p>
+</div>
+<div class="section" id="considerations">
+<h2>Considerations<a class="headerlink" href="#considerations" title="Permalink to this headline">¶</a></h2>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.487 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-02-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/73fa00a4db6c6fbe7243b2e40afb0f67/plot_step_02.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_02.py</span></code></a></p>
@@ -563,7 +833,7 @@ ct  False (0.667)   False (0.015)
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="plot_step_03.html" class="btn btn-neutral float-right" title="Step 03 - TSA for trends" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_step_03.html" class="btn btn-neutral float-right" title="Step 02 - Time Series Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="plot_step_01.html" class="btn btn-neutral float-left" title="Step 01 - Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

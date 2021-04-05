@@ -42,8 +42,8 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Index - Frequency" href="plot_core_frequency.html" />
-    <link rel="prev" title="Step 03 - TSA for trends" href="../guide/plot_step_03.html" /> 
+    <link rel="next" title="Index - SARI" href="plot_core_sari.html" />
+    <link rel="prev" title="Step 03 - TSA for trends" href="../guide/plot_step_04.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -102,7 +102,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#guide">Guide</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#indexes">Indexes</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Index - ASAI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_frequency.html">Index - Frequency</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_core_sari.html">Index - SARI</a></li>
 </ul>
 </li>
@@ -111,7 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
@@ -199,11 +198,18 @@ to download the full example code</p>
 <p class="admonition-title">Todo</p>
 <ul class="simple">
 <li><p>Create data as in the example shown in the figure.</p></li>
-<li><p>Improve visualization.</p></li>
+<li><p>Improve visualization method (generic).</p></li>
 <li><p>Create further examples with temporal visualization.</p></li>
 <li><p>Create further examples with general heatmap.</p></li>
 <li><p>Create further examples with animation?</p></li>
 </ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The contribution (cont) value for Staphylococcus haemolyticus
+should be 0 instead of 1/10 because the sari index is higher
+than the threshold (32 &gt; 20) and therefore the antimicrobial
+is not considered effective.</p>
 </div>
 <p>The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
 these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
@@ -236,7 +242,7 @@ The following columns are missing: {&#39;RESISTANCE&#39;}
 The following columns are missing: {&#39;GENUS&#39;}
 The following columns are missing: {&#39;SPECIE&#39;}
 The following columns are missing: {&#39;W_GENUS&#39;}
-The following columns are missing: {&#39;RESISTANCE&#39;, &#39;SPECIE&#39;}
+The following columns are missing: {&#39;SPECIE&#39;, &#39;RESISTANCE&#39;}
 
             The weights imputed do not fulfill all the requirements. Please
             check the report below and correct the weights accordingly. Note
@@ -249,7 +255,7 @@ The following columns are missing: {&#39;RESISTANCE&#39;, &#39;SPECIE&#39;}
 
 
 Show warnings:
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:276: UserWarning:
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:294: UserWarning:
 
 
 
@@ -258,7 +264,7 @@ c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:276: Us
                   dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
                   of &#39;0.5&#39; will be used.
 
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:269: UserWarning:
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:287: UserWarning:
 
 
 
@@ -290,24 +296,17 @@ ANTIBIOTIC   GRAM
 ANTIBIOTIC_1 N         1.0       4.0      0.5000
              P         2.0       8.0      0.6154
 
-ASAI:
+ASAI (instance):
              N_GENUS      N_SPECIE      ASAI_SCORE
-GRAM               N    P        N    P          N       P
+GRAM               N    P        N    P          N    P
 ANTIBIOTIC
-ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
-
-&lt;matplotlib.legend.Legend object at 0x000002970E600130&gt;
+ANTIBIOTIC_1     1.0  2.0      4.0  8.0        0.5  0.5
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 26</span>
-<span class="normal"> 27</span>
-<span class="normal"> 28</span>
-<span class="normal"> 29</span>
-<span class="normal"> 30</span>
-<span class="normal"> 31</span>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 31</span>
 <span class="normal"> 32</span>
 <span class="normal"> 33</span>
 <span class="normal"> 34</span>
@@ -549,7 +548,25 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
 <span class="normal">270</span>
 <span class="normal">271</span>
 <span class="normal">272</span>
-<span class="normal">273</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
  <span class="kn">import</span> <span class="nn">sys</span>
  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -644,9 +661,13 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
  <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
 
- <span class="c1"># ----------------------------------------------------</span>
- <span class="c1"># ASAI (must raise error)</span>
- <span class="c1"># ----------------------------------------------------</span>
+ <span class="c1"># ---------------------------------------------------------------------</span>
+ <span class="c1"># ASAI - Errors</span>
+ <span class="c1"># ---------------------------------------------------------------------</span>
+ <span class="c1"># .. note: In the examples below, the method asai is meant to raise</span>
+ <span class="c1">#          an error either because any of the required missing columns</span>
+ <span class="c1">#          is missing or because the weight configuration is not</span>
+ <span class="c1">#          correct.</span>
  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Handling errors:&quot;</span><span class="p">)</span>
 
  <span class="k">try</span><span class="p">:</span>
@@ -684,7 +705,6 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
  <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
      <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
-
  <span class="k">try</span><span class="p">:</span>
      <span class="n">asai</span> <span class="o">=</span> <span class="n">dataframe</span> \
          <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="s1">&#39;GRAM&#39;</span><span class="p">])</span> \
@@ -692,9 +712,13 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
  <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
      <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
- <span class="c1"># ----------------------------------------------------</span>
- <span class="c1"># ASAI (must show warning)</span>
- <span class="c1"># ----------------------------------------------------</span>
+
+ <span class="c1"># ---------------------------------------------------------------------</span>
+ <span class="c1"># ASAI - Warnings</span>
+ <span class="c1"># ---------------------------------------------------------------------</span>
+ <span class="c1"># .. note: In the examples below, the method asai is meant to show a</span>
+ <span class="c1">#          warning message either no threshold has been specified or</span>
+ <span class="c1">#          because thresholds have been specified twice.</span>
  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Show warnings:&quot;</span><span class="p">)</span>
 
  <span class="n">asai_5</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">])</span> \
@@ -706,9 +730,11 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
      <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
 
- <span class="c1"># ----------------------------------------------------</span>
+ <span class="c1"># ---------------------------------------------------------------------</span>
  <span class="c1"># ASAI</span>
- <span class="c1"># ----------------------------------------------------</span>
+ <span class="c1"># ---------------------------------------------------------------------</span>
+ <span class="c1"># .. note: In the examples below, the method asai should be working</span>
+ <span class="c1">#          properly and return the expected results.</span>
  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">No errors or warnings:&quot;</span><span class="p">)</span>
 
  <span class="c1"># -------</span>
@@ -748,21 +774,25 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
  <span class="c1"># Create antimicrobial spectrum</span>
  <span class="c1"># -------------------------------</span>
  <span class="c1"># Create antimicrobial spectrum of activity instance</span>
- <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.21</span><span class="p">,</span>
-             <span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span>
+ <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span>
              <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span>
-             <span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span>
              <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span>
              <span class="n">column_frequency</span><span class="o">=</span><span class="s1">&#39;FREQUENCY&#39;</span><span class="p">,</span>
              <span class="n">column_threshold</span><span class="o">=</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">,</span>
              <span class="n">column_wgenus</span><span class="o">=</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">,</span>
              <span class="n">column_wspecie</span><span class="o">=</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">)</span>
-
  <span class="c1"># Compute</span>
- <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;GRAM&#39;</span><span class="p">)</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
+     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="s1">&#39;GRAM&#39;</span><span class="p">],</span>
+     <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+     <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+     <span class="n">min_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+ <span class="c1"># Unstack</span>
+ <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 
  <span class="c1"># Show</span>
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (instance):&quot;</span><span class="p">)</span>
  <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 
  <span class="c1"># -----------------------------</span>
@@ -796,10 +826,10 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
  <span class="c1"># Display</span>
- <span class="c1">#plt.show()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.187 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.656 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-asai-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/23f4fe24d7ffcce6b9458be0b5d46f7c/plot_core_asai.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_asai.py</span></code></a></p>
@@ -817,8 +847,8 @@ ANTIBIOTIC_1     1.0  2.0      4.0  8.0     0.1667  0.3444
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="plot_core_frequency.html" class="btn btn-neutral float-right" title="Index - Frequency" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../guide/plot_step_03.html" class="btn btn-neutral float-left" title="Step 03 - TSA for trends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_sari.html" class="btn btn-neutral float-right" title="Index - SARI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../guide/plot_step_04.html" class="btn btn-neutral float-left" title="Step 03 - TSA for trends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

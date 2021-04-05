@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>SART - through WLS &mdash; pyamr 0.0.1 documentation</title>
+  <title>SART - Slope of WLS &mdash; pyamr 0.0.1 documentation</title>
   
 
   
@@ -43,7 +43,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Examples with TSA" href="../forecasting/index.html" />
-    <link rel="prev" title="ASAI - Multiple" href="plot_spectrum_multiple.html" /> 
+    <link rel="prev" title="ASAI - Timeseries" href="plot_spectrum_temporal.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,16 +99,15 @@
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with AMR indexes</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="plot_antibiogram_01.html">SARI - Antibiogram (overall)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_antibiogram_02.html">SARI - Antibiogram (by culture)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_clustermap_01.html">SARI - Clustermap (overall)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_clustermap_02.html">SARI - Clustermap (by culture)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_relmap_01.html">SARI - Relplot (overall)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_relmap_02.html">SARI - Relplot (by culture)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_gramtype.html">ASAI - gram type</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_multiple.html">ASAI - Multiple</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">SART - through WLS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with indexes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_antibiogram.html">SARI - Antibiogram (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_clustermap.html">SARI - Clustermap (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_relmap.html">SARI - Relplot (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_temporal.html">SARI - Timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_gramtype.html">ASAI - Gram stain (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_multiple.html">ASAI - Multiple (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_temporal.html">ASAI - Timeseries</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SART - Slope of WLS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
@@ -166,9 +165,9 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="index.html">Examples with AMR indexes</a> &raquo;</li>
+          <li><a href="index.html">Examples with indexes</a> &raquo;</li>
         
-      <li>SART - through WLS</li>
+      <li>SART - Slope of WLS</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -192,8 +191,8 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-wls-basic-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="sart-through-wls">
-<span id="sphx-glr-examples-indexes-plot-wls-basic-py"></span><h1>SART - through WLS<a class="headerlink" href="#sart-through-wls" title="Permalink to this headline">¶</a></h1>
+<div class="sphx-glr-example-title section" id="sart-slope-of-wls">
+<span id="sphx-glr-examples-indexes-plot-wls-basic-py"></span><h1>SART - Slope of WLS<a class="headerlink" href="#sart-slope-of-wls" title="Permalink to this headline">¶</a></h1>
 <img alt="plot wls basic" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_wls_basic_0011.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\regression\linear_model.py:764: RuntimeWarning:
@@ -202,28 +201,28 @@ divide by zero encountered in log
 
 
 Series:
-wls-rsquared                  0.4655
-wls-rsquared_adj              0.4601
-wls-fvalue                   85.3512
+wls-rsquared                   0.504
+wls-rsquared_adj               0.499
+wls-fvalue                   99.5996
 wls-fprob                        0.0
 wls-aic                          inf
 wls-bic                          inf
 wls-llf                         -inf
-wls-mse_model            130796.3314
-wls-mse_resid              1532.4494
-wls-mse_total              2838.1452
-wls-const_coef              290.3534
-wls-const_std                17.5158
-wls-const_tvalue             16.5767
+wls-mse_model            170035.9274
+wls-mse_resid              1707.1957
+wls-mse_total              3407.4859
+wls-const_coef              265.0397
+wls-const_std                 17.811
+wls-const_tvalue             14.8806
 wls-const_tprob                  0.0
-wls-const_cil               255.5939
-wls-const_ciu               325.1129
-wls-x1_coef                   2.2901
-wls-x1_std                    0.2479
-wls-x1_tvalue                 9.2386
+wls-const_cil               229.6943
+wls-const_ciu               300.3851
+wls-x1_coef                   2.5057
+wls-x1_std                    0.2511
+wls-x1_tvalue                   9.98
 wls-x1_tprob                     0.0
-wls-x1_cil                    1.7982
-wls-x1_ciu                     2.782
+wls-x1_cil                    2.0075
+wls-x1_ciu                     3.004
 wls-s_dw               Jarque-Ber...
 wls-s_jb_value             Prob(JB):
 wls-s_jb_prob              Cond. No.
@@ -231,40 +230,40 @@ wls-s_skew                 Kurtosis:
 wls-s_kurtosis
 wls-s_omnibus_value    Prob(Omnib...
 wls-s_omnibus_prob             Skew:
-wls-m_dw                      0.1193
-wls-m_jb_value               10.8426
-wls-m_jb_prob                 0.0044
-wls-m_skew                    -0.774
-wls-m_kurtosis                3.4536
-wls-m_nm_value               10.6653
-wls-m_nm_prob                 0.0048
+wls-m_dw                      0.1154
+wls-m_jb_value                7.2054
+wls-m_jb_prob                 0.0273
+wls-m_skew                   -0.5665
+wls-m_kurtosis                3.6675
+wls-m_nm_value                7.6115
+wls-m_nm_prob                 0.0222
 wls-m_ks_value                   0.6
 wls-m_ks_prob                    0.0
-wls-m_shp_value               0.9217
+wls-m_shp_value               0.9258
 wls-m_shp_prob                   0.0
-wls-m_ad_value                3.5422
+wls-m_ad_value                 3.453
 wls-m_ad_nnorm                 False
 wls-missing                    raise
 wls-exog               [[1.0, 0.0...
-wls-endog              [23.242249...
+wls-endog              [22.260924...
 wls-trend                          c
-wls-weights            [0.1266362...
+wls-weights            [0.1020379...
 wls-W                  &lt;pyamr.met...
 wls-model              &lt;statsmode...
 wls-id                 WLS(c,Sig(...
 dtype: object
 
 Regression line:
-[290.35 292.64 294.93 297.22 299.51 301.8  304.09 306.38 308.67 310.96]
+[265.04 267.55 270.05 272.56 275.06 277.57 280.07 282.58 285.09 287.59]
 
 Summary:
                             WLS Regression Results
 ==============================================================================
-Dep. Variable:                      y   R-squared:                       0.466
-Model:                            WLS   Adj. R-squared:                  0.460
-Method:                 Least Squares   F-statistic:                     85.35
-Date:                Wed, 31 Mar 2021   Prob (F-statistic):           5.44e-15
-Time:                        22:53:54   Log-Likelihood:                   -inf
+Dep. Variable:                      y   R-squared:                       0.504
+Model:                            WLS   Adj. R-squared:                  0.499
+Method:                 Least Squares   F-statistic:                     99.60
+Date:                Mon, 05 Apr 2021   Prob (F-statistic):           1.34e-16
+Time:                        20:56:07   Log-Likelihood:                   -inf
 No. Observations:                 100   AIC:                               inf
 Df Residuals:                      98   BIC:                               inf
 Df Model:                           1
@@ -272,14 +271,14 @@ Covariance Type:            nonrobust
 ==============================================================================
                  coef    std err          t      P&gt;|t|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        290.3534     17.516     16.577      0.000     255.594     325.113
-x1             2.2901      0.248      9.239      0.000       1.798       2.782
+const        265.0397     17.811     14.881      0.000     229.694     300.385
+x1             2.5057      0.251      9.980      0.000       2.007       3.004
 ==============================================================================
-Omnibus:                        9.610   Durbin-Watson:                   0.469
-Prob(Omnibus):                  0.008   Jarque-Bera (JB):               11.059
-Skew:                           0.544   Prob(JB):                      0.00397
-Kurtosis:                       4.213   Cond. No.                         226.
-Normal (N):                    10.665   Prob(N):                         0.005
+Omnibus:                       12.889   Durbin-Watson:                   0.404
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               16.599
+Skew:                           0.655   Prob(JB):                     0.000249
+Kurtosis:                       4.506   Cond. No.                         217.
+Normal (N):                     7.612   Prob(N):                         0.022
 ==============================================================================
 </pre></div>
 </div>
@@ -511,7 +510,7 @@ Normal (N):                    10.665   Prob(N):                         0.005
  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.109 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.112 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-wls-basic-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/f8cbd91244230b676cf4fc5e517c8f63/plot_wls_basic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_wls_basic.py</span></code></a></p>
@@ -530,7 +529,7 @@ Normal (N):                    10.665   Prob(N):                         0.005
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="../forecasting/index.html" class="btn btn-neutral float-right" title="Examples with TSA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="plot_spectrum_multiple.html" class="btn btn-neutral float-left" title="ASAI - Multiple" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_spectrum_temporal.html" class="btn btn-neutral float-left" title="ASAI - Timeseries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

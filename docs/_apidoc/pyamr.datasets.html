@@ -238,17 +238,26 @@
 
 <dl class="py function">
 <dt id="pyamr.datasets.load.load_data_nhs">
-<code class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></code><code class="sig-name descname"><span class="pre">load_data_nhs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'susceptibility-v0.0.1'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.datasets.load.load_data_nhs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></code><code class="sig-name descname"><span class="pre">load_data_nhs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'susceptibility-v0.0.2'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.datasets.load.load_data_nhs" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method loads the susceptibility data.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="pyamr.datasets.load.load_microbiology_folder">
-<code class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></code><code class="sig-name descname"><span class="pre">load_microbiology_folder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.datasets.load.load_microbiology_folder" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></code><code class="sig-name descname"><span class="pre">load_microbiology_folder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glob_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'susceptibility-*.csv'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.datasets.load.load_microbiology_folder" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method loads the susceptibility data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It assumes all the susceptibility data is stored in csv
+files whose files name starts with ‘susceptibility’. In
+addition, it assumes that the additional iformation is
+is available in files named ‘antimicrobials.csv’ and
+‘microorganisms.csv’</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>string</em>) – The path where the folder is located.</p></li>
 <li><p><strong>folder</strong> (<em>string</em>) – Name of the folder with the data.</p></li>
 <li><p><strong>kwargs</strong> – Arguments to pass to pd.read_csv</p></li>
 </ul>

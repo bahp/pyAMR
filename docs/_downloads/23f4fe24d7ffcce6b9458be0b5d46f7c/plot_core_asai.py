@@ -4,10 +4,15 @@ Index - ASAI
 
 .. todo::
     - Create data as in the example shown in the figure.
-    - Improve visualization.
+    - Improve visualization method (generic).
     - Create further examples with temporal visualization.
     - Create further examples with general heatmap.
     - Create further examples with animation?
+
+.. warning:: The contribution (cont) value for Staphylococcus haemolyticus
+             should be 0 instead of 1/10 because the sari index is higher
+             than the threshold (32 > 20) and therefore the antimicrobial
+             is not considered effective.
 
 The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
 these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
@@ -118,9 +123,13 @@ dataframe = pd.DataFrame(data, columns=['GENUS',
 print("\nData:")
 print(dataframe)
 
-# ----------------------------------------------------
-# ASAI (must raise error)
-# ----------------------------------------------------
+# ---------------------------------------------------------------------
+# ASAI - Errors
+# ---------------------------------------------------------------------
+# .. note: In the examples below, the method asai is meant to raise
+#          an error either because any of the required missing columns
+#          is missing or because the weight configuration is not
+#          correct.
 print("\n\nHandling errors:")
 
 try:
@@ -158,7 +167,6 @@ try:
 except Exception as e:
     print(e)
 
-
 try:
     asai = dataframe \
         .groupby(['ANTIBIOTIC', 'GRAM']) \
@@ -166,9 +174,13 @@ try:
 except Exception as e:
     print(e)
 
-# ----------------------------------------------------
-# ASAI (must show warning)
-# ----------------------------------------------------
+
+# ---------------------------------------------------------------------
+# ASAI - Warnings
+# ---------------------------------------------------------------------
+# .. note: In the examples below, the method asai is meant to show a
+#          warning message either no threshold has been specified or
+#          because thresholds have been specified twice.
 print("\n\nShow warnings:")
 
 asai_5 = dataframe.drop(columns=['THRESHOLD']) \
@@ -180,9 +192,11 @@ asai_6 = dataframe \
     .apply(asai, threshold=0.5)
 
 
-# ----------------------------------------------------
+# ---------------------------------------------------------------------
 # ASAI
-# ----------------------------------------------------
+# ---------------------------------------------------------------------
+# .. note: In the examples below, the method asai should be working
+#          properly and return the expected results.
 print("\n\nNo errors or warnings:")
 
 # -------
@@ -222,21 +236,25 @@ print(asai_9)
 # Create antimicrobial spectrum
 # -------------------------------
 # Create antimicrobial spectrum of activity instance
-asai = ASAI(weights='uniform', threshold=0.21,
-            column_genus='GENUS',
+asai = ASAI(column_genus='GENUS',
             column_specie='SPECIE',
-            column_antibiotic='ANTIBIOTIC',
             column_resistance='RESISTANCE',
             column_frequency='FREQUENCY',
             column_threshold='THRESHOLD',
             column_wgenus='W_GENUS',
             column_wspecie='W_SPECIE')
-
 # Compute
-scores = asai.compute(dataframe, by_category='GRAM')
+scores = asai.compute(dataframe,
+    groupby=['ANTIBIOTIC', 'GRAM'],
+    weights='uniform',
+    threshold=None,
+    min_freq=0)
+
+# Unstack
+scores = scores.unstack()
 
 # Show
-print("\nASAI:")
+print("\nASAI (instance):")
 print(scores)
 
 # -----------------------------
@@ -270,4 +288,4 @@ ax.set_xlim([-1, 1])
 plt.legend()
 
 # Display
-#plt.show()
+plt.show()
