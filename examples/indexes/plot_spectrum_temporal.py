@@ -9,6 +9,7 @@ ASAI - Timeseries
 .. |1M12| replace:: 1M\ :sub:`12`
 .. |1M6| replace:: 1M\ :sub:`6`
 .. |1M3| replace:: 1M\ :sub:`3`
+.. |12M1| replace:: 12M\ :sub:`1`
 .. |SP| replace:: SHIFT\ :sub:`period`
 
 In order to study the temporal evolution of AMR, it is necessary to generate a resistance
@@ -249,6 +250,7 @@ sns.lineplot(data=scores, x='date_received', y='ASAI_SCORE',
 
 plt.show()
 
+"""
 # -------------------------
 # Compute ASAI
 # -------------------------
@@ -310,3 +312,4 @@ sns.lineplot(data=aux2.reset_index(),
              hue='gram',
              marker='o',
              ax=axes[1])
+"""

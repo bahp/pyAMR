@@ -2,7 +2,8 @@
 Metrics - weights
 =================
 
-Example using your package
+.. todo:: Needs better explanation of the sigmoid function and
+          the SgimoidA (approximation) class and how to use it.
 """
 # Libraries
 import numpy as np

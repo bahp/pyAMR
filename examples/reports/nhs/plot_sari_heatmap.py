@@ -19,7 +19,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 # Import own libraries
-from pyamr.core.freq import Frequency
 from pyamr.core.sari import SARI
 from pyamr.datasets.load import load_data_nhs
 
@@ -59,35 +58,46 @@ specimen_code_count = data \
 data = data[data.specimen_code.isin( \
     specimen_code_count.index.values[:5])]
 
-# Loop for each specimen
-for specimen_code, df in data.groupby(by='specimen_code'):
+# Create sari instance
+sari = SARI(groupby=['specimen_code',
+                     'microorganism_name',
+                     'antimicrobial_name',
+                     'sensitivity'])
 
-    # -------------------------------------------
-    # Compute Freq and SARI
-    # -------------------------------------------
-    # Create instance
-    freq = Frequency(column_antibiotic='antimicrobial_code',
-                     column_organism='microorganism_code',
-                     column_date='date_received',
-                     column_outcome='sensitivity')
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=True)
 
-    # Compute frequencies (overall)
-    freq_overall = freq.compute(df, by_category='pairs')
+# Show
+print("SARI (overall):")
+print(sari_overall)
 
+# -------------------------------------------
+# Plot
+# -------------------------------------------
+# Reset
+sari_overall = sari_overall.reset_index()
+
+# Loop
+for specimen, df in sari_overall.groupby(by='specimen_code'):
+
+    # -------------
+    # Create matrix
+    # -------------
     # Filter
-    freq_overall = freq_overall[freq_overall.sum(axis=1) > 100]
+    matrix = df.copy(deep=True)
+    matrix = df.reset_index()
+    #matrix = matrix[matrix.freq > 100]
 
-    # Compute SARI
-    sari_overall = SARI(strategy='hard').compute(freq_overall)
+    # Pivot table
+    matrix = pd.pivot_table(matrix,
+         index='microorganism_name',
+         columns='antimicrobial_name',
+         values='sari')
 
     # ------------
     # Plot Heatmap
     # ------------
-    # Create matrix
-    matrix = sari_overall[['sari']]
-    matrix = matrix.unstack() * 100
-    matrix.columns = matrix.columns.droplevel()
-
     # Create figure
     f, ax = plt.subplots(1, 1, figsize=(12, 12))
 
@@ -95,28 +105,26 @@ for specimen_code, df in data.groupby(by='specimen_code'):
     cmap = sns.color_palette("Reds", desat=0.5, n_colors=10)
 
     # Specify cbar axes
-    #cbar_ax = f.add_axes([.925, .3, .05, .3])
+    # cbar_ax = f.add_axes([.925, .3, .05, .3])
 
     # Plot
-    ax = sns.heatmap(data=matrix, annot=True, fmt=".0f",
+    ax = sns.heatmap(data=matrix*100, annot=True, fmt=".0f",
                      annot_kws={'fontsize': 7}, cmap=cmap,
                      linewidth=0.5, vmin=0, vmax=100, ax=ax,
+                     #cbar_ax=cbar_ax,
                      xticklabels=1, yticklabels=1)
-                     # cbar_ax=cbar_ax)
 
     # Configure axes
-    ax.set(aspect="equal")
+    #ax.set(aspect="equal")
 
     # Set rotation
     plt.yticks(rotation=0)
 
     # Add title
-    plt.suptitle("Antibiogram (%s)" % specimen_code,
-        fontsize=15)
+    plt.suptitle("Antibiogram (%s)" % specimen, fontsize=15)
 
     # Tight layout
     plt.tight_layout()
-    #plt.subplots_adjust(right=0.91)
 
 # Show
 plt.show()

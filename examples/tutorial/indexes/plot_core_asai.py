@@ -288,4 +288,4 @@ ax.set_xlim([-1, 1])
 plt.legend()
 
 # Display
-#plt.show()
+plt.show()

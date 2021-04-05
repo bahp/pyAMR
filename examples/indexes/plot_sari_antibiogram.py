@@ -127,6 +127,7 @@ for specimen, df in sari_overall.groupby(by='specimen_code'):
                      linewidth=0.5, vmin=0, vmax=100, ax=ax,
                      #cbar_ax=cbar_ax,
                      xticklabels=1, yticklabels=1)
+
     # Configure axes
     ax.set(aspect="equal")
 

@@ -136,3 +136,101 @@ print("\nSARI (iti):")
 print(sari_iti)
 print("\nSARI (oti):")
 print(sari_oti)
+
+
+
+
+
+
+
+
+
+
+"""
+
+Old code
+
+
+# -------------------------
+# Create frequency instance
+# -------------------------
+# Create instance
+freq = Frequency(column_antibiotic='antibioticCode',
+                 column_organism='organismCode',
+                 column_date='dateReceived',
+                 column_outcome='sensitivity')
+
+# Compute frequencies daily
+daily = freq.compute(data, strategy='ITI',
+                     by_category='pairs',
+                     fs='1D')
+
+# Compute frequencies monthly
+monthly = freq.compute(data, strategy='ITI',
+                       by_category='pairs',
+                       fs='1M')
+
+# Compute frequencies overlapping
+#oti_1 = freq.compute(data, strategy='OTI',
+#                     by_category='pairs',
+#                     wshift='1D',
+#                     wsize=90)
+
+# -------------------------
+# Create sari instance
+# -------------------------
+# Create instance
+sari_daily = SARI(strategy='hard').compute(daily)
+sari_monthly = SARI(strategy='hard').compute(monthly)
+#sari_oti_1 = SARI(strategy='hard').compute(oti_1)
+
+# -------
+# Plot
+# -------
+# Show comparison for each pair
+f, axes = plt.subplots(4, 1, figsize=(15, 8))
+
+# Flatten axes
+axes = axes.flatten()
+
+# Plot ITI (monthly)
+for i, (pair, group) in enumerate(sari_daily.groupby(level=[0, 1])):
+    group.index = group.index.droplevel([0, 1])
+    group['sari'].plot(marker='o', ms=3, label=pair,
+                       linewidth=0.5, markeredgecolor='k', markeredgewidth=0.3,
+                       ax=axes[0])
+
+# Plot ITI (monthly)
+for i, (pair, group) in enumerate(sari_monthly.groupby(level=[0, 1])):
+    group.index = group.index.droplevel([0, 1])
+    group['sari'].plot(marker='o', ms=3, label=pair,
+                       linewidth=0.5, markeredgecolor='k', markeredgewidth=0.3,
+                       ax=axes[1])
+
+# Plot OTI (daily with size 30)
+#for i, (pair, group) in enumerate(sari_oti_1.groupby(level=[0, 1])):
+#    group.index = group.index.droplevel([0, 1])
+#    group['sari'].plot(marker='o', ms=3, label=pair,
+#                       linewidth=0.5, markeredgecolor='k', markeredgewidth=0.3,
+#                       ax=axes[2])
+
+# Set legend
+for ax in axes:
+    ax.legend()
+    ax.set_xlabel('')
+    ax.grid(True)
+
+# Set titles
+axes[0].set_ylabel('Daily')
+axes[1].set_ylabel('Monthly')
+axes[2].set_ylabel('OTI(1D,90)')
+
+# Despine
+sns.despine(bottom=True, left=True)
+
+# Set title
+plt.suptitle("SARI (Single Antibiotic Resistance Index)")
+
+# Show
+plt.show()
+"""

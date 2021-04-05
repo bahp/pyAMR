@@ -1,6 +1,6 @@
 """
-SART - through WLS
-------------------
+SART - Slope of WLS
+-------------------
 
 .. todo: Explain
 

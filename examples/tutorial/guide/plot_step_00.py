@@ -12,5 +12,6 @@ Step 00 - Registries
 # Registries
 # ----------
 #
+# .. todo:: Brief introduction to the registries...
 
 
