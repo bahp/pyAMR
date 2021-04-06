@@ -98,7 +98,6 @@ Examples visualisations (to implement):
 
    - https://ig.ft.com/coronavirus-lockdowns/
 
-
 Indices and tables
 ==================
 

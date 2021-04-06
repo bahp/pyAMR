@@ -1,12 +1,24 @@
 """
-Index - SARI
+SARI - Index
 ============================
 
-.. warning::
-        - Improve visualization.
-        - Create further examples with temporal visualization.
-        - Create further examples with general heatmap.
-        - Create further examples with animation?
+The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
+of resistant isolates for a given set of susceptibility tests. It provides a
+value within the range [0, 1] where values close to one indicate high resistance.
+It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` and
+``S`` represent the number of susceptibility tests with Resistant, Intermediate and
+Susceptible outcomes respectively. The definition might vary slightly since the
+intermediate category is not always considered.
+
+The parameter strategy accepts three different options:
+
+    (i) ``soft``   as R / R+I+S
+   (ii) ``medium`` as R / R+S
+   (iii) ``hard``  as R+I / R+I+S
+   (iv) ``other``  as R+0.5I / R+0.5I+S
+
+For more information see: :py:mod:`pyamr.core.asai.SARI`
+
 """
 
 

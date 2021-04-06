@@ -40,54 +40,6 @@ def _check_dataframe(dataframe):
   # return
   return aux
 
-def sari_soft(dataframe):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return r / (r+i+s)
-
-def sari_medium(dataframe):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  s = dataframe['sensitive']
-  # Compute
-  return r / (r+s)
-
-def sari_hard(dataframe):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return (r+i) / (r+i+s)
-
-def sari_whard(dataframe, w=0.5):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return (r+w*i) / (r+w*i+s)  
-
-
 
 def sari(dataframe, strategy='hard', **kwargs):
     """Computes the sari index.
@@ -96,20 +48,27 @@ def sari(dataframe, strategy='hard', **kwargs):
     ----------
     dataframe: pd.DataFrame
         A dataframe with the susceptibility test interpretations
-        as columns. The default strategies expect the following
-        columns: 'sensitive', 'intermediate', 'resistant'.
+        as columns. The default strategies used (see below) expect
+        the following columns ['sensitive', 'intermediate', 'resistant']
+        and if they do not appear they weill be set to zeros.
 
-    strategy: string or func (default hard)
+    strategy: string or func, default='hard'
         The method used to compute sari. The possible options
         are 'soft', 'medium' and 'hard'. In addition, a function
-        with the following signature can be passed:
-           dataframe
-           arguments
+        with the following signature func(dataframe, **kwargs)
+        can be passed.
+
+            (i) ``soft``   as R / R+I+S
+            (ii) ``medium`` as R / R+S
+            (iii) ``hard``  as R+I / R+I+S
+            (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]
 
     **kwargs: arguments to pass the strategy function.
 
     Returns
-    --------
+    -------
+    pd.Series
+        The resistance index
     """
     # Ensure that exists
     aux = _check_dataframe(dataframe)
@@ -139,14 +98,12 @@ def sari(dataframe, strategy='hard', **kwargs):
         return r / (r + i + s)
 
 
-
-
 class SARI:
 
     # Attributes
     c_spe = 'SPECIMEN'
-    c_org = 'SPECIE'
-    c_abx = 'ANTIBIOTIC'
+    c_org = 'MICROORGANISM'
+    c_abx = 'ANTIMICROBIAL'
     c_dat = 'DATE'
     c_out = 'SENSITIVITY'
 
@@ -154,13 +111,16 @@ class SARI:
                                 c_org,
                                 c_abx,
                                 c_out]):
-        """Constructor
+        """Constructor.
 
         Parameters
         ----------
+        groupby: list
+            The labels of the columns to groupby.
 
         Returns
         --------
+        SARI instance
         """
         self.groupby = groupby
 
@@ -175,10 +135,42 @@ class SARI:
 
         Parameters
         ----------
+        dataframe: pd.DataFrame
+            A dataframe with the susceptibility test interpretations
+            as columns. The default strategies used (see below) expect
+            the following columns ['sensitive', 'intermediate', 'resistant']
+            and if they do not appear they weill be set to zeros.
+
+        shift: str
+            Frequency value to pass to pd.Grouper.
+
+        period: str, int
+            Window value to pass to pd.rolling.
+
+        cdate: string, default=None
+            The column that will be used as date.
+
+        return_frequencies: boolean, default=True
+            Whether to return the frequencies or just the resistance index.
+
+        strategy: string or func, default='hard'
+            The method used to compute sari. The possible options
+            are 'soft', 'medium' and 'hard'. In addition, a function
+            with the following signature func(dataframe, **kwargs)
+            can be passed.
+
+                (i) ``soft``   as R / R+I+S
+                (ii) ``medium`` as R / R+S
+                (iii) ``hard``  as R+I / R+I+S
+                (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]
+
+        **kwargs: arguments to pass the strategy function.
 
         Returns
         -------
-
+        pd.Series or pd.DataFrame
+            The resistance index (pd.Series) or a pd.Dataframe with the
+            resistance index (sari) and the frequencies.
         """
 
         # Copy DataFrame
@@ -216,16 +208,70 @@ class SARI:
         # Sari
         # -------------------
         # Compute sari
-        s = sari(freqs, **kwargs)
+        s = sari(freqs, **kwargs).rename('sari')
 
         # Return
         if return_frequencies:
             freqs['freq'] = freqs.sum(axis=1)
             freqs['sari'] = sari(freqs, **kwargs)
             return freqs
-        return s.rename('sari')
+        return s
 
 
+
+
+
+
+def sari_soft(dataframe):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  i = dataframe['intermediate']
+  s = dataframe['sensitive']
+  # Compute
+  return r / (r+i+s)
+
+def sari_medium(dataframe):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  s = dataframe['sensitive']
+  # Compute
+  return r / (r+s)
+
+def sari_hard(dataframe):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  i = dataframe['intermediate']
+  s = dataframe['sensitive']
+  # Compute
+  return (r+i) / (r+i+s)
+
+def sari_whard(dataframe, w=0.5):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  i = dataframe['intermediate']
+  s = dataframe['sensitive']
+  # Compute
+  return (r+w*i) / (r+w*i+s)
 
 
 # Default methods
@@ -236,8 +282,11 @@ _DEFAULT_STRATEGIES = {
 }
 
 
-
 class SARI_old():
+
+  """
+  .. deprecated:: 0.0.1
+  """
 
   # Attributes
   c_abx = 'ANTIBIOTIC'

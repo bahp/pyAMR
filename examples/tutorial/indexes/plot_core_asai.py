@@ -1,5 +1,5 @@
 """
-Index - ASAI
+ASAI - Index
 ============================
 
 .. todo::
@@ -25,6 +25,10 @@ and even contradictory purposes.
 .. image:: ../../_static/imgs/index-asai.png
    :align: right
    :alt: ASAI
+
+
+For more information see: :py:mod:`pyamr.core.asai.ASAI`
+
 """
 
 
