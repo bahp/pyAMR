@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core.stats.kendall &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyamr.core.stats.kendall</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyamr.core.stats.kendall</h1><div class="highlight"><pre>
+<span></span><span class="c1">##############################################################################</span>
+<span class="c1"># Author: Bernard Hernandez</span>
+<span class="c1"># Filename: 03-main-create-sari-idxs.py</span>
+<span class="c1"># Description : This file contains differnent statistics used in time-series.</span>
+<span class="c1">#               What it mainly does is to format the output of tests provided</span>
+<span class="c1">#               by external libraries and return them in a dataframe.</span>
+<span class="c1">#</span>
+<span class="c1"># TODO: Move it to a module.</span>
+<span class="c1">#</span>
+<span class="c1">###############################################################################</span>
+<span class="c1"># Forces decimals on divisions.</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span> 
+
+<span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Import base wrapper</span>
+<span class="kn">from</span> <span class="nn">pyamr.core.stats.wbase</span> <span class="kn">import</span> <span class="n">BaseWrapper</span>
+
+
+<span class="c1"># ----------------------------------------------------------------------------</span>
+<span class="c1">#</span>
+<span class="c1"># ----------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="kendall"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.kendall">[docs]</a><span class="k">def</span> <span class="nf">kendall</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  
+  <span class="sd">&quot;&quot;&quot;   </span>
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  x     : a vector of data</span>
+<span class="sd">  alpha : significance level (0.05 default)</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  trend : tells the trend (increasing, decreasing or no trend)</span>
+<span class="sd">  h     : True (if trend is present) or False (if trend is absence)</span>
+<span class="sd">  p     : p value of the significance test</span>
+<span class="sd">  z     : normalized test statistics </span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Libraries.</span>
+  <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+
+  <span class="c1"># Compute n.</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+  <span class="c1"># calculate S </span>
+  <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+          <span class="n">s</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+  <span class="c1"># calculate the unique data</span>
+  <span class="n">unique_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">g</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_x</span><span class="p">)</span>
+
+  <span class="c1"># calculate the var(s)</span>
+  <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">g</span><span class="p">:</span> <span class="c1"># there is no tie</span>
+      <span class="n">var_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">))</span><span class="o">/</span><span class="mi">18</span>
+  <span class="k">else</span><span class="p">:</span> <span class="c1"># there are some ties in data</span>
+      <span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">unique_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_x</span><span class="p">)):</span>
+          <span class="n">tp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">unique_x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span>
+      <span class="n">var_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">tp</span><span class="o">*</span><span class="p">(</span><span class="n">tp</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tp</span><span class="o">+</span><span class="mi">5</span><span class="p">)))</span><span class="o">/</span><span class="mi">18</span>
+
+  <span class="c1"># calculate z</span>
+  <span class="k">if</span> <span class="n">s</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>      <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_s</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">elif</span> <span class="n">s</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_s</span><span class="p">)</span>
+
+  <span class="c1"># Check</span>
+  <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">):</span> <span class="k">return</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+
+  <span class="c1"># calculate the p_value</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)))</span> <span class="c1"># two tail test</span>
+
+  <span class="c1"># Return</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="KendallWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper">[docs]</a><span class="k">class</span> <span class="nc">KendallWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="c1"># --------------------------------------------------------------------------</span>
+  <span class="c1">#                             new methods</span>
+  <span class="c1"># --------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="KendallWrapper.trend_exists"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.trend_exists">[docs]</a>  <span class="k">def</span> <span class="nf">trend_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method returns a boolean with the stationarity outocme.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">      The significance level</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Libraries.</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+    <span class="c1"># Check.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># abs(z)</span></div>
+
+<div class="viewcode-block" id="KendallWrapper.trend_direction"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.trend_direction">[docs]</a>  <span class="k">def</span> <span class="nf">trend_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method returns the trend direction.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">      The significance level</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Libraries.</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+    <span class="c1"># Check</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="s2">&quot;failed&quot;</span>
+    <span class="c1"># Compute h</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> 
+    <span class="c1"># Trends</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">z</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">h</span><span class="p">:</span>   <span class="k">return</span> <span class="s1">&#39;decreasing&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">z</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">h</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;increasing&#39;</span>
+    <span class="k">else</span><span class="p">:</span>             <span class="k">return</span> <span class="s1">&#39;no trend&#39;</span></div>
+
+  <span class="c1"># --------------------------------------------------------------------------</span>
+  <span class="c1">#                           override methods</span>
+  <span class="c1"># --------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="KendallWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.evaluate">[docs]</a>  <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Evaluates the model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create series</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Add results</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_pvalue&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_trend_existence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trend_exists</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_trend_direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trend_direction</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">d</span></div>
+    
+<div class="viewcode-block" id="KendallWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.as_summary">[docs]</a>  <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method displays the summary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create summary base</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="s1">&#39;     kendall test (monotonic)  </span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;==================================</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;statistic (z):   </span><span class="si">%#17.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_z</span>
+    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;pvalue (manual): </span><span class="si">%#17.5f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_pvalue</span>
+    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;trend exists:    </span><span class="si">%17s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">trend_exists</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;trend direction: </span><span class="si">%17s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">trend_direction</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;==================================&quot;</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">summary</span></div></div>
+
+
+
+
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+ 
+ 
+  <span class="c1"># Libraries</span>
+  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+  <span class="c1"># ----------------------------</span>
+  <span class="c1"># set basic configuration</span>
+  <span class="c1"># ----------------------------</span>
+  <span class="c1"># Set pandas configuration.</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+  <span class="c1"># ----------------------------</span>
+  <span class="c1"># create data</span>
+  <span class="c1"># ----------------------------</span>
+  <span class="c1"># Constants</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
+  <span class="n">offset</span> <span class="o">=</span> <span class="mi">100</span>
+  <span class="n">slope</span> <span class="o">=</span> <span class="mi">10</span>
+
+  <span class="c1"># Create timeseries.</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">offset</span>
+
+  <span class="c1"># ---------------------</span>
+  <span class="c1"># Create kendall object</span>
+  <span class="c1"># ---------------------</span>
+  <span class="c1"># Create object</span>
+  <span class="n">kendall</span> <span class="o">=</span> <span class="n">KendallWrapper</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">kendall</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+  <span class="c1"># Print series.</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">kendall</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+
+  <span class="c1"># Print summary.</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">kendall</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+
+  <span class="c1"># Print identifier</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">kendall</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
+ 
+  <span class="c1"># -----------------</span>
+  <span class="c1"># Save and load</span>
+  <span class="c1"># -----------------</span>
+  <span class="c1"># File location</span>
+  <span class="c1">#fname = &#39;../examples/saved/kendall-sample.pickle&#39;</span>
+
+  <span class="c1"># Save</span>
+  <span class="c1">#kendall.save(fname=fname)</span>
+
+  <span class="c1"># Load</span>
+  <span class="c1">#kendall = KendallWrapper().load(fname=fname)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

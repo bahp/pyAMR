@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.graphics.antibiogram &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyamr.graphics.antibiogram</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyamr.graphics.antibiogram</h1><div class="highlight"><pre>
+<span></span><span class="c1">################################################################################</span>
+<span class="c1"># Author:</span>
+<span class="c1"># Date:</span>
+<span class="c1"># Description:</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright:</span>
+<span class="c1">#</span>
+<span class="c1"># </span>
+<span class="c1">################################################################################</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span> 
+
+<span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1">#                               helper methods</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">_get_category_colors</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;tab20b&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;This method creates the colors for the different elements in </span>
+<span class="sd">  categorical feature vector.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  values : array-like</span>
+<span class="sd">    The vector with the categorical values</span>
+
+<span class="sd">  cmap: string-like</span>
+<span class="sd">    The colormap to use</span>
+
+<span class="sd">  default: string-like</span>
+<span class="sd">    The color to be used for the first value. Note that this</span>
+<span class="sd">    value needs to appear first on the the sorted list, as such</span>
+<span class="sd">    it is recommended to set is as _default.</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Get unique elements</span>
+  <span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+  <span class="c1"># Sort unique values</span>
+  <span class="n">unique</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+  <span class="c1"># Create the palette (gray for _na)</span>
+  <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="n">default</span><span class="p">]</span> <span class="o">+</span> <span class="n">sns</span><span class="o">.</span><span class="n">husl_palette</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique</span><span class="p">),</span> <span class="n">s</span><span class="o">=.</span><span class="mi">45</span><span class="p">)</span>
+  <span class="c1"># Create mappers from category to color</span>
+  <span class="n">mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unique</span><span class="p">),</span> <span class="n">palette</span><span class="p">))</span>
+  <span class="c1"># Create list with colors for each category.</span>
+  <span class="n">colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">)</span>
+  <span class="c1"># Return</span>
+  <span class="k">return</span> <span class="n">colors</span>
+
+
+<span class="k">def</span> <span class="nf">_idxs</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">return</span> <span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_get_colors</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">palette</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;This method gets the colors for each index value.</span>
+
+<span class="sd">  # Get species</span>
+<span class="sd">  vals1, pal1, row_colors = _get_colors(dataframe.index, self.c_gen, &#39;nipy_spectral&#39;)</span>
+<span class="sd">  vals2, pal2, col_colors = _get_colors(dataframe.columns, self.c_cat, &#39;tab20b&#39;)</span>
+
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  index :</span>
+
+<span class="sd">  column :</span>
+
+<span class="sd">  palette:</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Get species</span>
+  <span class="n">species</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">column</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+  <span class="n">netwpal</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gray&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sns</span><span class="o">.</span><span class="n">husl_palette</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">species</span><span class="p">),</span> <span class="n">s</span><span class="o">=.</span><span class="mi">45</span><span class="p">)</span>
+  <span class="c1">#netwpal = [&#39;gray&#39;] + list(sns.color_palette(&#39;Set2&#39;, len(species)+1, .75))</span>
+  <span class="c1">#netwpal = [&#39;gray&#39;] + list(sns.color_palette(palette, len(species)+1, .45))</span>
+  <span class="n">netwmap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">species</span><span class="p">),</span> <span class="n">netwpal</span><span class="p">))</span>
+  <span class="c1"># Convert the palette to vectors that will be drawn on the side of the matrix</span>
+  <span class="n">networks</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+  <span class="n">network_colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">networks</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">netwmap</span><span class="p">)</span>
+  <span class="c1"># Return</span>
+  <span class="k">return</span> <span class="n">species</span><span class="p">,</span> <span class="n">netwpal</span><span class="p">,</span> <span class="n">network_colors</span>
+
+
+
+
+<div class="viewcode-block" id="Antibiogram"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.antibiogram.Antibiogram">[docs]</a><span class="k">class</span> <span class="nc">Antibiogram</span><span class="p">():</span>
+
+  <span class="c1"># Attributes</span>
+  <span class="n">c_cat</span> <span class="o">=</span> <span class="s1">&#39;CATEGORY&#39;</span>
+  <span class="n">c_abx</span> <span class="o">=</span> <span class="s1">&#39;ANTIBIOTIC&#39;</span>
+  <span class="n">c_org</span> <span class="o">=</span> <span class="s1">&#39;SPECIE&#39;</span>
+  <span class="n">c_gen</span> <span class="o">=</span> <span class="s1">&#39;GENUS&#39;</span>
+  <span class="n">c_idx</span> <span class="o">=</span> <span class="s1">&#39;SARI&#39;</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_organism</span><span class="o">=</span><span class="n">c_org</span><span class="p">,</span>
+                     <span class="n">column_antibiotic</span><span class="o">=</span><span class="n">c_abx</span><span class="p">,</span>
+                     <span class="n">column_genus</span><span class="o">=</span><span class="n">c_gen</span><span class="p">,</span>
+                     <span class="n">column_category</span><span class="o">=</span><span class="n">c_cat</span><span class="p">,</span>
+                     <span class="n">column_index</span><span class="o">=</span><span class="n">c_idx</span><span class="p">,</span>
+                     <span class="n">colormap_genus</span><span class="o">=</span><span class="s1">&#39;nipy_spectral&#39;</span><span class="p">,</span>
+                     <span class="n">colormap_category</span><span class="o">=</span><span class="s1">&#39;tab20b&#39;</span><span class="p">,</span>
+                     <span class="n">discard_intrinsic</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The constructor.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    column_organism: string-like</span>
+<span class="sd">      The column name with the the organism values</span>
+
+<span class="sd">    column_antibiotic: string-like</span>
+<span class="sd">      The column name with the the antibiotic values</span>
+
+<span class="sd">    column_genus: string-lik</span>
+<span class="sd">      The column name with the the organism genus values</span>
+
+<span class="sd">    columns_category: string-like</span>
+<span class="sd">      The column name with the the antibiotic category values</span>
+
+<span class="sd">    colormap_genus: string-like</span>
+<span class="sd">      The colormap to use to display the genus values</span>
+
+<span class="sd">    colormap_category: string-like</span>
+<span class="sd">      The colormap to use to display the category values</span>
+
+<span class="sd">    discard_intrinsic: string-like</span>
+<span class="sd">      Wether or not to remove the intrinsic resistance indexes. These are</span>
+<span class="sd">      defined as those indexes in which the microbiology was neven found</span>
+<span class="sd">      to be sensitivity and therefore has a resistance index of 1.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Set parameters</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">colormap_genus</span> <span class="o">=</span> <span class="n">colormap_genus</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">colormap_category</span> <span class="o">=</span> <span class="n">colormap_category</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">discard_intrinsic</span> <span class="o">=</span> <span class="n">discard_intrinsic</span>
+
+    <span class="c1"># Create dictionary to rename columns</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">column_antibiotic</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span>
+                           <span class="n">column_organism</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span>
+                           <span class="n">column_genus</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span>
+                           <span class="n">column_category</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_cat</span><span class="p">,</span>
+                           <span class="n">column_index</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_idx</span><span class="p">}</span>
+
+
+
+<div class="viewcode-block" id="Antibiogram.fit"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.antibiogram.Antibiogram.fit">[docs]</a>  <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method fits the antibiogram to the data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dataframe :</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Antibiogram instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check that it is a dataframe</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+      <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The instance passed as argument needs to be a pandas &quot;</span>
+                      <span class="s2">&quot;DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert &quot;</span>
+                      <span class="s2">&quot;the input accordingly.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+    <span class="c1"># Rename columns</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span> <span class="o">=</span> \
+      <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Fill missing categories (so they have same color)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;_na&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_cat</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;_na&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Keep only interesting rows</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+
+    <span class="c1"># Format dataframe</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">c_cat</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Create heatmap</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="o">.</span><span class="n">unstack</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span> 
+                                               <span class="bp">self</span><span class="o">.</span><span class="n">c_cat</span><span class="p">])</span>
+
+    <span class="c1"># Drop sari index</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
+
+    <span class="c1"># Discard intrinsic resistance</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">discard_intrinsic</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Antibiogram.plot"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.antibiogram.Antibiogram.plot">[docs]</a>  <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organisms</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">antibiotics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                 <span class="n">genera</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>    
+                                 <span class="n">categories</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                 <span class="n">method</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">,</span> 
+                                 <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span>
+                                 <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
+                                 <span class="n">vmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> 
+                                 <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                 <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> 
+                                 <span class="n">xticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">yticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function plots the antibiogram.</span>
+
+<span class="sd">    The arguments are those to be passed to the clustermap implementation </span>
+<span class="sd">    which is available on seaborn.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    method: string-like</span>
+
+<span class="sd">    metric: string-like</span>
+
+<span class="sd">    vmin, vmax: float-like, float-like</span>
+<span class="sd">      The min and maximum values within the matrix (or feasible range).</span>
+
+<span class="sd">    cmap: string-like</span>
+<span class="sd">      The colormap to be used to plot the resistance indexes.</span>
+
+<span class="sd">    figsize: tuple-like </span>
+<span class="sd">      The size of the figure</span>
+<span class="sd">      </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    an axis object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define colormap</span>
+    <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Copy dataframe</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Filter data</span>
+    <span class="k">if</span> <span class="n">organisms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">_idxs</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">organisms</span><span class="p">),</span> <span class="p">:]</span>
+    <span class="k">if</span> <span class="n">genera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">_idxs</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">genera</span><span class="p">),</span> <span class="p">:]</span>
+    <span class="k">if</span> <span class="n">antibiotics</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">_idxs</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">antibiotics</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">categories</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">_idxs</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">categories</span><span class="p">)]</span>
+
+    <span class="c1"># Create mask</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Fill nan with a very small value</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">1e-10</span><span class="p">)</span>
+
+    <span class="c1"># Get values for groups</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># Get colors</span>
+    <span class="n">row_colors</span> <span class="o">=</span> <span class="n">_get_category_colors</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">colormap_genus</span><span class="p">)</span>
+    <span class="n">col_colors</span> <span class="o">=</span> <span class="n">_get_category_colors</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">colormap_category</span><span class="p">)</span>
+
+    <span class="c1"># Create series with index (for clustermap)</span>
+    <span class="n">row_colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">row_colors</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">col_colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">col_colors</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># Plot clustermap</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+      <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> 
+      <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=.</span><span class="mi">75</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+      <span class="n">yticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">row_colors</span><span class="o">=</span><span class="n">row_colors</span><span class="p">,</span> <span class="n">col_colors</span><span class="o">=</span><span class="n">col_colors</span><span class="p">,</span>
+      <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Format labels names</span>
+    <span class="n">labelsx</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">) </span><span class="si">%5s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+                             <span class="n">e</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">()]</span>
+    <span class="n">labelsy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%-6s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                             <span class="n">e</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+                     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">()]</span>
+
+    <span class="c1"># Set labels names</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labelsx</span><span class="p">)</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">ax_heatmap</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">labelsy</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Format figure</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Antibiogram (</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span><span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+    <span class="c1"># Return </span>
+    <span class="k">return</span> <span class="n">grid</span></div></div>
+
+
+
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+  <span class="c1"># Configure seaborn style (context=talk)</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+
+  <span class="c1"># Set matplotlib</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+
+  <span class="c1"># Pandas configuration</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+  <span class="c1"># Numpy configuration</span>
+  <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="c1"># -------------------------------------------------------------------------</span>
+  <span class="c1">#                            helper methods</span>
+  <span class="c1"># -------------------------------------------------------------------------</span>
+
+
+  <span class="c1"># -------------------------------------------------------------------------</span>
+  <span class="c1">#                                main</span>
+  <span class="c1"># -------------------------------------------------------------------------</span>
+  <span class="c1"># Data path.</span>
+  <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../gallery/visualization/antibiogram/_data/antibiogram-sample.csv&#39;</span>
+
+  <span class="c1"># -------------------------------</span>
+  <span class="c1"># Load data</span>
+  <span class="c1"># -------------------------------</span>
+  <span class="c1"># Load</span>
+  <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+  <span class="c1"># -------------------------------</span>
+  <span class="c1"># Create object</span>
+  <span class="c1"># -------------------------------</span>
+  <span class="c1"># Antibiogram plotter</span>
+  <span class="n">antibiogram</span> <span class="o">=</span> <span class="n">Antibiogram</span><span class="p">(</span><span class="n">column_organism</span><span class="o">=</span><span class="s1">&#39;organismCode&#39;</span><span class="p">,</span>
+                            <span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
+                            <span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;specieName&#39;</span><span class="p">,</span>
+                            <span class="n">column_category</span><span class="o">=</span><span class="s1">&#39;antibioticClass&#39;</span><span class="p">,</span>
+                            <span class="n">column_index</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">)</span>
+
+  <span class="c1"># Fit antibiogram</span>
+  <span class="n">antibiogram</span> <span class="o">=</span> <span class="n">antibiogram</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+
+  <span class="c1"># ---------</span>
+  <span class="c1"># Example 1</span>
+  <span class="c1"># ----------</span>
+  <span class="n">antibiogram</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">organisms</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">])</span>
+
+
+  <span class="c1"># ---------</span>
+  <span class="c1"># Example 2</span>
+  <span class="c1"># ---------</span>
+  <span class="n">antibiogram</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">genera</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;staphylococcus&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;klebsiella&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;streptococcus&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;enterococcus&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;enterobacter&#39;</span><span class="p">],</span>
+                   <span class="n">categories</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                   <span class="n">method</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">,</span> 
+                   <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,)</span>
+
+  <span class="c1"># Show</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -9,7 +9,6 @@ Step 01 - Introduction
 # Loading data
 # ------------
 #
-#
 # .. image:: ../../_static/imgs/susceptibility-test-record.png
 #    :width: 200
 #    :align: right
@@ -25,6 +24,7 @@ Step 01 - Introduction
 # strategy in AMR
 #
 # A small dataset will be used for this example.
+#
 
 # Libraries
 import numpy as np
@@ -76,7 +76,15 @@ print(data.dtypes)
 #  (iii) ``hard``  as R+I / R+I+S
 #  (iv) ``other``  as R+0.5I / R+0.5I+S
 #
-# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`.
+# For more information see: :py:mod:`pyamr.core.sari.SARI`
+#
+# For more examples see:
+#
+#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_antibiogram.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_clustermap.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_relmap.py`
+#
 
 # -------------------------------------------
 # Compute SARI
@@ -137,7 +145,7 @@ plt.subplots_adjust(right=1.05)
 # --------------
 #
 # The antimicrobial spectrum of activity refers to the range of microbe species
-# that are susceptible to these agents and therefore can be treated. In general,
+# that are susceptible to these agents and therefore can be treated. In general,
 # antimicrobial agents are classified into broad, intermediate or narrow spectrum.
 # Broad spectrum antimicrobials are active against both Gram-positive and
 # Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited
@@ -156,15 +164,29 @@ plt.subplots_adjust(right=1.05)
 # particular species when the corresponding resistance index (SARI) is lower than
 # a given threshold.
 #
-# In order to compute ``ASAI``, we need to at least have columns with the following
-# information: ``antimicrobial``, ``microorganism genus``, ``microorganism species``
-# and ``resistance``. Moreover, in this example we will compute the ASAI for each
-# ``gram_stain`` category independently.
+# For more information see: :py:mod:`pyamr.core.asai.ASAI`
 #
+# For more examples see:
+#
+#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
+#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`.
+#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`.
+#
+#
+# In order to compute ``ASAI``, we need to at least have columns with the following
+# information:
+#
+#   - ``antimicrobial``
+#   - ``microorganism genus``
+#   - ``microorganism species``
+#   - ``resistance``
+#
+# Moreover, in this example we will compute the ASAI for each ``gram_stain`` category
+# independently so we will need the microorganism gram stain information too. This
+# information is available in the registries: :py:mod:`pyamr.datasets.registries`
 #
 # Lets include all this information using the ``MicroorganismRegistry``.
 #
-# For more information see :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
 
 # ------------------------------
 # Include gram stain
@@ -193,7 +215,8 @@ dataframe.gram_stain = dataframe.gram_stain.fillna('u')
 
 ##############################################################################
 #
-# Now that we have the ``gram_stain`` information, lets compute ``ASAI``.
+# Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
+# lets compute ``ASAI``.
 #
 
 # -------------------------------------------
@@ -330,6 +353,8 @@ plt.show()
 #
 # Computing SART
 # --------------
+#
+# The antimicrobial resistance trend...
 #
 # .. warning:: To include.
 

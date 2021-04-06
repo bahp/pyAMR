@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core.regression.wregression &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyamr.core.regression.wregression</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyamr.core.regression.wregression</h1><div class="highlight"><pre>
+<span></span><span class="c1">###############################################################################</span>
+<span class="c1"># Author: Bernard Hernandez</span>
+<span class="c1"># Filename: 03-main-create-sari-idxs.py</span>
+<span class="c1"># Description : This file contains differnent statistics used in time-series.</span>
+<span class="c1">#               What it mainly does is to format the output of tests provided</span>
+<span class="c1">#               by external libraries and return them in a dataframe.</span>
+<span class="c1">#</span>
+<span class="c1"># TODO: Move it to a module.</span>
+<span class="c1">###############################################################################</span>
+<span class="c1"># Forces decimals on divisions.</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span> 
+
+<span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+
+<span class="c1"># External libraries</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+
+<span class="c1"># Add module wrappers to sys path dynamically.</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../..&quot;</span><span class="p">)</span>
+
+<span class="c1"># Import base wrapper</span>
+<span class="kn">from</span> <span class="nn">pyamr.core.regression.wbase</span> <span class="kn">import</span> <span class="n">BaseWrapper</span>
+
+
+<div class="viewcode-block" id="BaseRegressionWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wregression.BaseRegressionWrapper">[docs]</a><span class="k">class</span> <span class="nc">BaseRegressionWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
+
+  <span class="c1"># This is the name of the class.</span>
+  <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;REGRESSION&#39;</span>
+
+  <span class="c1"># Main attributes of the class.</span>
+  <span class="n">_resid</span> <span class="o">=</span> <span class="kc">None</span>
+
+  <span class="c1"># ---------------------------------------------------------------------------</span>
+  <span class="c1">#                             HELPER METHODS</span>
+  <span class="c1"># ---------------------------------------------------------------------------</span>
+  <span class="k">def</span> <span class="nf">_init_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method fills self._config with the configuration.&quot;&quot;&quot;</span>
+    <span class="c1"># Create dir.</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># Find attributes values for interesting methods.</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getargspecdict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">))</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_getargspecdict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">))</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+  <span class="k">def</span> <span class="nf">_getargspecdict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">funcname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method creates a dictionary with pairs name and value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    instance : object with values</span>
+<span class="sd">    funcname : function which parameters name will be looked for. </span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tpls : dictionary with argument name and value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Get argument parameters.</span>
+      <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">funcname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+      <span class="n">prms</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargspec</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+      <span class="n">tpls</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="c1"># Create and fill dictionary</span>
+      <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">prms</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">==</span><span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="k">continue</span>
+        <span class="n">tpls</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+      <span class="c1"># Return</span>
+      <span class="k">return</span> <span class="n">tpls</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+      <span class="c1"># Print</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[Exception at _getargspecdict : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+      <span class="c1"># Return</span>
+      <span class="k">return</span> <span class="p">{}</span>
+
+  <span class="c1"># ---------------------------------------------------------------------------</span>
+  <span class="c1">#                              BASIC METHODS</span>
+  <span class="c1"># ---------------------------------------------------------------------------</span>
+  <span class="k">def</span> <span class="nf">_params_from_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method returns params from summary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{}</span>
+
+  <span class="c1"># ---------------------------------------------------------------------------</span>
+  <span class="c1">#              STATISTIC METHODS FOR REGRESSION ANALYSIS</span>
+  <span class="c1"># --------------------------------------------------------------------------- </span>
+  <span class="k">def</span> <span class="nf">_resid_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method computes basic stats on the residuals </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    resid : array-like</span>
+<span class="sd">      The residuals to perform the stats on.</span>
+
+<span class="sd">    alpha : int-like</span>
+<span class="sd">      The alpha selected.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dictionary with the stats for the residuals</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if resid is passed.</span>
+    <span class="k">if</span> <span class="n">resid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">resid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resid</span>
+    
+    <span class="c1"># No resid to work with.</span>
+    <span class="k">if</span> <span class="n">resid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+      <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="c1"># Create series.</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="c1"># Compute autocorrelation (durbin-watson)</span>
+    <span class="kn">from</span> <span class="nn">statsmodels.stats.stattools</span> <span class="kn">import</span> <span class="n">durbin_watson</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_dw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">durbin_watson</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+
+    <span class="c1"># Compute normalility (jarque bera).</span>
+    <span class="kn">from</span> <span class="nn">statsmodels.stats.stattools</span> <span class="kn">import</span> <span class="n">jarque_bera</span>
+    <span class="n">jb_value</span><span class="p">,</span> <span class="n">jb_prob</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurtosis</span> <span class="o">=</span> <span class="n">jarque_bera</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_jb_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jb_value</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_jb_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jb_prob</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_skew&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">skew</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_kurtosis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kurtosis</span>
+
+    <span class="c1"># Compute normal test (normal test)</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">normaltest</span>
+    <span class="n">nm_value</span><span class="p">,</span> <span class="n">nm_prob</span> <span class="o">=</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nm_value</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nm_prob</span>
+
+    <span class="c1"># Compute the kolmogorov-smirnov test.</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kstest</span>
+    <span class="n">ks_value</span><span class="p">,</span> <span class="n">ks_prob</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span><span class="n">resid</span><span class="p">,</span> <span class="s1">&#39;norm&#39;</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_ks_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ks_value</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_ks_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ks_prob</span>
+
+    <span class="c1"># Compute the shapiro-wilkinson test.</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">shapiro</span>
+    <span class="n">sh_value</span><span class="p">,</span> <span class="n">sh_prob</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh_value</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh_prob</span>
+
+    <span class="c1"># Compute anderson-darling. </span>
+    <span class="c1"># The null hypothesis (sample data is drawn from a population that </span>
+    <span class="c1"># follows a particular distribution; in this case normal) can be rejected </span>
+    <span class="c1"># if the statistic es larger than the critical values for an specified </span>
+    <span class="c1"># significante level.</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">anderson</span>
+    <span class="n">ad_value</span><span class="p">,</span> <span class="n">ad_cv</span><span class="p">,</span> <span class="n">ad_sl</span> <span class="o">=</span> <span class="n">anderson</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_ad_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ad_value</span>
+    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_ad_nnorm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ad_value</span><span class="o">&lt;</span><span class="n">ad_cv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+
+<div class="viewcode-block" id="BaseRegressionWrapper.conf_int_insample"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wregression.BaseRegressionWrapper.conf_int_insample">[docs]</a>  <span class="k">def</span> <span class="nf">conf_int_insample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forecast</span><span class="p">,</span> <span class="n">resid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function computes a basic confidence interval.</span>
+
+<span class="sd">    Note: It might not be the adecuate way of computing it.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    forecast : the forecasted values.</span>
+<span class="sd">    alpha    : the alpha value selected.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cilo :</span>
+<span class="sd">    ciup :</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if resid is passed.</span>
+    <span class="k">if</span> <span class="n">resid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">resid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resid</span>
+    
+    <span class="c1"># No resid to work with.</span>
+    <span class="k">if</span> <span class="n">resid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[],[]])</span>
+
+    <span class="c1"># Compute variables.</span>
+    <span class="n">const</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">alpha</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+    <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">const</span><span class="o">*</span><span class="p">(</span><span class="n">std</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">resid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="c1"># Compute confidence interval.</span>
+    <span class="n">cilo</span> <span class="o">=</span> <span class="p">(</span><span class="n">forecast</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ciup</span> <span class="o">=</span> <span class="p">(</span><span class="n">forecast</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">cilo</span><span class="p">,</span> <span class="n">ciup</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+   
+
+  <span class="k">def</span> <span class="nf">_exog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method generates the exogenous variable time. </span>
+
+<span class="sd">    Note: it is only used for those regression methods that do not support</span>
+<span class="sd">    the parameters stard and end in the prediction (wls, ols, rlm, ...). </span>
+<span class="sd">    On the other side, this method is not necessary for ARIMA since they</span>
+<span class="sd">    already support this notation. </span>
+
+<span class="sd">    .. note:: end is included (see _time()).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start : int (optional)</span>
+<span class="sd">      The time t to start the prediction</span>
+
+<span class="sd">    end : int (optional)</span>
+<span class="sd">      The time t to end the prediction</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    the exogenous variable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Default start and end.</span>
+    <span class="n">exog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+    <span class="c1"># Add constant if required.</span>
+    <span class="n">trend</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;trend&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># Return exog without constant</span>
+    <span class="k">if</span> <span class="n">trend</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">trend</span><span class="o">==</span><span class="s1">&#39;ct&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">exog</span>
+    <span class="c1"># Add constant.</span>
+    <span class="n">exog</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">exog</span><span class="p">)</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">exog</span>
+
+
+  <span class="k">def</span> <span class="nf">_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method generates the time variable.</span>
+
+<span class="sd">    Note: The value indicated by &#39;end&#39; is included. This is that way </span>
+<span class="sd">    to match with the implementation of ARIMA from statsmodels.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start : int (optional)</span>
+<span class="sd">      The time t to start the prediction</span>
+
+<span class="sd">    end : int (optional)</span>
+<span class="sd">      The time t to finish the prediction.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">start</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endog</span><span class="p">)</span> <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">end</span><span class="o">+</span><span class="mi">1</span> 
+    <span class="c1"># Generate time variable.</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+
+    
+  <span class="c1"># ---------------------------------------------------------------------------</span>
+  <span class="c1">#                           BASIC PLOT METHODS</span>
+  <span class="c1"># ---------------------------------------------------------------------------</span>
+  <span class="c1"># TODO: Might be useful to create some basic plot methods so it is easy</span>
+  <span class="c1"># to visualize the results. All the regression wrappers have an example</span>
+  <span class="c1"># of such basic plotting in their __main__.</span>
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+  <span class="c1"># Constants</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
+  <span class="n">offset</span> <span class="o">=</span> <span class="mi">100</span>
+  <span class="n">slope</span> <span class="o">=</span> <span class="mi">10</span>
+
+  <span class="c1"># Create time-series.</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">length</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span>
+  <span class="n">y_orig</span> <span class="o">=</span> <span class="n">slope</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">n</span>
+  <span class="n">y_pred</span> <span class="o">=</span> <span class="n">slope</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">offset</span>
+
+  <span class="c1"># Create and fill a base statistic wrapper.</span>
+  <span class="n">w</span> <span class="o">=</span> <span class="n">BaseRegressionWrapper</span><span class="p">()</span>
+  <span class="n">w</span><span class="o">.</span><span class="n">_resid</span> <span class="o">=</span> <span class="n">y_orig</span> <span class="o">-</span> <span class="n">y_pred</span>
+  
+  <span class="c1"># Print resid stats</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">_resid_stats</span><span class="p">()))</span>
+
+  <span class="c1"># Print resid confidence intervals</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">conf_int_insample</span><span class="p">(</span><span class="n">forecast</span><span class="o">=</span><span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

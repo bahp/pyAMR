@@ -99,7 +99,7 @@
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
@@ -205,11 +205,11 @@
 <span id="pyamr-metrics-weights-module"></span><h2>pyamr.metrics.weights module<a class="headerlink" href="#module-pyamr.metrics.weights" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="pyamr.metrics.weights.SigmoidA">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.metrics.weights.</span></code><code class="sig-name descname"><span class="pre">SigmoidA</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pyamr.metrics.weights.</span></code><code class="sig-name descname"><span class="pre">SigmoidA</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/metrics/weights.html#SigmoidA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt id="pyamr.metrics.weights.SigmoidA.approximated_sigmoid">
-<code class="sig-name descname"><span class="pre">approximated_sigmoid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_curves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.approximated_sigmoid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">approximated_sigmoid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_curves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/metrics/weights.html#SigmoidA.approximated_sigmoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.approximated_sigmoid" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function computes the approximated sigmoid.</p>
 <p>Note: The approximated sigmoid is defined within the interval [0,1].</p>
 <dl class="field-list simple">
@@ -230,7 +230,7 @@
 
 <dl class="py method">
 <dt id="pyamr.metrics.weights.SigmoidA.threshold">
-<code class="sig-name descname"><span class="pre">threshold</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(None,</span> <span class="pre">None)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.threshold" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">threshold</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(None,</span> <span class="pre">None)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/metrics/weights.html#SigmoidA.threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.threshold" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function thresholds the r given the values of x.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -246,7 +246,7 @@
 
 <dl class="py method">
 <dt id="pyamr.metrics.weights.SigmoidA.weights">
-<code class="sig-name descname"><span class="pre">weights</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.weights" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">weights</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/metrics/weights.html#SigmoidA.weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.weights" title="Permalink to this definition">¶</a></dt>
 <dd><p>This cuntion computes the weights.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -262,7 +262,7 @@
 
 <dl class="py method">
 <dt id="pyamr.metrics.weights.SigmoidA.weights_percentile">
-<code class="sig-name descname"><span class="pre">weights_percentile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentiles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.weights_percentile" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">weights_percentile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentiles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/metrics/weights.html#SigmoidA.weights_percentile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.weights_percentile" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the weights.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -282,7 +282,7 @@
 
 <dl class="py method">
 <dt id="pyamr.metrics.weights.SigmoidA.weights_standard">
-<code class="sig-name descname"><span class="pre">weights_standard</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.weights_standard" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">weights_standard</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/metrics/weights.html#SigmoidA.weights_standard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.metrics.weights.SigmoidA.weights_standard" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the weights.</p>
 </dd></dl>
 

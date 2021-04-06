@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core.stats.wbase &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyamr.core.stats.wbase</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyamr.core.stats.wbase</h1><div class="highlight"><pre>
+<span></span><span class="c1">###############################################################################</span>
+<span class="c1"># Author: Bernard Hernandez</span>
+<span class="c1"># Filename: 03-main-create-sari-idxs.py</span>
+<span class="c1"># Description : This file contains differnent statistics used in time-series.</span>
+<span class="c1">#               What it mainly does is to format the output of tests provided</span>
+<span class="c1">#               by external libraries and return them in a dataframe.</span>
+<span class="c1">#</span>
+<span class="c1"># TODO: Move it to a module.</span>
+<span class="c1">###############################################################################</span>
+<span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1"># import cPickle as pickle # not needed in python 3.x</span>
+
+<span class="c1"># Specific</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+
+
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1">#                              helper methods</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="fargs"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.fargs">[docs]</a><span class="k">def</span> <span class="nf">fargs</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Finds parameters in kwargs tho use in function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    function : callable</span>
+<span class="sd">      The function</span>
+
+<span class="sd">    kwargs : dict-like</span>
+<span class="sd">      The parameters and corresponding values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get all parameters for the function.</span>
+    <span class="n">prms</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargspec</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+    <span class="c1"># Create dictionary and return</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">prms</span><span class="o">.</span><span class="n">args</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="getargspecdict"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.getargspecdict">[docs]</a><span class="k">def</span> <span class="nf">getargspecdict</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">funcname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method creates a dictionary with pairs name and value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    instance : object with values</span>
+<span class="sd">    funcname : function which parameters name will be looked for.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tpls : dictionary with argument name and value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Get argument parameters.</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">funcname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargspec</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="n">tpls</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Create and fill dictionary</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">prms</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;self&#39;</span><span class="p">:</span> <span class="k">continue</span>
+            <span class="n">tpls</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">tpls</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># Print</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[Exception at _getargspecdict : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
+
+
+<span class="c1"># def attrs(self):</span>
+<span class="c1">#  &quot;&quot;&quot;This method returns all the defined attributes as tuples.&quot;&quot;&quot;</span>
+<span class="c1">#  return inspect.getmembers(self, lambda a: not inspect.isroutine(a))</span>
+
+<span class="c1"># def methods(self):</span>
+<span class="c1">#  &quot;&quot;&quot;This method returns all the defined methods as tuples.&quot;&quot;&quot;</span>
+<span class="c1">#  return inspect.getmembers(self, lambda a: inspect.isroutine(a))</span>
+
+
+<div class="viewcode-block" id="BaseWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper">[docs]</a><span class="k">class</span> <span class="nc">BaseWrapper</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Description</span>
+
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Main attributes of the class.</span>
+    <span class="n">_raw</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># The raw object (statsmodels, scipy, ...)</span>
+    <span class="n">_result</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dictionary with metrics filled in self._init_result().</span>
+    <span class="n">_config</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dictioanry with configuration filled in</span>
+    <span class="n">_conkwargs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_fitkwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor empty defined just so grid_search works in main.</span>
+
+<span class="sd">        Note: Emptying the configuration attribute is important because when</span>
+<span class="sd">              calling grid_search, the self.__class__(args) calls the __init__</span>
+<span class="sd">              method of the instance and updates the self._config dictionary.</span>
+<span class="sd">              Since it might not have been deepcopied, such modification will</span>
+<span class="sd">              alter previous wrappers created during the grid search.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Store the estimator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">estimator</span>
+
+        <span class="c1"># Set the name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Wrapper&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Initialize the containers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># ---------------------------------------------------------------------------</span>
+
+    <span class="c1">#                            helper methods</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method empties the class.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The name to identify this object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method allows to retrieve series attributes with dot notation.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">          The __getattr__ method is called only when __getattribute__ method was</span>
+<span class="sd">          unsuccessful. As such, attributes such as .__class__ can still be</span>
+<span class="sd">          called even though this method is overriden.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : string</span>
+<span class="sd">          The name of the attribute to retrieve.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Retrieve the attribute</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="c1"># Raise error</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; object has no attribute &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> \
+                             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                               save and load</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.save"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method saves the wrapper.&quot;&quot;&quot;</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.load"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method loads the wrapper.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+        <span class="c1"># ---------------------------------------------------------------------------</span>
+
+    <span class="c1">#                               grid search</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.grid_search"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.grid_search">[docs]</a>    <span class="k">def</span> <span class="nf">grid_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method computes grid search.</span>
+
+<span class="sd">        .. note: The wrapper needs to have the method ``fit`` implemented.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        grid_params : array-like</span>
+<span class="sd">          The grid of parameters to search.</span>
+
+<span class="sd">        verbose : int</span>
+<span class="sd">          Wether to show the progress of the search.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        summary : summary with all the elements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Create empty list.</span>
+        <span class="n">wrappers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Create all possible combinations</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="n">ParameterGrid</span><span class="p">(</span><span class="n">grid_params</span><span class="p">)</span>
+
+        <span class="c1"># Number of combinations</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+
+        <span class="c1"># Loop for all possible combinations.</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Deep copy the object.</span>
+                <span class="n">copied</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="c1"># Create model and fit</span>
+                <span class="n">wrappers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copied</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">))</span>
+                <span class="c1"># Show information</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">. </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">copied</span><span class="o">.</span><span class="n">_identifier</span><span class="p">()))</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Create message and raise warning</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">. </span><span class="si">%s</span><span class="s2"> ... failed: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">copied</span><span class="o">.</span><span class="n">_identifier</span><span class="p">(),</span> <span class="n">e</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># Return summary.</span>
+        <span class="k">return</span> <span class="n">wrappers</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.from_list_dataframe"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.from_list_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">from_list_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrapper_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This methods creates a dataframe summary from a list.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        wrapper_list : array-like</span>
+<span class="sd">          The list with wrapper objects.</span>
+
+<span class="sd">        flabel : boolean</span>
+<span class="sd">          Wether to include a label before the attributes.</span>
+
+<span class="sd">        label : string</span>
+<span class="sd">          The label to include before the attributes. By default it includes</span>
+<span class="sd">          the value of the attribute `self._name` in lowercase.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        summary : pandas dataframe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create summary.</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+        <span class="c1"># Loop filling the summary.</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">wrapper</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wrapper_list</span><span class="p">):</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">wrapper</span><span class="o">.</span><span class="n">as_series</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">summary</span><span class="p">,</span> <span class="n">results</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">summary</span><span class="o">.</span><span class="n">T</span></div>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                                OVERRIDE</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.as_series"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.as_series">[docs]</a>    <span class="k">def</span> <span class="nf">as_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flabel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method returns a series with all the information.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        flabel : boolean</span>
+<span class="sd">          Wether to include a label before the attributes.</span>
+
+<span class="sd">        label : string</span>
+<span class="sd">          The label to include before the attributes. By default it includes</span>
+<span class="sd">          the value of the attribute `self._name` in lowercase.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        series : pandas series with the results, configuration and model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Concatenate the configuration.</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">})</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span><span class="p">()})</span>
+
+        <span class="c1"># No label.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">flabel</span><span class="p">:</span> <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+        <span class="c1"># Create the label to include</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_name&#39;</span><span class="p">):</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+        <span class="c1"># format label</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method displays the final summary.&quot;&quot;&quot;</span>
+        <span class="c1"># Call summary function from _raw (if exists).</span>
+        <span class="n">fsummary</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">,</span> <span class="s2">&quot;summary&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">fsummary</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">fsummary</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">)</span>
+        <span class="c1"># Show the series information.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_series</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                           method to override</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Return empty.</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                                fit methods</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">_fit_funct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get arguments</span>
+        <span class="n">arguments</span> <span class="o">=</span> <span class="n">fargs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Call function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">(</span><span class="o">**</span><span class="n">arguments</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_fit_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get arguments</span>
+        <span class="n">conkwargs</span> <span class="o">=</span> <span class="n">fargs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">fitkwargs</span> <span class="o">=</span> <span class="n">fargs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Call functon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">(</span><span class="o">**</span><span class="n">conkwargs</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">fitkwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseWrapper.fit"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method performs the fit.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        kwargs : dict-like</span>
+<span class="sd">          The arguments that will be passed to the method.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Empty the class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_empty</span><span class="p">()</span>
+        <span class="c1"># Update the configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Fit the model</span>
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isfunction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fit_funct</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fit_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Evaluate the model</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Set pandas configuration.</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="c1"># Create and fill a base statistic wrapper.</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">BaseWrapper</span><span class="p">()</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">}</span>
+
+    <span class="c1"># Get attributes tuple list.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">attrs</span><span class="p">())</span>
+
+    <span class="c1"># Get methods tuple list.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">methods</span><span class="p">())</span>
+
+    <span class="c1"># Get series with parameters.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+
+    <span class="c1"># Print summary.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+
+    <span class="c1"># Quick access to an attribute.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+
+    <span class="c1"># -----------</span>
+    <span class="c1"># Grid search</span>
+    <span class="c1"># -----------</span>
+    <span class="c1"># Parameters</span>
+    <span class="n">con_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;con_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">],</span>
+        <span class="s1">&#39;con_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">fit_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;fit_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Grid search method</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">grid_search_dataframe</span><span class="p">(</span><span class="n">con_kwargs</span><span class="o">=</span><span class="n">con_params</span><span class="p">,</span>
+                                      <span class="n">fit_kwargs</span><span class="o">=</span><span class="n">fit_params</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

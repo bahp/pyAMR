@@ -72,7 +72,11 @@ print(data.dtypes)
 # with weekly resistance indexes (7D) calculated using the microbiology records available for
 # the previous four weeks (4x7D).
 #
-# For more information see :ref:`sphx_glr__examples_indexes_plot_sari_temporal.py`.
+# For more information see: :py:mod:`pyamr.core.sari.SARI`
+#
+# For more examples see:
+#
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_temporal.py`.
 #
 
 # -----------------------------------------
@@ -158,16 +162,28 @@ print(aux)
 # Computing ASAI timeseries
 # -------------------------
 #
-# Once we have computed ``SARI`` on a temporal fashion, it is possible
-# to input such DataFrame to compute ``ASAI`` in a temporal fashion too.
-# Let's see how to do it with an example.
-#
 # .. warning::
 #
-#     - Needs a lot of data!
-#     - What if species do not appear on all periods?
+#       - Computing ASAI needs lots of consistent data!
+#       - What if species do not appear on all time periods?
+#
+# Once we have computed ``SARI`` on a temporal fashion, it is possible
+# to use such information to compute ``ASAI`` in a temporal fashion too.
+# However, as explained in the previous tutorial, in order to compute
+# ``ASAI``, we need to at least have columns with the following
+# information:
+#
+#   - ``antimicrobial``
+#   - ``microorganism genus``
+#   - ``microorganism species``
+#   - ``resistance``
+#
+# Moreover, in this example we will compute the ASAI for each ``gram_stain`` category
+# independently so we will need the microorganism gram stain information too. This
+# information is available in the registries: :py:mod:`pyamr.datasets.registries`.
 #
 # Lets include all this information using the ``MicroorganismRegistry``.
+#
 
 # ------------------------------
 # Include gram stain
@@ -196,9 +212,16 @@ dataframe.gram_stain = dataframe.gram_stain.fillna('u')
 
 ##############################################################################
 #
-# Now that we have the ``gram_stain`` information, lets compute ``ASAI``. It
-# is important to highlight that now the date is also included in the
-# groupby parameter when calling the compute method.
+# Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
+# lets see how compute ``ASAI`` in a temporal fashion with an example. It is
+# important to highlight that now the date (``date_received``) is also included
+# in the groupby parameter when calling the compute method.
+#
+# For more information see: :py:mod:`pyamr.core.asai.ASAI`
+#
+# For more examples see:
+#
+#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_temporal.py`.
 #
 
 # -------------------------------------------

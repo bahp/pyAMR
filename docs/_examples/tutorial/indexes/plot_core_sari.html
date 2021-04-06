@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Index - SARI &mdash; pyamr 0.0.1 documentation</title>
+  <title>SARI - Index &mdash; pyamr 0.0.1 documentation</title>
   
 
   
@@ -43,7 +43,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Metrics - scores" href="../metrics/plot_metrics_scores.html" />
-    <link rel="prev" title="Index - ASAI" href="plot_core_asai.html" /> 
+    <link rel="prev" title="MARI - Index" href="plot_core_mari.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -101,8 +101,9 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#guide">Guide</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#indexes">Indexes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="plot_core_asai.html">Index - ASAI</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Index - SARI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_asai.html">ASAI - Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_mari.html">MARI - Index</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SARI - Index</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
@@ -168,7 +169,7 @@
         
           <li><a href="../index.html">Tutorial</a> &raquo;</li>
         
-      <li>Index - SARI</li>
+      <li>SARI - Index</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -192,17 +193,29 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-core-sari-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="index-sari">
-<span id="sphx-glr-examples-tutorial-indexes-plot-core-sari-py"></span><h1>Index - SARI<a class="headerlink" href="#index-sari" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<ul class="simple">
-<li><p>Improve visualization.</p></li>
-<li><p>Create further examples with temporal visualization.</p></li>
-<li><p>Create further examples with general heatmap.</p></li>
-<li><p>Create further examples with animation?</p></li>
-</ul>
-</div>
+<div class="sphx-glr-example-title section" id="sari-index">
+<span id="sphx-glr-examples-tutorial-indexes-plot-core-sari-py"></span><h1>SARI - Index<a class="headerlink" href="#sari-index" title="Permalink to this headline">¶</a></h1>
+<p>The Single Antimicrobial Resistance Index - <code class="docutils literal notranslate"><span class="pre">SARI</span></code> - describes the proportion
+of resistant isolates for a given set of susceptibility tests. It provides a
+value within the range [0, 1] where values close to one indicate high resistance.
+It is agnostic to pathogen, antibiotic and/or time. The variables <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code> and
+<code class="docutils literal notranslate"><span class="pre">S</span></code> represent the number of susceptibility tests with Resistant, Intermediate and
+Susceptible outcomes respectively. The definition might vary slightly since the
+intermediate category is not always considered.</p>
+<p>The parameter strategy accepts three different options:</p>
+<blockquote>
+<div><blockquote>
+<div><ol class="lowerroman simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">soft</span></code>   as R / R+I+S</p></li>
+</ol>
+</div></blockquote>
+<ol class="lowerroman simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">medium</span></code> as R / R+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hard</span></code>  as R+I / R+I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code>  as R+0.5I / R+0.5I+S</p></li>
+</ol>
+</div></blockquote>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.SARI</span></code></p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (overall):
 SPECIMEN  MICROORGANISM  ANTIMICROBIAL
@@ -258,19 +271,7 @@ URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
-<span class="normal"> 19</span>
-<span class="normal"> 20</span>
-<span class="normal"> 21</span>
-<span class="normal"> 22</span>
-<span class="normal"> 23</span>
-<span class="normal"> 24</span>
-<span class="normal"> 25</span>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 25</span>
 <span class="normal"> 26</span>
 <span class="normal"> 27</span>
 <span class="normal"> 28</span>
@@ -383,7 +384,19 @@ URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
-<span class="normal">138</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import libraries</span>
  <span class="kn">import</span> <span class="nn">sys</span>
  <span class="kn">import</span> <span class="nn">glob</span>
  <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -511,7 +524,7 @@ URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        
  <span class="nb">print</span><span class="p">(</span><span class="n">sari_oti</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.064 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.062 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-sari-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/f544ae4a9bcc6b238994e78f200b3851/plot_core_sari.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_sari.py</span></code></a></p>
@@ -530,7 +543,7 @@ URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="../metrics/plot_metrics_scores.html" class="btn btn-neutral float-right" title="Metrics - scores" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="plot_core_asai.html" class="btn btn-neutral float-left" title="Index - ASAI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_mari.html" class="btn btn-neutral float-left" title="MARI - Index" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

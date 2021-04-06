@@ -1,0 +1,1050 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core.asai &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyamr.core.asai</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyamr.core.asai</h1><div class="highlight"><pre>
+<span></span><span class="c1">################################################################################</span>
+<span class="c1"># Author:</span>
+<span class="c1"># Date:</span>
+<span class="c1"># Description:</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright:</span>
+<span class="c1">#</span>
+<span class="c1"># </span>
+<span class="c1">################################################################################</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span> 
+
+<span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="c1">#                                 methods</span>
+<span class="c1"># ------------------------------------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">_check_asai_weights_genus</span><span class="p">(</span><span class="n">dataframe</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Checks that the weights for each genus add up to one.</span>
+
+<span class="sd">  .. deprecated:: 0.0.1</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  dataframe : dtaframe-like</span>
+<span class="sd">    The dataframe whose columns must be checked</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  raise error  </span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Compute weights per genus</span>
+  <span class="n">weights</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">)[</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+  <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+  <span class="c1"># Check that all add up to one</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">weights</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The weights (W_SPECIE) for each genus should add up to &quot;</span>
+                    <span class="s2">&quot;one. Please review these weights since they are not &quot;</span>
+                    <span class="s2">&quot;valid. </span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">weights</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_check_asai_weights_specie</span><span class="p">(</span><span class="n">dataframe</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Check that the weights for all the species add up to one.</span>
+
+<span class="sd">  .. deprecated:: 0.0.1</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  dataframe : dtaframe-like</span>
+<span class="sd">    The dataframe whose columns must be checked</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  raise error</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Compute weights per species</span>
+  <span class="n">unique</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">)[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+  <span class="n">weights</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">)[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  <span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">unique</span><span class="p">,</span> <span class="n">weights</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">merged</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;UNIQUE&#39;</span><span class="p">,</span> <span class="s1">&#39;W_GENUS&#39;</span><span class="p">]</span>
+
+  <span class="c1"># Check only one weight is given for each genus</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">unique</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The weights (W_GENUS) should be equal for all the rows &quot;</span>
+                    <span class="s2">&quot;with a same genus value. Please ensure that the number &quot;</span>
+                    <span class="s2">&quot;of unique elements is always 1. </span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">merged</span><span class="p">)</span>
+
+  <span class="c1"># Check that weights add up to one</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The weights (W_GENUS) should add up to one. Please &quot;</span>
+                     <span class="s2">&quot;review these weights since they are not valid. &quot;</span>
+                     <span class="s2">&quot;</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">weights</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_check_asai_dataframe_columns</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">required_columns</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;This method checks that the dataframe has all attributes.</span>
+
+<span class="sd">  .. deprecated:: 0.0.1</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  -----------</span>
+<span class="sd">  dataframe : pandas DataFrame</span>
+<span class="sd">    The dataframe containing the information.</span>
+
+<span class="sd">  attributes :</span>
+<span class="sd">    The required columns</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  exit the program</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Find missing columns</span>
+  <span class="n">missing</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">required_columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+  <span class="c1"># There are missing columns</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">missing</span><span class="p">:</span> <span class="k">return</span>
+  <span class="c1"># Raise an error</span>
+  <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The dataframe passed as argument is missing the &quot;</span>
+                  <span class="s2">&quot;following columns: </span><span class="si">%s</span><span class="s2">. Please correct this issue.&quot;</span> 
+                  <span class="o">%</span> <span class="n">missing</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_asai</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes the antimicrobial spectrum of activity.</span>
+
+<span class="sd">  .. deprecated:: 0.0.1</span>
+
+<span class="sd">  .. todo: There is an error when W_GENUS = 1 / GENUS.nunique()</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  dataframe : dataframe-like</span>
+<span class="sd">    The dataframe containing the information to compute the asai index. The </span>
+<span class="sd">    following columns are required [SPECIE, GENUS, RESISTANCE]. In addition,</span>
+<span class="sd">    the effective threshold, genus weight and specie weight can be specied</span>
+<span class="sd">    using the following columns [THRESHOLD, W_GENUS, W_SPECIE]. Note that</span>
+<span class="sd">    the weights must add up to one.</span>
+
+<span class="sd">  threshold : number</span>
+<span class="sd">    The number to set a common threshold.</span>
+
+<span class="sd">  weights : string</span>
+<span class="sd">    Method used to compute the weights. The possible values are uniform and</span>
+<span class="sd">    proportional. In order to use proportional a column with the frequency</span>
+<span class="sd">    for each specie must be included in the dataframe.</span>
+
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  dataframe</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Check that the input is a dataframe</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The instance passed as argument needs to be a pandas &quot;</span>
+                    <span class="s2">&quot;DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert &quot;</span>
+                    <span class="s2">&quot;the input accordingly.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+  <span class="c1"># Add fixed threshold</span>
+  <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">threshold</span>
+
+  <span class="c1"># Add weights</span>
+  <span class="k">if</span> <span class="n">weights</span> <span class="o">==</span> <span class="s1">&#39;uniform&#39;</span><span class="p">:</span>
+    <span class="c1"># Set uniform weights</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GENUS&#39;</span><span class="p">],</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">GENUS</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">SPECIE</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+  <span class="c1"># Required columns</span>
+  <span class="n">required</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;THRESHOLD&#39;</span><span class="p">,</span> <span class="s1">&#39;W_GENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;W_SPECIE&#39;</span><span class="p">]</span>
+
+  <span class="c1"># Check that the weights add up to one.</span>
+  <span class="n">_check_asai_dataframe_columns</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">required_columns</span><span class="o">=</span><span class="n">required</span><span class="p">)</span>
+  <span class="n">_check_asai_weights_genus</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+  <span class="n">_check_asai_weights_specie</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+
+  <span class="c1"># Select data</span>
+  <span class="n">resistance</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">RESISTANCE</span>
+  <span class="n">threshold</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">THRESHOLD</span>
+  <span class="n">weights_genus</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">W_GENUS</span>
+  <span class="n">weights_specie</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">W_SPECIE</span>
+
+
+  <span class="c1"># Create results</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;N_GENUS&#39;</span><span class="p">:</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">GENUS</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+       <span class="s1">&#39;N_SPECIE&#39;</span><span class="p">:</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">SPECIE</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+       <span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">:</span> <span class="n">_asai_score</span><span class="p">(</span><span class="n">weights_genus</span><span class="p">,</span>
+                                 <span class="n">weights_specie</span><span class="p">,</span>
+                                 <span class="n">resistance</span><span class="p">,</span> 
+                                 <span class="n">threshold</span><span class="p">)}</span>
+
+  <span class="c1"># Compute ASAI.</span>
+  <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_asai_score</span><span class="p">(</span><span class="n">weights_genus</span><span class="p">,</span> <span class="n">weights_specie</span><span class="p">,</span> <span class="n">resistance</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Computes the asai score.</span>
+
+<span class="sd">  .. deprecated:: 0.0.1</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  weights_genus : array-like</span>
+<span class="sd">    The weight associated to each of the genus</span>
+
+<span class="sd">  weights_specie : array-like</span>
+<span class="sd">    The weight associated to each of the species</span>
+
+<span class="sd">  resistance : array-like</span>
+
+<span class="sd">    The resistances</span>
+<span class="sd">  threshold : array-like</span>
+<span class="sd">    The thresholds</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  asai score</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights_genus</span><span class="o">*</span><span class="n">weights_specie</span><span class="o">*</span><span class="p">(</span><span class="n">resistance</span><span class="o">&lt;=</span><span class="n">threshold</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="asai"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.asai">[docs]</a><span class="k">def</span> <span class="nf">asai</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the ASAI.</span>
+
+<span class="sd">    .. warning:: Should the duplicated check only for the columns</span>
+<span class="sd">                 GENUS and SPECIE? What if we do not group by</span>
+<span class="sd">                 antibiotic? It has to be unique for the antibiotic</span>
+<span class="sd">                 also. It is up to the user to make the right use</span>
+<span class="sd">                 of this?</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dataframe: pd.DataFrame</span>
+<span class="sd">        The pandas dataframe with the information. The following columns</span>
+<span class="sd">        are always required [RESISTANCE, GENUS and SPECIE]. In addition,</span>
+<span class="sd">        [W_GENUS and W_SPECIE] are required if weights is None. Also,</span>
+<span class="sd">        if weights = &#39;frequency&#39; the column FREQUENCY must be present.</span>
+
+<span class="sd">    weights: string, default=None</span>
+<span class="sd">        The method to compute the weights. The methods supported are:</span>
+
+<span class="sd">            - None: weights must be specified in [W_GENUS and W_SPECIE]</span>
+<span class="sd">            - &#39;uniform&#39;: uniform weights for genus and species within genus.</span>
+<span class="sd">            - &#39;frequency: weights are proportional to the frequencies.</span>
+
+<span class="sd">        The following rules must be fulfilled by the weight columns:</span>
+
+<span class="sd">            - consistent weight for a given genus</span>
+<span class="sd">            - all genus weights must add up to one.</span>
+<span class="sd">            - all specie weights within a genus must add up to one.</span>
+
+<span class="sd">    threshold: float, default=None</span>
+<span class="sd">        The threshold resistance value above which the antimicrobial is</span>
+<span class="sd">        considered non-effective to treat the microorganism. For instance,</span>
+<span class="sd">        for a resistance threshold of 0.5, if a pair &lt;o,a&gt; has a resistance</span>
+<span class="sd">        value of 0.4, the microorganism will be considered sensitive. In</span>
+<span class="sd">        order to use specific thresholds keep threshold to None and include</span>
+<span class="sd">        a column &#39;THRESHOLD&#39;.ss</span>
+
+<span class="sd">    tol: float, default=1e-6</span>
+<span class="sd">        The tolerance in order to check that all conditions (uniqueness</span>
+<span class="sd">        and sums) are satisfied. Note that that float precision varies</span>
+<span class="sd">        and therefore not always adds up to exactly one.</span>
+
+<span class="sd">    verbose: int, default=0</span>
+<span class="sd">        The level of verbosity.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The dataframe with the ASAI information and counts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Required columns</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;GENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Add weight columns</span>
+    <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">required</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;W_SPECIE&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">weights</span> <span class="o">==</span> <span class="s1">&#39;frequency&#39;</span><span class="p">:</span>
+        <span class="n">required</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;FREQUENCY&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Bad input type</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The instance passed as argument needs to be a pandas &quot;</span>
+                        <span class="s2">&quot;DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert &quot;</span>
+                        <span class="s2">&quot;the input accordingly.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+    <span class="c1"># Check columns</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">required</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The following columns are missing: </span><span class="si">{0}</span><span class="s2"> &quot;</span> \
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">required</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
+
+    <span class="c1"># Check duplicates</span>
+    <span class="k">if</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;There are duplicated rows in the dataframe.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get NaN idxs</span>
+    <span class="n">idxs</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">required</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Show warning and correct</span>
+    <span class="k">if</span> <span class="n">idxs</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2"></span>
+<span class="s2">              There are NULL values in columns that are required.</span>
+<span class="s2">              Please correct this issue and try again. See below </span>
+<span class="s2">              for more information:</span><span class="se">\n\n\t\t</span><span class="si">{0}</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idxs</span><span class="p">,</span> <span class="n">required</span><span class="p">]</span> \
+                    <span class="o">.</span><span class="n">to_string</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t\t</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">))</span>
+
+    <span class="c1"># Copy DataFrame</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Check threshold</span>
+    <span class="k">if</span> <span class="s1">&#39;THRESHOLD&#39;</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2"></span>
+<span class="s2">                  The threshold has been defined both as an </span>
+<span class="s2">                  input parameter (threshold=</span><span class="si">{0}</span><span class="s2">) and a dataframe </span>
+<span class="s2">                  column &#39;THRESHOLD&#39;. The latter will be used.&quot;&quot;&quot;</span>
+                  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">threshold</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2"></span>
+<span class="s2">                  The threshold has not been defined using either </span>
+<span class="s2">                  an input parameter (threshold=</span><span class="si">{0}</span><span class="s2">) or a column in the </span>
+<span class="s2">                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value </span>
+<span class="s2">                  of &#39;0.5&#39; will be used.&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">threshold</span><span class="p">))</span>
+            <span class="n">threshold</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">threshold</span>
+
+    <span class="c1"># Set uniform weights</span>
+    <span class="k">if</span> <span class="n">weights</span> <span class="o">==</span> <span class="s1">&#39;uniform&#39;</span><span class="p">:</span>
+        <span class="c1"># Set uniform weights</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">aux</span><span class="o">.</span><span class="n">GENUS</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">aux</span><span class="o">.</span><span class="n">GENUS</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+            <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;GENUS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">SPECIE</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+
+    <span class="c1"># Set frequency weights</span>
+    <span class="k">if</span> <span class="n">weights</span> <span class="o">==</span> <span class="s1">&#39;frequency&#39;</span><span class="p">:</span>
+        <span class="c1"># Set frequency weights</span>
+        <span class="n">fgn</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;GENUS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">FREQUENCY</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;S_GENUS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">GENUS</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fgn</span><span class="p">)</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">GENUS</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fgn</span> <span class="o">/</span> <span class="n">fgn</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">FREQUENCY</span> <span class="o">/</span> <span class="n">aux</span><span class="o">.</span><span class="n">S_GENUS</span>
+
+    <span class="c1"># Check sums</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">report</span><span class="p">[</span><span class="s1">&#39;W_GENUS_UNIQUE_OK&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;GENUS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">W_GENUS</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="n">report</span><span class="p">[</span><span class="s1">&#39;W_GENUS_SUM_OK&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;GENUS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">W_GENUS</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">report</span><span class="p">[</span><span class="s1">&#39;W_SPECIE_SUM_OK&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;GENUS&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">W_SPECIE</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Condition</span>
+    <span class="n">condition</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">report</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">tol</span>
+
+    <span class="c1"># Report</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">condition</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            The weights imputed do not fulfill all the requirements. Please</span>
+<span class="s2">            check the report below and correct the weights accordingly. Note</span>
+<span class="s2">            a given genus must have a consistent weight and the sum of weights</span>
+<span class="s2">            must add up to 1.</span><span class="se">\n\n\t\t</span><span class="si">{0}</span><span class="s2">&quot;&quot;&quot;</span> \
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">condition</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t\t</span><span class="s2">&quot;</span><span class="p">)))</span>
+
+    <span class="c1"># Show</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">weights=</span><span class="si">{0}</span><span class="s2"> | threshold=</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">threshold</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
+
+    <span class="c1"># Extract vectors</span>
+    <span class="n">wgn</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">W_GENUS</span>
+    <span class="n">wsp</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">W_SPECIE</span>
+    <span class="n">sari</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">RESISTANCE</span>
+    <span class="n">th</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">THRESHOLD</span>
+
+    <span class="c1"># Compute score</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">wgn</span> <span class="o">*</span> <span class="n">wsp</span> <span class="o">*</span> <span class="p">(</span><span class="n">sari</span> <span class="o">&lt;=</span> <span class="n">th</span><span class="p">))</span>
+
+    <span class="c1"># Create results</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;N_GENUS&#39;</span><span class="p">:</span> <span class="n">aux</span><span class="o">.</span><span class="n">GENUS</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+         <span class="s1">&#39;N_SPECIE&#39;</span><span class="p">:</span> <span class="n">aux</span><span class="o">.</span><span class="n">SPECIE</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
+         <span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">:</span> <span class="n">score</span><span class="p">}</span>
+
+    <span class="c1"># Default weights</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></div>
+
+
+
+
+
+
+
+<div class="viewcode-block" id="ASAI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI">[docs]</a><span class="k">class</span> <span class="nc">ASAI</span><span class="p">():</span>
+
+    <span class="c1"># Attributes</span>
+    <span class="n">c_gen</span> <span class="o">=</span> <span class="s1">&#39;GENUS&#39;</span>
+    <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIE&#39;</span>
+    <span class="n">c_res</span> <span class="o">=</span> <span class="s1">&#39;RESISTANCE&#39;</span>
+    <span class="n">c_thr</span> <span class="o">=</span> <span class="s1">&#39;THRESHOLD&#39;</span>
+    <span class="n">c_fre</span> <span class="o">=</span> <span class="s1">&#39;FREQUENCY&#39;</span>
+    <span class="n">c_wgen</span> <span class="o">=</span> <span class="s1">&#39;W_GENUS&#39;</span>
+    <span class="n">c_wspe</span> <span class="o">=</span> <span class="s1">&#39;W_SPECIE&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_genus</span><span class="o">=</span><span class="n">c_gen</span><span class="p">,</span>
+                       <span class="n">column_specie</span><span class="o">=</span><span class="n">c_spe</span><span class="p">,</span>
+                       <span class="n">column_resistance</span><span class="o">=</span><span class="n">c_res</span><span class="p">,</span>
+                       <span class="n">column_threshold</span><span class="o">=</span><span class="n">c_thr</span><span class="p">,</span>
+                       <span class="n">column_frequency</span><span class="o">=</span><span class="n">c_fre</span><span class="p">,</span>
+                       <span class="n">column_wgenus</span><span class="o">=</span><span class="n">c_wgen</span><span class="p">,</span>
+                       <span class="n">column_wspecie</span><span class="o">=</span><span class="n">c_wspe</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        column_genus: string</span>
+<span class="sd">            The column name with the genus values</span>
+
+<span class="sd">        column_specie: string</span>
+<span class="sd">            The column name with the specie values</span>
+
+<span class="sd">        column_resistance: string</span>
+<span class="sd">            The column name with the resistance values</span>
+
+<span class="sd">        column_threshold: string</span>
+<span class="sd">            The column name with the threshold values</span>
+
+<span class="sd">        column_frequency: string</span>
+<span class="sd">            The column name with the frequency values</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        none</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create dictionary to rename columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rename</span> <span class="o">=</span> <span class="p">{</span><span class="n">column_genus</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span>
+                       <span class="n">column_specie</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span>
+                       <span class="n">column_resistance</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">,</span>
+                       <span class="n">column_threshold</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_thr</span><span class="p">,</span>
+                       <span class="n">column_frequency</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_fre</span><span class="p">,</span>
+                       <span class="n">column_wgenus</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_wgen</span><span class="p">,</span>
+                       <span class="n">column_wspecie</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_wspe</span><span class="p">}</span>
+
+        <span class="c1"># Columns that are required</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ASAI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Computes the ASAI index (safely).</span>
+
+<span class="sd">        .. note: Review first NaN and then duplicated?</span>
+<span class="sd">        .. note: Review extreme values in resistance?</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe: pd.DataFrame</span>
+<span class="sd">            The pandas dataframe with the information. The following columns</span>
+<span class="sd">            are always required [RESISTANCE, GENUS and SPECIE]. In addition,</span>
+<span class="sd">            [W_GENUS and W_SPECIE] are required if weights is None. Also,</span>
+<span class="sd">            if weights = &#39;frequency&#39; the column FREQUENCY must be present.</span>
+
+<span class="sd">        groupby: list, default=None</span>
+<span class="sd">            The elements to groupby (pd.groupby)</span>
+
+<span class="sd">        min_freq: int, default=None</span>
+<span class="sd">            The minimum number of susceptibility tests required in order to</span>
+<span class="sd">            include the species to compute ASAI. Note that to work the dataframe</span>
+<span class="sd">            must include a column indicating the frequencies.</span>
+
+<span class="sd">        weights: string, default=None</span>
+<span class="sd">            The method to compute the weights. The methods supported are:</span>
+
+<span class="sd">                - None: weights must be specified in [W_GENUS and W_SPECIE]</span>
+<span class="sd">                - &#39;uniform&#39;: uniform weights for genus and species within genus.</span>
+<span class="sd">                - &#39;frequency: weights are proportional to the frequencies.</span>
+
+<span class="sd">            The following rules must be fulfilled by the weight columns:</span>
+
+<span class="sd">                - consistent weight for a given genus</span>
+<span class="sd">                - all genus weights must add up to one.</span>
+<span class="sd">                - all specie weights within a genus must add up to one.</span>
+
+<span class="sd">        threshold: float, default=None</span>
+<span class="sd">            The threshold resistance value above which the antimicrobial is</span>
+<span class="sd">            considered non-effective to treat the microorganism. For instance,</span>
+<span class="sd">            for a resistance threshold of 0.5, if a pair &lt;o,a&gt; has a resistance</span>
+<span class="sd">            value of 0.4, the microorganism will be considered sensitive. In</span>
+<span class="sd">            order to use specific thresholds keep threshold to None and include</span>
+<span class="sd">            a column &#39;THRESHOLD&#39;.ss</span>
+
+<span class="sd">        tol: float, default=1e-6</span>
+<span class="sd">            The tolerance in order to check that all conditions (uniqueness</span>
+<span class="sd">            and sums) are satisfied. Note that that float precision varies</span>
+<span class="sd">            and therefore not always adds up to exactly one.</span>
+
+<span class="sd">        verbose: int, default=0</span>
+<span class="sd">            The level of verbosity.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            The dataframe with the ASAI information and counts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Bad input type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The instance passed as argument needs to be a pandas &quot;</span>
+                            <span class="s2">&quot;DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert &quot;</span>
+                            <span class="s2">&quot;the input accordingly.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">groupby</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span><span class="n">groupby</span><span class="p">]</span>
+
+        <span class="c1"># Create auxiliary variable</span>
+        <span class="n">required</span> <span class="o">=</span> <span class="n">groupby</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">required</span>
+
+        <span class="c1"># Rename columns</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rename</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Filter by freq</span>
+        <span class="k">if</span> <span class="n">min_freq</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_fre</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                The min_freq=</span><span class="si">{0}</span><span class="s2"> cannot be applied because the frequency</span>
+<span class="s2">                columns &#39;FREQUENCY&#39; does not exist in the DataFrame.</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span>
+                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">min_freq</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">aux</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_fre</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">min_freq</span><span class="p">]</span>
+
+
+        <span class="c1"># Check duplicates</span>
+        <span class="k">if</span> <span class="n">aux</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">required</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 There are duplicated rows in the DataFrame. These is</span>
+<span class="s2">                 usually not expected. Please review the DataFrame and </span>
+<span class="s2">                 address this inconsistencies. Maybe you should include</span>
+<span class="s2">                 more columns in the groupby (e.g. specimen_cde). The </span>
+<span class="s2">                 columns used to compute duplicated are: </span>
+<span class="s2">                 </span><span class="si">{0}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">required</span><span class="p">))</span>
+            <span class="c1">#aux = aux.drop_duplicates(required)</span>
+
+        <span class="c1"># Check extreme resistance values</span>
+        <span class="k">if</span> <span class="n">aux</span><span class="o">.</span><span class="n">RESISTANCE</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 Extreme resistances were found in the DataFrame. These rows</span>
+<span class="s2">                 should be reviewed since these resistances might correspond</span>
+<span class="s2">                 to pairs with low number of records.</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="c1">#aux = aux[aux[self.c_res] != 1.0]</span>
+
+        <span class="c1"># Get NaN indexes</span>
+        <span class="n">idxs</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">required</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Show warning and correct</span>
+        <span class="k">if</span> <span class="n">idxs</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 There are NULL values in columns that are required. These</span>
+<span class="s2">                 rows will be ignored to safely compute ASAI. Please review</span>
+<span class="s2">                 the DataFrame and address this inconsistencies. See below</span>
+<span class="s2">                 for more information: </span><span class="se">\n\n\t\t\t</span><span class="si">{0}</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
+                    <span class="n">aux</span><span class="p">[</span><span class="n">required</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> \
+                        <span class="o">.</span><span class="n">to_string</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t\t\t</span><span class="s2">&quot;</span><span class="p">)))</span>
+            <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">required</span><span class="p">)</span>
+
+        <span class="c1"># Compute</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupby</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">scores</span></div></div>
+
+
+
+
+
+
+
+
+<div class="viewcode-block" id="ASAI_old"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI_old">[docs]</a><span class="k">class</span> <span class="nc">ASAI_old</span><span class="p">():</span>
+  <span class="sd">&quot;&quot;&quot;This class computes the antimicrobial spectrum of activity. </span>
+
+<span class="sd">  .. deprecated:: 0.0.1</span>
+
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="c1"># Attributes</span>
+  <span class="n">c_abx</span> <span class="o">=</span> <span class="s1">&#39;ANTIBIOTIC&#39;</span>
+  <span class="n">c_gen</span> <span class="o">=</span> <span class="s1">&#39;GENUS&#39;</span>
+  <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIE&#39;</span>
+  <span class="n">c_res</span> <span class="o">=</span> <span class="s1">&#39;RESISTANCE&#39;</span>
+  <span class="n">c_thr</span> <span class="o">=</span> <span class="s1">&#39;THRESHOLD&#39;</span>
+  <span class="n">c_fre</span> <span class="o">=</span> <span class="s1">&#39;FREQUENCY&#39;</span>
+  <span class="n">c_wgen</span> <span class="o">=</span> <span class="s1">&#39;W_GENUS&#39;</span>
+  <span class="n">c_wspe</span> <span class="o">=</span> <span class="s1">&#39;W_SPECIE&#39;</span>
+
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                        <span class="n">column_genus</span><span class="o">=</span><span class="n">c_gen</span><span class="p">,</span> 
+                                        <span class="n">column_specie</span><span class="o">=</span><span class="n">c_spe</span><span class="p">,</span> 
+                                        <span class="n">column_antibiotic</span><span class="o">=</span><span class="n">c_abx</span><span class="p">,</span>
+                                        <span class="n">column_resistance</span><span class="o">=</span><span class="n">c_res</span><span class="p">,</span>
+                                        <span class="n">column_threshold</span><span class="o">=</span><span class="n">c_thr</span><span class="p">,</span>
+                                        <span class="n">column_frequency</span><span class="o">=</span><span class="n">c_fre</span><span class="p">,</span>
+                                        <span class="n">column_wgenus</span><span class="o">=</span><span class="n">c_wgen</span><span class="p">,</span>
+                                        <span class="n">column_wspecie</span><span class="o">=</span><span class="n">c_wspe</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The constructor.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    threshold : number</span>
+<span class="sd">      The threshold under which the drug is considered effective.</span>
+
+<span class="sd">    weights : string</span>
+<span class="sd">      The method to compute the weights</span>
+
+<span class="sd">    column_genus : string</span>
+<span class="sd">      The column name with the genus values</span>
+
+<span class="sd">    column_specie : string</span>
+<span class="sd">      The column name with the specie values</span>
+<span class="sd">    </span>
+<span class="sd">    column_antibiotic : string </span>
+<span class="sd">      The column name with the antibiotic values</span>
+<span class="sd">    </span>
+<span class="sd">    column_resistance : string</span>
+<span class="sd">      The column name with the resistance values</span>
+<span class="sd">    </span>
+<span class="sd">    column_threshold : string</span>
+<span class="sd">      The column name with the threshold values</span>
+<span class="sd">    </span>
+<span class="sd">    column_frequency : string</span>
+<span class="sd">      The column name with the frequency values</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    none</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Set parameters</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+
+    <span class="c1"># Create dictionary to rename columns</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">column_genus</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span>
+                           <span class="n">column_specie</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span>
+                           <span class="n">column_antibiotic</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span>
+                           <span class="n">column_resistance</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">,</span>
+                           <span class="n">column_threshold</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_thr</span><span class="p">,</span>
+                           <span class="n">column_frequency</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_fre</span><span class="p">,</span>
+                           <span class="n">column_wgenus</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_wgen</span><span class="p">,</span>
+                           <span class="n">column_wspecie</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_wspe</span><span class="p">}</span>
+
+    <span class="c1"># Columns that are required</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">required_columns</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ASAI_old.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI_old.compute">[docs]</a>  <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function computes the asai index by category.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dataframe : pandas DataFrame</span>
+<span class="sd">      The pandas DataFrame containing the data. In particular it needs to</span>
+<span class="sd">      contain the following columns: genus, specie, antibiotic and the</span>
+<span class="sd">      resistance outcome within the range [0,1].</span>
+
+<span class="sd">    by_category : string</span>
+<span class="sd">      The name of the column that will be used to group ASAI.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas dataframe</span>
+<span class="sd">      the dataframe...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check that it is a dataframe</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+      <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The instance passed as argument needs to be a pandas &quot;</span>
+                      <span class="s2">&quot;DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert &quot;</span>
+                      <span class="s2">&quot;the input accordingly.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+    <span class="c1"># Rename columns</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Check dataframe columns</span>
+    <span class="n">_check_asai_dataframe_columns</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">required_columns</span><span class="p">)</span>
+
+    <span class="c1"># Check that there are no duplicates</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span> 
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span> 
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span> 
+                                                  <span class="n">by_category</span><span class="p">])</span>
+
+    <span class="c1"># Check that no intrinsic resistance is considered</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">dataframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">]</span><span class="o">!=</span><span class="mf">1.0</span><span class="p">]</span>
+
+    <span class="c1"># Check that the by parameter has all value different than none</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">by_category</span><span class="p">])</span>
+
+    <span class="c1"># Compute asai and return</span>
+    <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span> <span class="n">by_category</span><span class="p">])</span> \
+                    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_asai</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">unstack</span><span class="p">()</span></div></div>
+
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+  
+
+  <span class="c1"># Import libraries</span>
+  <span class="kn">import</span> <span class="nn">sys</span>
+  <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+  <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+  <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+  <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+  <span class="c1"># Import specific libraries</span>
+  <span class="kn">from</span> <span class="nn">pyamr.datasets</span> <span class="kn">import</span> <span class="n">load</span>
+
+  <span class="c1"># Configure seaborn style (context=talk)</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+
+  <span class="c1"># Set matplotlib</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+  <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+
+  <span class="c1"># Pandas configuration</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+  <span class="c1"># Numpy configuration</span>
+  <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+  <span class="c1"># ---------------------</span>
+  <span class="c1"># helper method</span>
+  <span class="c1"># ---------------------</span>
+  <span class="k">def</span> <span class="nf">scalar_colormap</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method creates a colormap based on values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    values : array-like</span>
+<span class="sd">      The values to create the corresponding colors</span>
+
+<span class="sd">    cmap : str</span>
+<span class="sd">      The colormap</span>
+
+<span class="sd">    vmin, vmax : float</span>
+<span class="sd">      The minimum and maximum possible values</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    scalar colormap</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create scalar mappable</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mapper</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="c1"># Gete color map</span>
+    <span class="n">colormap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">([</span><span class="n">mapper</span><span class="o">.</span><span class="n">to_rgba</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">colormap</span>
+
+
+  <span class="c1"># ---------------------</span>
+  <span class="c1"># Create data</span>
+  <span class="c1"># ---------------------</span>
+  <span class="c1"># Create data</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;GENUS_1&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.6000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0064</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_5&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0073</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_6&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0056</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_3&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_7&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_8&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0518</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_9&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_10&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="mf">0.0595</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          
+          <span class="p">[</span><span class="s1">&#39;GENUS_1&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_1&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_2&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_5&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_6&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_3&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_7&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_8&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_4&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_9&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;GENUS_5&#39;</span><span class="p">,</span> <span class="s1">&#39;SPECIE_10&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIBIOTIC_1&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]]</span>
+
+  <span class="c1"># Create dataframe</span>
+  <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span> 
+                                          <span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span> 
+                                          <span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;GRAM&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;THRESHOLD&#39;</span><span class="p">])</span>
+
+  <span class="c1"># -------------------------------</span>
+  <span class="c1"># Create antimicrobial spectrum</span>
+  <span class="c1"># -------------------------------</span>
+  <span class="c1"># Create antimicrobial spectrum of activity instance</span>
+  <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                 <span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span>
+                                 <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span> 
+                                 <span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> 
+                                 <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span>
+                                 <span class="n">column_threshold</span><span class="o">=</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">)</span>
+
+  <span class="c1"># Compute</span>
+  <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;GRAM&#39;</span><span class="p">)</span>
+
+  <span class="c1"># Show</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+  <span class="c1"># -----------------------------</span>
+  <span class="c1"># Plot</span>
+  <span class="c1"># ----------------------------- </span>
+  <span class="c1"># Variables to plot.</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+  <span class="n">y_n</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;N&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+  <span class="n">y_p</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;P&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+  <span class="c1"># Constants</span>
+  <span class="n">colormap_p</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+  <span class="n">colormap_n</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_n</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+
+  <span class="c1"># Create figure</span>
+  <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+  <span class="c1"># Plot</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_p</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_p</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> 
+    <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="n">y_n</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_n</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> 
+    <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
+
+  <span class="c1"># Configure</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+  <span class="c1"># Configure</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+  <span class="c1"># Legend</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+  <span class="c1"># Display</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

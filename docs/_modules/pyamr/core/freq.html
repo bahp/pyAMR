@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core.freq &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyamr.core.freq</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyamr.core.freq</h1><div class="highlight"><pre>
+<span></span><span class="c1">################################################################################</span>
+<span class="c1"># Author:</span>
+<span class="c1"># Date:</span>
+<span class="c1"># Description:</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright:</span>
+<span class="c1"># </span>
+<span class="c1">################################################################################</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="Frequency"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.freq.Frequency">[docs]</a><span class="k">class</span> <span class="nc">Frequency</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Attributes</span>
+    <span class="n">c_abx</span> <span class="o">=</span> <span class="s1">&#39;ANTIBIOTIC&#39;</span>
+    <span class="n">c_org</span> <span class="o">=</span> <span class="s1">&#39;SPECIE&#39;</span>
+    <span class="n">c_dat</span> <span class="o">=</span> <span class="s1">&#39;DATE&#39;</span>
+    <span class="n">c_out</span> <span class="o">=</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1">#</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_antibiotic</span><span class="o">=</span><span class="n">c_abx</span><span class="p">,</span>
+                 <span class="n">column_organism</span><span class="o">=</span><span class="n">c_org</span><span class="p">,</span>
+                 <span class="n">column_date</span><span class="o">=</span><span class="n">c_dat</span><span class="p">,</span>
+                 <span class="n">column_outcome</span><span class="o">=</span><span class="n">c_out</span><span class="p">,</span>
+                 <span class="n">column_labnumber</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">dfmt</span><span class="o">=</span><span class="s1">&#39;%Y-%M-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        column_antibiotic : string</span>
+<span class="sd">          The column name with the the antibiotic values</span>
+
+<span class="sd">        column_organism : string</span>
+<span class="sd">          The column name with the organism values</span>
+
+<span class="sd">        column_date : string</span>
+<span class="sd">          The column name with the dates</span>
+
+<span class="sd">        column_labnumber : string</span>
+<span class="sd">          The column name with the laboraory number</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create dictionary to rename columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">column_antibiotic</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span>
+                               <span class="n">column_organism</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span>
+                               <span class="n">column_date</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">,</span>
+                               <span class="n">column_outcome</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_out</span><span class="p">}</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1">#</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">_by_category_groupby</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method returns the grouping list.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        by_category : string</span>
+<span class="sd">          The category to group by from pairs, organisms or antibiotics.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Define how to return the overall results.</span>
+        <span class="k">if</span> <span class="n">by_category</span> <span class="o">==</span> <span class="s1">&#39;organisms&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_out</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">by_category</span> <span class="o">==</span> <span class="s1">&#39;antibiotics&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_out</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">by_category</span> <span class="o">==</span> <span class="s1">&#39;pairs&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_out</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The by_category parameter select must be one of&quot;</span>
+                             <span class="s2">&quot;the following [pairs, organisms, antibiotics]; &quot;</span>
+                             <span class="s2">&quot;the value &lt;</span><span class="si">%s</span><span class="s2">&gt; was found.&quot;</span> <span class="o">%</span> <span class="n">by_category</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Frequency.fit"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.freq.Frequency.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+    <span class="k">def</span> <span class="nf">_compute_overall</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method computes the overall frequency count.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe : dataframe-like</span>
+<span class="sd">          The dataframe with the microbiology data</span>
+
+<span class="sd">        by_category</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dataframe</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the definition of groupby</span>
+        <span class="n">groupby</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_by_category_groupby</span><span class="p">(</span><span class="n">by_category</span><span class="p">)</span>
+        <span class="c1"># Compute results</span>
+        <span class="k">return</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupby</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_compute_independent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method computes the independent time intervals frequency.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe:  dataframe-like</span>
+<span class="sd">          The microbiology dataframe with the following columns.</span>
+
+<span class="sd">        by_category: string</span>
+<span class="sd">          The category to group the outcomes. The outcomes are grouped in pairs</span>
+<span class="sd">          formed by (organism, antibiotic) by default. However, these can be</span>
+<span class="sd">          also grouped by organisms or antibiotics.</span>
+
+<span class="sd">        fs : string</span>
+<span class="sd">          The frequency sample (e.g. 1D, 1M, 7D, ...)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dataframe</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Format the dataframe to have datetime index</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">)</span>
+
+        <span class="c1"># Get the definition of groupby</span>
+        <span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">fs</span><span class="p">)]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_by_category_groupby</span><span class="p">(</span><span class="n">by_category</span><span class="p">)</span>
+
+        <span class="c1"># Compute independent window</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupby</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Resample</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">])</span> \
+            <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">fs</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> \
+            <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">dataframe</span>
+
+    <span class="k">def</span> <span class="nf">_compute_overlapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                             <span class="n">wshift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+                             <span class="n">wsize</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method computes the overlapping time intervals frequency</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe:  dataframe-like</span>
+<span class="sd">          The microbiology dataframe with the following columns.</span>
+
+<span class="sd">        by_category: string</span>
+<span class="sd">          The category to group the outcomes. The outcomes are grouped in pairs</span>
+<span class="sd">          formed by (organism, antibiotic) by default. However, these can be</span>
+<span class="sd">          also grouped by organisms or antibiotics.</span>
+
+<span class="sd">        wshift : string</span>
+<span class="sd">          The shift between consecutive windows (OTI).</span>
+
+<span class="sd">        wsize : integer</span>
+<span class="sd">          The size of the window (OTI)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dataframe</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Format the dataframe to have datetime index</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_independent</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">dataframe</span><span class="p">,</span>
+                                              <span class="n">by_category</span><span class="o">=</span><span class="n">by_category</span><span class="p">,</span>
+                                              <span class="n">fs</span><span class="o">=</span><span class="n">wshift</span><span class="p">)</span>
+
+        <span class="c1"># Reset index</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+        <span class="c1"># Compute rolling window</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">)</span> \
+                   <span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">wsize</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Drop index level (which appears when executing previous code)</span>
+        <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
+
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">)</span>
+
+        <span class="c1"># Resample</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">])</span> \
+            <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">wshift</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> \
+            <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">dataframe</span>
+
+<div class="viewcode-block" id="Frequency.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.freq.Frequency.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;overall&#39;</span><span class="p">,</span>
+                <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                <span class="n">fs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">wshift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">wsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function computes the frequencies.</span>
+
+<span class="sd">        The method allows to compute the overall frequencies, the frequencies for</span>
+<span class="sd">        independent time intervals (ITI) such as monthly or yearly and the</span>
+<span class="sd">        frequencies for overlapping time intervals (OTI) in which the parameters</span>
+<span class="sd">        wshift and wsize need to be specified.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe:  dataframe-like</span>
+<span class="sd">          The microbiology dataframe with the following columns.</span>
+
+<span class="sd">        by_category: string</span>
+<span class="sd">          The category to group the outcomes. The outcomes are grouped in pairs</span>
+<span class="sd">          formed by (organism, antibiotic) by default. However, these can be</span>
+<span class="sd">          also grouped by organisms or antibiotics.</span>
+
+<span class="sd">        fs : string</span>
+<span class="sd">          The frequency sample (e.g. 1D, 1M, 7D, ...)</span>
+
+<span class="sd">        wshift : integer</span>
+<span class="sd">          The shift between consecutive windows (OTI).</span>
+
+<span class="sd">        wsize : integer</span>
+<span class="sd">          The size of the window (OTI)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dataframe</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check that it is a dataframe</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The instance passed as argument needs to be a pandas &quot;</span>
+                            <span class="s2">&quot;DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert &quot;</span>
+                            <span class="s2">&quot;the input accordingly.&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+        <span class="c1"># Rename columns</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Ensure date columns has date objects.</span>
+        <span class="n">dataframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">])</span>
+
+        <span class="c1"># -----------------------</span>
+        <span class="c1"># Compute</span>
+        <span class="c1"># -----------------------</span>
+        <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;overall&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_overall</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">dataframe</span><span class="p">,</span>
+                                         <span class="n">by_category</span><span class="o">=</span><span class="n">by_category</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;ITI&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_independent</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">dataframe</span><span class="p">,</span>
+                                             <span class="n">by_category</span><span class="o">=</span><span class="n">by_category</span><span class="p">,</span>
+                                             <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;OTI&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_overlapping</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">dataframe</span><span class="p">,</span>
+                                             <span class="n">by_category</span><span class="o">=</span><span class="n">by_category</span><span class="p">,</span>
+                                             <span class="n">wshift</span><span class="o">=</span><span class="n">wshift</span><span class="p">,</span>
+                                             <span class="n">wsize</span><span class="o">=</span><span class="n">wsize</span><span class="p">)</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># Import libraries</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+    <span class="c1"># Import own module</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../../&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Import specific libraries</span>
+    <span class="kn">from</span> <span class="nn">pyAMR.datasets</span> <span class="kn">import</span> <span class="n">load</span>
+
+    <span class="c1"># Set matplotlib</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+    <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+
+    <span class="c1"># -----------------------</span>
+    <span class="c1"># Load data</span>
+    <span class="c1"># -----------------------</span>
+    <span class="c1"># Load sample data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">dataset_epicimpoc_susceptibility_year</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
+
+    <span class="c1"># Keep only relevant columns</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;organismCode&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;dateReceived&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;sensitivity&#39;</span><span class="p">]]</span>
+
+    <span class="c1"># Filter for two examples</span>
+    <span class="n">is_org</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;organismCode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ECOL&#39;</span>
+    <span class="n">is_abx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;antibioticCode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;ATAZ&#39;</span><span class="p">])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">is_abx</span> <span class="o">&amp;</span> <span class="n">is_org</span><span class="p">]</span>
+
+    <span class="c1"># -------------------------</span>
+    <span class="c1"># Create frequency instance</span>
+    <span class="c1"># -------------------------</span>
+    <span class="c1"># Create instance</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">Frequency</span><span class="p">(</span><span class="n">column_antibiotic</span><span class="o">=</span><span class="s1">&#39;antibioticCode&#39;</span><span class="p">,</span>
+                     <span class="n">column_organism</span><span class="o">=</span><span class="s1">&#39;organismCode&#39;</span><span class="p">,</span>
+                     <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;dateReceived&#39;</span><span class="p">,</span>
+                     <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------</span>
+    <span class="c1"># Examples compute overall</span>
+    <span class="c1"># ------------------------</span>
+    <span class="c1"># Examples compute overall</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">)</span>
+    <span class="n">antibiotics</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;antibiotics&#39;</span><span class="p">)</span>
+    <span class="n">organisms</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;organisms&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="c1"># print pairs.head(10)</span>
+    <span class="c1"># print antibiotics.head(10)</span>
+    <span class="c1"># print organisms.head(10)</span>
+
+    <span class="c1"># -------------------------------------------</span>
+    <span class="c1"># Examples compute independent time intervals</span>
+    <span class="c1"># -------------------------------------------</span>
+    <span class="c1"># Examples compute ITI</span>
+    <span class="n">daily</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;ITI&#39;</span><span class="p">,</span>
+                         <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                         <span class="n">fs</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">)</span>
+
+    <span class="n">monthly</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;ITI&#39;</span><span class="p">,</span>
+                           <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                           <span class="n">fs</span><span class="o">=</span><span class="s1">&#39;1M&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="c1"># print daily.head(10)</span>
+    <span class="c1"># print monthly.head(10)</span>
+
+    <span class="c1"># -------------------------------------------</span>
+    <span class="c1"># Examples compute overlapping time intervals</span>
+    <span class="c1"># -------------------------------------------</span>
+    <span class="c1"># Examples compute OTI (daily)</span>
+    <span class="n">oti_1</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;OTI&#39;</span><span class="p">,</span>
+                         <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                         <span class="n">wshift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+                         <span class="n">wsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># Examples compute OTI (monthly)</span>
+    <span class="n">oti_2</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;OTI&#39;</span><span class="p">,</span>
+                         <span class="n">by_category</span><span class="o">=</span><span class="s1">&#39;pairs&#39;</span><span class="p">,</span>
+                         <span class="n">wshift</span><span class="o">=</span><span class="s1">&#39;1M&#39;</span><span class="p">,</span>
+                         <span class="n">wsize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># ----------------</span>
+    <span class="c1"># Plot</span>
+    <span class="c1"># ----------------</span>
+    <span class="c1"># Show comparison for each pair</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+    <span class="c1"># Flatten axes</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+    <span class="c1"># Plot ITI (daily)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">daily</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])):</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">pair</span><span class="p">,</span>
+                               <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                               <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Plot ITI (monthly)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">monthly</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])):</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">pair</span><span class="p">,</span>
+                               <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                               <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Plot OTI</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">oti_1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])):</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">pair</span><span class="p">,</span>
+                               <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                               <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># Plot OTI</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">oti_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])):</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">group</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">pair</span><span class="p">,</span>
+                               <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                               <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+    <span class="c1"># Set legend</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Set titles</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Daily&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Monthly&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;OTI(1D,5)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;OTI(1M,2)&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

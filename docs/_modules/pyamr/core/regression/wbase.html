@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pyamr.core.regression.wbase &mdash; pyamr 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> pyamr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyamr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyamr.core.regression.wbase</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyamr.core.regression.wbase</h1><div class="highlight"><pre>
+<span></span><span class="c1">###############################################################################</span>
+<span class="c1"># Author: Bernard Hernandez</span>
+<span class="c1"># Filename: 03-main-create-sari-idxs.py</span>
+<span class="c1"># Description : This file contains differnent statistics used in time-series.</span>
+<span class="c1">#               What it mainly does is to format the output of tests provided</span>
+<span class="c1">#               by external libraries and return them in a dataframe.</span>
+<span class="c1">#</span>
+<span class="c1"># TODO: Move it to a module.</span>
+<span class="c1">###############################################################################</span>
+<span class="c1"># Libraries.</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+
+
+<div class="viewcode-block" id="BaseWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper">[docs]</a><span class="k">class</span> <span class="nc">BaseWrapper</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c1"># This is the name of the class.</span>
+    <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;BASE&#39;</span>
+
+    <span class="c1"># Main attributes of the class.</span>
+    <span class="n">_raw</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># The raw object (statsmodels, scipy, ...)</span>
+    <span class="n">_result</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dictionary with metrics filled in self._init_result().</span>
+    <span class="n">_config</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dictioanry with configuration filled in</span>
+    <span class="n">_conkwargs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_fitkwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                               INIT METHOD</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor empty defined just so grid_search works in main.</span>
+
+<span class="sd">        Note: Emptying the configuration attribute is important because when</span>
+<span class="sd">              calling grid_search, the self.__class__(args) calls the __init__</span>
+<span class="sd">              method of the instance and updates the self._config dictionary.</span>
+<span class="sd">              Since it has not been deepcopied, such modification will alter</span>
+<span class="sd">              previous wrappers created during the grid search.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conkwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fitkwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The name to identify this object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                        HELPER METHODS (PRIVATE)</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method allows to call series attributes from wrapper instance.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conkwargs</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conkwargs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitkwargs</span><span class="p">:</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitkwargs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span>
+
+    <span class="k">def</span> <span class="nf">_cast_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method casts an element to float when feasible.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">e</span>
+
+    <span class="k">def</span> <span class="nf">_init_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method fills self._results with the scores in self._raw.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">_init_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method fills self._config with the configuration.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                              BASIC METHODS</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.fargs"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.fargs">[docs]</a>    <span class="k">def</span> <span class="nf">fargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method returns elements in kwargs which are function inputs.&quot;&quot;&quot;</span>
+        <span class="c1"># Get all parameters for the function.</span>
+        <span class="n">prms</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getargspec</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+        <span class="c1"># Create dictionary and return</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">prms</span><span class="o">.</span><span class="n">args</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.attrs"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.attrs">[docs]</a>    <span class="k">def</span> <span class="nf">attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method returns all the defined attributes as tuples.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isroutine</span><span class="p">(</span><span class="n">a</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.methods"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.methods">[docs]</a>    <span class="k">def</span> <span class="nf">methods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method returns all the defined methods as tuples.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isroutine</span><span class="p">(</span><span class="n">a</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.save"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method saves the wrapper.&quot;&quot;&quot;</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.load"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method loads the wrapper.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+        <span class="c1"># ---------------------------------------------------------------------------</span>
+
+    <span class="c1">#                               GRID SEARCH</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.grid_search"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.grid_search">[docs]</a>    <span class="k">def</span> <span class="nf">grid_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method computes grid search.</span>
+
+<span class="sd">        It creates all the possible combinations combining the arguments passed.</span>
+<span class="sd">        Such arguments should be for the constructor and the fit methods. The</span>
+<span class="sd">        results are stored in an array with the corresponding wrapper instances.</span>
+
+<span class="sd">        Notes: The wrappers need to have the method fit implemented.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        con_kwargs : arguments to be passed to the constructor method.</span>
+<span class="sd">        fit_kwargs : arguments to be passed to the fit method.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        summary : summary with all the elements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create empty list.</span>
+        <span class="n">grid_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UEVAAA&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Loop for all possible combinations.</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ParameterGrid</span><span class="p">(</span><span class="n">grid_params</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Create model and fit</span>
+                <span class="n">grid_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Throw warning</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Iteration </span><span class="si">%s</span><span class="s2">... failed: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">)</span>
+
+        <span class="c1"># Return summary.</span>
+        <span class="k">return</span> <span class="n">grid_results</span></div>
+
+    <span class="c1"># --------------------------------------------------------------------------</span>
+    <span class="c1">#                       CREATES SUMMARY DATAFRAMES</span>
+    <span class="c1"># --------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.from_list_dataframe"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.from_list_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">from_list_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrapper_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This methods creates a dataframe summary from a list.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        wrapper_list : list with wrapper objects.</span>
+<span class="sd">        flabel       : if include the class _name in the index.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        summary : pandas dataframe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create summary.</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+        <span class="c1"># Loop filling the summary.</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">wrapper</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">wrapper_list</span><span class="p">):</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">wrapper</span><span class="o">.</span><span class="n">as_series</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">summary</span><span class="p">,</span> <span class="n">results</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">summary</span><span class="o">.</span><span class="n">T</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.grid_search_dataframe"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.grid_search_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">grid_search_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method computes grid search and stores results in a dataframe.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        con_kwargs : arguments to be passed to the constructor method.</span>
+<span class="sd">        fit_kwargs : arguments to be passed to the fit method.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        summary : summary with all the elements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Compute grid search.</span>
+        <span class="n">grid_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_search</span><span class="p">(</span><span class="n">grid_params</span><span class="o">=</span><span class="n">grid_params</span><span class="p">)</span>
+
+        <span class="c1"># Create empty dataframe.</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+        <span class="c1"># Loop wrappers and fill it.</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">wrapper</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid_results</span><span class="p">):</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">wrapper</span><span class="o">.</span><span class="n">as_series</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">summary</span><span class="p">,</span> <span class="n">results</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Return summary.</span>
+        <span class="k">return</span> <span class="n">summary</span></div>
+
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                                OVERRIDE</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="BaseWrapper.as_series"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.as_series">[docs]</a>    <span class="k">def</span> <span class="nf">as_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flabel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method returns a series with all the information.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        label : label to concatenate to index name (e.g. trend to label-trend).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        series : pandas series with the results, configuration and model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Concatenate the configuration.</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">})</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span><span class="p">()})</span>
+        <span class="c1"># No label.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">flabel</span><span class="p">:</span> <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="c1"># Concat label at the begining of the index.</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_name&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">label</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">x</span><span class="p">)</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method displays the final summary.&quot;&quot;&quot;</span>
+        <span class="c1"># Call summary function from _raw (if exists).</span>
+        <span class="n">fsummary</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">,</span> <span class="s2">&quot;summary&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">fsummary</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">fsummary</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">)</span>
+        <span class="c1"># Show the series information.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_series</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BaseWrapper.fit"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wbase.BaseWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method performs the fit.&quot;&quot;&quot;</span>
+        <span class="c1"># Empty results and update configuration.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Set pandas configuration.</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="c1"># Create and fill a base statistic wrapper.</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">BaseWrapper</span><span class="p">()</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">}</span>
+
+    <span class="c1"># Get attributes tuple list.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">attrs</span><span class="p">())</span>
+
+    <span class="c1"># Get methods tuple list.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">methods</span><span class="p">())</span>
+
+    <span class="c1"># Get series with parameters.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+
+    <span class="c1"># Print summary.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+
+    <span class="c1"># Quick access to an attribute.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+
+    <span class="c1"># -----------</span>
+    <span class="c1"># Grid search</span>
+    <span class="c1"># -----------</span>
+    <span class="c1"># Parameters</span>
+    <span class="n">con_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;con_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">],</span>
+        <span class="s1">&#39;con_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">fit_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;fit_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Grid search method</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">grid_search_dataframe</span><span class="p">(</span><span class="n">con_kwargs</span><span class="o">=</span><span class="n">con_params</span><span class="p">,</span>
+                                      <span class="n">fit_kwargs</span><span class="o">=</span><span class="n">fit_params</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bernard Hernandez.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

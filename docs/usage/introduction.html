@@ -102,7 +102,7 @@
 <p class="caption"><span class="caption-text">Example Galleries</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with AMR indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
@@ -247,7 +247,7 @@ since it is widely accepted by clinicians as detailed in the UK five year strate
 </tbody>
 </table>
 <ul>
-<li><p>Single Antibiotic Resistance Index (SARI)</p>
+<li><p><strong>Single Antibiotic Resistance Index (SARI)</strong></p>
 <blockquote>
 <div><p>This index describes the proportion of resistant isolates for a given set of susceptibility
 tests. It provides a value within the range [0,1] where values close to one indicate high
@@ -255,11 +255,11 @@ resistance. It is agnostic to pathogen, antibiotic and time. The variables R, I 
 the number of susceptibility tests with Resistant, Intermediate and Susceptible outcomes
 respectively. The definition might vary slightly since the intermediate category is not always
 considered.</p>
-<p>SARI = R + I / R + I + S</p>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.SARI</span></code></p>
 <p>Examples: XXX | XXX | XXX</p>
 </div></blockquote>
 </li>
-<li><p>Multiple Antibiotic Resistance Index (MARI)</p>
+<li><p><strong>Multiple Antibiotic Resistance Index (MARI)</strong></p>
 <blockquote>
 <div><p>This index describes the ratio of antimicrobials tested (T) to which a pathogen is resistant (R).
 It provides a value within the range [0,1] where values close to one indicate high multi-drug
@@ -267,10 +267,11 @@ resistance. It highly depends on the antimicrobials to which the pathogen is tes
 tested antimicrobials vary among health care centres and time, comparison and analysis of its
 evolution in time is not straight forward. In addition, antibiotics which are intrinsically resistant
 should not be considered.</p>
-<p>MARI_{ISO} = R / T</p>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.MARI</span></code></p>
+<p>Examples: XXX | XXX | XXX</p>
 </div></blockquote>
 </li>
-<li><p>Drug Resistance Index (DRI)</p>
+<li><p><strong>Drug Resistance Index (DRI)</strong></p>
 <blockquote>
 <div><p>This index measures the proportion of pathogens that are resistant to the antimicrobials used
 to treat them. It provides a value within the range [0,1] where values close to one indicate
@@ -278,12 +279,29 @@ high resistant for frequent antimicrobials. The variable ρik is the proportion 
 among organism i to antimicrobial k and qik is the frequency of drug k used to treat organism i.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Add formula and/or reference.</p>
+<p>Not implemented!</p>
 </div>
 </div></blockquote>
 </li>
-<li><p>Single Antibiotic Resistance Trend (SART)</p></li>
-<li><p>Antimicrobial Spectrum of Activity Index (ASAI)</p></li>
+<li><p><strong>Antimicrobial Spectrum of Activity Index (ASAI)</strong></p>
+<blockquote>
+<div><p>The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
+these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
+intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both Gram-positive
+and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited activity and are
+effective only against particular species of bacteria.</p>
+<p>See: <a class="reference internal" href="../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI" title="pyamr.core.asai.ASAI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></a></p>
+<p>Examples: XXX | XXX | XXX</p>
+</div></blockquote>
+</li>
+<li><p><strong>Single Antibiotic Resistance Trend (SART)</strong></p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending!</p>
+</div>
+</div></blockquote>
+</li>
 </ul>
 </div>
 </div>
