@@ -23,7 +23,7 @@ Describe
 
 .. todo: Simplify and explain
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-129
+.. GENERATED FROM PYTHON SOURCE LINES 7-141
 
 
 
@@ -38,101 +38,168 @@ Describe
 
  .. code-block:: none
 
+    Index(['date_received', 'date_outcome', 'patient_id', 'laboratory_number', 'specimen_code', 'specimen_name', 'specimen_description', 'microorganism_code', 'microorganism_name', 'antimicrobial_code', 'antimicrobial_name', 'sensitivity_method', 'sensitivity', 'mic', 'reported'], dtype='object')
+         index  specimen_code                   specimen_name
+    0   URICUL         0.2905                   Urine Culture
+    1   WOUCUL         0.2234                   Wound Culture
+    2   BLDCUL         0.1042                   Blood Culture
+    3   SPTCUL         0.0926                  Sputum Culture
+    4   XINCUL         0.0440     Misc Cross Infection Screen
+    5   URNCUL         0.0370                     Urine Micro
+    6   MRSCUL         0.0197                     MRSA Screen
+    7   T&FCUL         0.0197                             NaN
+    8   TIPCUL         0.0197        Tips and Devices Culture
+    9   EYECUL         0.0185                     Eye Culture
+    10  ENTCUL         0.0174                             NaN
+    11  VAGCUL         0.0162            High Vaginal Culture
+    12  NEOCUL         0.0139                 Neonatal Screen
+    13  TISCUL         0.0081  Tissue/Biopsy Culture (Non-TB)
+    14  9TIPCS         0.0081            TIPS AND DEVICES MCS
+    15  MNGCUL         0.0069      MRSA Nose and Groin Screen
+    16  BFLCUL         0.0058              Body Fluid Culture
+    17   9MRSN         0.0046                             NaN
+    18  GNGCUL         0.0046                      GC Culture
+    19  LVSCUL         0.0046             Low Vaginal Culture
+    20  9THRCS         0.0035                             NaN
+    21  ETTCUL         0.0035   Endotracheal Aspirate Culture
+    22  CSFCUL         0.0035                             NaN
+    23  9EARCS         0.0035                             NaN
+    24   9MRSG         0.0023                  mrsa groin mcs
+    25  CROCUL         0.0023      Carbapenem Res Orgs Screen
+    26   9BWCS         0.0023          bronchial washings mcs
+    27  DRFCUL         0.0023             Drain Fluid Culture
+    28  9ETTCS         0.0023           endotracheal tube mcs
+    29  PSWCUL         0.0023                Pus Swab Culture
+    30  PUSCUL         0.0023            Pus Aspirate Culture
+    31  FAECUL         0.0012                             NaN
+    32  SKNCUL         0.0012                    Skin Culture
+    33  BALCUL         0.0012  Bronchoalveolar Lavage Culture
+    34  PDFCUL         0.0012                     PDF Culture
+    35  SEMCUL         0.0012                             NaN
+    36  EARCUL         0.0012                     Ear Culture
+    37  9DERCS         0.0012               Skin culture, MCS
+    38  9PENCS         0.0012                             NaN
+    39  9PUSCS         0.0012                             NaN
 
-    Total cultures: 326984
+    Total cultures: 864
 
     Specimens (proportions)
-    URICUL    3.9871e-01
-    WOUCUL    2.1412e-01
-    SPTCUL    5.5841e-02
-    BLDCUL    4.7745e-02
-    GUMCUL    4.4072e-02
-                 ...    
-    9MRSWE    3.0583e-06
-    9LUNGC    3.0583e-06
-    9CPAP     3.0583e-06
-    URISCH    3.0583e-06
-    FSTCUL    3.0583e-06
-    Name: specimen_code, Length: 121, dtype: float64
+         index  specimen_code                   specimen_name
+    0   URICUL         0.2905                   Urine Culture
+    1   WOUCUL         0.2234                   Wound Culture
+    2   BLDCUL         0.1042                   Blood Culture
+    3   SPTCUL         0.0926                  Sputum Culture
+    4   XINCUL         0.0440     Misc Cross Infection Screen
+    5   URNCUL         0.0370                     Urine Micro
+    6   MRSCUL         0.0197                     MRSA Screen
+    7   T&FCUL         0.0197                             NaN
+    8   TIPCUL         0.0197        Tips and Devices Culture
+    9   EYECUL         0.0185                     Eye Culture
+    10  ENTCUL         0.0174                             NaN
+    11  VAGCUL         0.0162            High Vaginal Culture
+    12  NEOCUL         0.0139                 Neonatal Screen
+    13  TISCUL         0.0081  Tissue/Biopsy Culture (Non-TB)
+    14  9TIPCS         0.0081            TIPS AND DEVICES MCS
+    15  MNGCUL         0.0069      MRSA Nose and Groin Screen
+    16  BFLCUL         0.0058              Body Fluid Culture
+    17   9MRSN         0.0046                             NaN
+    18  GNGCUL         0.0046                      GC Culture
+    19  LVSCUL         0.0046             Low Vaginal Culture
+    20  9THRCS         0.0035                             NaN
+    21  ETTCUL         0.0035   Endotracheal Aspirate Culture
+    22  CSFCUL         0.0035                             NaN
+    23  9EARCS         0.0035                             NaN
+    24   9MRSG         0.0023                  mrsa groin mcs
+    25  CROCUL         0.0023      Carbapenem Res Orgs Screen
+    26   9BWCS         0.0023          bronchial washings mcs
+    27  DRFCUL         0.0023             Drain Fluid Culture
+    28  9ETTCS         0.0023           endotracheal tube mcs
+    29  PSWCUL         0.0023                Pus Swab Culture
+    30  PUSCUL         0.0023            Pus Aspirate Culture
+    31  FAECUL         0.0012                             NaN
+    32  SKNCUL         0.0012                    Skin Culture
+    33  BALCUL         0.0012  Bronchoalveolar Lavage Culture
+    34  PDFCUL         0.0012                     PDF Culture
+    35  SEMCUL         0.0012                             NaN
+    36  EARCUL         0.0012                     Ear Culture
+    37  9DERCS         0.0012               Skin culture, MCS
+    38  9PENCS         0.0012                             NaN
+    39  9PUSCS         0.0012                             NaN
 
     Microorganisms (proportions)
-    SAUR           2.6864e-01
-    ECOL           2.1908e-01
-    PAER           6.0153e-02
-    COLIF          5.1335e-02
-    NGON           4.6888e-02
-                      ...    
-    A_MSCROFULA    5.4140e-07
-    A_AGPB         2.7070e-07
-    QISO           2.7070e-07
-    FUSOB          2.7070e-07
-    A_MSIMAE       2.7070e-07
-    Name: microorganism_code, Length: 357, dtype: float64
+    SAUR           0.2648
+    ECOL           0.1898
+    CNS            0.0820
+    KPNE           0.0614
+    PAER           0.0527
+                    ...  
+    GHAEM          0.0003
+    CAMPY          0.0003
+    A_ISOLATED     0.0002
+    PANA           0.0001
+    A_MANAEROBE    0.0001
+    Name: microorganism_code, Length: 63, dtype: float64
 
     Antimicrobials (proportions)
-    ACIP          8.6948e-02
-    AGEN          7.5419e-02
-    ATRI          7.0210e-02
-    AAUG          4.6010e-02
-    ATET          3.8434e-02
-                     ...    
-    AGEN2         5.4140e-07
-    A_CEPHAZOL    2.7070e-07
-    A_RIFABUTI    2.7070e-07
-    A_TERBINAF    2.7070e-07
-    A_KETOCONA    2.7070e-07
-    Name: antimicrobial_code, Length: 93, dtype: float64
+    ACIP     0.0750
+    AGEN     0.0712
+    ATRI     0.0633
+    AAUG     0.0444
+    ATET     0.0395
+              ...  
+    ACLZ     0.0001
+    AFLUZ    0.0001
+    APCZ     0.0001
+    ADAP     0.0001
+    AITR     0.0001
+    Name: antimicrobial_code, Length: 67, dtype: float64
 
     Pairs (proportions
     microorganism_code  antimicrobial_code
-    ECOL                AAUG                  2.5175e-02
-                        ACIP                  2.5175e-02
-                        ATRI                  2.4684e-02
-    SAUR                AMET                  2.3324e-02
-                        APEN                  2.2273e-02
-                                                 ...    
-    A_YPSEUDOTU         ACXM                  2.7070e-07
-                        ACXT                  2.7070e-07
-                        AGEN                  2.7070e-07
-                        AIMP                  2.7070e-07
-    YSTPCA              AVOR                  2.7070e-07
-    Length: 7185, dtype: float64
+    SAUR                AMET                  0.0224
+                        ACLI                  0.0212
+                        APEN                  0.0212
+                        AERY                  0.0212
+                        AFUS                  0.0212
+                                               ...  
+    EFAS                ACHL                  0.0001
+    ECLO                AFOS                  0.0001
+                        ACZA                  0.0001
+    EAER                AESBL                 0.0001
+    VIRST               ATET                  0.0001
+    Length: 853, dtype: float64
 
 
     Freqs:
-    SENSITIVITY        fix  hide  highly resistant  intermediate  not done  resistant  sensitive
-    SPECIE ANTIBIOTIC                                                                           
-    ABAU   AAMI        0.0   0.0               0.0          10.0       0.0      378.0      659.0
-           AAMO        0.0   0.0               0.0           2.0       0.0      720.0       28.0
-           AAMP        0.0   0.0               0.0           0.0       0.0       12.0        0.0
-           AAMPC       0.0   0.0               0.0           0.0       0.0       34.0       84.0
-           AAUG        0.0   0.0               0.0           6.0       1.0      638.0      195.0
-    ...                ...   ...               ...           ...       ...        ...        ...
-    YSTPCA ATET        0.0   0.0               0.0           0.0       0.0        2.0        3.0
-           ATIG        0.0   0.0               0.0           0.0       0.0        0.0        1.0
-           ATRI        0.0   0.0               0.0           0.0       0.0        0.0        3.0
-           AVAN        0.0   0.0               0.0           0.0       0.0        1.0        1.0
-           AVOR        0.0   0.0               0.0           0.0       0.0        0.0        1.0
+    SENSITIVITY        highly resistant  intermediate  not done  resistant  sensitive
+    SPECIE ANTIBIOTIC                                                                
+    ABAU   AAMI                     0.0           0.0       0.0        4.0        7.0
+           AAMO                     0.0           0.0       0.0        7.0        0.0
+           AAMPC                    0.0           0.0       0.0        1.0        0.0
+           AAUG                     0.0           0.0       0.0        5.0        2.0
+           AAZT                     0.0           0.0       0.0        2.0        0.0
+    ...                             ...           ...       ...        ...        ...
+    VIRST  ACLI                     0.0           0.0       0.0        0.0        1.0
+           AERY                     0.0           0.0       0.0        1.0        0.0
+           AMLS                     0.0           0.0       0.0        1.0        0.0
+           APEN                     0.0           0.0       0.0        0.0        1.0
+           ATET                     0.0           0.0       0.0        0.0        1.0
 
-    [7185 rows x 7 columns]
+    [853 rows x 5 columns]
     Count
-    SPECIE       ANTIBIOTIC
-    ECOL         AAUG          93001.0
-                 ACIP          93000.0
-                 ATRI          91187.0
-    SAUR         AMET          86164.0
-                 APEN          82280.0
-                                ...   
-    A_YPSEUDOTU  ACXM              1.0
-                 ACXT              1.0
-                 AGEN              1.0
-                 AIMP              1.0
-    YSTPCA       AVOR              1.0
-    Length: 7185, dtype: float64
-    c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\pandas\plotting\_matplotlib\core.py:1583: MatplotlibDeprecationWarning:
-
-    normalize=None does not normalize if the sum is less than 1 but this behavior is deprecated since 3.3 until two minor releases later. After the deprecation period the default value will be normalize=True. To prevent normalization pass normalize=False 
-
+    SPECIE  ANTIBIOTIC
+    SAUR    AMET          224.0
+            ACLI          212.0
+            APEN          212.0
+            AERY          212.0
+            AFUS          212.0
+                          ...  
+    EFAS    ACHL            1.0
+    ECLO    AFOS            1.0
+            ACZA            1.0
+    EAER    AESBL           1.0
+    VIRST   ATET            1.0
+    Length: 853, dtype: float64
 
 
 
@@ -157,6 +224,7 @@ Describe
     # Import pyamr
     from pyamr.core.freq import Frequency
     from pyamr.datasets.load import load_data_nhs
+    from pyamr.utils.plot import create_mapper
 
     # Configure seaborn style (context=talk)
     sns.set(style="white")
@@ -180,22 +248,24 @@ Describe
     # -------------------------
     # Replace codes
     replace_codes = {
-      '9MRSN': 'MRSCUL',
-      'URINE CULTURE': 'URICUL',
-      'WOUND CULTURE': 'WOUCUL',
-      'BLOOD CULTURE': 'BLDCUL',
-      'SPUTUM CULTURE': 'SPTCUL',
-      'CSF CULTURE': 'CSFCUL',
-      'EYE CULTURE': 'EYECUL',
-      'GENITALCUL': 'GENCUL',
-      'NEONATAL SCREEN': 'NEOCUL',
+      #'9MRSN': 'MRSCUL',
+      #'URINE CULTURE': 'URICUL',
+      #'WOUND CULTURE': 'WOUCUL',
+      #'BLOOD CULTURE': 'BLDCUL',
+      #'SPUTUM CULTURE': 'SPTCUL',
+      ##'CSF CULTURE': 'CSFCUL',
+      #'EYE CULTURE': 'EYECUL',
+      #'GENITALCUL': 'GENCUL',
+      #'NEONATAL SCREEN': 'NEOCUL',
     }
 
     # ----------------------------------------------------------
     #                       Main
     # ----------------------------------------------------------
     # Load data
-    data, antibiotics, organisms = load_data_nhs()
+    data, antibiotics, organisms = load_data_nhs(nrows=1000)
+
+    print(data.columns)
 
     # Replace
     data.specimen_code = \
@@ -207,10 +277,19 @@ Describe
     # The total number of cultures
     ncultures = data.laboratory_number.nunique()
 
+
     # The percentage of each specimen
     pspecimens = data \
         .groupby('laboratory_number').head(1) \
-        .specimen_code.value_counts(normalize=True)
+        .specimen_code.value_counts(normalize=True) \
+        .to_frame().reset_index()
+
+    mapper = create_mapper(data, 'specimen_code', 'specimen_name')
+
+    pspecimens['specimen_name'] = pspecimens['index'].map(mapper)
+
+    print(pspecimens)
+
 
     # The percentages of each organism
     pmicroorganisms = data \
@@ -229,7 +308,7 @@ Describe
     # Show
     print("\nTotal cultures: %s" % ncultures)
     print("\nSpecimens (proportions)")
-    print(pspecimens)
+    print(pspecimens.to_string())
     print("\nMicroorganisms (proportions)")
     print(pmicroorganisms)
     print("\nAntimicrobials (proportions)")
@@ -263,14 +342,14 @@ Describe
 
 
 
-    pspecimens.plot(kind='pie', ylabel='')
+    pspecimens.specimen_code.plot(kind='pie', ylabel='')
     plt.suptitle('SPECIMEN')
 
     plt.show()
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  15.470 seconds)
+   **Total running time of the script:** ( 0 minutes  0.263 seconds)
 
 
 .. _sphx_glr_download__examples_reports_nhs_plot_describe.py:

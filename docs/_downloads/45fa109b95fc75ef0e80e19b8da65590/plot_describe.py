@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 # Import pyamr
 from pyamr.core.freq import Frequency
 from pyamr.datasets.load import load_data_nhs
+from pyamr.utils.plot import create_mapper
 
 # Configure seaborn style (context=talk)
 sns.set(style="white")
@@ -40,22 +41,24 @@ np.set_printoptions(precision=2)
 # -------------------------
 # Replace codes
 replace_codes = {
-  '9MRSN': 'MRSCUL',
-  'URINE CULTURE': 'URICUL',
-  'WOUND CULTURE': 'WOUCUL',
-  'BLOOD CULTURE': 'BLDCUL',
-  'SPUTUM CULTURE': 'SPTCUL',
-  'CSF CULTURE': 'CSFCUL',
-  'EYE CULTURE': 'EYECUL',
-  'GENITALCUL': 'GENCUL',
-  'NEONATAL SCREEN': 'NEOCUL',
+  #'9MRSN': 'MRSCUL',
+  #'URINE CULTURE': 'URICUL',
+  #'WOUND CULTURE': 'WOUCUL',
+  #'BLOOD CULTURE': 'BLDCUL',
+  #'SPUTUM CULTURE': 'SPTCUL',
+  ##'CSF CULTURE': 'CSFCUL',
+  #'EYE CULTURE': 'EYECUL',
+  #'GENITALCUL': 'GENCUL',
+  #'NEONATAL SCREEN': 'NEOCUL',
 }
 
 # ----------------------------------------------------------
 #                       Main
 # ----------------------------------------------------------
 # Load data
-data, antibiotics, organisms = load_data_nhs()
+data, antibiotics, organisms = load_data_nhs(nrows=1000)
+
+print(data.columns)
 
 # Replace
 data.specimen_code = \
@@ -67,10 +70,19 @@ data = data.drop_duplicates()
 # The total number of cultures
 ncultures = data.laboratory_number.nunique()
 
+
 # The percentage of each specimen
 pspecimens = data \
     .groupby('laboratory_number').head(1) \
-    .specimen_code.value_counts(normalize=True)
+    .specimen_code.value_counts(normalize=True) \
+    .to_frame().reset_index()
+
+mapper = create_mapper(data, 'specimen_code', 'specimen_name')
+
+pspecimens['specimen_name'] = pspecimens['index'].map(mapper)
+
+print(pspecimens)
+
 
 # The percentages of each organism
 pmicroorganisms = data \
@@ -89,7 +101,7 @@ ppairs = ppairs.value_counts(normalize=True)
 # Show
 print("\nTotal cultures: %s" % ncultures)
 print("\nSpecimens (proportions)")
-print(pspecimens)
+print(pspecimens.to_string())
 print("\nMicroorganisms (proportions)")
 print(pmicroorganisms)
 print("\nAntimicrobials (proportions)")
@@ -123,7 +135,7 @@ print(freq_pairs.sum(axis=1).sort_values(ascending=False))
 
 
 
-pspecimens.plot(kind='pie', ylabel='')
+pspecimens.specimen_code.plot(kind='pie', ylabel='')
 plt.suptitle('SPECIMEN')
 
 plt.show()
