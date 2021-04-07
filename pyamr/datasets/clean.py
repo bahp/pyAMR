@@ -34,6 +34,24 @@ MICROORGANISM_CODE_MAP = {
 
 }
 
+SPECIMEN_CODE_MAP = {
+    'URNCUL': 'URICUL'
+}
+
+SPECIMEN_NAME_MAP = {
+    'Urine Micro': 'Urine Culture'
+    
+}
+# '9MRSN': 'MRSCUL',
+# 'URINE CULTURE': 'URICUL',
+# 'WOUND CULTURE': 'WOUCUL',
+# 'BLOOD CULTURE': 'BLDCUL',
+# 'SPUTUM CULTURE': 'SPTCUL',
+##'CSF CULTURE': 'CSFCUL',
+# 'EYE CULTURE': 'EYECUL',
+# 'GENITALCUL': 'GENCUL',
+# 'NEONATAL SCREEN': 'NEOCUL',
+
 SENSITIVITY_MAP = {
     'S': 'sensitive',
     'SS': 'sensitive',
