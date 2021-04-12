@@ -1,4 +1,5 @@
 # Libraries
+import numpy as np
 import pandas as pd
 
 # -------------------------------------------------------------------
@@ -52,7 +53,14 @@ SPECIMEN_NAME_MAP = {
 # 'GENITALCUL': 'GENCUL',
 # 'NEONATAL SCREEN': 'NEOCUL',
 
-SENSITIVITY_MAP = {
+METHOD_CODE_MAP = {
+    'DD': 'Disk Difussion',
+    'PHO': 'PHO',
+    'MIC': 'Minimum Inhibitory Concentration',
+    'MASTU': 'MASTU',
+}
+
+SENSITIVITY_CODE_MAP = {
     'S': 'sensitive',
     'SS': 'sensitive',
     'R': 'resistant',
@@ -61,9 +69,7 @@ SENSITIVITY_MAP = {
     'HR': 'highly resistant',
     'HIDE': 'hide',
     '<<DO NOT REPORT>>': 'hide',
-    '<<do not report>>': 'hide',
     'VALIDATION FIX ENTRY': 'fix',
-    'validation fix entry': 'fix'
 }
 
 ANTIMICROBIAL_NAME_MAP = {
@@ -148,6 +154,98 @@ def string_replace(series, remove={}):
     return series
 
 
+def clean_common(data):
+    """This method...
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
+    # ------------------------------
+    # Missing columns and replace
+    # ------------------------------
+    # All uppercase first
+    #data = data.apply(lambda x: x.astype(str).str.upper())
+    #data = data.replace('nan', value=np.nan)
+
+    # We should be able to generalise this to all, but remember
+    # that it is important to keep the NaN and not have an string
+    # representation 'nan'.
+    # Format title
+    for c in ['sensitivity_code',
+              'sensitivity_name',
+              'method_code',
+              'method_name']:
+        if c in data:
+            data[c] = data[c].str.upper()
+
+    # Add method name if it does not exist
+    if not 'method_name' in data:
+        if 'method_code' in data:
+            data['method_name'] = data.method_code
+
+    # Add sensitivity name if it does not exist
+    if not 'sensitivity_name' in data:
+        if 'sensitivity_code' in data:
+            data['senstivity_name'] = data.sensitivity_code
+
+    # Replace
+    data = data.replace({
+        'method_name': METHOD_CODE_MAP,
+        'sensitivity_name': SENSITIVITY_CODE_MAP,
+    })
+
+    # ------------------------------
+    # String formatting
+    # ------------------------------
+    # Format title
+    for c in ['patient_name',
+              'patient_surname']:
+        if c in data:
+            data[c] = data[c].str.title()
+
+    # Format lower
+    for c in ['antimicrobial_name',
+              'microorganism_name',
+              'sensitivity_name',
+              'method_name']:
+        if c in data:
+            data[c] = data[c].str.lower()
+
+    # Format upper
+    for c in ['antimicrobial_code',
+              'microorganism_code',
+              'sensitivity_code',
+              'method_code']:
+        if c in data:
+            data[c] = data[c].str.upper()
+
+    # ------------------------------
+    # Time formatting
+    # ------------------------------
+    # Format date-times
+    for c in ['date_received', 'date_outcome']:
+        if c in data:
+            data[c] = pd.to_datetime(data[c], errors='coerce')
+
+    # We could also use the convert_dtypes, however there is a big
+    # issue with the pd.NA values. I think that issue is only if
+    # we want to apply replace and there are pd.NA (only works with
+    # np.nan) but it should be fine now that all that has been done.
+    #data = data.convert_dtypes()
+
+    # Remove empty (sensitivity, date_received, ...?)
+    #data = data.dropna(how='any', subset=[])
+
+    # Drop duplicates
+    data = data.drop_duplicates()
+
+    # Return
+    return data
+
+
 def clean_clwsql008(data):
     """This method cleans microbiology data from clwsql008.
 
@@ -177,7 +275,9 @@ def clean_clwsql008(data):
     # Rename columns
     rename = {
         'DiagnosticTestID': 'uuid',
-        'PtNumber': 'patient_id',
+        'ReceiveDate': 'received_date',
+        'ReceiveTime': 'received_time',
+        'PtNumber': 'patient_hos_number',
         'AccNumber': 'laboratory_number',
         'BatTstCode': 'specimen_code',
         'OrderName': 'specimen_name',
@@ -187,36 +287,20 @@ def clean_clwsql008(data):
         'Organism': 'microorganism_name',
         'DrugCode': 'antimicrobial_code',
         'AntiBiotic Name': 'antimicrobial_name',
-        'SensMethod': 'sensitivity_method',
-        'Sensitivity': 'sensitivity_code',
+        'SensMethod': 'method_code',
+        'Sensitivity': 'sensitivity_name',
         'MIC': 'mic',
         'Reported': 'reported',
+        'FinalDate': 'date_outcome'
     }
 
     # Replace
     replace = {
-        'sensitivity': SENSITIVITY_MAP,
+        #'sensitivity': SENSITIVITY_MAP,
         'microorganism_code': MICROORGANISM_CODE_MAP,
         'microorganism_name': MICROORGANISM_NAME_MAP,
         'antimicrobial_code': ANTIMICROBIAL_CODE_MAP
     }
-
-
-    # Ignore those without result
-    # df = df[~pd.isnull(df.result)]
-
-    # Ignore those without hos number
-    # .. note: Some of this rows might be valid. (receive_date?)
-    # df = df[~pd.isnull(df.date_collection)]
-
-    # Ignore those were the date of the result is null
-    # .. note: Probably useless since all have it.
-    # df = df[~pd.isnull(df.date_outcome)]
-
-    # Format name and surname
-    # df.patient_name = df.patient_name.str.title()
-    # df.patient_surname = df.patient_surname.str.title()
-
 
     # --------------------------
     # Method
@@ -224,11 +308,10 @@ def clean_clwsql008(data):
     # The method codes are given but the method names are not
     # included. We could use this opportunity to set their
     # values
-
     # Drop duplicates
     data = data.drop_duplicates()
     data = data.rename(columns=rename)
-    data = data.convert_dtypes()
+    #data = data.convert_dtypes()
 
     # Format strings
     data.antimicrobial_name = \
@@ -237,21 +320,19 @@ def clean_clwsql008(data):
         string_replace(data.microorganism_name, MICROORGANISM_NAME_MAP)
 
     # Add columns (will be replaced later)
-    data['sensitivity'] = data.sensitivity_code
+    #data['sensitivity_name'] = data.sensitivity_code \
+    #    .str.upper().replace(SENSITIVITY_CODE_MAP)
+    #    #.str.upper().map(SENSITIVITY_CODE_NAME_MAP) # Map leaves nulls
 
     # Replacements
     data = data.replace(replace)
 
-    # Format columns
-    data.sensitivity = data.sensitivity.str.lower()
-
-    # Drop duplicates
-    data = data.drop_duplicates()
-
-    #
+    # Set new columns
     data['date_received'] = pd.to_datetime(
-        data['ReceiveDate'] + ' ' +  data['ReceiveTime'], errors='coerce')
-    data['date_outcome'] = pd.to_datetime(data['FinalDate'], errors='coerce')
+        data.received_date + ' ' + data.received_time, errors='coerce')
+
+    # Final formatting
+    data = clean_common(data)
 
     # Return
     return data
@@ -262,6 +343,9 @@ def clean_legacy(data):
     """This method cleans microbiology data from legacy.
 
     Full explanation of the steps of this method.
+    1. Rename the columns to align with standard.
+    2. Apply replace using common maps.
+    3. Apply common formatting.
 
     Parameters
     ----------
@@ -279,8 +363,10 @@ def clean_legacy(data):
     # ---------------------------------
     # Rename columns
     rename = {
-        'DiagnosticTestID': 'uuid',
-        'patNumber': 'patient_id',
+        'dateReceived': 'date_received',
+        'age': 'age',
+        'gender': 'gender',
+        'patNumber': 'patient_hos_number',
         'labNumber': 'laboratory_number',
         'orderCode': 'specimen_code',
         'orderName': 'specimen_name',
@@ -290,33 +376,17 @@ def clean_legacy(data):
         'organismName': 'microorganism_name',
         'antibioticCode': 'antimicrobial_code',
         'antibioticName': 'antimicrobial_name',
-        'dateReceived': 'date_received'
+        'sensitivity': 'sensitivity_name'
     }
 
     # Replace
     replace = {
-        'sensitivity': SENSITIVITY_MAP,
+        #'sensitivity': SENSITIVITY_MAP,
         'microorganism_code': MICROORGANISM_CODE_MAP,
         'microorganism_name': MICROORGANISM_NAME_MAP,
         'antimicrobial_code': ANTIMICROBIAL_CODE_MAP,
         'antimicrobial_name': ANTIMICROBIAL_NAME_MAP
     }
-
-    # Ignore those without sensitivity outcome
-    data = data[data.sensitivity.notna()]
-
-    # Ignore those without hos number
-    # .. note: Some of this rows might be valid. (receive_date?)
-    # df = df[~pd.isnull(df.date_collection)]
-
-    # Ignore those were the date of the result is null
-    # .. note: Probably useless since all have it.
-    # df = df[~pd.isnull(df.date_outcome)]
-
-    # Format name and surname
-    # df.patient_name = df.patient_name.str.title()
-    # df.patient_surname = df.patient_surname.str.title()
-
 
     # --------------------------
     # Method
@@ -324,11 +394,12 @@ def clean_legacy(data):
     # The method codes are given but the method names are not
     # included. We could use this opportunity to set their
     # values
-
     # Drop duplicates
     data = data.drop_duplicates()
     data = data.rename(columns=rename)
-    data = data.convert_dtypes()
+    #data = data.convert_dtypes() # issue with np.nan in replace
+    #data = data[data.sensitivity.notna()] # no sensitivity
+
 
     # Format strings
     data.antimicrobial_name = \
@@ -342,35 +413,11 @@ def clean_legacy(data):
     # Replacements (they should be all done from raw! a the moment it depends on the corrector sHIT!
     data = data.replace(replace)
 
-    # Format columns
-    data.sensitivity = data.sensitivity.str.lower()
+    #data.loc[data.microorganism_name == 'arcanobacterium haemolyticum', 'microorganism_code'] = 'A_ARCANOHAEMO'
+    #data.loc[data.microorganism_name == 'acinetobacter haemolyticum', 'microorganism_code'] = 'A_ACINETOHAEMO'
 
-
-    data.loc[data.microorganism_name == 'arcanobacterium haemolyticum', 'microorganism_code'] = 'A_ARCANOHAEMO'
-    data.loc[data.microorganism_name == 'acinetobacter haemolyticum', 'microorganism_code'] = 'A_ACINETOHAEMO'
-
-    # --------------------
-    # Cleaning dates
-    # --------------------
-    # Clean date received
-    if 'date_received' in data:
-        # Convert to datetime.
-        data.date_received = \
-            pd.to_datetime(data.date_received, errors='coerce')
-
-        # Remove rows with required columns missing
-        #data = data.dropna()
-
-        # Ignore those without result
-        data = data[data.sensitivity.notna()]
-
-        # Ignore those without hos number
-        data = data[data.date_received.notna()]
-
-
-
-    # Drop duplicates
-    data = data.drop_duplicates()
+    # Final formatting
+    data = clean_common(data)
 
     # Return
     return data
@@ -388,21 +435,21 @@ def clean_mimic(data):
     # ---------------------------------
     # Rename columns
     rename = {
-        'subject_id': 'patient_id',
+        'subject_id': 'patient_hos_number',
         'micro_specimen_id': 'laboratory_number',
         'spec_type_desc': 'specimen_description',
         'test_seq': 'microorganism_piece_counter',
         'org_name': 'microorganism_name',
         'ab_name': 'antimicrobial_name',
-        'test_name' : 'sensitivity_method',
-        'interpretation': 'sensitivity',
+        'test_name' : 'method',
+        'interpretation': 'sensitivity_name',
         'chartdate': 'date_received',
-        'storedate': 'date_ouctome'
+        'storedate': 'date_outcome'
     }
 
     # Replace values
     replace = {
-        'sensitivity': SENSITIVITY_MAP,
+        #'sensitivity': SENSITIVITY_MAP,
         'microorganism_code': MICROORGANISM_CODE_MAP,
         'microorganism_name': MICROORGANISM_NAME_MAP,
         'antimicrobial_code': ANTIMICROBIAL_CODE_MAP
