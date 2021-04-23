@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.append('../../')
 
 # Import libraries
-import pyamr.utils.io.read as pd_read
+#import pyamr.utils.io.read as pd_read
 
 # --------------------------------------
 # DEFINITION OF DATABASE PATHS
@@ -172,6 +172,7 @@ def load_data_mimic(folder='susceptibility-v0.0.1', **kwargs):
 # -----------------
 # epic impoc basic
 # -----------------
+"""
 def dataset_epicimpoc_antibiotics(**kwargs):
     return pd.read_csv('%s/%s' % (dirname, epicimpoc_antibiotics), *kwargs)
 
@@ -183,27 +184,21 @@ def dataset_epicimpoc_organisms(**kwargs):
 # epic impoc susceptibility test data
 # -----------------------------------
 def dataset_epicimpoc_susceptibility(**kwargs):
-    """
-    """
     return pd_read.read_csv('%s/%s' % \
       (dirname, epicimpoc_susceptibility_comp), **kwargs)
 
 def dataset_epicimpoc_susceptibility_year(year='2014', **kwargs):
-    """
-    """
     return pd_read.read_csv('%s/%s/%s' % \
       (dirname, epicimpoc_susceptibility_year, str(year)), **kwargs)
 
 def dataset_epicimpoc_susceptibility_culture(cultures=['bldcul']):
-    """
-    """
     pass
 
 
 
 def dataset_shampoo_sales(**kwargs):
     return pd.read_csv('%s/%s' % (dirname, other_shampoo_sales), **kwargs)
-
+"""
 
 
 if __name__ == '__main__':
@@ -221,18 +216,18 @@ if __name__ == '__main__':
     # Loading default datasets
     # -----------------------------------
     # Load antibiotics
-    antibiotics = dataset_epicimpoc_antibiotics()
+    #antibiotics = dataset_epicimpoc_antibiotics()
 
     # Load organisms
-    organisms = dataset_epicimpoc_organisms()
+    #organisms = dataset_epicimpoc_organisms()
 
     # Load profiles
     #microbiology = dataset_epicimpoc_susceptibility_year(year=2014)
 
 
     # Show information
-    print(antibiotics.head(5))
-    print(organisms.head(5))
-    print(len(microbiology))
+    #print(antibiotics.head(5))
+    #print(organisms.head(5))
+    #print(len(microbiology))
 
-    print(dataset_shampoo_sales())
+    #print(dataset_shampoo_sales())

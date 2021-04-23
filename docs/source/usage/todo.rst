@@ -3,6 +3,10 @@ Future Actions
 
 .. warning:: This list of things to do could be also logged using github issues.
 
+.. warning:: Think about the combination therapy resistance index (or activity index).
+             It is kind of an spectrum of activity that counts the number of species
+             (or genera) that can be treated when a combination therapy is applied.
+
 .. warning:: Reformat names in all the ``.csv`` files. Also create a sample dataset
     with microbiology data to be loaded automatically using the ``pyamr`` module. The
     file must contain the following columns:

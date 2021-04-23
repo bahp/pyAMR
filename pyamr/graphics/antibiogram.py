@@ -192,6 +192,8 @@ class Antibiogram():
                                                  self.c_gen,
                                                  self.c_cat])
 
+    print(self._dataframe)
+
     # Create heatmap
     self._dataframe = self._dataframe.unstack([self.c_abx, 
                                                self.c_cat])

@@ -124,7 +124,8 @@ def create_microorganisms_lookup_table(orgs):
             'exists_in_registry',
             'gram_stain',
             'microorganism_code',
-            'microorganism_name']
+            'microorganism_name',
+            'microorganism_name_original']
 
     # Filter
     orgs = orgs[[c for c in keep if c in orgs]]
@@ -257,6 +258,8 @@ if __name__ == '__main__':
     tuples = [
         ('./nhs/legacy', clean_legacy),
         ('./nhs/clwsql008', clean_clwsql008),
+        #('./nhs/test', clean_clwsql008),
+        #('./nhs/test2', clean_legacy),
         #('./mimic/mimic-iv-v0.4', clean_mimic)
     ]
 
@@ -265,6 +268,7 @@ if __name__ == '__main__':
 
     # For each tuple
     for path, f_clean in tuples:
+        print("Loading... {0}".format(path))
         # Load data (multiple files)
         data = pd.concat([pd.read_csv(f,
             encoding="ISO-8859-1", engine='c')
@@ -279,6 +283,8 @@ if __name__ == '__main__':
 
     # Basic formatting
     data = data.drop_duplicates()
+
+
 
     # -------------------
     # Anonymise
@@ -302,7 +308,8 @@ if __name__ == '__main__':
     # ----------------------------------
     # Organism columns
     columns = ['microorganism_code',
-               'microorganism_name']
+               'microorganism_name',
+               'microorganism_name_original']
 
     # Extract organisms information from susceptibility
     orgs = data[columns].copy(deep=True)
@@ -416,15 +423,14 @@ if __name__ == '__main__':
     # ----------
     # We have to remove those dates in which the date_received is none
     # because otherwise we cannot group the data by year to store it
-    # in different files.
+    # in different files. In addition, the others are also required to
+    # have a meaningful susceptibility test record.
     data = data.dropna(how='any',
-        subset=['date_received'])
-
-    # data = data.dropna(how='any',
-    #    subset=['date_received',
-    #            'microorganism_name',
-    #            'antimicrobial_name',
-    #            'sensitivity'])
+        subset=['date_received',
+                'specimen_name',
+                'microorganism_name',
+                'antimicrobial_name',
+                'sensitivity_name'])
 
     # ----------
     # Save
