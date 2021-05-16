@@ -1,0 +1,27 @@
+language: python
+
+#jobs:
+#  include:
+#    - name: "Python 3.9 on Ubuntu"
+#      python: 3.9           # this works for Linux but is ignored on macOS or Windows
+#    - name: "Python 3.7.4 on macOS"
+#      os: osx
+#      osx_image: xcode11.2  # Python 3.7.4 running on macOS 10.14.4
+#      language: shell       # 'language: python' is an error on Travis CI macOS
+
+python:
+  - "3.9"
+env:
+  - CODECOV_TOKEN='78138e3a-8249-469b-a611-2b91a0d88bc2'
+# command to install dependencies
+install:
+  - python -m pip install -r requirements.txt
+  - pip install pytest-cov codecov
+  - python -m pip install pytest
+  - python -m pip install .
+# command to run tests
+script:
+  - pytest
+  - pytest --cov=pkgname
+after_success:
+  - codecov
