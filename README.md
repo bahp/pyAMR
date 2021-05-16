@@ -1,6 +1,8 @@
 
 # fyp-package-template
 
+[![Build Status](https://travis-ci.com/bahp/pyAMR.svg?branch=main)](https://travis-ci.com/bahp/pyAMR)
+
 [url-documentation]: https://bahp.github.io/fyp-pypkg-template/
 [url-installation]: https://bahp.github.io/fyp-pypkg-template/
 [url-development]: https://bahp.github.io/fyp-pypkg-template/
