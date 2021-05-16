@@ -346,6 +346,17 @@ def _clean_microorganism(series,
     # Return
     return s
 
+
+def clean_specimen(series):
+    """
+    \sr\s = right -> end
+    \sl\s = left -> end
+
+
+    :param series:
+    :return:
+    """
+
 # ---------------------------------------------------
 # Registry Base
 # ---------------------------------------------------
@@ -364,7 +375,7 @@ class Registry:
     REG = None
 
 
-    def __init__(self, keyword,
+    def __init__(self, keyword='',
                        order=ORDER,
                        subset=SUBSET,
                        fclean=FCLEAN):
@@ -392,7 +403,7 @@ class Registry:
         aux = self.REG.copy(deep=True)
 
         # Prepend
-        if prepend:
+        if prepend and self.keyword!='':
             aux.columns = ['%s_%s' % (self.keyword, c)
                 for c in aux.columns]
 

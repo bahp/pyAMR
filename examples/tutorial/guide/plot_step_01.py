@@ -208,7 +208,7 @@ dataframe[['genus', 'species']] = \
         .str.split(expand=True, n=1)
 
 # Combine with registry information
-dataframe = mreg.combine(dataframe)
+dataframe = mreg.combine(dataframe, on='microorganism_name')
 
 # Fill missing gram stain
 dataframe.gram_stain = dataframe.gram_stain.fillna('u')
