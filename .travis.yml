@@ -11,11 +11,11 @@ install:
   - pip install pytest-cov codecov
   - python -m pip install pytest
   - python -m pip install .
-  -
+
 # command to run tests
 script:
   - pytest
-  - pytest --cov=pkgname
-  -
+  - pytest --cov=pyamr
+
 after_success:
   - codecov
