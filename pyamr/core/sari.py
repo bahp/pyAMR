@@ -83,19 +83,21 @@ def sari(dataframe, strategy='hard', **kwargs):
         return strategy(aux, **kwargs)
 
     # Check strategy.
-    if strategy not in ['soft', 'medium', 'hard']:
+    if strategy not in ['soft', 'medium', 'hard', 'basic']:
         raise ValueError("""
-              The strategy '{0}' is not supported and
-              therefore the strategy 'hard' will be used.""" \
-              .format(strategy))
+              The strategy '{0}' is not supported. Please
+              use one of the following: soft, medium, hard
+              or basic""".format(strategy))
 
     # Compute
     if strategy == 'hard':
         return (r + i) / (r + i + s)
     elif strategy == 'medium':
-        return r / (r + s)
+        return (r + 0.5*i) / (r + 0.5*i + s)
     elif strategy == 'soft':
         return r / (r + i + s)
+    elif strategy == 'basic':
+        return r / (r + s)
 
 
 class SARI:
