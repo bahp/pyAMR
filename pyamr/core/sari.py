@@ -36,13 +36,29 @@ def _check_dataframe(dataframe):
   if not 'intermediate' in  dataframe:
     aux['intermediate'] = 0
   if not 'sensitive' in dataframe:
-    aux['sensitivity'] = 0
+    aux['sensitive'] = 0
 
   # return
   return aux
 
+def _check_sensitivities(dataframe):
+    if not 'resistant' in dataframe and \
+       not 'sensitive' in dataframe and \
+       not 'intermediate' in dataframe:
+       raise Exception("To compute the SARI at least one of the following"
+                       "columns must be present in the dataframe (resistant,"
+                       "senstive, intermediate)")
 
-def sari(dataframe, strategy='hard', **kwargs):
+"""
+def sari_(r=0, i=0, s=0, dataframe=None, strategy='hard', **kwargs):
+    if dataframe is not None:
+        if isinstance(pd.DataFrame):
+            _check_sensitivities(dataframe)
+            aux = _check_dataframe(dataframe)
+            return sari_(dataframe, strategy, **kwargs)
+"""
+
+def sari(dataframe=None, strategy='hard', **kwargs):
     """Computes the sari index.
 
     Parameters
@@ -84,19 +100,21 @@ def sari(dataframe, strategy='hard', **kwargs):
         return strategy(aux, **kwargs)
 
     # Check strategy.
-    if strategy not in ['soft', 'medium', 'hard']:
+    if strategy not in ['soft', 'medium', 'hard', 'basic']:
         raise ValueError("""
-              The strategy '{0}' is not supported and
-              therefore the strategy 'hard' will be used.""" \
-              .format(strategy))
+              The strategy '{0}' is not supported. Please
+              use one of the following: soft, medium, hard
+              or basic""".format(strategy))
 
     # Compute
     if strategy == 'hard':
         return (r + i) / (r + i + s)
     elif strategy == 'medium':
-        return r / (r + s)
+        return (r + 0.5*i) / (r + 0.5*i + s)
     elif strategy == 'soft':
         return r / (r + i + s)
+    elif strategy == 'basic':
+        return r / (r + s)
 
 
 class SARI:
