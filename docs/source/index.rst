@@ -1,16 +1,36 @@
 Welcome to pyAMR's documentation!
 =================================
 
-.. image:: ./_static/imgs/pyamr-logo.png
+.. image:: ./_static/images/logo-pyamr-v1.png
    :width: 100
    :align: right
    :alt: pyAMR
 
-This repository contains the documentation of the lightweight library ``pyAMR`` which
-facilitates the computation of various Antimicrobial Resistance (AMR) statistics and
-includes visualization examples.
+PyAMR is a lightweight library to facilitate the computation and visualisation
+of various Antimicrobial Resistance (AMR) statistics. It includes a number of
+visualisation examples that depend on matplotlib, seaborn and plotly. In addition,
+an app to browse AMR statistics easily is under construction.
 
-The code of the project is on Github: https://github.com/bahp/pyAMR
+
+.. raw:: html
+
+   <center>
+
+      <a href="https://github.com/bahp/pyamr/" target="_blank">
+         <button class="btn-github"> View on GitHub
+            <img class="btn-icon" src="./_static/images/icon-github.svg" width=18/>
+         </button>
+      </a>
+
+      <a href="" target="_blank">
+         <button class="btn-heroku"> Demo on Heroku
+            <img class="btn-icon" src="./_static/images/icon-heroku.svg" width=18/>
+         </button>
+      </a>
+
+   </center>
+
+   <br><br>
 
 .. .. image:: ./_static/imgs/logo-icl-square.png
    :width: 50
@@ -53,7 +73,7 @@ The PhD thesis is on Spiral: `PhD`_
    :caption: API
    :hidden:
 
-   _apidoc/modules
+   _apidoc/pyamr
 
 
 .. warning:: Some of the interactive examples included below might take considerable time

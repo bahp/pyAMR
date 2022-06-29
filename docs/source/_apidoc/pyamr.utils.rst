@@ -20,6 +20,14 @@ pyamr.utils.display module
    :undoc-members:
    :show-inheritance:
 
+pyamr.utils.plot module
+-----------------------
+
+.. automodule:: pyamr.utils.plot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

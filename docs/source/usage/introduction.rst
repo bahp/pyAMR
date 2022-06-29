@@ -7,7 +7,7 @@ by 2050. A major driver of AMR has been the misuse of antimicrobials in humans. 
 for the misuse of antimicrobials are complex and multifaceted, a number of factors have been
 described and investigated. At the individual level, physicians often prioritise the management
 of the patient being treated, paying little regard to the long-term consequences of overusing
-antimicrobials. Moreover, the majority of antimicrobials are prescribed by individuals who are
+antimicrobials. Moreover, the majority of antimicrobials are prescribed by individuals who are
 not experts in infection management and may have limited understanding of antimicrobials and the
 potential consequences of AMR.
 

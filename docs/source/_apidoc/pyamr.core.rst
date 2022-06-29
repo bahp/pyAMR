@@ -38,6 +38,14 @@ pyamr.core.greetings module
    :undoc-members:
    :show-inheritance:
 
+pyamr.core.mari module
+----------------------
+
+.. automodule:: pyamr.core.mari
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyamr.core.sari module
 ----------------------
 

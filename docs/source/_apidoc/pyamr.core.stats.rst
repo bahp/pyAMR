@@ -28,6 +28,14 @@ pyamr.core.stats.kendall module
    :undoc-members:
    :show-inheritance:
 
+pyamr.core.stats.kpss module
+----------------------------
+
+.. automodule:: pyamr.core.stats.kpss
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyamr.core.stats.stationarity module
 ------------------------------------
 

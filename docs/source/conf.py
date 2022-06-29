@@ -108,10 +108,17 @@ todo_include_todos = True
 #
 html_theme = 'sphinx_rtd_theme'
 
+# Configuration of sphin_rtd_theme
+#html_logo = './_static/images/logo-ls2d-v1.png'
+html_favicon = './_static/images/logo-pyamr-icon.png'
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# Add custom css file.
+html_css_files = ['css/custom.css']
 
 # Substitute project name into .rst files when |project_name| is used
 rst_epilog = '.. |project_name| replace:: %s' % project
