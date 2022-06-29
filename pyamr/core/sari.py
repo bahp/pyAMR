@@ -11,6 +11,7 @@
 ################################################################################
 # Import libraries
 import sys
+import warnings
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -124,7 +125,48 @@ class SARI:
         """
         self.groupby = groupby
 
-    def compute(self, dataframe, shift=None, period=None, cdate=None,
+
+
+    def rolling(self, dataframe, period, cdate, shift=None):
+        """"""
+        if shift is None:
+            warnings.warn("The input parameter <shift> is None. Thus, the value "
+                          "of the input parameter <period> has been used. {}" \
+                          .format(period, shift))
+            shift = period
+
+        # Grouper
+        grouper = [pd.Grouper(freq=shift, key=cdate)]
+        grouper = grouper + self.groupby
+
+        # Compute frequencies
+        freqs = dataframe.groupby(grouper) \
+            .size().unstack().reset_index() \
+            .set_index(cdate).groupby(grouper[1:-1]) \
+            .rolling(window=period, min_periods=1) \
+            .sum().fillna(0)
+
+        # Return
+        return freqs
+
+    def grouping(self, dataframe, period, cdate):
+        """"""
+        # Create grouper
+        if hasattr(dataframe[cdate].dt, period):
+            grouper = [getattr(dataframe[cdate].dt, period)]
+        else:
+            grouper = [pd.Grouper(freq=period, key=cdate)]
+        grouper = self.groupby + grouper
+
+        # Compute sensitivity counts
+        freqs = dataframe.groupby(grouper) \
+            .size().unstack(level=-2) \
+            .fillna(0)
+
+        # Return
+        return freqs
+
+    def compute(self, dataframe, period=None, shift=None, cdate=None,
                 return_frequencies=True, **kwargs):
         """Computes single antibiotic resistance index.
 
@@ -172,37 +214,35 @@ class SARI:
             The resistance index (pd.Series) or a pd.Dataframe with the
             resistance index (sari) and the frequencies.
         """
-
         # Copy DataFrame
         aux = dataframe.copy(deep=True)
 
         # Warning if dates NaN
         # Warning if elements in groupby any all NaN!
 
-        # Create grouper
-        grouper = []
-        if shift is not None:
-            grouper = [pd.Grouper(freq=shift, key=cdate)]
-        grouper = grouper + self.groupby
 
         # ------------------------------------------
         # Frequencies
         # ------------------------------------------
         # Compute frequencies
-        if shift is None:
-            freqs = aux.groupby(grouper) \
+        if period is None:
+            freqs = aux.groupby(self.groupby) \
                 .size().unstack().fillna(0)
 
         else:
+
             # Format as datetime
             aux[cdate] = pd.to_datetime(aux[cdate])
 
-            # Compute frequencies
-            freqs = aux.groupby(grouper) \
-                .size().unstack().reset_index() \
-                .set_index(cdate).groupby(grouper[1:-1]) \
-                .rolling(window=period, min_periods=1) \
-                .sum().fillna(0)
+            if shift is not None:
+                freqs = self.rolling(dataframe=aux,
+                                     period=period,
+                                     shift=shift,
+                                     cdate=cdate)
+            else:
+                freqs = self.grouping(dataframe=aux,
+                                    period=period,
+                                    cdate=cdate)
 
         # -------------------
         # Sari
@@ -216,7 +256,6 @@ class SARI:
             freqs['sari'] = sari(freqs, **kwargs)
             return freqs
         return s
-
 
 
 
