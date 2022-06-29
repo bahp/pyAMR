@@ -11,6 +11,7 @@ SENSITIVITY_CODE_REPLACE = {
     'ss': 's',
 }
 
+
 ANTIMICROBIAL_CODE_REPLACE = {
     'AAUGU': 'AAUG'
 }
@@ -38,8 +39,6 @@ MICROORGANISM_CODE_REPLACE = {
     'A_CDUBLINIE': 'CDUB',
     'A_CPSEUDODI': 'CPSEU'
 }
-
-
 
 ANTIMICROBIAL_NAME_MAP = {
     '\([^)]*\)': '',  # Remove everything between ()
@@ -97,9 +96,9 @@ SPECIMEN_NAME_MAP = {
 
 METHOD_CODE_MAP = {
     'DD': 'Disk Difussion',
-    'PHO': 'PHO',
-    'MIC': 'MIC',
-    'MASTU': 'MASTU',
+    'PHO': 'Public Health Laboratory',
+    'MIC': 'Minimum Inhibitory Concentration',
+    'MASTU': 'Microscopy-Based Antimicrobial Susceptibility Testing',
 }
 
 SENSITIVITY_CODE_MAP = collections.OrderedDict({
