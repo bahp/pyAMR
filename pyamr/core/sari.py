@@ -35,13 +35,29 @@ def _check_dataframe(dataframe):
   if not 'intermediate' in  dataframe:
     aux['intermediate'] = 0
   if not 'sensitive' in dataframe:
-    aux['sensitivity'] = 0
+    aux['sensitive'] = 0
 
   # return
   return aux
 
+def _check_sensitivities(dataframe):
+    if not 'resistant' in dataframe and \
+       not 'sensitive' in dataframe and \
+       not 'intermediate' in dataframe:
+       raise Exception("To compute the SARI at least one of the following"
+                       "columns must be present in the dataframe (resistant,"
+                       "senstive, intermediate)")
 
-def sari(dataframe, strategy='hard', **kwargs):
+"""
+def sari_(r=0, i=0, s=0, dataframe=None, strategy='hard', **kwargs):
+    if dataframe is not None:
+        if isinstance(pd.DataFrame):
+            _check_sensitivities(dataframe)
+            aux = _check_dataframe(dataframe)
+            return sari_(dataframe, strategy, **kwargs)
+"""
+
+def sari(dataframe=None, strategy='hard', **kwargs):
     """Computes the sari index.
 
     Parameters
