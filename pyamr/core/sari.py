@@ -25,29 +25,38 @@ from pyamr.core.freq import Frequency
 #                            helper methods
 # -------------------------------------------------------------------------
 def _check_dataframe(dataframe):
-  """Ensure the three columns are available.
-  """
-  # Copy
-  aux = dataframe.copy(deep=True)
+    """Ensure the three columns are available.
 
-  # Add missing columns
-  if not 'resistant' in dataframe:
-    aux['resistant'] = 0
-  if not 'intermediate' in  dataframe:
-    aux['intermediate'] = 0
-  if not 'sensitive' in dataframe:
-    aux['sensitive'] = 0
+    It also fills the empty values with zeros. This is valid
+    for SARI because the columns just represent the number of
+    records in that category. Thus, nan is equivalent to 0.
+    """
+    # Copy
+    aux = dataframe.copy(deep=True)
 
-  # return
-  return aux
+    # Add missing columns
+    if not 'resistant' in dataframe:
+        aux['resistant'] = 0
+    if not 'intermediate' in  dataframe:
+        aux['intermediate'] = 0
+    if not 'sensitive' in dataframe:
+        aux['sensitive'] = 0
+
+    # Fill missing.
+    aux.resistant.fillna(0, inplace=True)
+    aux.intermediate.fillna(0, inplace=True)
+    aux.sensitive.fillna(0, inplace=True)
+
+    # return
+    return aux
 
 def _check_sensitivities(dataframe):
     if not 'resistant' in dataframe and \
        not 'sensitive' in dataframe and \
        not 'intermediate' in dataframe:
        raise Exception("To compute the SARI at least one of the following"
-                       "columns must be present in the dataframe (resistant,"
-                       "senstive, intermediate)")
+                       "columns must be present in the DataFrame (resistant,"
+                       "sensitive, intermediate)")
 
 """
 def sari_(r=0, i=0, s=0, dataframe=None, strategy='hard', **kwargs):
@@ -110,7 +119,7 @@ def sari(dataframe=None, strategy='hard', **kwargs):
     if strategy == 'hard':
         return (r + i) / (r + i + s)
     elif strategy == 'medium':
-        return (r + 0.5*i) / (r + 0.5*i + s)
+        return (r + 0.5*i) / (r + i + s)
     elif strategy == 'soft':
         return r / (r + i + s)
     elif strategy == 'basic':
@@ -237,7 +246,7 @@ class SARI:
 
         # Warning if dates NaN
         # Warning if elements in groupby any all NaN!
-
+        # if period/shift then cdate required!
 
         # ------------------------------------------
         # Frequencies
