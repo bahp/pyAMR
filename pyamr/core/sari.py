@@ -225,10 +225,10 @@ class SARI:
         strategy: string or func, default='hard'
             The method used to compute sari. The possible options
             are 'soft', 'medium' and 'hard'. In addition, a function
-            with the following signature func(dataframe, **kwargs)
+            with the following signature func(DataFrame, **kwargs)
             can be passed.
 
-                (i) ``soft``   as R / R+I+S
+                (i) ``soft``    as R / R+I+S
                 (ii) ``medium`` as R / R+S
                 (iii) ``hard``  as R+I / R+I+S
                 (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]
@@ -238,7 +238,7 @@ class SARI:
         Returns
         -------
         pd.Series or pd.DataFrame
-            The resistance index (pd.Series) or a pd.Dataframe with the
+            The resistance index (pd.Series) or a pd.DataFrame with the
             resistance index (sari) and the frequencies.
         """
         # Copy DataFrame

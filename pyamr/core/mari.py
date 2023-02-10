@@ -29,8 +29,8 @@ class MARI:
 
     def __init__(self, groupby=[c_spe,
                                 c_org,
-                                c_out,
-                                c_lab]):
+                                c_lab,
+                                c_out]):
         """Constructor.
 
         Parameters
