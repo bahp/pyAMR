@@ -219,7 +219,8 @@ def clean_clwsql008(data):
         string_replace(data.microorganism_name, MICROORGANISM_NAME_MAP)
 
     # Add columns (will be replaced later)
-    data['sensitivity'] = data.sensitivity_code
+    if 'sensitivity_code' in data:
+        data['sensitivity'] = data.sensitivity_code
 
     # Replacements
     data = data.replace(replace)
@@ -231,8 +232,12 @@ def clean_clwsql008(data):
     data = data.drop_duplicates()
 
     #
+    #data['date_received'] = pd.to_datetime(
+    #    data['ReceiveDate'] + ' ' +  data['ReceiveTime'], errors='coerce')
+
     data['date_received'] = pd.to_datetime(
-        data['ReceiveDate'] + ' ' +  data['ReceiveTime'], errors='coerce')
+        data['date_received_date'] + ' ' +  data['date_received_time'], errors='coerce')
+
     data['date_outcome'] = pd.to_datetime(data['FinalDate'], errors='coerce')
 
     # Return
