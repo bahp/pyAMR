@@ -1,6 +1,6 @@
 """
-MARI - Index
-============================
+Multiple Resistance (MARI)
+========================================
 
 .. warning::
         - Improve visualization.

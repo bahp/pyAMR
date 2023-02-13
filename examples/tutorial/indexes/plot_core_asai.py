@@ -1,6 +1,6 @@
 """
-ASAI - Index
-============================
+Spectrum of Activity (ASAI)
+==========================================
 
 .. todo::
     - Create data as in the example shown in the figure.

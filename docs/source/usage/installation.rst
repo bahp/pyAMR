@@ -37,9 +37,11 @@ To deactivate the environment just type
   deactivate                                      # deactivate environment
 
 
-.. warning:: Ths is slightly different on Windows systems. It is also possible
-   to configure the virtual environment using the python IDE PyCharm. Students
-   can get a free licence.
+.. warning:: Ths might be slightly different on Windows systems. In addition, it
+    is also possible to configure the virtual environment using the python IDE
+    PyCharm and students can get a free licence.
+
+
 
 Creating repository from template
 ----------------------------------
