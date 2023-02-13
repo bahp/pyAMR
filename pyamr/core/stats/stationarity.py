@@ -171,6 +171,10 @@ class StationarityWrapper(BaseWrapper):
         self._raw['adfuller-ct'] = adfuller(x=x, regression='ct', **adf_kwargs)
         self._raw['adfuller-c'] = adfuller(x=x, regression='c', **adf_kwargs)
         self._raw['kpss-ct'] = kpss(x=x, regression='ct', **kpss_kwargs)
+
+        print(np.count_nonzero(np.isnan(x)))
+        print("====>")
+        print("====>")
         self._raw['kpss-c'] = kpss(x=x, regression='c', **kpss_kwargs)
 
         # Evaluate the model
@@ -239,7 +243,7 @@ if __name__ == '__main__':
     stationarity_t = StationarityWrapper().fit(x=y_t)
     stationarity_r = StationarityWrapper().fit(x=y_r)
     stationarity_ct = StationarityWrapper().fit(x=y_ct,
-                                                adf_kwargs={'maxlag': 12, 'autolag': 'BIC'})
+         adf_kwargs={'maxlag': 12, 'autolag': 'BIC'})
 
     # Print series.
     print("\n")
