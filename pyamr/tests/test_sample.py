@@ -178,6 +178,5 @@ def test_asai_class(fixture4):
         weights='uniform',
         threshold=None,
         min_freq=0)
-
     assert scores.shape[0]==4
 
