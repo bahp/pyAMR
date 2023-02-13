@@ -23,6 +23,8 @@ import pandas as pd
 def _check_asai_weights_genus(dataframe):
   """Checks that the weights for each genus add up to one.
 
+  .. deprecated:: 0.0.1
+
   Parameters
   ----------
   dataframe : dtaframe-like
@@ -45,6 +47,8 @@ def _check_asai_weights_genus(dataframe):
 
 def _check_asai_weights_specie(dataframe):
   """Check that the weights for all the species add up to one.
+
+  .. deprecated:: 0.0.1
 
   Parameters
   ----------
@@ -77,6 +81,8 @@ def _check_asai_weights_specie(dataframe):
 def _check_asai_dataframe_columns(dataframe, required_columns):
   """This method checks that the dataframe has all attributes.
 
+  .. deprecated:: 0.0.1
+
   Parameters
   -----------
   dataframe : pandas DataFrame
@@ -101,6 +107,8 @@ def _check_asai_dataframe_columns(dataframe, required_columns):
 
 def _asai(dataframe, threshold=None, weights='uniform'):
   """Computes the antimicrobial spectrum of activity.
+
+  .. deprecated:: 0.0.1
 
   .. todo: There is an error when W_GENUS = 1 / GENUS.nunique()
 
@@ -174,6 +182,8 @@ def _asai(dataframe, threshold=None, weights='uniform'):
 def _asai_score(weights_genus, weights_specie, resistance, threshold):
   """Computes the asai score.
 
+  .. deprecated:: 0.0.1
+
   Parameters
   ----------
   weights_genus : array-like
@@ -209,37 +219,42 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
     dataframe: pd.DataFrame
         The pandas dataframe with the information. The following columns
         are always required [RESISTANCE, GENUS and SPECIE]. In addition,
-        [W_GENUS and W_SPECIE] are required if weights is None.
+        [W_GENUS and W_SPECIE] are required if weights is None. Also,
+        if weights = 'frequency' the column FREQUENCY must be present.
 
-    weights: string (default None)
-        The method to automatically compute the weights. The methods
-        supported are 'uniform' in which all genus have the same
-        weights and all species within a genus have the same weight.
-        In order to use the specified weights [W_GENUS, W_SPECIE]
-        keep weights as None. Please remember that the following
-        rules must be fulfilled by the weights:
-           - consistent weight for a given genus
-           - all genus weights must add up to one.
-           - all specie weights within a genus must add up to one.
+    weights: string, default=None
+        The method to compute the weights. The methods supported are:
 
-    threshold: float (default None)
-        The threshold value to consider the microorganism as
-        resistant to the antimicrobial. Thus, for a threshold of 0.5,
-        if a pair <o,a> has a resistance value of 0.4, the microorganism
-        will be considered sensitive to the antimicrobial and will
-        count towards the ASAI computation. In order to use specific
-        thresholds [THRESHOLD] keep threshold as None.
+            - None: weights must be specified in [W_GENUS and W_SPECIE]
+            - 'uniform': uniform weights for genus and species within genus.
+            - 'frequency: weights are proportional to the frequencies.
 
-    tol: float (default 1e-6)
+        The following rules must be fulfilled by the weight columns:
+
+            - consistent weight for a given genus
+            - all genus weights must add up to one.
+            - all specie weights within a genus must add up to one.
+
+    threshold: float, default=None
+        The threshold resistance value above which the antimicrobial is
+        considered non-effective to treat the microorganism. For instance,
+        for a resistance threshold of 0.5, if a pair <o,a> has a resistance
+        value of 0.4, the microorganism will be considered sensitive. In
+        order to use specific thresholds keep threshold to None and include
+        a column 'THRESHOLD'.ss
+
+    tol: float, default=1e-6
         The tolerance in order to check that all conditions (uniqueness
         and sums) are satisfied. Note that that float precision varies
         and therefore not always adds up to exactly one.
 
-    verbose: int (default 0)
+    verbose: int, default=0
         The level of verbosity.
 
     Returns
     -------
+    pd.DataFrame
+        The dataframe with the ASAI information and counts.
     """
     # Required columns
     required = ['RESISTANCE', 'GENUS', 'SPECIE']
@@ -247,6 +262,8 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
     # Add weight columns
     if weights is None:
         required += ['W_GENUS', 'W_SPECIE']
+    if weights == 'frequency':
+        required += ['FREQUENCY']
 
     # Bad input type
     if not isinstance(dataframe, pd.DataFrame):
@@ -261,9 +278,22 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
 
     # Check duplicates
     if dataframe.duplicated().any():
-        raise ValueError("There are duplicate rows in the dataframe.")
+        raise ValueError("There are duplicated rows in the dataframe.")
 
-    # Copy dataframe
+    # Get NaN idxs
+    idxs = dataframe[required].isna().any(axis=1)
+
+    # Show warning and correct
+    if idxs.any():
+        raise ValueError("""\n
+              There are NULL values in columns that are required.
+              Please correct this issue and try again. See below 
+              for more information:\n\n\t\t{0}""".format(
+                dataframe.loc[idxs, required] \
+                    .to_string().replace("\n", "\n\t\t")
+        ))
+
+    # Copy DataFrame
     aux = dataframe.copy(deep=True)
 
     # Check threshold
@@ -342,39 +372,196 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
 
 
 
+
+
+
 class ASAI():
+
+    # Attributes
+    c_gen = 'GENUS'
+    c_spe = 'SPECIE'
+    c_res = 'RESISTANCE'
+    c_thr = 'THRESHOLD'
+    c_fre = 'FREQUENCY'
+    c_wgen = 'W_GENUS'
+    c_wspe = 'W_SPECIE'
+
+    def __init__(self, column_genus=c_gen,
+                       column_specie=c_spe,
+                       column_resistance=c_res,
+                       column_threshold=c_thr,
+                       column_frequency=c_fre,
+                       column_wgenus=c_wgen,
+                       column_wspecie=c_wspe):
+        """The constructor.
+
+        Parameters
+        ----------
+        column_genus: string
+            The column name with the genus values
+
+        column_specie: string
+            The column name with the specie values
+
+        column_resistance: string
+            The column name with the resistance values
+
+        column_threshold: string
+            The column name with the threshold values
+
+        column_frequency: string
+            The column name with the frequency values
+
+        Returns
+        -------
+        none
+        """
+        # Create dictionary to rename columns
+        self.rename = {column_genus: self.c_gen,
+                       column_specie: self.c_spe,
+                       column_resistance: self.c_res,
+                       column_threshold: self.c_thr,
+                       column_frequency: self.c_fre,
+                       column_wgenus: self.c_wgen,
+                       column_wspecie: self.c_wspe}
+
+        # Columns that are required
+        self.required = [self.c_gen, self.c_spe, self.c_res]
+
+
+    def compute(self, dataframe, groupby=None, min_freq=None, **kwargs):
+        """Computes the ASAI index (safely).
+
+        .. note: Review first NaN and then duplicated?
+        .. note: Review extreme values in resistance?
+
+        Parameters
+        ----------
+        dataframe: pd.DataFrame
+            The pandas dataframe with the information. The following columns
+            are always required [RESISTANCE, GENUS and SPECIE]. In addition,
+            [W_GENUS and W_SPECIE] are required if weights is None. Also,
+            if weights = 'frequency' the column FREQUENCY must be present.
+
+        groupby: list, default=None
+            The elements to groupby (pd.groupby)
+
+        min_freq: int, default=None
+            The minimum number of susceptibility tests required in order to
+            include the species to compute ASAI. Note that to work the dataframe
+            must include a column indicating the frequencies.
+
+        weights: string, default=None
+            The method to compute the weights. The methods supported are:
+
+                - None: weights must be specified in [W_GENUS and W_SPECIE]
+                - 'uniform': uniform weights for genus and species within genus.
+                - 'frequency: weights are proportional to the frequencies.
+
+            The following rules must be fulfilled by the weight columns:
+
+                - consistent weight for a given genus
+                - all genus weights must add up to one.
+                - all specie weights within a genus must add up to one.
+
+        threshold: float, default=None
+            The threshold resistance value above which the antimicrobial is
+            considered non-effective to treat the microorganism. For instance,
+            for a resistance threshold of 0.5, if a pair <o,a> has a resistance
+            value of 0.4, the microorganism will be considered sensitive. In
+            order to use specific thresholds keep threshold to None and include
+            a column 'THRESHOLD'.ss
+
+        tol: float, default=1e-6
+            The tolerance in order to check that all conditions (uniqueness
+            and sums) are satisfied. Note that that float precision varies
+            and therefore not always adds up to exactly one.
+
+        verbose: int, default=0
+            The level of verbosity.
+
+        Returns
+        -------
+        pd.DataFrame
+            The dataframe with the ASAI information and counts.
+        """
+        # Bad input type
+        if not isinstance(dataframe, pd.DataFrame):
+            raise TypeError("The instance passed as argument needs to be a pandas "
+                            "DataFrame. Instead, a <%s> was found. Please convert "
+                            "the input accordingly." % type(dataframe))
+
+        if isinstance(groupby, str):
+            groupby = [groupby]
+
+        # Create auxiliary variable
+        required = groupby + self.required
+
+        # Rename columns
+        aux = dataframe.rename(columns=self.rename, copy=True)
+
+        # Filter by freq
+        if min_freq is not None:
+            if not self.c_fre in aux:
+                warnings.warn("""
+                The min_freq={0} cannot be applied because the frequency
+                columns 'FREQUENCY' does not exist in the DataFrame.\n"""
+                    .format(min_freq))
+            else:
+                aux = aux[aux[self.c_fre] >= min_freq]
+
+
+        # Check duplicates
+        if aux.duplicated(subset=required).any():
+            warnings.warn("""
+                 There are duplicated rows in the DataFrame. These is
+                 usually not expected. Please review the DataFrame and 
+                 address this inconsistencies. Maybe you should include
+                 more columns in the groupby (e.g. specimen_cde). The 
+                 columns used to compute duplicated are: 
+                 {0}.\n""".format(required))
+            #aux = aux.drop_duplicates(required)
+
+        # Check extreme resistance values
+        if aux.RESISTANCE.isin([0.0, 1.0]).any():
+            warnings.warn("""
+                 Extreme resistances were found in the DataFrame. These rows
+                 should be reviewed since these resistances might correspond
+                 to pairs with low number of records.\n""")
+            #aux = aux[aux[self.c_res] != 1.0]
+
+        # Get NaN indexes
+        idxs = aux[required].isna().any(axis=1)
+
+        # Show warning and correct
+        if idxs.any():
+            warnings.warn("""
+                 There are NULL values in columns that are required. These
+                 rows will be ignored to safely compute ASAI. Please review
+                 the DataFrame and address this inconsistencies. See below
+                 for more information: \n\n\t\t\t{0}\n""".format( \
+                    aux[required].isna().sum(axis=0) \
+                        .to_string().replace("\n", "\n\t\t\t")))
+            aux = aux.dropna(subset=required)
+
+        # Compute
+        scores = aux.groupby(groupby) \
+                    .apply(asai, **kwargs)
+
+        # Return
+        return scores
+
+
+
+
+
+
+
+
+class ASAI_old():
   """This class computes the antimicrobial spectrum of activity. 
 
-  The antimicrobial spectrum of activity (ASAI) represents ....
-
-  The mathematical definition is...
-
-  An example is to compute the ASAI for gram-positive and gram-negative
-  bacteria. In that example, the ASAI indicates whether or not 
-  the antimicrobial is effective against (i) different grams (n/p) which 
-  is often denoted as broad spectrum (ii) different species within the
-  same gram often denoted as intermediate spectrum or (iii) a particular
-  species in a particular gram often denoted as narrow spectrum.
-
-  input.csv ::
-
-    id,gram,specie,genus,antibiotic,resistance
-    1,p,specie1,genusa,antibiotic1,8
-    2,p,specie1,genusb,antibiotic1,10
-    3,p,specie1,genusc,antibiotic1,50
-    4,p,specie2,genusa,antibiotic1,20
-    5,p,specie3,genusa,aantibiotic1,50
-
-  output.csv ::
-
-    antibiotic, gramn, gramp.
-    antibiotic1, NaN, 5.6667
-    antibiotic2, 1.0, 1.0000
-    antibiotic3, NaN, 5.6667
-
-  .. todo::
-
-    Add an example (executable)
+  .. deprecated:: 0.0.1
 
   """
   # Attributes

@@ -1,13 +1,18 @@
 """
-Index - ASAI
+ASAI - Index
 ============================
 
 .. todo::
     - Create data as in the example shown in the figure.
-    - Improve visualization.
+    - Improve visualization method (generic).
     - Create further examples with temporal visualization.
     - Create further examples with general heatmap.
     - Create further examples with animation?
+
+.. warning:: The contribution (cont) value for Staphylococcus haemolyticus
+             should be 0 instead of 1/10 because the sari index is higher
+             than the threshold (32 > 20) and therefore the antimicrobial
+             is not considered effective.
 
 The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
 these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
@@ -20,6 +25,10 @@ and even contradictory purposes.
 .. image:: ../../_static/imgs/index-asai.png
    :align: right
    :alt: ASAI
+
+
+For more information see: :py:mod:`pyamr.core.asai.ASAI`
+
 """
 
 
@@ -162,7 +171,6 @@ try:
 except Exception as e:
     print(e)
 
-
 try:
     asai = dataframe \
         .groupby(['ANTIBIOTIC', 'GRAM']) \
@@ -232,21 +240,25 @@ print(asai_9)
 # Create antimicrobial spectrum
 # -------------------------------
 # Create antimicrobial spectrum of activity instance
-asai = ASAI(weights='uniform', threshold=0.21,
-            column_genus='GENUS',
+asai = ASAI(column_genus='GENUS',
             column_specie='SPECIE',
-            column_antibiotic='ANTIBIOTIC',
             column_resistance='RESISTANCE',
             column_frequency='FREQUENCY',
             column_threshold='THRESHOLD',
             column_wgenus='W_GENUS',
             column_wspecie='W_SPECIE')
-
 # Compute
-scores = asai.compute(dataframe, by_category='GRAM')
+scores = asai.compute(dataframe,
+    groupby=['ANTIBIOTIC', 'GRAM'],
+    weights='uniform',
+    threshold=None,
+    min_freq=0)
+
+# Unstack
+scores = scores.unstack()
 
 # Show
-print("\nASAI:")
+print("\nASAI (instance):")
 print(scores)
 
 # -----------------------------
@@ -280,4 +292,4 @@ ax.set_xlim([-1, 1])
 plt.legend()
 
 # Display
-#plt.show()
+plt.show()

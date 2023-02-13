@@ -124,7 +124,8 @@ def create_microorganisms_lookup_table(orgs):
             'exists_in_registry',
             'gram_stain',
             'microorganism_code',
-            'microorganism_name']
+            'microorganism_name',
+            'microorganism_name_original']
 
     # Filter
     orgs = orgs[[c for c in keep if c in orgs]]
@@ -255,10 +256,18 @@ if __name__ == '__main__':
     path = './nhs/clwsql008/'
 
     tuples = [
+<<<<<<< HEAD
         #('./nhs/legacy', clean_legacy),
         #('./nhs/clwsql008', clean_clwsql008),
         #('./mimic/mimic-iv-v0.4', clean_mimic)
         ('./yujia/raw', clean_clwsql008)
+=======
+        ('./nhs/legacy', clean_legacy),
+        ('./nhs/clwsql008', clean_clwsql008),
+        #('./nhs/test', clean_clwsql008),
+        #('./nhs/test2', clean_legacy),
+        #('./mimic/mimic-iv-v0.4', clean_mimic)
+>>>>>>> b446ca39f46492150f1fe580273339e2ffb40774
     ]
 
     # Combined data
@@ -266,17 +275,13 @@ if __name__ == '__main__':
 
     # For each tuple
     for path, f_clean in tuples:
+        print("Loading... {0}".format(path))
         # Load data (multiple files)
-        data = pd.concat([pd.read_csv(f)
-            for f in glob.glob(path + "/*.csv")])
+        data = pd.concat([pd.read_csv(f,
+            encoding="ISO-8859-1", engine='c')
+                for f in glob.glob(path + "/*.csv")])
         # Clean data
         data = f_clean(data)
-        # Remove those empty
-        data = data.dropna(how='any',
-            subset=['date_received',
-                    'microorganism_name',
-                    'antimicrobial_name',
-                    'sensitivity'])
         # Combine
         combined.append(data)
 
@@ -286,15 +291,24 @@ if __name__ == '__main__':
     # Basic formatting
     data = data.drop_duplicates()
 
+
+
     # -------------------
     # Anonymise
     # -------------------
     # Create hos_number to id mapper
+
     #unique = data.patient_id.unique()
     #pid_map = dict(zip(unique, range(len(unique))))
 
     # Include categories
     #data.patient_id = data.patient_id.map(pid_map)
+
+    #unique = data.patient_hos_number.unique()
+    #pid_map = dict(zip(unique, range(len(unique))))
+
+    # Include categories
+    #data.patient_id = data.patient_hos_number.map(pid_map)
 
     # Show
     #logger.info("\nData:\n{0}".format(strdf(data.head(10))))
@@ -308,7 +322,8 @@ if __name__ == '__main__':
     # ----------------------------------
     # Organism columns
     columns = ['microorganism_code',
-               'microorganism_name']
+               'microorganism_name',
+               'microorganism_name_original']
 
     # Extract organisms information from susceptibility
     orgs = data[columns].copy(deep=True)
@@ -349,11 +364,56 @@ if __name__ == '__main__':
     # Create microorganisms database
     abxs = create_antimicrobials_lookup_table(abxs)
 
-    # ------------------
-    # Useful information
-    # ------------------
+    # --------------------------
+    # Logging useful information
+    # --------------------------
+    # This code logs the unique values and the corresponding
+    # count for the columns specified in the array. Note that
+    # it handles if itdoes not exist (maybe warn?).
+    # Report unique values.
+    for c in ['sensitivity_code',
+              'sensitivity_name',
+              'method_code',
+              'method_name']:
+        if not c in data:
+            continue
+        # Get value counts
+        aux = data[c].value_counts()
+        # Log information
+        logger.info("\n{0}:\n{1}".format(c, strdf(aux)))
+
+    # This code logs the duplicated values for the subsets
+    # included in the array regarding the MICROORGANISMS.
+    # Should we also include names?
+    for subset in [['microorganism_code'], ['acronym']]:
+        # Get duplicates
+        idxs_dup = orgs[['microorganism_name',
+                         'microorganism_code',
+                         'acronym']] \
+            .duplicated(subset=subset, keep=False)
+        # Log information
+        logger.info("\nDuplicated: {0}\n\n{1}".
+            format(subset, strdf(orgs[idxs_dup])))
+
+    # This code logs the duplicated values for the subsets
+    # included in the array regarding the ANTIMICROBIALS.
+    # Should we also include names?
+    for subset in [['name'], ['acronym']]:
+        # Get duplicates
+        idxs_dup = abxs[['name',
+                         'antimicrobial_code',
+                         'acronym']] \
+            .duplicated(subset=subset, keep=False)
+        # Log information
+        logger.info("\nDuplicated {0}:\n\n{1}"
+            .format(subset, strdf(abxs[idxs_dup])))
+
+    # Report duplicated values (antimicrobials)
+
+
+    """
     # Create basic information
-    sensitivity = data.sensitivity.value_counts()
+    sensitivity = data.sensitivity_code.value_counts()
     gram_stain = orgs.gram_stain.value_counts()
 
     # Create duplicates
@@ -370,15 +430,29 @@ if __name__ == '__main__':
     logger.info("\nGram stain:\n{0}".format(strdf(gram_stain)))
     logger.info("\nDuplicate codes:\n{0}".format(strdf(aux[idxs_dup_code])))
     logger.info("\nDuplicate acronyms:\n{0}".format(strdf(aux[idxs_dup_acrm])))
-
+    """
 
     # ----------
     # Filter
     # ----------
+    # We have to remove those dates in which the date_received is none
+    # because otherwise we cannot group the data by year to store it
+    # in different files. In addition, the others are also required to
+    # have a meaningful susceptibility test record.
+    data = data.dropna(how='any',
+        subset=['date_received',
+                'specimen_name',
+                'microorganism_name',
+                'antimicrobial_name',
+                'sensitivity_name'])
+
+    # ----------
+    # Save
+    # ----------
     # Columns
     keep = ['date_received',
             'date_outcome',
-            'patient_id',
+            'patient_hos_number',
             'laboratory_number',
             'specimen_code',
             'specimen_name',
@@ -387,14 +461,15 @@ if __name__ == '__main__':
             'microorganism_name',
             'antimicrobial_code',
             'antimicrobial_name',
-            'sensitivity_method',
-            'sensitivity',
+            'method_code',
+            'method_name',
+            'sensitivity_code',
+            'sensitivity_name',
             'mic',
             'reported']
 
     # Filter
     data = data[[c for c in keep if c in data]]
-
 
     # ----------
     # Save
@@ -414,9 +489,12 @@ if __name__ == '__main__':
 
     # Save susceptibility grouped
     for n, g in data.groupby(grouper):
+        # Create filename
         filename = "susceptibility-%s.csv" % n.strftime('%Y')
+        # Save
         g.to_csv(path / filename, index=False,
-                quoting=csv.QUOTE_ALL)  # QUOTE_NONNUMERIC
+                date_format='%Y-%m-%d %H:%M:%S', # dont check excels! check csvs!
+                quoting=csv.QUOTE_ALL)           # QUOTE_NONNUMERIC
 
     # Logging
     logger.info('The results have been saved in: %s' % path)

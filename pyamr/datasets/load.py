@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.append('../../')
 
 # Import libraries
-import pyamr.utils.io.read as pd_read
+#import pyamr.utils.io.read as pd_read
 
 # --------------------------------------
 # DEFINITION OF DATABASE PATHS
@@ -81,8 +81,8 @@ def make_susceptibility():
     .. note: Default path
     """
     # Define path
-    path = './microbiology/sample/susceptibility-20210324-194524.csv'
-    # Load
+    path = './microbiology/sample/nhs-susceptibility-2009.csv'
+    # Return
     return pd.read_csv("{0}/{1}".format(dirname, path))
 
 
@@ -102,11 +102,20 @@ def load_registry_antimicrobials():
     return pd.read_csv("{0}/{1}".format(dirname, path))
 
 
-def load_microbiology_folder(path, folder, **kwargs):
+def load_microbiology_folder(path, folder,
+        glob_pattern='susceptibility-*.csv', **kwargs):
     """This method loads the susceptibility data.
+
+    .. note:: It assumes all the susceptibility data is stored in csv
+              files whose files name starts with 'susceptibility'. In
+              addition, it assumes that the additional iformation is
+              is available in files named 'antimicrobials.csv' and
+              'microorganisms.csv'
 
     Parameters
     ----------
+    path: string
+        The path where the folder is located.
     folder: string
         Name of the folder with the data.
     kwargs:
@@ -130,7 +139,7 @@ def load_microbiology_folder(path, folder, **kwargs):
     # Load data
     data = pd.concat([ \
         pd.read_csv(f, parse_dates=['date_received'], **kwargs)
-            for f in glob.glob(str(path_sus / "susceptibility-*.csv"))])
+            for f in glob.glob(str(path_sus / glob_pattern))])
 
     # Load databases (registries)
     db_abxs = pd.read_csv(path_abx)
@@ -140,7 +149,7 @@ def load_microbiology_folder(path, folder, **kwargs):
     return data, db_abxs, db_orgs
 
 
-def load_data_nhs(folder='susceptibility-v0.0.1', **kwargs):
+def load_data_nhs(folder='susceptibility-v0.0.2', **kwargs):
     """This method loads the susceptibility data.
 
     """
@@ -163,6 +172,7 @@ def load_data_mimic(folder='susceptibility-v0.0.1', **kwargs):
 # -----------------
 # epic impoc basic
 # -----------------
+"""
 def dataset_epicimpoc_antibiotics(**kwargs):
     return pd.read_csv('%s/%s' % (dirname, epicimpoc_antibiotics), *kwargs)
 
@@ -174,27 +184,21 @@ def dataset_epicimpoc_organisms(**kwargs):
 # epic impoc susceptibility test data
 # -----------------------------------
 def dataset_epicimpoc_susceptibility(**kwargs):
-    """
-    """
     return pd_read.read_csv('%s/%s' % \
       (dirname, epicimpoc_susceptibility_comp), **kwargs)
 
 def dataset_epicimpoc_susceptibility_year(year='2014', **kwargs):
-    """
-    """
     return pd_read.read_csv('%s/%s/%s' % \
       (dirname, epicimpoc_susceptibility_year, str(year)), **kwargs)
 
 def dataset_epicimpoc_susceptibility_culture(cultures=['bldcul']):
-    """
-    """
     pass
 
 
 
 def dataset_shampoo_sales(**kwargs):
     return pd.read_csv('%s/%s' % (dirname, other_shampoo_sales), **kwargs)
-
+"""
 
 
 if __name__ == '__main__':
@@ -212,18 +216,18 @@ if __name__ == '__main__':
     # Loading default datasets
     # -----------------------------------
     # Load antibiotics
-    antibiotics = dataset_epicimpoc_antibiotics()
+    #antibiotics = dataset_epicimpoc_antibiotics()
 
     # Load organisms
-    organisms = dataset_epicimpoc_organisms()
+    #organisms = dataset_epicimpoc_organisms()
 
     # Load profiles
     #microbiology = dataset_epicimpoc_susceptibility_year(year=2014)
 
 
     # Show information
-    print(antibiotics.head(5))
-    print(organisms.head(5))
-    print(len(microbiology))
+    #print(antibiotics.head(5))
+    #print(organisms.head(5))
+    #print(len(microbiology))
 
-    print(dataset_shampoo_sales())
+    #print(dataset_shampoo_sales())

@@ -1,12 +1,24 @@
 """
-Index - SARI
+SARI - Index
 ============================
 
-.. warning::
-        - Improve visualization.
-        - Create further examples with temporal visualization.
-        - Create further examples with general heatmap.
-        - Create further examples with animation?
+The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
+of resistant isolates for a given set of susceptibility tests. It provides a
+value within the range [0, 1] where values close to one indicate high resistance.
+It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` and
+``S`` represent the number of susceptibility tests with Resistant, Intermediate and
+Susceptible outcomes respectively. The definition might vary slightly since the
+intermediate category is not always considered.
+
+The parameter strategy accepts three different options:
+
+    (i) ``soft``   as R / R+I+S
+   (ii) ``medium`` as R / R+S
+   (iii) ``hard``  as R+I / R+I+S
+   (iv) ``other``  as R+0.5I / R+0.5I+S
+
+For more information see: :py:mod:`pyamr.core.asai.SARI`
+
 """
 
 
@@ -19,7 +31,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 # Import specific libraries
-from pyamr.core.freq import Frequency
 from pyamr.core.sari import SARI
 
 # Set matplotlib
@@ -28,9 +39,7 @@ mpl.rcParams['ytick.labelsize'] = 9
 mpl.rcParams['axes.titlesize'] = 11
 mpl.rcParams['legend.fontsize'] = 9
 
-# -----------------------
-# Load data
-# -----------------------
+
 # -------------------------
 # Constants
 # -------------------------
@@ -47,128 +56,95 @@ replace_codes = {
   'NEONATAL SCREEN':'NEOCUL',
 }
 
-# Interesting columns
-usecols = ['dateReceived',
-           'labNumber',
-           'patNumber',
-           'orderCode',
-           'organismCode',
-           'antibioticCode',
-           'sensitivity']
+# ---------------------
+# Create data
+# ---------------------
+# Create data
+data = [
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+    ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+    ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+    ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+    ['2021-01-03', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+    ['2021-01-03', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+    ['2021-01-04', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
 
-# -----------------------
-# Load data
-# -----------------------
-# Path
-# Path
-path = '../../../pyamr/datasets/microbiology/susceptibility.csv'
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+    ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
+    ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+    ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+    ['2021-01-03', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
+    ['2021-01-03', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+    ['2021-01-04', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
 
-# Load all files
-data = pd.read_csv(path,
-    usecols=usecols,
-    parse_dates=['dateReceived'],
-    low_memory=False)
+    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
 
-# Replace
-data.organismCode = \
-    data.organismCode.replace(replace_codes)
+    ['2021-01-12', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-12', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
+    ['2021-01-13', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-13', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-14', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-14', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+    ['2021-01-15', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-15', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
+    ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
+    ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
+]
 
-# Drop duplicates
-data = data.drop_duplicates()
 
-# Keep only relevant columns
-data = data[['antibioticCode',
-             'organismCode',
-             'dateReceived',
-             'sensitivity']]
+data = pd.DataFrame(data,
+    columns=['DATE',
+             'SPECIMEN',
+             'MICROORGANISM',
+             'ANTIMICROBIAL',
+             'SENSITIVITY'])
 
-# Filter for two examples
-is_org = data['organismCode'] == 'ECOL'
-is_abx = data['antibioticCode'].isin(['AAUG'])
-data = data[is_abx & is_org]
 
-# -------------------------
-# Create frequency instance
-# -------------------------
-# Create instance
-freq = Frequency(column_antibiotic='antibioticCode',
-                 column_organism='organismCode',
-                 column_date='dateReceived',
-                 column_outcome='sensitivity')
+# Create SARI instance
+sari = SARI(groupby=['SPECIMEN',
+                     'MICROORGANISM',
+                     'ANTIMICROBIAL',
+                     'SENSITIVITY'])
 
-# Compute frequencies daily
-daily = freq.compute(data, strategy='ITI',
-                     by_category='pairs',
-                     fs='1D')
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=False)
 
-# Compute frequencies monthly
-monthly = freq.compute(data, strategy='ITI',
-                       by_category='pairs',
-                       fs='1M')
+# Compute SARI temporal (ITI)
+sari_iti = sari.compute(data, shift='1D',
+    period='1D', cdate='DATE')
 
-"""
-# Compute frequencies overlapping
-oti_1 = freq.compute(data, strategy='OTI',
-                     by_category='pairs',
-                     wshift='1D',
-                     wsize=90)
-"""
-# -------------------------
-# Create sari instance
-# -------------------------
-# Create instance
-sari_daily = SARI(strategy='hard').compute(daily)
-sari_monthly = SARI(strategy='hard').compute(monthly)
-#sari_oti_1 = SARI(strategy='hard').compute(oti_1)
-
-# -------
-# Plot
-# -------
-# Show comparison for each pair
-f, axes = plt.subplots(4, 1, figsize=(15, 8))
-
-# Flatten axes
-axes = axes.flatten()
-
-# Plot ITI (monthly)
-for i, (pair, group) in enumerate(sari_daily.groupby(level=[0, 1])):
-    group.index = group.index.droplevel([0, 1])
-    group['sari'].plot(marker='o', ms=3, label=pair,
-                       linewidth=0.5, markeredgecolor='k', markeredgewidth=0.3,
-                       ax=axes[0])
-
-# Plot ITI (monthly)
-for i, (pair, group) in enumerate(sari_monthly.groupby(level=[0, 1])):
-    group.index = group.index.droplevel([0, 1])
-    group['sari'].plot(marker='o', ms=3, label=pair,
-                       linewidth=0.5, markeredgecolor='k', markeredgewidth=0.3,
-                       ax=axes[1])
-
-"""
-# Plot OTI (daily with size 30)
-for i, (pair, group) in enumerate(sari_oti_1.groupby(level=[0, 1])):
-    group.index = group.index.droplevel([0, 1])
-    group['sari'].plot(marker='o', ms=3, label=pair,
-                       linewidth=0.5, markeredgecolor='k', markeredgewidth=0.3,
-                       ax=axes[2])
-"""
-
-# Set legend
-for ax in axes:
-    ax.legend()
-    ax.set_xlabel('')
-    ax.grid(True)
-
-# Set titles
-axes[0].set_ylabel('Daily')
-axes[1].set_ylabel('Monthly')
-axes[2].set_ylabel('OTI(1D,90)')
-
-# Despine
-sns.despine(bottom=True, left=True)
-
-# Set title
-plt.suptitle("SARI (Single Antibiotic Resistance Index)")
+# Compute SARI temporal (OTI)
+sari_oti = sari.compute(data, shift='1D',
+    period='2D', cdate='DATE')
 
 # Show
-plt.show()
+print("\nSARI (overall):")
+print(sari_overall)
+print("\nSARI (iti):")
+print(sari_iti)
+print("\nSARI (oti):")
+print(sari_oti)

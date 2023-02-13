@@ -48,11 +48,11 @@ Acronym  Full name                                      Status
 ``SARI`` Single Antimicrobial Resistance Index          ``Ok``
 ``MARI`` Multiple Antimicrobial Resistance Index        ``Pending``
 ``DRI``  Drug Resistance Index                          ``Pending``
-``SART`` Single Antimicrobial Resistance Trend          ``Ok``
+``SART`` Single Antimicrobial Resistance Trend          ``Pending``
 ``ASAI`` Antimicrobial Spectrum of Activity Index       ``Ok``
 ======== ============================================== =============
 
-- Single Antibiotic Resistance Index (SARI)
+- **Single Antibiotic Resistance Index (SARI)**
 
     This index describes the proportion of resistant isolates for a given set of susceptibility
     tests. It provides a value within the range [0,1] where values close to one indicate high
@@ -61,11 +61,11 @@ Acronym  Full name                                      Status
     respectively. The definition might vary slightly since the intermediate category is not always
     considered.
 
-    SARI = R + I / R + I + S
+    See: :py:mod:`pyamr.core.asai.SARI`
 
     Examples: XXX | XXX | XXX
 
-- Multiple Antibiotic Resistance Index (MARI)
+- **Multiple Antibiotic Resistance Index (MARI)**
 
     This index describes the ratio of antimicrobials tested (T) to which a pathogen is resistant (R).
     It provides a value within the range [0,1] where values close to one indicate high multi-drug
@@ -74,19 +74,31 @@ Acronym  Full name                                      Status
     evolution in time is not straight forward. In addition, antibiotics which are intrinsically resistant
     should not be considered.
 
-    MARI_{ISO} = R / T
+    See: :py:mod:`pyamr.core.asai.MARI`
 
-- Drug Resistance Index (DRI)
+    Examples: XXX | XXX | XXX
+
+- **Drug Resistance Index (DRI)**
 
     This index measures the proportion of pathogens that are resistant to the antimicrobials used
     to treat them. It provides a value within the range [0,1] where values close to one indicate
     high resistant for frequent antimicrobials. The variable ρik is the proportion of resistance
     among organism i to antimicrobial k and qik is the frequency of drug k used to treat organism i.
 
+    .. warning:: Not implemented!
 
-    .. warning:: Add formula and/or reference.
+- **Antimicrobial Spectrum of Activity Index (ASAI)**
 
-- Single Antibiotic Resistance Trend (SART)
+    The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
+    these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
+    intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both Gram-positive
+    and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited activity and are
+    effective only against particular species of bacteria.
 
-- Antimicrobial Spectrum of Activity Index (ASAI)
+    See: :py:mod:`pyamr.core.asai.ASAI`
 
+    Examples: XXX | XXX | XXX
+
+- **Single Antibiotic Resistance Trend (SART)**
+
+    .. warning:: Pending!

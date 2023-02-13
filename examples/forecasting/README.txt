@@ -7,4 +7,4 @@ supported are:
 
   - ``WLS``: Weighted Linear Squares
   - ``ARIMA``: Auto Regressive Integrated Moving Average
-  - ``SARIMAX``: Seasonal Auto Regressive Integrated Moving Average with eXogenous regressors
+  - ``SARIMAX``: Seasonal ``ARIMA`` with eXogenous regressors

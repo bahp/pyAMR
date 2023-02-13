@@ -11,6 +11,7 @@
 ################################################################################
 # Import libraries
 import sys
+import warnings
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -35,81 +36,56 @@ def _check_dataframe(dataframe):
   if not 'intermediate' in  dataframe:
     aux['intermediate'] = 0
   if not 'sensitive' in dataframe:
-    aux['sensitivity'] = 0
+    aux['sensitive'] = 0
 
   # return
   return aux
 
-def sari_soft(dataframe):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return r / (r+i+s)
+def _check_sensitivities(dataframe):
+    if not 'resistant' in dataframe and \
+       not 'sensitive' in dataframe and \
+       not 'intermediate' in dataframe:
+       raise Exception("To compute the SARI at least one of the following"
+                       "columns must be present in the dataframe (resistant,"
+                       "senstive, intermediate)")
 
-def sari_medium(dataframe):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  s = dataframe['sensitive']
-  # Compute
-  return r / (r+s)
+"""
+def sari_(r=0, i=0, s=0, dataframe=None, strategy='hard', **kwargs):
+    if dataframe is not None:
+        if isinstance(pd.DataFrame):
+            _check_sensitivities(dataframe)
+            aux = _check_dataframe(dataframe)
+            return sari_(dataframe, strategy, **kwargs)
+"""
 
-def sari_hard(dataframe):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return (r+i) / (r+i+s)
-
-def sari_whard(dataframe, w=0.5):
-  """
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return (r+w*i) / (r+w*i+s)  
-
-
-
-def sari(dataframe, strategy='hard', **kwargs):
+def sari(dataframe=None, strategy='hard', **kwargs):
     """Computes the sari index.
 
     Parameters
     ----------
     dataframe: pd.DataFrame
         A dataframe with the susceptibility test interpretations
-        as columns. The default strategies expect the following
-        columns: 'sensitive', 'intermediate', 'resistant'.
+        as columns. The default strategies used (see below) expect
+        the following columns ['sensitive', 'intermediate', 'resistant']
+        and if they do not appear they weill be set to zeros.
 
-    strategy: string or func (default hard)
+    strategy: string or func, default='hard'
         The method used to compute sari. The possible options
         are 'soft', 'medium' and 'hard'. In addition, a function
-        with the following signature can be passed:
-           dataframe
-           arguments
+        with the following signature func(dataframe, **kwargs)
+        can be passed.
+
+            (i) ``soft``   as R / R+I+S
+            (ii) ``medium`` as R / R+S
+            (iii) ``hard``  as R+I / R+I+S
+            (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]
 
     **kwargs: arguments to pass the strategy function.
 
     Returns
-    --------
+    -------
+    pd.Series
+        The resistance index
     """
     # Ensure that exists
     aux = _check_dataframe(dataframe)
@@ -124,22 +100,235 @@ def sari(dataframe, strategy='hard', **kwargs):
         return strategy(aux, **kwargs)
 
     # Check strategy.
-    if strategy not in ['soft', 'medium', 'hard']:
+    if strategy not in ['soft', 'medium', 'hard', 'basic']:
         raise ValueError("""
-              The strategy '{0}' is not supported and
-              therefore the strategy 'hard' will be used.""" \
-              .format(strategy))
+              The strategy '{0}' is not supported. Please
+              use one of the following: soft, medium, hard
+              or basic""".format(strategy))
 
     # Compute
     if strategy == 'hard':
         return (r + i) / (r + i + s)
     elif strategy == 'medium':
-        return r / (r + s)
+        return (r + 0.5*i) / (r + 0.5*i + s)
     elif strategy == 'soft':
         return r / (r + i + s)
+    elif strategy == 'basic':
+        return r / (r + s)
+
+
+class SARI:
+
+    # Attributes
+    c_spe = 'SPECIMEN'
+    c_org = 'MICROORGANISM'
+    c_abx = 'ANTIMICROBIAL'
+    c_dat = 'DATE'
+    c_out = 'SENSITIVITY'
+
+    def __init__(self, groupby=[c_spe,
+                                c_org,
+                                c_abx,
+                                c_out]):
+        """Constructor.
+
+        Parameters
+        ----------
+        groupby: list
+            The labels of the columns to groupby.
+
+        Returns
+        --------
+        SARI instance
+        """
+        self.groupby = groupby
 
 
 
+    def rolling(self, dataframe, period, cdate, shift=None):
+        """"""
+        if shift is None:
+            warnings.warn("The input parameter <shift> is None. Thus, the value "
+                          "of the input parameter <period> has been used. {}" \
+                          .format(period, shift))
+            shift = period
+
+        # Grouper
+        grouper = [pd.Grouper(freq=shift, key=cdate)]
+        grouper = grouper + self.groupby
+
+        # Compute frequencies
+        freqs = dataframe.groupby(grouper) \
+            .size().unstack().reset_index() \
+            .set_index(cdate).groupby(grouper[1:-1]) \
+            .rolling(window=period, min_periods=1) \
+            .sum().fillna(0)
+
+        # Return
+        return freqs
+
+    def grouping(self, dataframe, period, cdate):
+        """"""
+        # Create grouper
+        if hasattr(dataframe[cdate].dt, period):
+            grouper = [getattr(dataframe[cdate].dt, period)]
+        else:
+            grouper = [pd.Grouper(freq=period, key=cdate)]
+        grouper = self.groupby + grouper
+
+        # Compute sensitivity counts
+        freqs = dataframe.groupby(grouper) \
+            .size().unstack(level=-2) \
+            .fillna(0)
+
+        # Return
+        return freqs
+
+    def compute(self, dataframe, period=None, shift=None, cdate=None,
+                return_frequencies=True, **kwargs):
+        """Computes single antibiotic resistance index.
+
+        .. todo: Add parameters to rolling!
+        .. todo: Place value at the left, center, right of window?
+        .. todo: Ensure that works when time gaps present!
+        .. todo: Carefull with various indexes!
+
+        Parameters
+        ----------
+        dataframe: pd.DataFrame
+            A dataframe with the susceptibility test interpretations
+            as columns. The default strategies used (see below) expect
+            the following columns ['sensitive', 'intermediate', 'resistant']
+            and if they do not appear they weill be set to zeros.
+
+        shift: str
+            Frequency value to pass to pd.Grouper.
+
+        period: str, int
+            Window value to pass to pd.rolling.
+
+        cdate: string, default=None
+            The column that will be used as date.
+
+        return_frequencies: boolean, default=True
+            Whether to return the frequencies or just the resistance index.
+
+        strategy: string or func, default='hard'
+            The method used to compute sari. The possible options
+            are 'soft', 'medium' and 'hard'. In addition, a function
+            with the following signature func(dataframe, **kwargs)
+            can be passed.
+
+                (i) ``soft``   as R / R+I+S
+                (ii) ``medium`` as R / R+S
+                (iii) ``hard``  as R+I / R+I+S
+                (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]
+
+        **kwargs: arguments to pass the strategy function.
+
+        Returns
+        -------
+        pd.Series or pd.DataFrame
+            The resistance index (pd.Series) or a pd.Dataframe with the
+            resistance index (sari) and the frequencies.
+        """
+        # Copy DataFrame
+        aux = dataframe.copy(deep=True)
+
+        # Warning if dates NaN
+        # Warning if elements in groupby any all NaN!
+
+
+        # ------------------------------------------
+        # Frequencies
+        # ------------------------------------------
+        # Compute frequencies
+        if period is None:
+            freqs = aux.groupby(self.groupby) \
+                .size().unstack().fillna(0)
+
+        else:
+
+            # Format as datetime
+            aux[cdate] = pd.to_datetime(aux[cdate])
+
+            if shift is not None:
+                freqs = self.rolling(dataframe=aux,
+                                     period=period,
+                                     shift=shift,
+                                     cdate=cdate)
+            else:
+                freqs = self.grouping(dataframe=aux,
+                                    period=period,
+                                    cdate=cdate)
+
+        # -------------------
+        # Sari
+        # -------------------
+        # Compute sari
+        s = sari(freqs, **kwargs).rename('sari')
+
+        # Return
+        if return_frequencies:
+            freqs['freq'] = freqs.sum(axis=1)
+            freqs['sari'] = sari(freqs, **kwargs)
+            return freqs
+        return s
+
+
+
+
+
+def sari_soft(dataframe):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  i = dataframe['intermediate']
+  s = dataframe['sensitive']
+  # Compute
+  return r / (r+i+s)
+
+def sari_medium(dataframe):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  s = dataframe['sensitive']
+  # Compute
+  return r / (r+s)
+
+def sari_hard(dataframe):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  i = dataframe['intermediate']
+  s = dataframe['sensitive']
+  # Compute
+  return (r+i) / (r+i+s)
+
+def sari_whard(dataframe, w=0.5):
+  """
+  .. deprecated:: 0.0.1
+  """
+  # Check
+  dataframe = _check_dataframe(dataframe)
+  # Get values
+  r = dataframe['resistant']
+  i = dataframe['intermediate']
+  s = dataframe['sensitive']
+  # Compute
+  return (r+w*i) / (r+w*i+s)
 
 
 # Default methods
@@ -150,8 +339,11 @@ _DEFAULT_STRATEGIES = {
 }
 
 
+class SARI_old():
 
-class SARI():
+  """
+  .. deprecated:: 0.0.1
+  """
 
   # Attributes
   c_abx = 'ANTIBIOTIC'

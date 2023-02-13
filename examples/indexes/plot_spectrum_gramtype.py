@@ -1,8 +1,6 @@
 """
-ASAI - gram type
-----------------
-
-.. warning:: Implement using sample data.
+ASAI - Gram stain (by specimen)
+-------------------------------
 
 """
 
@@ -40,32 +38,6 @@ pd.set_option('display.precision', 4)
 # Numpy configuration
 np.set_printoptions(precision=2)
 
-# ------------------------
-# Methods
-# ------------------------
-def create_mapper(dataframe, column_key, column_value):
-    """This method constructs a mapper
-
-    Parameters
-    ----------
-    dataframe: dataframe-like
-      The dataframe from which the columns are extracted
-
-    column_key: string-like
-      The name of the column with the values for the keys of the mapper
-
-    column_value: string-like
-      The name of the column with the values for the values of the mapper
-
-    Returns
-    -------
-    dictionary
-    """
-    dataframe = dataframe[[column_key, column_value]]
-    dataframe = dataframe.drop_duplicates()
-    return dict(zip(dataframe[column_key], dataframe[column_value]))
-
-
 # -------------------------------------------
 # Load data
 # -------------------------------------------
@@ -78,100 +50,199 @@ print(data)
 print("\nColumns:")
 print(data.columns)
 
-
 # -------------------------------------------
-# Compute Freq and SARI
-# -------------------------------------------
-# Create instance
-freq = Frequency(column_antibiotic='antimicrobial_code',
-                 column_organism='microorganism_code',
-                 column_date='date_received',
-                 column_outcome='sensitivity')
-
-# Compute frequencies (overall)
-freq_overall = freq.compute(data, by_category='pairs')
-
 # Compute SARI
-sari_overall = SARI(strategy='hard').compute(freq_overall)
+# -------------------------------------------
+# Libraries
+from pyamr.core.sari import SARI
+
+# Create sari instance
+sari = SARI(groupby=['specimen_code',
+                     'microorganism_name',
+                     'antimicrobial_name',
+                     'sensitivity'])
+
+# Compute SARI overall
+sari_overall = sari.compute(data,
+    return_frequencies=True)
+
+# Show
+print("SARI (overall):")
+print(sari_overall)
+
+
+
+# ------------------------------
+# Include gram stain
+# ------------------------------
+# Libraries
+from pyamr.datasets.registries import MicroorganismRegistry
+
+# Load registry
+mreg = MicroorganismRegistry()
+
+# Format sari dataframe
+dataframe = sari_overall.copy(deep=True)
+dataframe = dataframe.reset_index()
+
+# Create genus and species
+dataframe[['genus', 'species']] = \
+    dataframe.microorganism_name \
+        .str.capitalize() \
+        .str.split(expand=True, n=1)
+
+# Combine with registry information
+dataframe = mreg.combine(dataframe)
+
+# Fill missing gram stain
+dataframe.gram_stain = dataframe.gram_stain.fillna('u')
 
 
 # -------------------------------------------
-# Compute Freq and SARI
+# Compute ASAI
 # -------------------------------------------
-# Create mappers
-genus_map = create_mapper(data, 'microorganism_code', 'microorganism_genus')
-gramt_map = create_mapper(data, 'microorganism_code', 'microorganism_gram_type')
+# Import specific libraries
+from pyamr.core.asai import ASAI
 
-# Create matrix
-matrix = sari_overall.copy(deep=True)
-matrix = matrix.reset_index()
-matrix['microorganism_genus'] = matrix.SPECIE.map(genus_map)
-matrix['microorganism_gram_type'] = matrix.SPECIE.map(gramt_map)
+# Create asai instance
+asai = ASAI(column_genus='genus',
+            column_specie='species',
+            column_resistance='sari',
+            column_frequency='freq')
 
-# Create instance
-asai = ASAI(weights='uniform',
-            threshold=0.05,
-            column_genus='microorganism_genus',
-            column_specie='SPECIE',
-            column_antibiotic='ANTIBIOTIC',
-            column_resistance='sari')
 # Compute
-scores = asai.compute(matrix,
-    by_category='microorganism_gram_type')
+scores = asai.compute(dataframe,
+    groupby=['specimen_code',
+             'antimicrobial_name',
+             'gram_stain'],
+    weights='uniform',
+    threshold=0.5,
+    min_freq=0)
 
+# Stack
+scores = scores.unstack()
 
-# -------------------------------
-# Filter and reoorder
-# -------------------------------
-# Sort
-scores = scores.fillna(0.0)
-scores['width'] = np.abs(scores['ASAI_SCORE']['n']+scores['ASAI_SCORE']['p'])
-scores['gmean'] = np.sqrt(scores['ASAI_SCORE']['n']*scores['ASAI_SCORE']['p'])
-scores = scores.sort_values(by='width', ascending=False)
+# .. note: In order to sort the scores we need to compute metrics
+#          that combine the different subcategories (e.g. gram-negative
+#          and gram-positive). Two possible options are: (i) use the
+#          gmean or (ii) the width.
+# Measures
+scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
+scores['gmean'] = np.sqrt(scores['ASAI_SCORE'].product(axis=1))
 
-# Show scores
-print("Data output:")
+# Show
+print("\nASAI (overall):")
 print(scores)
 
 
-# ----------------
-# Plot
-# ----------------
+# ------------------------
+# Methods
+# ------------------------
 def scalar_colormap(values, cmap, vmin, vmax):
-  """This method creates a colormap based on values.
+    """This method creates a colormap based on values.
 
-  Parameters
-  ----------
-  values : array-like
+    Parameters
+    ----------
+    values : array-like
     The values to create the corresponding colors
 
-  cmap : str
+    cmap : str
     The colormap
 
-  vmin, vmax : float
+    vmin, vmax : float
     The minimum and maximum possible values
 
-  Returns
-  -------
-  scalar colormap
-  """
-  # Create scalar mappable
-  norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax, clip=True)
-  mapper = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
-  # Gete color map
-  colormap = sns.color_palette([mapper.to_rgba(i) for i in values])
-  # Return
-  return colormap
+    Returns
+    -------
+    scalar colormap
+    """
+    # Create scalar mappable
+    norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax, clip=True)
+    mapper = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
+    # Gete color map
+    colormap = sns.color_palette([mapper.to_rgba(i) for i in values])
+    # Return
+    return colormap
 
-# Variables to plot.
-x = scores.index.values
-y_n = scores['ASAI_SCORE']['n'].values
-y_p = scores['ASAI_SCORE']['p'].values
 
-# Constants
-colormap_p = scalar_colormap(y_p, cmap='Blues', vmin=-0.1, vmax=1.1)
-colormap_n = scalar_colormap(y_n, cmap='Reds', vmin=-0.1, vmax=1.1)
+# -------------------------------------------
+# Plot
+# -------------------------------------------
+# Reset
+scores = scores.reset_index()
 
+# Count records per specimen
+specimen_count = sari_overall \
+ .groupby('specimen_code').freq.sum() \
+ .sort_values(ascending=False)
+
+# Show
+print("\nCultures:")
+print(specimen_count)
+
+# Filter
+scores = scores[scores.specimen_code\
+    .isin(specimen_count.index.values[:5])]
+
+# Loop
+for specimen, df in scores.groupby(by='specimen_code'):
+
+    # Sort
+    df = df.sort_values(by='width', ascending=False)
+
+    # Show
+    print("\n\nASAI (%s)" % specimen)
+    print(df)
+
+    # Variables to plot.
+    x = df.antimicrobial_name
+    y_n = df['ASAI_SCORE']['n'].values
+    y_p = df['ASAI_SCORE']['p'].values
+
+    # Constants
+    colormap_p = scalar_colormap(y_p, cmap='Blues', vmin=-0.1, vmax=1.1)
+    colormap_n = scalar_colormap(y_n, cmap='Reds', vmin=-0.1, vmax=1.1)
+
+    # ----------
+    # Example
+    # ----------
+    # This example shows an stacked figure using more than two categories.
+    # For instance, it uses gram-positive, gram-negative and gram-unknown.
+    # All the indexes go within the range [0,1].
+    # Create figure
+    f, ax = plt.subplots(1, 1, figsize=(5, 6))
+
+    # Plot
+    sns.barplot(x=y_p, y=x, palette=colormap_p, ax=ax, orient='h',
+        saturation=0.5, label='Gram-positive')
+    sns.barplot(x=-y_n, y=x, palette=colormap_n, ax=ax, orient='h',
+        saturation=0.5, label='Gram-negative')
+
+    # Configure
+    sns.despine(bottom=True)
+
+    # Format figure
+    plt.subplots_adjust(wspace=0.0, hspace=0.0)
+
+    # Set x-axis
+    ax.set_xlim([-1, 1])
+
+    # Adjust
+    plt.legend(loc=8)
+    plt.suptitle(specimen)
+    plt.tight_layout()
+
+# Show
+plt.show()
+
+
+
+
+
+
+
+
+"""
 # ----------
 # Example
 # ----------
@@ -209,3 +280,4 @@ plt.tight_layout()
 
 # Show
 plt.show()
+"""

@@ -1,0 +1,21 @@
+# Choose language
+language: python
+
+# Chose version
+python:
+  - "3.9"
+
+# command to install dependencies
+install:
+  - python -m pip install -r requirements.txt
+  - pip install pytest-cov codecov
+  - python -m pip install pytest
+  - python -m pip install .
+
+# command to run tests
+script:
+  - pytest
+  - pytest --cov=pyamr
+
+after_success:
+  - codecov
