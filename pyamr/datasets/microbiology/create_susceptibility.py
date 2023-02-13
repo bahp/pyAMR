@@ -257,7 +257,8 @@ if __name__ == '__main__':
     tuples = [
         #('./nhs/legacy', clean_legacy),
         #('./nhs/clwsql008', clean_clwsql008),
-        ('./mimic/mimic-iv-v0.4', clean_mimic)
+        #('./mimic/mimic-iv-v0.4', clean_mimic)
+        ('./yujia/raw', clean_clwsql008)
     ]
 
     # Combined data
@@ -289,11 +290,11 @@ if __name__ == '__main__':
     # Anonymise
     # -------------------
     # Create hos_number to id mapper
-    unique = data.patient_id.unique()
-    pid_map = dict(zip(unique, range(len(unique))))
+    #unique = data.patient_id.unique()
+    #pid_map = dict(zip(unique, range(len(unique))))
 
     # Include categories
-    data.patient_id = data.patient_id.map(pid_map)
+    #data.patient_id = data.patient_id.map(pid_map)
 
     # Show
     #logger.info("\nData:\n{0}".format(strdf(data.head(10))))
