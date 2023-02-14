@@ -18,7 +18,6 @@ from pyamr.core.mari import MARI
 def func(x):
     return x + 1
 
-
 @pytest.fixture
 def fixture():
     data = [
@@ -184,4 +183,3 @@ def test_asai_class(fixture4):
 # --------------------------------------
 # Statistical tests (statstools)
 # --------------------------------------
-
