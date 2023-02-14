@@ -56,6 +56,15 @@ print(data.dtypes)
 #          antimicrobials, pairs, species, isolates, tests, the range of
 #          dates, ....
 
+# Show unique elements
+print("\nUnique values:")
+for c in ['microorganism_code',
+          'antimicrobial_code',
+          'specimen_code',
+          'laboratory_number']:
+    print('%-18s -> %5s' % (c, data[c].nunique()))
+
+
 #######################################################################
 #
 # Computing SARI
@@ -71,10 +80,10 @@ print(data.dtypes)
 #
 # The parameter strategy accepts the following options:
 #
-#  (i) ``soft``   as R / R+I+S
-#  (ii) ``medium`` as R / R+S
-#  (iii) ``hard``  as R+I / R+I+S
-#  (iv) ``other``  as R+0.5I / R+0.5I+S
+#   - ``soft``   as R / R+I+S
+#   - ``medium`` as R / R+S
+#   - ``hard``  as R+I / R+I+S
+#   - ``other``  as R+0.5I / R+0.5I+S
 #
 # For more information see: :py:mod:`pyamr.core.sari.SARI`
 #
@@ -168,22 +177,16 @@ plt.subplots_adjust(right=1.05)
 #
 # For more examples see:
 #
-#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
-#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`.
-#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`.
+#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`
 #
 #
-# In order to compute ``ASAI``, we need to at least have columns with the following
-# information:
-#
-#   - ``antimicrobial``
-#   - ``microorganism genus``
-#   - ``microorganism species``
-#   - ``resistance``
-#
-# Moreover, in this example we will compute the ASAI for each ``gram_stain`` category
-# independently so we will need the microorganism gram stain information too. This
-# information is available in the registries: :py:mod:`pyamr.datasets.registries`
+# In order to compute ``ASAI``, we need to have the following columns present
+# in our dataset: ``antimicrobial``, ``microorganism_genus``, ``microorganism_species``
+# and ``resistance``.  Moreover, in this example we will compute the ASAI for each
+# ``gram_stain`` category independently so we will need the microorganism gram stain
+# information too. This information is available in the registries: :py:mod:`pyamr.datasets.registries`
 #
 # Lets include all this information using the ``MicroorganismRegistry``.
 #
@@ -347,7 +350,6 @@ plt.tight_layout()
 
 # Show
 plt.show()
-plt.close('all')
 
 
 #######################################################################
@@ -355,92 +357,17 @@ plt.close('all')
 # Computing SART
 # --------------
 #
-# The antimicrobial resistance trend...
+# The single antimicrobial resistance trend - ``SART`` - measures the ratio
+# of change per time unit (e.g. monthly or yearly). To compute this metric,
+# it is necessary to generate a resistance time series from the susceptibility
+# test data. This is often achieved by computing the SARI consecutive or
+# overlapping partitions of the data. Then, the trend can be extracted using
+# for example a linear model where the slope, which is a value within the
+# range [-1, 1] indicates the ratio of change.
 #
-# .. warning:: To include.
-
-
-#######################################################################
+# For more information see: :py:mod:`pyamr.core.sart.SART`
 #
-# Dirty code to use and or delete
-# -------------------------------
-
-"""
-
-Summary
-
-summary = data.agg(
-    norganisms=('organismCode', 'nunique'),
-    nantibiotics=('antibioticCode', 'nunique'),
-    ncultures=('orderCode', 'nunique'),
-    ntests=('labNumber', 'nunique')
-)
-
-print(summary)
-
-print(data.nunique())
-
-
-print(len(data.groupby(['organismCode', 'antibioticCode'])))
-print(data.shape[0])
-
-summary = pd.DataFrame
-
-
-#from analysis.microbiology.statistics.frequency import Frequency
-
-# -----------------------------------------------------------------------------
-#                                 CONSTANTS
-# -----------------------------------------------------------------------------
-# Paths
-fname_tests = "freq_tests_pairs_year"
-fname_isola = "freq_isolates_pairs_year"
-fpath_tests = "../../results/microbiology/frequencies/%s.csv" % fname_tests
-fpath_isola = "../../results/microbiology/frequencies/%s.csv" % fname_isola
-
-# Object
-freq = Frequency()
-
-# Read data
-dff_tests = freq.load(fpath_tests)
-dff_isola = freq.load(fpath_isola)
-dff_reset = dff_tests.reset_index()
-
-# Basic dataframe.
-# IMPORTANT. Note that isolates refer to a single infectious organism which
-# is tested against many different anttibiotics. Hence the only way the sum
-# refers to isolate is by grouping the laboratory tests by infectious
-# organisms.
-dfy = pd.DataFrame()
-dfy['Tests'] = dff_tests['freq_ris'].groupby(level=[0]).sum()
-dfy['Isolates'] = dff_isola['freq'].groupby(level=[0]).sum()
-dfy['Tests/Isolates'] = dfy['Tests'].div(dfy['Isolates'])
-dfy['Antibiotics'] = dff_reset.groupby('dateReceived').antibioticCode.nunique()
-dfy['Organisms'] = dff_reset.groupby('dateReceived').organismCode.nunique()
-
-# Fill last row.
-dfy.loc['Total',:] = np.nan
-dfy.loc['Total','Tests'] = dfy['Tests'].sum(axis=0)
-dfy.loc['Total','Isolates'] = dfy['Isolates'].sum(axis=0)
-dfy.loc['Total','Tests/Isolates'] = dfy['Tests/Isolates'].mean()
-dfy.loc['Total','Antibiotics'] = dff_reset.antibioticCode.nunique()
-dfy.loc['Total','Organisms'] = dff_reset.organismCode.nunique()
-
-# Print dataframe.
-print("\n\n")
-print("Pandas:")
-print("-------")
-print(dfy)
-
-# Print dataframe latex format.
-print("\n\n")
-print("Latex:")
-print("-------")
-print(dfy.to_latex())
-
-#print dff_isola.head(10)
-import sys
-sys.exit()
-
-
-"""
+# For more examples see:
+#
+# .. warning:: Pending!
+#

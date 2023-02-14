@@ -1,13 +1,13 @@
 """
-Step 02 - Time Series Analysis
+Step 03 - Time Series Analysis
 ==============================
 
 .. warning:: Verify tests with conditions from stattools.
 
-.. warning:: Useful references:
+Useful references:
 
-    - https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
-    - https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
+- https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
+- https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
 
 """
 
@@ -22,9 +22,6 @@ Step 02 - Time Series Analysis
 # ----------------------------
 # create data
 # ----------------------------
-# Import
-import numpy as np
-
 # Import specific
 from pyamr.datasets.load import make_timeseries
 
@@ -130,9 +127,10 @@ print(adf.as_summary())
 #
 # .. See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_kpss.py`
 
-# ----------------------------
+# --------------------------------
 # Kpss
-# ----------------------------
+# --------------------------------
+# Used within StationarityWrapper!
 
 
 ###################################################################
@@ -205,4 +203,3 @@ ax.legend(prop=font, loc=4)
 plt.suptitle("Study of Stationarity")
 
 plt.show()
-plt.close('all')

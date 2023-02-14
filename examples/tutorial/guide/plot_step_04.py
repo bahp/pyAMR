@@ -1,6 +1,6 @@
 """
-Step 03 - TSA for trends
-========================
+Step 04 - TSA to estimate trends
+================================
 
 .. warning:: To be completed!
 
@@ -15,11 +15,11 @@ Step 03 - TSA for trends
 # (tuples defined by sample type, pathogen and antimicrobial) for which a resistance time
 # series signal was generated using either independent or overlapping time intervals (see
 # xxx). The time series were linearly interpolated to fill sporadic missing values. No
-# additional filters or preprocessing steps were applied. An analysis of stationarity around
+# additional filters or preprocessing steps were applied. An analysis of stationarity around
 # a trend was carried out to identify interesting combinations and regression
 # analysis was used to quantify its tendency
 #
-
+#
 # .. image:: ../../../_static/imgs/sart-diagram.png
 #   :width: 600
 #   :align: center
@@ -49,6 +49,8 @@ Step 03 - TSA for trends
 #   variable) relies on the number of susceptibility test records manipulated. Hence, the
 #   sigmoid function has been used to define weights proportional to the population size.
 #
+#   .. warning:: Include equation.
+#
 # - **Auto Regressive Integrated Moving Average** - ``ARIMA``
 #
 #   An autoregressive integrated moving average (ARIMA) model is a generalization of an
@@ -61,7 +63,7 @@ Step 03 - TSA for trends
 #   d is the number of differences needed for stationarity and q is the
 #   number of lagged forecast errors.
 #
-#   Include formula.
+#   .. warning:: Include equation.
 #
 #   The interpretation of the parameter µ depends on the ARIMA model used for the
 #   fitting. In order to estimate the linear trend, it was interesting to consider exclusively

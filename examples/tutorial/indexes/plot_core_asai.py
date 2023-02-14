@@ -22,14 +22,15 @@ effective only against particular species of bacteria. While these profiles appe
 little effort has been made to define them. Furthermore, such ambiguous labels are overused for different
 and even contradictory purposes.
 
-.. image:: ../../_static/imgs/index-asai.png
-   :align: right
-   :alt: ASAI
-
-
 For more information see: :py:mod:`pyamr.core.asai.ASAI`
 
+.. image:: ../../../_static/imgs/index-asai.png
+    :width: 600
+    :align: center
+    :alt: ASAI
+
 """
+
 
 
 # Import libraries
@@ -293,4 +294,3 @@ plt.legend()
 
 # Display
 plt.show()
-plt.close('all')
