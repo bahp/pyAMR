@@ -13,8 +13,6 @@ of activity. In addition, it includes a number of examples to visualise
 such information which relay on plotting libraries such as ``matplotlib``,
 ``seaborn`` or ``plotly``.
 
-For a video demonstration visit the EPiC IMPOC Microbiology app!
-
 .. raw:: html
 
    <center>
@@ -25,9 +23,15 @@ For a video demonstration visit the EPiC IMPOC Microbiology app!
          </button>
       </a>
 
-      <a href="https://github.com/bahp/django-epicimpoc-microbiology.git" target="_blank">
-         <button class="btn-heroku"> Demo on Github
-            <img class="btn-icon" src="./_static/images/logo-epicimpoc-micro.png" width=18/>
+      <a href="https://www.mdpi.com/2079-6382/10/10/1267" target="_blank">
+         <button class="btn-github">Manuscript
+            <img class="btn-icon" src="./_static/images/icon-mdpi.webp" width=28/>
+         </button>
+      </a>
+
+      <a href="https://youtu.be/32pTOcXszyg" target="_blank">
+         <button class="btn-github"> Video on Youtube
+            <img class="btn-icon" src="./_static/images/icon-youtube.svg" width=25/>
          </button>
       </a>
 
@@ -35,21 +39,58 @@ For a video demonstration visit the EPiC IMPOC Microbiology app!
 
    <br><br>
 
-Below there are a couple of examples which some of the statistics that can be computed
-using the library. The first figure shows the overall resistance (``R``), the monthly (``TM``)
-and yearly (``TY``) resistance trend, the pearson correlation coefficient and the amount of
-isolates used to compute such metrics. The metrics are also displayed visually on the
-graphs below.
+To briefly showcase some of the AMR metrics that can be computed using this library we
+have included two Figures. The first Figure includes information related to antimicrobial
+resistance metrics for those ``urine`` specimens in which ``Escherichia coli`` was grown and tested.
+The table includes the following information which is also displayed in the graphs below:
+
+ - ``R`` as the overall resistance (proportion of resistance isolates).
+ - ``TM`` as the monthly resistance trend.
+ - ``TY`` as the yearly resistance trend.
+ - ``pearson`` as the correlation coefficient to discern whether there is a linear relation
+   between the number of the resistance values computed and the amount of isolates used to
+   compute them. There should not be any relation.
+ - ``isolates`` as the the number of isolates used to compute such metrics.
+ - ``references`` includes published manuscripts to prove the obtained values (see manuscript).
+
 
 .. image:: ./_static/imgs/todo-sart-table.png
 
-The second figure shows the antimicrobial spectrum of activity for all the antibiotics
-tested on urine samples. The table includes the antimicrobial, and the spectrum of activity
-for gram negative (``ASAI_N``) and gram positive (``ASAI_P``) bacteria. For each category it
-includes the number of genus (``N_gn``) and species (``N_sp``).
+The second Figure includes information related to antimicrobial spectrum of activity for all
+the antimicrobials tested on ``urine`` samples. The table includes references to the literature
+with the corresponding associated category (eg.g narrow, intermediate and broad). While these three
+profiles appeared in the mid-1950s, little effort has been made to define them. Furthermore, such
+ambiguous labels are overused for different and even contradictory purposes. In addition, the table
+include the following metrics:
+
+ - ``antimicrobial`` as the antimicrobial
+ - ``ASAI_N`` as the spectrum of activity against gram negative bacteria.
+ - ``ASAI_P`` as the spectrum of activity against gram positive bacteria.
+ - ``N_gn`` as the number of different genus.
+ - ``N_sp`` as the number of different species.
+
 
 .. image:: ./_static/imgs/todo-asai-table.png
 
+
+When using any of this project's source code, please cite:
+
+
+.. code-block::
+
+   @article{hernandez2021resistance,
+     title = {Resistance Trend Estimation Using Regression Analysis to Enhance Antimicrobial Surveillance: A Multi-Centre Study in London 2009--2016},
+     author = {Hernandez, Bernard and Herrero-Vi{\~n}as, Pau and Rawson, Timothy M and Moore, Luke SP and Holmes, Alison H and Georgiou, Pantelis},
+     journal = {Antibiotics},
+     volume = {10},
+     number = {10},
+     pages = {1267},
+     year = {2021},
+     month = oct,
+     publisher = {MDPI},
+     doi = {10.3390/antibiotics10101267},
+     url = {},
+   }
 
 .. .. image:: ./_static/imgs/logo-icl-square.png
    :width: 50
