@@ -91,6 +91,12 @@ class StationarityWrapper(BaseWrapper):
         d['trend_ct_stationary'] = d['kpss_ct_pvalue'] > alpha
         d['trend_c_stationary'] = d['kpss_c_pvalue'] > alpha
 
+        # Unit root (Range unit root test)
+        d['rur_statistic'] = self._raw['rur'][0]
+        d['rur_pvalue'] = self._raw['rur'][1]
+        for key, value in self._raw['rur'][2].items():
+            d['rur_criticalvalue_%s' % key] = value
+
         # Return
         return d
 
@@ -150,6 +156,7 @@ class StationarityWrapper(BaseWrapper):
         # Library.
         from statsmodels.tsa.stattools import adfuller
         from statsmodels.tsa.stattools import kpss
+        from statsmodels.tsa.stattools import range_unit_root_test
 
         # Empty the class
         self._empty()
@@ -171,11 +178,10 @@ class StationarityWrapper(BaseWrapper):
         self._raw['adfuller-ct'] = adfuller(x=x, regression='ct', **adf_kwargs)
         self._raw['adfuller-c'] = adfuller(x=x, regression='c', **adf_kwargs)
         self._raw['kpss-ct'] = kpss(x=x, regression='ct', **kpss_kwargs)
-
-        print(np.count_nonzero(np.isnan(x)))
-        print("====>")
-        print("====>")
         self._raw['kpss-c'] = kpss(x=x, regression='c', **kpss_kwargs)
+        self._raw['rur'] = range_unit_root_test(x=x)
+
+        print(self._raw['rur'])
 
         # Evaluate the model
         if self.evaluate:
@@ -238,8 +244,12 @@ if __name__ == '__main__':
     # ----------------------------
     # create stationarity objects
     # ----------------------------
+    # .. note:: Including the constant series with offset produces
+    #           the following error: ValueError: cannot convert float
+    #           NaN to integer.
+
     stationarity_n = StationarityWrapper().fit(x=y_n)
-    stationarity_c = StationarityWrapper().fit(x=y_c)
+    #stationarity_c = StationarityWrapper().fit(x=y_c)
     stationarity_t = StationarityWrapper().fit(x=y_t)
     stationarity_r = StationarityWrapper().fit(x=y_r)
     stationarity_ct = StationarityWrapper().fit(x=y_ct,
@@ -270,10 +280,10 @@ if __name__ == '__main__':
                  markersize=2, linewidth=0.75,
                  label=stationarity_n.as_summary())
 
-    axes[1].plot(y_c, color='#A6CEE3', alpha=0.5, marker='o',
-                 markeredgecolor='k', markeredgewidth=0.5,
-                 markersize=2, linewidth=0.75,
-                 label=stationarity_c.as_summary())
+    #axes[1].plot(y_c, color='#A6CEE3', alpha=0.5, marker='o',
+    #             markeredgecolor='k', markeredgewidth=0.5,
+    #             markersize=2, linewidth=0.75,
+    #             label=stationarity_c.as_summary())
 
     # Plot truth values.
     axes[2].plot(y_t, color='#A6CEE3', alpha=0.5, marker='o',
