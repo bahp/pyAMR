@@ -36,6 +36,14 @@ pyamr.core.regression.sarimax module
    :undoc-members:
    :show-inheritance:
 
+pyamr.core.regression.theilsens module
+--------------------------------------
+
+.. automodule:: pyamr.core.regression.theilsens
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyamr.core.regression.wbase module
 ----------------------------------
 
@@ -48,6 +56,14 @@ pyamr.core.regression.wls module
 --------------------------------
 
 .. automodule:: pyamr.core.regression.wls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyamr.core.regression.wlsarma module
+------------------------------------
+
+.. automodule:: pyamr.core.regression.wlsarma
    :members:
    :undoc-members:
    :show-inheritance:

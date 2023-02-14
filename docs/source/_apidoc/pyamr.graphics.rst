@@ -20,6 +20,14 @@ pyamr.graphics.spectrum module
    :undoc-members:
    :show-inheritance:
 
+pyamr.graphics.table\_graph module
+----------------------------------
+
+.. automodule:: pyamr.graphics.table_graph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

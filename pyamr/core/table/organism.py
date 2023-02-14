@@ -197,7 +197,7 @@ class OrganismsTable:
     Returns
     -------
     """
-
+    """
     # Read data.
     df = pd_read.read_data(ftype='csv', 
                            path=data_path, 
@@ -244,6 +244,8 @@ class OrganismsTable:
 
     # Return
     return df_u
+    """
+    pass
 
 
   def compute(self, input_path, output_path):
@@ -257,6 +259,7 @@ class OrganismsTable:
     Returns
     -------
 
+    """
     """
     # Create table using input data.
     tnew = self.create_table(input_path)
@@ -277,6 +280,8 @@ class OrganismsTable:
 
     # return
     return output_path
+    """
+    pass
 
 
 
@@ -360,12 +365,12 @@ if __name__ == '__main__':
   # create builder
   # ---------------------
   # Builter
-  builder = AntibioticsTable()
-  print(data.columns)
+  #builder = AntibioticsTable()
+  #print(data.columns)
 
-  builder.fit()
-  import sys
-  sys.exit()
+  #builder.fit()
+  #import sys
+  #sys.exit()
 
   # Constants.
   goback = "../../../../"

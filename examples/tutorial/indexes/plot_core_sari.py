@@ -1,6 +1,6 @@
 """
-SARI - Index
-============================
+Single Antimicrobial Resistance (SARI)
+======================================
 
 The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a

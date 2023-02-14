@@ -9,6 +9,7 @@
 ###############################################################################
 # Libraries
 import math
+import pickle
 import inspect
 import warnings
 import numpy as np
@@ -38,7 +39,7 @@ def fargs(function, kwargs):
     -------
     """
     # Get all parameters for the function.
-    prms = inspect.getargspec(function)
+    prms = inspect.getfullargspec(function)
     # Create dictionary and return
     return {k: kwargs[k] for k in prms.args if k in kwargs}
 
@@ -58,7 +59,7 @@ def getargspecdict(instance, funcname):
     try:
         # Get argument parameters.
         func = getattr(instance, funcname, None)
-        prms = inspect.getargspec(func)
+        prms = inspect.getfullargspec(func)
         tpls = {}
         # Create and fill dictionary
         for name in prms.args:

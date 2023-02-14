@@ -71,3 +71,4 @@ plt.tight_layout()
 
 # Show
 plt.show()
+plt.close('all')

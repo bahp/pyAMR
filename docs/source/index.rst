@@ -1,25 +1,49 @@
 Welcome to pyAMR's documentation!
 =================================
 
-.. image:: ./_static/imgs/pyamr-logo.png
+.. image:: ./_static/images/logo-pyamr-v1.png
    :width: 100
    :align: right
    :alt: pyAMR
 
-This repository contains the documentation of the lightweight library ``pyAMR`` which
-facilitates the computation of various Antimicrobial Resistance (AMR) statistics and
-includes visualization examples.
+PyAMR is a python lightweight library to facilitate the computation of common
+Antimicrobial Resistance (AMR) related statistics such as the proportion
+of resistance isolates, the resistance trend or the antimicrobial spectrum
+of activity. In addition, it includes a number of examples to visualise
+such information which relay on plotting libraries such as ``matplotlib``,
+``seaborn`` or ``plotly``.
 
-The code of the project is on Github: https://github.com/bahp/pyAMR
+For a video demonstration visit the EPiC IMPOC Microbiology app (private)!
+
+.. raw:: html
+
+   <center>
+
+      <a href="https://github.com/bahp/pyamr/" target="_blank">
+         <button class="btn-github"> View on GitHub
+            <img class="btn-icon" src="./_static/images/icon-github.svg" width=18/>
+         </button>
+      </a>
+
+      <a href="https://github.com/bahp/django-epicimpoc-microbiology.git" target="_blank">
+         <button class="btn-heroku"> Demo on Github
+            <img class="btn-icon" src="./_static/images/logo-epicimpoc-micro.png" width=18/>
+         </button>
+      </a>
+
+   </center>
+
+   <br><br>
 
 .. .. image:: ./_static/imgs/logo-icl-square.png
    :width: 50
    :align: right
    :alt: Imperial College London
 
-.. _PhD: https://spiral.imperial.ac.uk/handle/10044/1/73000
+.. note::
 
-The PhD thesis is on Spiral: `PhD`_
+    The PhD thesis is available on Spiral: https://spiral.imperial.ac.uk/handle/10044/1/73000
+
 
 
 .. toctree::
@@ -53,50 +77,8 @@ The PhD thesis is on Spiral: `PhD`_
    :caption: API
    :hidden:
 
-   _apidoc/modules
+   _apidoc/pyamr
 
-
-.. warning:: Some of the interactive examples included below might take considerable time
-             to load, specially when created using the whole datasets (either ``NHS`` or
-             ``MIMIC``) was used. For a quick pre-visualization, we recommend to click on
-             ``Sample`` dataset examples (for now).
-
-.. list-table:: List of interactive examples
-   :header-rows: 1
-   :align: center
-
-   * - Name
-     - ``Sample``
-     - ``NHS``
-     - ``MIMIC``
-   * - Treemap + Images - SART (outdated)
-     -
-       .. raw:: html
-
-         <a href="./_static/htmls/treemap-graph-simplified-sample/treemap-visualizer.html"
-            target="_blank"> LINK </a>
-     -
-     -
-   * - Treemap [culture, microorganism, antimicrobial] - SARI
-     -
-        .. raw:: html
-
-           <a href="./_static/htmls/plot_pyplot_treemap.html" target="_blank"> LINK </a>
-     -
-        .. raw:: html
-
-           <a href="./_static/htmls/plot_nhs_treemap.html" target="_blank"> LINK </a>
-     -
-        .. raw:: html
-
-           <a href="./_static/htmls/plot_mimic_treemap.html" target="_blank"> LINK </a>
-
-
-
-
-Examples visualisations (to implement):
-
-   - https://ig.ft.com/coronavirus-lockdowns/
 
 Indices and tables
 ==================
