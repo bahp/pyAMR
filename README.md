@@ -48,12 +48,19 @@ engineers from the Centre for Bio-Inspire Technology (CBIT) at Imperial College 
 When using any of this project's source code, please cite:
 
 ```console
-@article{xxx,
-  title = {xxx},
-  author = {xxx},
-  doi = {xxx},
-  journal = {xxx},
-  year = {xxx}
+    @article{hernandez2021resistance,
+      title = {Resistance Trend Estimation Using Regression Analysis to Enhance Antimicrobial Surveillance: A Multi-Centre Study in London 2009--2016},
+      author = {Hernandez, Bernard and Herrero-Vi{\~n}as, Pau and Rawson, Timothy M and Moore, Luke SP and Holmes, Alison H and Georgiou, Pantelis},
+      journal = {Antibiotics},
+      volume = {10},
+      number = {10},
+      pages = {1267},
+      year = {2021},
+      month = oct,
+      publisher = {MDPI},
+      doi = {10.3390/antibiotics10101267},
+      url = {},
+    }
 }
 ```
 
