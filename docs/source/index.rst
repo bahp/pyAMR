@@ -13,7 +13,7 @@ of activity. In addition, it includes a number of examples to visualise
 such information which relay on plotting libraries such as ``matplotlib``,
 ``seaborn`` or ``plotly``.
 
-For a video demonstration visit the EPiC IMPOC Microbiology app (private)!
+For a video demonstration visit the EPiC IMPOC Microbiology app!
 
 .. raw:: html
 
@@ -34,6 +34,22 @@ For a video demonstration visit the EPiC IMPOC Microbiology app (private)!
    </center>
 
    <br><br>
+
+Below there are a couple of examples which some of the statistics that can be computed
+using the library. The first figure shows the overall resistance (``R``), the monthly (``TM``)
+and yearly (``TY``) resistance trend, the pearson correlation coefficient and the amount of
+isolates used to compute such metrics. The metrics are also displayed visually on the
+graphs below.
+
+.. image:: ./_static/imgs/todo-sart-table.png
+
+The second figure shows the antimicrobial spectrum of activity for all the antibiotics
+tested on urine samples. The table includes the antimicrobial, and the spectrum of activity
+for gram negative (``ASAI_N``) and gram positive (``ASAI_P``) bacteria. For each category it
+includes the number of genus (``N_gn``) and species (``N_sp``).
+
+.. image:: ./_static/imgs/todo-asai-table.png
+
 
 .. .. image:: ./_static/imgs/logo-icl-square.png
    :width: 50
