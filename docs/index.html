@@ -96,7 +96,6 @@ of resistance isolates, the resistance trend or the antimicrobial spectrum
 of activity. In addition, it includes a number of examples to visualise
 such information which relay on plotting libraries such as <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>,
 <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> or <code class="docutils literal notranslate"><span class="pre">plotly</span></code>.</p>
-<p>For a video demonstration visit the EPiC IMPOC Microbiology app!</p>
 <center>
 
    <a href="https://github.com/bahp/pyamr/" target="_blank">
@@ -105,25 +104,69 @@ such information which relay on plotting libraries such as <code class="docutils
       </button>
    </a>
 
-   <a href="https://github.com/bahp/django-epicimpoc-microbiology.git" target="_blank">
-      <button class="btn-heroku"> Demo on Github
-         <img class="btn-icon" src="./_static/images/logo-epicimpoc-micro.png" width=18/>
+   <a href="https://www.mdpi.com/2079-6382/10/10/1267" target="_blank">
+      <button class="btn-github">Manuscript
+         <img class="btn-icon" src="./_static/images/icon-mdpi.webp" width=28/>
+      </button>
+   </a>
+
+   <a href="https://youtu.be/32pTOcXszyg" target="_blank">
+      <button class="btn-github"> Video on Youtube
+         <img class="btn-icon" src="./_static/images/icon-youtube.svg" width=25/>
       </button>
    </a>
 
 </center>
 
-<br><br><p>Below there are a couple of examples which some of the statistics that can be computed
-using the library. The first figure shows the overall resistance (<code class="docutils literal notranslate"><span class="pre">R</span></code>), the monthly (<code class="docutils literal notranslate"><span class="pre">TM</span></code>)
-and yearly (<code class="docutils literal notranslate"><span class="pre">TY</span></code>) resistance trend, the pearson correlation coefficient and the amount of
-isolates used to compute such metrics. The metrics are also displayed visually on the
-graphs below.</p>
+<br><br><p>To briefly showcase some of the AMR metrics that can be computed using this library we
+have included two Figures. The first Figure includes information related to antimicrobial
+resistance metrics for those <code class="docutils literal notranslate"><span class="pre">urine</span></code> specimens in which <code class="docutils literal notranslate"><span class="pre">Escherichia</span> <span class="pre">coli</span></code> was grown and tested.
+The table includes the following information which is also displayed in the graphs below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> as the overall resistance (proportion of resistance isolates).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TM</span></code> as the monthly resistance trend.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TY</span></code> as the yearly resistance trend.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pearson</span></code> as the correlation coefficient to discern whether there is a linear relation
+between the number of the resistance values computed and the amount of isolates used to
+compute them. There should not be any relation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isolates</span></code> as the the number of isolates used to compute such metrics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">references</span></code> includes published manuscripts to prove the obtained values (see manuscript).</p></li>
+</ul>
+</div></blockquote>
 <img alt="_images/todo-sart-table.png" src="_images/todo-sart-table.png" />
-<p>The second figure shows the antimicrobial spectrum of activity for all the antibiotics
-tested on urine samples. The table includes the antimicrobial, and the spectrum of activity
-for gram negative (<code class="docutils literal notranslate"><span class="pre">ASAI_N</span></code>) and gram positive (<code class="docutils literal notranslate"><span class="pre">ASAI_P</span></code>) bacteria. For each category it
-includes the number of genus (<code class="docutils literal notranslate"><span class="pre">N_gn</span></code>) and species (<code class="docutils literal notranslate"><span class="pre">N_sp</span></code>).</p>
+<p>The second Figure includes information related to antimicrobial spectrum of activity for all
+the antimicrobials tested on <code class="docutils literal notranslate"><span class="pre">urine</span></code> samples. The table includes references to the literature
+with the corresponding associated category (eg.g narrow, intermediate and broad). While these three
+profiles appeared in the mid-1950s, little effort has been made to define them. Furthermore, such
+ambiguous labels are overused for different and even contradictory purposes. In addition, the table
+include the following metrics:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">antimicrobial</span></code> as the antimicrobial</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASAI_N</span></code> as the spectrum of activity against gram negative bacteria.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASAI_P</span></code> as the spectrum of activity against gram positive bacteria.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N_gn</span></code> as the number of different genus.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N_sp</span></code> as the number of different species.</p></li>
+</ul>
+</div></blockquote>
 <img alt="_images/todo-asai-table.png" src="_images/todo-asai-table.png" />
+<p>When using any of this project’s source code, please cite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">hernandez2021resistance</span><span class="p">,</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Resistance</span> <span class="n">Trend</span> <span class="n">Estimation</span> <span class="n">Using</span> <span class="n">Regression</span> <span class="n">Analysis</span> <span class="n">to</span> <span class="n">Enhance</span> <span class="n">Antimicrobial</span> <span class="n">Surveillance</span><span class="p">:</span> <span class="n">A</span> <span class="n">Multi</span><span class="o">-</span><span class="n">Centre</span> <span class="n">Study</span> <span class="ow">in</span> <span class="n">London</span> <span class="mi">2009</span><span class="o">--</span><span class="mi">2016</span><span class="p">},</span>
+  <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Hernandez</span><span class="p">,</span> <span class="n">Bernard</span> <span class="ow">and</span> <span class="n">Herrero</span><span class="o">-</span><span class="n">Vi</span><span class="p">{</span>\<span class="o">~</span><span class="n">n</span><span class="p">}</span><span class="k">as</span><span class="p">,</span> <span class="n">Pau</span> <span class="ow">and</span> <span class="n">Rawson</span><span class="p">,</span> <span class="n">Timothy</span> <span class="n">M</span> <span class="ow">and</span> <span class="n">Moore</span><span class="p">,</span> <span class="n">Luke</span> <span class="n">SP</span> <span class="ow">and</span> <span class="n">Holmes</span><span class="p">,</span> <span class="n">Alison</span> <span class="n">H</span> <span class="ow">and</span> <span class="n">Georgiou</span><span class="p">,</span> <span class="n">Pantelis</span><span class="p">},</span>
+  <span class="n">journal</span> <span class="o">=</span> <span class="p">{</span><span class="n">Antibiotics</span><span class="p">},</span>
+  <span class="n">volume</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">},</span>
+  <span class="n">number</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">},</span>
+  <span class="n">pages</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1267</span><span class="p">},</span>
+  <span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2021</span><span class="p">},</span>
+  <span class="n">month</span> <span class="o">=</span> <span class="nb">oct</span><span class="p">,</span>
+  <span class="n">publisher</span> <span class="o">=</span> <span class="p">{</span><span class="n">MDPI</span><span class="p">},</span>
+  <span class="n">doi</span> <span class="o">=</span> <span class="p">{</span><span class="mf">10.3390</span><span class="o">/</span><span class="n">antibiotics10101267</span><span class="p">},</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="p">{},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The PhD thesis is available on Spiral: <a class="reference external" href="https://spiral.imperial.ac.uk/handle/10044/1/73000">https://spiral.imperial.ac.uk/handle/10044/1/73000</a></p>

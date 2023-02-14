@@ -102,4 +102,3 @@ print(summary)
 
 # Show
 plt.show()
-plt.close('all')

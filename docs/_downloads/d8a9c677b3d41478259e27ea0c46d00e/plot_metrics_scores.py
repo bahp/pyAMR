@@ -2,7 +2,8 @@
 Metrics - scores
 ================
 
-Example using your package
+Example of metrics implemented.
+
 """
 # General libraries.
 import numpy as np

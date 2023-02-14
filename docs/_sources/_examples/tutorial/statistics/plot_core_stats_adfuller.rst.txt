@@ -27,7 +27,7 @@ Statistical test - ADFuller
 
 The Augmented Dickey-Fuller test...
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-93
+.. GENERATED FROM PYTHON SOURCE LINES 12-95
 
 
 
@@ -40,40 +40,43 @@ The Augmented Dickey-Fuller test...
 
 
 
-    adf-statistic                  -9.4548
+    adf-statistic                  -8.1014
     adf-pvalue                         0.0
-    adf-nlags                            0
-    adf-nobs                            99
+    adf-nlags                            1
+    adf-nobs                            98
     adf-stationary                    True
-    adf-criticalvalue_1%           -4.0533
-    adf-criticalvalue_5%           -3.4558
-    adf-criticalvalue_10%          -3.1536
-    adf-x                    [106.54656...
+    adf-criticalvalue_1%           -4.0543
+    adf-criticalvalue_5%           -3.4563
+    adf-criticalvalue_10%          -3.1539
+    adf-x                    [108.55580...
     adf-regression                      ct
-    adf-model                (-9.454796...
+    adf-model                (-8.101353...
     adf-id                         ADF(ct)
     dtype: object
 
 
+    Standard:
         adfuller test stationarity (ct)    
     =======================================
-    statistic:                       -9.455
+    statistic:                       -8.101
     pvalue:                         0.00000   
-    nlags:                                0    
-    nobs:                                99     
+    nlags:                                1    
+    nobs:                                98     
     stationarity (α=0.05):       stationary
     =======================================
+
+    Verbose:
         adfuller test stationarity (ct)    
     =======================================
-    statistic:                       -9.455
+    statistic:                       -8.101
     pvalue:                         0.00000   
-    nlags:                                0    
-    nobs:                                99     
+    nlags:                                1    
+    nobs:                                98     
     stationarity (α=0.05):       stationary
     ---------------------------------------
-    critical value (1%):           -4.05325 
-    critical value (5%):           -3.45581 
-    critical value (10%):          -3.15359
+    critical value (1%):           -4.05425 
+    critical value (5%):           -3.45628 
+    critical value (10%):          -3.15387
     ---------------------------------------
     H0:                    Exists unit-root
     H1:                 No Exists unit-root
@@ -88,17 +91,17 @@ The Augmented Dickey-Fuller test...
 
 
                                 0              1              2
-    adf-statistic         -9.4849         -0.092        -9.4548
-    adf-pvalue                0.0         0.6528            0.0
-    adf-nlags                   0              9              0
-    adf-nobs                   99             90             99
+    adf-statistic         -7.9833         0.0466        -8.1014
+    adf-pvalue                0.0         0.6996            0.0
+    adf-nlags                   1              9              1
+    adf-nobs                   98             90             98
     adf-stationary           True          False           True
-    adf-critica...        -3.4982         -2.591        -4.0533
-    adf-critica...        -2.8912        -1.9444        -3.4558
-    adf-critica...        -2.5826        -1.6142        -3.1536
+    adf-critica...        -3.4989         -2.591        -4.0543
+    adf-critica...        -2.8915        -1.9444        -3.4563
+    adf-critica...        -2.5828        -1.6142        -3.1539
     adf-regression              c              n             ct
-    adf-x           [106.54656...  [106.54656...  [106.54656...
-    adf-model       (-9.484905...  (-0.092000...  (-9.454796...
+    adf-x           [108.55580...  [108.55580...  [108.55580...
+    adf-model       (-7.983316...  (0.0466343...  (-8.101353...
     adf-id                 ADF(c)         ADF(n)        ADF(ct)
 
 
@@ -155,7 +158,9 @@ The Augmented Dickey-Fuller test...
 
     # Print summary.
     print("\n")
+    print("Standard:")
     print(adf.as_summary())
+    print("\nVerbose:")
     print(adf.as_summary(verbose=10))
 
     # Print identifier.
@@ -196,7 +201,7 @@ The Augmented Dickey-Fuller test...
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.036 seconds)
+   **Total running time of the script:** ( 0 minutes  0.748 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_statistics_plot_core_stats_adfuller.py:

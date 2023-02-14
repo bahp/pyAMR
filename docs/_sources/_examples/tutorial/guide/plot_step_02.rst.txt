@@ -77,54 +77,6 @@ A small dataset will be used for this example.
 
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-    Trying to register the cmap 'rocket' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-    Trying to register the cmap 'rocket_r' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-    Trying to register the cmap 'mako' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-    Trying to register the cmap 'mako_r' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-    Trying to register the cmap 'icefire' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-    Trying to register the cmap 'icefire_r' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-    Trying to register the cmap 'vlag' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-    Trying to register the cmap 'vlag_r' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-    Trying to register the cmap 'flare' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-    Trying to register the cmap 'flare_r' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-    Trying to register the cmap 'crest' which already exists.
-
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-    Trying to register the cmap 'crest_r' which already exists.
-
 
     Data:
            date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
@@ -194,7 +146,7 @@ For more information see: :py:mod:`pyamr.core.sari.SARI`
 
 For more examples see:
 
-  - :ref:`sphx_glr__examples_indexes_plot_sari_temporal.py`.
+  - :ref:`sphx_glr__examples_indexes_plot_sari_temporal.py`
 
 
 .. GENERATED FROM PYTHON SOURCE LINES 81-107
@@ -332,6 +284,10 @@ Let's plot the evolution of a single combination ...
 
  .. code-block:: none
 
+    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\tutorial\guide\plot_step_02.py:136: UserWarning:
+
+    Ignoring `palette` because no `hue` variable has been assigned.
+
 
     Temporal (ITI):
     sensitivity specimen_code microorganism_name antimicrobial_name date_received  resistant  sensitive    freq      sari
@@ -404,33 +360,187 @@ Lets include all this information using the ``MicroorganismRegistry``.
             .str.capitalize() \
             .str.split(expand=True, n=1)
 
-    print(dataframe.columns)
-    print(mreg.reg)
-
     # Combine with registry information
     dataframe = mreg.combine(dataframe, on='microorganism_name')
 
     # Fill missing gram stain
     dataframe.gram_stain = dataframe.gram_stain.fillna('u')
 
+    # Show
+    dataframe.head(4).T
 
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    Index(['index', 'specimen_code', 'microorganism_name', 'antimicrobial_name',
-           'date_received', 'resistant', 'sensitive', 'freq', 'sari', 'genus',
-           'species'],
-          dtype='object', name='sensitivity')
-    None
 
 
+.. raw:: html
 
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>index</th>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <th>specimen_code</th>
+          <td>URICUL</td>
+          <td>URICUL</td>
+          <td>URICUL</td>
+          <td>URICUL</td>
+        </tr>
+        <tr>
+          <th>microorganism_name</th>
+          <td>acinetobacter</td>
+          <td>acinetobacter</td>
+          <td>acinetobacter</td>
+          <td>acinetobacter baumannii</td>
+        </tr>
+        <tr>
+          <th>antimicrobial_name</th>
+          <td>augmentin</td>
+          <td>augmentin</td>
+          <td>augmentin</td>
+          <td>augmentin</td>
+        </tr>
+        <tr>
+          <th>date_received</th>
+          <td>2009-03-31 00:00:00</td>
+          <td>2009-05-31 00:00:00</td>
+          <td>2009-08-31 00:00:00</td>
+          <td>2009-02-28 00:00:00</td>
+        </tr>
+        <tr>
+          <th>resistant</th>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+        </tr>
+        <tr>
+          <th>sensitive</th>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <th>freq</th>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+        </tr>
+        <tr>
+          <th>sari</th>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+        </tr>
+        <tr>
+          <th>genus</th>
+          <td>Acinetobacter</td>
+          <td>Acinetobacter</td>
+          <td>Acinetobacter</td>
+          <td>Acinetobacter</td>
+        </tr>
+        <tr>
+          <th>species</th>
+          <td>None</td>
+          <td>None</td>
+          <td>None</td>
+          <td>baumannii</td>
+        </tr>
+        <tr>
+          <th>domain</th>
+          <td>Bacteria</td>
+          <td>Bacteria</td>
+          <td>Bacteria</td>
+          <td>Bacteria</td>
+        </tr>
+        <tr>
+          <th>phylum</th>
+          <td>Proteobacteria</td>
+          <td>Proteobacteria</td>
+          <td>Proteobacteria</td>
+          <td>Proteobacteria</td>
+        </tr>
+        <tr>
+          <th>class</th>
+          <td>Gammaproteobacteria</td>
+          <td>Gammaproteobacteria</td>
+          <td>Gammaproteobacteria</td>
+          <td>Gammaproteobacteria</td>
+        </tr>
+        <tr>
+          <th>order</th>
+          <td>Pseudomonadales</td>
+          <td>Pseudomonadales</td>
+          <td>Pseudomonadales</td>
+          <td>Pseudomonadales</td>
+        </tr>
+        <tr>
+          <th>family</th>
+          <td>Moraxellaceae</td>
+          <td>Moraxellaceae</td>
+          <td>Moraxellaceae</td>
+          <td>Moraxellaceae</td>
+        </tr>
+        <tr>
+          <th>acronym</th>
+          <td>ACINETOBACTER</td>
+          <td>ACINETOBACTER</td>
+          <td>ACINETOBACTER</td>
+          <td>ACIN_BAUM</td>
+        </tr>
+        <tr>
+          <th>gram_stain</th>
+          <td>n</td>
+          <td>n</td>
+          <td>n</td>
+          <td>n</td>
+        </tr>
+        <tr>
+          <th>exists_in_registry</th>
+          <td>True</td>
+          <td>True</td>
+          <td>True</td>
+          <td>True</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
 
 .. GENERATED FROM PYTHON SOURCE LINES 217-228
 
@@ -443,10 +553,10 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
 
 For more examples see:
 
-  - :ref:`sphx_glr__examples_indexes_plot_spectrum_temporal.py`.
+  - :ref:`sphx_glr__examples_indexes_plot_spectrum_temporal.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 229-259
+.. GENERATED FROM PYTHON SOURCE LINES 229-260
 
 .. code-block:: default
    :lineno-start: 230
@@ -480,6 +590,7 @@ For more examples see:
     # Show
     print("\nASAI (overall):")
     print(scores.unstack())
+    scores.unstack()
 
 
 
@@ -535,17 +646,209 @@ For more examples see:
     2009-12-31    URICUL        augmentin              2.0  2.0      2.0  4.0   0.500000  1.00
 
 
+.. raw:: html
 
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-262
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead tr th {
+            text-align: left;
+        }
+
+        .dataframe thead tr:last-of-type th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th colspan="2" halign="left">N_GENUS</th>
+          <th colspan="2" halign="left">N_SPECIE</th>
+          <th colspan="2" halign="left">ASAI_SCORE</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>gram_stain</th>
+          <th>n</th>
+          <th>p</th>
+          <th>n</th>
+          <th>p</th>
+          <th>n</th>
+          <th>p</th>
+        </tr>
+        <tr>
+          <th>date_received</th>
+          <th>specimen_code</th>
+          <th>antimicrobial_name</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2009-01-31</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>0.500000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-02-28</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>0.500000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-03-31</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>5.0</td>
+          <td>1.000000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-04-30</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>6.0</td>
+          <td>0.666667</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-05-31</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>5.0</td>
+          <td>0.666667</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-06-30</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>4.0</td>
+          <td>0.333333</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-07-31</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>4.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>6.0</td>
+          <td>0.250000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-08-31</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>5.0</td>
+          <td>1.000000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-09-30</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>0.500000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-10-31</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>6.0</td>
+          <td>1.000000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-11-30</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>5.0</td>
+          <td>0.333333</td>
+          <td>0.75</td>
+        </tr>
+        <tr>
+          <th>2009-12-31</th>
+          <th>URICUL</th>
+          <th>augmentin</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>0.500000</td>
+          <td>1.00</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 261-263
 
 Let's plot the evolution of a single combination ...
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 263-328
+.. GENERATED FROM PYTHON SOURCE LINES 264-328
 
 .. code-block:: default
-   :lineno-start: 264
+   :lineno-start: 265
 
 
     # Libraries
@@ -609,11 +912,15 @@ Let's plot the evolution of a single combination ...
 
     # Show
     plt.show()
-    plt.close('all')
 
 
 
 
+
+.. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_002.png
+   :alt: ASAI evolution 2009
+   :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_002.png
+   :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -648,11 +955,12 @@ Let's plot the evolution of a single combination ...
 Considerations
 --------------
 
+.. warning:: Pending!
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.608 seconds)
+   **Total running time of the script:** ( 0 minutes  2.279 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_02.py:

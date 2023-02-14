@@ -91,8 +91,7 @@ axes = axes.flatten()
 
 # Loop
 for i,ts in enumerate(timeseries):
-
-    print("Stationarity... %s" % i)
+    #print("Stationarity... %s" % i)
 
     # Create stationarity wrapper.
     stationarity = StationarityWrapper().fit(x=ts)
@@ -112,7 +111,7 @@ for i,ts in enumerate(timeseries):
 
 # Study of Stationarity
 plt.suptitle("Study of Stationarity")
+plt.tight_layout()
 
 # Show
 plt.show()
-plt.close('all')

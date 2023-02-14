@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Metrics - weights" href="plot_metrics_weights.html" />
-    <link rel="prev" title="SARI - Index" href="../indexes/plot_core_sari.html" /> 
+    <link rel="prev" title="Single Antimicrobial Resistance (SARI)" href="../indexes/plot_core_sari.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,8 +54,8 @@
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#guide">Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#indexes">Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#metrics">Metrics</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Metrics - scores</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plot_metrics_weights.html">Metrics - weights</a></li>
@@ -72,7 +72,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -107,7 +107,7 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="metrics-scores">
 <span id="sphx-glr-examples-tutorial-metrics-plot-metrics-scores-py"></span><h1>Metrics - scores<a class="headerlink" href="#metrics-scores" title="Permalink to this headline"></a></h1>
-<p>Example using your package</p>
+<p>Example of metrics implemented.</p>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Scores:
 -------
@@ -124,55 +124,55 @@ Median Absolute Error          : 1.000
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 7</span> <span class="c1"># General libraries.</span>
-<span class="linenos"> 8</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="linenos"> 9</span>
-<span class="linenos">10</span> <span class="c1"># Sklearn</span>
-<span class="linenos">11</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
-<span class="linenos">12</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="linenos">13</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_log_error</span>
-<span class="linenos">14</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">median_absolute_error</span>
-<span class="linenos">15</span>
-<span class="linenos">16</span> <span class="c1"># pyAMR</span>
-<span class="linenos">17</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_absolute_error</span>
-<span class="linenos">18</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_absolute_percentage_error</span>
-<span class="linenos">19</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_directional_accuracy</span>
-<span class="linenos">20</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_absolute_scaled_error</span>
-<span class="linenos">21</span>
-<span class="linenos">22</span> <span class="c1"># Numpy configuration</span>
-<span class="linenos">23</span> <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="linenos">24</span>
-<span class="linenos">25</span> <span class="c1"># ---------------------------</span>
-<span class="linenos">26</span> <span class="c1"># create data</span>
-<span class="linenos">27</span> <span class="c1"># ---------------------------</span>
-<span class="linenos">28</span> <span class="c1"># Create time series</span>
-<span class="linenos">29</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">])</span>
-<span class="linenos">30</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">])</span>
-<span class="linenos">31</span>
-<span class="linenos">32</span> <span class="c1"># Scores</span>
-<span class="linenos">33</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="linenos">34</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">_mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="linenos">35</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="linenos">36</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="linenos">37</span> <span class="n">s5</span> <span class="o">=</span> <span class="n">_mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="linenos">38</span> <span class="n">s6</span> <span class="o">=</span> <span class="n">_mean_directional_accuracy</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="linenos">39</span> <span class="n">s7</span> <span class="o">=</span> <span class="n">_mean_absolute_scaled_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">10</span><span class="p">:],</span> <span class="n">y_pred</span><span class="p">[</span><span class="mi">10</span><span class="p">:])</span>
-<span class="linenos">40</span> <span class="n">s10</span> <span class="o">=</span> <span class="n">median_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="linenos">41</span>
-<span class="linenos">42</span> <span class="c1"># Compute scores</span>
-<span class="linenos">43</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Scores:&quot;</span><span class="p">)</span>
-<span class="linenos">44</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------&quot;</span><span class="p">)</span>
-<span class="linenos">45</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Error            : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s1</span><span class="p">)</span>
-<span class="linenos">46</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Error (_)        : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s2</span><span class="p">)</span>
-<span class="linenos">47</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error             : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s3</span><span class="p">)</span>
-<span class="linenos">48</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Squared Log Error         : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s4</span><span class="p">)</span>
-<span class="linenos">49</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Percentage (_)   : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s5</span><span class="p">)</span>
-<span class="linenos">50</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Directional Accuracy (_)  : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s6</span><span class="p">)</span>
-<span class="linenos">51</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Scaled error (_) : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s7</span><span class="p">)</span>
-<span class="linenos">52</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Median Absolute Error          : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s10</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 8</span> <span class="c1"># General libraries.</span>
+<span class="linenos"> 9</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span> <span class="c1"># Sklearn</span>
+<span class="linenos">12</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="linenos">13</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="linenos">14</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_log_error</span>
+<span class="linenos">15</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">median_absolute_error</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span> <span class="c1"># pyAMR</span>
+<span class="linenos">18</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_absolute_error</span>
+<span class="linenos">19</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_absolute_percentage_error</span>
+<span class="linenos">20</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_directional_accuracy</span>
+<span class="linenos">21</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.scores</span> <span class="kn">import</span> <span class="n">_mean_absolute_scaled_error</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span> <span class="c1"># Numpy configuration</span>
+<span class="linenos">24</span> <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span> <span class="c1"># ---------------------------</span>
+<span class="linenos">27</span> <span class="c1"># create data</span>
+<span class="linenos">28</span> <span class="c1"># ---------------------------</span>
+<span class="linenos">29</span> <span class="c1"># Create time series</span>
+<span class="linenos">30</span> <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">])</span>
+<span class="linenos">31</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">])</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span> <span class="c1"># Scores</span>
+<span class="linenos">34</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="linenos">35</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">_mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="linenos">36</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="linenos">37</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="linenos">38</span> <span class="n">s5</span> <span class="o">=</span> <span class="n">_mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="linenos">39</span> <span class="n">s6</span> <span class="o">=</span> <span class="n">_mean_directional_accuracy</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="linenos">40</span> <span class="n">s7</span> <span class="o">=</span> <span class="n">_mean_absolute_scaled_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">y_true</span><span class="p">[</span><span class="mi">10</span><span class="p">:],</span> <span class="n">y_pred</span><span class="p">[</span><span class="mi">10</span><span class="p">:])</span>
+<span class="linenos">41</span> <span class="n">s10</span> <span class="o">=</span> <span class="n">median_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span> <span class="c1"># Compute scores</span>
+<span class="linenos">44</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Scores:&quot;</span><span class="p">)</span>
+<span class="linenos">45</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-------&quot;</span><span class="p">)</span>
+<span class="linenos">46</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Error            : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s1</span><span class="p">)</span>
+<span class="linenos">47</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Error (_)        : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s2</span><span class="p">)</span>
+<span class="linenos">48</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error             : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s3</span><span class="p">)</span>
+<span class="linenos">49</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Squared Log Error         : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s4</span><span class="p">)</span>
+<span class="linenos">50</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Percentage (_)   : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s5</span><span class="p">)</span>
+<span class="linenos">51</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Directional Accuracy (_)  : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s6</span><span class="p">)</span>
+<span class="linenos">52</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Scaled error (_) : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s7</span><span class="p">)</span>
+<span class="linenos">53</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Median Absolute Error          : </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s10</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.004 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.616 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-metrics-plot-metrics-scores-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/d8a9c677b3d41478259e27ea0c46d00e/plot_metrics_scores.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_metrics_scores.py</span></code></a></p>
@@ -188,7 +188,7 @@ Median Absolute Error          : 1.000
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../indexes/plot_core_sari.html" class="btn btn-neutral float-left" title="SARI - Index" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../indexes/plot_core_sari.html" class="btn btn-neutral float-left" title="Single Antimicrobial Resistance (SARI)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="plot_metrics_weights.html" class="btn btn-neutral float-right" title="Metrics - weights" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

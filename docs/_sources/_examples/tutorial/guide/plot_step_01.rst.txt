@@ -43,7 +43,7 @@ strategy in AMR
 A small dataset will be used for this example.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-59
+.. GENERATED FROM PYTHON SOURCE LINES 28-68
 
 .. code-block:: default
    :lineno-start: 29
@@ -78,6 +78,15 @@ A small dataset will be used for this example.
     # .. todo: Compute basic information such as the number of unique organisms,
     #          antimicrobials, pairs, species, isolates, tests, the range of
     #          dates, ....
+
+    # Show unique elements
+    print("\nUnique values:")
+    for c in ['microorganism_code',
+              'antimicrobial_code',
+              'specimen_code',
+              'laboratory_number']:
+        print('%-18s -> %5s' % (c, data[c].nunique()))
+
 
 
 
@@ -124,10 +133,16 @@ A small dataset will be used for this example.
     reported                float64
     dtype: object
 
+    Unique values:
+    microorganism_code ->    67
+    antimicrobial_code ->    58
+    specimen_code      ->    22
+    laboratory_number  -> 34816
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-87
+
+.. GENERATED FROM PYTHON SOURCE LINES 69-96
 
 Computing SARI
 --------------
@@ -142,10 +157,10 @@ intermediate category is not always considered.
 
 The parameter strategy accepts the following options:
 
- (i) ``soft``   as R / R+I+S
- (ii) ``medium`` as R / R+S
- (iii) ``hard``  as R+I / R+I+S
- (iv) ``other``  as R+0.5I / R+0.5I+S
+  - ``soft``   as R / R+I+S
+  - ``medium`` as R / R+S
+  - ``hard``  as R+I / R+I+S
+  - ``other``  as R+0.5I / R+0.5I+S
 
 For more information see: :py:mod:`pyamr.core.sari.SARI`
 
@@ -157,10 +172,10 @@ For more examples see:
   - :ref:`sphx_glr__examples_indexes_plot_sari_relmap.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 88-142
+.. GENERATED FROM PYTHON SOURCE LINES 97-151
 
 .. code-block:: default
-   :lineno-start: 89
+   :lineno-start: 98
 
 
     # -------------------------------------------
@@ -251,7 +266,7 @@ For more examples see:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 143-189
+.. GENERATED FROM PYTHON SOURCE LINES 152-192
 
 Computing ASAI
 --------------
@@ -280,30 +295,24 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
 
 For more examples see:
 
-  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
-  - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`.
-  - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`.
+  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`
+  - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`
+  - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`
 
 
-In order to compute ``ASAI``, we need to at least have columns with the following
-information:
-
-  - ``antimicrobial``
-  - ``microorganism genus``
-  - ``microorganism species``
-  - ``resistance``
-
-Moreover, in this example we will compute the ASAI for each ``gram_stain`` category
-independently so we will need the microorganism gram stain information too. This
-information is available in the registries: :py:mod:`pyamr.datasets.registries`
+In order to compute ``ASAI``, we need to have the following columns present
+in our dataset: ``antimicrobial``, ``microorganism_genus``, ``microorganism_species``
+and ``resistance``.  Moreover, in this example we will compute the ASAI for each
+``gram_stain`` category independently so we will need the microorganism gram stain
+information too. This information is available in the registries: :py:mod:`pyamr.datasets.registries`
 
 Lets include all this information using the ``MicroorganismRegistry``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 190-216
+.. GENERATED FROM PYTHON SOURCE LINES 193-219
 
 .. code-block:: default
-   :lineno-start: 191
+   :lineno-start: 194
 
 
     # ------------------------------
@@ -338,16 +347,16 @@ Lets include all this information using the ``MicroorganismRegistry``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 217-220
+.. GENERATED FROM PYTHON SOURCE LINES 220-223
 
 Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
 lets compute ``ASAI``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 221-254
+.. GENERATED FROM PYTHON SOURCE LINES 224-257
 
 .. code-block:: default
-   :lineno-start: 222
+   :lineno-start: 225
 
 
     # -------------------------------------------
@@ -466,14 +475,14 @@ lets compute ``ASAI``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 255-256
+.. GENERATED FROM PYTHON SOURCE LINES 258-259
 
 Lets plot it now!
 
-.. GENERATED FROM PYTHON SOURCE LINES 257-353
+.. GENERATED FROM PYTHON SOURCE LINES 260-355
 
 .. code-block:: default
-   :lineno-start: 258
+   :lineno-start: 261
 
 
     # ----------------
@@ -568,133 +577,43 @@ Lets plot it now!
 
     # Show
     plt.show()
-    plt.close('all')
 
 
 
 
 
+.. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_002.png
+   :alt: Gram-positive, Gram-negative, Gram-unknown
+   :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_002.png
+   :class: sphx-glr-single-img
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 354-360
+
+.. GENERATED FROM PYTHON SOURCE LINES 356-372
 
 Computing SART
 --------------
 
-The antimicrobial resistance trend...
+The single antimicrobial resistance trend - ``SART`` - measures the ratio
+of change per time unit (e.g. monthly or yearly). To compute this metric,
+it is necessary to generate a resistance time series from the susceptibility
+test data. This is often achieved by computing the SARI consecutive or
+overlapping partitions of the data. Then, the trend can be extracted using
+for example a linear model where the slope, which is a value within the
+range [-1, 1] indicates the ratio of change.
 
-.. warning:: To include.
+For more information see: :py:mod:`pyamr.core.sart.SART`
 
-.. GENERATED FROM PYTHON SOURCE LINES 364-366
+For more examples see:
 
-Dirty code to use and or delete
--------------------------------
-
-.. GENERATED FROM PYTHON SOURCE LINES 367-446
-
-.. code-block:: default
-   :lineno-start: 368
-
-
-    """
-
-    Summary
-
-    summary = data.agg(
-        norganisms=('organismCode', 'nunique'),
-        nantibiotics=('antibioticCode', 'nunique'),
-        ncultures=('orderCode', 'nunique'),
-        ntests=('labNumber', 'nunique')
-    )
-
-    print(summary)
-
-    print(data.nunique())
-
-
-    print(len(data.groupby(['organismCode', 'antibioticCode'])))
-    print(data.shape[0])
-
-    summary = pd.DataFrame
-
-
-    #from analysis.microbiology.statistics.frequency import Frequency
-
-    # -----------------------------------------------------------------------------
-    #                                 CONSTANTS
-    # -----------------------------------------------------------------------------
-    # Paths
-    fname_tests = "freq_tests_pairs_year"
-    fname_isola = "freq_isolates_pairs_year"
-    fpath_tests = "../../results/microbiology/frequencies/%s.csv" % fname_tests
-    fpath_isola = "../../results/microbiology/frequencies/%s.csv" % fname_isola
-
-    # Object
-    freq = Frequency()
-
-    # Read data
-    dff_tests = freq.load(fpath_tests)
-    dff_isola = freq.load(fpath_isola)
-    dff_reset = dff_tests.reset_index()
-
-    # Basic dataframe.
-    # IMPORTANT. Note that isolates refer to a single infectious organism which
-    # is tested against many different anttibiotics. Hence the only way the sum
-    # refers to isolate is by grouping the laboratory tests by infectious
-    # organisms.
-    dfy = pd.DataFrame()
-    dfy['Tests'] = dff_tests['freq_ris'].groupby(level=[0]).sum()
-    dfy['Isolates'] = dff_isola['freq'].groupby(level=[0]).sum()
-    dfy['Tests/Isolates'] = dfy['Tests'].div(dfy['Isolates'])
-    dfy['Antibiotics'] = dff_reset.groupby('dateReceived').antibioticCode.nunique()
-    dfy['Organisms'] = dff_reset.groupby('dateReceived').organismCode.nunique()
-
-    # Fill last row.
-    dfy.loc['Total',:] = np.nan
-    dfy.loc['Total','Tests'] = dfy['Tests'].sum(axis=0)
-    dfy.loc['Total','Isolates'] = dfy['Isolates'].sum(axis=0)
-    dfy.loc['Total','Tests/Isolates'] = dfy['Tests/Isolates'].mean()
-    dfy.loc['Total','Antibiotics'] = dff_reset.antibioticCode.nunique()
-    dfy.loc['Total','Organisms'] = dff_reset.organismCode.nunique()
-
-    # Print dataframe.
-    print("\n\n")
-    print("Pandas:")
-    print("-------")
-    print(dfy)
-
-    # Print dataframe latex format.
-    print("\n\n")
-    print("Latex:")
-    print("-------")
-    print(dfy.to_latex())
-
-    #print dff_isola.head(10)
-    import sys
-    sys.exit()
-
-
-    """
-
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    '\n\nSummary\n\nsummary = data.agg(\n    norganisms=(\'organismCode\', \'nunique\'),\n    nantibiotics=(\'antibioticCode\', \'nunique\'),\n    ncultures=(\'orderCode\', \'nunique\'),\n    ntests=(\'labNumber\', \'nunique\')\n)\n\nprint(summary)\n\nprint(data.nunique())\n\n\nprint(len(data.groupby([\'organismCode\', \'antibioticCode\'])))\nprint(data.shape[0])\n\nsummary = pd.DataFrame\n\n\n#from analysis.microbiology.statistics.frequency import Frequency\n\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = "freq_tests_pairs_year"\nfname_isola = "freq_isolates_pairs_year"\nfpath_tests = "../../results/microbiology/frequencies/%s.csv" % fname_tests\nfpath_isola = "../../results/microbiology/frequencies/%s.csv" % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\'Tests\'] = dff_tests[\'freq_ris\'].groupby(level=[0]).sum()\ndfy[\'Isolates\'] = dff_isola[\'freq\'].groupby(level=[0]).sum()\ndfy[\'Tests/Isolates\'] = dfy[\'Tests\'].div(dfy[\'Isolates\'])\ndfy[\'Antibiotics\'] = dff_reset.groupby(\'dateReceived\').antibioticCode.nunique()\ndfy[\'Organisms\'] = dff_reset.groupby(\'dateReceived\').organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\'Total\',:] = np.nan\ndfy.loc[\'Total\',\'Tests\'] = dfy[\'Tests\'].sum(axis=0)\ndfy.loc[\'Total\',\'Isolates\'] = dfy[\'Isolates\'].sum(axis=0)\ndfy.loc[\'Total\',\'Tests/Isolates\'] = dfy[\'Tests/Isolates\'].mean()\ndfy.loc[\'Total\',\'Antibiotics\'] = dff_reset.antibioticCode.nunique()\ndfy.loc[\'Total\',\'Organisms\'] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint("\n\n")\nprint("Pandas:")\nprint("-------")\nprint(dfy)\n\n# Print dataframe latex format.\nprint("\n\n")\nprint("Latex:")\nprint("-------")\nprint(dfy.to_latex())\n\n#print dff_isola.head(10)\nimport sys\nsys.exit()\n\n\n'
-
-
+.. warning:: Pending!
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.642 seconds)
+   **Total running time of the script:** ( 0 minutes  7.365 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:

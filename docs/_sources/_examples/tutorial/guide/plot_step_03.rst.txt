@@ -18,15 +18,15 @@
 .. _sphx_glr__examples_tutorial_guide_plot_step_03.py:
 
 
-Step 02 - Time Series Analysis
+Step 03 - Time Series Analysis
 ==============================
 
 .. warning:: Verify tests with conditions from stattools.
 
-.. warning:: Useful references:
+Useful references:
 
-    - https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
-    - https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
+- https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
+- https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
 
 .. GENERATED FROM PYTHON SOURCE LINES 15-20
 
@@ -36,7 +36,7 @@ Create time series (TS)
 First lets create an artificial series. The series has been plotted
 ad the end of the tutorial.
 
-.. GENERATED FROM PYTHON SOURCE LINES 21-34
+.. GENERATED FROM PYTHON SOURCE LINES 21-31
 
 .. code-block:: default
    :lineno-start: 22
@@ -45,9 +45,6 @@ ad the end of the tutorial.
     # ----------------------------
     # create data
     # ----------------------------
-    # Import
-    import numpy as np
-
     # Import specific
     from pyamr.datasets.load import make_timeseries
 
@@ -61,7 +58,7 @@ ad the end of the tutorial.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 35-45
+.. GENERATED FROM PYTHON SOURCE LINES 32-42
 
 Pearson correlation coefficient
 -------------------------------
@@ -74,10 +71,10 @@ number of observations (susceptibility test records) and the computed resistance
 
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlation.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 46-60
+.. GENERATED FROM PYTHON SOURCE LINES 43-57
 
 .. code-block:: default
-   :lineno-start: 47
+   :lineno-start: 44
 
 
     # -------------------------------
@@ -107,15 +104,15 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlatio
 
              Correlation
     ==============================
-    Pearson:                 0.759
-    Spearman:                0.764
-    Cross correlation: 5161431.088
+    Pearson:                 0.757
+    Spearman:                0.751
+    Cross correlation: 4859308.327
     ==============================
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-84
+.. GENERATED FROM PYTHON SOURCE LINES 58-81
 
 Augmented Dickey-Fuller test
 ----------------------------
@@ -141,10 +138,10 @@ H      Hypothesis                  Stationarity
 
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-102
+.. GENERATED FROM PYTHON SOURCE LINES 82-99
 
 .. code-block:: default
-   :lineno-start: 86
+   :lineno-start: 83
 
 
     # ----------------------------
@@ -177,8 +174,8 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.p
 
         adfuller test stationarity (ct)    
     =======================================
-    statistic:                       -1.950
-    pvalue:                         0.62857   
+    statistic:                       -1.754
+    pvalue:                         0.72636   
     nlags:                                1    
     nobs:                                98     
     stationarity (α=0.05):   non-stationary
@@ -187,7 +184,7 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.p
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 103-131
+.. GENERATED FROM PYTHON SOURCE LINES 100-128
 
 Kwiatkowski-Phillips-Schmidt-Shin test
 --------------------------------------
@@ -218,15 +215,16 @@ H      Hypothesis                  Stationarity
 
 .. See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_kpss.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 132-138
+.. GENERATED FROM PYTHON SOURCE LINES 129-136
 
 .. code-block:: default
-   :lineno-start: 133
+   :lineno-start: 130
 
 
-    # ----------------------------
+    # --------------------------------
     # Kpss
-    # ----------------------------
+    # --------------------------------
+    # Used within StationarityWrapper!
 
 
 
@@ -236,7 +234,7 @@ H      Hypothesis                  Stationarity
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 139-157
+.. GENERATED FROM PYTHON SOURCE LINES 137-155
 
 Trend and stationarity in TS
 ----------------------------
@@ -257,10 +255,10 @@ permanent impact (stochastic trend). The significance level of the tests was set
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationarity.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 158-209
+.. GENERATED FROM PYTHON SOURCE LINES 156-206
 
 .. code-block:: default
-   :lineno-start: 159
+   :lineno-start: 157
 
 
     # ----------------------------
@@ -312,9 +310,13 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
     plt.suptitle("Study of Stationarity")
 
     plt.show()
-    plt.close('all')
 
 
+
+.. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_03_001.png
+   :alt: Study of Stationarity
+   :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_03_001.png
+   :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -335,15 +337,15 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
     look-up table. The actual p-value is smaller than the p-value returned.
 
 
-    (2.6, 0.9, {'10%': 1.2888, '5%': 1.1412, '2.5%': 1.0243, '1%': 0.907})
+    (2.4, 0.9, {'10%': 1.2888, '5%': 1.1412, '2.5%': 1.0243, '1%': 0.907})
 
 
           stationarity (alpha=0.05)   
     ==================================
               root           trend    
     ----------------------------------
-    c   False (0.072)   False (0.010)
-    ct  False (0.629)   False (0.010)
+    c   False (0.121)   False (0.010)
+    ct  False (0.726)   False (0.010)
     ==================================
 
 
@@ -352,7 +354,7 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.750 seconds)
+   **Total running time of the script:** ( 0 minutes  0.832 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_03.py:

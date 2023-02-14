@@ -111,40 +111,43 @@ to download the full example code</p>
 <span id="sphx-glr-examples-tutorial-statistics-plot-core-stats-adfuller-py"></span><h1>Statistical test - ADFuller<a class="headerlink" href="#statistical-test-adfuller" title="Permalink to this headline"></a></h1>
 <p>The Augmented Dickey-Fuller test…</p>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>adf-statistic                  -9.4548
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>adf-statistic                  -8.1014
 adf-pvalue                         0.0
-adf-nlags                            0
-adf-nobs                            99
+adf-nlags                            1
+adf-nobs                            98
 adf-stationary                    True
-adf-criticalvalue_1%           -4.0533
-adf-criticalvalue_5%           -3.4558
-adf-criticalvalue_10%          -3.1536
-adf-x                    [106.54656...
+adf-criticalvalue_1%           -4.0543
+adf-criticalvalue_5%           -3.4563
+adf-criticalvalue_10%          -3.1539
+adf-x                    [108.55580...
 adf-regression                      ct
-adf-model                (-9.454796...
+adf-model                (-8.101353...
 adf-id                         ADF(ct)
 dtype: object
 
 
+Standard:
     adfuller test stationarity (ct)
 =======================================
-statistic:                       -9.455
+statistic:                       -8.101
 pvalue:                         0.00000
-nlags:                                0
-nobs:                                99
+nlags:                                1
+nobs:                                98
 stationarity (α=0.05):       stationary
 =======================================
+
+Verbose:
     adfuller test stationarity (ct)
 =======================================
-statistic:                       -9.455
+statistic:                       -8.101
 pvalue:                         0.00000
-nlags:                                0
-nobs:                                99
+nlags:                                1
+nobs:                                98
 stationarity (α=0.05):       stationary
 ---------------------------------------
-critical value (1%):           -4.05325
-critical value (5%):           -3.45581
-critical value (10%):          -3.15359
+critical value (1%):           -4.05425
+critical value (5%):           -3.45628
+critical value (10%):          -3.15387
 ---------------------------------------
 H0:                    Exists unit-root
 H1:                 No Exists unit-root
@@ -159,17 +162,17 @@ ADF(ct)
 
 
                             0              1              2
-adf-statistic         -9.4849         -0.092        -9.4548
-adf-pvalue                0.0         0.6528            0.0
-adf-nlags                   0              9              0
-adf-nobs                   99             90             99
+adf-statistic         -7.9833         0.0466        -8.1014
+adf-pvalue                0.0         0.6996            0.0
+adf-nlags                   1              9              1
+adf-nobs                   98             90             98
 adf-stationary           True          False           True
-adf-critica...        -3.4982         -2.591        -4.0533
-adf-critica...        -2.8912        -1.9444        -3.4558
-adf-critica...        -2.5826        -1.6142        -3.1536
+adf-critica...        -3.4989         -2.591        -4.0543
+adf-critica...        -2.8915        -1.9444        -3.4563
+adf-critica...        -2.5828        -1.6142        -3.1539
 adf-regression              c              n             ct
-adf-x           [106.54656...  [106.54656...  [106.54656...
-adf-model       (-9.484905...  (-0.092000...  (-9.454796...
+adf-x           [108.55580...  [108.55580...  [108.55580...
+adf-model       (-7.983316...  (0.0466343...  (-8.101353...
 adf-id                 ADF(c)         ADF(n)        ADF(ct)
 </pre></div>
 </div>
@@ -218,47 +221,49 @@ adf-id                 ADF(c)         ADF(n)        ADF(ct)
 <span class="linenos">53</span>
 <span class="linenos">54</span> <span class="c1"># Print summary.</span>
 <span class="linenos">55</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="linenos">56</span> <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
-<span class="linenos">57</span> <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">as_summary</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
-<span class="linenos">58</span>
-<span class="linenos">59</span> <span class="c1"># Print identifier.</span>
-<span class="linenos">60</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Identifier&quot;</span><span class="p">)</span>
-<span class="linenos">61</span> <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
-<span class="linenos">62</span>
-<span class="linenos">63</span> <span class="c1"># -----------------</span>
-<span class="linenos">64</span> <span class="c1"># Save and load</span>
+<span class="linenos">56</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard:&quot;</span><span class="p">)</span>
+<span class="linenos">57</span> <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+<span class="linenos">58</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Verbose:&quot;</span><span class="p">)</span>
+<span class="linenos">59</span> <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">as_summary</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span> <span class="c1"># Print identifier.</span>
+<span class="linenos">62</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Identifier&quot;</span><span class="p">)</span>
+<span class="linenos">63</span> <span class="nb">print</span><span class="p">(</span><span class="n">adf</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
+<span class="linenos">64</span>
 <span class="linenos">65</span> <span class="c1"># -----------------</span>
-<span class="linenos">66</span> <span class="c1"># File location</span>
-<span class="linenos">67</span> <span class="c1">#fname = &#39;../examples/saved/adfuller-sample.pickle&#39;</span>
-<span class="linenos">68</span>
-<span class="linenos">69</span> <span class="c1"># Save</span>
-<span class="linenos">70</span> <span class="c1">#adf.save(fname=fname)</span>
-<span class="linenos">71</span>
-<span class="linenos">72</span> <span class="c1"># Load</span>
-<span class="linenos">73</span> <span class="c1">#adf = ADFWrapper().load(fname=fname)</span>
-<span class="linenos">74</span>
-<span class="linenos">75</span>
-<span class="linenos">76</span> <span class="c1"># -----------</span>
-<span class="linenos">77</span> <span class="c1"># Grid search</span>
+<span class="linenos">66</span> <span class="c1"># Save and load</span>
+<span class="linenos">67</span> <span class="c1"># -----------------</span>
+<span class="linenos">68</span> <span class="c1"># File location</span>
+<span class="linenos">69</span> <span class="c1">#fname = &#39;../examples/saved/adfuller-sample.pickle&#39;</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span> <span class="c1"># Save</span>
+<span class="linenos">72</span> <span class="c1">#adf.save(fname=fname)</span>
+<span class="linenos">73</span>
+<span class="linenos">74</span> <span class="c1"># Load</span>
+<span class="linenos">75</span> <span class="c1">#adf = ADFWrapper().load(fname=fname)</span>
+<span class="linenos">76</span>
+<span class="linenos">77</span>
 <span class="linenos">78</span> <span class="c1"># -----------</span>
-<span class="linenos">79</span> <span class="c1"># Create wrapper</span>
-<span class="linenos">80</span> <span class="n">adf</span> <span class="o">=</span> <span class="n">ADFWrapper</span><span class="p">(</span><span class="n">adfuller</span><span class="p">)</span>
-<span class="linenos">81</span>
-<span class="linenos">82</span> <span class="c1"># Grid parameters.</span>
-<span class="linenos">83</span> <span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="s1">&#39;regression&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;ct&#39;</span><span class="p">]}</span>
-<span class="linenos">84</span>
-<span class="linenos">85</span> <span class="c1"># Get wrappers.</span>
-<span class="linenos">86</span> <span class="n">lwrappers</span> <span class="o">=</span> <span class="n">adf</span><span class="o">.</span><span class="n">grid_search</span><span class="p">(</span><span class="n">grid_params</span><span class="o">=</span><span class="n">grid_params</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos">87</span>
-<span class="linenos">88</span> <span class="c1"># Get summary.</span>
-<span class="linenos">89</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">adf</span><span class="o">.</span><span class="n">from_list_dataframe</span><span class="p">(</span><span class="n">lwrappers</span><span class="p">,</span> <span class="n">flabel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">90</span>
-<span class="linenos">91</span> <span class="c1"># Plot result.</span>
-<span class="linenos">92</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="linenos">93</span> <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="linenos">79</span> <span class="c1"># Grid search</span>
+<span class="linenos">80</span> <span class="c1"># -----------</span>
+<span class="linenos">81</span> <span class="c1"># Create wrapper</span>
+<span class="linenos">82</span> <span class="n">adf</span> <span class="o">=</span> <span class="n">ADFWrapper</span><span class="p">(</span><span class="n">adfuller</span><span class="p">)</span>
+<span class="linenos">83</span>
+<span class="linenos">84</span> <span class="c1"># Grid parameters.</span>
+<span class="linenos">85</span> <span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="s1">&#39;regression&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;ct&#39;</span><span class="p">]}</span>
+<span class="linenos">86</span>
+<span class="linenos">87</span> <span class="c1"># Get wrappers.</span>
+<span class="linenos">88</span> <span class="n">lwrappers</span> <span class="o">=</span> <span class="n">adf</span><span class="o">.</span><span class="n">grid_search</span><span class="p">(</span><span class="n">grid_params</span><span class="o">=</span><span class="n">grid_params</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">89</span>
+<span class="linenos">90</span> <span class="c1"># Get summary.</span>
+<span class="linenos">91</span> <span class="n">summary</span> <span class="o">=</span> <span class="n">adf</span><span class="o">.</span><span class="n">from_list_dataframe</span><span class="p">(</span><span class="n">lwrappers</span><span class="p">,</span> <span class="n">flabel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">92</span>
+<span class="linenos">93</span> <span class="c1"># Plot result.</span>
+<span class="linenos">94</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">95</span> <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.036 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.748 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-statistics-plot-core-stats-adfuller-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/dabb3320c8665f02c1ed78ea87abccda/plot_core_stats_adfuller.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_stats_adfuller.py</span></code></a></p>

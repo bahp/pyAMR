@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequency counts &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Spectrum of Activity (ASAI)" href="plot_core_asai.html" />
+    <link rel="prev" title="Step 03 - TSA for trends" href="../guide/plot_step_04.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Frequency counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_asai.html">Spectrum of Activity (ASAI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_mari.html">Multiple Resistance (MARI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_sari.html">Single Antimicrobial Resistance (SARI)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#regression">Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Tutorial</a> &raquo;</li>
+      <li>Frequency counts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/_examples/tutorial/indexes/plot_code_freq.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-code-freq-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="frequency-counts">
+<span id="sphx-glr-examples-tutorial-indexes-plot-code-freq-py"></span><h1>Frequency counts<a class="headerlink" href="#frequency-counts" title="Permalink to this headline"></a></h1>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n# -----------------------------------------------------------------------------\n#                                 CONSTANTS\n# -----------------------------------------------------------------------------\n# Paths\nfname_tests = &quot;freq_tests_pairs_year&quot;\nfname_isola = &quot;freq_isolates_pairs_year&quot;\nfpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests\nfpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola\n\n# Object\nfreq = Frequency()\n\n# Read data\ndff_tests = freq.load(fpath_tests)\ndff_isola = freq.load(fpath_isola)\ndff_reset = dff_tests.reset_index()\n\n# Basic dataframe.\n# IMPORTANT. Note that isolates refer to a single infectious organism which\n# is tested against many different anttibiotics. Hence the only way the sum\n# refers to isolate is by grouping the laboratory tests by infectious\n# organisms.\ndfy = pd.DataFrame()\ndfy[\&#39;Tests\&#39;] = dff_tests[\&#39;freq_ris\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Isolates\&#39;] = dff_isola[\&#39;freq\&#39;].groupby(level=[0]).sum()\ndfy[\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests\&#39;].div(dfy[\&#39;Isolates\&#39;])\ndfy[\&#39;Antibiotics\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).antibioticCode.nunique()\ndfy[\&#39;Organisms\&#39;] = dff_reset.groupby(\&#39;dateReceived\&#39;).organismCode.nunique()\n\n# Fill last row.\ndfy.loc[\&#39;Total\&#39;,:] = np.nan\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests\&#39;] = dfy[\&#39;Tests\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Isolates\&#39;] = dfy[\&#39;Isolates\&#39;].sum(axis=0)\ndfy.loc[\&#39;Total\&#39;,\&#39;Tests/Isolates\&#39;] = dfy[\&#39;Tests/Isolates\&#39;].mean()\ndfy.loc[\&#39;Total\&#39;,\&#39;Antibiotics\&#39;] = dff_reset.antibioticCode.nunique()\ndfy.loc[\&#39;Total\&#39;,\&#39;Organisms\&#39;] = dff_reset.organismCode.nunique()\n\n# Print dataframe.\nprint(&quot;\n\n&quot;)\nprint(&quot;Pandas:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy)\n\n# Print dataframe latex format.\nprint(&quot;\n\n&quot;)\nprint(&quot;Latex:&quot;)\nprint(&quot;-------&quot;)\nprint(dfy.to_latex())\n&#39;
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 6</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 7</span><span class="sd"> # -----------------------------------------------------------------------------</span>
+<span class="linenos"> 8</span><span class="sd"> #                                 CONSTANTS</span>
+<span class="linenos"> 9</span><span class="sd"> # -----------------------------------------------------------------------------</span>
+<span class="linenos">10</span><span class="sd"> # Paths</span>
+<span class="linenos">11</span><span class="sd"> fname_tests = &quot;freq_tests_pairs_year&quot;</span>
+<span class="linenos">12</span><span class="sd"> fname_isola = &quot;freq_isolates_pairs_year&quot;</span>
+<span class="linenos">13</span><span class="sd"> fpath_tests = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_tests</span>
+<span class="linenos">14</span><span class="sd"> fpath_isola = &quot;../../results/microbiology/frequencies/%s.csv&quot; % fname_isola</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="sd"> # Object</span>
+<span class="linenos">17</span><span class="sd"> freq = Frequency()</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="sd"> # Read data</span>
+<span class="linenos">20</span><span class="sd"> dff_tests = freq.load(fpath_tests)</span>
+<span class="linenos">21</span><span class="sd"> dff_isola = freq.load(fpath_isola)</span>
+<span class="linenos">22</span><span class="sd"> dff_reset = dff_tests.reset_index()</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="sd"> # Basic dataframe.</span>
+<span class="linenos">25</span><span class="sd"> # IMPORTANT. Note that isolates refer to a single infectious organism which</span>
+<span class="linenos">26</span><span class="sd"> # is tested against many different anttibiotics. Hence the only way the sum</span>
+<span class="linenos">27</span><span class="sd"> # refers to isolate is by grouping the laboratory tests by infectious</span>
+<span class="linenos">28</span><span class="sd"> # organisms.</span>
+<span class="linenos">29</span><span class="sd"> dfy = pd.DataFrame()</span>
+<span class="linenos">30</span><span class="sd"> dfy[&#39;Tests&#39;] = dff_tests[&#39;freq_ris&#39;].groupby(level=[0]).sum()</span>
+<span class="linenos">31</span><span class="sd"> dfy[&#39;Isolates&#39;] = dff_isola[&#39;freq&#39;].groupby(level=[0]).sum()</span>
+<span class="linenos">32</span><span class="sd"> dfy[&#39;Tests/Isolates&#39;] = dfy[&#39;Tests&#39;].div(dfy[&#39;Isolates&#39;])</span>
+<span class="linenos">33</span><span class="sd"> dfy[&#39;Antibiotics&#39;] = dff_reset.groupby(&#39;dateReceived&#39;).antibioticCode.nunique()</span>
+<span class="linenos">34</span><span class="sd"> dfy[&#39;Organisms&#39;] = dff_reset.groupby(&#39;dateReceived&#39;).organismCode.nunique()</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="sd"> # Fill last row.</span>
+<span class="linenos">37</span><span class="sd"> dfy.loc[&#39;Total&#39;,:] = np.nan</span>
+<span class="linenos">38</span><span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Tests&#39;] = dfy[&#39;Tests&#39;].sum(axis=0)</span>
+<span class="linenos">39</span><span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Isolates&#39;] = dfy[&#39;Isolates&#39;].sum(axis=0)</span>
+<span class="linenos">40</span><span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Tests/Isolates&#39;] = dfy[&#39;Tests/Isolates&#39;].mean()</span>
+<span class="linenos">41</span><span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Antibiotics&#39;] = dff_reset.antibioticCode.nunique()</span>
+<span class="linenos">42</span><span class="sd"> dfy.loc[&#39;Total&#39;,&#39;Organisms&#39;] = dff_reset.organismCode.nunique()</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="sd"> # Print dataframe.</span>
+<span class="linenos">45</span><span class="sd"> print(&quot;\n\n&quot;)</span>
+<span class="linenos">46</span><span class="sd"> print(&quot;Pandas:&quot;)</span>
+<span class="linenos">47</span><span class="sd"> print(&quot;-------&quot;)</span>
+<span class="linenos">48</span><span class="sd"> print(dfy)</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span><span class="sd"> # Print dataframe latex format.</span>
+<span class="linenos">51</span><span class="sd"> print(&quot;\n\n&quot;)</span>
+<span class="linenos">52</span><span class="sd"> print(&quot;Latex:&quot;)</span>
+<span class="linenos">53</span><span class="sd"> print(&quot;-------&quot;)</span>
+<span class="linenos">54</span><span class="sd"> print(dfy.to_latex())</span>
+<span class="linenos">55</span><span class="sd"> &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.001 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-code-freq-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/bd5b26969e73c5ecbe3d89fc3ce63cf0/plot_code_freq.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_code_freq.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/cf0f13f3bc8e6403e30c615ab0785875/plot_code_freq.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_code_freq.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../guide/plot_step_04.html" class="btn btn-neutral float-left" title="Step 03 - TSA for trends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_asai.html" class="btn btn-neutral float-right" title="Spectrum of Activity (ASAI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

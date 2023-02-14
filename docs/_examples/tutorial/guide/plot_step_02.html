@@ -154,56 +154,7 @@ to download the full example code</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-Trying to register the cmap &#39;rocket&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-Trying to register the cmap &#39;rocket_r&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-Trying to register the cmap &#39;mako&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-Trying to register the cmap &#39;mako_r&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-Trying to register the cmap &#39;icefire&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-Trying to register the cmap &#39;icefire_r&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-Trying to register the cmap &#39;vlag&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-Trying to register the cmap &#39;vlag_r&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-Trying to register the cmap &#39;flare&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-Trying to register the cmap &#39;flare_r&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
-
-Trying to register the cmap &#39;crest&#39; which already exists.
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
-
-Trying to register the cmap &#39;crest_r&#39; which already exists.
-
-
-Data:
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
        date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
 113       2009-01-03           NaN       20099           X428892        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
 119       2009-01-03           NaN       20100           X429141        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
@@ -254,7 +205,7 @@ the previous four weeks (4x7D).</p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="../../indexes/plot_sari_temporal.html#sphx-glr-examples-indexes-plot-sari-temporal-py"><span class="std std-ref">SARI - Timeseries</span></a>.</p></li>
+<li><p><a class="reference internal" href="../../indexes/plot_sari_temporal.html#sphx-glr-examples-indexes-plot-sari-temporal-py"><span class="std std-ref">SARI - Timeseries</span></a></p></li>
 </ul>
 </div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 82</span> <span class="c1"># -----------------------------------------</span>
@@ -351,7 +302,12 @@ sensitivity specimen_code                       microorganism_name antimicrobial
 </pre></div>
 </div>
 <img src="../../../_images/sphx_glr_plot_step_02_001.png" srcset="../../../_images/sphx_glr_plot_step_02_001.png" alt="Time-series $1M_{1}$" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (ITI):
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\tutorial\guide\plot_step_02.py:136: UserWarning:
+
+Ignoring `palette` because no `hue` variable has been assigned.
+
+
+Temporal (ITI):
 sensitivity specimen_code microorganism_name antimicrobial_name date_received  resistant  sensitive    freq      sari
 49                 URICUL   escherichia coli          augmentin    2009-01-31        5.0       32.0    37.0  0.135135
 50                 URICUL   escherichia coli          augmentin    2009-02-28        6.0       50.0    56.0  0.107143
@@ -413,25 +369,181 @@ information is available in the registries: <a class="reference internal" href="
 <span class="linenos">204</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> \
 <span class="linenos">205</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="linenos">206</span>
-<span class="linenos">207</span> <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="linenos">208</span> <span class="nb">print</span><span class="p">(</span><span class="n">mreg</span><span class="o">.</span><span class="n">reg</span><span class="p">)</span>
+<span class="linenos">207</span> <span class="c1"># Combine with registry information</span>
+<span class="linenos">208</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
 <span class="linenos">209</span>
-<span class="linenos">210</span> <span class="c1"># Combine with registry information</span>
-<span class="linenos">211</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
+<span class="linenos">210</span> <span class="c1"># Fill missing gram stain</span>
+<span class="linenos">211</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
 <span class="linenos">212</span>
-<span class="linenos">213</span> <span class="c1"># Fill missing gram stain</span>
-<span class="linenos">214</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="linenos">213</span> <span class="c1"># Show</span>
+<span class="linenos">214</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Index([&#39;index&#39;, &#39;specimen_code&#39;, &#39;microorganism_name&#39;, &#39;antimicrobial_name&#39;,
-       &#39;date_received&#39;, &#39;resistant&#39;, &#39;sensitive&#39;, &#39;freq&#39;, &#39;sari&#39;, &#39;genus&#39;,
-       &#39;species&#39;],
-      dtype=&#39;object&#39;, name=&#39;sensitivity&#39;)
-None
-</pre></div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>index</th>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>specimen_code</th>
+      <td>URICUL</td>
+      <td>URICUL</td>
+      <td>URICUL</td>
+      <td>URICUL</td>
+    </tr>
+    <tr>
+      <th>microorganism_name</th>
+      <td>acinetobacter</td>
+      <td>acinetobacter</td>
+      <td>acinetobacter</td>
+      <td>acinetobacter baumannii</td>
+    </tr>
+    <tr>
+      <th>antimicrobial_name</th>
+      <td>augmentin</td>
+      <td>augmentin</td>
+      <td>augmentin</td>
+      <td>augmentin</td>
+    </tr>
+    <tr>
+      <th>date_received</th>
+      <td>2009-03-31 00:00:00</td>
+      <td>2009-05-31 00:00:00</td>
+      <td>2009-08-31 00:00:00</td>
+      <td>2009-02-28 00:00:00</td>
+    </tr>
+    <tr>
+      <th>resistant</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>sensitive</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>sari</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>genus</th>
+      <td>Acinetobacter</td>
+      <td>Acinetobacter</td>
+      <td>Acinetobacter</td>
+      <td>Acinetobacter</td>
+    </tr>
+    <tr>
+      <th>species</th>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>baumannii</td>
+    </tr>
+    <tr>
+      <th>domain</th>
+      <td>Bacteria</td>
+      <td>Bacteria</td>
+      <td>Bacteria</td>
+      <td>Bacteria</td>
+    </tr>
+    <tr>
+      <th>phylum</th>
+      <td>Proteobacteria</td>
+      <td>Proteobacteria</td>
+      <td>Proteobacteria</td>
+      <td>Proteobacteria</td>
+    </tr>
+    <tr>
+      <th>class</th>
+      <td>Gammaproteobacteria</td>
+      <td>Gammaproteobacteria</td>
+      <td>Gammaproteobacteria</td>
+      <td>Gammaproteobacteria</td>
+    </tr>
+    <tr>
+      <th>order</th>
+      <td>Pseudomonadales</td>
+      <td>Pseudomonadales</td>
+      <td>Pseudomonadales</td>
+      <td>Pseudomonadales</td>
+    </tr>
+    <tr>
+      <th>family</th>
+      <td>Moraxellaceae</td>
+      <td>Moraxellaceae</td>
+      <td>Moraxellaceae</td>
+      <td>Moraxellaceae</td>
+    </tr>
+    <tr>
+      <th>acronym</th>
+      <td>ACINETOBACTER</td>
+      <td>ACINETOBACTER</td>
+      <td>ACINETOBACTER</td>
+      <td>ACIN_BAUM</td>
+    </tr>
+    <tr>
+      <th>gram_stain</th>
+      <td>n</td>
+      <td>n</td>
+      <td>n</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <th>exists_in_registry</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<p>Now that we have the <code class="docutils literal notranslate"><span class="pre">genus</span></code>, <code class="docutils literal notranslate"><span class="pre">species</span></code> and <code class="docutils literal notranslate"><span class="pre">gram_stain</span></code> information,
+</div>
+<br />
+<br /><p>Now that we have the <code class="docutils literal notranslate"><span class="pre">genus</span></code>, <code class="docutils literal notranslate"><span class="pre">species</span></code> and <code class="docutils literal notranslate"><span class="pre">gram_stain</span></code> information,
 lets see how compute <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> in a temporal fashion with an example. It is
 important to highlight that now the date (<code class="docutils literal notranslate"><span class="pre">date_received</span></code>) is also included
 in the groupby parameter when calling the compute method.</p>
@@ -439,7 +551,7 @@ in the groupby parameter when calling the compute method.</p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="../../indexes/plot_spectrum_temporal.html#sphx-glr-examples-indexes-plot-spectrum-temporal-py"><span class="std std-ref">ASAI - Timeseries</span></a>.</p></li>
+<li><p><a class="reference internal" href="../../indexes/plot_spectrum_temporal.html#sphx-glr-examples-indexes-plot-spectrum-temporal-py"><span class="std std-ref">ASAI - Timeseries</span></a></p></li>
 </ul>
 </div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span> <span class="c1"># -------------------------------------------</span>
@@ -470,6 +582,7 @@ in the groupby parameter when calling the compute method.</p>
 <span class="linenos">255</span> <span class="c1"># Show</span>
 <span class="linenos">256</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (overall):&quot;</span><span class="p">)</span>
 <span class="linenos">257</span> <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+<span class="linenos">258</span> <span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -517,72 +630,261 @@ date_received specimen_code antimicrobial_name
 2009-12-31    URICUL        augmentin              2.0  2.0      2.0  4.0   0.500000  1.00
 </pre></div>
 </div>
-<p>Let’s plot the evolution of a single combination …</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">264</span> <span class="c1"># Libraries</span>
-<span class="linenos">265</span> <span class="kn">import</span> <span class="nn">calendar</span>
-<span class="linenos">266</span>
-<span class="linenos">267</span> <span class="c1"># Month numbers to abbr</span>
-<span class="linenos">268</span> <span class="k">def</span> <span class="nf">month_abbr</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="linenos">269</span>     <span class="k">return</span> <span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">month_abbr</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>
-<span class="linenos">270</span>
-<span class="linenos">271</span> <span class="c1"># --------------</span>
-<span class="linenos">272</span> <span class="c1"># Filter</span>
-<span class="linenos">273</span> <span class="c1"># --------------</span>
-<span class="linenos">274</span> <span class="c1"># Filter and drop index.</span>
-<span class="linenos">275</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos">276</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;augmentin&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos">277</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="linenos">278</span>
-<span class="linenos">279</span> <span class="c1"># Show</span>
-<span class="linenos">280</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (overall):&quot;</span><span class="p">)</span>
-<span class="linenos">281</span> <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
-<span class="linenos">282</span>
-<span class="linenos">283</span> <span class="c1"># ----------</span>
-<span class="linenos">284</span> <span class="c1"># Plot</span>
-<span class="linenos">285</span> <span class="c1"># ----------</span>
-<span class="linenos">286</span> <span class="c1"># Initialize the matplotlib figure</span>
-<span class="linenos">287</span> <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="linenos">288</span>
-<span class="linenos">289</span> <span class="c1"># Show</span>
-<span class="linenos">290</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">scores</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">,</span>
-<span class="linenos">291</span>              <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;gram_stain&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
-<span class="linenos">292</span>              <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<span class="linenos">293</span>              <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="linenos">294</span>              <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="c1">#, ax=axes[0])</span>
-<span class="linenos">295</span>
-<span class="linenos">296</span> <span class="c1"># Create aux table for visualization</span>
-<span class="linenos">297</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[[</span><span class="s1">&#39;N_GENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;N_SPECIE&#39;</span><span class="p">]]</span> \
-<span class="linenos">298</span>      <span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> \
-<span class="linenos">299</span>      <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;nan&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">})</span>
-<span class="linenos">300</span>
-<span class="linenos">301</span> <span class="c1"># Rename columns</span>
-<span class="linenos">302</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">month_abbr</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-<span class="linenos">303</span>
-<span class="linenos">304</span> <span class="c1"># Draw table</span>
-<span class="linenos">305</span> <span class="n">table</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">cellText</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
-<span class="linenos">306</span>                   <span class="n">rowLabels</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-<span class="linenos">307</span>                   <span class="n">colLabels</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-<span class="linenos">308</span>                   <span class="n">cellLoc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="linenos">309</span> <span class="n">table</span><span class="o">.</span><span class="n">auto_set_font_size</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">310</span> <span class="n">table</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="mf">7.5</span><span class="p">)</span>
-<span class="linenos">311</span> <span class="n">table</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
-<span class="linenos">312</span>
-<span class="linenos">313</span> <span class="c1"># Sns config</span>
-<span class="linenos">314</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">315</span>
-<span class="linenos">316</span> <span class="c1"># Add a legend and informative axis label</span>
-<span class="linenos">317</span> <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;ASAI&#39;</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
-<span class="linenos">318</span>        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ASAI evolution 2009&quot;</span><span class="p">)</span>
-<span class="linenos">319</span>
-<span class="linenos">320</span> <span class="c1"># Tight layout()</span>
-<span class="linenos">321</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">322</span>
-<span class="linenos">323</span> <span class="c1"># Show</span>
-<span class="linenos">324</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos">325</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">N_GENUS</th>
+      <th colspan="2" halign="left">N_SPECIE</th>
+      <th colspan="2" halign="left">ASAI_SCORE</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>gram_stain</th>
+      <th>n</th>
+      <th>p</th>
+      <th>n</th>
+      <th>p</th>
+      <th>n</th>
+      <th>p</th>
+    </tr>
+    <tr>
+      <th>date_received</th>
+      <th>specimen_code</th>
+      <th>antimicrobial_name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2009-01-31</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.500000</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-02-28</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.500000</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-03-31</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.000000</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-04-30</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>0.666667</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-05-31</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>0.666667</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-06-30</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>0.333333</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-07-31</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>6.0</td>
+      <td>0.250000</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-08-31</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.000000</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-09-30</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.500000</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-10-31</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>1.000000</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2009-11-30</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>0.333333</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>2009-12-31</th>
+      <th>URICUL</th>
+      <th>augmentin</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.500000</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s plot the evolution of a single combination …</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">265</span> <span class="c1"># Libraries</span>
+<span class="linenos">266</span> <span class="kn">import</span> <span class="nn">calendar</span>
+<span class="linenos">267</span>
+<span class="linenos">268</span> <span class="c1"># Month numbers to abbr</span>
+<span class="linenos">269</span> <span class="k">def</span> <span class="nf">month_abbr</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="linenos">270</span>     <span class="k">return</span> <span class="p">[</span><span class="n">calendar</span><span class="o">.</span><span class="n">month_abbr</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>
+<span class="linenos">271</span>
+<span class="linenos">272</span> <span class="c1"># --------------</span>
+<span class="linenos">273</span> <span class="c1"># Filter</span>
+<span class="linenos">274</span> <span class="c1"># --------------</span>
+<span class="linenos">275</span> <span class="c1"># Filter and drop index.</span>
+<span class="linenos">276</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">277</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;augmentin&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">278</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="linenos">279</span>
+<span class="linenos">280</span> <span class="c1"># Show</span>
+<span class="linenos">281</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (overall):&quot;</span><span class="p">)</span>
+<span class="linenos">282</span> <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+<span class="linenos">283</span>
+<span class="linenos">284</span> <span class="c1"># ----------</span>
+<span class="linenos">285</span> <span class="c1"># Plot</span>
+<span class="linenos">286</span> <span class="c1"># ----------</span>
+<span class="linenos">287</span> <span class="c1"># Initialize the matplotlib figure</span>
+<span class="linenos">288</span> <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="linenos">289</span>
+<span class="linenos">290</span> <span class="c1"># Show</span>
+<span class="linenos">291</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">scores</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">,</span>
+<span class="linenos">292</span>              <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;gram_stain&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+<span class="linenos">293</span>              <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">294</span>              <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">295</span>              <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="c1">#, ax=axes[0])</span>
+<span class="linenos">296</span>
+<span class="linenos">297</span> <span class="c1"># Create aux table for visualization</span>
+<span class="linenos">298</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[[</span><span class="s1">&#39;N_GENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;N_SPECIE&#39;</span><span class="p">]]</span> \
+<span class="linenos">299</span>      <span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> \
+<span class="linenos">300</span>      <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;nan&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">})</span>
+<span class="linenos">301</span>
+<span class="linenos">302</span> <span class="c1"># Rename columns</span>
+<span class="linenos">303</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">month_abbr</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos">304</span>
+<span class="linenos">305</span> <span class="c1"># Draw table</span>
+<span class="linenos">306</span> <span class="n">table</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">cellText</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+<span class="linenos">307</span>                   <span class="n">rowLabels</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+<span class="linenos">308</span>                   <span class="n">colLabels</span><span class="o">=</span><span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+<span class="linenos">309</span>                   <span class="n">cellLoc</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="linenos">310</span> <span class="n">table</span><span class="o">.</span><span class="n">auto_set_font_size</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">311</span> <span class="n">table</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="mf">7.5</span><span class="p">)</span>
+<span class="linenos">312</span> <span class="n">table</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="linenos">313</span>
+<span class="linenos">314</span> <span class="c1"># Sns config</span>
+<span class="linenos">315</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">316</span>
+<span class="linenos">317</span> <span class="c1"># Add a legend and informative axis label</span>
+<span class="linenos">318</span> <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;ASAI&#39;</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
+<span class="linenos">319</span>        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ASAI evolution 2009&quot;</span><span class="p">)</span>
+<span class="linenos">320</span>
+<span class="linenos">321</span> <span class="c1"># Tight layout()</span>
+<span class="linenos">322</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">323</span>
+<span class="linenos">324</span> <span class="c1"># Show</span>
+<span class="linenos">325</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
+<img src="../../../_images/sphx_glr_plot_step_02_002.png" srcset="../../../_images/sphx_glr_plot_step_02_002.png" alt="ASAI evolution 2009" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ASAI (overall):
               N_GENUS      N_SPECIE      ASAI_SCORE
 gram_stain          n    p        n    p          n     p
@@ -604,7 +906,11 @@ date_received
 </section>
 <section id="considerations">
 <h2>Considerations<a class="headerlink" href="#considerations" title="Permalink to this headline"></a></h2>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.608 seconds)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending!</p>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.279 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-02-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/d92cffb9255a81837fa25e002aff4919/plot_step_02.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_02.py</span></code></a></p>
