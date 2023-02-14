@@ -107,9 +107,9 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlatio
 
              Correlation
     ==============================
-    Pearson:                 0.715
-    Spearman:                0.734
-    Cross correlation: 4939516.184
+    Pearson:                 0.759
+    Spearman:                0.764
+    Cross correlation: 5161431.088
     ==============================
 
 
@@ -177,10 +177,10 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.p
 
         adfuller test stationarity (ct)    
     =======================================
-    statistic:                       -1.927
-    pvalue:                         0.64037   
-    nlags:                                2    
-    nobs:                                97     
+    statistic:                       -1.950
+    pvalue:                         0.62857   
+    nlags:                                1    
+    nobs:                                98     
     stationarity (α=0.05):   non-stationary
     =======================================
 
@@ -257,7 +257,7 @@ permanent impact (stochastic trend). The significance level of the tests was set
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationarity.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 158-208
+.. GENERATED FROM PYTHON SOURCE LINES 158-209
 
 .. code-block:: default
    :lineno-start: 159
@@ -312,12 +312,9 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
     plt.suptitle("Study of Stationarity")
 
     plt.show()
+    plt.close('all')
 
 
-
-.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_03_001.png
-    :alt: Study of Stationarity
-    :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -326,18 +323,27 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
 
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\virtualenvs\venvpy39-datablend\lib\site-packages\statsmodels\tsa\stattools.py:1875: FutureWarning:
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
 
-    The behavior of using nlags=None will change in release 0.13.Currently nlags=None is the same as nlags="legacy", and so a sample-size lag length is used. After the next release, the default will change to be the same as nlags="auto" which uses an automatic lag length selection method. To silence this warning, either use "auto" or "legacy"
+    The test statistic is outside of the range of p-values available in the
+    look-up table. The actual p-value is smaller than the p-value returned.
 
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
+
+    The test statistic is outside of the range of p-values available in the
+    look-up table. The actual p-value is smaller than the p-value returned.
+
+
+    (2.6, 0.9, {'10%': 1.2888, '5%': 1.1412, '2.5%': 1.0243, '1%': 0.907})
 
 
           stationarity (alpha=0.05)   
     ==================================
               root           trend    
     ----------------------------------
-    c   False (0.203)   False (0.013)
-    ct  False (0.640)   False (0.017)
+    c   False (0.072)   False (0.010)
+    ct  False (0.629)   False (0.010)
     ==================================
 
 
@@ -346,7 +352,7 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.508 seconds)
+   **Total running time of the script:** ( 0 minutes  0.750 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_03.py:

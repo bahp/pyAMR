@@ -21,13 +21,9 @@
 Regression - ARIMA
 ==================
 
-.. GENERATED FROM PYTHON SOURCE LINES 6-147
+.. GENERATED FROM PYTHON SOURCE LINES 6-149
 
 
-
-.. image:: /_examples/tutorial/regression/images/sphx_glr_plot_core_regression_arima_001.png
-    :alt: ARIMA non-dynamic, ARIMA dynamic
-    :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -38,68 +34,85 @@ Regression - ARIMA
 
 
     Series:
-    arima-aic                    816.3857
-    arima-bic                    823.5318
-    arima-hqic                   819.2508
-    arima-llf                   -405.1929
-    arima-const_coef             298.1921
-    arima-const_std              118.8759
-    arima-const_tvalue             2.5084
-    arima-const_tprob              0.0121
-    arima-const_cil               65.1996
-    arima-const_ciu              531.1845
-    arima-ar.L1.y_coef             0.9742
-    arima-ar.L1.y_std              0.0236
-    arima-ar.L1.y_tvalue          41.1984
-    arima-ar.L1.y_tprob               0.0
-    arima-ar.L1.y_cil              0.9279
-    arima-ar.L1.y_ciu              1.0206
-    arima-m_dw                     2.1273
-    arima-m_jb_value             469.0306
-    arima-m_jb_prob                   0.0
-    arima-m_skew                  -2.4563
-    arima-m_kurtosis               13.797
-    arima-m_nm_value              66.3539
-    arima-m_nm_prob                   0.0
-    arima-m_ks_value                0.612
-    arima-m_ks_prob                   0.0
-    arima-m_shp_value              0.8086
-    arima-m_shp_prob                  0.0
-    arima-m_ad_value               2.5158
-    arima-m_ad_nnorm                False
-    arima-converged                  True
-    arima-endog             [49.243872...
-    arima-order                 (1, 0, 0)
-    arima-trend                         c
-    arima-disp                          0
-    arima-model             <statsmode...
-    arima-id                ARIMA(1, 0...
+    arima-aic                   814.4485
+    arima-bic                   821.5946
+    arima-hqic                  817.3136
+    arima-llf                  -404.2243
+    arima-const_coef            277.9714
+    arima-const_std             118.1051
+    arima-const_tvalue            2.3536
+    arima-const_tprob             0.0186
+    arima-const_cil              46.4897
+    arima-const_ciu             509.4531
+    arima-ar.L1_coef              0.9791
+    arima-ar.L1_std                0.023
+    arima-ar.L1_tvalue           42.6546
+    arima-ar.L1_tprob                0.0
+    arima-ar.L1_cil               0.9341
+    arima-ar.L1_ciu               1.0241
+    arima-sigma2_coef          1377.3224
+    arima-sigma2_std            210.9964
+    arima-sigma2_tvalue           6.5277
+    arima-sigma2_tprob               0.0
+    arima-sigma2_cil            963.7771
+    arima-sigma2_ciu           1790.8677
+    arima-m_dw                    2.1952
+    arima-m_jb_value            604.7265
+    arima-m_jb_prob                  0.0
+    arima-m_skew                  -2.632
+    arima-m_kurtosis             15.3979
+    arima-m_nm_value             71.5466
+    arima-m_nm_prob                  0.0
+    arima-m_ks_value              0.5744
+    arima-m_ks_prob                  0.0
+    arima-m_shp_value             0.8011
+    arima-m_shp_prob                 0.0
+    arima-m_ad_value              2.5246
+    arima-m_ad_nnorm               False
+    arima-converged                 True
+    arima-endog            [6.8557397...
+    arima-order                (1, 0, 0)
+    arima-trend                        c
+    arima-disp                         0
+    arima-model            <statsmode...
+    arima-id               ARIMA(1, 0...
     dtype: object
 
     Summary:
-                                  ARMA Model Results                              
+                                   SARIMAX Results                                
     ==============================================================================
     Dep. Variable:                      y   No. Observations:                   80
-    Model:                     ARMA(1, 0)   Log Likelihood                -405.193
-    Method:                       css-mle   S.D. of innovations             37.613
-    Date:                Wed, 07 Apr 2021   AIC                            816.386
-    Time:                        14:05:22   BIC                            823.532
-    Sample:                             0   HQIC                           819.251
-                                                                              
+    Model:                 ARIMA(1, 0, 0)   Log Likelihood                -404.224
+    Date:                Tue, 14 Feb 2023   AIC                            814.449
+    Time:                        16:29:40   BIC                            821.595
+    Sample:                             0   HQIC                           817.314
+                                     - 80                                         
+    Covariance Type:                  opg                                         
     ==============================================================================
                      coef    std err          z      P>|z|      [0.025      0.975]
     ------------------------------------------------------------------------------
-    const        298.1921    118.876      2.508      0.012      65.200     531.185
-    ar.L1.y        0.9742      0.024     41.198      0.000       0.928       1.021
+    const        277.9714    118.105      2.354      0.019      46.490     509.453
+    ar.L1          0.9791      0.023     42.655      0.000       0.934       1.024
+    sigma2      1377.3224    210.996      6.528      0.000     963.777    1790.868
     ==============================================================================
                                         Manual                                    
     ------------------------------------------------------------------------------
-    Omnibus:                        0.000  Durbin-Watson:                    2.127
-    Prob(Omnibus):                  0.000  Jarque-Bera (JB):               469.031
-    Skew:                          -2.456  Prob(JB):                         0.000
-    Kurtosis_m:                    13.797  Cond No:                 
-    Normal (N):                    66.354  Prob(N):                          0.000
+    Omnibus:                        0.000  Durbin-Watson:                    2.195
+    Prob(Omnibus):                  0.000  Jarque-Bera (JB):               604.726
+    Skew:                          -2.632  Prob(JB):                         0.000
+    Kurtosis_m:                    15.398  Cond No:                 
+    Normal (N):                    71.547  Prob(N):                          0.000
     ==============================================================================
+    {'_results': <statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8>, '__doc__': '\nClass to hold results from fitting an SARIMAX model.\n\nParameters\n----------\nmodel : SARIMAX instance\n    The fitted model instance\n\nAttributes\n----------\nspecification : dictionary\n    Dictionary including all attributes from the SARIMAX model instance.\npolynomial_ar : ndarray\n    Array containing autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_ma : ndarray\n    Array containing moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ar : ndarray\n    Array containing seasonal autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ma : ndarray\n    Array containing seasonal moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_trend : ndarray\n    Array containing trend polynomial coefficients, ordered from lowest\n    degree to highest. Initialized with ones, unless a coefficient is\n    constrained to be zero (in which case it is zero).\nmodel_orders : list of int\n    The orders of each of the polynomials in the model.\nparam_terms : list of str\n    List of parameters actually included in the model, in sorted order.\n\nSee Also\n--------\nstatsmodels.tsa.statespace.kalman_filter.FilterResults\nstatsmodels.tsa.statespace.mlemodel.MLEResults\n', 'mlefit': <statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988>, 'mle_retvals': {'fopt': 5.052803225383327, 'gopt': array([-6.66e-09, -3.86e-07, -1.55e-07]), 'fcalls': 88, 'warnflag': 0, 'converged': True, 'iterations': 20}, 'mle_settings': {'optimizer': 'lbfgs', 'start_params': array([338.42,  -2.59,  36.04]), 'maxiter': 50, 'full_output': 1, 'disp': 0, 'fargs': ({'transformed': False, 'includes_fixed': False, 'score_method': None, 'approx_complex_step': True},), 'callback': None, 'retall': False, 'extra_fit_funcs': {}, 'approx_grad': True, 'epsilon': 1e-05, 'bounds': [(None, None), (None, None), (None, None)], 'iprint': 0}, 'fit_details': <statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988>}
+    <statsmodels.tsa.arima.model.ARIMAResultsWrapper object at 0x000002364641FA48>
+    {'aic': 814.4485160613324, 'bic': 821.5945959653541, 'hqic': 817.3135839774633, 'llf': -404.2242580306662, 'const_coef': 277.9713945915167, 'const_std': 118.1050992740886, 'const_tvalue': 2.3535935052763772, 'const_tprob': 0.018592930972345434, 'const_cil': 46.489653623775354, 'const_ciu': 509.45313555925804, 'ar.L1_coef': 0.9791164160617731, 'ar.L1_std': 0.02295450657386397, 'ar.L1_tvalue': 42.65464879025526, 'ar.L1_tprob': 0.0, 'ar.L1_cil': 0.9341264098941119, 'ar.L1_ciu': 1.0241064222294345, 'sigma2_coef': 1377.3223978605706, 'sigma2_std': 210.9963686619532, 'sigma2_tvalue': 6.527706645355783, 'sigma2_tprob': 6.678433393410278e-11, 'sigma2_cil': 963.7771144144067, 'sigma2_ciu': 1790.8676813067345, 'm_dw': 2.195240498972637, 'm_jb_value': 604.726482323363, 'm_jb_prob': 4.8452125460414036e-132, 'm_skew': -2.632046025277302, 'm_kurtosis': 15.397873994370839, 'm_nm_value': 71.54656866378019, 'm_nm_prob': 2.909779066146226e-16, 'm_ks_value': 0.5744419088782997, 'm_ks_prob': 1.5675551545672083e-25, 'm_shp_value': 0.8011425733566284, 'm_shp_prob': 5.114620726942576e-09, 'm_ad_value': 2.524625732772108, 'm_ad_nnorm': False, 'converged': True}
+    <statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8>
+    [0.98]
+    {'_results': <statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8>, '__doc__': '\nClass to hold results from fitting an SARIMAX model.\n\nParameters\n----------\nmodel : SARIMAX instance\n    The fitted model instance\n\nAttributes\n----------\nspecification : dictionary\n    Dictionary including all attributes from the SARIMAX model instance.\npolynomial_ar : ndarray\n    Array containing autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_ma : ndarray\n    Array containing moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ar : ndarray\n    Array containing seasonal autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ma : ndarray\n    Array containing seasonal moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_trend : ndarray\n    Array containing trend polynomial coefficients, ordered from lowest\n    degree to highest. Initialized with ones, unless a coefficient is\n    constrained to be zero (in which case it is zero).\nmodel_orders : list of int\n    The orders of each of the polynomials in the model.\nparam_terms : list of str\n    List of parameters actually included in the model, in sorted order.\n\nSee Also\n--------\nstatsmodels.tsa.statespace.kalman_filter.FilterResults\nstatsmodels.tsa.statespace.mlemodel.MLEResults\n', 'mlefit': <statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988>, 'mle_retvals': {'fopt': 5.052803225383327, 'gopt': array([-6.66e-09, -3.86e-07, -1.55e-07]), 'fcalls': 88, 'warnflag': 0, 'converged': True, 'iterations': 20}, 'mle_settings': {'optimizer': 'lbfgs', 'start_params': array([338.42,  -2.59,  36.04]), 'maxiter': 50, 'full_output': 1, 'disp': 0, 'fargs': ({'transformed': False, 'includes_fixed': False, 'score_method': None, 'approx_complex_step': True},), 'callback': None, 'retall': False, 'extra_fit_funcs': {}, 'approx_grad': True, 'epsilon': 1e-05, 'bounds': [(None, None), (None, None), (None, None)], 'iprint': 0}, 'fit_details': <statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988>}
+    <statsmodels.tsa.arima.model.ARIMAResultsWrapper object at 0x000002364641FA48>
+    {'aic': 814.4485160613324, 'bic': 821.5945959653541, 'hqic': 817.3135839774633, 'llf': -404.2242580306662, 'const_coef': 277.9713945915167, 'const_std': 118.1050992740886, 'const_tvalue': 2.3535935052763772, 'const_tprob': 0.018592930972345434, 'const_cil': 46.489653623775354, 'const_ciu': 509.45313555925804, 'ar.L1_coef': 0.9791164160617731, 'ar.L1_std': 0.02295450657386397, 'ar.L1_tvalue': 42.65464879025526, 'ar.L1_tprob': 0.0, 'ar.L1_cil': 0.9341264098941119, 'ar.L1_ciu': 1.0241064222294345, 'sigma2_coef': 1377.3223978605706, 'sigma2_std': 210.9963686619532, 'sigma2_tvalue': 6.527706645355783, 'sigma2_tprob': 6.678433393410278e-11, 'sigma2_cil': 963.7771144144067, 'sigma2_ciu': 1790.8676813067345, 'm_dw': 2.195240498972637, 'm_jb_value': 604.726482323363, 'm_jb_prob': 4.8452125460414036e-132, 'm_skew': -2.632046025277302, 'm_kurtosis': 15.397873994370839, 'm_nm_value': 71.54656866378019, 'm_nm_prob': 2.909779066146226e-16, 'm_ks_value': 0.5744419088782997, 'm_ks_prob': 1.5675551545672083e-25, 'm_shp_value': 0.8011425733566284, 'm_shp_prob': 5.114620726942576e-09, 'm_ad_value': 2.524625732772108, 'm_ad_nnorm': False, 'converged': True}
+    <statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8>
+    [0.98]
 
 
 
@@ -120,7 +133,8 @@ Regression - ARIMA
     import matplotlib.pyplot as plt
 
     # Import ARIMA from statsmodels.
-    from statsmodels.tsa.arima_model import ARIMA
+    #from statsmodels.tsa.arima_model import ARIMA
+    from statsmodels.tsa.arima.model import ARIMA
 
     # import weights.
     from pyamr.datasets.load import make_timeseries
@@ -253,10 +267,11 @@ Regression - ARIMA
 
     # Show
     plt.show()
+    plt.close('all')
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.175 seconds)
+   **Total running time of the script:** ( 0 minutes  0.079 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_regression_plot_core_regression_arima.py:

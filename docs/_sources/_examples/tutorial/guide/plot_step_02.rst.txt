@@ -77,6 +77,54 @@ A small dataset will be used for this example.
 
  .. code-block:: none
 
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
+
+    Trying to register the cmap 'rocket' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
+
+    Trying to register the cmap 'rocket_r' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
+
+    Trying to register the cmap 'mako' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
+
+    Trying to register the cmap 'mako_r' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
+
+    Trying to register the cmap 'icefire' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
+
+    Trying to register the cmap 'icefire_r' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
+
+    Trying to register the cmap 'vlag' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
+
+    Trying to register the cmap 'vlag_r' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
+
+    Trying to register the cmap 'flare' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
+
+    Trying to register the cmap 'flare_r' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1582: UserWarning:
+
+    Trying to register the cmap 'crest' which already exists.
+
+    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\cm.py:1583: UserWarning:
+
+    Trying to register the cmap 'crest_r' which already exists.
+
 
     Data:
            date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
@@ -272,9 +320,10 @@ Let's plot the evolution of a single combination ...
 
 
 
-.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_001.png
-    :alt: Time-series $1M_{1}$
-    :class: sphx-glr-single-img
+.. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_001.png
+   :alt: Time-series $1M_{1}$
+   :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_001.png
+   :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -330,7 +379,7 @@ information is available in the registries: :py:mod:`pyamr.datasets.registries`.
 Lets include all this information using the ``MicroorganismRegistry``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 187-213
+.. GENERATED FROM PYTHON SOURCE LINES 187-216
 
 .. code-block:: default
    :lineno-start: 188
@@ -355,8 +404,11 @@ Lets include all this information using the ``MicroorganismRegistry``.
             .str.capitalize() \
             .str.split(expand=True, n=1)
 
+    print(dataframe.columns)
+    print(mreg.reg)
+
     # Combine with registry information
-    dataframe = mreg.combine(dataframe)
+    dataframe = mreg.combine(dataframe, on='microorganism_name')
 
     # Fill missing gram stain
     dataframe.gram_stain = dataframe.gram_stain.fillna('u')
@@ -365,10 +417,22 @@ Lets include all this information using the ``MicroorganismRegistry``.
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Index(['index', 'specimen_code', 'microorganism_name', 'antimicrobial_name',
+           'date_received', 'resistant', 'sensitive', 'freq', 'sari', 'genus',
+           'species'],
+          dtype='object', name='sensitivity')
+    None
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 214-225
+
+.. GENERATED FROM PYTHON SOURCE LINES 217-228
 
 Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
 lets see how compute ``ASAI`` in a temporal fashion with an example. It is
@@ -382,10 +446,10 @@ For more examples see:
   - :ref:`sphx_glr__examples_indexes_plot_spectrum_temporal.py`.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 226-256
+.. GENERATED FROM PYTHON SOURCE LINES 229-259
 
 .. code-block:: default
-   :lineno-start: 227
+   :lineno-start: 230
 
 
     # -------------------------------------------
@@ -427,7 +491,7 @@ For more examples see:
 
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:527: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:530: UserWarning:
 
 
                      Extreme resistances were found in the DataFrame. These rows
@@ -435,7 +499,7 @@ For more examples see:
                      to pairs with low number of records.
 
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:538: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:544: UserWarning:
 
 
                      There are NULL values in columns that are required. These
@@ -473,15 +537,15 @@ For more examples see:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 257-259
+.. GENERATED FROM PYTHON SOURCE LINES 260-262
 
 Let's plot the evolution of a single combination ...
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-324
+.. GENERATED FROM PYTHON SOURCE LINES 263-328
 
 .. code-block:: default
-   :lineno-start: 261
+   :lineno-start: 264
 
 
     # Libraries
@@ -545,14 +609,11 @@ Let's plot the evolution of a single combination ...
 
     # Show
     plt.show()
+    plt.close('all')
 
 
 
 
-
-.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_002.png
-    :alt: ASAI evolution 2009
-    :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -582,7 +643,7 @@ Let's plot the evolution of a single combination ...
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 325-328
+.. GENERATED FROM PYTHON SOURCE LINES 329-332
 
 Considerations
 --------------
@@ -591,7 +652,7 @@ Considerations
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.491 seconds)
+   **Total running time of the script:** ( 0 minutes  1.608 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_02.py:

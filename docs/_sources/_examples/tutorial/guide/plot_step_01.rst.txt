@@ -26,7 +26,7 @@ Step 01 - Introduction
 Loading data
 ------------
 
-.. image:: ../../_static/imgs/susceptibility-test-record.png
+.. image:: ../../../_static/imgs/susceptibility-test-record.png
    :width: 200
    :align: right
    :alt: ASAI
@@ -140,7 +140,7 @@ It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` a
 Susceptible outcomes respectively. The definition might vary slightly since the
 intermediate category is not always considered.
 
-The parameter strategy accepts three different options:
+The parameter strategy accepts the following options:
 
  (i) ``soft``   as R / R+I+S
  (ii) ``medium`` as R / R+S
@@ -219,9 +219,10 @@ For more examples see:
 
 
 
-.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_001.png
-    :alt: Antibiogram
-    :class: sphx-glr-single-img
+.. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_001.png
+   :alt: Antibiogram
+   :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_001.png
+   :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -325,7 +326,7 @@ Lets include all this information using the ``MicroorganismRegistry``.
             .str.split(expand=True, n=1)
 
     # Combine with registry information
-    dataframe = mreg.combine(dataframe)
+    dataframe = mreg.combine(dataframe, on='microorganism_name')
 
     # Fill missing gram stain
     dataframe.gram_stain = dataframe.gram_stain.fillna('u')
@@ -391,7 +392,7 @@ lets compute ``ASAI``.
 
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:527: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:530: UserWarning:
 
 
                      Extreme resistances were found in the DataFrame. These rows
@@ -399,7 +400,7 @@ lets compute ``ASAI``.
                      to pairs with low number of records.
 
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:538: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:544: UserWarning:
 
 
                      There are NULL values in columns that are required. These
@@ -469,7 +470,7 @@ lets compute ``ASAI``.
 
 Lets plot it now!
 
-.. GENERATED FROM PYTHON SOURCE LINES 257-352
+.. GENERATED FROM PYTHON SOURCE LINES 257-353
 
 .. code-block:: default
    :lineno-start: 258
@@ -567,20 +568,17 @@ Lets plot it now!
 
     # Show
     plt.show()
+    plt.close('all')
 
 
 
 
 
-.. image:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_002.png
-    :alt: Gram-positive, Gram-negative, Gram-unknown
-    :class: sphx-glr-single-img
 
 
 
 
-
-.. GENERATED FROM PYTHON SOURCE LINES 353-359
+.. GENERATED FROM PYTHON SOURCE LINES 354-360
 
 Computing SART
 --------------
@@ -589,15 +587,15 @@ The antimicrobial resistance trend...
 
 .. warning:: To include.
 
-.. GENERATED FROM PYTHON SOURCE LINES 363-365
+.. GENERATED FROM PYTHON SOURCE LINES 364-366
 
 Dirty code to use and or delete
 -------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 366-445
+.. GENERATED FROM PYTHON SOURCE LINES 367-446
 
 .. code-block:: default
-   :lineno-start: 367
+   :lineno-start: 368
 
 
     """
@@ -696,7 +694,7 @@ Dirty code to use and or delete
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.628 seconds)
+   **Total running time of the script:** ( 0 minutes  9.642 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:

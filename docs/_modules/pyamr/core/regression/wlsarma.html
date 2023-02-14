@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.core.regression.wlsarma &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>pyamr.core.regression.wlsarma</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyamr.core.regression.wlsarma</h1><div class="highlight"><pre>
+<span></span><span class="c1">##############################################################################</span>
+<span class="c1"># Author: Bernard Hernandez</span>
+<span class="c1"># Filename: 03-main-create-sari-idxs.py</span>
+<span class="c1"># Description : This file contains differnent statistics used in time-series.</span>
+<span class="c1">#               What it mainly does is to format the output of tests provided</span>
+<span class="c1">#               by external libraries and return them in a dataframe.</span>
+<span class="c1">#</span>
+<span class="c1"># TODO: Move it to a module.</span>
+<span class="c1">#</span>
+<span class="c1">###############################################################################</span>
+<span class="c1"># Forces decimals on divisions.</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.sarimax</span> <span class="kn">import</span> <span class="n">SARIMAX</span>
+
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="c1"># Import pyamr</span>
+<span class="kn">from</span> <span class="nn">pyamr.core.regression.wregression</span> <span class="kn">import</span> <span class="n">BaseRegressionWrapper</span>
+<span class="kn">from</span> <span class="nn">pyamr.core.regression.wls</span> <span class="kn">import</span> <span class="n">WLSWrapper</span>
+<span class="kn">from</span> <span class="nn">pyamr.core.regression.arima</span> <span class="kn">import</span> <span class="n">ARIMAWrapper</span>
+<span class="kn">from</span> <span class="nn">pyamr.core.regression.sarimax</span> <span class="kn">import</span> <span class="n">SARIMAXWrapper</span>
+
+
+<div class="viewcode-block" id="WLSARMAWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wlsarma.WLSARMAWrapper">[docs]</a><span class="k">class</span> <span class="nc">WLSARMAWrapper</span><span class="p">(</span><span class="n">BaseRegressionWrapper</span><span class="p">):</span>
+    <span class="c1"># Attributes.</span>
+    <span class="n">_name</span> <span class="o">=</span> <span class="s1">&#39;WLSARMA&#39;</span>  <span class="c1"># Label to add to the attributes when saving.</span>
+
+    <span class="k">def</span> <span class="nf">_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This methods describes de model.&quot;&quot;&quot;</span>
+        <span class="c1"># Returns description</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> + </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_wls</span><span class="o">.</span><span class="n">_identifier</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_arma</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
+
+    <span class="c1"># --------------------------------------------------------------------------</span>
+    <span class="c1">#                            SET VARIABLES</span>
+    <span class="c1"># --------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">_params_from_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets parameters from the summary result of the raw object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_init_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method set all the variables into this class.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">          - if instead of having the attribute series it is desired to set</span>
+<span class="sd">          each element of the series as an attribute, just used the following</span>
+<span class="sd">          statement: setattr(self, name, value).</span>
+
+<span class="sd">          - Note the difference between the resid and wresid since they will</span>
+<span class="sd">          also have different statistical properties. Furthermore, there is</span>
+<span class="sd">          a vector with normalized residuals resid_pearson.</span>
+
+<span class="sd">        @see: statsmodels.WLS</span>
+<span class="sd">        @see: statsmodels.tsa.ARIMA</span>
+<span class="sd">        @see: statsmodels.RegressionResultsWrapper</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Libraries.</span>
+        <span class="kn">from</span> <span class="nn">statsmodels.iolib.summary</span> <span class="kn">import</span> <span class="n">_getnames</span>
+
+        <span class="c1"># Create series.</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Add generic metrics.</span>
+        <span class="c1"># Create params information.</span>
+        <span class="c1"># Add coefficients statistics.</span>
+
+        <span class="c1"># Further statistics.</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_params_from_summary</span><span class="p">())</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_resid_stats</span><span class="p">())</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+    <span class="c1"># --------------------------------------------------------------------------</span>
+    <span class="c1">#                           HELPER METHODS</span>
+    <span class="c1"># --------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="WLSARMAWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wlsarma.WLSARMAWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method displays the summary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Variables.</span>
+        <span class="n">om</span><span class="p">,</span> <span class="n">dw</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_dw</span><span class="p">,</span>
+        <span class="n">pom</span><span class="p">,</span> <span class="n">jb</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_jb_value</span>
+        <span class="n">skew</span><span class="p">,</span> <span class="n">pjb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_skew</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_jb_prob</span>
+        <span class="n">kurt</span><span class="p">,</span> <span class="n">cond</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_kurtosis</span><span class="p">,</span> <span class="mf">0.0</span>
+        <span class="n">norm</span><span class="p">,</span> <span class="n">pnorm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_nm_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m_nm_prob</span>
+
+        <span class="c1"># Create summary.</span>
+        <span class="n">smry</span> <span class="o">=</span> <span class="s2">&quot;WLSARMA Regression Results&quot;</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">78</span><span class="p">)</span>
+        <span class="n">smry</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">78</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">smry</span> <span class="o">+=</span> <span class="s2">&quot;Omnibus:       </span><span class="si">%#21.3f</span><span class="s2">  Durbin-Watson:    </span><span class="si">%#22.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">om</span><span class="p">,</span> <span class="n">dw</span><span class="p">)</span>
+        <span class="n">smry</span> <span class="o">+=</span> <span class="s2">&quot;Prob(Omnibus): </span><span class="si">%#21.3f</span><span class="s2">  Jarque-Bera (JB): </span><span class="si">%#22.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pom</span><span class="p">,</span> <span class="n">jb</span><span class="p">)</span>
+        <span class="n">smry</span> <span class="o">+=</span> <span class="s2">&quot;Skew:          </span><span class="si">%#21.3f</span><span class="s2">  Prob(JB):         </span><span class="si">%#22.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">pjb</span><span class="p">)</span>
+        <span class="n">smry</span> <span class="o">+=</span> <span class="s2">&quot;Kurtosis:      </span><span class="si">%#21.3f</span><span class="s2">  Cond. No.:        </span><span class="si">%#22.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">kurt</span><span class="p">,</span> <span class="n">cond</span><span class="p">)</span>
+        <span class="n">smry</span> <span class="o">+=</span> <span class="s2">&quot;Normal (N):    </span><span class="si">%#21.3f</span><span class="s2">  Prob(N):          </span><span class="si">%#22.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">norm</span><span class="p">,</span> <span class="n">pnorm</span><span class="p">)</span>
+        <span class="n">smry</span> <span class="o">+=</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">78</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">smry</span></div>
+
+    <span class="c1"># --------------------------------------------------------------------------</span>
+    <span class="c1">#                                 FIT</span>
+    <span class="c1"># --------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="WLSARMAWrapper.fit"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wlsarma.WLSARMAWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wls_kwargs</span><span class="o">=</span><span class="p">{},</span>
+            <span class="n">arima_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">sarimax_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method...</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        endog        :</span>
+<span class="sd">        exog         :</span>
+<span class="sd">        wls_kwargs   :</span>
+<span class="sd">        arima_kwargs :</span>
+<span class="sd">        sarimax_kwargs :</span>
+<span class="sd">        kwargs :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create weighted linear regression</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wls</span> <span class="o">=</span> <span class="n">WLSWrapper</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">WLS</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">exog</span><span class="p">,</span>
+                                     <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span>
+                                     <span class="o">**</span><span class="n">wls_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Create best fitting for ARIMA.</span>
+        <span class="k">if</span> <span class="n">arima_kwargs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_arma</span> <span class="o">=</span> \
+                <span class="n">ARIMAWrapper</span><span class="p">(</span><span class="n">ARIMA</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_wls</span><span class="o">.</span><span class="n">_resid</span><span class="p">,</span> <span class="o">**</span><span class="n">arima_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Create best fitting for SARIMAX.</span>
+        <span class="k">if</span> <span class="n">arima_kwargs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sarimax_kwargs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_arma</span> <span class="o">=</span> \
+                <span class="n">SARIMAXWrapper</span><span class="p">(</span><span class="n">SARIMAX</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_wls</span><span class="o">.</span><span class="n">_resid</span><span class="p">,</span> <span class="o">**</span><span class="n">sarimax_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Set fitted values (what if arima d=1).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fittedvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">()[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+        <span class="c1"># Set residuals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resid</span> <span class="o">=</span> <span class="n">endog</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fittedvalues</span>
+
+        <span class="c1"># Set series.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_result</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="WLSARMAWrapper.get_prediction"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wlsarma.WLSARMAWrapper.get_prediction">[docs]</a>    <span class="k">def</span> <span class="nf">get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ptype</span><span class="o">=</span><span class="s1">&#39;combined&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method computes the prediction.</span>
+
+<span class="sd">        Note: Correct for ARIMA. The arima is trained with n samples (e.g. 24)</span>
+<span class="sd">        and then we ask for start=50 and end=74 hance for some reason arima</span>
+<span class="sd">        becomes crazy and return a larger array. Therefore, we predict for</span>
+<span class="sd">        indices None (begining) till the maxium number to predict which is</span>
+<span class="sd">        fshape-start.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : start of prediction (as in wls)</span>
+<span class="sd">        end   : end of preediction (as in wls)</span>
+<span class="sd">        type  : string (combined, wls, arma)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create end for arma.</span>
+        <span class="n">end_arma</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+
+        <span class="c1"># Return partial predictions.</span>
+        <span class="k">if</span> <span class="n">ptype</span> <span class="o">==</span> <span class="s1">&#39;wls&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wls</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ptype</span> <span class="o">==</span> <span class="s1">&#39;arma&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_arma</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_arma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Compute both predictions</span>
+        <span class="n">pred_wls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wls</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+        <span class="n">pred_arma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_arma</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_arma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Create combined predictions (careful with this).</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">pred_wls</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">pred</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">pred_wls</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">pred</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">pred_arma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">pred_arma</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">pred</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Import class.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

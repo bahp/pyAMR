@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.core.mari &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>pyamr.core.mari</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyamr.core.mari</h1><div class="highlight"><pre>
+<span></span><span class="c1">################################################################################</span>
+<span class="c1"># Author:</span>
+<span class="c1"># Date:</span>
+<span class="c1"># Description:</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright:</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">################################################################################</span>
+<span class="c1"># Import libraries</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Import sari</span>
+<span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">sari</span>
+
+
+<span class="c1"># -------------------------------------------------------------------------</span>
+<span class="c1">#                            helper methods</span>
+<span class="c1"># -------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="MARI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI">[docs]</a><span class="k">class</span> <span class="nc">MARI</span><span class="p">:</span>
+    <span class="c1"># Attributes</span>
+    <span class="n">c_lab</span> <span class="o">=</span> <span class="s1">&#39;LAB_NUMBER&#39;</span>
+    <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIMEN&#39;</span>
+    <span class="n">c_org</span> <span class="o">=</span> <span class="s1">&#39;MICROORGANISM&#39;</span>
+    <span class="n">c_dat</span> <span class="o">=</span> <span class="s1">&#39;DATE&#39;</span>
+    <span class="n">c_out</span> <span class="o">=</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="n">c_spe</span><span class="p">,</span>
+                                <span class="n">c_org</span><span class="p">,</span>
+                                <span class="n">c_lab</span><span class="p">,</span>
+                                <span class="n">c_out</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        groupby: list</span>
+<span class="sd">            The labels of the columns to groupby.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        SARI instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span> <span class="o">=</span> <span class="n">groupby</span>
+
+<div class="viewcode-block" id="MARI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Computes single antibiotic resistance index.</span>
+
+<span class="sd">        .. todo: Add parameters to rolling!</span>
+<span class="sd">        .. todo: Place value at the left, center, right of window?</span>
+<span class="sd">        .. todo: Ensure that works when time gaps present!</span>
+<span class="sd">        .. todo: Carefull with various indexes!</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe: pd.DataFrame</span>
+<span class="sd">            A dataframe with the susceptibility test interpretations</span>
+<span class="sd">            as columns. The default strategies used (see below) expect</span>
+<span class="sd">            the following columns [&#39;sensitive&#39;, &#39;intermediate&#39;, &#39;resistant&#39;]</span>
+<span class="sd">            and if they do not appear they weill be set to zeros.</span>
+
+<span class="sd">        shift: str</span>
+<span class="sd">            Frequency value to pass to pd.Grouper.</span>
+
+<span class="sd">        period: str, int</span>
+<span class="sd">            Window value to pass to pd.rolling.</span>
+
+<span class="sd">        cdate: string, default=None</span>
+<span class="sd">            The column that will be used as date.</span>
+
+<span class="sd">        return_frequencies: boolean, default=True</span>
+<span class="sd">            Whether to return the frequencies (isolates) or just the resistance index.</span>
+
+<span class="sd">        return_isolates: boolean, default=True</span>
+<span class="sd">            Whether to return the resistance index for each individual isolate.</span>
+
+<span class="sd">        strategy: string or func, default=&#39;hard&#39;</span>
+<span class="sd">            The method used to compute sari. The possible options</span>
+<span class="sd">            are &#39;soft&#39;, &#39;medium&#39; and &#39;hard&#39;. In addition, a function</span>
+<span class="sd">            with the following signature func(dataframe, **kwargs)</span>
+<span class="sd">            can be passed.</span>
+
+<span class="sd">                (i) ``soft``   as R / R+I+S</span>
+<span class="sd">                (ii) ``medium`` as R / R+S</span>
+<span class="sd">                (iii) ``hard``  as R+I / R+I+S</span>
+<span class="sd">                (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]</span>
+
+<span class="sd">        **kwargs: arguments to pass the strategy function.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dataframe: pd.Series or pd.DataFrame</span>
+<span class="sd">            The resistance index (pd.Series) or a pd.Dataframe with the</span>
+<span class="sd">            resistance index (sari), the sums and the frequencies.</span>
+
+<span class="sd">        isolates: pd.DataFrame</span>
+<span class="sd">            The resistance index and each of the sensitivity value</span>
+<span class="sd">            counts for each individual isolate.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Copy DataFrame</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Warning if dates NaN</span>
+        <span class="c1"># Warning if elements in groupby any all NaN!</span>
+
+        <span class="c1"># Create grouper</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">cdate</span><span class="p">)]</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="n">grouper</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span>
+
+        <span class="c1"># Format as datetime</span>
+        <span class="k">if</span> <span class="n">cdate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">])</span>
+
+        <span class="c1"># ------------------------------------------</span>
+        <span class="c1"># Frequencies</span>
+        <span class="c1"># ------------------------------------------</span>
+        <span class="c1">#</span>
+        <span class="n">rn</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="s1">&#39;mari&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;freq&#39;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Compute frequencies</span>
+        <span class="n">isolates</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Include mari by isolate</span>
+        <span class="n">isolates</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">isolates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Compute frequencies</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># Compute mari</span>
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">mari</span>\
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">isolates</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">])</span> \
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># Create sum and count per shift</span>
+            <span class="n">aux</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">cdate</span><span class="p">]</span> <span class="o">+</span> <span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">mari</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+            <span class="c1"># Compute sums</span>
+            <span class="n">sums</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+            <span class="c1"># Compute isolate counts</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+            <span class="n">series</span> <span class="o">=</span> <span class="p">(</span><span class="n">sums</span><span class="o">/</span><span class="n">counts</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;mari&#39;</span><span class="p">)</span>
+
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">sums</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">series</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Wrong!!</span>
+            <span class="c1"># Compute sum and count [sum, count]</span>
+            <span class="c1">#aux = freqs.groupby([cdate] + grouper[2:-1]) \</span>
+            <span class="c1">#    .mari.agg(&#39;mean&#39;).reset_index() \</span>
+            <span class="c1">#    .set_index(cdate).groupby(grouper[2:-1]) \</span>
+            <span class="c1">#    .mari.rolling(window=period, min_period=1) \</span>
+            <span class="c1">#    .mean()</span>
+
+        <span class="c1"># Rename columns</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rn</span><span class="p">)</span>
+
+        <span class="c1"># Remove frequencies</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_frequencies</span><span class="p">:</span>
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">if</span> <span class="n">return_isolates</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">isolates</span>
+        <span class="k">return</span> <span class="n">dataframe</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

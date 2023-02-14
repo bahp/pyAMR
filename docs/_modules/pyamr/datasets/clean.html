@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.datasets.clean &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>pyamr.datasets.clean</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyamr.datasets.clean</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># -------------------------------------------------------------------</span>
+<span class="c1"># Constants</span>
+<span class="c1"># -------------------------------------------------------------------</span>
+<span class="n">SENSITIVITY_CODE_REPLACE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ss&#39;</span><span class="p">:</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="n">ANTIMICROBIAL_CODE_REPLACE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;AAUGU&#39;</span><span class="p">:</span> <span class="s1">&#39;AAUG&#39;</span>
+<span class="p">}</span>
+
+<span class="n">MICROORGANISM_CODE_REPLACE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ACINE2&#39;</span><span class="p">:</span> <span class="s1">&#39;ACINE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CNS2&#39;</span><span class="p">:</span> <span class="s1">&#39;CNS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CNS3&#39;</span><span class="p">:</span> <span class="s1">&#39;CNS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ECOL2&#39;</span><span class="p">:</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;KPN2&#39;</span><span class="p">:</span> <span class="s1">&#39;KPNE&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PAER2&#39;</span><span class="p">:</span> <span class="s1">&#39;PAER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SAUR2&#39;</span><span class="p">:</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LFC2&#39;</span><span class="p">:</span> <span class="s1">&#39;LFC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;COLIF2&#39;</span><span class="p">:</span> <span class="s1">&#39;COLIF&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;COLI2&#39;</span><span class="p">:</span> <span class="s1">&#39;COLIF&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ENTAE2&#39;</span><span class="p">:</span> <span class="s1">&#39;EAER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ENTAE&#39;</span><span class="p">:</span> <span class="s1">&#39;EAER&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VRE&#39;</span><span class="p">:</span> <span class="s1">&#39;ENTC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MRSA&#39;</span><span class="p">:</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MCNS&#39;</span><span class="p">:</span> <span class="s1">&#39;CNS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A_ECOLI&#39;</span><span class="p">:</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A_ENTEROBA&#39;</span><span class="p">:</span> <span class="s1">&#39;ENTB&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A_SVIRIDANS&#39;</span><span class="p">:</span> <span class="s1">&#39;VIRST&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A_CLUSITANI&#39;</span><span class="p">:</span> <span class="s1">&#39;CLUS&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A_CDUBLINIE&#39;</span><span class="p">:</span> <span class="s1">&#39;CDUB&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A_CPSEUDODI&#39;</span><span class="p">:</span> <span class="s1">&#39;CPSEU&#39;</span>
+<span class="p">}</span>
+
+<span class="n">ANTIMICROBIAL_NAME_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;\([^)]*\)&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="c1"># Remove everything between ()</span>
+    <span class="s1">&#39;\s{2,}&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>  <span class="c1"># Remove duplicated spaces</span>
+    <span class="s1">&#39;gentamicin 200&#39;</span><span class="p">:</span> <span class="s1">&#39;gentamicin&#39;</span>
+<span class="p">}</span>
+
+<span class="n">MICROORGANISM_NAME_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Replace basic</span>
+    <span class="s1">&#39;strep\.&#39;</span><span class="p">:</span> <span class="s1">&#39;streptococcus &#39;</span><span class="p">,</span>
+    <span class="s1">&#39;staph\.&#39;</span><span class="p">:</span> <span class="s1">&#39;staphylococcus &#39;</span><span class="p">,</span>
+    <span class="s1">&#39;species&#39;</span><span class="p">:</span> <span class="s1">&#39;sp.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sp.($| )&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sp(.)?($| )&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
+    <span class="s1">&#39;second&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;third&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2nd&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;3rd&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="c1"># Specific</span>
+    <span class="s1">&#39;\*\*\* mrsa \*\*\* isolated&#39;</span><span class="p">:</span> <span class="s1">&#39;staphylococcus aureus&#39;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<div class="viewcode-block" id="invert"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.invert">[docs]</a><span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+<span class="c1">#def invert(d):</span>
+<span class="c1">#    return reversed(list(d.items()))</span>
+
+<span class="c1"># .. note: Keep everything lowercase because all the</span>
+<span class="c1">#          columns are str.lower() before doing any</span>
+<span class="c1">#          formatting/replacement in clean_common.</span>
+<span class="c1">#</span>
+<span class="c1"># .. note: Using an ordered dict. Thus, when inverting</span>
+<span class="c1">#          the dictionaries, for repeated entries</span>
+<span class="c1">#          (e.g. sensitive SS and S) the latter will</span>
+<span class="c1">#          be used.</span>
+<span class="n">SPECIMEN_CODE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;URNCUL&#39;</span><span class="p">:</span> <span class="s1">&#39;URICUL&#39;</span>
+<span class="p">}</span>
+
+<span class="n">SPECIMEN_NAME_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Urine Micro&#39;</span><span class="p">:</span> <span class="s1">&#39;Urine Culture&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># &#39;9MRSN&#39;: &#39;MRSCUL&#39;,</span>
+<span class="c1"># &#39;URINE CULTURE&#39;: &#39;URICUL&#39;,</span>
+<span class="c1"># &#39;WOUND CULTURE&#39;: &#39;WOUCUL&#39;,</span>
+<span class="c1"># &#39;BLOOD CULTURE&#39;: &#39;BLDCUL&#39;,</span>
+<span class="c1"># &#39;SPUTUM CULTURE&#39;: &#39;SPTCUL&#39;,</span>
+<span class="c1">##&#39;CSF CULTURE&#39;: &#39;CSFCUL&#39;,</span>
+<span class="c1"># &#39;EYE CULTURE&#39;: &#39;EYECUL&#39;,</span>
+<span class="c1"># &#39;GENITALCUL&#39;: &#39;GENCUL&#39;,</span>
+<span class="c1"># &#39;NEONATAL SCREEN&#39;: &#39;NEOCUL&#39;,</span>
+
+<span class="n">METHOD_CODE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DD&#39;</span><span class="p">:</span> <span class="s1">&#39;Disk Difussion&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PHO&#39;</span><span class="p">:</span> <span class="s1">&#39;Public Health Laboratory&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MIC&#39;</span><span class="p">:</span> <span class="s1">&#39;Minimum Inhibitory Concentration&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MASTU&#39;</span><span class="p">:</span> <span class="s1">&#39;Microscopy-Based Antimicrobial Susceptibility Testing&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">SENSITIVITY_CODE_MAP</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">({</span>
+    <span class="s1">&#39;ss&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="s1">&#39;resistant&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;nd&#39;</span><span class="p">:</span> <span class="s1">&#39;not done&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hr&#39;</span><span class="p">:</span> <span class="s1">&#39;highly resistant&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;&lt;&lt;do not report&gt;&gt;&#39;</span><span class="p">:</span> <span class="s1">&#39;hide&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hide&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;&lt;do not report&gt;&gt;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;validation fix entry&#39;</span><span class="p">:</span> <span class="s1">&#39;fix&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fix&#39;</span><span class="p">:</span> <span class="s1">&#39;validation fix entry&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># Note that they will be executed in order and thus</span>
+<span class="c1"># order matters. The changes on the first expression</span>
+<span class="c1"># will affect the cells that will be used in the next</span>
+<span class="c1"># iteration</span>
+<span class="n">REGEX_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;\([^)]*\)&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>        <span class="c1"># Remove everything between ()</span>
+    <span class="s1">&#39;(\s)?\-(\s)?&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>    <span class="c1"># Remove spaces before after hyphen</span>
+    <span class="s1">&#39;species&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>          <span class="c1"># Rename species for next regexp</span>
+    <span class="s1">&#39;o157&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>             <span class="c1"># Remove scherichia coli o157</span>
+    <span class="s1">&#39;sp(\.)?(\s|$)+&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>  <span class="c1"># Remove sp from word.</span>
+    <span class="s1">&#39;sp..&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>            <span class="c1"># Remove sp.. &lt;--- HOW TO DO IT WITH PREVIOUS!</span>
+    <span class="s1">&#39;strep(\.|\s|$)&#39;</span><span class="p">:</span> <span class="s1">&#39;streptococcus &#39;</span><span class="p">,</span>  <span class="c1"># Complete</span>
+    <span class="s1">&#39;staph(\.|\s|$)&#39;</span><span class="p">:</span> <span class="s1">&#39;staphylococcus &#39;</span><span class="p">,</span> <span class="c1"># Complete</span>
+    <span class="s1">&#39;staphylococci&#39;</span><span class="p">:</span> <span class="s1">&#39;staphylococcus&#39;</span><span class="p">,</span>   <span class="c1"># Correction (add mixed? group?)</span>
+    <span class="s1">&#39;streptococci&#39;</span><span class="p">:</span> <span class="s1">&#39;streptococcus&#39;</span><span class="p">,</span>     <span class="c1"># Correction (add mixed? group?)</span>
+    <span class="s1">&#39;\s+&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>             <span class="c1"># Remove duplicated spaces.</span>
+<span class="p">}</span>
+
+<span class="n">REGEX_MAP_BASIC</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;\s+&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>  <span class="c1"># Remove duplicated spaces.</span>
+<span class="p">}</span>
+
+
+<span class="c1"># -----------------------------------------------------------</span>
+<span class="c1"># Helper methods</span>
+<span class="c1"># -----------------------------------------------------------</span>
+
+<div class="viewcode-block" id="hyphen_before"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.hyphen_before">[docs]</a><span class="k">def</span> <span class="nf">hyphen_before</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Ensures hyphen between words is correct.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x: string</span>
+<span class="sd">        The string to format</span>
+<span class="sd">    w: string</span>
+<span class="sd">        The word preceded by hyphen.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    string</span>
+<span class="sd">        The formatted string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure it is a string</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="c1"># Create expression</span>
+    <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\S*)(\s+)(</span><span class="si">%s</span><span class="s1">)(\W)+&#39;</span><span class="o">%</span><span class="n">w</span><span class="p">)</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">regexp</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1-\3 &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="word_to_start"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.word_to_start">[docs]</a><span class="k">def</span> <span class="nf">word_to_start</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Moves the word within the string.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x: string</span>
+<span class="sd">        The string to format</span>
+<span class="sd">    w: word</span>
+<span class="sd">        The word to relocate within the string.</span>
+<span class="sd">    pos: string, default start</span>
+<span class="sd">        The position to insert the word. The possible options</span>
+<span class="sd">        are start (at the beginning) or end (at the end) of the</span>
+<span class="sd">        string.</span>
+<span class="sd">    verbose: int</span>
+<span class="sd">        Level of verbosity</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    string</span>
+<span class="sd">        Formatted string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure it is a string</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="c1"># Create regular expression</span>
+    <span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>\
+        <span class="sa">r</span><span class="s1">&#39;(.*|^)(\W|^)</span><span class="si">%s</span><span class="s1">(\W|$)(.*|$)&#39;</span> <span class="o">%</span> <span class="n">w</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+    <span class="c1"># Return value if it does not fit.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">regexp</span><span class="p">,</span> <span class="n">x</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="c1"># Return</span>
+    <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">w</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="s1">&#39;end&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">w</span></div>
+
+<div class="viewcode-block" id="string_replace"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.string_replace">[docs]</a><span class="k">def</span> <span class="nf">string_replace</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;This method corrects the strings.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series:</span>
+
+<span class="sd">    remove:</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Format (lower)</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="c1"># Do str replacements</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">remove</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="c1"># Format (strip)</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">series</span></div>
+
+
+
+<span class="c1"># ----------------------------------------------------</span>
+<span class="c1"># Main cleaners</span>
+<span class="c1"># ----------------------------------------------------</span>
+<div class="viewcode-block" id="clean_basic"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_basic">[docs]</a><span class="k">def</span> <span class="nf">clean_basic</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Performs the basic cleaning.</span>
+
+<span class="sd">    1. Everything to lowercase</span>
+<span class="sd">    2. Remove spaces begin/end (strip)</span>
+<span class="sd">    3. Remove duplicate spaces (regexp)</span>
+<span class="sd">    4. Remove duplicates</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The data to clean.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The cleaned data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Copy dataframe</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Put everything to lowercase</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Drop all spaces</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Drop extra spaces</span>
+    <span class="c1">#{&#39;\s+&#39;: &#39; &#39;}  # Remove duplicated spaces.</span>
+
+    <span class="c1"># Basic formatting</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="clean_format"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_format">[docs]</a><span class="k">def</span> <span class="nf">clean_format</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Final formatting...&quot;&quot;&quot;</span>
+
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Format title</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;patient_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;patient_surname&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+
+    <span class="c1"># Format lower (not needed)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sensitivity_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;method_name&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c1"># Format upper</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sensitivity_code&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;method_code&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="c1"># Strip strings</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> \
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Format date-times</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="s1">&#39;date_outcome&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Drop duplicates</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="clean_clwsql008"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_clwsql008">[docs]</a><span class="k">def</span> <span class="nf">clean_clwsql008</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">clean_microorganism</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Performs cleaning for clwsql008 data</span>
+
+<span class="sd">    1. rename columns</span>
+<span class="sd">    2. clean basic</span>
+<span class="sd">    3. correct issue with sensitivities</span>
+<span class="sd">    4. correct issue with date_received</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The data to clean.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The cleaned data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Constants</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Rename columns</span>
+    <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;DiagnosticTestID&#39;</span><span class="p">:</span> <span class="s1">&#39;uuid&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ReceiveDate&#39;</span><span class="p">:</span> <span class="s1">&#39;received_date&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ReceiveTime&#39;</span><span class="p">:</span> <span class="s1">&#39;received_time&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PtNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;patient_hos_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;AccNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;BatTstCode&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrderName&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SpecType&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_description&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrgPieceCounter&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_piece_counter&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrgCode&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Organism&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DrugCode&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;AntiBiotic Name&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SensMethod&#39;</span><span class="p">:</span> <span class="s1">&#39;method_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Sensitivity&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitivity_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MIC&#39;</span><span class="p">:</span> <span class="s1">&#39;mic&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Reported&#39;</span><span class="p">:</span> <span class="s1">&#39;reported&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;FinalDate&#39;</span><span class="p">:</span> <span class="s1">&#39;date_outcome&#39;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># There are both code and names merged.</span>
+    <span class="n">sensitivity_code_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ss&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="s1">&#39;resistant&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;nd&#39;</span><span class="p">:</span> <span class="s1">&#39;not done&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hr&#39;</span><span class="p">:</span> <span class="s1">&#39;highly resistant&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hide&#39;</span><span class="p">:</span> <span class="s1">&#39;hide&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;fix&#39;</span><span class="p">:</span> <span class="s1">&#39;validation fix entry&#39;</span>
+    <span class="p">}</span>
+
+    <span class="n">sensitivity_name_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;sensitive&#39;</span><span class="p">:</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;resistant&#39;</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;intermediate&#39;</span><span class="p">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;not done&#39;</span><span class="p">:</span> <span class="s1">&#39;nd&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;highly resistant&#39;</span><span class="p">:</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hide&#39;</span><span class="p">:</span> <span class="s1">&#39;hide&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;&lt;&lt;do not report&gt;&gt;&#39;</span><span class="p">:</span> <span class="s1">&#39;hide&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;validation fix entry&#39;</span><span class="p">:</span> <span class="s1">&#39;fix&#39;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Method</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># The method codes are given but the method names are not</span>
+    <span class="c1"># included. We could use this opportunity to set their</span>
+    <span class="c1"># values</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">clean_basic</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1">#data = data.convert_dtypes()</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Correct sensitivities</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Replace codes with the names</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;sensitivity_name&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">sensitivity_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">sensitivity_code_map</span><span class="p">)</span>
+    <span class="c1"># Map names to corresponding codes</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;sensitivity_code&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">sensitivity_name</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sensitivity_name_map</span><span class="p">)</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Add method name</span>
+    <span class="c1"># --------------------------</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;method_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">method_code</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Clean microorganism</span>
+    <span class="c1"># --------------------------</span>
+    <span class="k">if</span> <span class="n">clean_microorganism</span><span class="p">:</span>
+        <span class="c1"># Create registry</span>
+        <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">MicroorganismRegistry</span>
+
+        <span class="c1"># Create registry</span>
+        <span class="n">rego</span> <span class="o">=</span> <span class="n">MicroorganismRegistry</span><span class="p">(</span><span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;microorganism&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># Format microorganism name</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+            <span class="n">rego</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">microorganism_name</span><span class="p">,</span>
+                <span class="n">key</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Add date</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Add new column date</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">received_date</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">received_time</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Format date-times</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="s1">&#39;date_outcome&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Return data</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="clean_legacy"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_legacy">[docs]</a><span class="k">def</span> <span class="nf">clean_legacy</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">clean_microorganism</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method cleans microbiology data from legacy.</span>
+
+<span class="sd">    1. Rename columns</span>
+<span class="sd">    2. clean basic</span>
+<span class="sd">    3. Add sensitivity code</span>
+<span class="sd">    4. Correct specimen issue</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The data to clean</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The cleaned data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Constants</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Rename columns</span>
+    <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;dateReceived&#39;</span><span class="p">:</span> <span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;patNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;patient_hos_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;labNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;orderCode&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;orderName&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;specimenType&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_description&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrgPieceCounter&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_piece_counter&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;organismCode&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;organismNameOrig&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;antibioticCode&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;antibioticName&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sensitivity&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitivity_name&#39;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Map sensitivity names with codes.</span>
+    <span class="n">sensitivity_name_map</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;sensitive&#39;</span><span class="p">:</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;resistant&#39;</span><span class="p">:</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;intermediate&#39;</span><span class="p">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;not done&#39;</span><span class="p">:</span> <span class="s1">&#39;nd&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;highly resistant&#39;</span><span class="p">:</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;&lt;&lt;do not report&gt;&gt;&#39;</span><span class="p">:</span> <span class="s1">&#39;hide&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;validation fix entry&#39;</span><span class="p">:</span> <span class="s1">&#39;fix&#39;</span>
+    <span class="p">}</span>
+
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Method</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># The method codes are given but the method names are not</span>
+    <span class="c1"># included. We could use this opportunity to set their</span>
+    <span class="c1"># values</span>
+    <span class="c1"># Drop duplicates</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">clean_basic</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1">#data = data.convert_dtypes() # issue with np.nan in replace</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Correct sensitivities</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Create column code</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;sensitivity_code&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">data</span><span class="o">.</span><span class="n">sensitivity_name</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sensitivity_name_map</span><span class="p">)</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Correct specimens</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Get those with both name and code</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span> <span class="s1">&#39;specimen_name&#39;</span><span class="p">]]</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">tup1</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">specimen_name</span><span class="p">,</span> <span class="n">aux</span><span class="o">.</span><span class="n">specimen_code</span><span class="p">)</span>
+    <span class="n">tup2</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">specimen_code</span><span class="p">,</span> <span class="n">aux</span><span class="o">.</span><span class="n">specimen_name</span><span class="p">)</span>
+
+    <span class="c1"># Replace names that appear in code</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">tup1</span><span class="p">))</span>
+
+    <span class="c1"># Fill missing (NaN) names</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">specimen_name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_name</span> \
+        <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">tup2</span><span class="p">)))</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Add method code/name</span>
+    <span class="c1"># --------------------------</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;method_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;method_code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Clean microorganism</span>
+    <span class="c1"># --------------------------</span>
+    <span class="k">if</span> <span class="n">clean_microorganism</span><span class="p">:</span>
+        <span class="c1"># Create registry</span>
+        <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">MicroorganismRegistry</span>
+
+        <span class="c1"># Create registry</span>
+        <span class="n">rego</span> <span class="o">=</span> <span class="n">MicroorganismRegistry</span><span class="p">(</span><span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;microorganism&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># Could I do it with fit_transform(data)</span>
+
+        <span class="c1"># Format microorganism name</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+            <span class="n">rego</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">microorganism_name</span><span class="p">,</span>
+                <span class="n">key</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Format date-times</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="s1">&#39;date_outcome&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="viewcode-block" id="clean_microorganism"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_microorganism">[docs]</a><span class="k">def</span> <span class="nf">clean_microorganism</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method....&quot;&quot;&quot;</span>
+    <span class="c1"># Copy data</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Add backup columns</span>
+    <span class="n">microorganism_name_original</span> <span class="o">=</span> \
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span>
+
+    <span class="c1"># Put everything to lowercase</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Save microorganism name origina</span>
+    <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;microorganism_name_original&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">microorganism_name_original</span>
+
+    <span class="c1"># Apply regexp mapping</span>
+    <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">REGEX_MAP</span><span class="p">)</span>
+
+    <span class="c1"># Correct hyphens</span>
+    <span class="k">for</span> <span class="n">hp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;haemolytic&#39;</span><span class="p">]:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">hyphen_before</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">hp</span><span class="p">)</span>
+
+    <span class="c1"># Correct order of genus</span>
+    <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;enterococcus&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;staphylococcus&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;streptococcus&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;coliform&#39;</span><span class="p">]:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">word_to_start</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">sp</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s1">&#39;start&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Correct order of tags</span>
+    <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;methicillin resistant&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;vancomycin resistant&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;mixed&#39;</span><span class="p">]:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">word_to_start</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">sp</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Apply regexp mapping</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">REGEX_MAP</span><span class="p">)</span>
+
+    <span class="c1"># Strip</span>
+    <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+
+    <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;microorganism_name_original&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Sort</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">])</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">aux</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;microorganism_id&#39;</span><span class="p">,</span> <span class="n">aux</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">aux</span></div>
+
+
+
+<div class="viewcode-block" id="clean_common"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_common">[docs]</a><span class="k">def</span> <span class="nf">clean_common</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method cleans the microbiology data.</span>
+
+<span class="sd">    It assumes the following columns are imputed:</span>
+<span class="sd">       date_received</span>
+<span class="sd">       date_outcome</span>
+<span class="sd">       microorganism_code</span>
+<span class="sd">       microorganism_name (required = True)</span>
+<span class="sd">       antimicrobial_code</span>
+<span class="sd">       antimicrobial_name</span>
+<span class="sd">       method_code</span>
+<span class="sd">       method_name</span>
+<span class="sd">       sensitivity_code</span>
+<span class="sd">       sensitivity_name</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The dataframe to clean</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The cleaned dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Constants</span>
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Create required columns</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;date_outcome&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;specimen_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;method_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sensitivity_name&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Copy data</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Add required columns</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">required</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Missing columns and replace</span>
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Add backup columns</span>
+    <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;microorganism_name_original&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span>
+    <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;antimicrobial_name_original&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">aux</span><span class="o">.</span><span class="n">antimicrobial_name</span>
+
+    <span class="c1"># Put everything to lowercase</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;specimen&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitivity&#39;</span><span class="p">]:</span>
+        <span class="n">c_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_name&#39;</span> <span class="o">%</span> <span class="n">c</span>
+        <span class="n">c_code</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_code&#39;</span> <span class="o">%</span> <span class="n">c</span>
+        <span class="k">if</span> <span class="n">c_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c_code</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">c_name</span><span class="p">]</span>
+        <span class="n">aux</span><span class="p">[</span><span class="n">c_name</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">c_code</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Verbose</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formatting... specimen/method/sensitivity.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># .. note: It would be also possible to forget about the</span>
+    <span class="c1">#          codes and create our own acronyms ensuring that</span>
+    <span class="c1">#          they are unique.</span>
+    <span class="c1"># Fix codes (ss -&gt; s)</span>
+    <span class="k">if</span> <span class="s1">&#39;sensitivity_code&#39;</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">sensitivity_code</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">sensitivity_code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">SENSITIVITY_CODE_REPLACE</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;microorganism_code&#39;</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_code</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">MICROORGANISM_CODE_REPLACE</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;antimicrobial_code&#39;</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">antimicrobial_code</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">antimicrobial_code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">ANTIMICROBIAL_CODE_REPLACE</span><span class="p">)</span>
+
+    <span class="c1"># Replace</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span>
+        <span class="s1">&#39;specimen_name&#39;</span><span class="p">:</span> <span class="n">SPECIMEN_CODE_MAP</span><span class="p">,</span>
+        <span class="s1">&#39;specimen_code&#39;</span><span class="p">:</span> <span class="n">invert</span><span class="p">(</span><span class="n">SPECIMEN_CODE_MAP</span><span class="p">),</span>
+        <span class="s1">&#39;method_name&#39;</span><span class="p">:</span> <span class="n">METHOD_CODE_MAP</span><span class="p">,</span>
+        <span class="s1">&#39;method_code&#39;</span><span class="p">:</span> <span class="n">invert</span><span class="p">(</span><span class="n">METHOD_CODE_MAP</span><span class="p">),</span>
+        <span class="s1">&#39;sensitivity_name&#39;</span><span class="p">:</span> <span class="n">SENSITIVITY_CODE_MAP</span><span class="p">,</span>
+        <span class="s1">&#39;sensitivity_code&#39;</span><span class="p">:</span> <span class="n">invert</span><span class="p">(</span><span class="n">SENSITIVITY_CODE_MAP</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Fixing orgs/abxs names</span>
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Verbose</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formatting... microorganism/antimicrobials.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Apply regexp mapping</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">REGEX_MAP</span><span class="p">)</span>
+
+    <span class="c1"># Correct hyphens</span>
+    <span class="k">for</span> <span class="n">hp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;haemolytic&#39;</span><span class="p">]:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">hyphen_before</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">hp</span><span class="p">)</span>
+
+    <span class="c1"># Correct order of genus</span>
+    <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;enterococcus&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;staphylococcus&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;streptococcus&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;coliform&#39;</span><span class="p">]:</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">word_to_start</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">sp</span><span class="p">)</span>
+
+    <span class="c1"># Apply regexp mapping</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">REGEX_MAP</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># String formatting</span>
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Verbose</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formatting... lower/title/upper.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Format title</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;patient_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;patient_surname&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+
+    <span class="c1"># Format lower (not needed)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sensitivity_name&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;method_name&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c1"># Format upper</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sensitivity_code&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;method_code&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="c1"># Strip strings</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> \
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Time formatting</span>
+    <span class="c1"># ------------------------------</span>
+    <span class="c1"># Verbose</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formatting... date_received/date_outcome.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Format date-times</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="s1">&#39;date_outcome&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="c1"># We could also use the convert_dtypes, however there is a big</span>
+    <span class="c1"># issue with the pd.NA values. I think that issue is only if</span>
+    <span class="c1"># we want to apply replace and there are pd.NA (only works with</span>
+    <span class="c1"># np.nan) but it should be fine now that all that has been done.</span>
+    <span class="c1">#aux = aux.convert_dtypes()</span>
+
+    <span class="c1"># Remove empty (sensitivity, date_received, ...?)</span>
+    <span class="c1">#aux = aux.dropna(how=&#39;any&#39;, subset=[])</span>
+
+    <span class="c1"># Drop duplicates</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">aux</span></div>
+
+
+<div class="viewcode-block" id="clean_clwsql008_old"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_clwsql008_old">[docs]</a><span class="k">def</span> <span class="nf">clean_clwsql008_old</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method cleans microbiology data from clwsql008.</span>
+
+<span class="sd">    .. notes: CLW-SQL-008</span>
+<span class="sd">      - The sensitivity values found are</span>
+<span class="sd">        { &#39;SS&#39;, &#39;R&#39;, &#39;ND&#39;, &#39;I&#39;, &#39;HIDE&#39;, &#39;HR&#39; }</span>
+
+<span class="sd">    .. note: Using UTC=True gives an error when using</span>
+<span class="sd">             django-import-export to import the data in</span>
+<span class="sd">             the databases (commented).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The dataframe with the data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The cleaned dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Constants</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Rename columns</span>
+    <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;DiagnosticTestID&#39;</span><span class="p">:</span> <span class="s1">&#39;uuid&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ReceiveDate&#39;</span><span class="p">:</span> <span class="s1">&#39;received_date&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ReceiveTime&#39;</span><span class="p">:</span> <span class="s1">&#39;received_time&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PtNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;patient_hos_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;AccNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;BatTstCode&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrderName&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SpecType&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_description&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrgPieceCounter&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_piece_counter&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrgCode&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Organism&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;DrugCode&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;AntiBiotic Name&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SensMethod&#39;</span><span class="p">:</span> <span class="s1">&#39;method_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Sensitivity&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitivity_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MIC&#39;</span><span class="p">:</span> <span class="s1">&#39;mic&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Reported&#39;</span><span class="p">:</span> <span class="s1">&#39;reported&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;FinalDate&#39;</span><span class="p">:</span> <span class="s1">&#39;date_outcome&#39;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Method</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># The method codes are given but the method names are not</span>
+    <span class="c1"># included. We could use this opportunity to set their</span>
+    <span class="c1"># values</span>
+    <span class="c1"># Drop duplicates</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+    <span class="c1">#data = data.convert_dtypes()</span>
+
+    <span class="c1"># Show</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># Add new columns</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">received_date</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">received_time</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Final formatting</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">clean_common</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+<div class="viewcode-block" id="clean_legacy_old"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_legacy_old">[docs]</a><span class="k">def</span> <span class="nf">clean_legacy_old</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method cleans microbiology data from legacy.</span>
+
+<span class="sd">    .. notes: LEGACY</span>
+<span class="sd">      - The sensitivities found are ...</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The dataframe with the data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        The cleaned dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Constants</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Rename columns</span>
+    <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;dateReceived&#39;</span><span class="p">:</span> <span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;patNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;patient_hos_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;labNumber&#39;</span><span class="p">:</span> <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;orderCode&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;orderName&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;specimenType&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_description&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OrgPieceCounter&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_piece_counter&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;organismCode&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;organismNameOrig&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;antibioticCode&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;antibioticName&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sensitivity&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitivity_name&#39;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># Method</span>
+    <span class="c1"># --------------------------</span>
+    <span class="c1"># The method codes are given but the method names are not</span>
+    <span class="c1"># included. We could use this opportunity to set their</span>
+    <span class="c1"># values</span>
+    <span class="c1"># Drop duplicates</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+    <span class="c1">#data = data.convert_dtypes() # issue with np.nan in replace</span>
+
+    <span class="c1"># Show</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># Final formatting</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">clean_common</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="clean_mimic"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.clean.clean_mimic">[docs]</a><span class="k">def</span> <span class="nf">clean_mimic</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method...</span>
+
+<span class="sd">    .. note: Need to merge datetime for date and datetime for time</span>
+<span class="sd">             as done in the datablend package if want full info.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Constants</span>
+    <span class="c1"># ---------------------------------</span>
+    <span class="c1"># Rename columns</span>
+    <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;subject_id&#39;</span><span class="p">:</span> <span class="s1">&#39;patient_hos_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;micro_specimen_id&#39;</span><span class="p">:</span> <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;spec_type_desc&#39;</span><span class="p">:</span> <span class="s1">&#39;specimen_description&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;test_seq&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_piece_counter&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;org_name&#39;</span><span class="p">:</span> <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ab_name&#39;</span><span class="p">:</span> <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;test_name&#39;</span> <span class="p">:</span> <span class="s1">&#39;method&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;interpretation&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitivity_name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;chartdate&#39;</span><span class="p">:</span> <span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;storedate&#39;</span><span class="p">:</span> <span class="s1">&#39;date_outcome&#39;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Replace values</span>
+    <span class="n">replace</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">#&#39;sensitivity&#39;: SENSITIVITY_MAP,</span>
+        <span class="s1">&#39;microorganism_code&#39;</span><span class="p">:</span> <span class="n">MICROORGANISM_CODE_REPLACE</span><span class="p">,</span>
+        <span class="s1">&#39;microorganism_name&#39;</span><span class="p">:</span> <span class="n">MICROORGANISM_NAME_MAP</span><span class="p">,</span>
+        <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">:</span> <span class="n">ANTIMICROBIAL_CODE_REPLACE</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Rename</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+
+    <span class="c1"># Replace</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">replace</span><span class="p">)</span>
+
+    <span class="c1"># Format</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">microorganism_name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">microorganism_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">antimicrobial_name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">antimicrobial_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">microorganism_name</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">antimicrobial_name</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_description</span>
+
+    <span class="c1"># Format date</span>
+    <span class="k">if</span> <span class="s1">&#39;date_received&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+
+        <span class="c1"># Convert to datetime.</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">date_received</span> <span class="o">=</span> \
+            <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">date_received</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Ignore those without result</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">sensitivity</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.datasets.microbiology package &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyamr.graphics package" href="pyamr.graphics.html" />
+    <link rel="prev" title="pyamr.datasets package" href="pyamr.datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="pyamr.html">pyamr package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pyamr.datasets.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html#module-pyamr.datasets.clean">pyamr.datasets.clean module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html#module-pyamr.datasets.load">pyamr.datasets.load module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html#module-pyamr.datasets.registries">pyamr.datasets.registries module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html#module-pyamr.datasets">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="pyamr.html">pyamr package</a> &raquo;</li>
+          <li><a href="pyamr.datasets.html">pyamr.datasets package</a> &raquo;</li>
+      <li>pyamr.datasets.microbiology package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_apidoc/pyamr.datasets.microbiology.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyamr-datasets-microbiology-package">
+<h1>pyamr.datasets.microbiology package<a class="headerlink" href="#pyamr-datasets-microbiology-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-pyamr.datasets.microbiology.create_quickimport">
+<span id="pyamr-datasets-microbiology-create-quickimport-module"></span><h2>pyamr.datasets.microbiology.create_quickimport module<a class="headerlink" href="#module-pyamr.datasets.microbiology.create_quickimport" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.datasets.microbiology.create_quickimport.create_registry">
+<span class="sig-prename descclassname"><span class="pre">pyamr.datasets.microbiology.create_quickimport.</span></span><span class="sig-name descname"><span class="pre">create_registry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyword</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/microbiology/create_quickimport.html#create_registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.microbiology.create_quickimport.create_registry" title="Permalink to this definition"></a></dt>
+<dd><p>Creates registry from data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – The data</p></li>
+<li><p><strong>keyword</strong> (<em>string</em>) – The keyword for the columns. All columns starting
+with such keyword will be kept and used for the
+registry.</p></li>
+<li><p><strong>keep</strong> (<em>list</em>) – The list of columns to keep for the registry</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyamr.datasets.microbiology.create_susceptibility">
+<span id="pyamr-datasets-microbiology-create-susceptibility-module"></span><h2>pyamr.datasets.microbiology.create_susceptibility module<a class="headerlink" href="#module-pyamr.datasets.microbiology.create_susceptibility" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.datasets.microbiology.create_susceptibility.create_antimicrobials_lookup_table">
+<span class="sig-prename descclassname"><span class="pre">pyamr.datasets.microbiology.create_susceptibility.</span></span><span class="sig-name descname"><span class="pre">create_antimicrobials_lookup_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abxs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/microbiology/create_susceptibility.html#create_antimicrobials_lookup_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.microbiology.create_susceptibility.create_antimicrobials_lookup_table" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the look up table for the antimicorbials.</p>
+<p>This method uses the information in the antibiotics dataframe
+and the information in the default antimicrobials registry
+to create a unique lookup table for the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>abxs</strong> (<em>pd.DataFrame</em>) – The DataFrame with … The DataFrame must contain the following
+columns:</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Lookup table DataFrame with the following columns:</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.datasets.microbiology.create_susceptibility.create_microorganisms_lookup_table">
+<span class="sig-prename descclassname"><span class="pre">pyamr.datasets.microbiology.create_susceptibility.</span></span><span class="sig-name descname"><span class="pre">create_microorganisms_lookup_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orgs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/microbiology/create_susceptibility.html#create_microorganisms_lookup_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.microbiology.create_susceptibility.create_microorganisms_lookup_table" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the look up table for the organisms.</p>
+<p>This method uses the information in the organisms dataframe
+and the information in the default microorganisms registry
+to create a unique lookup table for the data.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>orgs</strong> (<em>pd.DataFrame</em>) – The DataFrame with the organism genus and organism species
+for which the look up table should be created. The DataFrame
+must contain the following columns:</p>
+<blockquote>
+<div><p>microorganism_name
+genus
+species</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Lookup table DataFrame with the following columns:</dt><dd><p>’domain’
+‘phylum’
+‘class’
+‘order’
+‘family’
+‘genus’
+‘species’
+‘acronym’
+‘exists_in_registry’
+‘gram_stain’
+‘microorganism_code’
+‘microorganism_name</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyamr.datasets.microbiology.quickimport_create">
+<span id="pyamr-datasets-microbiology-quickimport-create-module"></span><h2>pyamr.datasets.microbiology.quickimport_create module<a class="headerlink" href="#module-pyamr.datasets.microbiology.quickimport_create" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-pyamr.datasets.microbiology.quickimport_run">
+<span id="pyamr-datasets-microbiology-quickimport-run-module"></span><h2>pyamr.datasets.microbiology.quickimport_run module<a class="headerlink" href="#module-pyamr.datasets.microbiology.quickimport_run" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.datasets.microbiology.quickimport_run.quickimport">
+<span class="sig-prename descclassname"><span class="pre">pyamr.datasets.microbiology.quickimport_run.</span></span><span class="sig-name descname"><span class="pre">quickimport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/microbiology/quickimport_run.html#quickimport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.microbiology.quickimport_run.quickimport" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>connection</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyamr.datasets.microbiology.test">
+<span id="pyamr-datasets-microbiology-test-module"></span><h2>pyamr.datasets.microbiology.test module<a class="headerlink" href="#module-pyamr.datasets.microbiology.test" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-pyamr.datasets.microbiology">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.datasets.microbiology" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyamr.datasets.html" class="btn btn-neutral float-left" title="pyamr.datasets package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyamr.graphics.html" class="btn btn-neutral float-right" title="pyamr.graphics package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

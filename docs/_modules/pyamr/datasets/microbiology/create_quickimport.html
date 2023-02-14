@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.datasets.microbiology.create_quickimport &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>pyamr.datasets.microbiology.create_quickimport</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyamr.datasets.microbiology.create_quickimport</h1><div class="highlight"><pre>
+<span></span>
+
+<span class="c1"># -------------------------------------------</span>
+<span class="c1"># Methods</span>
+<span class="c1"># -------------------------------------------</span>
+<div class="viewcode-block" id="create_registry"><a class="viewcode-back" href="../../../../_apidoc/pyamr.datasets.microbiology.html#pyamr.datasets.microbiology.create_quickimport.create_registry">[docs]</a><span class="k">def</span> <span class="nf">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates registry from data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The data</span>
+
+<span class="sd">    keyword: string</span>
+<span class="sd">        The keyword for the columns. All columns starting</span>
+<span class="sd">        with such keyword will be kept and used for the</span>
+<span class="sd">        registry.</span>
+
+<span class="sd">    keep: list</span>
+<span class="sd">        The list of columns to keep for the registry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Columns to keep</span>
+    <span class="k">if</span> <span class="n">keep</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+            <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">keyword</span><span class="p">)]</span>
+
+    <span class="c1"># Copy data</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Add id</span>
+    <span class="k">if</span> <span class="n">keyword</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">reg</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_id&#39;</span> <span class="o">%</span> <span class="n">keyword</span><span class="p">]</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">reg</span></div>
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># Libraries generic</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+    <span class="c1"># Libraries specific</span>
+    <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_susceptibility</span>
+    <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">load_data_nhs</span>
+
+    <span class="c1"># -------------------------------------------</span>
+    <span class="c1"># Load data</span>
+    <span class="c1"># -------------------------------------------</span>
+    <span class="c1"># Load data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">make_susceptibility</span><span class="p">()</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">abxs</span><span class="p">,</span> <span class="n">orgs</span> <span class="o">=</span> \
+        <span class="n">load_data_nhs</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="s1">&#39;susceptibility-v0.0.5&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="c1"># --------------------------------------------</span>
+    <span class="c1"># Create registries</span>
+    <span class="c1"># --------------------------------------------</span>
+    <span class="c1"># Create registries</span>
+    <span class="n">reg_patient</span> <span class="o">=</span> <span class="n">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;patient&#39;</span><span class="p">)</span>
+    <span class="n">reg_specimen</span> <span class="o">=</span> <span class="n">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;specimen&#39;</span><span class="p">)</span>
+    <span class="n">reg_sensitivity</span> <span class="o">=</span> <span class="n">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">)</span>
+    <span class="n">reg_method</span> <span class="o">=</span> <span class="n">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;method&#39;</span><span class="p">)</span>
+    <span class="n">reg_microorganism</span> <span class="o">=</span> <span class="n">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;microorganism&#39;</span><span class="p">)</span>
+    <span class="n">reg_antimicrobial</span> <span class="o">=</span> <span class="n">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;antimicrobial&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Method:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reg_method</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sensitivity:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reg_sensitivity</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Specimen:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reg_specimen</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Microorganism:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reg_microorganism</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Antimicrobial:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reg_antimicrobial</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Patients:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reg_patient</span><span class="p">)</span>
+
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="c1"># Include microorganism/antimicrobial information</span>
+    <span class="c1"># -----------------------------------------------</span>
+    <span class="c1"># Libraries</span>
+    <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">MicroorganismRegistry</span>
+    <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">AntimicrobialRegistry</span>
+
+    <span class="c1"># Load registry</span>
+    <span class="n">mreg</span> <span class="o">=</span> <span class="n">MicroorganismRegistry</span><span class="p">()</span>
+    <span class="n">areg</span> <span class="o">=</span> <span class="n">AntimicrobialRegistry</span><span class="p">()</span>
+
+    <span class="c1"># Create genus and species</span>
+    <span class="n">reg_microorganism</span><span class="p">[[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]]</span> <span class="o">=</span> \
+        <span class="n">reg_microorganism</span><span class="o">.</span><span class="n">microorganism_name</span> \
+            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> \
+            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Combine with registry information</span>
+    <span class="n">reg_microorganism</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">reg_microorganism</span><span class="p">)</span>
+    <span class="n">reg_antimicrobial</span> <span class="o">=</span> <span class="n">areg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">reg_antimicrobial</span><span class="p">)</span>
+
+    <span class="c1"># This fix with others in registries</span>
+    <span class="n">reg_antimicrobial</span><span class="o">.</span><span class="n">antimicrobial_name</span> <span class="o">=</span> \
+        <span class="n">reg_antimicrobial</span><span class="o">.</span><span class="n">antimicrobial_name</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c1"># Fill missing gram stain</span>
+    <span class="n">reg_microorganism</span><span class="o">.</span><span class="n">gram_stain</span> <span class="o">=</span> <span class="n">reg_microorganism</span><span class="o">.</span><span class="n">gram_stain</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+
+    <span class="c1"># -------------------------------------------------</span>
+    <span class="c1"># Complete susceptibility records</span>
+    <span class="c1"># -------------------------------------------------</span>
+    <span class="c1"># Helper methods</span>
+    <span class="k">def</span> <span class="nf">drop_y</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="n">to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;_y&#39;</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">rename_x</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="n">to_rename</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;_x&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;_x&#39;</span><span class="p">)}</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">to_rename</span><span class="p">)</span>
+
+    <span class="c1"># Merge</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_sensitivity</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;sensitivity_name&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_method</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;method_code&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_specimen</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span> <span class="s1">&#39;specimen_description&#39;</span><span class="p">])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_patient</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;patient_hos_number&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_microorganism</span><span class="p">[[</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;microorganism_id&#39;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_antimicrobial</span><span class="p">[[</span><span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;antimicrobial_id&#39;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Drop and rename</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">drop_y</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">rename_x</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+
+
+    <span class="c1"># -----------------------------------</span>
+    <span class="c1"># Save to MySQL</span>
+    <span class="c1"># ----------------------------------</span>
+    <span class="c1"># Libraries</span>
+    <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+    <span class="c1"># Constants</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span>
+    <span class="n">pwd</span> <span class="o">=</span> <span class="s1">&#39;toor&#39;</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;epicimpoc-test&#39;</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;mysql+pymysql://</span><span class="si">{user}</span><span class="s1">:</span><span class="si">{pwd}</span><span class="s1">@</span><span class="si">{host}</span><span class="s1">/</span><span class="si">{schema}</span><span class="s1">&#39;</span>
+
+    <span class="c1"># Create connection</span>
+    <span class="n">db_connection</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">pwd</span><span class="o">=</span><span class="n">pwd</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">))</span>
+
+    <span class="c1"># Columns to keep</span>
+    <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date_created&#39;</span><span class="p">,</span> <span class="s1">&#39;date_updated&#39;</span><span class="p">,</span> <span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="s1">&#39;date_outcome&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span> <span class="s1">&#39;mic&#39;</span><span class="p">,</span> <span class="s1">&#39;reported&#39;</span><span class="p">,</span> <span class="s1">&#39;antimicrobial_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;method_id&#39;</span><span class="p">,</span> <span class="s1">&#39;microorganism_id&#39;</span><span class="p">,</span> <span class="s1">&#39;patient_id&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitivity_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;specimen_id&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Susceptibility tests</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;date_created&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;today&#39;</span><span class="p">)</span>
+    <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;date_updated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;today&#39;</span><span class="p">)</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span>
+
+    <span class="c1"># Save</span>
+    <span class="n">aux</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;microbiology_susceptibilitytest&#39;</span><span class="p">,</span>
+               <span class="n">con</span><span class="o">=</span><span class="n">db_connection</span><span class="p">,</span>
+               <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span>
+               <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">sql_prepare_lookup</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method to prepare lookup tables&quot;&quot;&quot;</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Remove prefixes</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+        <span class="c1"># Add missing columns</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;date_created&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;today&#39;</span><span class="p">)</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;date_updated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;today&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;description&#39;</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;is_visible&#39;</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;is_visible&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># Fill na with &#39;&#39; so null=False.</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}))</span>
+        <span class="c1"># Keep</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;date_created&#39;</span><span class="p">,</span> <span class="s1">&#39;date_updated&#39;</span><span class="p">,</span> <span class="s1">&#39;is_visible&#39;</span><span class="p">]]</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">aux</span>
+
+    <span class="n">LOOP</span> <span class="o">=</span> <span class="p">[</span><span class="c1">#(reg_sensitivity, &#39;microbiology_sensitivity&#39;),</span>
+            <span class="c1">#(reg_specimen, &#39;microbiology_specimen&#39;),</span>
+            <span class="p">(</span><span class="n">reg_method</span><span class="p">,</span> <span class="s1">&#39;microbiology_method&#39;</span><span class="p">),</span>
+            <span class="c1">#(reg_patient, &#39;microbiology_patient&#39;),</span>
+            <span class="p">(</span><span class="n">reg_antimicrobial</span><span class="p">,</span> <span class="s1">&#39;microbiology_antimicrobial&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">reg_microorganism</span><span class="p">,</span> <span class="s1">&#39;microbiology_microorganism&#39;</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">df</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">LOOP</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Importing.... </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">sql_prepare_lookup</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">con</span><span class="o">=</span><span class="n">db_connection</span><span class="p">,</span>
+                    <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span>
+                    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+
+    <span class="c1"># -------------------------------------------------</span>
+    <span class="c1">#</span>
+    <span class="c1"># -------------------------------------------------</span>
+    <span class="c1"># Specific</span>
+    <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+    <span class="c1"># Time</span>
+    <span class="n">timestr</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">-%H%M%S&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Define path</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;./</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">timestr</span><span class="p">)</span>
+
+    <span class="c1"># Create path if it does not exist</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Save registries</span>
+    <span class="n">reg_patient</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;patients.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">reg_specimen</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;specimens.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">reg_sensitivity</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;sensitivities.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">reg_method</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;methods.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">reg_microorganism</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;microorganisms.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">reg_antimicrobial</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;antimicrobial.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+    <span class="c1"># -------------------------------------------------</span>
+    <span class="c1"># Create susceptibility test record from registries</span>
+    <span class="c1"># -------------------------------------------------</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_specimen</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">],</span>
+            <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_sensitivity</span><span class="p">,</span>
+            <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;sensitivity_name&#39;</span><span class="p">,</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;sensitivity_name&#39;</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reg_method</span><span class="p">[</span><span class="s1">&#39;method_code&#39;</span><span class="p">],</span>
+            <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;method_code&#39;</span><span class="p">,</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;method_code&#39;</span><span class="p">)</span>
+
+    <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;date_outcome&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;specimen_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;sensitivity_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;method_id&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">keep</span><span class="p">])</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.datasets.registries &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>pyamr.datasets.registries</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyamr.datasets.registries</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Import specific</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="c1"># -----------------------------------------</span>
+<span class="c1"># Helper methods</span>
+<span class="c1"># -----------------------------------------</span>
+<div class="viewcode-block" id="length_exceptions"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.length_exceptions">[docs]</a><span class="k">def</span> <span class="nf">length_exceptions</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method...&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+<span class="k">def</span> <span class="nf">_loops_strategy_lengths</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param x:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="c1"># Create DataFrame with words</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Create DataFrame with word lengths</span>
+    <span class="n">lengths</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="c1"># Create loops</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">lengths</span><span class="o">.</span><span class="n">max</span><span class="p">()]))</span>
+
+<span class="c1"># -----------------------------------------</span>
+<span class="c1"># Constants</span>
+<span class="c1"># -----------------------------------------</span>
+<span class="n">ACRONYM_EXCEPTIONS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">length_exceptions</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_acronym</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">exceptions</span><span class="o">=</span><span class="n">ACRONYM_EXCEPTIONS</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an acronym from a string single.</span>
+
+<span class="sd">    .. note: Add variable to chose whether we want to keep</span>
+<span class="sd">             the whole word if the split length is 1.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x: String</span>
+<span class="sd">        The strings to create the acronym/code.</span>
+
+<span class="sd">    sep: String (default &#39; &#39;)</span>
+<span class="sd">        The separator to include between the acronym components. For</span>
+<span class="sd">        instance, the sep values &#39; &#39; and &#39;_&#39; for the string</span>
+<span class="sd">        &#39;artificial intelligence&#39; would lead to &#39;AI&#39; and &#39;A_I&#39;</span>
+<span class="sd">        respectively.</span>
+
+<span class="sd">    lengths: tuple</span>
+<span class="sd">        The number of letters to use from each word after</span>
+<span class="sd">        the initial string has been split.</span>
+
+<span class="sd">    exceptions: dictionary</span>
+<span class="sd">        The condition to evaluate as key and the lengths to use as values.</span>
+<span class="sd">        Only the first condition that returns Tue will be valuated. The</span>
+<span class="sd">        signature of the methods are as follows:</span>
+
+<span class="sd">        key function:</span>
+<span class="sd">        :param x: list - array obtained from split</span>
+<span class="sd">        :return: boolean - whether</span>
+
+<span class="sd">        value function:</span>
+<span class="sd">        :param x: list - array obtained from split</span>
+<span class="sd">        :return: list - array with lenghts</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    --------</span>
+<span class="sd">    string</span>
+<span class="sd">        The acronym</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Splits</span>
+    <span class="n">split</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="c1"># Define default lengths</span>
+    <span class="k">if</span> <span class="n">lengths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">split</span><span class="p">)</span>
+
+    <span class="c1"># Exceptions</span>
+    <span class="c1">#for k,v in exceptions.items():</span>
+    <span class="c1">#    if k(split):</span>
+    <span class="c1">#        lengths = v(split)</span>
+    <span class="k">for</span> <span class="n">expt</span> <span class="ow">in</span> <span class="n">exceptions</span><span class="p">:</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">expt</span><span class="p">(</span><span class="n">split</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">aux</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lengths</span> <span class="o">=</span> <span class="n">aux</span>
+
+    <span class="c1"># Compute acronym</span>
+    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span><span class="p">[:</span><span class="n">l</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> \
+        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">split</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)])</span>
+
+
+
+<div class="viewcode-block" id="acronym_series_unique"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.acronym_series_unique">[docs]</a><span class="k">def</span> <span class="nf">acronym_series_unique</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">split_n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">exclude_acronyms</span><span class="o">=</span><span class="p">[],</span>
+                          <span class="n">loops_strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                          <span class="n">kwgs_acronym</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="sd">&quot;&quot;&quot;Computes unique acronyms.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    --------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Set default none acronym</span>
+    <span class="n">acronym</span> <span class="o">=</span> \
+        <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">series</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;acronym&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Define loops strategy</span>
+    <span class="k">if</span> <span class="n">loops_strategy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">loops_strategy</span> <span class="o">=</span> <span class="n">_loops_strategy_lengths</span>
+
+    <span class="c1"># Find loops</span>
+    <span class="n">loops</span> <span class="o">=</span> <span class="n">loops_strategy</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+
+    <span class="c1"># Loop</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loops</span><span class="p">):</span>
+
+        <span class="c1"># Find duplicates or empty values</span>
+        <span class="n">idxs</span> <span class="o">=</span> <span class="n">acronym</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">acronym</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+
+        <span class="c1"># Break clause</span>
+        <span class="k">if</span> <span class="n">idxs</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="c1"># Show information</span>
+        <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">. lengths=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">loops</span><span class="p">),</span> <span class="n">l</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">series</span><span class="p">[</span><span class="n">idxs</span><span class="p">],</span> <span class="n">acronym</span><span class="p">[</span><span class="n">idxs</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;acronym&#39;</span><span class="p">))</span>
+
+        <span class="c1"># Create acronyms</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_acronym</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="n">l</span><span class="p">,</span> <span class="o">**</span><span class="n">kwgs_acronym</span><span class="p">)</span> <span class="c1"># Create new</span>
+        <span class="n">aux</span><span class="p">[</span><span class="n">aux</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">exclude_acronyms</span><span class="p">)]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>                       <span class="c1"># Exclude</span>
+        <span class="n">acronym</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>                                     <span class="c1"># Update</span>
+
+    <span class="c1"># Show warning</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">%s</span><span class="s2"> repeated acronyms!</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">idxs</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">acronym</span></div>
+
+
+<div class="viewcode-block" id="acronym_series"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.acronym_series">[docs]</a><span class="k">def</span> <span class="nf">acronym_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">unique_acronyms</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method...</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series: pd.Series</span>
+<span class="sd">        The series with the names to convert in acronyms.</span>
+<span class="sd">    unique_acronyms:</span>
+
+<span class="sd">    exclude_acronyms:</span>
+
+<span class="sd">    split_n: int</span>
+
+<span class="sd">    verbose: int</span>
+<span class="sd">        Level of verbosity</span>
+
+<span class="sd">    loops_strategy: function</span>
+<span class="sd">        The function to indicate what length combinations should</span>
+<span class="sd">        be used on each iteration. By default it will use the</span>
+<span class="sd">        default method _loops_strategy_lengths which split the</span>
+<span class="sd">        series in two and returns all possible lengths from (4, 4)</span>
+<span class="sd">        till (max_len, max_len). The signature of the function to</span>
+<span class="sd">        pass as loops_strategy is as follows:</span>
+
+<span class="sd">        :param x: series</span>
+<span class="sd">        :return: list (array of lengths)</span>
+
+<span class="sd">    kwgs_split: dict</span>
+<span class="sd">        The parameters to pass to the split function</span>
+
+<span class="sd">    kwgs_acronym: dict</span>
+<span class="sd">        The parameters to pass to the acronym function.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.Series</span>
+<span class="sd">        The acronym series</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Basic check</span>
+    <span class="k">if</span> <span class="n">series</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">and</span> <span class="n">unique_acronyms</span><span class="p">:</span>
+
+        <span class="c1"># show warning</span>
+        <span class="n">repeated</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The series has the following identical values and </span><span class="se">\n</span><span class="s2">&quot;</span>
+              <span class="s2">&quot;therefore they cannot or shouldn&#39;t be expressed with </span><span class="se">\n</span><span class="s2">&quot;</span>
+              <span class="s2">&quot;different acronyms. The unique_acronyms parameter has </span><span class="se">\n</span><span class="s2">&quot;</span>
+              <span class="s2">&quot;been set to &#39;False&#39;.</span><span class="se">\n\n</span><span class="si">{0}</span><span class="s2">&quot;</span> \
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">repeated</span><span class="p">[</span><span class="n">repeated</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]))</span>
+        <span class="c1"># Set unique acronyms to false</span>
+        <span class="n">unique_acronyms</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Return acronyms</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unique_acronyms</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_acronym</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">acronym_series_unique</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="invert"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.invert">[docs]</a><span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+
+<div class="viewcode-block" id="create_registry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.create_registry">[docs]</a><span class="k">def</span> <span class="nf">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates registry from data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pd.DataFrame</span>
+<span class="sd">        The data</span>
+
+<span class="sd">    keyword: string</span>
+<span class="sd">        The keyword for the columns. All columns starting</span>
+<span class="sd">        with such keyword will be kept and used for the</span>
+<span class="sd">        registry.</span>
+
+<span class="sd">    keep: list</span>
+<span class="sd">        The list of columns to keep for the registry</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Columns to keep</span>
+    <span class="k">if</span> <span class="n">keep</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+            <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                 <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">)</span> <span class="ow">or</span>
+                 <span class="n">c</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">))]</span>
+
+    <span class="c1"># Copy data</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Add id</span>
+    <span class="c1">#if keyword is not None:</span>
+    <span class="c1">#    reg[&#39;%s_id&#39; % keyword] = reg.index.values</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">reg</span></div>
+
+
+<span class="c1"># -----------------------------------------------------</span>
+<span class="c1"># Microorganism</span>
+<span class="c1"># -----------------------------------------------------</span>
+<span class="c1"># The regexp map</span>
+<span class="n">REGEX_MAP_MICROORGANISM</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;\([^)]*\)&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>      <span class="c1"># Remove everything between ()</span>
+    <span class="s1">&#39;(\s)*\-(\s)*&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>  <span class="c1"># Remove spaces before after hyphen</span>
+    <span class="s1">&#39;species&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>        <span class="c1"># Rename species for next regexp</span>
+    <span class="s1">&#39;o157&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>           <span class="c1"># Remove scherichia coli o157</span>
+    <span class="s1">&#39;sp(\.)*(\s|$)+&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>  <span class="c1"># Remove sp from word.</span>
+    <span class="s1">&#39;strep(\.|\s|$)&#39;</span><span class="p">:</span> <span class="s1">&#39;streptococcus &#39;</span><span class="p">,</span>   <span class="c1"># Complete</span>
+    <span class="s1">&#39;staph(\.|\s|$)&#39;</span><span class="p">:</span> <span class="s1">&#39;staphylococcus &#39;</span><span class="p">,</span>  <span class="c1"># Complete</span>
+    <span class="s1">&#39;staphylococci&#39;</span><span class="p">:</span> <span class="s1">&#39;staphylococcus&#39;</span><span class="p">,</span>    <span class="c1"># Correction (add mixed? group?)</span>
+    <span class="s1">&#39;streptococci&#39;</span><span class="p">:</span> <span class="s1">&#39;streptococcus&#39;</span><span class="p">,</span>      <span class="c1"># Correction (add mixed? group?)</span>
+    <span class="s1">&#39;\s+&#39;</span><span class="p">:</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>           <span class="c1"># Remove duplicated spaces.</span>
+<span class="p">}</span>
+
+<span class="c1"># The hyphens</span>
+<span class="n">HYPHENS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;haemolytic&#39;</span><span class="p">]</span>
+
+<span class="c1"># The words to move to the beginning</span>
+<span class="n">MOVE_TO_START</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;enterococcus&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;staphylococcus&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;streptococcus&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;coliform&#39;</span><span class="p">]</span>
+
+<span class="c1"># The words to move to the end</span>
+<span class="n">MOVE_TO_END</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;methicillin resistant&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;vancomycin resistant&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;mixed&#39;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_clean_microorganism</span><span class="p">(</span><span class="n">series</span><span class="p">,</span>
+                         <span class="n">hyphens</span><span class="o">=</span><span class="n">HYPHENS</span><span class="p">,</span>
+                         <span class="n">move_to_start</span><span class="o">=</span><span class="n">MOVE_TO_START</span><span class="p">,</span>
+                         <span class="n">move_to_end</span><span class="o">=</span><span class="n">MOVE_TO_END</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cleans the microorganism names.</span>
+
+<span class="sd">    .. todo: Put everything below as our own defined function</span>
+<span class="sd">             but allow users to pass their own functions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series: pd.Series</span>
+<span class="sd">        The series with the name of the organisms. Ideally it</span>
+<span class="sd">        should represent the binomial nomenclature including</span>
+<span class="sd">        genus and specie respectively.</span>
+
+<span class="sd">    hyphens:</span>
+
+<span class="sd">    move_to_start:</span>
+
+<span class="sd">    move_to_end:</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Libraries</span>
+    <span class="kn">from</span> <span class="nn">pyamr.datasets.clean</span> <span class="kn">import</span> <span class="n">hyphen_before</span>
+    <span class="kn">from</span> <span class="nn">pyamr.datasets.clean</span> <span class="kn">import</span> <span class="n">word_to_start</span>
+
+    <span class="c1"># Copy</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Lower</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c1"># Apply regex mapping</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">REGEX_MAP_MICROORGANISM</span><span class="p">)</span>
+
+    <span class="c1"># Correct hyphens</span>
+    <span class="k">for</span> <span class="n">hp</span> <span class="ow">in</span> <span class="n">hyphens</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">hyphen_before</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">hp</span><span class="p">)</span>
+
+    <span class="c1"># Correct order of genus</span>
+    <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="n">move_to_start</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">word_to_start</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">sp</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s1">&#39;start&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Correct order of tags</span>
+    <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="n">move_to_end</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">word_to_start</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">sp</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Apply regexp mapping</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="n">REGEX_MAP_MICROORGANISM</span><span class="p">)</span>
+
+    <span class="c1"># Final strip</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+
+<div class="viewcode-block" id="clean_specimen"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.clean_specimen">[docs]</a><span class="k">def</span> <span class="nf">clean_specimen</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    \sr\s = right -&gt; end</span>
+<span class="sd">    \sl\s = left -&gt; end</span>
+
+
+<span class="sd">    :param series:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+<span class="c1"># ---------------------------------------------------</span>
+<span class="c1"># Registry Base</span>
+<span class="c1"># ---------------------------------------------------</span>
+<div class="viewcode-block" id="Registry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry">[docs]</a><span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;This is basically a lookup table.&quot;&quot;&quot;</span>
+
+    <span class="c1"># The order of the columns within the registry</span>
+    <span class="n">ORDER</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;original&#39;</span><span class="p">]</span>
+    <span class="c1"># The subset to use to drop duplicates</span>
+    <span class="n">SUBSET</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;original&#39;</span><span class="p">]</span>
+    <span class="c1"># The function to clean the names</span>
+    <span class="n">FCLEAN</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># The dictionary to rename columns</span>
+    <span class="n">RENAME_COLUMNS</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># Registry dataframe</span>
+    <span class="n">REG</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                       <span class="n">order</span><span class="o">=</span><span class="n">ORDER</span><span class="p">,</span>
+                       <span class="n">subset</span><span class="o">=</span><span class="n">SUBSET</span><span class="p">,</span>
+                       <span class="n">fclean</span><span class="o">=</span><span class="n">FCLEAN</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor</span>
+
+<span class="sd">        .. note: Raise type errors</span>
+<span class="sd">        .. note: Allow to load from file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Set parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keyword</span> <span class="o">=</span> <span class="n">keyword</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ORDER</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SUBSET</span> <span class="o">=</span> <span class="n">subset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FCLEAN</span> <span class="o">=</span> <span class="n">fclean</span>
+
+        <span class="c1"># Add columns to order. Note that if they are</span>
+        <span class="c1"># important to drop duplicates, they probably</span>
+        <span class="c1"># should be kept.</span>
+        <span class="c1">#if subset is not None:</span>
+        <span class="c1">#    self.ORDER += sorted(set(subset).difference(set(order)))</span>
+
+
+<div class="viewcode-block" id="Registry.getr"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.getr">[docs]</a>    <span class="k">def</span> <span class="nf">getr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the registry DataFrame&quot;&quot;&quot;</span>
+        <span class="c1"># Get registry</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">REG</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Prepend</span>
+        <span class="k">if</span> <span class="n">prepend</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyword</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">aux</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keyword</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+        <span class="c1"># Fill na with &#39;&#39; so null=False.</span>
+        <span class="c1"># aux = aux.fillna(aux.dtypes.replace({&#39;O&#39;: &#39;&#39;}))</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">aux</span></div>
+
+
+<div class="viewcode-block" id="Registry.fit"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method...</span>
+
+<span class="sd">        .. note: It assumes name exists...</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data: pd.DataFrame</span>
+<span class="sd">            The DataFrame expects to have the code, the</span>
+<span class="sd">            name and the description. Specially the name.</span>
+<span class="sd">            Think what happens if other missing.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create registry</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">keyword</span><span class="p">)</span>
+
+        <span class="c1"># Keep only last label</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+        <span class="c1"># Raise error</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+           <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing either name or code&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add missing columns</span>
+        <span class="k">if</span> <span class="s1">&#39;code&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">aux</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">code</span>
+
+        <span class="c1"># Backup original</span>
+        <span class="n">original</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="c1"># Put everything to lowercase</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># Restore original</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;original&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">original</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        # Add code and fill empty name</span>
+<span class="sd">        aux.name.fillna(aux.code, inplace=True)</span>
+
+<span class="sd">        # Replace</span>
+<span class="sd">        aux.code = aux.code.replace(self.CODE_REPLACE)</span>
+
+<span class="sd">        # Map</span>
+<span class="sd">        aux = aux.replace({</span>
+<span class="sd">            &#39;name&#39;: self.CODE_MAP,</span>
+<span class="sd">            &#39;code&#39;: invert(self.CODE_MAP)</span>
+<span class="sd">        })</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=====&gt; </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCLEAN</span><span class="p">)</span>
+
+        <span class="c1"># Apply cleaning</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCLEAN</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cleaned </span><span class="si">%s</span><span class="s2"> with </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+
+        <span class="c1"># Final formatting</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">SUBSET</span><span class="p">)</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="c1"># Keep</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ORDER</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+        <span class="c1"># Order information</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span>
+
+        <span class="c1"># Set registry</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">REG</span> <span class="o">=</span> <span class="n">aux</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="Registry.replace"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.replace">[docs]</a>    <span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method...&quot;&quot;&quot;</span>
+        <span class="n">tup</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">REG</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">REG</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">tup</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Registry.transform"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="p">{},</span> <span class="n">include_id</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transform data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data: pd.DataFrame</span>
+<span class="sd">            The data to transform.</span>
+<span class="sd">        replace:</span>
+
+<span class="sd">        include_id</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            The data transformed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Include the id.</span>
+        <span class="k">if</span> <span class="n">include_id</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_id&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyword</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_name&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyword</span><span class="p">],</span>
+                    <span class="n">key</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Perform replace</span>
+        <span class="c1">#for column, (key, value) in replace.items():</span>
+        <span class="c1">#    data[column] = self.replace(data[column],</span>
+        <span class="c1">#        key=&#39;original&#39;, value=&#39;name&#39;)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="Registry.fit_transform"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fits and transforms&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Registry.combine"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Registry.clean"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.clean">[docs]</a>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<span class="c1"># ---------------------------------------------------</span>
+<span class="c1"># Registry Microorganism</span>
+<span class="c1"># ---------------------------------------------------</span>
+<div class="viewcode-block" id="MicroorganismRegistry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.MicroorganismRegistry">[docs]</a><span class="k">class</span> <span class="nc">MicroorganismRegistry</span><span class="p">(</span><span class="n">Registry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Registry for microorganisms&quot;&quot;&quot;</span>
+
+    <span class="n">taxonomy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;order&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;family&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;genus&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;species&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;subspecies&#39;</span><span class="p">]</span>
+
+    <span class="n">reg</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+        <span class="c1"># Super</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># For some reason setting the dictionary as an</span>
+        <span class="c1"># attribute does not work, the variable FCLEAN</span>
+        <span class="c1"># remains {} (from parent).</span>
+        <span class="c1"># Set cleaning dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FCLEAN</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">_clean_microorganism</span>
+        <span class="p">}</span>
+
+
+<div class="viewcode-block" id="MicroorganismRegistry.combine"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.MicroorganismRegistry.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Combines an external dataframe with the registry.</span>
+
+<span class="sd">        .. note: The dataframe must contain genus, species..</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Load</span>
+        <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">load_registry_microorganisms</span>
+
+        <span class="c1"># Copy DataFrame</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Create genus and species</span>
+        <span class="n">aux</span><span class="p">[[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]]</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="p">[</span><span class="n">on</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Format</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">genus</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">genus</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="c1"># Load registry information</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="n">load_registry_microorganisms</span><span class="p">()</span>
+
+        <span class="c1"># --------------</span>
+        <span class="c1"># Step 1</span>
+        <span class="c1"># --------------</span>
+        <span class="c1"># First, merge those rows within gram_stain and taxonomy</span>
+        <span class="c1"># that have equal genus and species. Note that we are</span>
+        <span class="c1"># only merging if both values exist and are equal.</span>
+        <span class="c1"># Merge</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span>
+            <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+            <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Those merged exist in registry.</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;exists_in_registry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">acronym</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
+
+        <span class="c1"># --------------</span>
+        <span class="c1"># Step 2</span>
+        <span class="c1"># --------------</span>
+        <span class="c1"># Second, for those values whose taxonomy-related columns</span>
+        <span class="c1"># are null, use the taxonomy information based only on the</span>
+        <span class="c1"># genus. This does not overwrite step 1.</span>
+        <span class="c1"># Create aux</span>
+        <span class="n">aux_step2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">aux</span><span class="p">[[</span><span class="s1">&#39;genus&#39;</span><span class="p">]],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;acronym&#39;</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;genus&#39;</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+            <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;genus&#39;</span><span class="p">],</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;genus&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Update dataframe</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">aux_step2</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">aux</span></div>
+
+<div class="viewcode-block" id="MicroorganismRegistry.binomial_name"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.MicroorganismRegistry.binomial_name">[docs]</a>    <span class="k">def</span> <span class="nf">binomial_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="MicroorganismRegistry.uuid"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.MicroorganismRegistry.uuid">[docs]</a>    <span class="k">def</span> <span class="nf">uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<span class="c1"># ---------------------------------------------------</span>
+<span class="c1"># Registry Antimicrobial</span>
+<span class="c1"># ---------------------------------------------------</span>
+<div class="viewcode-block" id="AntimicrobialRegistry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.AntimicrobialRegistry">[docs]</a><span class="k">class</span> <span class="nc">AntimicrobialRegistry</span><span class="p">(</span><span class="n">Registry</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Registry for antimicrobials&quot;&quot;&quot;</span>
+
+    <span class="n">reg</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="AntimicrobialRegistry.combine"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.AntimicrobialRegistry.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Combines an external dataframe with the registry.</span>
+
+<span class="sd">        .. note: I am assuming the columns that exist in dataframe...</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Load</span>
+        <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">load_registry_antimicrobials</span>
+
+        <span class="c1"># Copy DataFrame</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Format</span>
+        <span class="n">aux</span><span class="p">[</span><span class="n">on</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">on</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+
+        <span class="c1"># Load registry information</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="n">load_registry_antimicrobials</span><span class="p">()</span>
+
+        <span class="c1"># --------------</span>
+        <span class="c1"># Step 1</span>
+        <span class="c1"># --------------</span>
+        <span class="c1"># First, merge those rows within gram_stain and taxonomy</span>
+        <span class="c1"># that have equal genus and species. Note that we are</span>
+        <span class="c1"># only merging if both values exist and are equal.</span>
+        <span class="c1"># Merge</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span>
+            <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+            <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="n">on</span><span class="p">],</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">aux</span></div></div>
+
+
+
+
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># Libraries</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+    <span class="k">def</span> <span class="nf">len1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param x: array obtained from split</span>
+<span class="sd">        :return: boolean</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">wordl</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param x: array obtained from split</span>
+<span class="sd">        :return: array with lenghts</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+    <span class="c1"># Create data.</span>
+    <span class="n">organisms</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pseudomonas Aeruginosa&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;Pseudomonas Aeruginose&#39;</span><span class="p">,</span> <span class="c1"># minor variant</span>
+                 <span class="s1">&#39;Pseudomonas Aeruginosi&#39;</span><span class="p">,</span> <span class="c1"># minor variant</span>
+                 <span class="s1">&#39;Pseudomonas&#39;</span><span class="p">,</span>            <span class="c1"># genus 1</span>
+                 <span class="s1">&#39;Enterococcus&#39;</span><span class="p">,</span>           <span class="c1"># genus 2</span>
+                 <span class="s1">&#39;Enterococcus vagus&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;Staphylococcus Beta-Haemolytic Group A&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;This is another example&#39;</span><span class="p">,</span>  <span class="c1"># Long</span>
+                 <span class="s1">&#39;Pseu Aeru&#39;</span><span class="p">,</span>                <span class="c1"># Extreme</span>
+                 <span class="s1">&#39;Enterococcus vagus&#39;</span><span class="p">,</span>       <span class="c1"># repeated</span>
+                 <span class="s1">&#39;Pseudomonas&#39;</span><span class="p">,</span>              <span class="c1"># repeated</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Create series</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">organisms</span><span class="p">)</span>
+
+    <span class="c1"># Create new acronyms</span>
+    <span class="n">acronyms_1</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_acronym</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">acronyms_2</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_acronym</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create acronyms</span>
+    <span class="n">acronyms_3</span> <span class="o">=</span> <span class="n">acronym_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span>
+        <span class="n">exclude_acronyms</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">unique_acronyms</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># -----------------------------</span>
+    <span class="c1"># Creating unique acronyms</span>
+    <span class="c1"># -----------------------------</span>
+    <span class="c1"># Create loops from default loop_strategy</span>
+    <span class="n">loops</span> <span class="o">=</span> <span class="n">_loops_strategy_lengths</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+
+
+    <span class="c1"># Create acronyms</span>
+    <span class="n">acronyms_4</span> <span class="o">=</span>  <span class="n">acronym_series</span><span class="p">(</span><span class="n">series</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">],</span>
+        <span class="n">exclude_acronyms</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PSEU_AERU&#39;</span><span class="p">],</span>
+        <span class="n">unique_acronyms</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">kwgs_acronym</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;sep&#39;</span><span class="p">:</span> <span class="s1">&#39;_&#39;</span>
+        <span class="p">})</span>
+
+    <span class="c1"># Create result</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;series&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span>
+    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;acronyms_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acronyms_1</span>
+    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;acronyms_2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acronyms_2</span>
+    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;acronyms_3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acronyms_3</span>
+    <span class="n">result</span><span class="p">[</span><span class="s1">&#39;acronyms_4&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">acronyms_4</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loop Strategy:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">loops</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

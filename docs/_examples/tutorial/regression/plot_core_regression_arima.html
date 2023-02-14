@@ -1,74 +1,40 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Regression - ARIMA &mdash; pyamr 0.0.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Regression - WLSARMA" href="plot_core_regression_ensemble.html" />
     <link rel="prev" title="Metrics - weights" href="../metrics/plot_metrics_weights.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../../index.html" class="icon icon-home"> pyamr
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,19 +42,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Tutorial</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
@@ -96,11 +51,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Example Galleries</span></p>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#guide">Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#indexes">Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#regression">Regression</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Regression - ARIMA</a></li>
@@ -118,496 +73,315 @@
 <li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API</span></p>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">pyamr</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../index.html">Tutorial</a> &raquo;</li>
-        
       <li>Regression - ARIMA</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_arima.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="regression-arima">
-<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"></span><h1>Regression - ARIMA<a class="headerlink" href="#regression-arima" title="Permalink to this headline">¶</a></h1>
-<img alt="ARIMA non-dynamic, ARIMA dynamic" class="sphx-glr-single-img" src="../../../_images/sphx_glr_plot_core_regression_arima_001.png" />
+<section class="sphx-glr-example-title" id="regression-arima">
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"></span><h1>Regression - ARIMA<a class="headerlink" href="#regression-arima" title="Permalink to this headline"></a></h1>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-arima-aic                    816.3857
-arima-bic                    823.5318
-arima-hqic                   819.2508
-arima-llf                   -405.1929
-arima-const_coef             298.1921
-arima-const_std              118.8759
-arima-const_tvalue             2.5084
-arima-const_tprob              0.0121
-arima-const_cil               65.1996
-arima-const_ciu              531.1845
-arima-ar.L1.y_coef             0.9742
-arima-ar.L1.y_std              0.0236
-arima-ar.L1.y_tvalue          41.1984
-arima-ar.L1.y_tprob               0.0
-arima-ar.L1.y_cil              0.9279
-arima-ar.L1.y_ciu              1.0206
-arima-m_dw                     2.1273
-arima-m_jb_value             469.0306
-arima-m_jb_prob                   0.0
-arima-m_skew                  -2.4563
-arima-m_kurtosis               13.797
-arima-m_nm_value              66.3539
-arima-m_nm_prob                   0.0
-arima-m_ks_value                0.612
-arima-m_ks_prob                   0.0
-arima-m_shp_value              0.8086
-arima-m_shp_prob                  0.0
-arima-m_ad_value               2.5158
-arima-m_ad_nnorm                False
-arima-converged                  True
-arima-endog             [49.243872...
-arima-order                 (1, 0, 0)
-arima-trend                         c
-arima-disp                          0
-arima-model             &lt;statsmode...
-arima-id                ARIMA(1, 0...
+arima-aic                   814.4485
+arima-bic                   821.5946
+arima-hqic                  817.3136
+arima-llf                  -404.2243
+arima-const_coef            277.9714
+arima-const_std             118.1051
+arima-const_tvalue            2.3536
+arima-const_tprob             0.0186
+arima-const_cil              46.4897
+arima-const_ciu             509.4531
+arima-ar.L1_coef              0.9791
+arima-ar.L1_std                0.023
+arima-ar.L1_tvalue           42.6546
+arima-ar.L1_tprob                0.0
+arima-ar.L1_cil               0.9341
+arima-ar.L1_ciu               1.0241
+arima-sigma2_coef          1377.3224
+arima-sigma2_std            210.9964
+arima-sigma2_tvalue           6.5277
+arima-sigma2_tprob               0.0
+arima-sigma2_cil            963.7771
+arima-sigma2_ciu           1790.8677
+arima-m_dw                    2.1952
+arima-m_jb_value            604.7265
+arima-m_jb_prob                  0.0
+arima-m_skew                  -2.632
+arima-m_kurtosis             15.3979
+arima-m_nm_value             71.5466
+arima-m_nm_prob                  0.0
+arima-m_ks_value              0.5744
+arima-m_ks_prob                  0.0
+arima-m_shp_value             0.8011
+arima-m_shp_prob                 0.0
+arima-m_ad_value              2.5246
+arima-m_ad_nnorm               False
+arima-converged                 True
+arima-endog            [6.8557397...
+arima-order                (1, 0, 0)
+arima-trend                        c
+arima-disp                         0
+arima-model            &lt;statsmode...
+arima-id               ARIMA(1, 0...
 dtype: object
 
 Summary:
-                              ARMA Model Results
+                               SARIMAX Results
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                   80
-Model:                     ARMA(1, 0)   Log Likelihood                -405.193
-Method:                       css-mle   S.D. of innovations             37.613
-Date:                Wed, 07 Apr 2021   AIC                            816.386
-Time:                        14:05:22   BIC                            823.532
-Sample:                             0   HQIC                           819.251
-
+Model:                 ARIMA(1, 0, 0)   Log Likelihood                -404.224
+Date:                Tue, 14 Feb 2023   AIC                            814.449
+Time:                        16:29:40   BIC                            821.595
+Sample:                             0   HQIC                           817.314
+                                 - 80
+Covariance Type:                  opg
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        298.1921    118.876      2.508      0.012      65.200     531.185
-ar.L1.y        0.9742      0.024     41.198      0.000       0.928       1.021
+const        277.9714    118.105      2.354      0.019      46.490     509.453
+ar.L1          0.9791      0.023     42.655      0.000       0.934       1.024
+sigma2      1377.3224    210.996      6.528      0.000     963.777    1790.868
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000  Durbin-Watson:                    2.127
-Prob(Omnibus):                  0.000  Jarque-Bera (JB):               469.031
-Skew:                          -2.456  Prob(JB):                         0.000
-Kurtosis_m:                    13.797  Cond No:
-Normal (N):                    66.354  Prob(N):                          0.000
+Omnibus:                        0.000  Durbin-Watson:                    2.195
+Prob(Omnibus):                  0.000  Jarque-Bera (JB):               604.726
+Skew:                          -2.632  Prob(JB):                         0.000
+Kurtosis_m:                    15.398  Cond No:
+Normal (N):                    71.547  Prob(N):                          0.000
 ==============================================================================
+{&#39;_results&#39;: &lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8&gt;, &#39;__doc__&#39;: &#39;\nClass to hold results from fitting an SARIMAX model.\n\nParameters\n----------\nmodel : SARIMAX instance\n    The fitted model instance\n\nAttributes\n----------\nspecification : dictionary\n    Dictionary including all attributes from the SARIMAX model instance.\npolynomial_ar : ndarray\n    Array containing autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_ma : ndarray\n    Array containing moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ar : ndarray\n    Array containing seasonal autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ma : ndarray\n    Array containing seasonal moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_trend : ndarray\n    Array containing trend polynomial coefficients, ordered from lowest\n    degree to highest. Initialized with ones, unless a coefficient is\n    constrained to be zero (in which case it is zero).\nmodel_orders : list of int\n    The orders of each of the polynomials in the model.\nparam_terms : list of str\n    List of parameters actually included in the model, in sorted order.\n\nSee Also\n--------\nstatsmodels.tsa.statespace.kalman_filter.FilterResults\nstatsmodels.tsa.statespace.mlemodel.MLEResults\n&#39;, &#39;mlefit&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988&gt;, &#39;mle_retvals&#39;: {&#39;fopt&#39;: 5.052803225383327, &#39;gopt&#39;: array([-6.66e-09, -3.86e-07, -1.55e-07]), &#39;fcalls&#39;: 88, &#39;warnflag&#39;: 0, &#39;converged&#39;: True, &#39;iterations&#39;: 20}, &#39;mle_settings&#39;: {&#39;optimizer&#39;: &#39;lbfgs&#39;, &#39;start_params&#39;: array([338.42,  -2.59,  36.04]), &#39;maxiter&#39;: 50, &#39;full_output&#39;: 1, &#39;disp&#39;: 0, &#39;fargs&#39;: ({&#39;transformed&#39;: False, &#39;includes_fixed&#39;: False, &#39;score_method&#39;: None, &#39;approx_complex_step&#39;: True},), &#39;callback&#39;: None, &#39;retall&#39;: False, &#39;extra_fit_funcs&#39;: {}, &#39;approx_grad&#39;: True, &#39;epsilon&#39;: 1e-05, &#39;bounds&#39;: [(None, None), (None, None), (None, None)], &#39;iprint&#39;: 0}, &#39;fit_details&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988&gt;}
+&lt;statsmodels.tsa.arima.model.ARIMAResultsWrapper object at 0x000002364641FA48&gt;
+{&#39;aic&#39;: 814.4485160613324, &#39;bic&#39;: 821.5945959653541, &#39;hqic&#39;: 817.3135839774633, &#39;llf&#39;: -404.2242580306662, &#39;const_coef&#39;: 277.9713945915167, &#39;const_std&#39;: 118.1050992740886, &#39;const_tvalue&#39;: 2.3535935052763772, &#39;const_tprob&#39;: 0.018592930972345434, &#39;const_cil&#39;: 46.489653623775354, &#39;const_ciu&#39;: 509.45313555925804, &#39;ar.L1_coef&#39;: 0.9791164160617731, &#39;ar.L1_std&#39;: 0.02295450657386397, &#39;ar.L1_tvalue&#39;: 42.65464879025526, &#39;ar.L1_tprob&#39;: 0.0, &#39;ar.L1_cil&#39;: 0.9341264098941119, &#39;ar.L1_ciu&#39;: 1.0241064222294345, &#39;sigma2_coef&#39;: 1377.3223978605706, &#39;sigma2_std&#39;: 210.9963686619532, &#39;sigma2_tvalue&#39;: 6.527706645355783, &#39;sigma2_tprob&#39;: 6.678433393410278e-11, &#39;sigma2_cil&#39;: 963.7771144144067, &#39;sigma2_ciu&#39;: 1790.8676813067345, &#39;m_dw&#39;: 2.195240498972637, &#39;m_jb_value&#39;: 604.726482323363, &#39;m_jb_prob&#39;: 4.8452125460414036e-132, &#39;m_skew&#39;: -2.632046025277302, &#39;m_kurtosis&#39;: 15.397873994370839, &#39;m_nm_value&#39;: 71.54656866378019, &#39;m_nm_prob&#39;: 2.909779066146226e-16, &#39;m_ks_value&#39;: 0.5744419088782997, &#39;m_ks_prob&#39;: 1.5675551545672083e-25, &#39;m_shp_value&#39;: 0.8011425733566284, &#39;m_shp_prob&#39;: 5.114620726942576e-09, &#39;m_ad_value&#39;: 2.524625732772108, &#39;m_ad_nnorm&#39;: False, &#39;converged&#39;: True}
+&lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8&gt;
+[0.98]
+{&#39;_results&#39;: &lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8&gt;, &#39;__doc__&#39;: &#39;\nClass to hold results from fitting an SARIMAX model.\n\nParameters\n----------\nmodel : SARIMAX instance\n    The fitted model instance\n\nAttributes\n----------\nspecification : dictionary\n    Dictionary including all attributes from the SARIMAX model instance.\npolynomial_ar : ndarray\n    Array containing autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_ma : ndarray\n    Array containing moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ar : ndarray\n    Array containing seasonal autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ma : ndarray\n    Array containing seasonal moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_trend : ndarray\n    Array containing trend polynomial coefficients, ordered from lowest\n    degree to highest. Initialized with ones, unless a coefficient is\n    constrained to be zero (in which case it is zero).\nmodel_orders : list of int\n    The orders of each of the polynomials in the model.\nparam_terms : list of str\n    List of parameters actually included in the model, in sorted order.\n\nSee Also\n--------\nstatsmodels.tsa.statespace.kalman_filter.FilterResults\nstatsmodels.tsa.statespace.mlemodel.MLEResults\n&#39;, &#39;mlefit&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988&gt;, &#39;mle_retvals&#39;: {&#39;fopt&#39;: 5.052803225383327, &#39;gopt&#39;: array([-6.66e-09, -3.86e-07, -1.55e-07]), &#39;fcalls&#39;: 88, &#39;warnflag&#39;: 0, &#39;converged&#39;: True, &#39;iterations&#39;: 20}, &#39;mle_settings&#39;: {&#39;optimizer&#39;: &#39;lbfgs&#39;, &#39;start_params&#39;: array([338.42,  -2.59,  36.04]), &#39;maxiter&#39;: 50, &#39;full_output&#39;: 1, &#39;disp&#39;: 0, &#39;fargs&#39;: ({&#39;transformed&#39;: False, &#39;includes_fixed&#39;: False, &#39;score_method&#39;: None, &#39;approx_complex_step&#39;: True},), &#39;callback&#39;: None, &#39;retall&#39;: False, &#39;extra_fit_funcs&#39;: {}, &#39;approx_grad&#39;: True, &#39;epsilon&#39;: 1e-05, &#39;bounds&#39;: [(None, None), (None, None), (None, None)], &#39;iprint&#39;: 0}, &#39;fit_details&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000023644AFE988&gt;}
+&lt;statsmodels.tsa.arima.model.ARIMAResultsWrapper object at 0x000002364641FA48&gt;
+{&#39;aic&#39;: 814.4485160613324, &#39;bic&#39;: 821.5945959653541, &#39;hqic&#39;: 817.3135839774633, &#39;llf&#39;: -404.2242580306662, &#39;const_coef&#39;: 277.9713945915167, &#39;const_std&#39;: 118.1050992740886, &#39;const_tvalue&#39;: 2.3535935052763772, &#39;const_tprob&#39;: 0.018592930972345434, &#39;const_cil&#39;: 46.489653623775354, &#39;const_ciu&#39;: 509.45313555925804, &#39;ar.L1_coef&#39;: 0.9791164160617731, &#39;ar.L1_std&#39;: 0.02295450657386397, &#39;ar.L1_tvalue&#39;: 42.65464879025526, &#39;ar.L1_tprob&#39;: 0.0, &#39;ar.L1_cil&#39;: 0.9341264098941119, &#39;ar.L1_ciu&#39;: 1.0241064222294345, &#39;sigma2_coef&#39;: 1377.3223978605706, &#39;sigma2_std&#39;: 210.9963686619532, &#39;sigma2_tvalue&#39;: 6.527706645355783, &#39;sigma2_tprob&#39;: 6.678433393410278e-11, &#39;sigma2_cil&#39;: 963.7771144144067, &#39;sigma2_ciu&#39;: 1790.8676813067345, &#39;m_dw&#39;: 2.195240498972637, &#39;m_jb_value&#39;: 604.726482323363, &#39;m_jb_prob&#39;: 4.8452125460414036e-132, &#39;m_skew&#39;: -2.632046025277302, &#39;m_kurtosis&#39;: 15.397873994370839, &#39;m_nm_value&#39;: 71.54656866378019, &#39;m_nm_prob&#39;: 2.909779066146226e-16, &#39;m_ks_value&#39;: 0.5744419088782997, &#39;m_ks_prob&#39;: 1.5675551545672083e-25, &#39;m_shp_value&#39;: 0.8011425733566284, &#39;m_shp_prob&#39;: 5.114620726942576e-09, &#39;m_ad_value&#39;: 2.524625732772108, &#39;m_ad_nnorm&#39;: False, &#39;converged&#39;: True}
+&lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x00000236319BD2C8&gt;
+[0.98]
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  7</span>
-<span class="normal">  8</span>
-<span class="normal">  9</span>
-<span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
-<span class="normal"> 19</span>
-<span class="normal"> 20</span>
-<span class="normal"> 21</span>
-<span class="normal"> 22</span>
-<span class="normal"> 23</span>
-<span class="normal"> 24</span>
-<span class="normal"> 25</span>
-<span class="normal"> 26</span>
-<span class="normal"> 27</span>
-<span class="normal"> 28</span>
-<span class="normal"> 29</span>
-<span class="normal"> 30</span>
-<span class="normal"> 31</span>
-<span class="normal"> 32</span>
-<span class="normal"> 33</span>
-<span class="normal"> 34</span>
-<span class="normal"> 35</span>
-<span class="normal"> 36</span>
-<span class="normal"> 37</span>
-<span class="normal"> 38</span>
-<span class="normal"> 39</span>
-<span class="normal"> 40</span>
-<span class="normal"> 41</span>
-<span class="normal"> 42</span>
-<span class="normal"> 43</span>
-<span class="normal"> 44</span>
-<span class="normal"> 45</span>
-<span class="normal"> 46</span>
-<span class="normal"> 47</span>
-<span class="normal"> 48</span>
-<span class="normal"> 49</span>
-<span class="normal"> 50</span>
-<span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
-<span class="normal"> 55</span>
-<span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
-<span class="normal"> 61</span>
-<span class="normal"> 62</span>
-<span class="normal"> 63</span>
-<span class="normal"> 64</span>
-<span class="normal"> 65</span>
-<span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># Import.</span>
- <span class="kn">import</span> <span class="nn">sys</span>
- <span class="kn">import</span> <span class="nn">warnings</span>
- <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
- <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
- <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
- <span class="c1"># Import ARIMA from statsmodels.</span>
- <span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
-
- <span class="c1"># import weights.</span>
- <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_timeseries</span>
- <span class="kn">from</span> <span class="nn">pyamr.core.regression.arima</span> <span class="kn">import</span> <span class="n">ARIMAWrapper</span>
-
- <span class="c1"># Filter warnings</span>
- <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
-
- <span class="c1"># ----------------------------</span>
- <span class="c1"># set basic configuration</span>
- <span class="c1"># ----------------------------</span>
- <span class="c1"># Matplotlib options</span>
- <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
- <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
- <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-
- <span class="c1"># Set pandas configuration.</span>
- <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
- <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
- <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-
- <span class="c1"># ----------------------------</span>
- <span class="c1"># create data</span>
- <span class="c1"># ----------------------------</span>
- <span class="c1"># Create timeseries data</span>
- <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">()</span>
-
- <span class="c1"># Create exogenous variable</span>
- <span class="n">exog</span> <span class="o">=</span> <span class="n">x</span>
-
- <span class="c1"># ----------------------------</span>
- <span class="c1"># fit the model</span>
- <span class="c1"># ----------------------------</span>
- <span class="c1"># Create specific arima model.</span>
- <span class="n">arima</span> <span class="o">=</span> <span class="n">ARIMAWrapper</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">ARIMA</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span> \
-  <span class="n">endog</span><span class="o">=</span><span class="n">y</span><span class="p">[:</span><span class="mi">80</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
- <span class="c1"># Print series</span>
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Series:&quot;</span><span class="p">)</span>
- <span class="nb">print</span><span class="p">(</span><span class="n">arima</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
-
- <span class="c1"># Print summary.</span>
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary:&quot;</span><span class="p">)</span>
- <span class="nb">print</span><span class="p">(</span><span class="n">arima</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
-
- <span class="c1"># -----------------</span>
- <span class="c1"># Save &amp; Load</span>
- <span class="c1"># -----------------</span>
- <span class="c1"># File location</span>
- <span class="c1">#fname = &#39;../../examples/saved/arima-sample.pickle&#39;</span>
-
- <span class="c1"># Save</span>
- <span class="c1">#arima.save(fname=fname)</span>
-
- <span class="c1"># Load</span>
- <span class="c1">#arima = ARIMAWrapper().load(fname=fname)</span>
-
-
- <span class="c1"># -----------------</span>
- <span class="c1">#  Predict and plot</span>
- <span class="c1"># -----------------</span>
- <span class="c1"># This example shows how to make predictions using the wrapper which has</span>
- <span class="c1"># been previously fitted. It also demonstrateds how to plot the resulting</span>
- <span class="c1"># data for visualization purposes. It shows two different types of</span>
- <span class="c1"># predictions:</span>
- <span class="c1">#    - dynamic predictions in which the prediction is done based on the</span>
- <span class="c1">#      previously predicted values. Note that for the case of ARIMA(0,1,1)</span>
- <span class="c1">#      it returns a line.</span>
- <span class="c1">#    - not dynamic in which the prediction is done based on the real</span>
- <span class="c1">#      values of the time series, no matter what the prediction was for</span>
- <span class="c1">#      those values.</span>
-
- <span class="c1"># Variables.</span>
- <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">120</span>
-
- <span class="c1"># Compute predictions</span>
- <span class="n">preds_1</span> <span class="o">=</span> <span class="n">arima</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
- <span class="n">preds_2</span> <span class="o">=</span> <span class="n">arima</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
- <span class="c1"># Create figure</span>
- <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-
- <span class="c1"># ----------------</span>
- <span class="c1"># Plot non-dynamic</span>
- <span class="c1"># ----------------</span>
- <span class="c1"># Plot truth values.</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-              <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-              <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
-
- <span class="c1"># Plot forecasted values.</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds_1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
-          <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">arima</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
-
- <span class="c1"># Plot the confidence intervals.</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds_1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_1</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
-                                 <span class="n">preds_1</span><span class="p">[</span><span class="mi">3</span><span class="p">,:],</span>
-                                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span>
-                                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-
- <span class="c1"># ------------</span>
- <span class="c1"># Plot dynamic</span>
- <span class="c1"># ------------</span>
- <span class="c1"># Plot truth values.</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-              <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-              <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
-
- <span class="c1"># Plot forecasted values.</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds_2</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_2</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
-          <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">arima</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
-
- <span class="c1"># Plot the confidence intervals.</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds_2</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_2</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
-                                 <span class="n">preds_2</span><span class="p">[</span><span class="mi">3</span><span class="p">,:],</span>
-                                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span>
-                                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-
- <span class="c1"># Configure axes</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;ARIMA non-dynamic&quot;</span><span class="p">)</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;ARIMA dynamic&quot;</span><span class="p">)</span>
-
- <span class="c1"># Format axes</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-
- <span class="c1"># Legend</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
- <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
- <span class="c1"># Show</span>
- <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  7</span> <span class="c1"># Import.</span>
+<span class="linenos">  8</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos">  9</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="linenos"> 10</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 11</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 12</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span> <span class="c1"># Import ARIMA from statsmodels.</span>
+<span class="linenos"> 15</span> <span class="c1">#from statsmodels.tsa.arima_model import ARIMA</span>
+<span class="linenos"> 16</span> <span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="linenos"> 17</span>
+<span class="linenos"> 18</span> <span class="c1"># import weights.</span>
+<span class="linenos"> 19</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_timeseries</span>
+<span class="linenos"> 20</span> <span class="kn">from</span> <span class="nn">pyamr.core.regression.arima</span> <span class="kn">import</span> <span class="n">ARIMAWrapper</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span> <span class="c1"># Filter warnings</span>
+<span class="linenos"> 23</span> <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 26</span> <span class="c1"># set basic configuration</span>
+<span class="linenos"> 27</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 28</span> <span class="c1"># Matplotlib options</span>
+<span class="linenos"> 29</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos"> 30</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos"> 31</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span> <span class="c1"># Set pandas configuration.</span>
+<span class="linenos"> 34</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="linenos"> 35</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="linenos"> 36</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 39</span> <span class="c1"># create data</span>
+<span class="linenos"> 40</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 41</span> <span class="c1"># Create timeseries data</span>
+<span class="linenos"> 42</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">()</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span> <span class="c1"># Create exogenous variable</span>
+<span class="linenos"> 45</span> <span class="n">exog</span> <span class="o">=</span> <span class="n">x</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 48</span> <span class="c1"># fit the model</span>
+<span class="linenos"> 49</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 50</span> <span class="c1"># Create specific arima model.</span>
+<span class="linenos"> 51</span> <span class="n">arima</span> <span class="o">=</span> <span class="n">ARIMAWrapper</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">ARIMA</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span> \
+<span class="linenos"> 52</span>  <span class="n">endog</span><span class="o">=</span><span class="n">y</span><span class="p">[:</span><span class="mi">80</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">trend</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span> <span class="c1"># Print series</span>
+<span class="linenos"> 55</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Series:&quot;</span><span class="p">)</span>
+<span class="linenos"> 56</span> <span class="nb">print</span><span class="p">(</span><span class="n">arima</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span> <span class="c1"># Print summary.</span>
+<span class="linenos"> 59</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary:&quot;</span><span class="p">)</span>
+<span class="linenos"> 60</span> <span class="nb">print</span><span class="p">(</span><span class="n">arima</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span> <span class="c1"># -----------------</span>
+<span class="linenos"> 63</span> <span class="c1"># Save &amp; Load</span>
+<span class="linenos"> 64</span> <span class="c1"># -----------------</span>
+<span class="linenos"> 65</span> <span class="c1"># File location</span>
+<span class="linenos"> 66</span> <span class="c1">#fname = &#39;../../examples/saved/arima-sample.pickle&#39;</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span> <span class="c1"># Save</span>
+<span class="linenos"> 69</span> <span class="c1">#arima.save(fname=fname)</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span> <span class="c1"># Load</span>
+<span class="linenos"> 72</span> <span class="c1">#arima = ARIMAWrapper().load(fname=fname)</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span> <span class="c1"># -----------------</span>
+<span class="linenos"> 76</span> <span class="c1">#  Predict and plot</span>
+<span class="linenos"> 77</span> <span class="c1"># -----------------</span>
+<span class="linenos"> 78</span> <span class="c1"># This example shows how to make predictions using the wrapper which has</span>
+<span class="linenos"> 79</span> <span class="c1"># been previously fitted. It also demonstrateds how to plot the resulting</span>
+<span class="linenos"> 80</span> <span class="c1"># data for visualization purposes. It shows two different types of</span>
+<span class="linenos"> 81</span> <span class="c1"># predictions:</span>
+<span class="linenos"> 82</span> <span class="c1">#    - dynamic predictions in which the prediction is done based on the</span>
+<span class="linenos"> 83</span> <span class="c1">#      previously predicted values. Note that for the case of ARIMA(0,1,1)</span>
+<span class="linenos"> 84</span> <span class="c1">#      it returns a line.</span>
+<span class="linenos"> 85</span> <span class="c1">#    - not dynamic in which the prediction is done based on the real</span>
+<span class="linenos"> 86</span> <span class="c1">#      values of the time series, no matter what the prediction was for</span>
+<span class="linenos"> 87</span> <span class="c1">#      those values.</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span> <span class="c1"># Variables.</span>
+<span class="linenos"> 90</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">120</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span> <span class="c1"># Compute predictions</span>
+<span class="linenos"> 93</span> <span class="n">preds_1</span> <span class="o">=</span> <span class="n">arima</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos"> 94</span> <span class="n">preds_2</span> <span class="o">=</span> <span class="n">arima</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span> <span class="c1"># Create figure</span>
+<span class="linenos"> 97</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span> <span class="c1"># ----------------</span>
+<span class="linenos">100</span> <span class="c1"># Plot non-dynamic</span>
+<span class="linenos">101</span> <span class="c1"># ----------------</span>
+<span class="linenos">102</span> <span class="c1"># Plot truth values.</span>
+<span class="linenos">103</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="linenos">104</span>              <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">105</span>              <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span> <span class="c1"># Plot forecasted values.</span>
+<span class="linenos">108</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds_1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
+<span class="linenos">109</span>          <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">arima</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span> <span class="c1"># Plot the confidence intervals.</span>
+<span class="linenos">112</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds_1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_1</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+<span class="linenos">113</span>                                 <span class="n">preds_1</span><span class="p">[</span><span class="mi">3</span><span class="p">,:],</span>
+<span class="linenos">114</span>                                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span>
+<span class="linenos">115</span>                                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span> <span class="c1"># ------------</span>
+<span class="linenos">118</span> <span class="c1"># Plot dynamic</span>
+<span class="linenos">119</span> <span class="c1"># ------------</span>
+<span class="linenos">120</span> <span class="c1"># Plot truth values.</span>
+<span class="linenos">121</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="linenos">122</span>              <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">123</span>              <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span> <span class="c1"># Plot forecasted values.</span>
+<span class="linenos">126</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds_2</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_2</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
+<span class="linenos">127</span>          <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">arima</span><span class="o">.</span><span class="n">_identifier</span><span class="p">())</span>
+<span class="linenos">128</span>
+<span class="linenos">129</span> <span class="c1"># Plot the confidence intervals.</span>
+<span class="linenos">130</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds_2</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds_2</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span>
+<span class="linenos">131</span>                                 <span class="n">preds_2</span><span class="p">[</span><span class="mi">3</span><span class="p">,:],</span>
+<span class="linenos">132</span>                                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span>
+<span class="linenos">133</span>                                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">134</span>
+<span class="linenos">135</span> <span class="c1"># Configure axes</span>
+<span class="linenos">136</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;ARIMA non-dynamic&quot;</span><span class="p">)</span>
+<span class="linenos">137</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;ARIMA dynamic&quot;</span><span class="p">)</span>
+<span class="linenos">138</span>
+<span class="linenos">139</span> <span class="c1"># Format axes</span>
+<span class="linenos">140</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">141</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="linenos">142</span>
+<span class="linenos">143</span> <span class="c1"># Legend</span>
+<span class="linenos">144</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="linenos">145</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="linenos">146</span>
+<span class="linenos">147</span> <span class="c1"># Show</span>
+<span class="linenos">148</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">149</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
 </pre></div>
-</td></tr></table></div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.175 seconds)</p>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.079 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/9f70fd5d7ecb53ea9cefdac4ecad676e/plot_core_regression_arima.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_arima.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/2001417af432b95d68831cdd664f0313/plot_core_regression_arima.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_arima.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../../../_downloads/7d4efc8877c33be7838fce27eaff1be0/plot_core_regression_arima.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_arima.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/33d870081a7f34d8203f1695ad92446b/plot_core_regression_arima.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_arima.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="plot_core_regression_ensemble.html" class="btn btn-neutral float-right" title="Regression - WLSARMA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../metrics/plot_metrics_weights.html" class="btn btn-neutral float-left" title="Metrics - weights" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_regression_ensemble.html" class="btn btn-neutral float-right" title="Regression - WLSARMA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Bernard Hernandez.
-
-    </p>
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
