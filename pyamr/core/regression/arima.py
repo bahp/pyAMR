@@ -68,12 +68,6 @@ class ARIMAWrapper(RegressionWrapper):
     -------
     array-like
     """
-    print(self._raw.__dict__)
-    print(self._raw)
-    print(self._result)
-    print(self._raw._results)
-    print(self._raw.arparams)
-
     # Compute forecast error
     fcasterr = _forecast_error(sigma2=self._result['sigma2_coef'],
                                arparams=self._raw.arparams, 

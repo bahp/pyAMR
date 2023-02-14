@@ -133,8 +133,6 @@ class BaseWrapper(object):
         # Create empty list.
         grid_results = []
 
-        print("UEVAAA")
-
         # Loop for all possible combinations.
         for i, params in enumerate(ParameterGrid(grid_params)):
             try:

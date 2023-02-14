@@ -2,8 +2,6 @@
 Step 00 - Registries
 ====================
 
-.. note: Not finished!
-
 """
 
 
@@ -12,6 +10,6 @@ Step 00 - Registries
 # Registries
 # ----------
 #
-# .. todo:: Brief introduction to the registries...
+# .. todo:: Not implemented.
 
 

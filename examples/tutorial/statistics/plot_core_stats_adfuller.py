@@ -53,7 +53,9 @@ print(adf.as_series())
 
 # Print summary.
 print("\n")
+print("Standard:")
 print(adf.as_summary())
+print("\nVerbose:")
 print(adf.as_summary(verbose=10))
 
 # Print identifier.
