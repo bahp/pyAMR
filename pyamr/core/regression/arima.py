@@ -253,7 +253,7 @@ class ARIMAWrapper(RegressionWrapper):
   # ---------------------------------------------------------------------------
   #                               auto method
   # ---------------------------------------------------------------------------
-  def auto(self, endog, exog=None, ic='bic', trends=['nc','c'], max_ar=3, 
+  def auto(self, endog, exog=None, ic='bic', trends=['n','c'], max_ar=3,
                  max_ma=3, max_d=1, warn='ignore', return_fits=False, 
                  converged=True, disp=0, verbose=0, **kwargs):
     """This method finds the best arima through bruteforce.

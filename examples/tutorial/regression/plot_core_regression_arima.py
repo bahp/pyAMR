@@ -146,3 +146,4 @@ axes[1].legend()
 
 # Show
 plt.show()
+plt.close('all')

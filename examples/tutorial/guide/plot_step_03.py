@@ -205,3 +205,4 @@ ax.legend(prop=font, loc=4)
 plt.suptitle("Study of Stationarity")
 
 plt.show()
+plt.close('all')

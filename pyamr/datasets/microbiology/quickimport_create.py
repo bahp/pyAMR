@@ -224,7 +224,7 @@ if __name__ == '__main__':
 
 
 
-    """
+
     # --------------------------------------------
     # Create registries
     # --------------------------------------------
@@ -252,37 +252,10 @@ if __name__ == '__main__':
     print(reg_antimicrobial)
     print("\nPatients:")
     print(reg_patient)
-    """
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     # Fill missing gram stain
     reg_microorganism.gram_stain = reg_microorganism.gram_stain.fillna('u')
+
 
     # -------------------------------------------------
     # Complete susceptibility records

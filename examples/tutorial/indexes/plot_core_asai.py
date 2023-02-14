@@ -293,3 +293,4 @@ plt.legend()
 
 # Display
 plt.show()
+plt.close('all')

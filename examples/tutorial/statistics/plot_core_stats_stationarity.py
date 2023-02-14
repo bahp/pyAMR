@@ -115,3 +115,4 @@ plt.suptitle("Study of Stationarity")
 
 # Show
 plt.show()
+plt.close('all')
