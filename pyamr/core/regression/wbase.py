@@ -9,6 +9,7 @@
 ###############################################################################
 # Libraries.
 import math
+import pickle
 import inspect
 import warnings
 import numpy as np
@@ -85,7 +86,7 @@ class BaseWrapper(object):
     def fargs(self, kwargs, function):
         """This method returns elements in kwargs which are function inputs."""
         # Get all parameters for the function.
-        prms = inspect.getargspec(function)
+        prms = inspect.getfullargspec(function)
         # Create dictionary and return
         return {k: kwargs[k] for k in prms.args if k in kwargs}
 

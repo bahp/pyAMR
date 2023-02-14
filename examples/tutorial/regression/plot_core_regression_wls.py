@@ -116,4 +116,5 @@ plt.legend()
 
 # Show
 plt.show()
+plt.close('all')
 

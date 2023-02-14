@@ -9,7 +9,7 @@ Step 01 - Introduction
 # Loading data
 # ------------
 #
-# .. image:: ../../_static/imgs/susceptibility-test-record.png
+# .. image:: ../../../_static/imgs/susceptibility-test-record.png
 #    :width: 200
 #    :align: right
 #    :alt: ASAI
@@ -69,7 +69,7 @@ print(data.dtypes)
 # Susceptible outcomes respectively. The definition might vary slightly since the
 # intermediate category is not always considered.
 #
-# The parameter strategy accepts three different options:
+# The parameter strategy accepts the following options:
 #
 #  (i) ``soft``   as R / R+I+S
 #  (ii) ``medium`` as R / R+S
@@ -347,6 +347,7 @@ plt.tight_layout()
 
 # Show
 plt.show()
+plt.close('all')
 
 
 #######################################################################

@@ -101,4 +101,11 @@ Acronym  Full name                                      Status
 
 - **Single Antibiotic Resistance Trend (SART)**
 
+    The single antimicrobial resistance trend measures the ratio of change per time unit
+    (e.g. monthly or yearly). To compute this metric, it is necessary to generate a
+    resistance time series from the susceptibility test data. This is often achieved by
+    computing the SARI consecutive or overlapping partitions of the data. Then, the trend
+    can be extracted using for example a linear model where the slope, which is a value
+    within the range [-1, 1] indicates the ratio of change.
+
     .. warning:: Pending!

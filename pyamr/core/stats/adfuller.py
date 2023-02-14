@@ -226,7 +226,7 @@ if __name__ == '__main__':
     adf = ADFWrapper(adfuller)
 
     # Grid parameters.
-    grid_params = {'x': [y], 'regression': ['c', 'nc', 'ct']}
+    grid_params = {'x': [y], 'regression': ['c', 'n', 'ct']}
 
     # Get wrappers.
     lwrappers = adf.grid_search(grid_params=grid_params, verbose=1)

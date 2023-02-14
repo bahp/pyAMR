@@ -228,7 +228,7 @@ class WLSWrapper(RegressionWrapper):
     # --------------------------------------------------------------------------
     #                          fit and predict methods
     # --------------------------------------------------------------------------
-    def fit(self, endog, exog=None, trend='nc',
+    def fit(self, endog, exog=None, trend='n',
             weights=None,
             W=None,
             **kwargs):
@@ -244,7 +244,7 @@ class WLSWrapper(RegressionWrapper):
         exog : array-like
           The exogenous variable (by default is the time t starting in 0)
 
-        trend:  str-like, options = {c, nc}
+        trend:  str-like, options = {c, n}
           Wether to add a constant or not.
 
         weights : array-like (optional)

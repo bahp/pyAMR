@@ -5,7 +5,10 @@ import pandas as pd
 
 # Specific
 from pyamr.core.sari import sari
+from pyamr.core.asai import asai
 from pyamr.core.sari import SARI
+from pyamr.core.asai import ASAI
+from pyamr.core.mari import MARI
 
 # ----------------------------------------------------
 #
@@ -34,6 +37,14 @@ def fixture():
 @pytest.fixture
 def fixture3():
     return pd.read_csv('pyamr/fixtures/fixture_3.csv')
+
+@pytest.fixture
+def fixture4():
+    return pd.read_csv('pyamr/fixtures/fixture_4.csv')
+
+@pytest.fixture
+def fixture5():
+    return pd.read_csv('pyamr/fixtures/fixture_5.csv')
 
 def test_answer():
     """
@@ -81,6 +92,91 @@ def test_sari_class_timeseries(fixture3):
     assert r.shape[0] == 5
     assert 'DATE' in r.index.names
 
+
 # ----------------------------------------------
-#   Single Antibiotic Resistance Trend (SART)
+#   Multiple Antibiotic Resistance Index (MARI)
 # ----------------------------------------------
+def test_mari_class(fixture5):
+    r, isolates = MARI().compute(fixture5,
+        return_frequencies=True,
+        retyrn_isolates=False)
+    assert r.shape[0] == 3
+
+def test_mari_class_temporal_iti(fixture5):
+    r = MARI().compute(fixture5, shift='1D',
+        period=1, cdate='DATE',
+        return_isolates=False)
+    assert r.shape[0] == 7
+
+def test_mari_class_temporal_oti(fixture5):
+    r = MARI().compute(fixture5, shift='1D',
+        period='2D', cdate='DATE',
+        return_isolates=False)
+    assert r.shape[0] == 7
+
+
+# ---------------------------------------------------
+#   Antimicrobial Spectrum of Activity Index (ASAI)
+# ---------------------------------------------------
+def test_asai_error_missing_column_resistance(fixture4):
+    with pytest.raises(ValueError):
+        r = fixture4.drop(columns=['RESISTANCE']) \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai)
+
+def test_asai_error_missing_column_genus(fixture4):
+    with pytest.raises(ValueError):
+        r = fixture4.drop(columns=['GENUS']) \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai)
+
+def test_asai_error_missing_column_specie(fixture4):
+    with pytest.raises(ValueError):
+        r = fixture4.drop(columns=['SPECIE']) \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai)
+
+def test_asai_error_missing_column_wgenus(fixture4):
+    with pytest.raises(ValueError):
+        r = fixture4.drop(columns=['W_GENUS']) \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai)
+
+def test_asai_error_threshold_double_defined(fixture4):
+    with pytest.warns():
+        r = fixture4 \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai, threshold=0.6)
+
+def test_asai_error_threshold_not_defined(fixture4):
+    with pytest.warns():
+        r = fixture4.drop(columns=['THRESHOLD']) \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai)
+
+def test_asai_weights_from_column(fixture4):
+    r = fixture4 \
+        .groupby(['ANTIBIOTIC']) \
+        .apply(asai, verbose=0)
+    assert r.shape[0] == 2
+
+def test_asai_weights_uniform(fixture4):
+    r = fixture4 \
+        .groupby(['ANTIBIOTIC', 'GRAM']) \
+        .apply(asai, weights='uniform')
+    assert r.shape[0] == 4
+
+def test_asai_weights_frequency(fixture4):
+    r = fixture4 \
+        .groupby(['ANTIBIOTIC', 'GRAM']) \
+        .apply(asai, weights='frequency')
+    assert r.shape[0] == 4
+
+def test_asai_class(fixture4):
+    scores = ASAI().compute(fixture4,
+        groupby=['ANTIBIOTIC', 'GRAM'],
+        weights='uniform',
+        threshold=None,
+        min_freq=0)
+    assert scores.shape[0]==4
+

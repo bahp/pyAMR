@@ -227,7 +227,7 @@ def asai(dataframe, weights=None, threshold=None, tol=1e-6, verbose=0):
 
             - None: weights must be specified in [W_GENUS and W_SPECIE]
             - 'uniform': uniform weights for genus and species within genus.
-            - 'frequency: weights are proportional to the frequencies.
+            - 'frequency': weights are proportional to the frequencies.
 
         The following rules must be fulfilled by the weight columns:
 
