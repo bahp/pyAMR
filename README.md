@@ -1,6 +1,6 @@
 # pyamr
 
-<img src="epicimpoc/docs/source/_static/images/logo-lab-v2.png" align="right" width="80">
+<img src="docs/source/_static/images/logo-pyamr-v1.png" align="right" width="80">
 
 [url-py39]: https://www.python.org/downloads/release/python-390/
 [url-license]: https://www.gnu.org/licenses/gpl-3.0
