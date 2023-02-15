@@ -181,7 +181,13 @@ Let's install the required libraries.
   python -m pip install sphinx-std-theme  # Install sphinx-std-theme CSS
   python -m pip install matplotlib        # Install matplotlib for plot examples
 
-Then go to the docs folder within main and run:
+Then go to the docs folder within main and generate the api docs
+
+.. code-block:: console
+
+  sphinx-apidoc -o ./source/_apidoc ../pyamr
+
+Now lets generate the documentation:
 
 .. code-block:: console
 
