@@ -2,7 +2,7 @@
 Plotly - Sunburst (sari)
 ------------------------
 
-.. warning:: It might take some time to load.
+.. warning:: Please be patient, it might take some time to load.
 
 """
 

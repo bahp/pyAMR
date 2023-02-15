@@ -1,18 +1,9 @@
 """
 Piechart AMR review
 ===================
-
 """
 
 #######################################################################
-#
-# Author: Bernard
-# Date: 19/08/2016
-# Description: This script creates PIECHARTS for the paper which
-#              describes the infection risk inference: "Evaluating
-#              machine learning algorithms for infection risk inference
-#              using routinely collected pathology laboratory data".
-#
 # Notes: The values can be changed to display other data.
 #
 # Useful links:
@@ -58,7 +49,7 @@ pctdistance = 0.8         # ratio betwen center and text (default=0.6)
 labeldistance = 0.5       # radial distance wich pie labels are drawn
 shadow = False            # shadow
 startangle = 90           # rotate piechart (default=0)
-radius = None             # size of piechart (default=1)
+radius = 1                # size of piechart (default=1)
 counterclock = False      # fractions direction.
 center = (0,0)            # center position of the chart.
 frame = False             # plot axes frame with the pie chart.
@@ -126,7 +117,7 @@ pctdistance = 0.6         # ratio betwen center and text (default=0.6)
 labeldistance = 0.4       # radial distance wich pie labels are drawn
 shadow = False            # shadow
 startangle = 90           # rotate piechart (default=0)
-radius = None             # size of piechart (default=1)
+radius = 1                # size of piechart (default=1)
 counterclock = False      # fractions direction.
 center = (0,0)            # center position of the chart.
 frame = False             # plot axes frame with the pie chart.
@@ -193,7 +184,7 @@ pctdistance = 0.6         # ratio betwen center and text (default=0.6)
 labeldistance = 0.4       # radial distance wich pie labels are drawn
 shadow = False            # shadow
 startangle = 90           # rotate piechart (default=0)
-radius = None             # size of piechart (default=1)
+radius = 1                # size of piechart (default=1)
 counterclock = False      # fractions direction.
 center = (0,0)            # center position of the chart.
 frame = False             # plot axes frame with the pie chart.

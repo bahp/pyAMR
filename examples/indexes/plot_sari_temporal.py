@@ -250,6 +250,7 @@ print(oti)
 #     be applying the mean operation on months Jan, Feb, May if there was not
 #     data and therefore no entry in the dataframe for March. This issue can be
 #     addressed in two different ways:
+#
 #       - setting the date_received as index and using w='3M'.
 #       - resampling the dataframe so that all date entries appear. Note that
 #         depending on the function applied we might want to fill gaps with

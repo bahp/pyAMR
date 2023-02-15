@@ -156,8 +156,8 @@ dataframe[['genus', 'species']] = \
         .str.split(expand=True, n=1)
 
 # Combine with registry information
-dataframe = mreg.combine(dataframe)
-dataframe = areg.combine(dataframe)
+dataframe = mreg.combine(dataframe, on='microorganism_name')
+dataframe = areg.combine(dataframe, on='antimicrobial_name')
 
 print(dataframe.dtypes)
 
