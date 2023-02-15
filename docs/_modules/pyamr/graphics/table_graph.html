@@ -113,417 +113,422 @@
 
 
 <span class="n">_DEFAULT_KWGS</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SARI&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-  <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-  <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SARI&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
     <span class="s1">&#39;vmin&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
     <span class="s1">&#39;vmax&#39;</span><span class="p">:</span><span class="mi">1</span>
-  <span class="p">}</span>
-  <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
 <span class="c1"># set the colormap and centre the colorbar</span>
 <div class="viewcode-block" id="MidpointNormalize"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.MidpointNormalize">[docs]</a><span class="k">class</span> <span class="nc">MidpointNormalize</span><span class="p">(</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Normalise the colorbar so that diverging bars work </span>
-<span class="sd">  there way either side from a prescribed midpoint value)</span>
-
-<span class="sd">  use: MidpointNormalize(midpoint=0.,vmin=-100, vmax=100)</span>
-
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                     <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                     <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                     <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">=</span> <span class="n">midpoint</span>
-    <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">clip</span><span class="p">)</span>
+<span class="sd">    Normalise the colorbar so that diverging bars work</span>
+<span class="sd">    there way either side from a prescribed midpoint value)</span>
 
-  <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    use: MidpointNormalize(midpoint=0.,vmin=-100, vmax=100)</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># I&#39;m ignoring masked values and all kinds of edge cases to make a</span>
-    <span class="c1"># simple example...</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmax</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">=</span> <span class="n">midpoint</span>
+        <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">clip</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># I&#39;m ignoring masked values and all kinds of edge cases to make a</span>
+        <span class="c1"># simple example...</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmax</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div>
+
+
+
 
 <div class="viewcode-block" id="TableGraph"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph">[docs]</a><span class="k">class</span> <span class="nc">TableGraph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+    <span class="c1"># Attributes</span>
+    <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">9</span>
 
-  <span class="c1"># Attributes</span>
-  <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                              HELPER METHODS</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="TableGraph.get_map_config"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.get_map_config">[docs]</a>    <span class="k">def</span> <span class="nf">get_map_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">xsym</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                             <span class="n">xticks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">xline</span><span class="o">=</span><span class="p">[],</span>
+                             <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">vsym</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+                             <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                             <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+                             <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+                             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function helps creating a configuration map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create new map.</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;ax_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span>
+                   <span class="s1">&#39;xlim&#39;</span><span class="p">:</span><span class="n">xlim</span><span class="p">,</span>
+                   <span class="s1">&#39;xsym&#39;</span><span class="p">:</span><span class="n">xsym</span><span class="p">,</span>
+                   <span class="s1">&#39;xticks&#39;</span><span class="p">:</span><span class="n">xticks</span><span class="p">,</span>
+                   <span class="s1">&#39;xline&#39;</span><span class="p">:</span><span class="n">xline</span><span class="p">,</span>
+                 <span class="p">},</span>
+                 <span class="s1">&#39;cmap_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s1">&#39;vmin&#39;</span><span class="p">:</span><span class="n">vmin</span><span class="p">,</span>
+                   <span class="s1">&#39;vmax&#39;</span><span class="p">:</span><span class="n">vmax</span><span class="p">,</span>
+                   <span class="s1">&#39;vsym&#39;</span><span class="p">:</span><span class="n">vsym</span><span class="p">,</span>
+                   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">,</span>
+                   <span class="s1">&#39;midpoint&#39;</span><span class="p">:</span><span class="n">midpoint</span>
+                 <span class="p">},</span>
+                 <span class="s1">&#39;scatter_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="n">s</span><span class="p">,</span>
+                   <span class="s1">&#39;linewidths&#39;</span><span class="p">:</span><span class="n">linewidths</span><span class="p">,</span>
+                   <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="n">edgecolor</span>
+                 <span class="p">}</span>
+               <span class="p">}</span></div>
 
-  <span class="c1"># ---------------------------------------------------------------------------</span>
-  <span class="c1">#                              HELPER METHODS</span>
-  <span class="c1"># ---------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="TableGraph.get_map_config"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.get_map_config">[docs]</a>  <span class="k">def</span> <span class="nf">get_map_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                           <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                           <span class="n">xsym</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
-                           <span class="n">xticks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                           <span class="n">xline</span><span class="o">=</span><span class="p">[],</span>
-                           <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                           <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                           <span class="n">vsym</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                           <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
-                           <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                           <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
-                           <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
-                           <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function helps creating a configuration map.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Create new map.</span>
-    <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;ax_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
-               <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="n">title</span><span class="p">,</span>
-               <span class="s1">&#39;xlim&#39;</span><span class="p">:</span><span class="n">xlim</span><span class="p">,</span>
-               <span class="s1">&#39;xsym&#39;</span><span class="p">:</span><span class="n">xsym</span><span class="p">,</span>
-               <span class="s1">&#39;xticks&#39;</span><span class="p">:</span><span class="n">xticks</span><span class="p">,</span>
-               <span class="s1">&#39;xline&#39;</span><span class="p">:</span><span class="n">xline</span><span class="p">,</span>
-             <span class="p">},</span>
-             <span class="s1">&#39;cmap_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
-               <span class="s1">&#39;vmin&#39;</span><span class="p">:</span><span class="n">vmin</span><span class="p">,</span>
-               <span class="s1">&#39;vmax&#39;</span><span class="p">:</span><span class="n">vmax</span><span class="p">,</span>
-               <span class="s1">&#39;vsym&#39;</span><span class="p">:</span><span class="n">vsym</span><span class="p">,</span>
-               <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="n">cmap</span><span class="p">,</span>
-               <span class="s1">&#39;midpoint&#39;</span><span class="p">:</span><span class="n">midpoint</span>
-             <span class="p">},</span>
-             <span class="s1">&#39;scatter_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span> 
-               <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="n">s</span><span class="p">,</span> 
-               <span class="s1">&#39;linewidths&#39;</span><span class="p">:</span><span class="n">linewidths</span><span class="p">,</span>
-               <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="n">edgecolor</span>
-             <span class="p">}</span>
-           <span class="p">}</span></div>
+    <span class="k">def</span> <span class="nf">_init_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ncolumns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method initialises the axes.</span>
 
-  <span class="k">def</span> <span class="nf">_init_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ncolumns</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method initialises the axes.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ncolumns : number of columns.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ncolumns : number of columns.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        axes : array with the corresponding axes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create grid spec.</span>
+        <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncolumns</span><span class="p">)</span>
+        <span class="n">gs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
+                  <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span>
+                  <span class="n">bottom</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span>
+                  <span class="n">top</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
+                  <span class="n">wspace</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+        <span class="c1"># Create subplots.</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncolumns</span><span class="p">)]</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    axes : array with the corresponding axes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Create grid spec.</span>
-    <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncolumns</span><span class="p">)</span>
-    <span class="n">gs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> 
-              <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> 
-              <span class="n">bottom</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> 
-              <span class="n">top</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> 
-              <span class="n">wspace</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
-    <span class="c1"># Create subplots.</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncolumns</span><span class="p">)]</span>
-
-  <span class="k">def</span> <span class="nf">_init_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ncolumns</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="p">{},</span>
+    <span class="k">def</span> <span class="nf">_init_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ncolumns</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="p">{},</span>
                                  <span class="n">column_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method initialises the configuration parameters.</span>
+        <span class="sd">&quot;&quot;&quot;This method initialises the configuration parameters.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ncolumns      :</span>
-<span class="sd">    configuration :</span>
-<span class="sd">    column_names  :</span>
-<span class="sd">  </span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Create array with configuration parameters</span>
-    <span class="n">v_configuration</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1"># For each column.</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncolumns</span><span class="p">):</span>
-      <span class="c1"># Get default configuration.</span>
-      <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">()</span>
-      <span class="c1"># Configuration labelled with an index.</span>
-      <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">configuration</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">configuration</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="c1"># Configuration labelled with a name.</span>
-      <span class="k">if</span> <span class="n">column_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">configuration</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">configuration</span><span class="p">[</span><span class="n">column_names</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
-      <span class="c1"># Append</span>
-      <span class="n">v_configuration</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-    <span class="c1"># Return it.</span>
-    <span class="k">return</span> <span class="n">v_configuration</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ncolumns      :</span>
+<span class="sd">        configuration :</span>
+<span class="sd">        column_names  :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create array with configuration parameters</span>
+        <span class="n">v_configuration</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># For each column.</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncolumns</span><span class="p">):</span>
+            <span class="c1"># Get default configuration.</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">()</span>
+            <span class="c1"># Configuration labelled with an index.</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">configuration</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">configuration</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="c1"># Configuration labelled with a name.</span>
+            <span class="k">if</span> <span class="n">column_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">configuration</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">configuration</span><span class="p">[</span><span class="n">column_names</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="c1"># Append</span>
+            <span class="n">v_configuration</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="c1"># Return it.</span>
+        <span class="k">return</span> <span class="n">v_configuration</span>
 
 
-  <span class="k">def</span> <span class="nf">_vmin_vmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vsym</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function finds the vmin and vmax.</span>
+    <span class="k">def</span> <span class="nf">_vmin_vmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vsym</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function finds the vmin and vmax.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    x    : array with values.</span>
-<span class="sd">    vmin : manually selected vmin.</span>
-<span class="sd">    vmax : manually selected vmax.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x    : array with values.</span>
+<span class="sd">        vmin : manually selected vmin.</span>
+<span class="sd">        vmax : manually selected vmax.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    vmin : the minimum value.</span>
-<span class="sd">    vmax : the maximum value.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Find maximum and minimum.</span>
-    <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">vmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">vmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="c1"># Symmetric</span>
-    <span class="k">if</span> <span class="n">vsym</span><span class="p">:</span>
-      <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vmin</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">abs</span><span class="p">(</span><span class="n">vmax</span><span class="p">):</span>
-        <span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vmin</span><span class="p">)</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vmax</span><span class="p">)</span>
-      <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span>
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        vmin : the minimum value.</span>
+<span class="sd">        vmax : the maximum value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Find maximum and minimum.</span>
+        <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">vmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">vmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># Symmetric</span>
+        <span class="k">if</span> <span class="n">vsym</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vmin</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">abs</span><span class="p">(</span><span class="n">vmax</span><span class="p">):</span>
+                <span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vmin</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lim</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vmax</span><span class="p">)</span>
+            <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="o">-</span><span class="n">lim</span><span class="p">,</span> <span class="n">lim</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span>
 
-  <span class="k">def</span> <span class="nf">_colormap_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
-                                            <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+    <span class="k">def</span> <span class="nf">_colormap_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                            <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                             <span class="n">vsym</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                             <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function computes the colormap.</span>
+        <span class="sd">&quot;&quot;&quot;This function computes the colormap.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    name     : the name of the colormap.</span>
-<span class="sd">    vmin     : the minimum value to assign a color.</span>
-<span class="sd">    vmax     : the maximum value to assign a color.</span>
-<span class="sd">    vsym     : have same color scale when vmin and vmax are not the same.</span>
-<span class="sd">    midpoint : the midpoint for a cmap with diverging colors.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name     : the name of the colormap.</span>
+<span class="sd">        vmin     : the minimum value to assign a color.</span>
+<span class="sd">        vmax     : the maximum value to assign a color.</span>
+<span class="sd">        vsym     : have same color scale when vmin and vmax are not the same.</span>
+<span class="sd">        midpoint : the midpoint for a cmap with diverging colors.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    colormap : the desired values to pass to scatter.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Find vmin and vmax.</span>
-    <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vmin_vmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">vsym</span><span class="p">)</span>
-    <span class="c1"># Compute basic colormap.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-      <span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-    <span class="c1"># Compute midpoint colormap.</span>
-    <span class="k">if</span> <span class="n">midpoint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">norm</span> <span class="o">=</span> <span class="n">MidpointNormalize</span><span class="p">(</span><span class="n">midpoint</span><span class="o">=</span><span class="n">midpoint</span><span class="p">,</span> 
-                               <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> 
-                               <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span> 
-      <span class="n">norm</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        colormap : the desired values to pass to scatter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Find vmin and vmax.</span>
+        <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vmin_vmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">vsym</span><span class="p">)</span>
+        <span class="c1"># Compute basic colormap.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+        <span class="c1"># Compute midpoint colormap.</span>
+        <span class="k">if</span> <span class="n">midpoint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="n">MidpointNormalize</span><span class="p">(</span><span class="n">midpoint</span><span class="o">=</span><span class="n">midpoint</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span>
 
-  <span class="c1"># ---------------------------------------------------------------------------</span>
-  <span class="c1">#                               AXIS METHODS</span>
-  <span class="c1"># ---------------------------------------------------------------------------</span>
-  <span class="k">def</span> <span class="nf">_configure_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="c1">#                               AXIS METHODS</span>
+    <span class="c1"># ---------------------------------------------------------------------------</span>
+    <span class="k">def</span> <span class="nf">_configure_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">xsym</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                    <span class="n">xticks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                    <span class="n">xline</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="sd">&quot;&quot;&quot;This method configures the axis given external information.</span>
+        <span class="sd">&quot;&quot;&quot;This method configures the axis given external information.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ax : axes to configure.</span>
-<span class="sd">    </span>
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    ax : the axis that has been modified.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Aux variable</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="c1"># Format axis.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>                  <span class="c1"># Set y ticks.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)])</span>         <span class="c1"># Y axis limit.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>       <span class="c1"># Change the background color.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="c1"># Create grid with horizontal lines.</span>
-                          <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
-                          <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
-                          <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="c1"># Create grid with horizontal lines.</span>
-                          <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
-                          <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
-                          <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : axes to configure.</span>
 
-    <span class="c1"># Hide y-labels.</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">()):</span> <span class="c1"># Hide ylabels.</span>
-      <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ax : the axis that has been modified.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Aux variable</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="c1"># Format axis.</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>                  <span class="c1"># Set y ticks.</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)])</span>         <span class="c1"># Y axis limit.</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>       <span class="c1"># Change the background color.</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="c1"># Create grid with horizontal lines.</span>
+                              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+                              <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+                              <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="c1"># Create grid with horizontal lines.</span>
+                              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+                              <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                              <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
 
-    <span class="c1"># Hide all spines.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># Hide y-labels.</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">()):</span> <span class="c1"># Hide ylabels.</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="c1"># Basic configuration</span>
-    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">xticks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  
-      <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vmin_vmax</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vsym</span><span class="o">=</span><span class="n">xsym</span><span class="p">)</span> 
-      <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">])</span>
+        <span class="c1"># Hide all spines.</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="c1"># Add vertical lines.</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">xline</span><span class="p">:</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">plot_vertical_line</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">v</span><span class="p">)</span>
+        <span class="c1"># Basic configuration</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">xticks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vmin_vmax</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vsym</span><span class="o">=</span><span class="n">xsym</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">])</span>
+
+        <span class="c1"># Add vertical lines.</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">xline</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plot_vertical_line</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">v</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="TableGraph.plot_vertical_line"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_vertical_line">[docs]</a>  <span class="k">def</span> <span class="nf">plot_vertical_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">xv</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function adds a vertical line and background</span>
+<div class="viewcode-block" id="TableGraph.plot_vertical_line"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_vertical_line">[docs]</a>    <span class="k">def</span> <span class="nf">plot_vertical_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">xv</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function adds a vertical line and background</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ax  : the axis to plot the line.</span>
-<span class="sd">    top : the height of the vertical line.</span>
-<span class="sd">    xv  : the x value where the line should be placed.</span>
-<span class="sd">    bg  : the x value where the background should be extended.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax  : the axis to plot the line.</span>
+<span class="sd">        top : the height of the vertical line.</span>
+<span class="sd">        xv  : the x value where the line should be placed.</span>
+<span class="sd">        bg  : the x value where the background should be extended.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Plot line.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">xv</span><span class="p">,</span><span class="n">xv</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">top</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
-                              <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> 
-                              <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span>
-                              <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
- 
-    <span class="c1"># Plot background.</span>
-    <span class="k">if</span> <span class="n">bg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">cb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">cb</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-      <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="n">xv</span><span class="p">,</span><span class="n">bg</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">top</span><span class="p">,</span><span class="n">top</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  
-                                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> 
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Plot line.</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">xv</span><span class="p">,</span><span class="n">xv</span><span class="p">),(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">top</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+                                  <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                                  <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span>
+                                  <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Plot background.</span>
+        <span class="k">if</span> <span class="n">bg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">cb</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="n">xv</span><span class="p">,</span><span class="n">bg</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">top</span><span class="p">,</span><span class="n">top</span><span class="p">],</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
                                                    <span class="n">color</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="TableGraph.plot_array"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_array">[docs]</a>  <span class="k">def</span> <span class="nf">plot_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax_kwargs</span><span class="o">=</span><span class="p">{},</span>
+<div class="viewcode-block" id="TableGraph.plot_array"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_array">[docs]</a>    <span class="k">def</span> <span class="nf">plot_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax_kwargs</span><span class="o">=</span><span class="p">{},</span>
                                    <span class="n">cmap_kwargs</span><span class="o">=</span><span class="p">{},</span>
                                    <span class="n">scatter_kwargs</span><span class="o">=</span><span class="p">{},</span>
                                    <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;this method plots a single column.</span>
+        <span class="sd">&quot;&quot;&quot;this method plots a single column.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    x              : values to plot.</span>
-<span class="sd">    ax             : axis to plot the information.</span>
-<span class="sd">    ax_kwargs      : axis configuration information.</span>
-<span class="sd">    cmap_kwargs    : cmap configuration information.</span>
-<span class="sd">    scatter_kwargs : scatter configuration information.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x              : values to plot.</span>
+<span class="sd">        ax             : axis to plot the information.</span>
+<span class="sd">        ax_kwargs      : axis configuration information.</span>
+<span class="sd">        cmap_kwargs    : cmap configuration information.</span>
+<span class="sd">        scatter_kwargs : scatter configuration information.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    axis : the axis in which the series is plotted.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Create ax if it is not passed.</span>
-    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-    <span class="c1"># Create colormap.</span>
-    <span class="n">c</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colormap_info</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">cmap_kwargs</span><span class="p">)</span>
-    <span class="c1"># Plot.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
-               <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
-               <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
-               <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
-               <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
-               <span class="o">**</span><span class="n">scatter_kwargs</span><span class="p">)</span>
-    <span class="c1"># Configure axis.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_configure_axis</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">ax_kwargs</span><span class="p">)</span>
-    <span class="c1"># Return axis</span>
-    <span class="k">return</span> <span class="n">ax</span></div>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        axis : the axis in which the series is plotted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create ax if it is not passed.</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+          <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        <span class="c1"># Create colormap.</span>
+        <span class="n">c</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colormap_info</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">cmap_kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+                       <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="o">**</span><span class="n">scatter_kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+                       <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+                       <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="o">**</span><span class="n">scatter_kwargs</span><span class="p">)</span>
+        <span class="c1"># Configure axis.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configure_axis</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">ax_kwargs</span><span class="p">)</span>
+        <span class="c1"># Return axis</span>
+        <span class="k">return</span> <span class="n">ax</span></div>
 
 
-<div class="viewcode-block" id="TableGraph.plot_matrix"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_matrix">[docs]</a>  <span class="k">def</span> <span class="nf">plot_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                              <span class="n">ylabels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+<div class="viewcode-block" id="TableGraph.plot_matrix"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">plot_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                              <span class="n">ylabels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                               <span class="n">clabels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                               <span class="n">configuration</span><span class="o">=</span><span class="p">{}):</span>
-    <span class="sd">&quot;&quot;&quot;This method plots a matrix.</span>
+        <span class="sd">&quot;&quot;&quot;This method plots a matrix.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    data          :</span>
-<span class="sd">    ylabels       :</span>
-<span class="sd">    configuration :</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Create figure.</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data          :</span>
+<span class="sd">        ylabels       :</span>
+<span class="sd">        configuration :</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create figure.</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 
-    <span class="c1"># Set style.</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+        <span class="c1"># Set style.</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Get labels.</span>
-    <span class="n">ylabels</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">ylabels</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ylabels</span>
-    <span class="n">clabels</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">clabels</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">clabels</span>
+        <span class="c1"># Get labels.</span>
+        <span class="n">ylabels</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">ylabels</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ylabels</span>
+        <span class="n">clabels</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">clabels</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">clabels</span>
 
-    <span class="c1"># Initialise the axes.</span>
-    <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">axes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_axes</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="c1"># Initialise the axes.</span>
+        <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+          <span class="n">axes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_axes</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="c1"># Initliaise the configuration maps.</span>
-    <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_conf</span><span class="p">(</span><span class="n">ncolumns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
-                           <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
-                           <span class="n">column_names</span><span class="o">=</span><span class="n">clabels</span><span class="p">)</span>
+        <span class="c1"># Initliaise the configuration maps.</span>
+        <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_conf</span><span class="p">(</span><span class="n">ncolumns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                               <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+                               <span class="n">column_names</span><span class="o">=</span><span class="n">clabels</span><span class="p">)</span>
 
-    <span class="c1"># Loop and display each column.</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">cf</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">conf</span><span class="p">)):</span> 
-      <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_array</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">cf</span><span class="p">)</span>
+        <span class="c1"># Loop and display each column.</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">cf</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">conf</span><span class="p">)):</span>
+          <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_array</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">cf</span><span class="p">)</span>
 
-    <span class="c1"># Set ylabels.</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ylabels</span><span class="p">)</span>
+        <span class="c1"># Set ylabels.</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ylabels</span><span class="p">)</span>
 
-    <span class="c1"># Show ylabels.</span>
-    <span class="n">ticks</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ticks</span><span class="p">):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Show ylabels.</span>
+        <span class="n">ticks</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ticks</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="c1"># Set clabels.</span>
-    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span><span class="n">clabels</span><span class="p">):</span>
-      <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="c1"># Set clabels.</span>
+        <span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span><span class="n">clabels</span><span class="p">):</span>
+          <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_title</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">axes</span></div>
-
-
-
-<div class="viewcode-block" id="TableGraph.plot_dataframe"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_dataframe">[docs]</a>  <span class="k">def</span> <span class="nf">plot_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="p">{}):</span>
-    <span class="sd">&quot;&quot;&quot;This method plots the whole table.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ---------- </span>
-<span class="sd">    dataframe     :</span>
-<span class="sd">    configuration :</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Get ylabels and clabels.</span>
-    <span class="n">clabels</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
-    <span class="n">ylabels</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
-
-    <span class="c1"># Convert as matrix.</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-      <span class="n">data</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-
-    <span class="c1"># Plot matrix</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ylabels</span><span class="o">=</span><span class="n">ylabels</span><span class="p">,</span> 
-                                  <span class="n">clabels</span><span class="o">=</span><span class="n">clabels</span><span class="p">,</span>
-                                  <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span>
-                                  <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span></div>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">axes</span></div>
 
 
 
+<div class="viewcode-block" id="TableGraph.plot_dataframe"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">plot_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;This method plots the whole table.</span>
 
-<div class="viewcode-block" id="TableGraph.plot"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot">[docs]</a>  <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
-      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">to_frame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe     :</span>
+<span class="sd">        configuration :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get ylabels and clabels.</span>
+        <span class="n">clabels</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">ylabels</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="c1"># Convert as matrix.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+          <span class="n">data</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+        <span class="c1"># Plot matrix</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ylabels</span><span class="o">=</span><span class="n">ylabels</span><span class="p">,</span>
+                                      <span class="n">clabels</span><span class="o">=</span><span class="n">clabels</span><span class="p">,</span>
+                                      <span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span>
+                                      <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="TableGraph.plot"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+          <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+          <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">to_frame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+          <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+
 
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
-  <span class="sd">&quot;&quot;&quot;Example of axis configuration</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  </span>
+<span class="sd">     Example of axis configuration</span>
 <span class="sd">     -----------------------------</span>
 <span class="sd">    { &#39;ax&#39;: None,</span>
 <span class="sd">      &#39;ax_kwargs&#39;: {</span>
@@ -553,18 +558,25 @@
   <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
   <span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span><span class="s1">&#39;c2&#39;</span><span class="p">]</span>
 
-  <span class="c1"># Create configuration.</span>
+  <span class="c1"># Show</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+
+  <span class="c1"># Create column configurations</span>
+  <span class="n">c0</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Column 0&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
+  <span class="n">c2</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Column 2&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+        <span class="n">midpoint</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">],</span>
+        <span class="n">xline</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mi">75</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;cb&#39;</span><span class="p">:</span><span class="s1">&#39;y&#39;</span><span class="p">}])</span>
+
+  <span class="c1"># Create configuration</span>
   <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
-  <span class="n">config</span><span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Column 0&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
-  <span class="n">config</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Column 2&#39;</span><span class="p">,</span>  
-                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
-                <span class="n">midpoint</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-                <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">],</span>
-                <span class="n">xline</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mi">75</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;cb&#39;</span><span class="p">:</span><span class="s1">&#39;y&#39;</span><span class="p">}])</span>
+  <span class="n">config</span><span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">c0</span>
+  <span class="n">config</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">c2</span>
 
-
-  <span class="c1"># Plot graph.</span>
+  <span class="c1"># Example with a DataFrame</span>
   <span class="n">axes</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+  <span class="c1"># Example with numpy array</span>
   <span class="n">axes</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
 
   <span class="c1"># Show.</span>
@@ -670,7 +682,7 @@
 
     <span class="c1"># Common for all.</span>
     <span class="c1">#ax.set_axis_bgcolor((1, 1, 1))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
                           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> 
                           <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
                           <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>

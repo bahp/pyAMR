@@ -24,8 +24,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Step 02 - Time Series Analysis" href="plot_step_03.html" />
-    <link rel="prev" title="Step 01 - Introduction" href="plot_step_01.html" /> 
+    <link rel="next" title="Step 03 - Time Series Analysis" href="plot_step_03.html" />
+    <link rel="prev" title="Step 01 - Indexes" href="plot_step_01.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,7 +56,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="plot_step_00.html">Step 00 - Registries</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_01.html">Step 01 - Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_01.html">Step 01 - Indexes</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Step 02 - Temporal evolution</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#loading-data">Loading data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#computing-sari-timeseries">Computing SARI timeseries</a></li>
@@ -64,8 +64,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#considerations">Considerations</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 02 - Time Series Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_04.html">Step 03 - TSA for trends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 03 - Time Series Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_04.html">Step 04 - TSA to estimate trends</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a></li>
@@ -78,10 +78,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -201,7 +197,7 @@ tests that will be used to compute the resistance index.</p>
 1M<sub>1</sub> defines a time series with monthly resistance indexes and 7D<sub>4</sub> defines a time series
 with weekly resistance indexes (7D) calculated using the microbiology records available for
 the previous four weeks (4x7D).</p>
-<p>For more information see: <a class="reference internal" href="../../../_apidoc/pyamr.core.html#pyamr.core.sari.SARI" title="pyamr.core.sari.SARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></a></p>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
@@ -348,7 +344,7 @@ information:</p>
 </div></blockquote>
 <p>Moreover, in this example we will compute the ASAI for each <code class="docutils literal notranslate"><span class="pre">gram_stain</span></code> category
 independently so we will need the microorganism gram stain information too. This
-information is available in the registries: <a class="reference internal" href="../../../_apidoc/pyamr.datasets.html#module-pyamr.datasets.registries" title="pyamr.datasets.registries"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.datasets.registries</span></code></a>.</p>
+information is available in the registries: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.datasets.registries</span></code>.</p>
 <p>Lets include all this information using the <code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">188</span> <span class="c1"># ------------------------------</span>
 <span class="linenos">189</span> <span class="c1"># Include gram stain</span>
@@ -547,7 +543,7 @@ information is available in the registries: <a class="reference internal" href="
 lets see how compute <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> in a temporal fashion with an example. It is
 important to highlight that now the date (<code class="docutils literal notranslate"><span class="pre">date_received</span></code>) is also included
 in the groupby parameter when calling the compute method.</p>
-<p>For more information see: <a class="reference internal" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI" title="pyamr.core.asai.ASAI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></a></p>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
@@ -927,8 +923,8 @@ date_received
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_step_01.html" class="btn btn-neutral float-left" title="Step 01 - Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_step_03.html" class="btn btn-neutral float-right" title="Step 02 - Time Series Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_step_01.html" class="btn btn-neutral float-left" title="Step 01 - Indexes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_step_03.html" class="btn btn-neutral float-right" title="Step 03 - Time Series Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

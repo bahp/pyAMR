@@ -30,14 +30,6 @@ pyamr.core.freq module
    :undoc-members:
    :show-inheritance:
 
-pyamr.core.greetings module
----------------------------
-
-.. automodule:: pyamr.core.greetings
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pyamr.core.mari module
 ----------------------
 

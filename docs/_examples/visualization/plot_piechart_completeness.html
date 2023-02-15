@@ -60,6 +60,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_distb.html">Table Boxplot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_table.html">Table Scatterplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_antibiogram.html">Graphics Antibiogram example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_table_graph.html">Graphics TableGraph example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_amrreview.html">Piechart AMR review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_biomarker.html">Piechart Biomarkers</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Piechart Completeness</a></li>
@@ -69,10 +71,6 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_pyplot_treemap.html">Plotly - Treemap (sari)</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -108,24 +106,9 @@ to download the full example code</p>
 <section class="sphx-glr-example-title" id="piechart-completeness">
 <span id="sphx-glr-examples-visualization-plot-piechart-completeness-py"></span><h1>Piechart Completeness<a class="headerlink" href="#piechart-completeness" title="Permalink to this headline"></a></h1>
 <ul class="sphx-glr-horizontal">
-<li><img alt="plot piechart completeness" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_completeness_001.png" />
-</li>
-<li><img alt="plot piechart completeness" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_completeness_002.png" />
-</li>
+<li><img src="../../_images/sphx_glr_plot_piechart_completeness_001.png" srcset="../../_images/sphx_glr_plot_piechart_completeness_001.png" alt="plot piechart completeness" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_piechart_completeness_002.png" srcset="../../_images/sphx_glr_plot_piechart_completeness_002.png" alt="plot piechart completeness" class = "sphx-glr-multi-img"/></li>
 </ul>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_completeness.py:74: MatplotlibDeprecationWarning:
-
-Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
-
-C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_completeness.py:109: MatplotlibDeprecationWarning:
-
-Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  7</span> <span class="c1"># Libraries.</span>
 <span class="linenos">  8</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos">  9</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -161,7 +144,7 @@ Support for passing a radius of None to mean 1 is deprecated since 3.3 and will 
 <span class="linenos"> 39</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.7</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
 <span class="linenos"> 40</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow.</span>
 <span class="linenos"> 41</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
-<span class="linenos"> 42</span> <span class="n">radius</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1"># size of piechart (default=1)</span>
+<span class="linenos"> 42</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># size of piechart (default=1)</span>
 <span class="linenos"> 43</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
 <span class="linenos"> 44</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
 <span class="linenos"> 45</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
@@ -255,7 +238,7 @@ Support for passing a radius of None to mean 1 is deprecated since 3.3 and will 
 <span class="linenos">133</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.139 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.141 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-piechart-completeness-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c73d9d398c60b9e36536057bb4310114/plot_piechart_completeness.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_piechart_completeness.py</span></code></a></p>

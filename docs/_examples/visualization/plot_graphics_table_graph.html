@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graphics TableGraph example &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Piechart AMR review" href="plot_piechart_amrreview.html" />
+    <link rel="prev" title="Graphics Antibiogram example" href="plot_graphics_antibiogram.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_dataframe_distb.html">Table Boxplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_dataframe_table.html">Table Scatterplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_antibiogram.html">Graphics Antibiogram example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Graphics TableGraph example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_piechart_amrreview.html">Piechart AMR review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_piechart_biomarker.html">Piechart Biomarkers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_piechart_completeness.html">Piechart Completeness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_piechart_culture.html">Piechart Cultures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_pyplot_sunburst.html">Plotly - Sunburst (sari)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_pyplot_timeseries.html">Plotly - Timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_pyplot_treemap.html">Plotly - Treemap (sari)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Visualization</a> &raquo;</li>
+      <li>Graphics TableGraph example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_examples/visualization/plot_graphics_table_graph.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-visualization-plot-graphics-table-graph-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="graphics-tablegraph-example">
+<span id="sphx-glr-examples-visualization-plot-graphics-table-graph-py"></span><h1>Graphics TableGraph example<a class="headerlink" href="#graphics-tablegraph-example" title="Permalink to this headline"></a></h1>
+<ul class="sphx-glr-horizontal">
+<li><img src="../../_images/sphx_glr_plot_graphics_table_graph_001.png" srcset="../../_images/sphx_glr_plot_graphics_table_graph_001.png" alt="Column 0, c1, Column 2" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_graphics_table_graph_002.png" srcset="../../_images/sphx_glr_plot_graphics_table_graph_002.png" alt="0, 1, Column 2" class = "sphx-glr-multi-img"/></li>
+</ul>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+    c0  c1  c2
+0   14   1  43
+1   99  22  74
+2    7   9  18
+3   57  90  81
+4   44  21   1
+5   62  76  56
+6   66  33  26
+7   25  77  14
+8   78  34  96
+9   42  92  44
+10  70  80  96
+11  76   1  50
+12  20   0   2
+13  57  85  35
+14  38  85  48
+15   1  51  90
+16   2   8  29
+17  49  97  69
+18   9  36  76
+19  97  84  34
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 5</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 6</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 7</span> <span class="kn">import</span> <span class="nn">json</span>
+<span class="linenos"> 8</span> <span class="kn">import</span> <span class="nn">copy</span>
+<span class="linenos"> 9</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">10</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">11</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">12</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">13</span> <span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">colors</span>
+<span class="linenos">14</span> <span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="linenos">15</span> <span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span> <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interp</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span> <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.table_graph</span> <span class="kn">import</span> <span class="n">TableGraph</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="sd">    Example of axis configuration</span>
+<span class="linenos">26</span><span class="sd">    -----------------------------</span>
+<span class="linenos">27</span><span class="sd">   { &#39;ax&#39;: None,</span>
+<span class="linenos">28</span><span class="sd">     &#39;ax_kwargs&#39;: {</span>
+<span class="linenos">29</span><span class="sd">       &#39;title&#39;:&#39;Example 1&#39;,</span>
+<span class="linenos">30</span><span class="sd">       &#39;xlim&#39;:None,</span>
+<span class="linenos">31</span><span class="sd">       &#39;xsym&#39;:False,</span>
+<span class="linenos">32</span><span class="sd">       &#39;xticks&#39;:None,</span>
+<span class="linenos">33</span><span class="sd">       &#39;xline&#39;:[{&#39;xv&#39;:0.05, &#39;bg&#39;:-1.0, &#39;cb&#39;:&#39;y&#39;}],</span>
+<span class="linenos">34</span><span class="sd">     },</span>
+<span class="linenos">35</span><span class="sd">     &#39;cmap_kwargs&#39;: {</span>
+<span class="linenos">36</span><span class="sd">       &#39;vmin&#39;:None,</span>
+<span class="linenos">37</span><span class="sd">       &#39;vmax&#39;:None,</span>
+<span class="linenos">38</span><span class="sd">       &#39;vsym&#39;:False,</span>
+<span class="linenos">39</span><span class="sd">       &#39;cmap&#39;:&#39;RdBu_r&#39;,</span>
+<span class="linenos">40</span><span class="sd">       &#39;midpoint&#39;:2.5</span>
+<span class="linenos">41</span><span class="sd">     },</span>
+<span class="linenos">42</span><span class="sd">     &#39;scatter_kwargs&#39;: {</span>
+<span class="linenos">43</span><span class="sd">       &#39;s&#39;:80,</span>
+<span class="linenos">44</span><span class="sd">       &#39;linewidths&#39;:0.75,</span>
+<span class="linenos">45</span><span class="sd">       &#39;edgecolor&#39;:&#39;gray&#39;</span>
+<span class="linenos">46</span><span class="sd">     }</span>
+<span class="linenos">47</span><span class="sd">   }</span>
+<span class="linenos">48</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span> <span class="c1"># Create data</span>
+<span class="linenos">51</span> <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos">52</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">53</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">]</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span> <span class="c1"># Show</span>
+<span class="linenos">56</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+<span class="linenos">57</span> <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span> <span class="c1"># Create column configurations</span>
+<span class="linenos">60</span> <span class="n">c0</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Column 0&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
+<span class="linenos">61</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">get_map_config</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Column 2&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+<span class="linenos">62</span>                                  <span class="n">midpoint</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span>
+<span class="linenos">63</span>                                  <span class="n">xline</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;cb&#39;</span><span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">}])</span>
+<span class="linenos">64</span>
+<span class="linenos">65</span> <span class="c1"># Create configuration</span>
+<span class="linenos">66</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos">67</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">c0</span>
+<span class="linenos">68</span> <span class="n">config</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">c2</span>
+<span class="linenos">69</span>
+<span class="linenos">70</span> <span class="c1"># Example with a DataFrame</span>
+<span class="linenos">71</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos">72</span>
+<span class="linenos">73</span> <span class="c1"># Example with numpy array</span>
+<span class="linenos">74</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="linenos">75</span>
+<span class="linenos">76</span> <span class="c1"># Show.</span>
+<span class="linenos">77</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.052 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-graphics-table-graph-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/718153debfa897d8c716c01e82f98b79/plot_graphics_table_graph.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_graphics_table_graph.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/b0ac05808e29c3335836e9158201f082/plot_graphics_table_graph.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_graphics_table_graph.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_graphics_antibiogram.html" class="btn btn-neutral float-left" title="Graphics Antibiogram example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_piechart_amrreview.html" class="btn btn-neutral float-right" title="Piechart AMR review" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

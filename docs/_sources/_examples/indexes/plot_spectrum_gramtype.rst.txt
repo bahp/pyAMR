@@ -30,33 +30,38 @@ ASAI - Gram stain (by specimen)
 
     *
 
-      .. image:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_001.png
-          :alt: BLDCUL
-          :class: sphx-glr-multi-img
+      .. image-sg:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_001.png
+         :alt: BLDCUL
+         :srcset: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_001.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_002.png
-          :alt: SPTCUL
-          :class: sphx-glr-multi-img
+      .. image-sg:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_002.png
+         :alt: SPTCUL
+         :srcset: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_002.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_003.png
-          :alt: URICUL
-          :class: sphx-glr-multi-img
+      .. image-sg:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_003.png
+         :alt: URICUL
+         :srcset: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_003.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_004.png
-          :alt: WOUCUL
-          :class: sphx-glr-multi-img
+      .. image-sg:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_004.png
+         :alt: WOUCUL
+         :srcset: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_004.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_005.png
-          :alt: XINCUL
-          :class: sphx-glr-multi-img
+      .. image-sg:: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_005.png
+         :alt: XINCUL
+         :srcset: /_examples/indexes/images/sphx_glr_plot_spectrum_gramtype_005.png
+         :class: sphx-glr-multi-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -100,7 +105,7 @@ ASAI - Gram stain (by specimen)
                                                         tetracycline                 0.0        8.0        1.0   9.0  0.8889
 
     [4491 rows x 5 columns]
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:527: UserWarning:
+    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:530: UserWarning:
 
 
                      Extreme resistances were found in the DataFrame. These rows
@@ -108,7 +113,7 @@ ASAI - Gram stain (by specimen)
                      to pairs with low number of records.
 
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:538: UserWarning:
+    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:544: UserWarning:
 
 
                      There are NULL values in columns that are required. These
@@ -498,7 +503,7 @@ ASAI - Gram stain (by specimen)
             .str.split(expand=True, n=1)
 
     # Combine with registry information
-    dataframe = mreg.combine(dataframe)
+    dataframe = mreg.combine(dataframe, on='microorganism_name')
 
     # Fill missing gram stain
     dataframe.gram_stain = dataframe.gram_stain.fillna('u')
@@ -690,7 +695,7 @@ ASAI - Gram stain (by specimen)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.076 seconds)
+   **Total running time of the script:** ( 0 minutes  7.679 seconds)
 
 
 .. _sphx_glr_download__examples_indexes_plot_spectrum_gramtype.py:

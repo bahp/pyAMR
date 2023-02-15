@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SART - Trend as slope of WLS &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examples with TSA" href="../forecasting/index.html" />
+    <link rel="prev" title="ASAI - Timeseries" href="plot_spectrum_temporal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/registries.html">Registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with indexes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_antibiogram.html">SARI - Antibiogram (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_clustermap.html">SARI - Clustermap (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_relmap.html">SARI - Relplot (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_temporal.html">SARI - Timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_gramtype.html">ASAI - Gram stain (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_multiple.html">ASAI - Multiple (by specimen)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_spectrum_temporal.html">ASAI - Timeseries</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SART - Trend as slope of WLS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Examples with indexes</a> &raquo;</li>
+      <li>SART - Trend as slope of WLS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_examples/indexes/plot_trend_basic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-trend-basic-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="sart-trend-as-slope-of-wls">
+<span id="sphx-glr-examples-indexes-plot-trend-basic-py"></span><h1>SART - Trend as slope of WLS<a class="headerlink" href="#sart-trend-as-slope-of-wls" title="Permalink to this headline"></a></h1>
+<img src="../../_images/sphx_glr_plot_trend_basic_001.png" srcset="../../_images/sphx_glr_plot_trend_basic_001.png" alt="plot trend basic" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\regression\linear_model.py:792: RuntimeWarning:
+
+divide by zero encountered in log
+
+
+Series:
+wls-rsquared                  0.5778
+wls-rsquared_adj              0.5735
+wls-fvalue                  134.1006
+wls-fprob                        0.0
+wls-aic                          inf
+wls-bic                          inf
+wls-llf                         -inf
+wls-mse_model            201334.5339
+wls-mse_resid              1501.3696
+wls-mse_total              3519.8864
+wls-const_coef              251.5555
+wls-const_std                 17.319
+wls-const_tvalue             14.5248
+wls-const_tprob                  0.0
+wls-const_cil               217.1864
+wls-const_ciu               285.9245
+wls-x1_coef                   2.8026
+wls-x1_std                     0.242
+wls-x1_tvalue                11.5802
+wls-x1_tprob                     0.0
+wls-x1_cil                    2.3223
+wls-x1_ciu                    3.2829
+wls-s_dw               Jarque-Ber...
+wls-s_jb_value             Prob(JB):
+wls-s_jb_prob              Cond. No.
+wls-s_skew                 Kurtosis:
+wls-s_kurtosis
+wls-s_omnibus_value    Prob(Omnib...
+wls-s_omnibus_prob             Skew:
+wls-m_dw                      0.1245
+wls-m_jb_value                6.7158
+wls-m_jb_prob                 0.0348
+wls-m_skew                   -0.5869
+wls-m_kurtosis                3.4836
+wls-m_nm_value                 7.234
+wls-m_nm_prob                 0.0269
+wls-m_ks_value                0.6035
+wls-m_ks_prob                    0.0
+wls-m_shp_value               0.9338
+wls-m_shp_prob                0.0001
+wls-m_ad_value                 2.875
+wls-m_ad_nnorm                 False
+wls-missing                    raise
+wls-exog               [[1.0, 0.0...
+wls-endog              [39.829307...
+wls-trend                          c
+wls-weights            [0.0752208...
+wls-W                  &lt;pyamr.met...
+wls-model              &lt;statsmode...
+wls-id                 WLS(c,Sig(...
+dtype: object
+
+Regression line:
+[251.55549109 254.35808977 257.16068845 259.96328712 262.7658858
+ 265.56848448 268.37108315 271.17368183 273.97628051 276.77887919]
+
+Summary:
+                            WLS Regression Results
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.578
+Model:                            WLS   Adj. R-squared:                  0.573
+Method:                 Least Squares   F-statistic:                     134.1
+Date:                Wed, 15 Feb 2023   Prob (F-statistic):           4.71e-20
+Time:                        13:32:39   Log-Likelihood:                   -inf
+No. Observations:                 100   AIC:                               inf
+Df Residuals:                      98   BIC:                               inf
+Df Model:                           1
+Covariance Type:            nonrobust
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const        251.5555     17.319     14.525      0.000     217.186     285.925
+x1             2.8026      0.242     11.580      0.000       2.322       3.283
+==============================================================================
+Omnibus:                        9.879   Durbin-Watson:                   0.388
+Prob(Omnibus):                  0.007   Jarque-Bera (JB):               12.517
+Skew:                           0.507   Prob(JB):                      0.00191
+Kurtosis:                       4.405   Cond. No.                         224.
+Normal (N):                     7.234   Prob(N):                         0.027
+==============================================================================
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 14</span> <span class="c1"># Import class.</span>
+<span class="linenos"> 15</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 16</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 17</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 18</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 19</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 20</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="linenos"> 21</span> <span class="kn">import</span> <span class="nn">statsmodels.robust.norms</span> <span class="k">as</span> <span class="nn">norms</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span> <span class="c1"># import weights.</span>
+<span class="linenos"> 24</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_timeseries</span>
+<span class="linenos"> 25</span> <span class="kn">from</span> <span class="nn">pyamr.core.regression.wls</span> <span class="kn">import</span> <span class="n">WLSWrapper</span>
+<span class="linenos"> 26</span> <span class="kn">from</span> <span class="nn">pyamr.metrics.weights</span> <span class="kn">import</span> <span class="n">SigmoidA</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 29</span> <span class="c1"># set basic configuration</span>
+<span class="linenos"> 30</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 31</span> <span class="c1"># Matplotlib options</span>
+<span class="linenos"> 32</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos"> 33</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos"> 34</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span> <span class="c1"># Set pandas configuration.</span>
+<span class="linenos"> 37</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="linenos"> 38</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="linenos"> 39</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 42</span> <span class="c1"># create data</span>
+<span class="linenos"> 43</span> <span class="c1"># ----------------------------</span>
+<span class="linenos"> 44</span> <span class="c1"># Create timeseries data</span>
+<span class="linenos"> 45</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">()</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span> <span class="c1"># Create method to compute weights from frequencies</span>
+<span class="linenos"> 48</span> <span class="n">W</span> <span class="o">=</span> <span class="n">SigmoidA</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span> <span class="c1"># Note that the function fit will call M.weights(weights) inside and will</span>
+<span class="linenos"> 51</span> <span class="c1"># store the M converter in the instance. Therefore, the code executed is</span>
+<span class="linenos"> 52</span> <span class="c1"># equivalent to &lt;weights=M.weights(f)&gt; with the only difference being that</span>
+<span class="linenos"> 53</span> <span class="c1"># the weight converter is not saved.</span>
+<span class="linenos"> 54</span> <span class="n">wls</span> <span class="o">=</span> <span class="n">WLSWrapper</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">WLS</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span> \
+<span class="linenos"> 55</span>     <span class="n">exog</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">endog</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">f</span><span class="p">,</span>
+<span class="linenos"> 56</span>     <span class="n">W</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">missing</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span> <span class="c1"># Print series.</span>
+<span class="linenos"> 59</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Series:&quot;</span><span class="p">)</span>
+<span class="linenos"> 60</span> <span class="nb">print</span><span class="p">(</span><span class="n">wls</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span> <span class="c1"># Print regression line.</span>
+<span class="linenos"> 63</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Regression line:&quot;</span><span class="p">)</span>
+<span class="linenos"> 64</span> <span class="nb">print</span><span class="p">(</span><span class="n">wls</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span> <span class="c1"># Print summary.</span>
+<span class="linenos"> 67</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary:&quot;</span><span class="p">)</span>
+<span class="linenos"> 68</span> <span class="nb">print</span><span class="p">(</span><span class="n">wls</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span> <span class="c1"># -----------------</span>
+<span class="linenos"> 71</span> <span class="c1"># Save &amp; Load</span>
+<span class="linenos"> 72</span> <span class="c1"># -----------------</span>
+<span class="linenos"> 73</span> <span class="c1"># File location</span>
+<span class="linenos"> 74</span> <span class="c1">#fname = &#39;../../examples/saved/wls-sample.pickle&#39;</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span> <span class="c1"># Save</span>
+<span class="linenos"> 77</span> <span class="c1">#wls.save(fname=fname)</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span> <span class="c1"># Load</span>
+<span class="linenos"> 80</span> <span class="c1">#wls = WLSWrapper().load(fname=fname)</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span> <span class="c1"># -------------</span>
+<span class="linenos"> 83</span> <span class="c1">#  Example I</span>
+<span class="linenos"> 84</span> <span class="c1"># -------------</span>
+<span class="linenos"> 85</span> <span class="c1"># This example shows how to make predictions using the wrapper and how</span>
+<span class="linenos"> 86</span> <span class="c1"># to plot the resultin data. In addition, it compares the intervales</span>
+<span class="linenos"> 87</span> <span class="c1"># provided by get_prediction (confidence intervals) and the intervals</span>
+<span class="linenos"> 88</span> <span class="c1"># provided by wls_prediction_std (prediction intervals).</span>
+<span class="linenos"> 89</span> <span class="c1">#</span>
+<span class="linenos"> 90</span> <span class="c1"># To Do: Implement methods to compute CI and PI (see regression).</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span> <span class="c1"># Variables.</span>
+<span class="linenos"> 93</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">180</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span> <span class="c1"># Compute predictions (exogenous?). It returns a 2D array</span>
+<span class="linenos"> 96</span> <span class="c1"># where the rows contain the time (t), the mean, the lower</span>
+<span class="linenos"> 97</span> <span class="c1"># and upper confidence (or prediction?) interval.</span>
+<span class="linenos"> 98</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">wls</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span> <span class="c1"># Create figure</span>
+<span class="linenos">102</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span> <span class="c1"># Plotting confidence intervals</span>
+<span class="linenos">105</span> <span class="c1"># -----------------------------</span>
+<span class="linenos">106</span> <span class="c1"># Plot truth values.</span>
+<span class="linenos">107</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="linenos">108</span>               <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">109</span>               <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span> <span class="c1"># Plot forecasted values.</span>
+<span class="linenos">112</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
+<span class="linenos">113</span>                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">wls</span><span class="o">.</span><span class="n">_identifier</span><span class="p">(</span><span class="n">short</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span> <span class="c1"># Plot the confidence intervals.</span>
+<span class="linenos">116</span> <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
+<span class="linenos">117</span>                              <span class="n">preds</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span>
+<span class="linenos">118</span>                              <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+<span class="linenos">119</span>                              <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span> <span class="c1"># Legend</span>
+<span class="linenos">122</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span> <span class="c1"># Show</span>
+<span class="linenos">125</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.025 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-trend-basic-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/dd113f088b890ccecd574aec41a82846/plot_trend_basic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_trend_basic.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/75ab65192708c055e0eaa93995bf8f50/plot_trend_basic.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_trend_basic.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_spectrum_temporal.html" class="btn btn-neutral float-left" title="ASAI - Timeseries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../forecasting/index.html" class="btn btn-neutral float-right" title="Examples with TSA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

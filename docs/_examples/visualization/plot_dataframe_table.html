@@ -24,7 +24,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Piechart AMR review" href="plot_piechart_amrreview.html" />
+    <link rel="next" title="Graphics Antibiogram example" href="plot_graphics_antibiogram.html" />
     <link rel="prev" title="Table Boxplot" href="plot_dataframe_distb.html" /> 
 </head>
 
@@ -60,6 +60,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_distb.html">Table Boxplot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Table Scatterplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_antibiogram.html">Graphics Antibiogram example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_table_graph.html">Graphics TableGraph example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_amrreview.html">Piechart AMR review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_biomarker.html">Piechart Biomarkers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_completeness.html">Piechart Completeness</a></li>
@@ -69,10 +71,6 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_pyplot_treemap.html">Plotly - Treemap (sari)</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -108,8 +106,7 @@ to download the full example code</p>
 <section class="sphx-glr-example-title" id="table-scatterplot">
 <span id="sphx-glr-examples-visualization-plot-dataframe-table-py"></span><h1>Table Scatterplot<a class="headerlink" href="#table-scatterplot" title="Permalink to this headline"></a></h1>
 <p>Example using your package</p>
-<img alt="SART, SARI, R2, Prob(JB), DW, P&gt;|t| m, P&gt;|t| n, Pearson, Percent" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_dataframe_table_001.png" />
-<p class="sphx-glr-script-out">Out:</p>
+<img src="../../_images/sphx_glr_plot_dataframe_table_001.png" srcset="../../_images/sphx_glr_plot_dataframe_table_001.png" alt="SART, SARI, R2, Prob(JB), DW, P>|t| m, P>|t| n, Pearson, Percent" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
    idx   org  abx   sart   sari     r2     jb     dw    ptm  ptn  pearson  percent
 0    9  SAUR  TRI  0.720  0.100  0.274  0.112  0.056  0.000  0.0   -0.046    7.189
@@ -429,7 +426,7 @@ to download the full example code</p>
 <span class="linenos">306</span>            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="linenos">307</span>     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="linenos">308</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">309</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
+<span class="linenos">309</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
 <span class="linenos">310</span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
 <span class="linenos">311</span>
 <span class="linenos">312</span> <span class="c1"># Despine</span>
@@ -442,7 +439,7 @@ to download the full example code</p>
 <span class="linenos">319</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.541 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.539 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-dataframe-table-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/feabf30ab5e10e2f5c0e7532babaa211/plot_dataframe_table.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_dataframe_table.py</span></code></a></p>
@@ -459,7 +456,7 @@ to download the full example code</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="plot_dataframe_distb.html" class="btn btn-neutral float-left" title="Table Boxplot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_piechart_amrreview.html" class="btn btn-neutral float-right" title="Piechart AMR review" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_graphics_antibiogram.html" class="btn btn-neutral float-right" title="Graphics Antibiogram example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -60,6 +60,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_distb.html">Table Boxplot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_table.html">Table Scatterplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_antibiogram.html">Graphics Antibiogram example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_table_graph.html">Graphics TableGraph example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_amrreview.html">Piechart AMR review</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Piechart Biomarkers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_completeness.html">Piechart Completeness</a></li>
@@ -69,10 +71,6 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_pyplot_treemap.html">Plotly - Treemap (sari)</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -109,24 +107,9 @@ to download the full example code</p>
 <span id="sphx-glr-examples-visualization-plot-piechart-biomarker-py"></span><h1>Piechart Biomarkers<a class="headerlink" href="#piechart-biomarkers" title="Permalink to this headline"></a></h1>
 <p>Example using your package</p>
 <ul class="sphx-glr-horizontal">
-<li><img alt="plot piechart biomarker" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_biomarker_001.png" />
-</li>
-<li><img alt="plot piechart biomarker" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_biomarker_002.png" />
-</li>
+<li><img src="../../_images/sphx_glr_plot_piechart_biomarker_001.png" srcset="../../_images/sphx_glr_plot_piechart_biomarker_001.png" alt="plot piechart biomarker" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_piechart_biomarker_002.png" srcset="../../_images/sphx_glr_plot_piechart_biomarker_002.png" alt="plot piechart biomarker" class = "sphx-glr-multi-img"/></li>
 </ul>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_biomarker.py:83: MatplotlibDeprecationWarning:
-
-Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
-
-C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_biomarker.py:120: MatplotlibDeprecationWarning:
-
-Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  8</span> <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="linenos">  9</span>
 <span class="linenos"> 10</span> <span class="c1"># Libraries.</span>
@@ -165,7 +148,7 @@ Support for passing a radius of None to mean 1 is deprecated since 3.3 and will 
 <span class="linenos"> 43</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.7</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
 <span class="linenos"> 44</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
 <span class="linenos"> 45</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
-<span class="linenos"> 46</span> <span class="n">radius</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1"># size of piechart (default=1)</span>
+<span class="linenos"> 46</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># size of piechart (default=1)</span>
 <span class="linenos"> 47</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
 <span class="linenos"> 48</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
 <span class="linenos"> 49</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
@@ -266,7 +249,7 @@ Support for passing a radius of None to mean 1 is deprecated since 3.3 and will 
 <span class="linenos">144</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.136 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.137 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-piechart-biomarker-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/ccff3bf5c84630c6184cfe8a92e18fa4/plot_piechart_biomarker.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_piechart_biomarker.py</span></code></a></p>

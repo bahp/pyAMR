@@ -67,16 +67,12 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_spectrum_gramtype.html">ASAI - Gram stain (by specimen)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_spectrum_multiple.html">ASAI - Multiple (by specimen)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_spectrum_temporal.html">ASAI - Timeseries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_wls_basic.html">SART - Slope of WLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_trend_basic.html">SART - Trend as slope of WLS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -194,18 +190,18 @@ the trend estimated for 1M<sub>1</sub> should be approximately thirty times the 
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-           date_received         date_outcome patient_id laboratory_number specimen_code  ...       antimicrobial_name sensitivity_method sensitivity  mic reported
-0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                 amikacin                NaN   sensitive  NaN      NaN
-1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              amoxycillin                NaN   resistant  NaN      NaN
-2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                augmentin                NaN   sensitive  NaN      NaN
-3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                aztreonam                NaN   sensitive  NaN      NaN
-4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              ceftazidime                NaN   sensitive  NaN      NaN
-...                  ...                  ...        ...               ...           ...  ...                      ...                ...         ...  ...      ...
-7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               gentamicin                 DD   resistant  NaN        Y
-7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...                meropenem                 DD   sensitive  NaN        Y
-7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...  piperacillin-tazobactam                 DD   sensitive  NaN        N
-7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               temocillin                 DD   sensitive  NaN        N
-7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...              tigecycline                 DD   sensitive  NaN        N
+           date_received         date_outcome patient_id laboratory_number specimen_code                   specimen_name  ... antimicrobial_code       antimicrobial_name sensitivity_method sensitivity  mic reported
+0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMI                 amikacin                NaN   sensitive  NaN      NaN
+1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMO              amoxycillin                NaN   resistant  NaN      NaN
+2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAUG                augmentin                NaN   sensitive  NaN      NaN
+3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAZT                aztreonam                NaN   sensitive  NaN      NaN
+4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               ACAZ              ceftazidime                NaN   sensitive  NaN      NaN
+...                  ...                  ...        ...               ...           ...                             ...  ...                ...                      ...                ...         ...  ...      ...
+7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AGEN               gentamicin                 DD   resistant  NaN        Y
+7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AMER                meropenem                 DD   sensitive  NaN        Y
+7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATAZ  piperacillin-tazobactam                 DD   sensitive  NaN        N
+7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATEM               temocillin                 DD   sensitive  NaN        N
+7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATIG              tigecycline                 DD   sensitive  NaN        N
 
 [3770034 rows x 15 columns]
 
@@ -295,9 +291,13 @@ monthly time series - 1M<sub>1</sub> or yearly timeseries - 12M<sub>1</sub>).</p
 <span class="linenos">174</span> <span class="nb">print</span><span class="p">(</span><span class="n">iti</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="Time-series $1M_{1}$" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_sari_temporal_001.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (ITI):
+<img src="../../_images/sphx_glr_plot_sari_temporal_001.png" srcset="../../_images/sphx_glr_plot_sari_temporal_001.png" alt="Time-series $1M_{1}$" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\indexes\plot_sari_temporal.py:153: UserWarning:
+
+Ignoring `palette` because no `hue` variable has been assigned.
+
+
+Temporal (ITI):
 sensitivity specimen_code microorganism_code antimicrobial_code date_received  intermediate  resistant  sensitive   freq    sari
 0                  URICUL               ECOL               AAUG    2009-01-31           0.0        5.0       32.0   37.0  0.1351
 1                  URICUL               ECOL               AAUG    2009-02-28           0.0        6.0       50.0   56.0  0.1071
@@ -374,9 +374,13 @@ not have a large number of records in the dataset.</p>
 <span class="linenos">238</span> <span class="nb">print</span><span class="p">(</span><span class="n">oti</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="Time-series $30D_{180D}$" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_sari_temporal_002.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (OTI):
+<img src="../../_images/sphx_glr_plot_sari_temporal_002.png" srcset="../../_images/sphx_glr_plot_sari_temporal_002.png" alt="Time-series $30D_{180D}$" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\indexes\plot_sari_temporal.py:217: UserWarning:
+
+Ignoring `palette` because no `hue` variable has been assigned.
+
+
+Temporal (OTI):
 sensitivity specimen_code microorganism_code antimicrobial_code date_received  intermediate  resistant  sensitive    freq    sari
 0                  URICUL               ECOL               AAUG    2009-01-03           0.0        5.0       32.0    37.0  0.1351
 1                  URICUL               ECOL               AAUG    2009-02-02           0.0       12.0      139.0   151.0  0.0795
@@ -430,110 +434,109 @@ and reached certain stability on 1M<sub>6</sub> approximately (ish?).</p>
 <li><p>Period should be always larger than shift.</p></li>
 </ul>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">277</span> <span class="c1"># --------------------------------</span>
-<span class="linenos">278</span> <span class="c1"># Comparison</span>
-<span class="linenos">279</span> <span class="c1"># --------------------------------</span>
-<span class="linenos">280</span> <span class="c1"># Configuration</span>
-<span class="linenos">281</span> <span class="n">shift</span> <span class="o">=</span> <span class="s1">&#39;30D&#39;</span>
-<span class="linenos">282</span>
-<span class="linenos">283</span> <span class="c1"># Create figure</span>
-<span class="linenos">284</span> <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">285</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="linenos">286</span>
-<span class="linenos">287</span> <span class="c1"># Loop</span>
-<span class="linenos">288</span> <span class="k">for</span> <span class="n">period</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;30D&#39;</span><span class="p">,</span> <span class="s1">&#39;90D&#39;</span><span class="p">,</span> <span class="s1">&#39;180D&#39;</span><span class="p">,</span> <span class="s1">&#39;365D&#39;</span><span class="p">]:</span>
-<span class="linenos">289</span>
-<span class="linenos">290</span>     <span class="c1"># Compute sari time-series</span>
-<span class="linenos">291</span>     <span class="n">iti</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
-<span class="linenos">292</span>         <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">)</span>
-<span class="linenos">293</span>     <span class="n">oti</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
-<span class="linenos">294</span>         <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">)</span>
-<span class="linenos">295</span>
-<span class="linenos">296</span>     <span class="c1"># Compute rolling mean</span>
-<span class="linenos">297</span>     <span class="n">iti</span><span class="p">[</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iti</span><span class="o">.</span><span class="n">sari</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<span class="linenos">298</span>         <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="linenos">299</span>     <span class="n">oti</span><span class="p">[</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">oti</span><span class="o">.</span><span class="n">sari</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-<span class="linenos">300</span>         <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="linenos">301</span>
-<span class="linenos">302</span>     <span class="c1"># Plot</span>
-<span class="linenos">303</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
-<span class="linenos">304</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-<span class="linenos">305</span>                  <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="linenos">306</span>                  <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="linenos">307</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">M_{</span><span class="si">%s</span><span class="s1">}$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="linenos">308</span>
-<span class="linenos">309</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">oti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
-<span class="linenos">310</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-<span class="linenos">311</span>                  <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="linenos">312</span>                  <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="linenos">313</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">_{</span><span class="si">%s</span><span class="s1">}$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
-<span class="linenos">314</span>
-<span class="linenos">315</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">,</span>
-<span class="linenos">316</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-<span class="linenos">317</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">_{</span><span class="si">%s</span><span class="s1">}$ - smooth&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="linenos">318</span>
-<span class="linenos">319</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">oti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">,</span>
-<span class="linenos">320</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-<span class="linenos">321</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">_{</span><span class="si">%s</span><span class="s1">}$ - smooth&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
-<span class="linenos">322</span>
-<span class="linenos">323</span> <span class="c1"># Configure</span>
-<span class="linenos">324</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">325</span>
-<span class="linenos">326</span> <span class="c1"># Configure axes</span>
-<span class="linenos">327</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Independent Time Intervals&#39;</span><span class="p">)</span>
-<span class="linenos">328</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Overlapping Time Intervals&#39;</span><span class="p">)</span>
-<span class="linenos">329</span>
-<span class="linenos">330</span> <span class="c1"># Adjust</span>
-<span class="linenos">331</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">332</span>
-<span class="linenos">333</span> <span class="c1"># Show</span>
-<span class="linenos">334</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">278</span> <span class="c1"># --------------------------------</span>
+<span class="linenos">279</span> <span class="c1"># Comparison</span>
+<span class="linenos">280</span> <span class="c1"># --------------------------------</span>
+<span class="linenos">281</span> <span class="c1"># Configuration</span>
+<span class="linenos">282</span> <span class="n">shift</span> <span class="o">=</span> <span class="s1">&#39;30D&#39;</span>
+<span class="linenos">283</span>
+<span class="linenos">284</span> <span class="c1"># Create figure</span>
+<span class="linenos">285</span> <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">286</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="linenos">287</span>
+<span class="linenos">288</span> <span class="c1"># Loop</span>
+<span class="linenos">289</span> <span class="k">for</span> <span class="n">period</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;30D&#39;</span><span class="p">,</span> <span class="s1">&#39;90D&#39;</span><span class="p">,</span> <span class="s1">&#39;180D&#39;</span><span class="p">,</span> <span class="s1">&#39;365D&#39;</span><span class="p">]:</span>
+<span class="linenos">290</span>
+<span class="linenos">291</span>     <span class="c1"># Compute sari time-series</span>
+<span class="linenos">292</span>     <span class="n">iti</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+<span class="linenos">293</span>         <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">)</span>
+<span class="linenos">294</span>     <span class="n">oti</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
+<span class="linenos">295</span>         <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">)</span>
+<span class="linenos">296</span>
+<span class="linenos">297</span>     <span class="c1"># Compute rolling mean</span>
+<span class="linenos">298</span>     <span class="n">iti</span><span class="p">[</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iti</span><span class="o">.</span><span class="n">sari</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">299</span>         <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos">300</span>     <span class="n">oti</span><span class="p">[</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">oti</span><span class="o">.</span><span class="n">sari</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">301</span>         <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos">302</span>
+<span class="linenos">303</span>     <span class="c1"># Plot</span>
+<span class="linenos">304</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+<span class="linenos">305</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="linenos">306</span>                  <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">307</span>                  <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">308</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">M_{</span><span class="si">%s</span><span class="s1">}$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos">309</span>
+<span class="linenos">310</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">oti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+<span class="linenos">311</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="linenos">312</span>                  <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">313</span>                  <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">314</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">_{</span><span class="si">%s</span><span class="s1">}$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
+<span class="linenos">315</span>
+<span class="linenos">316</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">,</span>
+<span class="linenos">317</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="linenos">318</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">_{</span><span class="si">%s</span><span class="s1">}$ - smooth&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="linenos">319</span>
+<span class="linenos">320</span>     <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">oti</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;sari_rolling&#39;</span><span class="p">,</span>
+<span class="linenos">321</span>                  <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+<span class="linenos">322</span>                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="si">%s</span><span class="s1">_{</span><span class="si">%s</span><span class="s1">}$ - smooth&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="p">))</span>
+<span class="linenos">323</span>
+<span class="linenos">324</span> <span class="c1"># Configure</span>
+<span class="linenos">325</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">326</span>
+<span class="linenos">327</span> <span class="c1"># Configure axes</span>
+<span class="linenos">328</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Independent Time Intervals&#39;</span><span class="p">)</span>
+<span class="linenos">329</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Overlapping Time Intervals&#39;</span><span class="p">)</span>
+<span class="linenos">330</span>
+<span class="linenos">331</span> <span class="c1"># Adjust</span>
+<span class="linenos">332</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">333</span>
+<span class="linenos">334</span> <span class="c1"># Show</span>
+<span class="linenos">335</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="Independent Time Intervals, Overlapping Time Intervals" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_sari_temporal_003.png" />
-<p>Plotting multiple pairs using FaceGrid.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">342</span> <span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">343</span><span class="sd"> # ----------------------</span>
-<span class="linenos">344</span><span class="sd"> # Facet Grid</span>
-<span class="linenos">345</span><span class="sd"> # ----------------------</span>
-<span class="linenos">346</span><span class="sd"> # Show</span>
-<span class="linenos">347</span><span class="sd"> print(aux)</span>
-<span class="linenos">348</span>
-<span class="linenos">349</span><span class="sd"> # Create palette</span>
-<span class="linenos">350</span><span class="sd"> pal = sns.cubehelix_palette(50, rot=-.25, light=.7)</span>
-<span class="linenos">351</span>
-<span class="linenos">352</span><span class="sd"> # Create</span>
-<span class="linenos">353</span><span class="sd"> g = sns.FacetGrid(data=aux, col=&quot;antimicrobial_code&quot;,</span>
-<span class="linenos">354</span><span class="sd">     hue=&quot;antimicrobial_code&quot;, aspect=1.2, height=2,</span>
-<span class="linenos">355</span><span class="sd">     sharex=True, sharey=True, palette=pal,</span>
-<span class="linenos">356</span><span class="sd">     col_wrap=8)</span>
-<span class="linenos">357</span>
-<span class="linenos">358</span><span class="sd"> # Plot line</span>
-<span class="linenos">359</span><span class="sd"> g.map(sns.lineplot, &quot;date_received&quot;, &#39;sari&#39;,</span>
-<span class="linenos">360</span><span class="sd">       alpha=1, linewidth=1.5)</span>
-<span class="linenos">361</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="linenos">362</span> <span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">363</span><span class="sd"> g.map(plt.fill_between,</span>
-<span class="linenos">364</span><span class="sd">       aux.date_received.values,</span>
-<span class="linenos">365</span><span class="sd">       aux.sari.values)</span>
-<span class="linenos">366</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="linenos">367</span> <span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos">368</span><span class="sd"> #g.map(label, &quot;x&quot;)</span>
-<span class="linenos">369</span><span class="sd"> #g.set_titles(&quot;&quot;)</span>
-<span class="linenos">370</span><span class="sd"> #g.set(yticks=[])</span>
-<span class="linenos">371</span><span class="sd"> g.set(xlabel=&#39;date&#39;)</span>
-<span class="linenos">372</span><span class="sd"> g.despine(bottom=True, left=True)</span>
-<span class="linenos">373</span>
-<span class="linenos">374</span><span class="sd"> # Show</span>
-<span class="linenos">375</span><span class="sd"> plt.show()</span>
-<span class="linenos">376</span><span class="sd"> &quot;&quot;&quot;</span>
+<img src="../../_images/sphx_glr_plot_sari_temporal_003.png" srcset="../../_images/sphx_glr_plot_sari_temporal_003.png" alt="Independent Time Intervals, Overlapping Time Intervals" class = "sphx-glr-single-img"/><p>Plotting multiple pairs using FaceGrid.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">343</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">344</span><span class="sd"> # ----------------------</span>
+<span class="linenos">345</span><span class="sd"> # Facet Grid</span>
+<span class="linenos">346</span><span class="sd"> # ----------------------</span>
+<span class="linenos">347</span><span class="sd"> # Show</span>
+<span class="linenos">348</span><span class="sd"> print(aux)</span>
+<span class="linenos">349</span>
+<span class="linenos">350</span><span class="sd"> # Create palette</span>
+<span class="linenos">351</span><span class="sd"> pal = sns.cubehelix_palette(50, rot=-.25, light=.7)</span>
+<span class="linenos">352</span>
+<span class="linenos">353</span><span class="sd"> # Create</span>
+<span class="linenos">354</span><span class="sd"> g = sns.FacetGrid(data=aux, col=&quot;antimicrobial_code&quot;,</span>
+<span class="linenos">355</span><span class="sd">     hue=&quot;antimicrobial_code&quot;, aspect=1.2, height=2,</span>
+<span class="linenos">356</span><span class="sd">     sharex=True, sharey=True, palette=pal,</span>
+<span class="linenos">357</span><span class="sd">     col_wrap=8)</span>
+<span class="linenos">358</span>
+<span class="linenos">359</span><span class="sd"> # Plot line</span>
+<span class="linenos">360</span><span class="sd"> g.map(sns.lineplot, &quot;date_received&quot;, &#39;sari&#39;,</span>
+<span class="linenos">361</span><span class="sd">       alpha=1, linewidth=1.5)</span>
+<span class="linenos">362</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="linenos">363</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">364</span><span class="sd"> g.map(plt.fill_between,</span>
+<span class="linenos">365</span><span class="sd">       aux.date_received.values,</span>
+<span class="linenos">366</span><span class="sd">       aux.sari.values)</span>
+<span class="linenos">367</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="linenos">368</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">369</span><span class="sd"> #g.map(label, &quot;x&quot;)</span>
+<span class="linenos">370</span><span class="sd"> #g.set_titles(&quot;&quot;)</span>
+<span class="linenos">371</span><span class="sd"> #g.set(yticks=[])</span>
+<span class="linenos">372</span><span class="sd"> g.set(xlabel=&#39;date&#39;)</span>
+<span class="linenos">373</span><span class="sd"> g.despine(bottom=True, left=True)</span>
+<span class="linenos">374</span>
+<span class="linenos">375</span><span class="sd"> # Show</span>
+<span class="linenos">376</span><span class="sd"> plt.show()</span>
+<span class="linenos">377</span><span class="sd"> &quot;&quot;&quot;</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n#g.map(label, &quot;x&quot;)\n#g.set_titles(&quot;&quot;)\n#g.set(yticks=[])\ng.set(xlabel=\&#39;date\&#39;)\ng.despine(bottom=True, left=True)\n\n# Show\nplt.show()\n&#39;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.583 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.542 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-sari-temporal-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/dad62e561ec3fd0a4a21c01b09e4d630/plot_sari_temporal.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_sari_temporal.py</span></code></a></p>

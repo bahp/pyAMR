@@ -67,10 +67,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -104,70 +100,76 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="arima-basic">
 <span id="sphx-glr-examples-forecasting-plot-arima-basic-py"></span><h1>ARIMA basic<a class="headerlink" href="#arima-basic" title="Permalink to this headline"></a></h1>
-<img alt="ARIMA non-dynamic, ARIMA dynamic" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_arima_basic_001.png" />
-<p class="sphx-glr-script-out">Out:</p>
+<img src="../../_images/sphx_glr_plot_arima_basic_001.png" srcset="../../_images/sphx_glr_plot_arima_basic_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-arima-aic                    804.3402
-arima-bic                    811.4863
-arima-hqic                   807.2053
-arima-llf                   -399.1701
-arima-const_coef             293.9062
-arima-const_std              117.2252
-arima-const_tvalue             2.5072
-arima-const_tprob              0.0122
-arima-const_cil                64.149
-arima-const_ciu              523.6634
-arima-ar.L1.y_coef             0.9763
-arima-ar.L1.y_std              0.0217
-arima-ar.L1.y_tvalue          45.0176
-arima-ar.L1.y_tprob               0.0
-arima-ar.L1.y_cil              0.9338
-arima-ar.L1.y_ciu              1.0188
-arima-m_dw                     2.0394
-arima-m_jb_value              388.702
-arima-m_jb_prob                   0.0
-arima-m_skew                  -2.2349
-arima-m_kurtosis              12.8302
-arima-m_nm_value              61.0039
-arima-m_nm_prob                   0.0
-arima-m_ks_value               0.5375
-arima-m_ks_prob                   0.0
-arima-m_shp_value              0.8296
-arima-m_shp_prob                  0.0
-arima-m_ad_value                1.957
-arima-m_ad_nnorm                False
-arima-converged                  True
-arima-endog             [66.600015...
-arima-order                 (1, 0, 0)
-arima-trend                         c
-arima-disp                          0
-arima-model             &lt;statsmode...
-arima-id                ARIMA(1, 0...
+arima-aic                   785.8648
+arima-bic                   793.0109
+arima-hqic                  788.7298
+arima-llf                  -389.9324
+arima-const_coef            277.0545
+arima-const_std             136.7075
+arima-const_tvalue            2.0266
+arima-const_tprob             0.0427
+arima-const_cil               9.1128
+arima-const_ciu             544.9963
+arima-ar.L1_coef               0.986
+arima-ar.L1_std               0.0223
+arima-ar.L1_tvalue           44.3001
+arima-ar.L1_tprob                0.0
+arima-ar.L1_cil               0.9424
+arima-ar.L1_ciu               1.0296
+arima-sigma2_coef           958.7472
+arima-sigma2_std             97.7887
+arima-sigma2_tvalue           9.8043
+arima-sigma2_tprob               0.0
+arima-sigma2_cil             767.085
+arima-sigma2_ciu           1150.4095
+arima-m_dw                     1.904
+arima-m_jb_value           1456.1998
+arima-m_jb_prob                  0.0
+arima-m_skew                 -3.7284
+arima-m_kurtosis             22.5258
+arima-m_nm_value             96.1022
+arima-m_nm_prob                  0.0
+arima-m_ks_value              0.5565
+arima-m_ks_prob                  0.0
+arima-m_shp_value             0.6561
+arima-m_shp_prob                 0.0
+arima-m_ad_value              5.4891
+arima-m_ad_nnorm               False
+arima-converged                 True
+arima-endog            [23.380914...
+arima-order                (1, 0, 0)
+arima-trend                        c
+arima-disp                         0
+arima-model            &lt;statsmode...
+arima-id               ARIMA(1, 0...
 dtype: object
 
 Summary:
-                              ARMA Model Results
+                               SARIMAX Results
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                   80
-Model:                     ARMA(1, 0)   Log Likelihood                -399.170
-Method:                       css-mle   S.D. of innovations             34.867
-Date:                Wed, 07 Apr 2021   AIC                            804.340
-Time:                        14:06:17   BIC                            811.486
-Sample:                             0   HQIC                           807.205
-
+Model:                 ARIMA(1, 0, 0)   Log Likelihood                -389.932
+Date:                Wed, 15 Feb 2023   AIC                            785.865
+Time:                        14:07:05   BIC                            793.011
+Sample:                             0   HQIC                           788.730
+                                 - 80
+Covariance Type:                  opg
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        293.9062    117.225      2.507      0.012      64.149     523.663
-ar.L1.y        0.9763      0.022     45.018      0.000       0.934       1.019
+const        277.0545    136.707      2.027      0.043       9.113     544.996
+ar.L1          0.9860      0.022     44.300      0.000       0.942       1.030
+sigma2       958.7472     97.789      9.804      0.000     767.085    1150.409
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000  Durbin-Watson:                    2.039
-Prob(Omnibus):                  0.000  Jarque-Bera (JB):               388.702
-Skew:                          -2.235  Prob(JB):                         0.000
-Kurtosis_m:                    12.830  Cond No:
-Normal (N):                    61.004  Prob(N):                          0.000
+Omnibus:                        0.000  Durbin-Watson:                    1.904
+Prob(Omnibus):                  0.000  Jarque-Bera (JB):              1456.200
+Skew:                          -3.728  Prob(JB):                         0.000
+Kurtosis_m:                    22.526  Cond No:
+Normal (N):                    96.102  Prob(N):                          0.000
 ==============================================================================
 </pre></div>
 </div>
@@ -182,7 +184,7 @@ Normal (N):                    61.004  Prob(N):                          0.000
 <span class="linenos"> 13</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="linenos"> 14</span>
 <span class="linenos"> 15</span> <span class="c1"># Import ARIMA from statsmodels.</span>
-<span class="linenos"> 16</span> <span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="linenos"> 16</span> <span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
 <span class="linenos"> 17</span>
 <span class="linenos"> 18</span> <span class="c1"># import weights.</span>
 <span class="linenos"> 19</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_timeseries</span>
@@ -317,7 +319,7 @@ Normal (N):                    61.004  Prob(N):                          0.000
 <span class="linenos">148</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.168 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.568 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-arima-basic-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/69dda70bc8a77638deb433d35948fdf9/plot_arima_basic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_arima_basic.py</span></code></a></p>

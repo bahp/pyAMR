@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Piechart Biomarkers" href="plot_piechart_biomarker.html" />
-    <link rel="prev" title="Table Scatterplot" href="plot_dataframe_table.html" /> 
+    <link rel="prev" title="Graphics TableGraph example" href="plot_graphics_table_graph.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,6 +60,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_distb.html">Table Boxplot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_table.html">Table Scatterplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_antibiogram.html">Graphics Antibiogram example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_graphics_table_graph.html">Graphics TableGraph example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Piechart AMR review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_biomarker.html">Piechart Biomarkers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_piechart_completeness.html">Piechart Completeness</a></li>
@@ -69,10 +71,6 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_pyplot_treemap.html">Plotly - Treemap (sari)</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -107,274 +105,249 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="piechart-amr-review">
 <span id="sphx-glr-examples-visualization-plot-piechart-amrreview-py"></span><h1>Piechart AMR review<a class="headerlink" href="#piechart-amr-review" title="Permalink to this headline"></a></h1>
-<dl>
-<dt>Author: Bernard</dt><dd><p>Date: 19/08/2016
-Description: This script creates PIECHARTS for the paper which</p>
-<blockquote>
-<div><p>describes the infection risk inference: “Evaluating
-machine learning algorithms for infection risk inference
-using routinely collected pathology laboratory data”.</p>
-</div></blockquote>
 <p>Notes: The values can be changed to display other data.</p>
-<p>Useful links:
+<blockquote>
+<div><p>Useful links:
 &#64;see: <a class="reference external" href="http://matplotlib.org/examples/color/named_colors.html">http://matplotlib.org/examples/color/named_colors.html</a>
 &#64;see: <a class="reference external" href="http://matplotlib.org/examples/color/colormaps_reference.html">http://matplotlib.org/examples/color/colormaps_reference.html</a>
 &#64;see: <a class="reference external" href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge">http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge</a>
 &#64;see: <a class="reference external" href="http://matplotlib.org/api/text_api.html#matplotlib.text.Text">http://matplotlib.org/api/text_api.html#matplotlib.text.Text</a></p>
-</dd>
-</dl>
+</div></blockquote>
 <hr class="docutils" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 26</span> <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 17</span> <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="linenos"> 18</span>
+<span class="linenos"> 19</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 20</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos"> 21</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 22</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span> <span class="c1"># Matplotlib font size configuration.</span>
+<span class="linenos"> 25</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">9.0</span>
+<span class="linenos"> 26</span>
 <span class="linenos"> 27</span>
-<span class="linenos"> 28</span> <span class="c1"># Libraries</span>
-<span class="linenos"> 29</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="linenos"> 30</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="linenos"> 31</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="linenos"> 32</span>
-<span class="linenos"> 33</span> <span class="c1"># Matplotlib font size configuration.</span>
-<span class="linenos"> 34</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">9.0</span>
-<span class="linenos"> 35</span>
-<span class="linenos"> 36</span>
-<span class="linenos"> 37</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos"> 38</span> <span class="c1">#                            HELPER METHODS</span>
-<span class="linenos"> 39</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos"> 40</span> <span class="k">def</span> <span class="nf">transparency</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
-<span class="linenos"> 41</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="linenos"> 42</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="linenos"> 43</span>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">rgb</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cmap</span><span class="p">):</span>
-<span class="linenos"> 44</span>         <span class="n">cmap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rgb</span> <span class="o">+</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,)</span>
-<span class="linenos"> 45</span>     <span class="k">return</span> <span class="n">cmap</span>
-<span class="linenos"> 46</span>
-<span class="linenos"> 47</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos"> 48</span> <span class="c1">#                              FIGURE 1</span>
-<span class="linenos"> 49</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos"> 50</span> <span class="c1"># Common configuration.</span>
-<span class="linenos"> 51</span> <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="linenos"> 52</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Prescription&#39;</span><span class="p">,</span> <span class="s1">&#39;Surveillance&#39;</span><span class="p">,</span><span class="s1">&#39;Diagnosis&#39;</span><span class="p">,</span> <span class="s1">&#39;Dosing&#39;</span><span class="p">,</span> <span class="s1">&#39;Others&#39;</span><span class="p">]</span> <span class="c1"># labels</span>
-<span class="linenos"> 53</span> <span class="n">labels_empty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>         <span class="c1"># labels empty</span>
-<span class="linenos"> 54</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">transparency</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="mf">0.4</span><span class="p">)</span>
-<span class="linenos"> 55</span> <span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>     <span class="c1"># proportion with which to offset each wedge</span>
-<span class="linenos"> 56</span> <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1">#&#39;%1.0f%%&#39;       # print values inside the wedges</span>
-<span class="linenos"> 57</span> <span class="n">pctdistance</span> <span class="o">=</span> <span class="mf">0.8</span>         <span class="c1"># ratio betwen center and text (default=0.6)</span>
-<span class="linenos"> 58</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.5</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
-<span class="linenos"> 59</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
-<span class="linenos"> 60</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
-<span class="linenos"> 61</span> <span class="n">radius</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1"># size of piechart (default=1)</span>
-<span class="linenos"> 62</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
-<span class="linenos"> 63</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
-<span class="linenos"> 64</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
-<span class="linenos"> 65</span>
-<span class="linenos"> 66</span> <span class="c1"># map with arguments for the text objects.</span>
-<span class="linenos"> 67</span> <span class="n">textprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
-<span class="linenos"> 68</span>
-<span class="linenos"> 69</span> <span class="c1"># map with arguments for the wedge objects.</span>
-<span class="linenos"> 70</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="linenos"> 71</span>
-<span class="linenos"> 72</span> <span class="c1"># Color manually selected</span>
-<span class="linenos"> 73</span> <span class="n">colors_manual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">,</span>
-<span class="linenos"> 74</span>                  <span class="s1">&#39;violet&#39;</span><span class="p">,</span>
-<span class="linenos"> 75</span>                  <span class="s1">&#39;mediumaquamarine&#39;</span><span class="p">,</span>
-<span class="linenos"> 76</span>                  <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span>
-<span class="linenos"> 77</span>                  <span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span>
-<span class="linenos"> 78</span>                  <span class="s1">&#39;indianred&#39;</span><span class="p">]</span>
+<span class="linenos"> 28</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos"> 29</span> <span class="c1">#                            HELPER METHODS</span>
+<span class="linenos"> 30</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos"> 31</span> <span class="k">def</span> <span class="nf">transparency</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+<span class="linenos"> 32</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 33</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="linenos"> 34</span>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">rgb</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cmap</span><span class="p">):</span>
+<span class="linenos"> 35</span>         <span class="n">cmap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rgb</span> <span class="o">+</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,)</span>
+<span class="linenos"> 36</span>     <span class="k">return</span> <span class="n">cmap</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos"> 39</span> <span class="c1">#                              FIGURE 1</span>
+<span class="linenos"> 40</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos"> 41</span> <span class="c1"># Common configuration.</span>
+<span class="linenos"> 42</span> <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="linenos"> 43</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Prescription&#39;</span><span class="p">,</span> <span class="s1">&#39;Surveillance&#39;</span><span class="p">,</span><span class="s1">&#39;Diagnosis&#39;</span><span class="p">,</span> <span class="s1">&#39;Dosing&#39;</span><span class="p">,</span> <span class="s1">&#39;Others&#39;</span><span class="p">]</span> <span class="c1"># labels</span>
+<span class="linenos"> 44</span> <span class="n">labels_empty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>         <span class="c1"># labels empty</span>
+<span class="linenos"> 45</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">transparency</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="mf">0.4</span><span class="p">)</span>
+<span class="linenos"> 46</span> <span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>     <span class="c1"># proportion with which to offset each wedge</span>
+<span class="linenos"> 47</span> <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1">#&#39;%1.0f%%&#39;       # print values inside the wedges</span>
+<span class="linenos"> 48</span> <span class="n">pctdistance</span> <span class="o">=</span> <span class="mf">0.8</span>         <span class="c1"># ratio betwen center and text (default=0.6)</span>
+<span class="linenos"> 49</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.5</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
+<span class="linenos"> 50</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
+<span class="linenos"> 51</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
+<span class="linenos"> 52</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># size of piechart (default=1)</span>
+<span class="linenos"> 53</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
+<span class="linenos"> 54</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
+<span class="linenos"> 55</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span> <span class="c1"># map with arguments for the text objects.</span>
+<span class="linenos"> 58</span> <span class="n">textprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span> <span class="c1"># map with arguments for the wedge objects.</span>
+<span class="linenos"> 61</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span> <span class="c1"># Color manually selected</span>
+<span class="linenos"> 64</span> <span class="n">colors_manual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">,</span>
+<span class="linenos"> 65</span>                  <span class="s1">&#39;violet&#39;</span><span class="p">,</span>
+<span class="linenos"> 66</span>                  <span class="s1">&#39;mediumaquamarine&#39;</span><span class="p">,</span>
+<span class="linenos"> 67</span>                  <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span>
+<span class="linenos"> 68</span>                  <span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span>
+<span class="linenos"> 69</span>                  <span class="s1">&#39;indianred&#39;</span><span class="p">]</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span> <span class="c1"># ---------------------------</span>
+<span class="linenos"> 72</span> <span class="c1">#  plot</span>
+<span class="linenos"> 73</span> <span class="c1"># ---------------------------</span>
+<span class="linenos"> 74</span> <span class="c1"># Portions.</span>
+<span class="linenos"> 75</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">69</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span> <span class="c1"># Add proportions</span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span> <span class="c1"># reset feature</span>
+<span class="linenos"> 78</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>
 <span class="linenos"> 79</span>
-<span class="linenos"> 80</span> <span class="c1"># ---------------------------</span>
-<span class="linenos"> 81</span> <span class="c1">#  plot</span>
-<span class="linenos"> 82</span> <span class="c1"># ---------------------------</span>
-<span class="linenos"> 83</span> <span class="c1"># Portions.</span>
-<span class="linenos"> 84</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">69</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span> <span class="c1"># Add proportions</span>
-<span class="linenos"> 85</span>
-<span class="linenos"> 86</span> <span class="c1"># reset feature</span>
-<span class="linenos"> 87</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>
-<span class="linenos"> 88</span>
-<span class="linenos"> 89</span> <span class="c1"># Plot</span>
-<span class="linenos"> 90</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="linenos"> 91</span> <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
-<span class="linenos"> 92</span>         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
-<span class="linenos"> 93</span>         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>   <span class="c1"># Use: labels / labels_empty</span>
-<span class="linenos"> 94</span>         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>   <span class="c1"># Use: colors / colors_manual</span>
-<span class="linenos"> 95</span>         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
-<span class="linenos"> 96</span>         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
-<span class="linenos"> 97</span>         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
-<span class="linenos"> 98</span>         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
-<span class="linenos"> 99</span>         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
-<span class="linenos">100</span>         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
-<span class="linenos">101</span>         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
-<span class="linenos">102</span>         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">103</span>         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
-<span class="linenos">104</span>         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
-<span class="linenos">105</span>         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
-<span class="linenos">106</span>                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
-<span class="linenos">107</span>
-<span class="linenos">108</span> <span class="c1"># Format figure.</span>
-<span class="linenos">109</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="linenos">110</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">111</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>          <span class="c1"># Add title.</span>
-<span class="linenos">112</span> <span class="c1">#plt.legend(labels=labels, fontsize=&#39;xx-large&#39;)  # Add legend.</span>
-<span class="linenos">113</span>
-<span class="linenos">114</span>
-<span class="linenos">115</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos">116</span> <span class="c1">#                            FIGURE 2</span>
-<span class="linenos">117</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos">118</span> <span class="c1"># Common configuration.</span>
-<span class="linenos">119</span> <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="linenos">120</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Rule-based&#39;</span><span class="p">,</span> <span class="s1">&#39;Tree-based&#39;</span><span class="p">,</span><span class="s1">&#39;Case-based&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">]</span> <span class="c1"># labels</span>
-<span class="linenos">121</span> <span class="n">labels_empty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>         <span class="c1"># labels empty</span>
-<span class="linenos">122</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">transparency</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="mf">0.4</span><span class="p">)</span>
-<span class="linenos">123</span> <span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>     <span class="c1"># proportion with which to offset each wedge</span>
-<span class="linenos">124</span> <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1">#&#39;%1.0f%%&#39;       # print values inside the wedges</span>
-<span class="linenos">125</span> <span class="n">pctdistance</span> <span class="o">=</span> <span class="mf">0.6</span>         <span class="c1"># ratio betwen center and text (default=0.6)</span>
-<span class="linenos">126</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.4</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
-<span class="linenos">127</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
-<span class="linenos">128</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
-<span class="linenos">129</span> <span class="n">radius</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1"># size of piechart (default=1)</span>
-<span class="linenos">130</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
-<span class="linenos">131</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
-<span class="linenos">132</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
-<span class="linenos">133</span>
-<span class="linenos">134</span> <span class="c1"># map with arguments for the text objects.</span>
-<span class="linenos">135</span> <span class="n">textprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
-<span class="linenos">136</span>
-<span class="linenos">137</span> <span class="c1"># map with arguments for the wedge objects.</span>
-<span class="linenos">138</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="linenos">139</span>
-<span class="linenos">140</span> <span class="c1"># Color manually selected</span>
-<span class="linenos">141</span> <span class="n">colors_manual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">,</span>
-<span class="linenos">142</span>                  <span class="s1">&#39;violet&#39;</span><span class="p">,</span>
-<span class="linenos">143</span>                  <span class="s1">&#39;mediumaquamarine&#39;</span><span class="p">,</span>
-<span class="linenos">144</span>                  <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span>
-<span class="linenos">145</span>                  <span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span>
-<span class="linenos">146</span>                  <span class="s1">&#39;indianred&#39;</span><span class="p">]</span>
+<span class="linenos"> 80</span> <span class="c1"># Plot</span>
+<span class="linenos"> 81</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="linenos"> 82</span> <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
+<span class="linenos"> 83</span>         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
+<span class="linenos"> 84</span>         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>   <span class="c1"># Use: labels / labels_empty</span>
+<span class="linenos"> 85</span>         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>   <span class="c1"># Use: colors / colors_manual</span>
+<span class="linenos"> 86</span>         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
+<span class="linenos"> 87</span>         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
+<span class="linenos"> 88</span>         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
+<span class="linenos"> 89</span>         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
+<span class="linenos"> 90</span>         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
+<span class="linenos"> 91</span>         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+<span class="linenos"> 92</span>         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
+<span class="linenos"> 93</span>         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos"> 94</span>         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
+<span class="linenos"> 95</span>         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
+<span class="linenos"> 96</span>         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
+<span class="linenos"> 97</span>                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span> <span class="c1"># Format figure.</span>
+<span class="linenos">100</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="linenos">101</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">102</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>          <span class="c1"># Add title.</span>
+<span class="linenos">103</span> <span class="c1">#plt.legend(labels=labels, fontsize=&#39;xx-large&#39;)  # Add legend.</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos">107</span> <span class="c1">#                            FIGURE 2</span>
+<span class="linenos">108</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos">109</span> <span class="c1"># Common configuration.</span>
+<span class="linenos">110</span> <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="linenos">111</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Rule-based&#39;</span><span class="p">,</span> <span class="s1">&#39;Tree-based&#39;</span><span class="p">,</span><span class="s1">&#39;Case-based&#39;</span><span class="p">,</span> <span class="s1">&#39;Other&#39;</span><span class="p">]</span> <span class="c1"># labels</span>
+<span class="linenos">112</span> <span class="n">labels_empty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>         <span class="c1"># labels empty</span>
+<span class="linenos">113</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">transparency</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="mf">0.4</span><span class="p">)</span>
+<span class="linenos">114</span> <span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>     <span class="c1"># proportion with which to offset each wedge</span>
+<span class="linenos">115</span> <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1">#&#39;%1.0f%%&#39;       # print values inside the wedges</span>
+<span class="linenos">116</span> <span class="n">pctdistance</span> <span class="o">=</span> <span class="mf">0.6</span>         <span class="c1"># ratio betwen center and text (default=0.6)</span>
+<span class="linenos">117</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.4</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
+<span class="linenos">118</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
+<span class="linenos">119</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
+<span class="linenos">120</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># size of piechart (default=1)</span>
+<span class="linenos">121</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
+<span class="linenos">122</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
+<span class="linenos">123</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span> <span class="c1"># map with arguments for the text objects.</span>
+<span class="linenos">126</span> <span class="n">textprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span> <span class="c1"># map with arguments for the wedge objects.</span>
+<span class="linenos">129</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span> <span class="c1"># Color manually selected</span>
+<span class="linenos">132</span> <span class="n">colors_manual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">,</span>
+<span class="linenos">133</span>                  <span class="s1">&#39;violet&#39;</span><span class="p">,</span>
+<span class="linenos">134</span>                  <span class="s1">&#39;mediumaquamarine&#39;</span><span class="p">,</span>
+<span class="linenos">135</span>                  <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span>
+<span class="linenos">136</span>                  <span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span>
+<span class="linenos">137</span>                  <span class="s1">&#39;indianred&#39;</span><span class="p">]</span>
+<span class="linenos">138</span>
+<span class="linenos">139</span> <span class="c1"># ---------------------------</span>
+<span class="linenos">140</span> <span class="c1">#  plot</span>
+<span class="linenos">141</span> <span class="c1"># ---------------------------</span>
+<span class="linenos">142</span> <span class="c1"># Portions.</span>
+<span class="linenos">143</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="c1"># Add proportions</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span> <span class="c1"># reset feature</span>
+<span class="linenos">146</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>
 <span class="linenos">147</span>
-<span class="linenos">148</span> <span class="c1"># ---------------------------</span>
-<span class="linenos">149</span> <span class="c1">#  plot</span>
-<span class="linenos">150</span> <span class="c1"># ---------------------------</span>
-<span class="linenos">151</span> <span class="c1"># Portions.</span>
-<span class="linenos">152</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="c1"># Add proportions</span>
-<span class="linenos">153</span>
-<span class="linenos">154</span> <span class="c1"># reset feature</span>
-<span class="linenos">155</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>
-<span class="linenos">156</span>
-<span class="linenos">157</span> <span class="c1"># Plot</span>
-<span class="linenos">158</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="linenos">159</span> <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
-<span class="linenos">160</span>         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
-<span class="linenos">161</span>         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>   <span class="c1"># Use: labels / labels_empty</span>
-<span class="linenos">162</span>         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>   <span class="c1"># Use: colors / colors_manual</span>
-<span class="linenos">163</span>         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
-<span class="linenos">164</span>         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
-<span class="linenos">165</span>         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
-<span class="linenos">166</span>         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
-<span class="linenos">167</span>         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
-<span class="linenos">168</span>         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
-<span class="linenos">169</span>         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
-<span class="linenos">170</span>         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">171</span>         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
-<span class="linenos">172</span>         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
-<span class="linenos">173</span>         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
-<span class="linenos">174</span>                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
-<span class="linenos">175</span>
-<span class="linenos">176</span> <span class="c1"># Format figure.</span>
-<span class="linenos">177</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="linenos">178</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">179</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>          <span class="c1"># Add title.</span>
-<span class="linenos">180</span> <span class="c1">#plt.legend(labels=labels, fontsize=&#39;xx-large&#39;)  # Add legend.</span>
-<span class="linenos">181</span>
-<span class="linenos">182</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos">183</span> <span class="c1">#                            FIGURE 3</span>
-<span class="linenos">184</span> <span class="c1"># ------------------------------------------------------------------------</span>
-<span class="linenos">185</span> <span class="c1"># Common configuration.</span>
-<span class="linenos">186</span> <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="linenos">187</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Bacteremia&#39;</span><span class="p">,</span> <span class="s1">&#39;SSI&#39;</span><span class="p">,</span><span class="s1">&#39;UTI&#39;</span><span class="p">,</span> <span class="s1">&#39;RTI&#39;</span> <span class="s1">&#39; C+&#39;</span><span class="p">,</span> <span class="s1">&#39;Gram&#39;</span><span class="p">]</span> <span class="c1"># labels</span>
-<span class="linenos">188</span> <span class="n">labels_empty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>         <span class="c1"># labels empty</span>
-<span class="linenos">189</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">transparency</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="mf">0.4</span><span class="p">)</span>
-<span class="linenos">190</span> <span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># proportion with which to offset each wedge</span>
-<span class="linenos">191</span> <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1">#&#39;%1.0f%%&#39;    # print values inside the wedges</span>
-<span class="linenos">192</span> <span class="n">pctdistance</span> <span class="o">=</span> <span class="mf">0.6</span>         <span class="c1"># ratio betwen center and text (default=0.6)</span>
-<span class="linenos">193</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.4</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
-<span class="linenos">194</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
-<span class="linenos">195</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
-<span class="linenos">196</span> <span class="n">radius</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1"># size of piechart (default=1)</span>
-<span class="linenos">197</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
-<span class="linenos">198</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
-<span class="linenos">199</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
-<span class="linenos">200</span>
-<span class="linenos">201</span> <span class="c1"># map with arguments for the text objects.</span>
-<span class="linenos">202</span> <span class="n">textprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
-<span class="linenos">203</span>
-<span class="linenos">204</span> <span class="c1"># map with arguments for the wedge objects.</span>
-<span class="linenos">205</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="linenos">206</span>
-<span class="linenos">207</span> <span class="c1"># Color manually selected</span>
-<span class="linenos">208</span> <span class="n">colors_manual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">,</span>
-<span class="linenos">209</span>                  <span class="s1">&#39;violet&#39;</span><span class="p">,</span>
-<span class="linenos">210</span>                  <span class="s1">&#39;mediumaquamarine&#39;</span><span class="p">,</span>
-<span class="linenos">211</span>                  <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span>
-<span class="linenos">212</span>                  <span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span>
-<span class="linenos">213</span>                  <span class="s1">&#39;indianred&#39;</span><span class="p">]</span>
+<span class="linenos">148</span> <span class="c1"># Plot</span>
+<span class="linenos">149</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="linenos">150</span> <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
+<span class="linenos">151</span>         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
+<span class="linenos">152</span>         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>   <span class="c1"># Use: labels / labels_empty</span>
+<span class="linenos">153</span>         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>   <span class="c1"># Use: colors / colors_manual</span>
+<span class="linenos">154</span>         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
+<span class="linenos">155</span>         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
+<span class="linenos">156</span>         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
+<span class="linenos">157</span>         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
+<span class="linenos">158</span>         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
+<span class="linenos">159</span>         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+<span class="linenos">160</span>         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
+<span class="linenos">161</span>         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">162</span>         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
+<span class="linenos">163</span>         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
+<span class="linenos">164</span>         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
+<span class="linenos">165</span>                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span> <span class="c1"># Format figure.</span>
+<span class="linenos">168</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="linenos">169</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">170</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>          <span class="c1"># Add title.</span>
+<span class="linenos">171</span> <span class="c1">#plt.legend(labels=labels, fontsize=&#39;xx-large&#39;)  # Add legend.</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos">174</span> <span class="c1">#                            FIGURE 3</span>
+<span class="linenos">175</span> <span class="c1"># ------------------------------------------------------------------------</span>
+<span class="linenos">176</span> <span class="c1"># Common configuration.</span>
+<span class="linenos">177</span> <span class="n">title_font_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="linenos">178</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Bacteremia&#39;</span><span class="p">,</span> <span class="s1">&#39;SSI&#39;</span><span class="p">,</span><span class="s1">&#39;UTI&#39;</span><span class="p">,</span> <span class="s1">&#39;RTI&#39;</span> <span class="s1">&#39; C+&#39;</span><span class="p">,</span> <span class="s1">&#39;Gram&#39;</span><span class="p">]</span> <span class="c1"># labels</span>
+<span class="linenos">179</span> <span class="n">labels_empty</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>         <span class="c1"># labels empty</span>
+<span class="linenos">180</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">transparency</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span> <span class="mf">0.4</span><span class="p">)</span>
+<span class="linenos">181</span> <span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># proportion with which to offset each wedge</span>
+<span class="linenos">182</span> <span class="n">autopct</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="c1">#&#39;%1.0f%%&#39;    # print values inside the wedges</span>
+<span class="linenos">183</span> <span class="n">pctdistance</span> <span class="o">=</span> <span class="mf">0.6</span>         <span class="c1"># ratio betwen center and text (default=0.6)</span>
+<span class="linenos">184</span> <span class="n">labeldistance</span> <span class="o">=</span> <span class="mf">0.4</span>       <span class="c1"># radial distance wich pie labels are drawn</span>
+<span class="linenos">185</span> <span class="n">shadow</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># shadow</span>
+<span class="linenos">186</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>           <span class="c1"># rotate piechart (default=0)</span>
+<span class="linenos">187</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># size of piechart (default=1)</span>
+<span class="linenos">188</span> <span class="n">counterclock</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># fractions direction.</span>
+<span class="linenos">189</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># center position of the chart.</span>
+<span class="linenos">190</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">False</span>             <span class="c1"># plot axes frame with the pie chart.</span>
+<span class="linenos">191</span>
+<span class="linenos">192</span> <span class="c1"># map with arguments for the text objects.</span>
+<span class="linenos">193</span> <span class="n">textprops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span><span class="s1">&#39;x-large&#39;</span><span class="p">}</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span> <span class="c1"># map with arguments for the wedge objects.</span>
+<span class="linenos">196</span> <span class="n">wedgeprops</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos">197</span>
+<span class="linenos">198</span> <span class="c1"># Color manually selected</span>
+<span class="linenos">199</span> <span class="n">colors_manual</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">,</span>
+<span class="linenos">200</span>                  <span class="s1">&#39;violet&#39;</span><span class="p">,</span>
+<span class="linenos">201</span>                  <span class="s1">&#39;mediumaquamarine&#39;</span><span class="p">,</span>
+<span class="linenos">202</span>                  <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span>
+<span class="linenos">203</span>                  <span class="s1">&#39;lightsalmon&#39;</span><span class="p">,</span>
+<span class="linenos">204</span>                  <span class="s1">&#39;indianred&#39;</span><span class="p">]</span>
+<span class="linenos">205</span>
+<span class="linenos">206</span> <span class="c1"># ---------------------------</span>
+<span class="linenos">207</span> <span class="c1">#  plot</span>
+<span class="linenos">208</span> <span class="c1"># ---------------------------</span>
+<span class="linenos">209</span> <span class="c1"># Portions.</span>
+<span class="linenos">210</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># Add proportions</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span> <span class="c1"># reset feature</span>
+<span class="linenos">213</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>
 <span class="linenos">214</span>
-<span class="linenos">215</span> <span class="c1"># ---------------------------</span>
-<span class="linenos">216</span> <span class="c1">#  plot</span>
-<span class="linenos">217</span> <span class="c1"># ---------------------------</span>
-<span class="linenos">218</span> <span class="c1"># Portions.</span>
-<span class="linenos">219</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># Add proportions</span>
-<span class="linenos">220</span>
-<span class="linenos">221</span> <span class="c1"># reset feature</span>
-<span class="linenos">222</span> <span class="n">startangle</span> <span class="o">=</span> <span class="mi">90</span>
-<span class="linenos">223</span>
-<span class="linenos">224</span> <span class="c1"># Plot</span>
-<span class="linenos">225</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="linenos">226</span> <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
-<span class="linenos">227</span>         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
-<span class="linenos">228</span>         <span class="n">labels</span><span class="o">=</span><span class="n">labels_empty</span><span class="p">,</span>   <span class="c1"># Use: labels / labels_empty</span>
-<span class="linenos">229</span>         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>   <span class="c1"># Use: colors / colors_manual</span>
-<span class="linenos">230</span>         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
-<span class="linenos">231</span>         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
-<span class="linenos">232</span>         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
-<span class="linenos">233</span>         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
-<span class="linenos">234</span>         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
-<span class="linenos">235</span>         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
-<span class="linenos">236</span>         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
-<span class="linenos">237</span>         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">238</span>         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
-<span class="linenos">239</span>         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
-<span class="linenos">240</span>         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
-<span class="linenos">241</span>                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
-<span class="linenos">242</span>
-<span class="linenos">243</span> <span class="c1"># Format figure.</span>
-<span class="linenos">244</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="linenos">245</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">246</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>          <span class="c1"># Add title.</span>
-<span class="linenos">247</span> <span class="c1">#plt.legend(labels=labels, fontsize=&#39;xx-large&#39;)  # Add legend.</span>
-<span class="linenos">248</span>
-<span class="linenos">249</span>
-<span class="linenos">250</span> <span class="c1"># Show figures</span>
-<span class="linenos">251</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">215</span> <span class="c1"># Plot</span>
+<span class="linenos">216</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="linenos">217</span> <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span>
+<span class="linenos">218</span>         <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span>
+<span class="linenos">219</span>         <span class="n">labels</span><span class="o">=</span><span class="n">labels_empty</span><span class="p">,</span>   <span class="c1"># Use: labels / labels_empty</span>
+<span class="linenos">220</span>         <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>   <span class="c1"># Use: colors / colors_manual</span>
+<span class="linenos">221</span>         <span class="n">autopct</span><span class="o">=</span><span class="n">autopct</span><span class="p">,</span>
+<span class="linenos">222</span>         <span class="n">pctdistance</span><span class="o">=</span><span class="n">pctdistance</span><span class="p">,</span>
+<span class="linenos">223</span>         <span class="n">labeldistance</span><span class="o">=</span><span class="n">labeldistance</span><span class="p">,</span>
+<span class="linenos">224</span>         <span class="n">shadow</span><span class="o">=</span><span class="n">shadow</span><span class="p">,</span>
+<span class="linenos">225</span>         <span class="n">startangle</span><span class="o">=</span><span class="n">startangle</span><span class="p">,</span>
+<span class="linenos">226</span>         <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span>
+<span class="linenos">227</span>         <span class="n">counterclock</span><span class="o">=</span><span class="n">counterclock</span><span class="p">,</span>
+<span class="linenos">228</span>         <span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">229</span>         <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">,</span>
+<span class="linenos">230</span>         <span class="n">textprops</span><span class="o">=</span><span class="n">textprops</span><span class="p">,</span>
+<span class="linenos">231</span>         <span class="n">wedgeprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span>
+<span class="linenos">232</span>                     <span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">})</span>
+<span class="linenos">233</span>
+<span class="linenos">234</span> <span class="c1"># Format figure.</span>
+<span class="linenos">235</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="linenos">236</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">237</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_font_size</span><span class="p">)</span>          <span class="c1"># Add title.</span>
+<span class="linenos">238</span> <span class="c1">#plt.legend(labels=labels, fontsize=&#39;xx-large&#39;)  # Add legend.</span>
+<span class="linenos">239</span>
+<span class="linenos">240</span>
+<span class="linenos">241</span> <span class="c1"># Show figures</span>
+<span class="linenos">242</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="sphx-glr-horizontal">
-<li><img alt="plot piechart amrreview" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_amrreview_001.png" />
-</li>
-<li><img alt="plot piechart amrreview" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_amrreview_002.png" />
-</li>
-<li><img alt="plot piechart amrreview" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_piechart_amrreview_003.png" />
-</li>
+<li><img src="../../_images/sphx_glr_plot_piechart_amrreview_001.png" srcset="../../_images/sphx_glr_plot_piechart_amrreview_001.png" alt="plot piechart amrreview" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_piechart_amrreview_002.png" srcset="../../_images/sphx_glr_plot_piechart_amrreview_002.png" alt="plot piechart amrreview" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_piechart_amrreview_003.png" srcset="../../_images/sphx_glr_plot_piechart_amrreview_003.png" alt="plot piechart amrreview" class = "sphx-glr-multi-img"/></li>
 </ul>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_amrreview.py:91: MatplotlibDeprecationWarning:
-
-Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
-
-C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_amrreview.py:159: MatplotlibDeprecationWarning:
-
-Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
-
-C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_piechart_amrreview.py:226: MatplotlibDeprecationWarning:
-
-Support for passing a radius of None to mean 1 is deprecated since 3.3 and will be removed two minor releases later.
-</pre></div>
-</div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.162 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.745 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-piechart-amrreview-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/f873e0b0d403a52cca3e6dd2969ccae2/plot_piechart_amrreview.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_piechart_amrreview.py</span></code></a></p>
@@ -390,7 +363,7 @@ Support for passing a radius of None to mean 1 is deprecated since 3.3 and will 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_dataframe_table.html" class="btn btn-neutral float-left" title="Table Scatterplot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_graphics_table_graph.html" class="btn btn-neutral float-left" title="Graphics TableGraph example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="plot_piechart_biomarker.html" class="btn btn-neutral float-right" title="Piechart Biomarkers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

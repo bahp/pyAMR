@@ -306,7 +306,7 @@ for ax, c in zip(g.axes.flat, data.columns[1:]):
            xlabel='', ylabel='')
     ax.tick_params(axis='y', which='both', length=0)
     ax.xaxis.grid(False)
-    ax.yaxis.grid(b=True, which='major',
+    ax.yaxis.grid(visible=True, which='major',
                   color='gray', linestyle='-', linewidth=0.35)
 
 # Despine

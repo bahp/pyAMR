@@ -141,18 +141,18 @@ We first load the data and select one single pair for clarity.
 
 
     Data:
-               date_received         date_outcome patient_id laboratory_number specimen_code  ...       antimicrobial_name sensitivity_method sensitivity  mic reported
-    0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                 amikacin                NaN   sensitive  NaN      NaN
-    1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              amoxycillin                NaN   resistant  NaN      NaN
-    2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                augmentin                NaN   sensitive  NaN      NaN
-    3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                aztreonam                NaN   sensitive  NaN      NaN
-    4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              ceftazidime                NaN   sensitive  NaN      NaN
-    ...                  ...                  ...        ...               ...           ...  ...                      ...                ...         ...  ...      ...
-    7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               gentamicin                 DD   resistant  NaN        Y
-    7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...                meropenem                 DD   sensitive  NaN        Y
-    7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...  piperacillin-tazobactam                 DD   sensitive  NaN        N
-    7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               temocillin                 DD   sensitive  NaN        N
-    7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...              tigecycline                 DD   sensitive  NaN        N
+               date_received         date_outcome patient_id laboratory_number specimen_code                   specimen_name  ... antimicrobial_code       antimicrobial_name sensitivity_method sensitivity  mic reported
+    0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMI                 amikacin                NaN   sensitive  NaN      NaN
+    1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMO              amoxycillin                NaN   resistant  NaN      NaN
+    2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAUG                augmentin                NaN   sensitive  NaN      NaN
+    3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAZT                aztreonam                NaN   sensitive  NaN      NaN
+    4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               ACAZ              ceftazidime                NaN   sensitive  NaN      NaN
+    ...                  ...                  ...        ...               ...           ...                             ...  ...                ...                      ...                ...         ...  ...      ...
+    7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AGEN               gentamicin                 DD   resistant  NaN        Y
+    7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AMER                meropenem                 DD   sensitive  NaN        Y
+    7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATAZ  piperacillin-tazobactam                 DD   sensitive  NaN        N
+    7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATEM               temocillin                 DD   sensitive  NaN        N
+    7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATIG              tigecycline                 DD   sensitive  NaN        N
 
     [3770034 rows x 15 columns]
 
@@ -256,9 +256,10 @@ monthly time series - |1M1| or yearly timeseries - |12M1|).
 
 
 
-.. image:: /_examples/indexes/images/sphx_glr_plot_sari_temporal_001.png
-    :alt: Time-series $1M_{1}$
-    :class: sphx-glr-single-img
+.. image-sg:: /_examples/indexes/images/sphx_glr_plot_sari_temporal_001.png
+   :alt: Time-series $1M_{1}$
+   :srcset: /_examples/indexes/images/sphx_glr_plot_sari_temporal_001.png
+   :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -266,6 +267,10 @@ monthly time series - |1M1| or yearly timeseries - |12M1|).
  Out:
 
  .. code-block:: none
+
+    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\indexes\plot_sari_temporal.py:153: UserWarning:
+
+    Ignoring `palette` because no `hue` variable has been assigned.
 
 
     Temporal (ITI):
@@ -360,9 +365,10 @@ Note how the ``sari`` values are now larger than in the previous example!!
 
 
 
-.. image:: /_examples/indexes/images/sphx_glr_plot_sari_temporal_002.png
-    :alt: Time-series $30D_{180D}$
-    :class: sphx-glr-single-img
+.. image-sg:: /_examples/indexes/images/sphx_glr_plot_sari_temporal_002.png
+   :alt: Time-series $30D_{180D}$
+   :srcset: /_examples/indexes/images/sphx_glr_plot_sari_temporal_002.png
+   :class: sphx-glr-single-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -370,6 +376,10 @@ Note how the ``sari`` values are now larger than in the previous example!!
  Out:
 
  .. code-block:: none
+
+    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\indexes\plot_sari_temporal.py:217: UserWarning:
+
+    Ignoring `palette` because no `hue` variable has been assigned.
 
 
     Temporal (OTI):
@@ -391,7 +401,7 @@ Note how the ``sari`` values are now larger than in the previous example!!
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 241-274
+.. GENERATED FROM PYTHON SOURCE LINES 241-275
 
 Important considerations
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -404,6 +414,7 @@ Important considerations
     be applying the mean operation on months Jan, Feb, May if there was not
     data and therefore no entry in the dataframe for March. This issue can be
     addressed in two different ways:
+
       - setting the date_received as index and using w='3M'.
       - resampling the dataframe so that all date entries appear. Note that
         depending on the function applied we might want to fill gaps with
@@ -427,10 +438,10 @@ and reached certain stability on |1M6| approximately (ish?).
   - Ideally shift and period same unit (eg. D).
   - Period should be always larger than shift.
 
-.. GENERATED FROM PYTHON SOURCE LINES 275-337
+.. GENERATED FROM PYTHON SOURCE LINES 276-338
 
 .. code-block:: default
-   :lineno-start: 277
+   :lineno-start: 278
 
 
 
@@ -497,23 +508,24 @@ and reached certain stability on |1M6| approximately (ish?).
 
 
 
-.. image:: /_examples/indexes/images/sphx_glr_plot_sari_temporal_003.png
-    :alt: Independent Time Intervals, Overlapping Time Intervals
-    :class: sphx-glr-single-img
+.. image-sg:: /_examples/indexes/images/sphx_glr_plot_sari_temporal_003.png
+   :alt: Independent Time Intervals, Overlapping Time Intervals
+   :srcset: /_examples/indexes/images/sphx_glr_plot_sari_temporal_003.png
+   :class: sphx-glr-single-img
 
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 338-340
+.. GENERATED FROM PYTHON SOURCE LINES 339-341
 
 Plotting multiple pairs using FaceGrid.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 341-376
+.. GENERATED FROM PYTHON SOURCE LINES 342-377
 
 .. code-block:: default
-   :lineno-start: 342
+   :lineno-start: 343
 
 
     """
@@ -568,7 +580,7 @@ Plotting multiple pairs using FaceGrid.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.583 seconds)
+   **Total running time of the script:** ( 0 minutes  9.542 seconds)
 
 
 .. _sphx_glr_download__examples_indexes_plot_sari_temporal.py:

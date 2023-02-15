@@ -62,16 +62,12 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_spectrum_gramtype.html">ASAI - Gram stain (by specimen)</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">ASAI - Multiple (by specimen)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_spectrum_temporal.html">ASAI - Timeseries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_wls_basic.html">SART - Slope of WLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_trend_basic.html">SART - Trend as slope of WLS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -107,16 +103,11 @@ to download the full example code</p>
 <section class="sphx-glr-example-title" id="asai-multiple-by-specimen">
 <span id="sphx-glr-examples-indexes-plot-spectrum-multiple-py"></span><h1>ASAI - Multiple (by specimen)<a class="headerlink" href="#asai-multiple-by-specimen" title="Permalink to this headline"></a></h1>
 <ul class="sphx-glr-horizontal">
-<li><img alt="Gram-positive, Gram-negative, Gram-unknown" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_spectrum_multiple_001.png" />
-</li>
-<li><img alt="Gram-positive, Gram-negative, Gram-unknown" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_spectrum_multiple_002.png" />
-</li>
-<li><img alt="Gram-positive, Gram-negative, Gram-unknown" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_spectrum_multiple_003.png" />
-</li>
-<li><img alt="Gram-positive, Gram-negative, Gram-unknown" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_spectrum_multiple_004.png" />
-</li>
-<li><img alt="Gram-positive, Gram-negative, Gram-unknown" class="sphx-glr-multi-img" src="../../_images/sphx_glr_plot_spectrum_multiple_005.png" />
-</li>
+<li><img src="../../_images/sphx_glr_plot_spectrum_multiple_001.png" srcset="../../_images/sphx_glr_plot_spectrum_multiple_001.png" alt="Gram-positive, Gram-negative, Gram-unknown" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_spectrum_multiple_002.png" srcset="../../_images/sphx_glr_plot_spectrum_multiple_002.png" alt="Gram-positive, Gram-negative, Gram-unknown" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_spectrum_multiple_003.png" srcset="../../_images/sphx_glr_plot_spectrum_multiple_003.png" alt="Gram-positive, Gram-negative, Gram-unknown" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_spectrum_multiple_004.png" srcset="../../_images/sphx_glr_plot_spectrum_multiple_004.png" alt="Gram-positive, Gram-negative, Gram-unknown" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_spectrum_multiple_005.png" srcset="../../_images/sphx_glr_plot_spectrum_multiple_005.png" alt="Gram-positive, Gram-negative, Gram-unknown" class = "sphx-glr-multi-img"/></li>
 </ul>
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
@@ -153,7 +144,7 @@ XINCUL        streptococcus beta-haemolytic group b cephalexin                  
                                                     tetracycline                 0.0        8.0        1.0   9.0  0.8889
 
 [4491 rows x 5 columns]
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:527: UserWarning:
+C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:530: UserWarning:
 
 
                  Extreme resistances were found in the DataFrame. These rows
@@ -161,7 +152,7 @@ c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:527: Us
                  to pairs with low number of records.
 
 
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:538: UserWarning:
+C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:544: UserWarning:
 
 
                  There are NULL values in columns that are required. These
@@ -543,7 +534,7 @@ gram_stain                                        n    p   u        n    p   u  
 <span class="linenos"> 92</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="linenos"> 93</span>
 <span class="linenos"> 94</span> <span class="c1"># Combine with registry information</span>
-<span class="linenos"> 95</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+<span class="linenos"> 95</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
 <span class="linenos"> 96</span>
 <span class="linenos"> 97</span> <span class="c1"># Fill missing gram stain</span>
 <span class="linenos"> 98</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
@@ -704,7 +695,7 @@ gram_stain                                        n    p   u        n    p   u  
 <span class="linenos">253</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.904 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.648 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-spectrum-multiple-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/2f830ad459d6ad42c5c530ca30963979/plot_spectrum_multiple.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_spectrum_multiple.py</span></code></a></p>
