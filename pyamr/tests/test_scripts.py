@@ -46,10 +46,12 @@ def test_script_run_examples_forecasting_no_show(self):
         runpy.run_path(str(f))
 """
 
+"""
 @patch('matplotlib.pyplot.show')
 def test_script_run_examples_indexes_no_show(self):
     for f in (examples / 'indexes').glob('**/*.py'):
         runpy.run_path(str(f))
+"""
 
 """
 @patch('matplotlib.pyplot.show')

@@ -24,19 +24,6 @@ from scipy import interp
 from matplotlib.colors import ListedColormap
 
 
-_DEFAULT_KWGS = {
-    'name':'sari',
-    'cmap':'Reds',
-    'title':'SARI',
-    'xlim':[-0.1, 1.1],
-    'xticks':[0, 1],
-    'kwargs': {
-    's':80,
-    'vmin':0,
-    'vmax':1
-    }
-}
-
 # set the colormap and centre the colorbar
 class MidpointNormalize(colors.Normalize):
     """
@@ -64,6 +51,235 @@ class MidpointNormalize(colors.Normalize):
         return np.ma.masked_array(np.interp(value, x, y), np.isnan(value))
 
 
+def vlinebgplot(ax, top, xv, bg=None):
+    """This function adds a vertical line and background
+
+    Parameters
+    ----------
+    ax: matplotlib axes
+    top: float
+        The max y value
+    xv: float
+        The x value
+    bg: boolean
+        Whether to include a background
+
+    Returns
+    -------
+    """
+    # Plot line.
+    ax.plot((xv, xv), (-1, top), color='gray',
+            linestyle='--', linewidth=1, zorder=0)
+
+    # Plot background.
+    if bg is not None:
+        cb = sns.color_palette("Set2", 10)[1]
+        ax.fill_between([xv, bg], [-1, -1], [top, top],
+                        zorder=0, alpha=0.1, color=cb)
+
+_DEFAULT_KWGS = {
+    'name':'sari',
+    'cmap':'Reds',
+    'title':'SARI',
+    'xlim':[-0.1, 1.1],
+    'xticks':[0, 1],
+    'kwargs': {
+    's':80,
+    'vmin':0,
+    'vmax':1
+    }
+}
+
+# Configuration for each columns
+_DEFAULT_SARI = {
+    'cmap': 'Reds',
+    'title': 'SARI',
+    'xlim': [-0.1, 1.1],
+    'xticks': [0, 1],
+    'norm': colors.Normalize(vmin=0, vmax=1),
+}
+
+_DEFAULT_SARI_PCT = {
+    'cmap': 'Reds',
+    'title': 'SARI (%)',
+    'xlim': [-1, 101],
+    'xticks': [0, 100],
+    'norm': colors.Normalize(vmin=0, vmax=100),
+}
+
+_DEFAULT_SARI_LR = {
+    'cmap': 'Reds',
+    'title': 'SARI-lr',
+    'xlim': [-0.1, 1.1],
+    'xticks': [0, 1],
+    'norm': colors.Normalize(vmin=0, vmax=1),
+}
+
+_DEFAULT_SART_M = {
+    'cmap': 'RdBu_r',
+    'title': 'SART (m)',
+    #'xlim': [-1.2, 1.2],
+    #'xticks': [-1, 1],
+    #'norm': colors.Normalize(vmin=-1, vmax=1),
+}
+
+_DEFAULT_SART_Y = {
+    'cmap': 'RdBu_r',
+    'title': 'SART (y)',
+    'xlim': [-1.2, 1.2],
+    'xticks': [-1, 1],
+    'norm': colors.Normalize(vmin=-1, vmax=1),
+}
+
+_DEFAULT_R2 = {
+    'cmap': 'YlGn',
+    'title': 'R2',
+    'xlim': [-0.15, 1.1],
+    'xticks': [0, 1],
+    'norm': colors.Normalize(vmin=0, vmax=1),
+}
+
+_DEFAULT_R2ADJ = {
+    'cmap': 'YlGn',
+    'title': 'R2 Adj',
+    'xlim': [-0.15, 1.1],
+    'xticks': [0, 1],
+    'norm': colors.Normalize(vmin=0, vmax=1),
+}
+
+_DEFAULT_JB = {
+    'cmap': 'YlGn',
+    'title': 'Prob(JB)',
+    'xlim': [-0.1, 1.1],
+    'xticks': [0, 1],
+    'vline': [{'xv': 0.05, 'bg': -0.1}],
+    'norm': colors.Normalize(vmin=0, vmax=1),
+}
+
+_DEFAULT_DW = {
+    'cmap': 'YlGn_r',
+    'title': 'DW',
+    'xlim': [-0.4, 4.4],
+    'xticks': [0, 2, 4],
+    'vline': [{'xv': 0.8, 'bg': 4.4}],
+    'norm': colors.Normalize(vmin=0, vmax=4),
+}
+
+_DEFAULT_FREQ = {
+    'cmap': 'Blues',
+    'title': 'Freq',
+    'xticks': [0, 40000, 80000],
+    'kwargs': {
+        's': 80,
+        'vmin': 0
+    }
+}
+
+_DEFAULT_PEARSON = {
+    'cmap': 'Reds',
+    'title': 'Pearson',
+    'xlim': [-1.1, 1.1],
+    'xticks': [-1, 0, 1],
+    'vline': [{'xv': -0.5, 'bg': -1.1},
+              {'xv': 0.5, 'bg': 1.1}],
+    'norm': colors.Normalize(vmin=-1, vmax=1),
+}
+
+_DEFAULT_KENDALL = {
+    'cmap': 'Reds',
+    'title': 'Kendall',
+    'xlim': [-1.1, 1.1],
+    'xticks': [-1, 0, 1],
+    'vline': [{'xv': -0.5, 'bg': -1.1},
+              {'xv': 0.5, 'bg': 1.1}],
+    'norm': colors.Normalize(vmin=-1, vmax=1),
+}
+
+_DEFAULT_SPEARMAN = {
+    'cmap': 'Reds',
+    'title': 'Spearman',
+    'xlim': [-1.1, 1.1],
+    'xticks': [-1, 0, 1],
+    'vline': [{'xv': -0.5, 'bg': -1.1},
+              {'xv': 0.5, 'bg': 1.1}],
+    'norm': colors.Normalize(vmin=-1, vmax=1),
+}
+
+_DEFAULT_SKEW = {
+    'cmap': 'Reds',
+    'title': 'Skew',
+    'xticks':[0],
+    'vline': [{'xv': 0}]
+}
+
+_DEFAULT_KURTOSIS = {
+    'cmap': 'Reds',
+    'title': 'Kurtosis',
+    'xticks':[3],
+    'vline': [{'xv': 3}]
+}
+
+_DEFAULT_OMNIBUS = {
+    'cmap': 'Reds',
+    'title': 'Omnibus',
+    'vline': [{'xv': 0.05, 'bg': 1.1}],
+    'norm': colors.Normalize(vmin=-1, vmax=1),
+}
+
+_DEFAULT_SLOPE = {
+    'name': 'x1_tprob',
+    'cmap': 'YlGn_r',
+    'title': 'P>|t| m',
+    'xlim': [-0.1, 1.1],
+    'xticks': [0, 1],
+    'vline': [{'xv': 0.05, 'bg': 1.1}],
+    'norm': MidpointNormalize(vmin=0, vmax=1, midpoint=0.5),
+}
+
+_DEFAULT_COEFFICIENT = {
+    'name': 'c_tprob',
+    'cmap': 'YlGn_r',
+    'title': 'P>|t| n',
+    'xlim': [-0.1, 1.1],
+    'xticks': [0, 1],
+    'vline': [{'xv': 0.05, 'bg': 11.1}],
+    'norm': MidpointNormalize(vmin=0, vmax=1, midpoint=0.5),
+}
+
+_DEFAULT_PERCENT = {
+    'name': 'freqo_abx',
+    'cmap': 'Blues',
+    'title': 'Percent',
+    'xlim': [7, 9],
+    'xticks': [7, 9],
+    'vline': [],
+}
+
+# Now we combine all of them together. Note
+# that the <key> value corresponds to the name
+# of the column it should be applied to.
+_DEFAULT_CONFIGURATION = {
+    'sari': _DEFAULT_SARI,
+    'sari_pct': _DEFAULT_SARI_PCT,
+    'sart_m': _DEFAULT_SART_M,
+    'sart_y': _DEFAULT_SART_Y,
+    'dw': _DEFAULT_DW,
+    'r2': _DEFAULT_R2,
+    'r2_adj': _DEFAULT_R2ADJ,
+    'pearson': _DEFAULT_PEARSON,
+    'jb': _DEFAULT_JB,
+    'percent': _DEFAULT_PERCENT,
+    'ptm': _DEFAULT_SLOPE,
+    'ptn': _DEFAULT_COEFFICIENT,
+    'omnibus': _DEFAULT_OMNIBUS,
+    'kurtosis': _DEFAULT_KURTOSIS,
+    'skew': _DEFAULT_SKEW,
+    'freq': _DEFAULT_FREQ
+}
+
+
+
+
 
 
 class TableGraph:
@@ -86,7 +302,8 @@ class TableGraph:
                              midpoint=None,
                              s=80,
                              linewidths=0.75,
-                             edgecolor='gray'):
+                             edgecolor='gray',
+                             **kwargs):
         """This function helps creating a configuration map.
         """
         # Create new map.
@@ -429,7 +646,7 @@ class TableGraph:
         if isinstance(data, pd.DataFrame):
           return self.plot_dataframe(dataframe=data, **kwargs)
         if isinstance(data, pd.Series):
-          return self.plot_dataframe(dataframe=data.to_frame, **kwargs)
+          return self.plot_dataframe(dataframe=data.to_frame(), **kwargs)
         if isinstance(data, np.ndarray):
           return self.plot_matrix(data=data, **kwargs)
 
