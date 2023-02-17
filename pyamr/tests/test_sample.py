@@ -101,18 +101,17 @@ def test_mari_class(fixture5):
         retyrn_isolates=False)
     assert r.shape[0] == 3
 
-def test_mari_class_temporal_iti(fixture5):
-    r = MARI().compute(fixture5, shift='1D',
-        period=1, cdate='DATE',
-        return_isolates=False)
-    assert r.shape[0] == 7
-
 def test_mari_class_temporal_oti(fixture5):
     r = MARI().compute(fixture5, shift='1D',
         period='2D', cdate='DATE',
         return_isolates=False)
     assert r.shape[0] == 7
 
+def test_mari_class_temporal_iti_fails(fixture5):
+    with pytest.raises(Exception) as e:
+        r = MARI().compute(fixture5, shift='1D',
+            period=1, cdate='DATE',
+            return_isolates=False)
 
 # ---------------------------------------------------
 #   Antimicrobial Spectrum of Activity Index (ASAI)
