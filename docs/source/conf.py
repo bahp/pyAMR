@@ -12,13 +12,15 @@
 #
 import os
 import sys
+from datetime import date
+
 sys.path.insert(0, os.path.abspath('../../pyamr/'))
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'pyamr'
-copyright = '2021, Bernard Hernandez'
+copyright = '2021-%s, Bernard Hernandez' % date.today().year
 author = 'Bernard Hernandez'
 
 # The full version, including alpha/beta/rc tags
@@ -34,10 +36,11 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',        # docstrings
+    'sphinx.ext.napoleon',         # docstrings
     'sphinx.ext.todo',
-    'sphinx.ext.githubpages',     # gh-pages needs a .nojekyll file
-    'sphinx_gallery.gen_gallery'  # example galleries
+    'sphinx.ext.githubpages',      # gh-pages needs a .nojekyll file
+    'sphinx_gallery.gen_gallery',  # example galleries
+    'sphinxcontrib.bibtex'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -80,7 +83,7 @@ sphinx_gallery_conf = {
         '../../examples/tutorial',
         '../../examples/indexes',
         '../../examples/forecasting',
-        '../../examples/reports',
+        #'../../examples/reports',
         '../../examples/visualization'
     ],
     # path to where to save gallery generated output
@@ -88,12 +91,18 @@ sphinx_gallery_conf = {
         '../source/_examples/tutorial',
         '../source/_examples/indexes',
         '../source/_examples/forecasting',
-        '../source/_examples/reports',
+        #'../source/_examples/reports',
         '../source/_examples/visualization'],
     # Other
     'line_numbers': True,
     'download_all_examples': False,
-    'within_subsection_order': FileNameSortKey}
+    'within_subsection_order': FileNameSortKey
+}
+
+# ------------------
+# Bibtex extension
+# ------------------
+bibtex_bibfiles = ['refs.bib']
 
 # ------------------
 # Todo extension

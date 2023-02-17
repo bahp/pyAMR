@@ -6,7 +6,7 @@ Welcome to pyAMR's documentation!
    :align: right
    :alt: pyAMR
 
-PyAMR is a python lightweight library to facilitate the computation of common
+``PyAMR`` is a python lightweight library to facilitate the computation of common
 Antimicrobial Resistance (AMR) related statistics such as the proportion
 of resistance isolates, the resistance trend or the antimicrobial spectrum
 of activity. In addition, it includes a number of examples to visualise
@@ -39,35 +39,38 @@ such information which relay on plotting libraries such as ``matplotlib``,
 
    <br><br>
 
-To briefly showcase some of the AMR metrics that can be computed using this library we
-have included two Figures. The first Figure includes information related to antimicrobial
-resistance metrics for those ``urine`` specimens in which ``Escherichia coli`` was grown and tested.
-The table includes the following information which is also displayed in the graphs below:
 
- - ``R`` as the overall resistance (proportion of resistance isolates).
- - ``TM`` as the monthly resistance trend.
- - ``TY`` as the yearly resistance trend.
- - ``pearson`` as the correlation coefficient to discern whether there is a linear relation
-   between the number of the resistance values computed and the amount of isolates used to
-   compute them. There should not be any relation.
- - ``isolates`` as the the number of isolates used to compute such metrics.
- - ``references`` includes published manuscripts to prove the obtained values (see manuscript).
+To briefly showcase some of the AMR metrics that can be computed using this library we
+have included two Figures. The first Figure presents information related to antimicrobial
+resistance metrics for those ``urine`` specimens in which ``Escherichia coli`` was grown and tested.
+The table contains the following information which is also displayed in the graphs below:
+
+ - ``R`` is the overall resistance; that is, proportion of resistance isolates.
+ - ``TM`` is the monthly resistance trend.
+ - ``TY`` is the yearly resistance trend.
+ - ``pearson`` is the correlation coefficient to discern whether there is a linear correlation
+   between the number of isolates (records) used to compute the resistance and the overall
+   resistance obtained. They should not be correlated (-0.5 <= pearson <= 0.5).
+ - ``isolates`` is the the number of isolates used to compute such metrics.
+ - ``references`` includes manuscripts within the literate which presented similar resistance
+   values to the ones displayed in the table. For more information about these, see the
+   original manuscript (button above).
 
 
 .. image:: ./_static/imgs/todo-sart-table.png
 
-The second Figure includes information related to antimicrobial spectrum of activity for all
-the antimicrobials tested on ``urine`` samples. The table includes references to the literature
-with the corresponding associated category (eg.g narrow, intermediate and broad). While these three
-profiles appeared in the mid-1950s, little effort has been made to define them. Furthermore, such
-ambiguous labels are overused for different and even contradictory purposes. In addition, the table
-include the following metrics:
+The second Figure presents information related to the computation of the antimicrobial spectrum of
+activity for all the antimicrobials tested on ``urine`` samples. The table includes references to
+the literature with the corresponding associated category (eg.g narrow, intermediate and broad). While
+these three profiles appeared in the mid-1950s, little effort has been made to define them. Furthermore,
+such ambiguous labels are overused for different and even contradictory purposes. In addition, the
+table includes the following columns:
 
- - ``antimicrobial`` as the antimicrobial
- - ``ASAI_N`` as the spectrum of activity against gram negative bacteria.
- - ``ASAI_P`` as the spectrum of activity against gram positive bacteria.
- - ``N_gn`` as the number of different genus.
- - ``N_sp`` as the number of different species.
+ - ``antimicrobial`` is the antimicrobial
+ - ``ASAI_N`` is the spectrum of activity against gram negative bacteria.
+ - ``ASAI_P`` is the spectrum of activity against gram positive bacteria.
+ - ``N_gn`` is the number of different (unique) genus.
+ - ``N_sp`` is the number of different (unique) species.
 
 
 .. image:: ./_static/imgs/todo-asai-table.png
@@ -100,6 +103,18 @@ When using any of this project's source code, please cite:
 .. note::
 
     The PhD thesis is available on Spiral: https://spiral.imperial.ac.uk/handle/10044/1/73000
+
+
+.. .. bibliography::
+
+.. :cite:p:`espaur2017`
+.. :cite:p:`ecdc2016`
+.. :cite:p:`world2017global`
+.. :cite:t:`2018:hernandez`.
+.. :cite:p:`2018:hernandez`.
+.. :footcite:t:`2018:hernandez`
+.. :footcite:t:`rawson2021real`
+.. :cite:p:`o2014antimicrobial`
 
 
 
