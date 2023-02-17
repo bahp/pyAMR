@@ -9,34 +9,36 @@ Multiple Resistance (MARI)
           have enough number of isolates to give an accurate measurement.
 
 Determination of the Multiple Antimicrobial Resistance Index, denoted as ``MARI``,  follows the procedure
-described by (5), in which the number of antimicrobials an isolate is resistant to (R) is divided by the
-total number of the antimicrobials used in the study (T). Thus, the calculating formula for a single
+described by (5), in which the number of antimicrobials an isolate is resistant to (*R*) is divided by the
+total number of the antimicrobials used in the study (*T*). Thus, the calculating formula for a single
 isolate is shown below and it provides a value within the range [0,1] where values close to one indicate
 high multi-drug resistance.
 
-                                  MARI_{ISO} = R / T
+.. math::
+
+    MARI_{ISO} = R / T
 
 In more general scenarios, the antimicrobials to which the pathogens are tested vary among health care
-centres and time, and therefore the comparison and analysis of `MARI`` evolution in time is not straight
+centres and time, and therefore the comparison and analysis of ``MARI`` evolution in time is not straight
 forward. At the moment, for simplicity, it is recommended to check that the antimicrobials selected are
 available in the whole study period before applying the index.
 
-For more information see: :py:mod:`pyamr.core.asai.MARI`
+For more information see: :py:mod:`pyamr.core.mari.MARI`
 
 
-For the example below, the static MARI for each isolate is ...
+For the sample data created below, the overall ``MARI`` for each isolate is
 
-========== ====== ==== ==== ========
-Date                        MARI
-========== ====== ==== ==== ========
-2021-01-01 BLDCUL ECOL lab1 0.400000
-2021-01-01 BLDCUL ECOL lab2 0.800000
-2021-01-02 BLDCUL ECOL lab3 0.700000
-2021-01-03 BLDCUL ECOL lab4 0.909091
-========== ====== ==== ==== ========
+========== ========= =============== =========== ===============
+Date       SPECIMEN   MICROORGANISM  LAB_NUMBER   MARI
+========== ========= =============== =========== ===============
+2021-01-01 BLDCUL    ECOL            lab1        4/10 = 0.400000
+2021-01-01 BLDCUL    ECOL            lab2        0.800000
+2021-01-02 BLDCUL    ECOL            lab3        0.700000
+2021-01-03 BLDCUL    ECOL            lab4        0.909091
+========== ========= =============== =========== ===============
 
 
-The rolling window MARIs for <BLDCUL, ECOL> are ...
+Similarly, the rolling window ``MARIs`` for <BLDCUL, ECOL> are ...
 
 ========== ================== ====================== ==================
 Date       MARI (1D1)          MARI (1D2)            MARI Wrong!
@@ -50,11 +52,15 @@ Date       MARI (1D1)          MARI (1D2)            MARI Wrong!
 
 
 # Import libraries
+import warnings
 import pandas as pd
 import matplotlib as mpl
 
 # Import specific libraries
 from pyamr.core.mari import MARI
+
+# Filter user warning
+warnings.filterwarnings("ignore", category=UserWarning)
 
 # Set matplotlib
 mpl.rcParams['xtick.labelsize'] = 9
@@ -197,3 +203,6 @@ print("\n\n\nMARI (iti):")
 print(mari_iti)
 print("\n\n\nMARI (oti):")
 print(mari_oti)
+
+
+mari_oti

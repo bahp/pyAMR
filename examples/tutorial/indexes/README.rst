@@ -1,4 +1,4 @@
-AMR indexes
+AMR metrics
 -----------
 
-Below is a gallery of examples ...
+This gallery presents some of the most important metrics.
