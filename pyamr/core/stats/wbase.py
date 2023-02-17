@@ -322,7 +322,7 @@ class BaseWrapper(object):
         # Get arguments
         conkwargs = fargs(self.estimator.__init__, kwargs)
         fitkwargs = fargs(self.estimator.fit, kwargs)
-        # Call functon
+        # Call function
         self._raw = self.estimator(**conkwargs).fit(**fitkwargs)
 
     def fit(self, **kwargs):

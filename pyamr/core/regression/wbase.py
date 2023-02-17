@@ -26,7 +26,7 @@ class BaseWrapper(object):
     # Main attributes of the class.
     _raw = None  # The raw object (statsmodels, scipy, ...)
     _result = {}  # Dictionary with metrics filled in self._init_result().
-    _config = {}  # Dictioanry with configuration filled in
+    _config = {}  # Dictionary with configuration filled in
     _conkwargs = {}
     _fitkwargs = {}
 
@@ -220,7 +220,7 @@ class BaseWrapper(object):
         s.update({'id': self._identifier()})
         # No label.
         if not flabel: return pd.Series(s)
-        # Concat label at the begining of the index.
+        # Concat label at the beginning of the index.
         label = self._name if label is None and hasattr(self, '_name') else label
         f = lambda x: "%s-%s" % (label.lower(), x)
         # Return
