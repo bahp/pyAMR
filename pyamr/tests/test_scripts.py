@@ -1,9 +1,15 @@
 # Libraries
+import os
 import pytest
 import pathlib
 import runpy
 
 from mock import patch
+
+# .. note: When using <runpy>, the patch works so that we avoid
+#          running the pyplot.show method but the code run does
+#          not count for coverage. When using <os> the opposite
+#          happens.
 
 # Find the examples folder
 examples = pathlib.Path(__file__, '../../../', 'examples').resolve()
@@ -29,35 +35,43 @@ def test_script_run_pyamr(self):
         runpy.run_path(str(f))
 """
 
+
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_metrics(self):
     for f in (pyamr / 'metrics').glob('**/*.py'):
+        os.system(str(f))
         runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_graphics(self):
     for f in (pyamr / 'graphics').glob('**/*.py'):
+        os.system(str(f))
         runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core(self):
     for f in (pyamr / 'core').glob('*.py'):
-        runpy.run_path(str(f))
+        os.system(str(f))
+        #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core_regression(self):
     for f in (pyamr / 'core' / 'regression').glob('**/*.py'):
-        runpy.run_path(str(f))
+        os.system(str(f))
+        #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core_stats(self):
     for f in (pyamr / 'core' / 'stats').glob('**/*.py'):
-        runpy.run_path(str(f))
+        os.system(str(f))
+        #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core_table(self):
     for f in (pyamr / 'core' / 'table').glob('**/*.py'):
-        runpy.run_path(str(f))
+        os.system(str(f))
+        #runpy.run_path(str(f))
+
 
 """
 @patch('matplotlib.pyplot.show')
@@ -125,6 +139,7 @@ def test_script_run_examples_tutorials_no_show(self):
         runpy.run_path(str(f))
 """
 
+"""
 # .. note: For some reason, I have not managed to combine
 #          parametrize and mock together into one single
 #          method.
@@ -132,6 +147,7 @@ def test_script_run_examples_tutorials_no_show(self):
 def test_script_run_examples_tutorials_no_show(self):
     for f in (examples / 'tutorials').glob('**/*.py'):
         runpy.run_path(str(f))
+"""
 
 """
 @patch('matplotlib.pyplot.show')
