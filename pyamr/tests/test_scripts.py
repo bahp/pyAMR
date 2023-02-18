@@ -7,10 +7,20 @@ from mock import patch
 
 # Find the examples folder
 examples = pathlib.Path(__file__, '../../../', 'examples').resolve()
+pyamr_core = pathlib.Path(__file__, '../../', 'core').resolve()
 
 # Find all the scripts
 scripts_tutorial = (examples / 'tutorial').glob('**/*.py')
 scripts_visualisation = (examples / 'visualisation').glob('**/*.py')
+
+
+@patch('matplotlib.pyplot.show')
+def test_script_run_core(self):
+    for f in [pyamr_core / 'sari.py',
+              pyamr_core / 'asai.py',
+              pyamr_core / 'sart.py',
+              pyamr_core / 'mari.py']:
+        runpy.run_path(str(f))
 
 #@pytest.mark.parametrize('script', scripts_tutorial)
 #def test_script_execution_widgets(script):
@@ -34,10 +44,10 @@ def test_script_run_examples_no_show(self):
 # .. note: For some reason, I have not managed to combine
 #          parametrize and mock together into one single
 #          method.
-@patch('matplotlib.pyplot.show')
-def test_script_run_examples_tutorials_no_show(self):
-    for f in (examples / 'tutorials').glob('**/*.py'):
-        runpy.run_path(str(f))
+#@patch('matplotlib.pyplot.show')
+#def test_script_run_examples_tutorials_no_show(self):
+#    for f in (examples / 'tutorials').glob('**/*.py'):
+#        runpy.run_path(str(f))
 
 """
 @patch('matplotlib.pyplot.show')

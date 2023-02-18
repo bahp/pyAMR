@@ -272,6 +272,7 @@ class Frequency():
 
 if __name__ == '__main__':
 
+    """
     # Import libraries
     import sys
     import matplotlib as mpl
@@ -409,3 +410,4 @@ if __name__ == '__main__':
 
     # Show
     plt.show()
+    """

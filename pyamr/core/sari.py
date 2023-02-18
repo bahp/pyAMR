@@ -10,16 +10,9 @@
 # 
 ################################################################################
 # Import libraries
-import sys
 import warnings
-import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 
-# Import own
-from pyamr.core.freq import Frequency
 
 # -------------------------------------------------------------------------
 #                            helper methods
@@ -31,6 +24,15 @@ def _check_dataframe(dataframe):
     for SARI because the columns just represent the number of
     records in that category. Thus, nan is equivalent to 0.
     """
+    # Check there is at least one column.
+    if not 'resistant' in dataframe and \
+       not 'sensitive' in dataframe and \
+       not 'intermediate' in dataframe:
+       raise Exception("""
+        To compute the SARI at least one of the following
+        columns must be present in the DataFrame (resistant,
+        sensitive, intermediate)""")
+
     # Copy
     aux = dataframe.copy(deep=True)
 
@@ -50,22 +52,6 @@ def _check_dataframe(dataframe):
     # return
     return aux
 
-def _check_sensitivities(dataframe):
-    if not 'resistant' in dataframe and \
-       not 'sensitive' in dataframe and \
-       not 'intermediate' in dataframe:
-       raise Exception("To compute the SARI at least one of the following"
-                       "columns must be present in the DataFrame (resistant,"
-                       "sensitive, intermediate)")
-
-"""
-def sari_(r=0, i=0, s=0, dataframe=None, strategy='hard', **kwargs):
-    if dataframe is not None:
-        if isinstance(pd.DataFrame):
-            _check_sensitivities(dataframe)
-            aux = _check_dataframe(dataframe)
-            return sari_(dataframe, strategy, **kwargs)
-"""
 
 def sari(dataframe=None, strategy='hard', **kwargs):
     """Computes the sari index.
