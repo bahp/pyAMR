@@ -197,7 +197,7 @@ class SART:
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
     # Libraries
     import numpy as np

@@ -243,7 +243,8 @@ class BaseWrapper(object):
         return self
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
+
     # Set pandas configuration.
     pd.set_option('display.max_colwidth', 14)
     pd.set_option('display.width', 80)

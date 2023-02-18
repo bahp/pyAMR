@@ -321,7 +321,7 @@ class SARI:
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
     # Libraries
     import pandas as pd

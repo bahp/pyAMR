@@ -377,7 +377,7 @@ class WLSWrapper(RegressionWrapper):
             return self.x1_coef * x
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
     # Import
     import sys

@@ -20,7 +20,7 @@ import pandas as pd
 # ------------------------------------------------------------------------------
 #                                 methods
 # ------------------------------------------------------------------------------
-def _check_asai_weights_genus(dataframe):
+def _check_asai_weights_genus(dataframe): # pragma: no cover
   """Checks that the weights for each genus add up to one.
 
   .. deprecated:: 0.0.1
@@ -45,7 +45,7 @@ def _check_asai_weights_genus(dataframe):
                     "valid. \n%s" % weights)
 
 
-def _check_asai_weights_specie(dataframe):
+def _check_asai_weights_specie(dataframe): # pragma: no cover
   """Check that the weights for all the species add up to one.
 
   .. deprecated:: 0.0.1
@@ -78,7 +78,7 @@ def _check_asai_weights_specie(dataframe):
                      "\n%s" % weights)
 
 
-def _check_asai_dataframe_columns(dataframe, required_columns):
+def _check_asai_dataframe_columns(dataframe, required_columns): # pragma: no cover
   """This method checks that the dataframe has all attributes.
 
   .. deprecated:: 0.0.1
@@ -105,7 +105,7 @@ def _check_asai_dataframe_columns(dataframe, required_columns):
                   % missing)
 
 
-def _asai(dataframe, threshold=None, weights='uniform'):
+def _asai(dataframe, threshold=None, weights='uniform'): # pragma: no cover
   """Computes the antimicrobial spectrum of activity.
 
   .. deprecated:: 0.0.1
@@ -179,7 +179,7 @@ def _asai(dataframe, threshold=None, weights='uniform'):
   return pd.Series(d)
 
 
-def _asai_score(weights_genus, weights_specie, resistance, threshold):
+def _asai_score(weights_genus, weights_specie, resistance, threshold): # pragma: no cover
   """Computes the asai score.
 
   .. deprecated:: 0.0.1
@@ -600,7 +600,7 @@ class ASAI():
 
 
 
-class ASAI_old():
+class ASAI_old(): # pragma: no cover
   """This class computes the antimicrobial spectrum of activity. 
 
   .. deprecated:: 0.0.1
@@ -727,7 +727,7 @@ class ASAI_old():
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
   # Import libraries
   import sys

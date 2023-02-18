@@ -60,7 +60,7 @@ class MARI:
 
     def compute_v1(self, dataframe, shift=None, period=None,
                  cdate=None, return_frequencies=True,
-                 return_isolates=True, **kwargs):
+                 return_isolates=True, **kwargs): # pragma: no cover
         """"""
         # Copy DataFrame
         aux = dataframe.copy(deep=True)
@@ -270,7 +270,7 @@ class MARI:
 
     def compute_v3(self, dataframe, shift=None, period=None,
                          cdate=None, return_frequencies=True,
-                         return_isolates=True, **kwargs):
+                         return_isolates=True, **kwargs): # pragma: no cover
         """Compute MARI v2.
 
         .. note: It does not work properly.
@@ -355,9 +355,9 @@ class MARI:
         return aux
 
 
-    def compute_v1(self, dataframe, shift=None, period=None,
+    def compute_v4(self, dataframe, shift=None, period=None,
                          cdate=None, return_frequencies=True,
-                         return_isolates=True, **kwargs):
+                         return_isolates=True, **kwargs): # pragma: no cover
         """Compute MARI v1.
         """
 
@@ -512,7 +512,7 @@ class MARI:
         return self.compute_v2(dataframe, **kwargs)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
     # Import libraries
     import time

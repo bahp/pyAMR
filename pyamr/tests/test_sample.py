@@ -22,6 +22,19 @@ def func(x):
     return x + 1
 
 @pytest.fixture
+def timeseries():
+    """"""
+    # Constants
+    length = 100
+    offset = 100
+    slope = 10
+
+    # Create timeseries.
+    x = np.arange(length)
+    y = np.random.rand(length) * slope + offset
+    return x, y
+
+@pytest.fixture
 def fixture():
     """This ..."""
     data = [
@@ -38,9 +51,9 @@ def fixture():
         columns=['resistant', 'intermediate', 'sensitive',
                  'hard', 'medium', 'soft', 'basic'])
 
-def fixtur1():
+def fixture1():
     """This ..."""
-
+    pass
 
 @pytest.fixture
 def fixture3():
@@ -133,6 +146,21 @@ def test_asai_error_missing_column(fixture4, columns, kwargs):
         r = fixture4.drop(columns=columns) \
             .groupby(['ANTIBIOTIC']) \
             .apply(asai, **kwargs)
+
+def test_asai_error_weights_not_valid(fixture4):
+    with pytest.raises(ValueError):
+        r = fixture4 \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai, weights='invalid')
+
+@pytest.mark.parametrize("column", ['W_GENUS', 'W_SPECIE'])
+def test_asai_error_weights_wcolumn_not_valid(fixture4, column):
+    with pytest.raises(ValueError):
+        aux = fixture4.copy(deep=True)
+        aux.loc[0, column] = 1
+        r = aux \
+            .groupby(['ANTIBIOTIC']) \
+            .apply(asai, weights='specified')
 
 def test_asai_warn_threshold_double_defined(fixture4):
     with pytest.warns():

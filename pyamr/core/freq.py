@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 
 
-class Frequency():
+class Frequency(): # pragma: no cover
     """
     """
 
@@ -270,7 +270,7 @@ class Frequency():
                                              wsize=wsize)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
     """
     # Import libraries

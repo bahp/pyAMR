@@ -24,8 +24,6 @@ import pandas as pd
 from scipy.stats import norm
 from operator import attrgetter
 
-# Import pyramid arima
-from pyramid.arima import ARIMA as PYARIMA
 
 
 # Libraries wrapper.
@@ -283,7 +281,13 @@ class PyramidWrapper(RegressionWrapper):
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
+
+
+
+
+  # Import pyramid arima
+  from pyramid.arima import ARIMA as PYARIMA
 
   # Libraries.
   import matplotlib.pyplot as plt
