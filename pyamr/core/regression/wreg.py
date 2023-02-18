@@ -202,7 +202,7 @@ class RegressionWrapper(BaseWrapper):
         # Create series.
         d = {}
 
-        # Compute autocorrelation (durbin-watson)
+        # Compute autoc-orrelation (durbin-watson)
         from statsmodels.stats.stattools import durbin_watson
         d['m_dw'] = durbin_watson(resid)
 
@@ -214,11 +214,17 @@ class RegressionWrapper(BaseWrapper):
         d['m_skew'] = skew
         d['m_kurtosis'] = kurtosis
 
-        # Compute normal test (normal test)
-        from scipy.stats import normaltest
-        nm_value, nm_prob = normaltest(resid)
-        d['m_nm_value'] = nm_value
-        d['m_nm_prob'] = nm_prob
+        try:
+            # Compute normal test (normal test)
+            from scipy.stats import normaltest
+            nm_value, nm_prob = normaltest(resid)
+            d['m_nm_value'] = nm_value
+            d['m_nm_prob'] = nm_prob
+        except ValueError as e:
+            print(e)
+            d['m_nm_value'] = np.inf
+            d['m_nm_prob'] = np.inf
+
 
         # Compute the kolmogorov-smirnov test.
         from scipy.stats import kstest
@@ -226,17 +232,22 @@ class RegressionWrapper(BaseWrapper):
         d['m_ks_value'] = ks_value
         d['m_ks_prob'] = ks_prob
 
-        # Compute the shapiro-wilkinson test.
-        from scipy.stats import shapiro
-        sh_value, sh_prob = shapiro(resid)
-        d['m_shp_value'] = sh_value
-        d['m_shp_prob'] = sh_prob
+        try:
+            # Compute the shapiro-wilkinson test.
+            from scipy.stats import shapiro
+            sh_value, sh_prob = shapiro(resid)
+            d['m_shp_value'] = sh_value
+            d['m_shp_prob'] = sh_prob
+        except ValueError as e:
+            print(e)
+            d['m_shp_value'] = np.inf
+            d['m_shp_prob'] = np.inf
 
         # Compute anderson-darling.
         # The null hypothesis (sample data is drawn from a population that
         # follows a particular distribution; in this case normal) can be rejected
         # if the statistic es larger than the critical values for an specified
-        # significante level.
+        # significance level.
         from scipy.stats import anderson
         ad_value, ad_cv, ad_sl = anderson(resid)
         d['m_ad_value'] = ad_value

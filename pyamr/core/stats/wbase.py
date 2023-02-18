@@ -322,7 +322,7 @@ class BaseWrapper(object):
         # Get arguments
         conkwargs = fargs(self.estimator.__init__, kwargs)
         fitkwargs = fargs(self.estimator.fit, kwargs)
-        # Call functon
+        # Call function
         self._raw = self.estimator(**conkwargs).fit(**fitkwargs)
 
     def fit(self, **kwargs):
@@ -357,6 +357,7 @@ class BaseWrapper(object):
 
 
 if __name__ == '__main__':
+
     # Set pandas configuration.
     pd.set_option('display.max_colwidth', 14)
     pd.set_option('display.width', 80)
@@ -369,19 +370,19 @@ if __name__ == '__main__':
     w._result = {'score': 25}
 
     # Get attributes tuple list.
-    print(w.attrs())
+    #print(w.attrs())
 
     # Get methods tuple list.
-    print(w.methods())
+    #print(w.methods())
 
     # Get series with parameters.
-    print(w.as_series())
+    #print(w.as_series())
 
     # Print summary.
-    print(w.as_summary())
+    #print(w.as_summary())
 
     # Quick access to an attribute.
-    print(w.score)
+    #print(w.score)
 
     # -----------
     # Grid search
@@ -396,8 +397,8 @@ if __name__ == '__main__':
     }
 
     # Grid search method
-    summary = w.grid_search_dataframe(con_kwargs=con_params,
-                                      fit_kwargs=fit_params)
+    #summary = w.grid_search_dataframe(con_kwargs=con_params,
+    #                                  fit_kwargs=fit_params)
 
     # Show
-    print(summary)
+    #print(summary)

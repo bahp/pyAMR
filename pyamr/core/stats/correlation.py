@@ -114,7 +114,7 @@ if __name__ == '__main__':
   offset = 100
   slope = 10
 
-  # Create timeseries.
+  # Create time-series.
   x = np.arange(length)
   n = np.random.rand(length)
   y1 = n*slope + offset

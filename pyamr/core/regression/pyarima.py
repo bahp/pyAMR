@@ -308,7 +308,7 @@ class PyramidWrapper(BaseRegressionWrapper):
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
   # Libraries.
   import matplotlib.pyplot as plt

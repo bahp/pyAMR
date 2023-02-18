@@ -62,14 +62,21 @@ class SigmoidA():
 
     Note: The approximated sigmoid is defined within the interval [0,1].
 
+    .. note: Produces a RuntimeWarning: invalid value encountered in
+             true_divide z = (x-cmin) / (cmax-cmin) when the parameter
+             x has always the same value.
+
     Parameters
     ----------
-    x        : numpy array with the values to be converted to weights.
-    x_curves : tuple indicating where the low/upper curves should start.
+    x: numpy.array
+      The values to be converted to weights.
+    x_curves: tuple
+      The values indicating where the low/upper curves should start.
 
     Returns
     -------
-    r :
+    r : numpy.array
+      The weights.
     """
     # Where the two curves should start.
     cmin, cmax = x_curves if x_curves is not None else [np.min(x), np.max(x)]
@@ -91,10 +98,14 @@ class SigmoidA():
 
     Parameters
     ----------
-    x             : numpy array with the values to be converted to weights.
-    r             : numpy array with the weights to be tresholded.
-    threshold_low : number; values in x lower will have minimum weight.
-    treshold_high : number; values in x higher will have maximum weight.
+    x: numpy.array
+      The values to be converted to weights.
+    r: numpy.array
+      The weights to be thresholded.
+    threshold_low: number;
+      The values in x lower will have minimum weight.
+    treshold_high: number;
+      The values in x higher will have maximum weight.
 
     Returns
     -------
@@ -175,11 +186,31 @@ class SigmoidA():
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
   import matplotlib as mpl
   import matplotlib.pyplot as plt
   import statsmodels.robust.norms as norms
+
+
+  # ------------
+  # Basic sample
+  # ------------
+  # Create SigmoidA instance
+  W = SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0)
+
+  # Compute weights
+  w = np.ones((1, 5)) * 3
+  r = W.weights(w)
+
+  # Show
+  print("\nWeights:")
+  print(w)
+  print(r)
+
+  # ----------------
+  # Various samples
+  # ----------------
 
   # Matplotlib options
   mpl.rc('legend', fontsize=6)

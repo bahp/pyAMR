@@ -237,6 +237,11 @@ print("\n\nASAI (frequency):")
 print(asai_9)
 
 
+############################################################
+#
+# Lets use the ASAI object
+#
+
 # -------------------------------
 # Create antimicrobial spectrum
 # -------------------------------
@@ -259,8 +264,14 @@ scores = asai.compute(dataframe,
 scores = scores.unstack()
 
 # Show
-print("\nASAI (instance):")
-print(scores)
+#print("\nASAI (instance):")
+#print(scores)
+
+scores
+
+###############################################################
+#
+# Lets display the information graphically
 
 # -----------------------------
 # Plot

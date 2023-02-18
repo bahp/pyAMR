@@ -1,6 +1,6 @@
 """
-SART - Slope of WLS
--------------------
+SART - Trend as slope of WLS
+----------------------------
 
 .. todo: Explain
 

@@ -761,7 +761,6 @@ if __name__ == '__main__':
     # Create loops from default loop_strategy
     loops = _loops_strategy_lengths(series)
 
-
     # Create acronyms
     acronyms_4 =  acronym_series(series[:-3],
         exclude_acronyms=['PSEU_AERU'],
