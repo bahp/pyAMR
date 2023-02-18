@@ -120,7 +120,8 @@ def _mean_absolute_scaled_error(y_train, y_test, y_pred):
     return forecast_error.mean() / d
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
+
 
     # Libraries
     import numpy as np

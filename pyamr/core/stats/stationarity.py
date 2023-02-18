@@ -327,4 +327,4 @@ if __name__ == '__main__':
     # stationarity_ct = StationarityWrapper().load(fname=fname)
 
     # Show
-    plt.show()
+    #plt.show()
