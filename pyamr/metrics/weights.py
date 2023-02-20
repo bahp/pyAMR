@@ -17,7 +17,34 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
-class SigmoidA():
+class SigmoidA:
+  """
+  A class used to represent a Sigmoid.
+
+  Attributes
+  ----------
+  r: float
+    the r value
+  g: float
+    the g value
+  offset: str
+    the offset
+  scale: int
+    the scale
+  percentiles:
+    the percentiles
+  thresholds:
+    the thresholds
+
+  Methods
+  -------
+  weights(sound=None)
+    Prints the animals name and what sound it makes
+
+  Example
+  -------
+
+  """
 
   def __init__(self, r=200, g=0.5, offset=0.0, scale=1.0,
       percentiles=None, thresholds=None):
@@ -43,7 +70,18 @@ class SigmoidA():
   #                            HELPER METHODS
   # ---------------------------------------------------------------------------
   def _identifier(self, short=True):
-    """This methods describes de model."""
+    """This methods describes de model.
+
+    Parameters
+    ----------
+    short: boolean
+      Whether to display the short or long identifier
+
+    Returns
+    -------
+    string:
+      The identifier
+    """
     # Return short description.
     if short:
       per = 'N' if self.percentiles is None else self.percentiles
@@ -155,7 +193,7 @@ class SigmoidA():
 
 
   def weights(self, x):
-    """This cuntion computes the weights.
+    """Compute the weights.
 
     Parameters
     ----------
@@ -173,7 +211,7 @@ class SigmoidA():
     else :
       r = self.weights_percentile(x, self.percentiles)
 
-    # Treshold the result.
+    # Threshold the result.
     if self.thresholds is not None:
       r = self.threshold(r, x, self.thresholds)
 

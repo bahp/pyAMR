@@ -3,13 +3,16 @@ import numpy as np
 from matplotlib import colors
 
 class MidpointNormalize(colors.Normalize):
-    """Normalise the colorbar so that diverging bars
-       work there way either side from a prescribed
-       midpoint value)
+    """Normalises the colorbar so that diverging bars work there way
+    either side from a prescribed midpoint value
 
     Example
     -------
-        > MidpointNormalize(midpoint=0., vmin=-100, vmax=100)
+
+    .. highlight:: python
+    .. code-block:: python
+
+        norm = MidpointNormalize(midpoint=0., vmin=-100, vmax=100)
 
     """
 
@@ -37,7 +40,7 @@ class MidpointNormalize(colors.Normalize):
 
 
 def hlinebgplot(ax, right, yv, bg=None):
-    """This function adds a vertical line and background
+    """Adds an horizontal line and background in axis.
 
     Parameters
     ----------
@@ -58,8 +61,9 @@ def hlinebgplot(ax, right, yv, bg=None):
         ax.fill_between([-1, right], [yv, yv], [bg, bg],
                         zorder=0, alpha=0.2, color=cb)
 
+
 def vlinebgplot(ax, top, xv, bg=None):
-    """This function adds a vertical line and background
+    """Adds a vertical line and background in axis.
 
     Parameters
     ----------
@@ -89,7 +93,7 @@ def vlinebgplot(ax, top, xv, bg=None):
 
 
 def scalar_colormap(values, cmap, vmin, vmax):
-    """This method creates a colormap based on values.
+    """Creates a colormap based on values.
 
     Parameters
     ----------

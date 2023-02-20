@@ -28,6 +28,14 @@ pyamr.graphics.table\_graph module
    :undoc-members:
    :show-inheritance:
 
+pyamr.graphics.utils module
+---------------------------
+
+.. automodule:: pyamr.graphics.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

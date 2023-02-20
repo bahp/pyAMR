@@ -509,7 +509,7 @@ class ASAI():
             for a resistance threshold of 0.5, if a pair <o,a> has a resistance
             value of 0.4, the microorganism will be considered sensitive. In
             order to use specific thresholds keep threshold to None and include
-            a column 'THRESHOLD'.ss
+            a column 'THRESHOLD'.
 
         tol: float, default=1e-6
             The tolerance in order to check that all conditions (uniqueness

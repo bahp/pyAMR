@@ -46,6 +46,14 @@ pyamr.core.sari module
    :undoc-members:
    :show-inheritance:
 
+pyamr.core.sart module
+----------------------
+
+.. automodule:: pyamr.core.sart
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
