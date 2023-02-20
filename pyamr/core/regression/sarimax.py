@@ -486,7 +486,7 @@ if __name__ == '__main__': # pragma: no cover
     axes[0].legend()
     axes[1].legend()
 
-    plt.show()
+    # plt.show()
 
     # -------------------------------
     # Example II - AUTO
@@ -562,4 +562,4 @@ if __name__ == '__main__': # pragma: no cover
     plt.suptitle("Dynamic predictions for SARIMAX")
 
     # Show
-    plt.show()
+    # plt.show()

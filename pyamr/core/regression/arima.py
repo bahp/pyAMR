@@ -545,4 +545,4 @@ if __name__ == '__main__': # pragma: no cover
   plt.suptitle("Dynamic predictions for ARIMA")
 
   # Show
-  plt.show()
+  # plt.show()
