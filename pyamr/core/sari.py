@@ -210,7 +210,7 @@ class SARI:
         2D      year   ``Invalid`` - period cannot be a year (in this case)
         year    --     ``Invalid`` - shift cannot be a named time.
         2       --     ``Invalid`` - shift cannot be a number.
-        ======= ====== ======================================================
+        ======= ====== =======================================================
 
         Note that shift=2D and period=2D is equivalent to shift=2D and period=1.
 

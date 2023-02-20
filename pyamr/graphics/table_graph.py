@@ -6,7 +6,7 @@
 #
 ###############################################################################
 
-# Generica libraries
+# Libraries
 import os
 import sys
 import json
@@ -20,62 +20,19 @@ import matplotlib.patches as mpatches
 import matplotlib.gridspec as gridspec
 
 from scipy import interp
-
 from matplotlib.colors import ListedColormap
 
-
-# set the colormap and centre the colorbar
-class MidpointNormalize(colors.Normalize):
-    """
-    Normalise the colorbar so that diverging bars work
-    there way either side from a prescribed midpoint value)
-
-    use: MidpointNormalize(midpoint=0.,vmin=-100, vmax=100)
-
-    """
-    def __init__(self, vmin=None,
-                       vmax=None,
-                       midpoint=None,
-                       clip=False):
-        """
-        """
-        self.midpoint = midpoint
-        colors.Normalize.__init__(self, vmin, vmax, clip)
-
-    def __call__(self, value, clip=None):
-        """
-        """
-        # I'm ignoring masked values and all kinds of edge cases to make a
-        # simple example...
-        x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
-        return np.ma.masked_array(np.interp(value, x, y), np.isnan(value))
+# Own
+from pyamr.graphics.utils import MidpointNormalize
+from pyamr.graphics.utils import vlinebgplot
 
 
-def vlinebgplot(ax, top, xv, bg=None):
-    """This function adds a vertical line and background
-
-    Parameters
-    ----------
-    ax: matplotlib axes
-    top: float
-        The max y value
-    xv: float
-        The x value
-    bg: boolean
-        Whether to include a background
-
-    Returns
-    -------
-    """
-    # Plot line.
-    ax.plot((xv, xv), (-1, top), color='gray',
-            linestyle='--', linewidth=1, zorder=0)
-
-    # Plot background.
-    if bg is not None:
-        cb = sns.color_palette("Set2", 10)[1]
-        ax.fill_between([xv, bg], [-1, -1], [top, top],
-                        zorder=0, alpha=0.1, color=cb)
+# ------------------------------------------------------------------
+# CONSTANTS
+# ------------------------------------------------------------------
+# These are some pre-defined configurations to facilitate the display
+# of some common statistics (R2, jarque-bera, skew) and amr metrics
+# (sari, sart, ...) computed in this library.
 
 _DEFAULT_KWGS = {
     'name':'sari',
@@ -84,9 +41,9 @@ _DEFAULT_KWGS = {
     'xlim':[-0.1, 1.1],
     'xticks':[0, 1],
     'kwargs': {
-    's':80,
-    'vmin':0,
-    'vmax':1
+        's':80,
+        'vmin':0,
+        'vmax':1
     }
 }
 
@@ -118,9 +75,9 @@ _DEFAULT_SARI_LR = {
 _DEFAULT_SART_M = {
     'cmap': 'RdBu_r',
     'title': 'SART (m)',
-    #'xlim': [-1.2, 1.2],
-    #'xticks': [-1, 1],
-    #'norm': colors.Normalize(vmin=-1, vmax=1),
+    'xlim': [-1.2, 1.2],
+    'xticks': [-1, 1],
+    'norm': colors.Normalize(vmin=-1, vmax=1),
 }
 
 _DEFAULT_SART_Y = {
@@ -148,6 +105,15 @@ _DEFAULT_R2ADJ = {
 }
 
 _DEFAULT_JB = {
+    'cmap': 'YlGn',
+    'title': 'Prob(JB)',
+    'xlim': [-0.1, 1.1],
+    'xticks': [0, 1],
+    'vline': [{'xv': 0.05, 'bg': -0.1}],
+    'norm': colors.Normalize(vmin=0, vmax=1),
+}
+
+_DEFAULT_JB_PROB = {
     'cmap': 'YlGn',
     'title': 'Prob(JB)',
     'xlim': [-0.1, 1.1],
@@ -247,11 +213,11 @@ _DEFAULT_COEFFICIENT = {
 }
 
 _DEFAULT_PERCENT = {
-    'name': 'freqo_abx',
+    'name': 'percent',
     'cmap': 'Blues',
     'title': 'Percent',
     'xlim': [7, 9],
-    'xticks': [7, 9],
+    'xticks': [0, 100],
     'vline': [],
 }
 
@@ -268,6 +234,7 @@ _DEFAULT_CONFIGURATION = {
     'r2_adj': _DEFAULT_R2ADJ,
     'pearson': _DEFAULT_PEARSON,
     'jb': _DEFAULT_JB,
+    'jb_prob': _DEFAULT_JB_PROB,
     'percent': _DEFAULT_PERCENT,
     'ptm': _DEFAULT_SLOPE,
     'ptn': _DEFAULT_COEFFICIENT,
@@ -638,8 +605,6 @@ class TableGraph:
                                       configuration=configuration)
 
 
-
-
     def plot(self, data, **kwargs):
         """
         """
@@ -649,6 +614,8 @@ class TableGraph:
           return self.plot_dataframe(dataframe=data.to_frame(), **kwargs)
         if isinstance(data, np.ndarray):
           return self.plot_matrix(data=data, **kwargs)
+
+
 
 
 
@@ -709,7 +676,7 @@ if __name__ == '__main__':
   axes = TableGraph().plot(data=data, configuration=config)
 
   # Show.
-  # plt.show()
+  plt.show()
 
 
 
