@@ -47,16 +47,13 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_distb.html">Table Boxplot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Table Scatterplot</a></li>
@@ -71,6 +68,10 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_pyplot_treemap.html">Plotly - Treemap (sari)</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -105,342 +106,140 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="table-scatterplot">
 <span id="sphx-glr-examples-visualization-plot-dataframe-table-py"></span><h1>Table Scatterplot<a class="headerlink" href="#table-scatterplot" title="Permalink to this headline"></a></h1>
-<p>Example using your package</p>
-<img src="../../_images/sphx_glr_plot_dataframe_table_001.png" srcset="../../_images/sphx_glr_plot_dataframe_table_001.png" alt="SART, SARI, R2, Prob(JB), DW, P>|t| m, P>|t| n, Pearson, Percent" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-   idx   org  abx   sart   sari     r2     jb     dw    ptm  ptn  pearson  percent
-0    9  SAUR  TRI  0.720  0.100  0.274  0.112  0.056  0.000  0.0   -0.046    7.189
-1    8  SAUR  MUP  0.084  0.025 -0.007  0.009  0.064  0.429  0.0   -0.499    7.230
-2    7  SAUR  ERY  0.082  0.260 -0.007  0.092  0.123  0.414  0.0   -0.526    8.604
-3    6  SAUR  CLI  0.058  0.224 -0.016  0.033  0.099  0.653  0.0   -0.468    8.602
-4    5  SAUR  RIF -0.093  0.017 -0.008  0.056  0.043  0.436  0.0    0.217    7.545
-5    4  SAUR  PEN -0.120  0.894  0.086  0.262  0.168  0.022  0.0    0.439    8.588
-6    0  SAUR  CIP -0.480  0.200  0.166  0.545  0.100  0.002  0.0   -0.795    7.562
-7    1  SAUR  FUS -0.480  0.146  0.094  0.221  0.038  0.017  0.0   -0.033    8.592
-8    2  SAUR  MET -0.480  0.153  0.174  0.144  0.090  0.002  0.0   -0.621    8.599
-9    3  SAUR  TET -0.480  0.098  0.184  0.125  0.045  0.001  0.0    0.215    7.606
+<img src="../../_images/sphx_glr_plot_dataframe_table_001.png" srcset="../../_images/sphx_glr_plot_dataframe_table_001.png" alt="SART (m), SARI, R2, Prob(JB), DW, P>|t| m, P>|t| n, Pearson, Percent" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+   idx   org  abx  sart_m   sari     r2     jb     dw    ptm  ptn  pearson  percent
+0    9  SAUR  TRI   0.720  0.100  0.274  0.112  0.056  0.000  0.0   -0.046    7.189
+1    8  SAUR  MUP   0.084  0.025 -0.007  0.009  0.064  0.429  0.0   -0.499    7.230
+2    7  SAUR  ERY   0.082  0.260 -0.007  0.092  0.123  0.414  0.0   -0.526    8.604
+3    6  SAUR  CLI   0.058  0.224 -0.016  0.033  0.099  0.653  0.0   -0.468    8.602
+4    5  SAUR  RIF  -0.093  0.017 -0.008  0.056  0.043  0.436  0.0    0.217    7.545
+5    4  SAUR  PEN  -0.120  0.894  0.086  0.262  0.168  0.022  0.0    0.439    8.588
+6    0  SAUR  CIP  -0.480  0.200  0.166  0.545  0.100  0.002  0.0   -0.795    7.562
+7    1  SAUR  FUS  -0.480  0.146  0.094  0.221  0.038  0.017  0.0   -0.033    8.592
+8    2  SAUR  MET  -0.480  0.153  0.174  0.144  0.090  0.002  0.0   -0.621    8.599
+9    3  SAUR  TET  -0.480  0.098  0.184  0.125  0.045  0.001  0.0    0.215    7.606
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  7</span> <span class="c1"># Libraries</span>
-<span class="linenos">  8</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="linenos">  9</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="linenos"> 10</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="linenos"> 11</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="linenos"> 12</span> <span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
-<span class="linenos"> 13</span>
-<span class="linenos"> 14</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
-<span class="linenos"> 15</span>
-<span class="linenos"> 16</span> <span class="c1"># -----------------------------------------------------------</span>
-<span class="linenos"> 17</span> <span class="c1"># Helpers</span>
-<span class="linenos"> 18</span> <span class="c1"># -----------------------------------------------------------</span>
-<span class="linenos"> 19</span> <span class="k">class</span> <span class="nc">MidpointNormalize</span><span class="p">(</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">):</span>
-<span class="linenos"> 20</span>     <span class="sd">&quot;&quot;&quot;Normalise the colorbar so that diverging bars</span>
-<span class="linenos"> 21</span><span class="sd">        work there way either side from a prescribed</span>
-<span class="linenos"> 22</span><span class="sd">        midpoint value)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  6</span> <span class="c1"># Libraries</span>
+<span class="linenos">  7</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">  8</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">  9</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos"> 10</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 11</span> <span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span> <span class="c1"># Own libraries</span>
+<span class="linenos"> 16</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.utils</span> <span class="kn">import</span> <span class="n">MidpointNormalize</span>
+<span class="linenos"> 17</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.utils</span> <span class="kn">import</span> <span class="n">vlinebgplot</span>
+<span class="linenos"> 18</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.table_graph</span> <span class="kn">import</span> <span class="n">_DEFAULT_CONFIGURATION</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos"> 21</span> <span class="c1"># Main</span>
+<span class="linenos"> 22</span> <span class="c1"># -------------------------------------------</span>
 <span class="linenos"> 23</span>
-<span class="linenos"> 24</span><span class="sd">     Example</span>
-<span class="linenos"> 25</span><span class="sd">     -------</span>
-<span class="linenos"> 26</span><span class="sd">         &gt; MidpointNormalize(midpoint=0., vmin=-100, vmax=100)</span>
-<span class="linenos"> 27</span>
-<span class="linenos"> 28</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="linenos"> 29</span>
-<span class="linenos"> 30</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="linenos"> 31</span>                        <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="linenos"> 32</span>                        <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="linenos"> 33</span>                        <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="linenos"> 34</span>         <span class="sd">&quot;&quot;&quot;Constructor</span>
-<span class="linenos"> 35</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="linenos"> 36</span>         <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">=</span> <span class="n">midpoint</span>
-<span class="linenos"> 37</span>         <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">clip</span><span class="p">)</span>
-<span class="linenos"> 38</span>
-<span class="linenos"> 39</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="linenos"> 40</span>         <span class="sd">&quot;&quot;&quot;Call</span>
-<span class="linenos"> 41</span>
-<span class="linenos"> 42</span><span class="sd">         .. note: Ignoring masked values and all kind of edge cases</span>
-<span class="linenos"> 43</span><span class="sd">                  to keep it simple.</span>
-<span class="linenos"> 44</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="linenos"> 45</span>         <span class="c1"># I&#39;m ignoring masked values and all kinds of edge cases to make a</span>
-<span class="linenos"> 46</span>         <span class="c1"># simple example...</span>
-<span class="linenos"> 47</span>         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vmin</span><span class="p">,</span>
-<span class="linenos"> 48</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span><span class="p">,</span>
-<span class="linenos"> 49</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">vmax</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="linenos"> 50</span>         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
-<span class="linenos"> 51</span>
-<span class="linenos"> 52</span>
-<span class="linenos"> 53</span> <span class="k">def</span> <span class="nf">vlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">xv</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="linenos"> 54</span>     <span class="sd">&quot;&quot;&quot;This function adds a vertical line and background</span>
-<span class="linenos"> 55</span>
-<span class="linenos"> 56</span><span class="sd">     Parameters</span>
-<span class="linenos"> 57</span><span class="sd">     ----------</span>
-<span class="linenos"> 58</span><span class="sd">     ax: matplotlib axes</span>
-<span class="linenos"> 59</span><span class="sd">     top: float</span>
-<span class="linenos"> 60</span><span class="sd">         The max y value</span>
-<span class="linenos"> 61</span><span class="sd">     xv: float</span>
-<span class="linenos"> 62</span><span class="sd">         The x value</span>
-<span class="linenos"> 63</span><span class="sd">     bg: boolean</span>
-<span class="linenos"> 64</span><span class="sd">         Whether to include a background</span>
-<span class="linenos"> 65</span>
-<span class="linenos"> 66</span><span class="sd">     Returns</span>
-<span class="linenos"> 67</span><span class="sd">     -------</span>
-<span class="linenos"> 68</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="linenos"> 69</span>     <span class="c1"># Plot line.</span>
-<span class="linenos"> 70</span>     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">xv</span><span class="p">,</span> <span class="n">xv</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">top</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
-<span class="linenos"> 71</span>             <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos"> 72</span>
-<span class="linenos"> 73</span>     <span class="c1"># Plot background.</span>
-<span class="linenos"> 74</span>     <span class="k">if</span> <span class="n">bg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos"> 75</span>         <span class="n">cb</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="linenos"> 76</span>         <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="n">xv</span><span class="p">,</span> <span class="n">bg</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">top</span><span class="p">,</span> <span class="n">top</span><span class="p">],</span>
-<span class="linenos"> 77</span>                         <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
-<span class="linenos"> 78</span>
-<span class="linenos"> 79</span> <span class="c1"># -------------------</span>
-<span class="linenos"> 80</span> <span class="c1"># PLOTTING SETTINGS</span>
-<span class="linenos"> 81</span> <span class="c1"># -------------------</span>
-<span class="linenos"> 82</span> <span class="c1"># Configuration for each columns</span>
-<span class="linenos"> 83</span> <span class="n">info_sari</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 84</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos"> 85</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SARI&#39;</span><span class="p">,</span>
-<span class="linenos"> 86</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos"> 87</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos"> 88</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos"> 89</span> <span class="p">}</span>
+<span class="linenos"> 24</span> <span class="c1"># Create data</span>
+<span class="linenos"> 25</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 26</span>     <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;TRI&#39;</span><span class="p">,</span>  <span class="mf">0.720</span><span class="p">,</span>  <span class="mf">0.100</span><span class="p">,</span>  <span class="mf">0.274</span><span class="p">,</span> <span class="mf">0.112</span><span class="p">,</span>  <span class="mf">0.056</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.046</span><span class="p">,</span>  <span class="mf">7.189</span><span class="p">],</span>
+<span class="linenos"> 27</span>     <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;MUP&#39;</span><span class="p">,</span>  <span class="mf">0.084</span><span class="p">,</span>  <span class="mf">0.025</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.007</span><span class="p">,</span> <span class="mf">0.009</span><span class="p">,</span>  <span class="mf">0.064</span><span class="p">,</span>  <span class="mf">0.429</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.499</span><span class="p">,</span>  <span class="mf">7.230</span><span class="p">],</span>
+<span class="linenos"> 28</span>     <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ERY&#39;</span><span class="p">,</span>  <span class="mf">0.082</span><span class="p">,</span>  <span class="mf">0.260</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.007</span><span class="p">,</span> <span class="mf">0.092</span><span class="p">,</span>  <span class="mf">0.123</span><span class="p">,</span>  <span class="mf">0.414</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.526</span><span class="p">,</span>  <span class="mf">8.604</span><span class="p">],</span>
+<span class="linenos"> 29</span>     <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;CLI&#39;</span><span class="p">,</span>  <span class="mf">0.058</span><span class="p">,</span>  <span class="mf">0.224</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.016</span><span class="p">,</span> <span class="mf">0.033</span><span class="p">,</span>  <span class="mf">0.099</span><span class="p">,</span>  <span class="mf">0.653</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.468</span><span class="p">,</span>  <span class="mf">8.602</span><span class="p">],</span>
+<span class="linenos"> 30</span>     <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;RIF&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.093</span><span class="p">,</span>  <span class="mf">0.017</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.056</span><span class="p">,</span>  <span class="mf">0.043</span><span class="p">,</span>  <span class="mf">0.436</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>    <span class="mf">0.217</span><span class="p">,</span>  <span class="mf">7.545</span><span class="p">],</span>
+<span class="linenos"> 31</span>     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;PEN&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.120</span><span class="p">,</span>  <span class="mf">0.894</span><span class="p">,</span>  <span class="mf">0.086</span><span class="p">,</span> <span class="mf">0.262</span><span class="p">,</span>  <span class="mf">0.168</span><span class="p">,</span>  <span class="mf">0.022</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>    <span class="mf">0.439</span><span class="p">,</span>  <span class="mf">8.588</span><span class="p">],</span>
+<span class="linenos"> 32</span>     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;CIP&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.200</span><span class="p">,</span>  <span class="mf">0.166</span><span class="p">,</span> <span class="mf">0.545</span><span class="p">,</span>  <span class="mf">0.100</span><span class="p">,</span>  <span class="mf">0.002</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.795</span><span class="p">,</span>  <span class="mf">7.562</span><span class="p">],</span>
+<span class="linenos"> 33</span>     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;FUS&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.146</span><span class="p">,</span>  <span class="mf">0.094</span><span class="p">,</span> <span class="mf">0.221</span><span class="p">,</span>  <span class="mf">0.038</span><span class="p">,</span>  <span class="mf">0.017</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.033</span><span class="p">,</span>  <span class="mf">8.592</span><span class="p">],</span>
+<span class="linenos"> 34</span>     <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;MET&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.153</span><span class="p">,</span>  <span class="mf">0.174</span><span class="p">,</span> <span class="mf">0.144</span><span class="p">,</span>  <span class="mf">0.090</span><span class="p">,</span>  <span class="mf">0.002</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.621</span><span class="p">,</span>  <span class="mf">8.599</span><span class="p">],</span>
+<span class="linenos"> 35</span>     <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;TET&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.098</span><span class="p">,</span>  <span class="mf">0.184</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span>  <span class="mf">0.045</span><span class="p">,</span>  <span class="mf">0.001</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>    <span class="mf">0.215</span><span class="p">,</span>  <span class="mf">7.606</span><span class="p">]</span>
+<span class="linenos"> 36</span> <span class="p">]</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span> <span class="c1"># Create dataframe</span>
+<span class="linenos"> 39</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="s1">&#39;org&#39;</span><span class="p">,</span> <span class="s1">&#39;abx&#39;</span><span class="p">,</span>
+<span class="linenos"> 40</span>     <span class="s1">&#39;sart_m&#39;</span><span class="p">,</span> <span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;jb&#39;</span><span class="p">,</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span>
+<span class="linenos"> 41</span>     <span class="s1">&#39;pearson&#39;</span><span class="p">,</span> <span class="s1">&#39;percent&#39;</span><span class="p">])</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span> <span class="c1"># Show</span>
+<span class="linenos"> 44</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+<span class="linenos"> 45</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span> <span class="c1"># Filter features</span>
+<span class="linenos"> 48</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">:]]</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos"> 51</span> <span class="c1"># Pair Grid</span>
+<span class="linenos"> 52</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos"> 53</span> <span class="c1"># Create plotting configuration</span>
+<span class="linenos"> 54</span> <span class="n">info</span> <span class="o">=</span> <span class="n">_DEFAULT_CONFIGURATION</span>
+<span class="linenos"> 55</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;percent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 56</span>     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
+<span class="linenos"> 57</span>     <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+<span class="linenos"> 58</span>     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Percent&#39;</span><span class="p">,</span>
+<span class="linenos"> 59</span>     <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+<span class="linenos"> 60</span>     <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+<span class="linenos"> 61</span>     <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="linenos"> 62</span> <span class="p">}</span>
+<span class="linenos"> 63</span>
+<span class="linenos"> 64</span> <span class="c1"># Create pair grid</span>
+<span class="linenos"> 65</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_vars</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+<span class="linenos"> 66</span>         <span class="n">y_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;abx&quot;</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">.45</span><span class="p">)</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span> <span class="c1"># Draw a dot plot using the stripplot function</span>
+<span class="linenos"> 69</span> <span class="c1"># g.map(sns.stripplot, size=10, orient=&quot;h&quot;, jitter=False,</span>
+<span class="linenos"> 70</span> <span class="c1">#      palette=&quot;flare_r&quot;, linewidth=1, edgecolor=&quot;w&quot;)</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span> <span class="c1"># Set common features</span>
+<span class="linenos"> 73</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span> <span class="c1"># Plot strips and format axes</span>
+<span class="linenos"> 76</span> <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span>     <span class="c1"># Get information</span>
+<span class="linenos"> 79</span>     <span class="n">d</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="p">{}</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span>     <span class="c1"># Display</span>
+<span class="linenos"> 82</span>     <span class="c1"># sns.stripplot(data=data, x=title, y=&#39;abx&#39;, size=10,</span>
+<span class="linenos"> 83</span>     <span class="c1">#    orient=&quot;h&quot;, jitter=False, linewidth=0.75, ax=ax,</span>
+<span class="linenos"> 84</span>     <span class="c1">#    edgecolor=&quot;gray&quot;, palette=d.get(&#39;cmap&#39;, None))</span>
+<span class="linenos"> 85</span>     <span class="c1">#    color=&#39;b&#39;)</span>
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span>     <span class="c1"># .. note: We need to use scatter plot if we want to</span>
+<span class="linenos"> 88</span>     <span class="c1">#          assign colors to the markers according to</span>
+<span class="linenos"> 89</span>     <span class="c1">#          their value.</span>
 <span class="linenos"> 90</span>
-<span class="linenos"> 91</span> <span class="n">info_sari_lr</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 92</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos"> 93</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SARI-lr&#39;</span><span class="p">,</span>
-<span class="linenos"> 94</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos"> 95</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos"> 96</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos"> 97</span> <span class="p">}</span>
-<span class="linenos"> 98</span>
-<span class="linenos"> 99</span> <span class="n">info_sart</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">100</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
-<span class="linenos">101</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SART&#39;</span><span class="p">,</span>
-<span class="linenos">102</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
-<span class="linenos">103</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">104</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">105</span> <span class="p">}</span>
-<span class="linenos">106</span>
-<span class="linenos">107</span> <span class="n">info_r2</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">108</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
-<span class="linenos">109</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span>
-<span class="linenos">110</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos">111</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">112</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">113</span> <span class="p">}</span>
-<span class="linenos">114</span>
-<span class="linenos">115</span> <span class="n">info_jb</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">116</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
-<span class="linenos">117</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Prob(JB)&#39;</span><span class="p">,</span>
-<span class="linenos">118</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos">119</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">120</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.1</span><span class="p">}],</span>
-<span class="linenos">121</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">122</span> <span class="p">}</span>
-<span class="linenos">123</span>
-<span class="linenos">124</span> <span class="n">info_dw</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">125</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
-<span class="linenos">126</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;DW&#39;</span><span class="p">,</span>
-<span class="linenos">127</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">],</span>
-<span class="linenos">128</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-<span class="linenos">129</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">4.4</span><span class="p">}],</span>
-<span class="linenos">130</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-<span class="linenos">131</span> <span class="p">}</span>
-<span class="linenos">132</span>
-<span class="linenos">133</span> <span class="n">info_freq</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">134</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
-<span class="linenos">135</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Freq&#39;</span><span class="p">,</span>
-<span class="linenos">136</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">40000</span><span class="p">,</span><span class="mi">80000</span><span class="p">],</span>
-<span class="linenos">137</span>   <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="linenos">138</span>     <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
-<span class="linenos">139</span>     <span class="s1">&#39;vmin&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
-<span class="linenos">140</span> <span class="p">}</span>
-<span class="linenos">141</span>
-<span class="linenos">142</span> <span class="n">info_pearson</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">143</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos">144</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Pearson&#39;</span><span class="p">,</span>
-<span class="linenos">145</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos">146</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">147</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">1.1</span><span class="p">},</span>
-<span class="linenos">148</span>            <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.1</span><span class="p">}],</span>
-<span class="linenos">149</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">150</span> <span class="p">}</span>
-<span class="linenos">151</span>
-<span class="linenos">152</span> <span class="n">info_kendall</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">153</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos">154</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Kendall&#39;</span><span class="p">,</span>
-<span class="linenos">155</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos">156</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">157</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">1.1</span><span class="p">},</span>
-<span class="linenos">158</span>            <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.1</span><span class="p">}],</span>
-<span class="linenos">159</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">160</span> <span class="p">}</span>
-<span class="linenos">161</span>
-<span class="linenos">162</span> <span class="n">info_spearman</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">163</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos">164</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Spearman&#39;</span><span class="p">,</span>
-<span class="linenos">165</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos">166</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">167</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="o">-</span><span class="mf">1.1</span><span class="p">},</span>
-<span class="linenos">168</span>            <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.1</span><span class="p">}],</span>
-<span class="linenos">169</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">170</span> <span class="p">}</span>
-<span class="linenos">171</span>
-<span class="linenos">172</span> <span class="n">info_kurtosis</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">173</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos">174</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Kurtosis&#39;</span><span class="p">,</span>
-<span class="linenos">175</span>   <span class="c1">#&#39;xlim&#39;:[-1.1,1.1],</span>
-<span class="linenos">176</span>   <span class="c1">#&#39;xticks&#39;:[-1,0,1],</span>
-<span class="linenos">177</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[],</span>
-<span class="linenos">178</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">179</span> <span class="p">}</span>
-<span class="linenos">180</span>
-<span class="linenos">181</span> <span class="n">info_omnibus</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">182</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos">183</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Omnibus&#39;</span><span class="p">,</span>
-<span class="linenos">184</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.1</span><span class="p">}],</span>
-<span class="linenos">185</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
-<span class="linenos">186</span> <span class="p">}</span>
-<span class="linenos">187</span>
-<span class="linenos">188</span> <span class="n">info_slope</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">189</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;x1_tprob&#39;</span><span class="p">,</span>
-<span class="linenos">190</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
-<span class="linenos">191</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;P&gt;|t| m&#39;</span><span class="p">,</span>
-<span class="linenos">192</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos">193</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">194</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.1</span><span class="p">}],</span>
-<span class="linenos">195</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">MidpointNormalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-<span class="linenos">196</span> <span class="p">}</span>
-<span class="linenos">197</span>
-<span class="linenos">198</span> <span class="n">info_coefficient</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">199</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;c_tprob&#39;</span><span class="p">,</span>
-<span class="linenos">200</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
-<span class="linenos">201</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;P&gt;|t| n&#39;</span><span class="p">,</span>
-<span class="linenos">202</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span> <span class="p">,</span><span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos">203</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos">204</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">11.1</span><span class="p">}],</span>
-<span class="linenos">205</span>   <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">MidpointNormalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-<span class="linenos">206</span> <span class="p">}</span>
-<span class="linenos">207</span>
-<span class="linenos">208</span> <span class="n">info_percent</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">209</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;freqo_abx&#39;</span><span class="p">,</span>
-<span class="linenos">210</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
-<span class="linenos">211</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Percent&#39;</span><span class="p">,</span>
-<span class="linenos">212</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
-<span class="linenos">213</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
-<span class="linenos">214</span>   <span class="s1">&#39;vline&#39;</span><span class="p">:[],</span>
-<span class="linenos">215</span> <span class="p">}</span>
-<span class="linenos">216</span>
-<span class="linenos">217</span> <span class="c1"># Now we combine all of them together. Note</span>
-<span class="linenos">218</span> <span class="c1"># that the key value corresponds to the name</span>
-<span class="linenos">219</span> <span class="c1"># of the column it should be applied to.</span>
-<span class="linenos">220</span> <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">221</span>     <span class="s1">&#39;sari&#39;</span><span class="p">:</span> <span class="n">info_sari</span><span class="p">,</span>
-<span class="linenos">222</span>     <span class="s1">&#39;sart&#39;</span><span class="p">:</span> <span class="n">info_sart</span><span class="p">,</span>
-<span class="linenos">223</span>     <span class="s1">&#39;dw&#39;</span><span class="p">:</span> <span class="n">info_dw</span><span class="p">,</span>
-<span class="linenos">224</span>     <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">info_r2</span><span class="p">,</span>
-<span class="linenos">225</span>     <span class="s1">&#39;pearson&#39;</span><span class="p">:</span> <span class="n">info_pearson</span><span class="p">,</span>
-<span class="linenos">226</span>     <span class="s1">&#39;jb&#39;</span><span class="p">:</span> <span class="n">info_jb</span><span class="p">,</span>
-<span class="linenos">227</span>     <span class="s1">&#39;percent&#39;</span><span class="p">:</span> <span class="n">info_percent</span><span class="p">,</span>
-<span class="linenos">228</span>     <span class="s1">&#39;ptm&#39;</span><span class="p">:</span> <span class="n">info_slope</span><span class="p">,</span>
-<span class="linenos">229</span>     <span class="s1">&#39;ptn&#39;</span><span class="p">:</span> <span class="n">info_coefficient</span>
-<span class="linenos">230</span> <span class="p">}</span>
-<span class="linenos">231</span>
-<span class="linenos">232</span>
-<span class="linenos">233</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">234</span> <span class="c1"># Main</span>
-<span class="linenos">235</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">236</span> <span class="c1"># Create data</span>
-<span class="linenos">237</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;TRI&#39;</span><span class="p">,</span>  <span class="mf">0.720</span><span class="p">,</span>  <span class="mf">0.100</span><span class="p">,</span>  <span class="mf">0.274</span><span class="p">,</span> <span class="mf">0.112</span><span class="p">,</span>  <span class="mf">0.056</span><span class="p">,</span>  <span class="mf">0.000</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.046</span><span class="p">,</span>  <span class="mf">7.189</span><span class="p">],</span>
-<span class="linenos">238</span>         <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;MUP&#39;</span><span class="p">,</span>  <span class="mf">0.084</span><span class="p">,</span>  <span class="mf">0.025</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.007</span><span class="p">,</span> <span class="mf">0.009</span><span class="p">,</span>  <span class="mf">0.064</span><span class="p">,</span>  <span class="mf">0.429</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.499</span><span class="p">,</span>  <span class="mf">7.230</span><span class="p">],</span>
-<span class="linenos">239</span>         <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ERY&#39;</span><span class="p">,</span>  <span class="mf">0.082</span><span class="p">,</span>  <span class="mf">0.260</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.007</span><span class="p">,</span> <span class="mf">0.092</span><span class="p">,</span>  <span class="mf">0.123</span><span class="p">,</span>  <span class="mf">0.414</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.526</span><span class="p">,</span>  <span class="mf">8.604</span><span class="p">],</span>
-<span class="linenos">240</span>         <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;CLI&#39;</span><span class="p">,</span>  <span class="mf">0.058</span><span class="p">,</span>  <span class="mf">0.224</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.016</span><span class="p">,</span> <span class="mf">0.033</span><span class="p">,</span>  <span class="mf">0.099</span><span class="p">,</span>  <span class="mf">0.653</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.468</span><span class="p">,</span>  <span class="mf">8.602</span><span class="p">],</span>
-<span class="linenos">241</span>         <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;RIF&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.093</span><span class="p">,</span>  <span class="mf">0.017</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.056</span><span class="p">,</span>  <span class="mf">0.043</span><span class="p">,</span>  <span class="mf">0.436</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>    <span class="mf">0.217</span><span class="p">,</span>  <span class="mf">7.545</span><span class="p">],</span>
-<span class="linenos">242</span>         <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;PEN&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.120</span><span class="p">,</span>  <span class="mf">0.894</span><span class="p">,</span>  <span class="mf">0.086</span><span class="p">,</span> <span class="mf">0.262</span><span class="p">,</span>  <span class="mf">0.168</span><span class="p">,</span>  <span class="mf">0.022</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>    <span class="mf">0.439</span><span class="p">,</span>  <span class="mf">8.588</span><span class="p">],</span>
-<span class="linenos">243</span>         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;CIP&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.200</span><span class="p">,</span>  <span class="mf">0.166</span><span class="p">,</span> <span class="mf">0.545</span><span class="p">,</span>  <span class="mf">0.100</span><span class="p">,</span>  <span class="mf">0.002</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.795</span><span class="p">,</span>  <span class="mf">7.562</span><span class="p">],</span>
-<span class="linenos">244</span>         <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;FUS&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.146</span><span class="p">,</span>  <span class="mf">0.094</span><span class="p">,</span> <span class="mf">0.221</span><span class="p">,</span>  <span class="mf">0.038</span><span class="p">,</span>  <span class="mf">0.017</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.033</span><span class="p">,</span>  <span class="mf">8.592</span><span class="p">],</span>
-<span class="linenos">245</span>         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;MET&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.153</span><span class="p">,</span>  <span class="mf">0.174</span><span class="p">,</span> <span class="mf">0.144</span><span class="p">,</span>  <span class="mf">0.090</span><span class="p">,</span>  <span class="mf">0.002</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.621</span><span class="p">,</span>  <span class="mf">8.599</span><span class="p">],</span>
-<span class="linenos">246</span>         <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;TET&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.480</span><span class="p">,</span>  <span class="mf">0.098</span><span class="p">,</span>  <span class="mf">0.184</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span>  <span class="mf">0.045</span><span class="p">,</span>  <span class="mf">0.001</span><span class="p">,</span>  <span class="mf">0.0</span><span class="p">,</span>    <span class="mf">0.215</span><span class="p">,</span>  <span class="mf">7.606</span><span class="p">]]</span>
-<span class="linenos">247</span>
-<span class="linenos">248</span> <span class="c1"># Create dataframe</span>
-<span class="linenos">249</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="s1">&#39;org&#39;</span><span class="p">,</span> <span class="s1">&#39;abx&#39;</span><span class="p">,</span>
-<span class="linenos">250</span>     <span class="s1">&#39;sart&#39;</span><span class="p">,</span> <span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;jb&#39;</span><span class="p">,</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span>
-<span class="linenos">251</span>     <span class="s1">&#39;pearson&#39;</span><span class="p">,</span> <span class="s1">&#39;percent&#39;</span><span class="p">])</span>
-<span class="linenos">252</span>
-<span class="linenos">253</span> <span class="c1"># Show</span>
-<span class="linenos">254</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
-<span class="linenos">255</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="linenos">256</span> <span class="c1">#print(&quot;\nData stacked:&quot;)</span>
-<span class="linenos">257</span> <span class="c1">#print(data.stack())</span>
-<span class="linenos">258</span>
-<span class="linenos">259</span> <span class="c1"># Filter features</span>
-<span class="linenos">260</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">:]]</span>
-<span class="linenos">261</span>
-<span class="linenos">262</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">263</span> <span class="c1"># Pair Grid</span>
-<span class="linenos">264</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">265</span> <span class="c1"># Create pair grid</span>
-<span class="linenos">266</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_vars</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
-<span class="linenos">267</span>         <span class="n">y_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;abx&quot;</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">.45</span><span class="p">)</span>
-<span class="linenos">268</span>
-<span class="linenos">269</span> <span class="c1"># Draw a dot plot using the stripplot function</span>
-<span class="linenos">270</span> <span class="c1"># g.map(sns.stripplot, size=10, orient=&quot;h&quot;, jitter=False,</span>
-<span class="linenos">271</span> <span class="c1">#      palette=&quot;flare_r&quot;, linewidth=1, edgecolor=&quot;w&quot;)</span>
-<span class="linenos">272</span>
-<span class="linenos">273</span> <span class="c1"># Set common features</span>
-<span class="linenos">274</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="linenos">275</span>
-<span class="linenos">276</span> <span class="c1"># Plot strips and format axes</span>
-<span class="linenos">277</span> <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
-<span class="linenos">278</span>
-<span class="linenos">279</span>     <span class="c1"># Get information</span>
-<span class="linenos">280</span>     <span class="n">d</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="p">{}</span>
-<span class="linenos">281</span>
-<span class="linenos">282</span>     <span class="c1"># Display</span>
-<span class="linenos">283</span>     <span class="c1"># sns.stripplot(data=data, x=title, y=&#39;abx&#39;, size=10,</span>
-<span class="linenos">284</span>     <span class="c1">#    orient=&quot;h&quot;, jitter=False, linewidth=0.75, ax=ax,</span>
-<span class="linenos">285</span>     <span class="c1">#    edgecolor=&quot;gray&quot;, palette=d.get(&#39;cmap&#39;, None))</span>
-<span class="linenos">286</span>     <span class="c1">#    color=&#39;b&#39;)</span>
-<span class="linenos">287</span>
-<span class="linenos">288</span>     <span class="c1"># .. note: We need to use scatter plot if we want to</span>
-<span class="linenos">289</span>     <span class="c1">#          assign colors to the markers according to</span>
-<span class="linenos">290</span>     <span class="c1">#          their value.</span>
-<span class="linenos">291</span>
-<span class="linenos">292</span>     <span class="c1"># Using scatter plot</span>
-<span class="linenos">293</span>     <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;abx&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-<span class="linenos">294</span>                     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
-<span class="linenos">295</span>                     <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cmap&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="linenos">296</span>                     <span class="n">norm</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="linenos">297</span>
-<span class="linenos">298</span>     <span class="c1"># Plot vertical lines</span>
-<span class="linenos">299</span>     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vline&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-<span class="linenos">300</span>         <span class="n">vlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">e</span><span class="p">)</span>
-<span class="linenos">301</span>
-<span class="linenos">302</span>     <span class="c1"># Configure axes</span>
-<span class="linenos">303</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
-<span class="linenos">304</span>            <span class="n">xlim</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xlim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="linenos">305</span>            <span class="n">xticks</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xticks&#39;</span><span class="p">,</span> <span class="p">[]),</span>
-<span class="linenos">306</span>            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="linenos">307</span>     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos">308</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">309</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
-<span class="linenos">310</span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
-<span class="linenos">311</span>
-<span class="linenos">312</span> <span class="c1"># Despine</span>
-<span class="linenos">313</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">314</span>
-<span class="linenos">315</span> <span class="c1"># Adjust layout</span>
-<span class="linenos">316</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">317</span>
-<span class="linenos">318</span> <span class="c1"># Show</span>
-<span class="linenos">319</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos"> 91</span>     <span class="c1"># Using scatter plot</span>
+<span class="linenos"> 92</span>     <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;abx&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="linenos"> 93</span>                     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+<span class="linenos"> 94</span>                     <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cmap&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="linenos"> 95</span>                     <span class="n">norm</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span>     <span class="c1"># Plot vertical lines</span>
+<span class="linenos"> 98</span>     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vline&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+<span class="linenos"> 99</span>         <span class="n">vlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span>     <span class="c1"># Configure axes</span>
+<span class="linenos">102</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
+<span class="linenos">103</span>            <span class="n">xlim</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xlim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="linenos">104</span>            <span class="n">xticks</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xticks&#39;</span><span class="p">,</span> <span class="p">[]),</span>
+<span class="linenos">105</span>            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="linenos">106</span>     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">107</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">108</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
+<span class="linenos">109</span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span> <span class="c1"># Despine</span>
+<span class="linenos">112</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span> <span class="c1"># Adjust layout</span>
+<span class="linenos">115</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span> <span class="c1"># Show</span>
+<span class="linenos">118</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.539 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-dataframe-table-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.506 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-dataframe-table-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/feabf30ab5e10e2f5c0e7532babaa211/plot_dataframe_table.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_dataframe_table.py</span></code></a></p>
 </div>
@@ -462,7 +261,7 @@ to download the full example code</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

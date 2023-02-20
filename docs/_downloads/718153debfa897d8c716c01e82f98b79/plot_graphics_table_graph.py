@@ -70,8 +70,12 @@ config[2] = c2
 # Example with a DataFrame
 axes = TableGraph().plot(data=dataframe, configuration=config)
 
+plt.tight_layout()
+
 # Example with numpy array
 axes = TableGraph().plot(data=data, configuration=config)
+
+plt.tight_layout()
 
 # Show.
 plt.show()

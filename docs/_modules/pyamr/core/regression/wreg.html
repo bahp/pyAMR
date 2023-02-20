@@ -44,21 +44,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -290,7 +287,7 @@
         <span class="c1"># Create series.</span>
         <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="c1"># Compute autocorrelation (durbin-watson)</span>
+        <span class="c1"># Compute autoc-orrelation (durbin-watson)</span>
         <span class="kn">from</span> <span class="nn">statsmodels.stats.stattools</span> <span class="kn">import</span> <span class="n">durbin_watson</span>
         <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_dw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">durbin_watson</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
 
@@ -302,11 +299,17 @@
         <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_skew&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">skew</span>
         <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_kurtosis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kurtosis</span>
 
-        <span class="c1"># Compute normal test (normal test)</span>
-        <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">normaltest</span>
-        <span class="n">nm_value</span><span class="p">,</span> <span class="n">nm_prob</span> <span class="o">=</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
-        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nm_value</span>
-        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nm_prob</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Compute normal test (normal test)</span>
+            <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">normaltest</span>
+            <span class="n">nm_value</span><span class="p">,</span> <span class="n">nm_prob</span> <span class="o">=</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nm_value</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nm_prob</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_nm_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
 
         <span class="c1"># Compute the kolmogorov-smirnov test.</span>
         <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kstest</span>
@@ -314,17 +317,22 @@
         <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_ks_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ks_value</span>
         <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_ks_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ks_prob</span>
 
-        <span class="c1"># Compute the shapiro-wilkinson test.</span>
-        <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">shapiro</span>
-        <span class="n">sh_value</span><span class="p">,</span> <span class="n">sh_prob</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
-        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh_value</span>
-        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh_prob</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Compute the shapiro-wilkinson test.</span>
+            <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">shapiro</span>
+            <span class="n">sh_value</span><span class="p">,</span> <span class="n">sh_prob</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh_value</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sh_prob</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_shp_prob&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
 
         <span class="c1"># Compute anderson-darling.</span>
         <span class="c1"># The null hypothesis (sample data is drawn from a population that</span>
         <span class="c1"># follows a particular distribution; in this case normal) can be rejected</span>
         <span class="c1"># if the statistic es larger than the critical values for an specified</span>
-        <span class="c1"># significante level.</span>
+        <span class="c1"># significance level.</span>
         <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">anderson</span>
         <span class="n">ad_value</span><span class="p">,</span> <span class="n">ad_cv</span><span class="p">,</span> <span class="n">ad_sl</span> <span class="o">=</span> <span class="n">anderson</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
         <span class="n">d</span><span class="p">[</span><span class="s1">&#39;m_ad_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ad_value</span>
@@ -460,7 +468,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

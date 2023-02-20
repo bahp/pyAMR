@@ -18,12 +18,10 @@
 .. _sphx_glr__examples_forecasting_plot_arima_basic.py:
 
 
-ARIMA basic
------------
+ARIMA - Basic
+---------------------
 
-.. todo: Explain
-
-.. GENERATED FROM PYTHON SOURCE LINES 8-150
+.. GENERATED FROM PYTHON SOURCE LINES 6-148
 
 
 
@@ -35,49 +33,47 @@ ARIMA basic
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
     Series:
-    arima-aic                   785.8648
-    arima-bic                   793.0109
-    arima-hqic                  788.7298
-    arima-llf                  -389.9324
-    arima-const_coef            277.0545
-    arima-const_std             136.7075
-    arima-const_tvalue            2.0266
-    arima-const_tprob             0.0427
-    arima-const_cil               9.1128
-    arima-const_ciu             544.9963
-    arima-ar.L1_coef               0.986
-    arima-ar.L1_std               0.0223
-    arima-ar.L1_tvalue           44.3001
+    arima-aic                   809.9186
+    arima-bic                   817.0647
+    arima-hqic                  812.7837
+    arima-llf                  -401.9593
+    arima-const_coef            291.4154
+    arima-const_std             104.4723
+    arima-const_tvalue            2.7894
+    arima-const_tprob             0.0053
+    arima-const_cil              86.6534
+    arima-const_ciu             496.1774
+    arima-ar.L1_coef              0.9769
+    arima-ar.L1_std               0.0253
+    arima-ar.L1_tvalue           38.5628
     arima-ar.L1_tprob                0.0
-    arima-ar.L1_cil               0.9424
-    arima-ar.L1_ciu               1.0296
-    arima-sigma2_coef           958.7472
-    arima-sigma2_std             97.7887
-    arima-sigma2_tvalue           9.8043
+    arima-ar.L1_cil               0.9273
+    arima-ar.L1_ciu               1.0266
+    arima-sigma2_coef          1303.2158
+    arima-sigma2_std            200.6393
+    arima-sigma2_tvalue           6.4953
     arima-sigma2_tprob               0.0
-    arima-sigma2_cil             767.085
-    arima-sigma2_ciu           1150.4095
-    arima-m_dw                     1.904
-    arima-m_jb_value           1456.1998
+    arima-sigma2_cil              909.97
+    arima-sigma2_ciu           1696.4616
+    arima-m_dw                    2.0744
+    arima-m_jb_value            446.8865
     arima-m_jb_prob                  0.0
-    arima-m_skew                 -3.7284
-    arima-m_kurtosis             22.5258
-    arima-m_nm_value             96.1022
+    arima-m_skew                 -2.2672
+    arima-m_kurtosis             13.6539
+    arima-m_nm_value             62.8307
     arima-m_nm_prob                  0.0
-    arima-m_ks_value              0.5565
+    arima-m_ks_value              0.5999
     arima-m_ks_prob                  0.0
-    arima-m_shp_value             0.6561
+    arima-m_shp_value             0.8389
     arima-m_shp_prob                 0.0
-    arima-m_ad_value              5.4891
+    arima-m_ad_value               2.011
     arima-m_ad_nnorm               False
     arima-converged                 True
-    arima-endog            [23.380914...
+    arima-endog            [41.745196...
     arima-order                (1, 0, 0)
     arima-trend                        c
     arima-disp                         0
@@ -89,26 +85,26 @@ ARIMA basic
                                    SARIMAX Results                                
     ==============================================================================
     Dep. Variable:                      y   No. Observations:                   80
-    Model:                 ARIMA(1, 0, 0)   Log Likelihood                -389.932
-    Date:                Wed, 15 Feb 2023   AIC                            785.865
-    Time:                        14:07:05   BIC                            793.011
-    Sample:                             0   HQIC                           788.730
+    Model:                 ARIMA(1, 0, 0)   Log Likelihood                -401.959
+    Date:                Mon, 20 Feb 2023   AIC                            809.919
+    Time:                        17:55:00   BIC                            817.065
+    Sample:                             0   HQIC                           812.784
                                      - 80                                         
     Covariance Type:                  opg                                         
     ==============================================================================
                      coef    std err          z      P>|z|      [0.025      0.975]
     ------------------------------------------------------------------------------
-    const        277.0545    136.707      2.027      0.043       9.113     544.996
-    ar.L1          0.9860      0.022     44.300      0.000       0.942       1.030
-    sigma2       958.7472     97.789      9.804      0.000     767.085    1150.409
+    const        291.4154    104.472      2.789      0.005      86.653     496.177
+    ar.L1          0.9769      0.025     38.563      0.000       0.927       1.027
+    sigma2      1303.2158    200.639      6.495      0.000     909.970    1696.462
     ==============================================================================
                                         Manual                                    
     ------------------------------------------------------------------------------
-    Omnibus:                        0.000  Durbin-Watson:                    1.904
-    Prob(Omnibus):                  0.000  Jarque-Bera (JB):              1456.200
-    Skew:                          -3.728  Prob(JB):                         0.000
-    Kurtosis_m:                    22.526  Cond No:                 
-    Normal (N):                    96.102  Prob(N):                          0.000
+    Omnibus:                        0.000  Durbin-Watson:                    2.074
+    Prob(Omnibus):                  0.000  Jarque-Bera (JB):               446.886
+    Skew:                          -2.267  Prob(JB):                         0.000
+    Kurtosis_m:                    13.654  Cond No:                 
+    Normal (N):                    62.831  Prob(N):                          0.000
     ==============================================================================
 
 
@@ -119,7 +115,7 @@ ARIMA basic
 |
 
 .. code-block:: default
-   :lineno-start: 8
+   :lineno-start: 6
 
     # Import.
     import sys
@@ -267,28 +263,23 @@ ARIMA basic
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.568 seconds)
+   **Total running time of the script:** ( 0 minutes  1.202 seconds)
 
 
 .. _sphx_glr_download__examples_forecasting_plot_arima_basic.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_arima_basic.py <plot_arima_basic.py>`
 
-     :download:`Download Python source code: plot_arima_basic.py <plot_arima_basic.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_arima_basic.ipynb <plot_arima_basic.ipynb>`
+      :download:`Download Jupyter notebook: plot_arima_basic.ipynb <plot_arima_basic.ipynb>`
 
 
 .. only:: html

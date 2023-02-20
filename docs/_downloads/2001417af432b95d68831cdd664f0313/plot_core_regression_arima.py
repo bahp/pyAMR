@@ -1,5 +1,5 @@
 """
-Regression - ARIMA
+Using ARIMA
 ==================
 
 """

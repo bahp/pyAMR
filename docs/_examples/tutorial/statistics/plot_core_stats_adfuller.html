@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Statistical test - ADFuller &mdash; pyamr 0.0.1 documentation</title>
+  <title>ADFuller &mdash; pyamr 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
@@ -23,9 +23,7 @@
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Statistical test - Correlation" href="plot_core_stats_correlation.html" />
-    <link rel="prev" title="Regression - WLS" href="../regression/plot_core_regression_wls.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,30 +45,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#regression">Regression</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#statistics">Statistics</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Statistical test - ADFuller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_correlation.html">Statistical test - Correlation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_kendall.html">Statistical test - Kendall</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_stationarity.html">Statistical test - Stationarity</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -87,8 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Tutorial</a> &raquo;</li>
-      <li>Statistical test - ADFuller</li>
+      <li>ADFuller</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/statistics/plot_core_stats_adfuller.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,21 +88,26 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-statistics-plot-core-stats-adfuller-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="statistical-test-adfuller">
-<span id="sphx-glr-examples-tutorial-statistics-plot-core-stats-adfuller-py"></span><h1>Statistical test - ADFuller<a class="headerlink" href="#statistical-test-adfuller" title="Permalink to this headline"></a></h1>
+<section class="sphx-glr-example-title" id="adfuller">
+<span id="sphx-glr-examples-tutorial-statistics-plot-core-stats-adfuller-py"></span><h1>ADFuller<a class="headerlink" href="#adfuller" title="Permalink to this headline"></a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Instead of calling the <code class="docutils literal notranslate"><span class="pre">adf.from_list_dataframe</span></code>,
+include an option in the <code class="docutils literal notranslate"><span class="pre">grid_search</span></code> method to
+return the result as a dataframe (to_dataframe).</p>
+</div>
 <p>The Augmented Dickey-Fuller test…</p>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>adf-statistic                  -8.1014
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>adf-statistic                  -9.8648
 adf-pvalue                         0.0
-adf-nlags                            1
-adf-nobs                            98
+adf-nlags                            0
+adf-nobs                            99
 adf-stationary                    True
-adf-criticalvalue_1%           -4.0543
-adf-criticalvalue_5%           -3.4563
-adf-criticalvalue_10%          -3.1539
-adf-x                    [108.55580...
+adf-criticalvalue_1%           -4.0533
+adf-criticalvalue_5%           -3.4558
+adf-criticalvalue_10%          -3.1536
+adf-x                    [102.02164...
 adf-regression                      ct
-adf-model                (-8.101353...
+adf-model                (-9.864776...
 adf-id                         ADF(ct)
 dtype: object
 
@@ -125,25 +115,25 @@ dtype: object
 Standard:
     adfuller test stationarity (ct)
 =======================================
-statistic:                       -8.101
+statistic:                       -9.865
 pvalue:                         0.00000
-nlags:                                1
-nobs:                                98
+nlags:                                0
+nobs:                                99
 stationarity (α=0.05):       stationary
 =======================================
 
 Verbose:
     adfuller test stationarity (ct)
 =======================================
-statistic:                       -8.101
+statistic:                       -9.865
 pvalue:                         0.00000
-nlags:                                1
-nobs:                                98
+nlags:                                0
+nobs:                                99
 stationarity (α=0.05):       stationary
 ---------------------------------------
-critical value (1%):           -4.05425
-critical value (5%):           -3.45628
-critical value (10%):          -3.15387
+critical value (1%):           -4.05325
+critical value (5%):           -3.45581
+critical value (10%):          -3.15359
 ---------------------------------------
 H0:                    Exists unit-root
 H1:                 No Exists unit-root
@@ -158,17 +148,17 @@ ADF(ct)
 
 
                             0              1              2
-adf-statistic         -7.9833         0.0466        -8.1014
-adf-pvalue                0.0         0.6996            0.0
-adf-nlags                   1              9              1
-adf-nobs                   98             90             98
+adf-statistic         -9.8671         0.0211        -9.8648
+adf-pvalue                0.0         0.6913            0.0
+adf-nlags                   0              8              0
+adf-nobs                   99             91             99
 adf-stationary           True          False           True
-adf-critica...        -3.4989         -2.591        -4.0543
-adf-critica...        -2.8915        -1.9444        -3.4563
-adf-critica...        -2.5828        -1.6142        -3.1539
+adf-critica...        -3.4982        -2.5907        -4.0533
+adf-critica...        -2.8912        -1.9443        -3.4558
+adf-critica...        -2.5826        -1.6142        -3.1536
 adf-regression              c              n             ct
-adf-x           [108.55580...  [108.55580...  [108.55580...
-adf-model       (-7.983316...  (0.0466343...  (-8.101353...
+adf-x           [102.02164...  [102.02164...  [102.02164...
+adf-model       (-9.867085...  (0.0210934...  (-9.864776...
 adf-id                 ADF(c)         ADF(n)        ADF(ct)
 </pre></div>
 </div>
@@ -259,8 +249,8 @@ adf-id                 ADF(c)         ADF(n)        ADF(ct)
 <span class="linenos">95</span> <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.748 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-statistics-plot-core-stats-adfuller-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.032 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-statistics-plot-core-stats-adfuller-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/dabb3320c8665f02c1ed78ea87abccda/plot_core_stats_adfuller.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_stats_adfuller.py</span></code></a></p>
 </div>
@@ -274,15 +264,12 @@ adf-id                 ADF(c)         ADF(n)        ADF(ct)
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../regression/plot_core_regression_wls.html" class="btn btn-neutral float-left" title="Regression - WLS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_core_stats_correlation.html" class="btn btn-neutral float-right" title="Statistical test - Correlation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

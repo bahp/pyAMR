@@ -38,12 +38,12 @@ status and outcome (resistant, sensitive or intermediate). In this research,
 the susceptibility test data were grouped firstly by specimen type. Moreover,
 for each sample type, the data were grouped by pairs (pathogen, antimicrobial)
 since it is widely accepted by clinicians as detailed in the UK five year
-strategy in AMR
+strategy in AMR.
 
 A small dataset will be used for this example.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-68
+.. GENERATED FROM PYTHON SOURCE LINES 28-61
 
 .. code-block:: default
    :lineno-start: 29
@@ -72,13 +72,6 @@ A small dataset will be used for this example.
     print("\nColumns:")
     print(data.dtypes)
 
-    # -------------------------------------------
-    # Show a brief description
-    # -------------------------------------------
-    # .. todo: Compute basic information such as the number of unique organisms,
-    #          antimicrobials, pairs, species, isolates, tests, the range of
-    #          dates, ....
-
     # Show unique elements
     print("\nUnique values:")
     for c in ['microorganism_code',
@@ -94,24 +87,22 @@ A small dataset will be used for this example.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
     Data:
-           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
-    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMI           amikacin                NaN   sensitive NaN       NaN
-    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   resistant NaN       NaN
-    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAZT          aztreonam                NaN   sensitive NaN       NaN
-    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               ACAZ        ceftazidime                NaN   sensitive NaN       NaN
-    ...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
-    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   sensitive NaN       NaN
-    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ALIN          linezolid                NaN   sensitive NaN       NaN
-    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ASYN           synercid                NaN   resistant NaN       NaN
-    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ATEI        teicoplanin                NaN   sensitive NaN       NaN
-    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AVAN         vancomycin                NaN   sensitive NaN       NaN
+           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
+    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMI           amikacin                NaN    sensitive NaN       NaN
+    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMO        amoxycillin                NaN    resistant NaN       NaN
+    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAUG          augmentin                NaN    sensitive NaN       NaN
+    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAZT          aztreonam                NaN    sensitive NaN       NaN
+    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               ACAZ        ceftazidime                NaN    sensitive NaN       NaN
+    ...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
+    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AAMO        amoxycillin                NaN    sensitive NaN       NaN
+    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ALIN          linezolid                NaN    sensitive NaN       NaN
+    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ASYN           synercid                NaN    resistant NaN       NaN
+    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ATEI        teicoplanin                NaN    sensitive NaN       NaN
+    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AVAN         vancomycin                NaN    sensitive NaN       NaN
 
     [319122 rows x 15 columns]
 
@@ -142,7 +133,7 @@ A small dataset will be used for this example.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-96
+.. GENERATED FROM PYTHON SOURCE LINES 62-89
 
 Computing SARI
 --------------
@@ -172,10 +163,10 @@ For more examples see:
   - :ref:`sphx_glr__examples_indexes_plot_sari_relmap.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 97-151
+.. GENERATED FROM PYTHON SOURCE LINES 90-144
 
 .. code-block:: default
-   :lineno-start: 98
+   :lineno-start: 91
 
 
     # -------------------------------------------
@@ -242,12 +233,10 @@ For more examples see:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     SARI (overall):
-    sensitivity                                                             intermediate  resistant  sensitive  freq      sari
+                                                                            intermediate  resistant  sensitive  freq      sari
     specimen_code microorganism_name                    antimicrobial_name                                                    
     BFLCUL        anaerobes                             metronidazole                0.0        0.0        1.0   1.0  0.000000
                   bacillus                              ciprofloxacin                0.0        0.0        1.0   1.0  0.000000
@@ -266,7 +255,7 @@ For more examples see:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 152-192
+.. GENERATED FROM PYTHON SOURCE LINES 145-185
 
 Computing ASAI
 --------------
@@ -309,10 +298,10 @@ information too. This information is available in the registries: :py:mod:`pyamr
 Lets include all this information using the ``MicroorganismRegistry``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 193-219
+.. GENERATED FROM PYTHON SOURCE LINES 186-212
 
 .. code-block:: default
-   :lineno-start: 194
+   :lineno-start: 187
 
 
     # ------------------------------
@@ -347,16 +336,16 @@ Lets include all this information using the ``MicroorganismRegistry``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 220-223
+.. GENERATED FROM PYTHON SOURCE LINES 213-216
 
 Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
 lets compute ``ASAI``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 224-257
+.. GENERATED FROM PYTHON SOURCE LINES 217-250
 
 .. code-block:: default
-   :lineno-start: 225
+   :lineno-start: 218
 
 
     # -------------------------------------------
@@ -397,19 +386,17 @@ lets compute ``ASAI``.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:530: UserWarning:
+    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:570: UserWarning:
 
 
-                     Extreme resistances were found in the DataFrame. These rows
-                     should be reviewed since these resistances might correspond
+                     Extreme resistances [0, 1] were found in the DataFrame. These 
+                     rows should be reviewed since these resistances might correspond
                      to pairs with low number of records.
 
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:544: UserWarning:
+    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:584: UserWarning:
 
 
                      There are NULL values in columns that are required. These
@@ -430,7 +417,7 @@ lets compute ``ASAI``.
                        N_GENUS          N_SPECIE          ASAI_SCORE              
     gram_stain               n    p   u        n    p   u          n         p   u
     antimicrobial_name                                                            
-    amikacin               5.0  NaN NaN      5.0  NaN NaN   1.000000       NaN NaN
+    amikacin               5.0  NaN NaN      5.0  NaN NaN   0.800000       NaN NaN
     amoxycillin            2.0  2.0 NaN      2.0  7.0 NaN   0.500000  0.833333 NaN
     amp c markers          4.0  NaN NaN      4.0  NaN NaN   0.250000       NaN NaN
     augmentin              5.0  2.0 NaN      5.0  7.0 NaN   0.200000  1.000000 NaN
@@ -441,17 +428,17 @@ lets compute ``ASAI``.
     ceftazidime            5.0  NaN NaN      5.0  NaN NaN   0.600000       NaN NaN
     cefuroxime             5.0  NaN NaN      5.0  NaN NaN   0.000000       NaN NaN
     cephalexin             5.0  2.0 NaN      5.0  7.0 NaN   0.200000  0.875000 NaN
-    ciprofloxacin          6.0  2.0 NaN      6.0  7.0 NaN   0.833333  1.000000 NaN
+    ciprofloxacin          6.0  2.0 NaN      6.0  7.0 NaN   0.333333  0.875000 NaN
     clindamycin            NaN  2.0 NaN      NaN  4.0 NaN        NaN  1.000000 NaN
     colistin sulphate      5.0  NaN NaN      5.0  NaN NaN   0.800000       NaN NaN
-    cotrimoxazole          3.0  NaN NaN      3.0  NaN NaN   0.666667       NaN NaN
+    cotrimoxazole          3.0  NaN NaN      3.0  NaN NaN   0.333333       NaN NaN
     ertapenem              3.0  NaN NaN      3.0  NaN NaN   0.666667       NaN NaN
     erythromycin           NaN  2.0 NaN      NaN  6.0 NaN        NaN  0.833333 NaN
     esbl markers           5.0  NaN NaN      5.0  NaN NaN   0.200000       NaN NaN
     flucloxacillin         1.0  1.0 NaN      1.0  3.0 NaN   0.000000  1.000000 NaN
     fusidic acid           NaN  1.0 NaN      NaN  3.0 NaN        NaN  0.666667 NaN
     gentamicin             5.0  1.0 NaN      5.0  3.0 NaN   0.800000  1.000000 NaN
-    imipenem               5.0  NaN NaN      5.0  NaN NaN   0.800000       NaN NaN
+    imipenem               5.0  NaN NaN      5.0  NaN NaN   0.600000       NaN NaN
     linezolid              NaN  1.0 NaN      NaN  3.0 NaN        NaN  1.000000 NaN
     mecillinam             5.0  NaN NaN      5.0  NaN NaN   0.400000       NaN NaN
     meropenem              5.0  NaN NaN      5.0  NaN NaN   0.600000       NaN NaN
@@ -463,7 +450,7 @@ lets compute ``ASAI``.
     penicillin             1.0  2.0 NaN      1.0  6.0 NaN   0.000000  0.500000 NaN
     rifampicin             NaN  1.0 NaN      NaN  3.0 NaN        NaN  1.000000 NaN
     sulphamethoxazole      2.0  NaN NaN      2.0  NaN NaN   0.500000       NaN NaN
-    tazocin                5.0  NaN NaN      5.0  NaN NaN   1.000000       NaN NaN
+    tazocin                5.0  NaN NaN      5.0  NaN NaN   0.800000       NaN NaN
     teicoplanin            NaN  2.0 NaN      NaN  7.0 NaN        NaN  1.000000 NaN
     temocillin             3.0  NaN NaN      3.0  NaN NaN   0.666667       NaN NaN
     tetracycline           1.0  2.0 NaN      1.0  6.0 NaN   1.000000  0.833333 NaN
@@ -475,14 +462,14 @@ lets compute ``ASAI``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 258-259
+.. GENERATED FROM PYTHON SOURCE LINES 251-252
 
 Lets plot it now!
 
-.. GENERATED FROM PYTHON SOURCE LINES 260-355
+.. GENERATED FROM PYTHON SOURCE LINES 253-346
 
 .. code-block:: default
-   :lineno-start: 261
+   :lineno-start: 254
 
 
     # ----------------
@@ -575,8 +562,6 @@ Lets plot it now!
     # Adjust
     plt.tight_layout()
 
-    # Show
-    plt.show()
 
 
 
@@ -591,7 +576,7 @@ Lets plot it now!
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 356-372
+.. GENERATED FROM PYTHON SOURCE LINES 347-373
 
 Computing SART
 --------------
@@ -599,42 +584,546 @@ Computing SART
 The single antimicrobial resistance trend - ``SART`` - measures the ratio
 of change per time unit (e.g. monthly or yearly). To compute this metric,
 it is necessary to generate a resistance time series from the susceptibility
-test data. This is often achieved by computing the SARI consecutive or
+test data. This is often achieved by computing the SARI on consecutive or
 overlapping partitions of the data. Then, the trend can be extracted using
-for example a linear model where the slope, which is a value within the
-range [-1, 1] indicates the ratio of change.
+for example a linear model where the slope, which is represented by a value
+within the range [-1, 1], indicates the ratio of change.
 
 For more information see: :py:mod:`pyamr.core.sart.SART`
 
 For more examples see:
 
-.. warning:: Pending!
+  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sart.py`
+  - :ref:`sphx_glr__examples_indexes_plot_trend_basic.py`
+
+.. note:: Be cautious when Computing the ``SART`` index using a small dataset
+          (e.g. a low number of susceptibility tests records) since it is very
+          likely that the statistics produced (e.g. kurtosis or skewness) will
+          be ill defined.
+
+Since it is necessary to have a decent amount of records to be
+able to compute the trends accurately, lets filter and choose
+the tuples were are interested in.
+
+.. GENERATED FROM PYTHON SOURCE LINES 374-422
+
+.. code-block:: default
+   :lineno-start: 376
+
+
+
+    # -------------------------------------------
+    # Show top combinations
+    # -------------------------------------------
+    from pyamr.core.sari import SARI
+
+    # Create SARI instance
+    sar = SARI(groupby=['specimen_code',
+                        'microorganism_code',
+                        'antimicrobial_code',
+                        'sensitivity'])
+
+    # Compute SARI overall
+    sari_overall = sar.compute(data,
+         return_frequencies=True)
+
+    # Compute top tuples
+    top = sari_overall \
+        .sort_values(by='freq', ascending=False) \
+        .head(10)
+
+    # Show
+    print("\nTop by Frequency:")
+    print(top)
+
+    # -------------------------------------------
+    # Filter data
+    # -------------------------------------------
+    # Define spec, orgs, abxs of interest
+    spec = ['URICUL']
+    orgs = ['ECOL']
+    abxs = ['ACELX', 'ACIP', 'AAMPC', 'ATRI', 'AAUG',
+            'AMER', 'ANIT', 'AAMI', 'ACTX', 'ATAZ',
+            'AGEN', 'AERT', 'ACAZ', 'AMEC', 'ACXT']
+
+    # Create auxiliary DataFrame
+    aux = data.copy(deep=True) \
+
+    # Filter
+    idxs_spec = data.specimen_code.isin(spec)
+    idxs_orgs = data.microorganism_code.isin(orgs)
+    idxs_abxs = data.antimicrobial_code.isin(abxs)
+
+    # Filter
+    aux = aux[idxs_spec & idxs_orgs & idxs_abxs]
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+
+    Top by Frequency:
+                                                         intermediate  resistant  sensitive    freq      sari
+    specimen_code microorganism_code antimicrobial_code                                                      
+    URICUL        ECOL               A_CEFPODOX                   0.0      595.0     8582.0  9177.0  0.064836
+                                     ANIT                         0.0      347.0     8826.0  9173.0  0.037828
+                                     ACELX                        0.0      803.0     8370.0  9173.0  0.087540
+                                     ATRI                         0.0     3231.0     5941.0  9172.0  0.352268
+                                     ACIP                         0.0     1259.0     7913.0  9172.0  0.137266
+                                     AAUG                         0.0      602.0     8561.0  9163.0  0.065699
+    WOUCUL        SAUR               AFUS                         0.0      613.0     3631.0  4244.0  0.144439
+                                     APEN                         0.0     3677.0      566.0  4243.0  0.866604
+                                     AERY                         0.0     1186.0     3056.0  4242.0  0.279585
+                                     AMET                         0.0      869.0     3372.0  4241.0  0.204905
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 423-424
+
+Now, lets compute the resistance trend.
+
+.. GENERATED FROM PYTHON SOURCE LINES 425-450
+
+.. code-block:: default
+   :lineno-start: 426
+
+
+    # Libraries
+    import warnings
+
+    # Import specific libraries
+    from pyamr.core.sart import SART
+
+    # Variables
+    shift, period = '10D', '180D'
+
+    # Create instance
+    sar = SART(column_specimen='specimen_code',
+               column_microorganism='microorganism_code',
+               column_antimicrobial='antimicrobial_code',
+               column_date='date_received',
+               column_outcome='sensitivity',
+               column_resistance='sari')
+
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+
+        # Compute resistance trends
+        table, objs = sar.compute(aux, shift=shift,
+            period=period, return_objects=True)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+     1/15. Computing... ('URICUL', 'ECOL', 'AAMI')
+     2/15. Computing... ('URICUL', 'ECOL', 'AAMPC')
+     3/15. Computing... ('URICUL', 'ECOL', 'AAUG')
+     4/15. Computing... ('URICUL', 'ECOL', 'ACAZ')
+     5/15. Computing... ('URICUL', 'ECOL', 'ACELX')
+     6/15. Computing... ('URICUL', 'ECOL', 'ACIP')
+     7/15. Computing... ('URICUL', 'ECOL', 'ACTX')
+     8/15. Computing... ('URICUL', 'ECOL', 'ACXT')
+     9/15. Computing... ('URICUL', 'ECOL', 'AERT')
+    10/15. Computing... ('URICUL', 'ECOL', 'AGEN')
+    11/15. Computing... ('URICUL', 'ECOL', 'AMEC')
+    12/15. Computing... ('URICUL', 'ECOL', 'AMER')
+    13/15. Computing... ('URICUL', 'ECOL', 'ANIT')
+    14/15. Computing... ('URICUL', 'ECOL', 'ATAZ')
+    15/15. Computing... ('URICUL', 'ECOL', 'ATRI')
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 451-452
+
+Lets see the summary DataFrame (note it is transposed!)
+
+.. GENERATED FROM PYTHON SOURCE LINES 453-464
+
+.. code-block:: default
+   :lineno-start: 454
+
+
+    # Configure pandas
+    pd.set_option(
+        'display.max_colwidth', 20,
+        'display.width', 1000
+    )
+
+    # Show
+    print("Results:")
+    print(table.T)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Results:
+    specimen_code                     URICUL                                                                 ...                                                                                    
+    microorganism_code                  ECOL                                                                 ...                                                                                    
+    antimicrobial_code                  AAMI                AAMPC                 AAUG                 ACAZ  ...                 AMER                 ANIT                 ATAZ                 ATRI
+    wls-rsquared                    0.557029              0.12798             0.906452             0.004545  ...             0.648313             0.907027             0.412661             0.600203
+    wls-rsquared_adj                0.544373              0.09791             0.903779            -0.023896  ...             0.638265              0.90437              0.39588              0.58878
+    wls-fvalue                     44.012024             4.256121           339.140633             0.159818  ...            64.520235           341.452365            24.590823            52.544462
+    wls-fprob                            0.0             0.048164                  0.0             0.691754  ...                  0.0                  0.0             0.000018                  0.0
+    wls-aic                              inf                  inf                  inf                  inf  ...                  inf                  inf                  inf                  inf
+    wls-bic                              inf                  inf                  inf                  inf  ...                  inf                  inf                  inf                  inf
+    wls-llf                             -inf                 -inf                 -inf                 -inf  ...                 -inf                 -inf                 -inf                 -inf
+    wls-mse_model                   0.745856             4.978205            33.299393               0.2007  ...             0.519024            10.349547            45.507504            10.110853
+    wls-mse_resid                   0.016947             1.169658             0.098188             1.255805  ...             0.008044              0.03031             1.850589             0.192425
+    wls-mse_total                   0.037194             1.296609             1.020443             1.226496  ...             0.022238             0.316956             3.063281             0.467937
+    wls-const_coef                  0.031283            68.761679             1.544961            65.712841  ...            -0.112373              6.26858            31.568866            37.277358
+    wls-const_std                   0.093007             0.698295             0.234858              0.80353  ...             0.064328             0.130513             0.975447             0.328813
+    wls-const_tvalue                0.336351            98.470788             6.578289            81.780194  ...            -1.746865             48.03046            32.363472           113.369592
+    wls-const_tprob                 0.738614                  0.0                  0.0                  0.0  ...             0.089432                  0.0                  0.0                  0.0
+    wls-const_cil                  -0.157532            67.333505             1.068175            64.081588  ...            -0.242966             6.003625            29.588602            36.609832
+    wls-const_ciu                   0.220098            70.189854             2.021747            67.344094  ...             0.018221             6.533535            33.549129            37.944883
+    wls-x1_coef                     0.024239             0.072052             0.167941            -0.012606  ...             0.020269            -0.093639             -0.18984            -0.092547
+    wls-x1_std                      0.003654             0.034925             0.009119             0.031532  ...             0.002523             0.005067             0.038283             0.012767
+    wls-x1_tvalue                   6.634156             2.063037            18.415771            -0.399772  ...             8.032449            -18.47843            -4.958913            -7.248756
+    wls-x1_tprob                         0.0             0.048164                  0.0             0.691754  ...                  0.0                  0.0             0.000018                  0.0
+    wls-x1_cil                      0.016822             0.000622             0.149427            -0.076619  ...             0.015146            -0.103927            -0.267558            -0.118466
+    wls-x1_ciu                      0.031656             0.143482             0.186454             0.051408  ...             0.025391            -0.083352            -0.112122            -0.066628
+    wls-s_dw                           0.741                1.091                0.176                0.445  ...                0.491                 0.63                0.246                0.232
+    wls-s_jb_value                     0.509                0.638                2.336                0.239  ...                1.016                4.482                0.826                1.043
+    wls-s_jb_prob                      0.775                0.727                0.311                0.887  ...                0.602                0.106                0.662                0.594
+    wls-s_skew                          0.21                -0.17                0.316               -0.051  ...                0.388                0.834               -0.344               -0.171
+    wls-s_kurtosis                     2.608                2.385                1.944                 2.62  ...                3.242                3.352                2.748                2.252
+    wls-s_omnibus_value                 0.39                0.518                5.037                 0.05  ...                1.808                5.624                0.929                1.287
+    wls-s_omnibus_prob                 0.823                0.772                0.081                0.975  ...                0.405                 0.06                0.628                0.525
+    wls-m_dw                        0.736178             0.537678             0.043909             0.188735  ...             0.411431             1.133668             0.186264             0.089424
+    wls-m_jb_value                 26.465944           457.685847            27.729537            10.593247  ...             0.486958             6.291782             1.385706            24.677527
+    wls-m_jb_prob                   0.000002                  0.0             0.000001             0.005008  ...             0.783896             0.043029             0.500147             0.000004
+    wls-m_skew                       1.61218              4.04353              1.89606             1.267125  ...             0.020609             0.368771             0.306621             1.751497
+    wls-m_kurtosis                  5.602039            19.998144             4.899094              3.66998  ...             2.439495             4.880741             2.276972             4.932894
+    wls-m_nm_value                 19.984589            59.422218             21.39435            10.974889  ...             0.308437             5.950009             1.657183            19.849339
+    wls-m_nm_prob                   0.000046                  0.0             0.000023             0.004138  ...             0.857085             0.051047             0.436664             0.000049
+    wls-m_ks_value                  0.405236             0.149246             0.366502             0.365003  ...             0.416082             0.280692             0.361949              0.24743
+    wls-m_ks_prob                   0.000005             0.451309             0.000058             0.000063  ...             0.000003             0.004524             0.000075              0.01759
+    wls-m_shp_value                 0.845794             0.486878             0.565564             0.844264  ...             0.991385             0.917726             0.970485             0.725119
+    wls-m_shp_prob                  0.000126                  0.0                  0.0             0.000116  ...             0.991378             0.009516             0.421651             0.000001
+    wls-m_ad_value                  1.637801             5.197208             7.445695             2.187059  ...              0.09537             1.379665             0.320155             3.993855
+    wls-m_ad_nnorm                     False                False                False                False  ...                 True                False                 True                False
+    wls-pearson                     0.548657            -0.482852            -0.197034            -0.816642  ...             0.901674            -0.892774            -0.910851            -0.893425
+    wls-missing                        raise                raise                raise                raise  ...                raise                raise                raise                raise
+    wls-exog             [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  ...  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....
+    wls-endog            [0.0, 0.0, 0.0, ...  [100.0, 77.77777...  [13.513513513513...  [75.0, 73.529411...  ...  [0.0, 0.0, 0.0, ...  [5.4054054054054...  [37.5, 36.764705...  [40.540540540540...
+    wls-trend                              c                    c                    c                    c  ...                    c                    c                    c                    c
+    wls-weights          [0.0, 0.00281585...  [0.0, 0.03706907...  [0.0, 0.00124501...  [0.0, 0.00278805...  ...  [0.0, 0.00280885...  [0.0, 0.00124341...  [0.0, 0.00278805...  [0.0, 0.00124364...
+    wls-W                <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...  ...  <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...
+    wls-model            <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...  ...  <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...
+    wls-id                  WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))  ...     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))
+
+    [51 rows x 15 columns]
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 465-466
+
+Lets see the model summary for the first entry
+
+.. GENERATED FROM PYTHON SOURCE LINES 467-520
+
+.. code-block:: default
+   :lineno-start: 468
+
+
+    # Display
+    # This example shows how to make predictions using the wrapper and how
+    # to plot the result in data. In addition, it compares the intervals
+    # provided by get_prediction (confidence intervals) and the intervals
+    # provided by wls_prediction_std (prediction intervals).
+
+    # Variables
+    name, obj = objs[2] # AAUG
+
+    # Series
+    series = obj.as_series()
+
+    # Variables.
+    start, end = None, 50
+
+    # Get x and y
+    x = series['wls-exog'][:,1]
+    y = series['wls-endog']
+
+    # Compute predictions (exogenous?). It returns a 2D array
+    # where the rows contain the time (t), the mean, the lower
+    # and upper confidence (or prediction?) interval.
+    preds = obj.get_prediction(start=start, end=end)
+
+    # Create figure
+    fig, ax = plt.subplots(1, 1, figsize=(11, 5))
+
+    # Plotting confidence intervals
+    # -----------------------------
+    # Plot truth values.
+    ax.plot(x, y, color='#A6CEE3', alpha=0.5, marker='o',
+            markeredgecolor='k', markeredgewidth=0.5,
+            markersize=5, linewidth=0.75, label='Observed')
+
+    # Plot forecasted values.
+    ax.plot(preds[0, :], preds[1, :], color='#FF0000', alpha=1.00,
+            linewidth=2.0, label=obj._identifier(short=True))
+
+    # Plot the confidence intervals.
+    ax.fill_between(preds[0, :], preds[2, :],
+                    preds[3, :],
+                    color='r',
+                    alpha=0.1)
+
+    # Legend
+    plt.legend()
+    plt.title(name)
+
+
+    print("Name: %s\n" % str(name))
+    print(obj.as_summary())
+
+
+
+
+.. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_003.png
+   :alt: ('URICUL', 'ECOL', 'AAUG')
+   :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_003.png
+   :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    Name: ('URICUL', 'ECOL', 'AAUG')
+
+                                WLS Regression Results                            
+    ==============================================================================
+    Dep. Variable:                      y   R-squared:                       0.906
+    Model:                            WLS   Adj. R-squared:                  0.904
+    Method:                 Least Squares   F-statistic:                     339.1
+    Date:                Mon, 20 Feb 2023   Prob (F-statistic):           1.38e-19
+    Time:                        17:41:30   Log-Likelihood:                   -inf
+    No. Observations:                  37   AIC:                               inf
+    Df Residuals:                      35   BIC:                               inf
+    Df Model:                           1                                         
+    Covariance Type:            nonrobust                                         
+    ==============================================================================
+                     coef    std err          t      P>|t|      [0.025      0.975]
+    ------------------------------------------------------------------------------
+    const          1.5450      0.235      6.578      0.000       1.068       2.022
+    x1             0.1679      0.009     18.416      0.000       0.149       0.186
+    ==============================================================================
+    Omnibus:                        5.037   Durbin-Watson:                   0.176
+    Prob(Omnibus):                  0.081   Jarque-Bera (JB):                2.336
+    Skew:                           0.316   Prob(JB):                        0.311
+    Kurtosis:                       1.944   Cond. No.                         91.7
+    Normal (N):                    21.394   Prob(N):                         0.000
+    ==============================================================================
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 521-522
+
+Lets display the information as a table graph
+
+.. GENERATED FROM PYTHON SOURCE LINES 523-645
+
+.. code-block:: default
+   :lineno-start: 524
+
+
+    # Libraries
+    from pyamr.graphics.table_graph import _DEFAULT_CONFIGURATION
+    from pyamr.graphics.table_graph import vlinebgplot
+
+    # Configuration for display
+    info = _DEFAULT_CONFIGURATION
+
+    # Lets define one as an example.
+    info['freq'] = {
+        'cmap': 'Blues',
+        'title': 'Freq',
+        'xticks': [0, 8000],
+        'kwargs': {
+            's': 80,
+            'vmin': 0
+        }
+    }
+
+    # .. note: It is important to ensure that the column names
+    #          match with the keys of the previously loaded
+    #          info configuration so that it is used.
+
+    # Rename columns
+    rename = {
+        'wls-x1_coef': 'sart_m',
+        'wls-const_coef': 'offset',
+        'wls-rsquared': 'r2',
+        'wls-rsquared_adj': 'r2_adj',
+        'wls-m_skew': 'skew',
+        'wls-m_kurtosis': 'kurtosis',
+        'wls-m_jb_prob': 'jb',
+        'wls-m_dw': 'dw',
+        'wls-const_tprob': 'ptm',
+        'wls-x1_tprob': 'ptn',
+        'wls-pearson': 'pearson',
+        'freq': 'freq',
+    }
+
+
+    # ----------------
+    # Combine with SARI
+
+    # Format combined DataFrame
+    comb = table.join(sari_overall)
+    comb.index = comb.index.map('_'.join)
+    comb = comb.reset_index()
+    comb = comb.rename(columns=rename)
+
+    # Add new columns
+    comb['sart_y'] = comb.sart_m * 12   # Yearly trend
+    comb['sari_pct'] = comb.sari * 100  # SARI percent
+
+    # Sort by trend
+    comb = comb.sort_values(by='sart_y', ascending=False)
+
+    # Select only numeric columns
+    # data = comb.select_dtypes(include=np.number)
+    data = comb[[
+        'index',
+        'sart_m',
+        #'sart_y',
+        'sari_pct',
+        'r2',
+        #'r2_adj',
+        'skew',
+        'kurtosis',
+        'jb',
+        'dw',
+        'ptm',
+        #'ptn',
+        'pearson',
+        'freq'
+    ]]
+
+    # Show DataFrame
+    print("\nResults:")
+    print(data)
+
+    # Create pair grid
+    g = sns.PairGrid(data, x_vars=data.columns[1:],
+        y_vars=["index"], height=4, aspect=.45)
+
+    # Set common features
+    g.set(xlabel='', ylabel='')
+
+    # Plot strips and format axes (skipping index)
+    for ax, c in zip(g.axes.flat, data.columns[1:]):
+
+        # Get information
+        d = info[c] if c in info else {}
+
+        # .. note: We need to use scatter plot if we want to
+        #          assign colors to the markers according to
+        #          their value.
+
+        # Using scatter plot
+        sns.scatterplot(data=data, x=c, y='index', s=100,
+                        ax=ax, linewidth=0.75, edgecolor='gray',
+                        c=data[c], cmap=d.get('cmap', None),
+                        norm=d.get('norm', None))
+
+        # Plot vertical lines
+        for e in d.get('vline', []):
+            vlinebgplot(ax, top=data.shape[0], **e)
+
+        # Configure axes
+        ax.set(title=d.get('title', c),
+               xlim=d.get('xlim', None),
+               xticks=d.get('xticks', []),
+               xlabel='', ylabel='')
+        ax.tick_params(axis='y', which='both', length=0)
+        ax.xaxis.grid(False)
+        ax.yaxis.grid(visible=True, which='major',
+                      color='gray', linestyle='-', linewidth=0.35)
+
+    # Despine
+    sns.despine(left=True, bottom=True)
+
+    # Adjust layout
+    plt.tight_layout()
+    plt.show()
+
+
+
+.. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_004.png
+   :alt: SART (m), SARI (%), R2, Skew, Kurtosis, Prob(JB), DW, P>|t| m, Pearson, Freq
+   :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_004.png
+   :class: sphx-glr-single-img
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+
+    Results:
+                    index    sart_m   sari_pct        r2      skew   kurtosis             jb        dw           ptm   pearson    freq
+    7    URICUL_ECOL_ACXT  0.384616  27.961433  0.871941 -0.902044   4.450753   1.606333e-02  0.321748  2.839420e-25  0.800813   726.0
+    10   URICUL_ECOL_AMEC  0.364059   6.923077  0.924855  0.292228   3.163261   7.528772e-01  0.246717  1.093236e-06  0.905281   390.0
+    2    URICUL_ECOL_AAUG  0.167941   6.569901  0.906452  1.896060   4.899094   9.519356e-07  0.043909  1.346934e-07 -0.197034  9163.0
+    1   URICUL_ECOL_AAMPC  0.072052  70.078740  0.127980  4.043530  19.998144  4.118898e-100  0.537678  3.529026e-38 -0.482852   254.0
+    9    URICUL_ECOL_AGEN  0.042474  35.586207  0.027657  1.568770   4.014620   2.290097e-04  0.041650  2.673921e-27 -0.725585   725.0
+    0    URICUL_ECOL_AAMI  0.024239   0.692521  0.557029  1.612180   5.602039   1.790578e-06  0.736178  7.386144e-01  0.548657   722.0
+    11   URICUL_ECOL_AMER  0.020269   0.414365  0.648313  0.020609   2.439495   7.838960e-01  0.411431  8.943204e-02  0.901674   724.0
+    3    URICUL_ECOL_ACAZ -0.012606  65.521978  0.004545  1.267125   3.669980   5.008476e-03  0.188735  1.467954e-41 -0.816642   728.0
+    4   URICUL_ECOL_ACELX -0.014681   8.753952  0.111695  2.012401   5.357851   5.199214e-08  0.052479  3.380317e-34 -0.664276  9173.0
+    6    URICUL_ECOL_ACTX -0.031965  66.803279  0.029500  2.046082   7.029445   9.090421e-12  0.145249  3.437555e-42 -0.745643   732.0
+    5    URICUL_ECOL_ACIP -0.074978  13.726559  0.669167  2.075303   5.564571   1.073938e-08  0.071392  9.838272e-39 -0.709830  9172.0
+    14   URICUL_ECOL_ATRI -0.092547  35.226777  0.600203  1.751497   4.932894   4.378678e-06  0.089424  1.661517e-46 -0.893425  9172.0
+    12   URICUL_ECOL_ANIT -0.093639   3.782841  0.907027  0.368771   4.880741   4.302857e-02  1.133668  1.526017e-33 -0.892774  9173.0
+    13   URICUL_ECOL_ATAZ -0.189840  27.884615  0.412661  0.306621   2.276972   5.001472e-01  0.186264  1.129783e-27 -0.910851   728.0
+    8    URICUL_ECOL_AERT -0.472199   4.568528  0.798147 -1.435647   3.976333   1.009636e-03  0.077592  8.089724e-18 -0.482881   197.0
+
+
+
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  10.042 seconds)
+   **Total running time of the script:** ( 0 minutes  8.014 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_step_01.py <plot_step_01.py>`
 
-     :download:`Download Python source code: plot_step_01.py <plot_step_01.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_step_01.ipynb <plot_step_01.ipynb>`
+      :download:`Download Jupyter notebook: plot_step_01.ipynb <plot_step_01.ipynb>`
 
 
 .. only:: html

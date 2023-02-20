@@ -46,21 +46,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_examples/tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -90,7 +87,7 @@
   <section id="welcome-to-pyamr-s-documentation">
 <h1>Welcome to pyAMR’s documentation!<a class="headerlink" href="#welcome-to-pyamr-s-documentation" title="Permalink to this headline"></a></h1>
 <a class="reference internal image-reference" href="_images/logo-pyamr-v1.png"><img alt="pyAMR" class="align-right" src="_images/logo-pyamr-v1.png" style="width: 100px;" /></a>
-<p>PyAMR is a python lightweight library to facilitate the computation of common
+<p><code class="docutils literal notranslate"><span class="pre">PyAMR</span></code> is a python lightweight library to facilitate the computation of common
 Antimicrobial Resistance (AMR) related statistics such as the proportion
 of resistance isolates, the resistance trend or the antimicrobial spectrum
 of activity. In addition, it includes a number of examples to visualise
@@ -118,40 +115,60 @@ such information which relay on plotting libraries such as <code class="docutils
 
 </center>
 
-<br><br><p>To briefly showcase some of the AMR metrics that can be computed using this library we
-have included two Figures. The first Figure includes information related to antimicrobial
-resistance metrics for those <code class="docutils literal notranslate"><span class="pre">urine</span></code> specimens in which <code class="docutils literal notranslate"><span class="pre">Escherichia</span> <span class="pre">coli</span></code> was grown and tested.
-The table includes the following information which is also displayed in the graphs below:</p>
+<br><br><p>Antimicrobial drugs are commonly used. We have all heard of antibiotics, which fight bacteria,
+but there are also antifungals, antivirals and antiparasitics that fight fungi, viruses and
+parasites, respectively. The more we use these drugs, the less effective they become and this
+problem is known as antimicrobial resistance (AMR). Resistant infections can be difficult, and
+sometimes impossible, to treat. Thus providing accurate and up to date AMR surveillance reports
+supports interventions and toolkits to improve antibiotic prescribing in the community, including
+prescribing in general practices (GPs), dental and other settings and hospitals.</p>
+<p>Let’s see two reports that can be computed using <code class="docutils literal notranslate"><span class="pre">PyAMR</span></code>.</p>
+<h6> Report I: Surveillance of AMR resistance </h6><p>In order to present AMR surveillance results, the susceptibility test data is often first grouped
+by three parameters: (i) the specimen or sample type (e.g. urine), (i) the infectious organism or
+pathogen, and (iii) the antimicrobial. The following report provides results for all the
+antimicrobials tested in <code class="docutils literal notranslate"><span class="pre">urine</span></code> samples in which <code class="docutils literal notranslate"><span class="pre">Escherichia</span> <span class="pre">coli</span></code> was grown and tested.</p>
+<a class="reference internal image-reference" href="_images/todo-sart-table.png"><img alt="_images/todo-sart-table.png" class="align-center" src="_images/todo-sart-table.png" style="width: 600px;" /></a>
+<br><p>The table contains the following information:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> as the overall resistance (proportion of resistance isolates).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TM</span></code> as the monthly resistance trend.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TY</span></code> as the yearly resistance trend.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pearson</span></code> as the correlation coefficient to discern whether there is a linear relation
-between the number of the resistance values computed and the amount of isolates used to
-compute them. There should not be any relation.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">isolates</span></code> as the the number of isolates used to compute such metrics.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">references</span></code> includes published manuscripts to prove the obtained values (see manuscript).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> is the overall resistance; that is, the total proportion of resistance isolates.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TM</span></code> is the monthly resistance trend (it would be 1 if resistance goes from 0 to 1 in a month).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TY</span></code> is the yearly resistance trend (<code class="docutils literal notranslate"><span class="pre">TM</span></code> x 12).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pearson</span></code> is the correlation coefficient computed between the vector with the number of
+isolates used to compute the resistance on each time period (e.g. month or year) and the
+overall resistance obtained. It is used to assess whether the strategy used for testing
+might be affecting the resistance values. Ideally, there should not be a strong correlation
+between them (-0.5 &lt;= <code class="docutils literal notranslate"><span class="pre">pearson</span></code> &lt;= 0.5).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isolates</span></code> is the the total number of isolates used to compute such metrics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">references</span></code> includes manuscripts within the literate which presented similar resistance
+values to the ones displayed in the table. For more information about these, see the
+original <a class="reference external" href="https://www.mdpi.com/2079-6382/10/10/1267">manuscript</a>.</p></li>
 </ul>
 </div></blockquote>
-<img alt="_images/todo-sart-table.png" src="_images/todo-sart-table.png" />
-<p>The second Figure includes information related to antimicrobial spectrum of activity for all
-the antimicrobials tested on <code class="docutils literal notranslate"><span class="pre">urine</span></code> samples. The table includes references to the literature
-with the corresponding associated category (eg.g narrow, intermediate and broad). While these three
-profiles appeared in the mid-1950s, little effort has been made to define them. Furthermore, such
-ambiguous labels are overused for different and even contradictory purposes. In addition, the table
-include the following metrics:</p>
+<h6> Report II: Effectiveness of an Antimicrobial </h6><p>The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible
+to these agents and therefore can be treated. In general, antimicrobial agents are classified into
+broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both
+Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited
+activity and are effective only against particular species of bacteria. While these profiles appeared
+in the mid-1950s, little effort has been made to define them. Furthermore, such ambiguous labels are
+overused for different and even contradictory purposes.</p>
+<p>To address this issue, the library defines the Antimicrobial Spectrum of Activity Index (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)
+which provides a way to compute a single numerical value. The following report provides results for
+all the antimicrobials and microorganisms tested in <code class="docutils literal notranslate"><span class="pre">urine</span></code> samples.</p>
+<a class="reference internal image-reference" href="_images/todo-asai-table.png"><img alt="_images/todo-asai-table.png" class="align-center" src="_images/todo-asai-table.png" style="width: 600px;" /></a>
+<br><p>The table table includes the following columns:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">antimicrobial</span></code> as the antimicrobial</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ASAI_N</span></code> as the spectrum of activity against gram negative bacteria.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ASAI_P</span></code> as the spectrum of activity against gram positive bacteria.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">N_gn</span></code> as the number of different genus.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">N_sp</span></code> as the number of different species.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">antimicrobial</span></code> is the antimicrobial</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASAI_N</span></code> is the spectrum of activity against gram negative bacteria.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASAI_P</span></code> is the spectrum of activity against gram positive bacteria.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N_gn</span></code> is the number of different (unique) genus.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N_sp</span></code> is the number of different (unique) species.</p></li>
 </ul>
 </div></blockquote>
-<img alt="_images/todo-asai-table.png" src="_images/todo-asai-table.png" />
-<p>When using any of this project’s source code, please cite:</p>
+<br>
+<br>
+<br><p>When using any of this project’s source code, please cite:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">hernandez2021resistance</span><span class="p">,</span>
   <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Resistance</span> <span class="n">Trend</span> <span class="n">Estimation</span> <span class="n">Using</span> <span class="n">Regression</span> <span class="n">Analysis</span> <span class="n">to</span> <span class="n">Enhance</span> <span class="n">Antimicrobial</span> <span class="n">Surveillance</span><span class="p">:</span> <span class="n">A</span> <span class="n">Multi</span><span class="o">-</span><span class="n">Centre</span> <span class="n">Study</span> <span class="ow">in</span> <span class="n">London</span> <span class="mi">2009</span><span class="o">--</span><span class="mi">2016</span><span class="p">},</span>
   <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Hernandez</span><span class="p">,</span> <span class="n">Bernard</span> <span class="ow">and</span> <span class="n">Herrero</span><span class="o">-</span><span class="n">Vi</span><span class="p">{</span>\<span class="o">~</span><span class="n">n</span><span class="p">}</span><span class="k">as</span><span class="p">,</span> <span class="n">Pau</span> <span class="ow">and</span> <span class="n">Rawson</span><span class="p">,</span> <span class="n">Timothy</span> <span class="n">M</span> <span class="ow">and</span> <span class="n">Moore</span><span class="p">,</span> <span class="n">Luke</span> <span class="n">SP</span> <span class="ow">and</span> <span class="n">Holmes</span><span class="p">,</span> <span class="n">Alison</span> <span class="n">H</span> <span class="ow">and</span> <span class="n">Georgiou</span><span class="p">,</span> <span class="n">Pantelis</span><span class="p">},</span>
@@ -169,7 +186,7 @@ include the following metrics:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The PhD thesis is available on Spiral: <a class="reference external" href="https://spiral.imperial.ac.uk/handle/10044/1/73000">https://spiral.imperial.ac.uk/handle/10044/1/73000</a></p>
+<p>The PhD thesis is available on <a class="reference external" href="https://spiral.imperial.ac.uk/handle/10044/1/73000">Spiral</a>.</p>
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -199,7 +216,7 @@ include the following metrics:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

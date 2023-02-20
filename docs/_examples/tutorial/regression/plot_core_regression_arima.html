@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regression - ARIMA &mdash; pyamr 0.0.1 documentation</title>
+  <title>Using ARIMA &mdash; pyamr 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
@@ -23,9 +23,7 @@
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Regression - WLSARMA" href="plot_core_regression_ensemble.html" />
-    <link rel="prev" title="Metrics - weights" href="../metrics/plot_metrics_weights.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,31 +45,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regression">Regression</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Regression - ARIMA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_ensemble.html">Regression - WLSARMA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_sarimax.html">Regression - SARIMAX</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_theilsens.html">Regression - Theil-Sen</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_wls.html">Regression - WLS</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -88,8 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Tutorial</a> &raquo;</li>
-      <li>Regression - ARIMA</li>
+      <li>Using ARIMA</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_arima.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,47 +88,46 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="regression-arima">
-<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"></span><h1>Regression - ARIMA<a class="headerlink" href="#regression-arima" title="Permalink to this headline"></a></h1>
-<img src="../../../_images/sphx_glr_plot_core_regression_arima_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_arima_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-arima-aic                   772.5507
-arima-bic                   779.6967
-arima-hqic                  775.4157
-arima-llf                  -383.2753
-arima-const_coef            280.5548
-arima-const_std             128.5142
-arima-const_tvalue            2.1831
-arima-const_tprob              0.029
-arima-const_cil              28.6716
-arima-const_ciu             532.4381
-arima-ar.L1_coef              0.9865
-arima-ar.L1_std               0.0214
-arima-ar.L1_tvalue           46.0299
+<section class="sphx-glr-example-title" id="using-arima">
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"></span><h1>Using ARIMA<a class="headerlink" href="#using-arima" title="Permalink to this headline"></a></h1>
+<img src="../../../_images/sphx_glr_plot_core_regression_arima_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_arima_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
+arima-aic                   806.3238
+arima-bic                   813.4699
+arima-hqic                  809.1889
+arima-llf                  -400.1619
+arima-const_coef            298.5062
+arima-const_std             114.4299
+arima-const_tvalue            2.6086
+arima-const_tprob             0.0091
+arima-const_cil              74.2277
+arima-const_ciu             522.7846
+arima-ar.L1_coef              0.9807
+arima-ar.L1_std               0.0219
+arima-ar.L1_tvalue           44.7396
 arima-ar.L1_tprob                0.0
-arima-ar.L1_cil               0.9445
-arima-ar.L1_ciu               1.0285
-arima-sigma2_coef            811.444
-arima-sigma2_std            124.1604
-arima-sigma2_tvalue           6.5355
+arima-ar.L1_cil               0.9378
+arima-ar.L1_ciu               1.0237
+arima-sigma2_coef          1243.0679
+arima-sigma2_std            199.8487
+arima-sigma2_tvalue             6.22
 arima-sigma2_tprob               0.0
-arima-sigma2_cil            568.0942
-arima-sigma2_ciu           1054.7939
-arima-m_dw                    1.8124
-arima-m_jb_value            939.4603
+arima-sigma2_cil            851.3715
+arima-sigma2_ciu           1634.7642
+arima-m_dw                    2.0342
+arima-m_jb_value             613.599
 arima-m_jb_prob                  0.0
-arima-m_skew                 -2.9302
-arima-m_kurtosis             18.7319
-arima-m_nm_value             80.3127
+arima-m_skew                 -2.5649
+arima-m_kurtosis             15.5604
+arima-m_nm_value             70.6142
 arima-m_nm_prob                  0.0
-arima-m_ks_value              0.5373
+arima-m_ks_value              0.5408
 arima-m_ks_prob                  0.0
-arima-m_shp_value             0.7755
+arima-m_shp_value             0.8163
 arima-m_shp_prob                 0.0
-arima-m_ad_value              2.7755
+arima-m_ad_value              2.1604
 arima-m_ad_nnorm               False
 arima-converged                 True
-arima-endog            [50.502151...
+arima-endog            [37.952290...
 arima-order                (1, 0, 0)
 arima-trend                        c
 arima-disp                         0
@@ -156,37 +139,27 @@ Summary:
                                SARIMAX Results
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                   80
-Model:                 ARIMA(1, 0, 0)   Log Likelihood                -383.275
-Date:                Tue, 14 Feb 2023   AIC                            772.551
-Time:                        18:29:32   BIC                            779.697
-Sample:                             0   HQIC                           775.416
+Model:                 ARIMA(1, 0, 0)   Log Likelihood                -400.162
+Date:                Mon, 20 Feb 2023   AIC                            806.324
+Time:                        17:41:34   BIC                            813.470
+Sample:                             0   HQIC                           809.189
                                  - 80
 Covariance Type:                  opg
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        280.5548    128.514      2.183      0.029      28.672     532.438
-ar.L1          0.9865      0.021     46.030      0.000       0.944       1.028
-sigma2       811.4440    124.160      6.535      0.000     568.094    1054.794
+const        298.5062    114.430      2.609      0.009      74.228     522.785
+ar.L1          0.9807      0.022     44.740      0.000       0.938       1.024
+sigma2      1243.0679    199.849      6.220      0.000     851.372    1634.764
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000  Durbin-Watson:                    1.812
-Prob(Omnibus):                  0.000  Jarque-Bera (JB):               939.460
-Skew:                          -2.930  Prob(JB):                         0.000
-Kurtosis_m:                    18.732  Cond No:
-Normal (N):                    80.313  Prob(N):                          0.000
+Omnibus:                        0.000  Durbin-Watson:                    2.034
+Prob(Omnibus):                  0.000  Jarque-Bera (JB):               613.599
+Skew:                          -2.565  Prob(JB):                         0.000
+Kurtosis_m:                    15.560  Cond No:
+Normal (N):                    70.614  Prob(N):                          0.000
 ==============================================================================
-{&#39;_results&#39;: &lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x000001685F8177C8&gt;, &#39;__doc__&#39;: &#39;\nClass to hold results from fitting an SARIMAX model.\n\nParameters\n----------\nmodel : SARIMAX instance\n    The fitted model instance\n\nAttributes\n----------\nspecification : dictionary\n    Dictionary including all attributes from the SARIMAX model instance.\npolynomial_ar : ndarray\n    Array containing autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_ma : ndarray\n    Array containing moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ar : ndarray\n    Array containing seasonal autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ma : ndarray\n    Array containing seasonal moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_trend : ndarray\n    Array containing trend polynomial coefficients, ordered from lowest\n    degree to highest. Initialized with ones, unless a coefficient is\n    constrained to be zero (in which case it is zero).\nmodel_orders : list of int\n    The orders of each of the polynomials in the model.\nparam_terms : list of str\n    List of parameters actually included in the model, in sorted order.\n\nSee Also\n--------\nstatsmodels.tsa.statespace.kalman_filter.FilterResults\nstatsmodels.tsa.statespace.mlemodel.MLEResults\n&#39;, &#39;mlefit&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000016871927048&gt;, &#39;mle_retvals&#39;: {&#39;fopt&#39;: 4.790941621111053, &#39;gopt&#39;: array([-2.33590925e-08, -1.85176319e-06,  3.04467562e-07]), &#39;fcalls&#39;: 88, &#39;warnflag&#39;: 0, &#39;converged&#39;: True, &#39;iterations&#39;: 20}, &#39;mle_settings&#39;: {&#39;optimizer&#39;: &#39;lbfgs&#39;, &#39;start_params&#39;: array([341.557404  ,  -3.06827459,  27.78689141]), &#39;maxiter&#39;: 50, &#39;full_output&#39;: 1, &#39;disp&#39;: 0, &#39;fargs&#39;: ({&#39;transformed&#39;: False, &#39;includes_fixed&#39;: False, &#39;score_method&#39;: None, &#39;approx_complex_step&#39;: True},), &#39;callback&#39;: None, &#39;retall&#39;: False, &#39;extra_fit_funcs&#39;: {}, &#39;approx_grad&#39;: True, &#39;epsilon&#39;: 1e-05, &#39;bounds&#39;: [(None, None), (None, None), (None, None)], &#39;iprint&#39;: 0}, &#39;fit_details&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000016871927048&gt;}
-&lt;statsmodels.tsa.arima.model.ARIMAResultsWrapper object at 0x0000016871927788&gt;
-{&#39;aic&#39;: 772.5506593777685, &#39;bic&#39;: 779.6967392817902, &#39;hqic&#39;: 775.4157272938994, &#39;llf&#39;: -383.27532968888426, &#39;const_coef&#39;: 280.5548291508317, &#39;const_std&#39;: 128.5142230378763, &#39;const_tvalue&#39;: 2.1830644306828617, &#39;const_tprob&#39;: 0.02903106552484044, &#39;const_cil&#39;: 28.671580495446506, &#39;const_ciu&#39;: 532.4380778062169, &#39;ar.L1_coef&#39;: 0.9864623740930366, &#39;ar.L1_std&#39;: 0.021430884326901028, &#39;ar.L1_tvalue&#39;: 46.02994253740541, &#39;ar.L1_tprob&#39;: 0.0, &#39;ar.L1_cil&#39;: 0.9444586126554667, &#39;ar.L1_ciu&#39;: 1.0284661355306066, &#39;sigma2_coef&#39;: 811.4440284418251, &#39;sigma2_std&#39;: 124.1603688680386, &#39;sigma2_tvalue&#39;: 6.535451173669212, &#39;sigma2_tprob&#39;: 6.341806953948638e-11, &#39;sigma2_cil&#39;: 568.0941771532613, &#39;sigma2_ciu&#39;: 1054.7938797303889, &#39;m_dw&#39;: 1.8124239044261825, &#39;m_jb_value&#39;: 939.4602529074716, &#39;m_jb_prob&#39;: 9.972363430002255e-205, &#39;m_skew&#39;: -2.930242473488615, &#39;m_kurtosis&#39;: 18.731903637465326, &#39;m_nm_value&#39;: 80.31265697254318, &#39;m_nm_prob&#39;: 3.633524768006779e-18, &#39;m_ks_value&#39;: 0.5372661850574851, &#39;m_ks_prob&#39;: 4.0107764086728166e-22, &#39;m_shp_value&#39;: 0.7755306363105774, &#39;m_shp_prob&#39;: 1.0342352529946197e-09, &#39;m_ad_value&#39;: 2.7755160635854708, &#39;m_ad_nnorm&#39;: False, &#39;converged&#39;: True}
-&lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x000001685F8177C8&gt;
-[0.98646237]
-{&#39;_results&#39;: &lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x000001685F8177C8&gt;, &#39;__doc__&#39;: &#39;\nClass to hold results from fitting an SARIMAX model.\n\nParameters\n----------\nmodel : SARIMAX instance\n    The fitted model instance\n\nAttributes\n----------\nspecification : dictionary\n    Dictionary including all attributes from the SARIMAX model instance.\npolynomial_ar : ndarray\n    Array containing autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_ma : ndarray\n    Array containing moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ar : ndarray\n    Array containing seasonal autoregressive lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_seasonal_ma : ndarray\n    Array containing seasonal moving average lag polynomial coefficients,\n    ordered from lowest degree to highest. Initialized with ones, unless\n    a coefficient is constrained to be zero (in which case it is zero).\npolynomial_trend : ndarray\n    Array containing trend polynomial coefficients, ordered from lowest\n    degree to highest. Initialized with ones, unless a coefficient is\n    constrained to be zero (in which case it is zero).\nmodel_orders : list of int\n    The orders of each of the polynomials in the model.\nparam_terms : list of str\n    List of parameters actually included in the model, in sorted order.\n\nSee Also\n--------\nstatsmodels.tsa.statespace.kalman_filter.FilterResults\nstatsmodels.tsa.statespace.mlemodel.MLEResults\n&#39;, &#39;mlefit&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000016871927048&gt;, &#39;mle_retvals&#39;: {&#39;fopt&#39;: 4.790941621111053, &#39;gopt&#39;: array([-2.33590925e-08, -1.85176319e-06,  3.04467562e-07]), &#39;fcalls&#39;: 88, &#39;warnflag&#39;: 0, &#39;converged&#39;: True, &#39;iterations&#39;: 20}, &#39;mle_settings&#39;: {&#39;optimizer&#39;: &#39;lbfgs&#39;, &#39;start_params&#39;: array([341.557404  ,  -3.06827459,  27.78689141]), &#39;maxiter&#39;: 50, &#39;full_output&#39;: 1, &#39;disp&#39;: 0, &#39;fargs&#39;: ({&#39;transformed&#39;: False, &#39;includes_fixed&#39;: False, &#39;score_method&#39;: None, &#39;approx_complex_step&#39;: True},), &#39;callback&#39;: None, &#39;retall&#39;: False, &#39;extra_fit_funcs&#39;: {}, &#39;approx_grad&#39;: True, &#39;epsilon&#39;: 1e-05, &#39;bounds&#39;: [(None, None), (None, None), (None, None)], &#39;iprint&#39;: 0}, &#39;fit_details&#39;: &lt;statsmodels.base.model.LikelihoodModelResults object at 0x0000016871927048&gt;}
-&lt;statsmodels.tsa.arima.model.ARIMAResultsWrapper object at 0x0000016871927788&gt;
-{&#39;aic&#39;: 772.5506593777685, &#39;bic&#39;: 779.6967392817902, &#39;hqic&#39;: 775.4157272938994, &#39;llf&#39;: -383.27532968888426, &#39;const_coef&#39;: 280.5548291508317, &#39;const_std&#39;: 128.5142230378763, &#39;const_tvalue&#39;: 2.1830644306828617, &#39;const_tprob&#39;: 0.02903106552484044, &#39;const_cil&#39;: 28.671580495446506, &#39;const_ciu&#39;: 532.4380778062169, &#39;ar.L1_coef&#39;: 0.9864623740930366, &#39;ar.L1_std&#39;: 0.021430884326901028, &#39;ar.L1_tvalue&#39;: 46.02994253740541, &#39;ar.L1_tprob&#39;: 0.0, &#39;ar.L1_cil&#39;: 0.9444586126554667, &#39;ar.L1_ciu&#39;: 1.0284661355306066, &#39;sigma2_coef&#39;: 811.4440284418251, &#39;sigma2_std&#39;: 124.1603688680386, &#39;sigma2_tvalue&#39;: 6.535451173669212, &#39;sigma2_tprob&#39;: 6.341806953948638e-11, &#39;sigma2_cil&#39;: 568.0941771532613, &#39;sigma2_ciu&#39;: 1054.7938797303889, &#39;m_dw&#39;: 1.8124239044261825, &#39;m_jb_value&#39;: 939.4602529074716, &#39;m_jb_prob&#39;: 9.972363430002255e-205, &#39;m_skew&#39;: -2.930242473488615, &#39;m_kurtosis&#39;: 18.731903637465326, &#39;m_nm_value&#39;: 80.31265697254318, &#39;m_nm_prob&#39;: 3.633524768006779e-18, &#39;m_ks_value&#39;: 0.5372661850574851, &#39;m_ks_prob&#39;: 4.0107764086728166e-22, &#39;m_shp_value&#39;: 0.7755306363105774, &#39;m_shp_prob&#39;: 1.0342352529946197e-09, &#39;m_ad_value&#39;: 2.7755160635854708, &#39;m_ad_nnorm&#39;: False, &#39;converged&#39;: True}
-&lt;statsmodels.tsa.arima.model.ARIMAResults object at 0x000001685F8177C8&gt;
-[0.98646237]
 </pre></div>
 </div>
 <div class="line-block">
@@ -336,8 +309,8 @@ Normal (N):                    80.313  Prob(N):                          0.000
 <span class="linenos">148</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.137 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.153 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/2001417af432b95d68831cdd664f0313/plot_core_regression_arima.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_arima.py</span></code></a></p>
 </div>
@@ -351,15 +324,12 @@ Normal (N):                    80.313  Prob(N):                          0.000
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../metrics/plot_metrics_weights.html" class="btn btn-neutral float-left" title="Metrics - weights" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_core_regression_ensemble.html" class="btn btn-neutral float-right" title="Regression - WLSARMA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -40,11 +40,12 @@ f = np.concatenate((np.random.rand(35)*50+50,
 
 # Weight Functions
 w_functions = [
-SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0),
-SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, percentiles=[10,90]),
-SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, percentiles=[25,75]),
-SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, percentiles=[40,50]),
-SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, thresholds=[15,85])]
+    SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0),
+    SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, percentiles=[10,90]),
+    SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, percentiles=[25,75]),
+    SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, percentiles=[40,50]),
+    SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0, thresholds=[15,85])
+]
 
 # Create figure
 fig, axes = plt.subplots(1,3, figsize=(10,4))

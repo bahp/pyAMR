@@ -66,31 +66,29 @@ ASAI - Gram stain (by specimen)
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
     Data:
-           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
-    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMI           amikacin                NaN   sensitive NaN       NaN
-    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   resistant NaN       NaN
-    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAZT          aztreonam                NaN   sensitive NaN       NaN
-    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               ACAZ        ceftazidime                NaN   sensitive NaN       NaN
-    ...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
-    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   sensitive NaN       NaN
-    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ALIN          linezolid                NaN   sensitive NaN       NaN
-    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ASYN           synercid                NaN   resistant NaN       NaN
-    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ATEI        teicoplanin                NaN   sensitive NaN       NaN
-    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AVAN         vancomycin                NaN   sensitive NaN       NaN
+           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
+    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMI           amikacin                NaN    sensitive NaN       NaN
+    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMO        amoxycillin                NaN    resistant NaN       NaN
+    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAUG          augmentin                NaN    sensitive NaN       NaN
+    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAZT          aztreonam                NaN    sensitive NaN       NaN
+    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               ACAZ        ceftazidime                NaN    sensitive NaN       NaN
+    ...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
+    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AAMO        amoxycillin                NaN    sensitive NaN       NaN
+    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ALIN          linezolid                NaN    sensitive NaN       NaN
+    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ASYN           synercid                NaN    resistant NaN       NaN
+    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ATEI        teicoplanin                NaN    sensitive NaN       NaN
+    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AVAN         vancomycin                NaN    sensitive NaN       NaN
 
     [319122 rows x 15 columns]
 
     Columns:
     Index(['date_received', 'date_outcome', 'patient_id', 'laboratory_number', 'specimen_code', 'specimen_name', 'specimen_description', 'microorganism_code', 'microorganism_name', 'antimicrobial_code', 'antimicrobial_name', 'sensitivity_method', 'sensitivity', 'mic', 'reported'], dtype='object')
     SARI (overall):
-    sensitivity                                                             intermediate  resistant  sensitive  freq    sari
+                                                                            intermediate  resistant  sensitive  freq    sari
     specimen_code microorganism_name                    antimicrobial_name                                                  
     BFLCUL        anaerobes                             metronidazole                0.0        0.0        1.0   1.0  0.0000
                   bacillus                              ciprofloxacin                0.0        0.0        1.0   1.0  0.0000
@@ -105,30 +103,6 @@ ASAI - Gram stain (by specimen)
                                                         tetracycline                 0.0        8.0        1.0   9.0  0.8889
 
     [4491 rows x 5 columns]
-    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:530: UserWarning:
-
-
-                     Extreme resistances were found in the DataFrame. These rows
-                     should be reviewed since these resistances might correspond
-                     to pairs with low number of records.
-
-
-    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:544: UserWarning:
-
-
-                     There are NULL values in columns that are required. These
-                     rows will be ignored to safely compute ASAI. Please review
-                     the DataFrame and address this inconsistencies. See below
-                     for more information: 
-
-                            specimen_code            0
-                            antimicrobial_name       0
-                            gram_stain               0
-                            GENUS                    0
-                            SPECIE                2414
-                            RESISTANCE               0
-
-
 
     ASAI (overall):
                                      N_GENUS          N_SPECIE          ASAI_SCORE          width   gmean
@@ -183,10 +157,10 @@ ASAI - Gram stain (by specimen)
     35                BLDCUL      ciprofloxacin    11.0  2.0  1.0     11.0   3.0  1.0     0.9091  0.2500  1.0  2.1591  0.4767
     46                BLDCUL           imipenem     8.0  NaN  1.0      8.0   NaN  1.0     1.0000     NaN  1.0  2.0000  1.0000
     32                BLDCUL        ceftriaxone     2.0  2.0  NaN      2.0   8.0  NaN     1.0000  1.0000  NaN  2.0000  1.0000
-    49                BLDCUL          meropenem     8.0  NaN  1.0      8.0   NaN  1.0     1.0000     NaN  1.0  2.0000  1.0000
     58                BLDCUL            tazocin     8.0  NaN  1.0      8.0   NaN  1.0     1.0000     NaN  1.0  2.0000  1.0000
+    49                BLDCUL          meropenem     8.0  NaN  1.0      8.0   NaN  1.0     1.0000     NaN  1.0  2.0000  1.0000
     55                BLDCUL         rifampicin     1.0  2.0  NaN      1.0   3.0  NaN     1.0000  1.0000  NaN  2.0000  1.0000
-    61                BLDCUL       tetracycline     2.0  3.0  NaN      2.0  10.0  NaN     1.0000  0.9524  NaN  1.9524  0.9759
+    61                BLDCUL       tetracycline     2.0  3.0  NaN      2.0  10.0  NaN     1.0000  0.9048  NaN  1.9048  0.9512
     62                BLDCUL           timentin     6.0  NaN  1.0      6.0   NaN  1.0     0.8333     NaN  1.0  1.8333  0.9129
     26                BLDCUL          augmentin     9.0  NaN  1.0      9.0   NaN  1.0     0.7778     NaN  1.0  1.7778  0.8819
     28                BLDCUL         cefotaxime     9.0  2.0  1.0      9.0   8.0  1.0     0.6667  1.0000  0.0  1.6667  0.0000
@@ -195,17 +169,16 @@ ASAI - Gram stain (by specimen)
     63                BLDCUL         tobramycin     6.0  NaN  1.0      6.0   NaN  1.0     0.5000     NaN  1.0  1.5000  0.7071
     25                BLDCUL      amp c markers     3.0  NaN  1.0      3.0   NaN  1.0     0.3333     NaN  1.0  1.3333  0.5774
     24                BLDCUL        amoxycillin     9.0  3.0  1.0      9.0   9.0  1.0     0.2222  1.0000  0.0  1.2222  0.0000
-    52                BLDCUL          mupirocin     NaN  1.0  NaN      NaN   2.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
     51                BLDCUL       moxifloxacin     NaN  1.0  NaN      NaN   1.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
     57                BLDCUL           synercid     NaN  1.0  NaN      NaN   1.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
-    53                BLDCUL          oxacillin     NaN  1.0  NaN      NaN   3.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
+    52                BLDCUL          mupirocin     NaN  1.0  NaN      NaN   2.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
     56                BLDCUL  sulphamethoxazole     1.0  NaN  NaN      1.0   NaN  NaN     1.0000     NaN  NaN  1.0000  1.0000
     34                BLDCUL    chloramphenicol     2.0  NaN  NaN      2.0   NaN  NaN     1.0000     NaN  NaN  1.0000  1.0000
     59                BLDCUL        teicoplanin     NaN  3.0  NaN      NaN  10.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
     47                BLDCUL       levofloxacin     NaN  1.0  NaN      NaN   1.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
-    65                BLDCUL         vancomycin     NaN  4.0  NaN      NaN  11.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
     48                BLDCUL          linezolid     NaN  3.0  NaN      NaN   5.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
-    41                BLDCUL       erythromycin     1.0  4.0  NaN      1.0  11.0  NaN     0.0000  0.8750  NaN  0.8750  0.0000
+    65                BLDCUL         vancomycin     NaN  4.0  NaN      NaN  11.0  NaN        NaN  1.0000  NaN  1.0000  1.0000
+    41                BLDCUL       erythromycin     1.0  4.0  NaN      1.0  11.0  NaN     0.0000  0.8393  NaN  0.8393  0.0000
     40                BLDCUL          ertapenem     5.0  NaN  NaN      5.0   NaN  NaN     0.8000     NaN  NaN  0.8000  0.8944
     43                BLDCUL     flucloxacillin     NaN  2.0  NaN      NaN   3.0  NaN        NaN  0.7500  NaN  0.7500  0.8660
     60                BLDCUL         temocillin     4.0  NaN  NaN      4.0   NaN  NaN     0.7500     NaN  NaN  0.7500  0.8660
@@ -213,9 +186,10 @@ ASAI - Gram stain (by specimen)
     37                BLDCUL        clindamycin     NaN  2.0  NaN      NaN   7.0  NaN        NaN  0.7500  NaN  0.7500  0.8660
     54                BLDCUL         penicillin     1.0  4.0  NaN      1.0  11.0  NaN     0.0000  0.7500  NaN  0.7500  0.0000
     38                BLDCUL  colistin sulphate     7.0  NaN  1.0      7.0   NaN  1.0     0.7143     NaN  0.0  0.7143  0.0000
-    27                BLDCUL          aztreonam     6.0  NaN  NaN      6.0   NaN  NaN     0.6667     NaN  NaN  0.6667  0.8165
+    53                BLDCUL          oxacillin     NaN  1.0  NaN      NaN   3.0  NaN        NaN  0.6667  NaN  0.6667  0.8165
     30                BLDCUL        cefpodoxime     7.0  NaN  1.0      7.0   NaN  1.0     0.5714     NaN  0.0  0.5714  0.0000
     36                BLDCUL     clarithromycin     2.0  NaN  NaN      2.0   NaN  NaN     0.5000     NaN  NaN  0.5000  0.7071
+    27                BLDCUL          aztreonam     6.0  NaN  NaN      6.0   NaN  NaN     0.5000     NaN  NaN  0.5000  0.7071
     64                BLDCUL       trimethoprim     NaN  1.0  NaN      NaN   2.0  NaN        NaN  0.5000  NaN  0.5000  0.7071
     44                BLDCUL       fusidic acid     NaN  1.0  NaN      NaN   2.0  NaN        NaN  0.5000  NaN  0.5000  0.7071
     29                BLDCUL          cefoxitin     7.0  NaN  1.0      7.0   NaN  1.0     0.4286     NaN  0.0  0.4286  0.0000
@@ -226,8 +200,8 @@ ASAI - Gram stain (by specimen)
     ASAI (SPTCUL)
                specimen_code antimicrobial_name N_GENUS          N_SPECIE          ASAI_SCORE               width   gmean
     gram_stain                                        n    p   u        n    p   u          n       p   u                
-    297               SPTCUL         cefotaxime     8.0  1.0 NaN      8.0  1.0 NaN     0.7500  1.0000 NaN  1.7500  0.8660
     302               SPTCUL         cefuroxime     8.0  1.0 NaN      8.0  1.0 NaN     0.7500  1.0000 NaN  1.7500  0.8660
+    297               SPTCUL         cefotaxime     8.0  1.0 NaN      8.0  1.0 NaN     0.7500  1.0000 NaN  1.7500  0.8660
     318               SPTCUL          meropenem     7.0  1.0 NaN      7.0  1.0 NaN     0.7143  1.0000 NaN  1.7143  0.8452
     314               SPTCUL         gentamicin     7.0  2.0 NaN      7.0  3.0 NaN     0.7143  1.0000 NaN  1.7143  0.8452
     328               SPTCUL       tetracycline     2.0  3.0 NaN      2.0  7.0 NaN     1.0000  0.5000 NaN  1.5000  0.7071
@@ -235,32 +209,32 @@ ASAI - Gram stain (by specimen)
     304               SPTCUL      ciprofloxacin     9.0  3.0 NaN      9.0  4.0 NaN     0.6667  0.5000 NaN  1.1667  0.5774
     322               SPTCUL          oxacillin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     321               SPTCUL          mupirocin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
-    320               SPTCUL       moxifloxacin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
-    310               SPTCUL       erythromycin     2.0  3.0 NaN      2.0  7.0 NaN     0.5000  0.5000 NaN  1.0000  0.5000
     301               SPTCUL        ceftriaxone     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
+    326               SPTCUL        teicoplanin     NaN  2.0 NaN      NaN  2.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     303               SPTCUL    chloramphenicol     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
+    320               SPTCUL       moxifloxacin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     317               SPTCUL          linezolid     NaN  3.0 NaN      NaN  4.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     316               SPTCUL       levofloxacin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
-    326               SPTCUL        teicoplanin     NaN  2.0 NaN      NaN  2.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
+    310               SPTCUL       erythromycin     2.0  3.0 NaN      2.0  7.0 NaN     0.5000  0.5000 NaN  1.0000  0.5000
     332               SPTCUL         vancomycin     NaN  3.0 NaN      NaN  4.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
-    325               SPTCUL            tazocin     7.0  NaN NaN      7.0  NaN NaN     0.8571     NaN NaN  0.8571  0.9258
-    291               SPTCUL           amikacin     7.0  NaN NaN      7.0  NaN NaN     0.8571     NaN NaN  0.8571  0.9258
-    300               SPTCUL        ceftazidime     7.0  NaN NaN      7.0  NaN NaN     0.8571     NaN NaN  0.8571  0.9258
-    306               SPTCUL        clindamycin     NaN  3.0 NaN      NaN  5.0 NaN        NaN  0.8333 NaN  0.8333  0.9129
     324               SPTCUL         rifampicin     NaN  3.0 NaN      NaN  4.0 NaN        NaN  0.8333 NaN  0.8333  0.9129
+    306               SPTCUL        clindamycin     NaN  3.0 NaN      NaN  5.0 NaN        NaN  0.8333 NaN  0.8333  0.9129
     331               SPTCUL       trimethoprim     NaN  2.0 NaN      NaN  3.0 NaN        NaN  0.7500 NaN  0.7500  0.8660
-    307               SPTCUL  colistin sulphate     7.0  NaN NaN      7.0  NaN NaN     0.7143     NaN NaN  0.7143  0.8452
+    325               SPTCUL            tazocin     7.0  NaN NaN      7.0  NaN NaN     0.7143     NaN NaN  0.7143  0.8452
     315               SPTCUL           imipenem     7.0  NaN NaN      7.0  NaN NaN     0.7143     NaN NaN  0.7143  0.8452
-    298               SPTCUL          cefoxitin     6.0  NaN NaN      6.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
+    291               SPTCUL           amikacin     7.0  NaN NaN      7.0  NaN NaN     0.7143     NaN NaN  0.7143  0.8452
+    307               SPTCUL  colistin sulphate     7.0  NaN NaN      7.0  NaN NaN     0.7143     NaN NaN  0.7143  0.8452
+    300               SPTCUL        ceftazidime     7.0  NaN NaN      7.0  NaN NaN     0.7143     NaN NaN  0.7143  0.8452
     323               SPTCUL         penicillin     NaN  3.0 NaN      NaN  7.0 NaN        NaN  0.6667 NaN  0.6667  0.8165
-    308               SPTCUL      cotrimoxazole     6.0  1.0 NaN      6.0  1.0 NaN     0.6667  0.0000 NaN  0.6667  0.0000
+    298               SPTCUL          cefoxitin     6.0  NaN NaN      6.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
     330               SPTCUL         tobramycin     6.0  NaN NaN      6.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
+    308               SPTCUL      cotrimoxazole     6.0  1.0 NaN      6.0  1.0 NaN     0.6667  0.0000 NaN  0.6667  0.0000
     299               SPTCUL        cefpodoxime     6.0  NaN NaN      6.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
     294               SPTCUL          augmentin     8.0  NaN NaN      8.0  NaN NaN     0.5000     NaN NaN  0.5000  0.7071
-    312               SPTCUL     flucloxacillin     NaN  1.0 NaN      NaN  2.0 NaN        NaN  0.5000 NaN  0.5000  0.7071
     296               SPTCUL          aztreonam     4.0  NaN NaN      4.0  NaN NaN     0.5000     NaN NaN  0.5000  0.7071
-    305               SPTCUL     clarithromycin     2.0  NaN NaN      2.0  NaN NaN     0.5000     NaN NaN  0.5000  0.7071
     313               SPTCUL       fusidic acid     NaN  2.0 NaN      NaN  3.0 NaN        NaN  0.5000 NaN  0.5000  0.7071
+    305               SPTCUL     clarithromycin     2.0  NaN NaN      2.0  NaN NaN     0.5000     NaN NaN  0.5000  0.7071
+    312               SPTCUL     flucloxacillin     NaN  1.0 NaN      NaN  2.0 NaN        NaN  0.5000 NaN  0.5000  0.7071
     329               SPTCUL           timentin     7.0  NaN NaN      7.0  NaN NaN     0.4286     NaN NaN  0.4286  0.6547
     327               SPTCUL         temocillin     3.0  NaN NaN      3.0  NaN NaN     0.3333     NaN NaN  0.3333  0.5774
     309               SPTCUL          ertapenem     3.0  NaN NaN      3.0  NaN NaN     0.3333     NaN NaN  0.3333  0.5774
@@ -274,45 +248,45 @@ ASAI - Gram stain (by specimen)
                specimen_code antimicrobial_name N_GENUS          N_SPECIE          ASAI_SCORE               width   gmean
     gram_stain                                        n    p   u        n    p   u          n       p   u                
     478               URICUL       tetracycline     1.0  2.0 NaN      1.0  6.0 NaN     1.0000  0.8333 NaN  1.8333  0.9129
-    453               URICUL      ciprofloxacin     6.0  2.0 NaN      6.0  7.0 NaN     0.8333  1.0000 NaN  1.8333  0.9129
     462               URICUL         gentamicin     5.0  1.0 NaN      5.0  3.0 NaN     0.8000  1.0000 NaN  1.8000  0.8944
     443               URICUL        amoxycillin     2.0  2.0 NaN      2.0  7.0 NaN     0.5000  0.8333 NaN  1.3333  0.6455
     449               URICUL        cefpodoxime     5.0  2.0 NaN      5.0  5.0 NaN     0.4000  0.8333 NaN  1.2333  0.5774
+    453               URICUL      ciprofloxacin     6.0  2.0 NaN      6.0  7.0 NaN     0.3333  0.8750 NaN  1.2083  0.5401
     481               URICUL       trimethoprim     5.0  2.0 NaN      5.0  7.0 NaN     0.2000  1.0000 NaN  1.2000  0.4472
     445               URICUL          augmentin     5.0  2.0 NaN      5.0  7.0 NaN     0.2000  1.0000 NaN  1.2000  0.4472
     470               URICUL     nitrofurantoin     5.0  2.0 NaN      5.0  7.0 NaN     0.2000  1.0000 NaN  1.2000  0.4472
     452               URICUL         cephalexin     5.0  2.0 NaN      5.0  7.0 NaN     0.2000  0.8750 NaN  1.0750  0.4183
     460               URICUL     flucloxacillin     1.0  1.0 NaN      1.0  3.0 NaN     0.0000  1.0000 NaN  1.0000  0.0000
     476               URICUL        teicoplanin     NaN  2.0 NaN      NaN  7.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
-    475               URICUL            tazocin     5.0  NaN NaN      5.0  NaN NaN     1.0000     NaN NaN  1.0000  1.0000
     473               URICUL         rifampicin     NaN  1.0 NaN      NaN  3.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     469               URICUL     naladixic acid     1.0  NaN NaN      1.0  NaN NaN     1.0000     NaN NaN  1.0000  1.0000
     468               URICUL          mupirocin     NaN  1.0 NaN      NaN  2.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     464               URICUL          linezolid     NaN  1.0 NaN      NaN  3.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
-    442               URICUL           amikacin     5.0  NaN NaN      5.0  NaN NaN     1.0000     NaN NaN  1.0000  1.0000
     482               URICUL         vancomycin     NaN  2.0 NaN      NaN  7.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     454               URICUL        clindamycin     NaN  2.0 NaN      NaN  4.0 NaN        NaN  1.0000 NaN  1.0000  1.0000
     458               URICUL       erythromycin     NaN  2.0 NaN      NaN  6.0 NaN        NaN  0.8333 NaN  0.8333  0.9129
     455               URICUL  colistin sulphate     5.0  NaN NaN      5.0  NaN NaN     0.8000     NaN NaN  0.8000  0.8944
-    463               URICUL           imipenem     5.0  NaN NaN      5.0  NaN NaN     0.8000     NaN NaN  0.8000  0.8944
+    475               URICUL            tazocin     5.0  NaN NaN      5.0  NaN NaN     0.8000     NaN NaN  0.8000  0.8944
+    442               URICUL           amikacin     5.0  NaN NaN      5.0  NaN NaN     0.8000     NaN NaN  0.8000  0.8944
     479               URICUL           timentin     4.0  NaN NaN      4.0  NaN NaN     0.7500     NaN NaN  0.7500  0.8660
-    446               URICUL          aztreonam     3.0  NaN NaN      3.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
-    477               URICUL         temocillin     3.0  NaN NaN      3.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
     471               URICUL         novobiocin     1.0  1.0 NaN      1.0  3.0 NaN     0.0000  0.6667 NaN  0.6667  0.0000
-    456               URICUL      cotrimoxazole     3.0  NaN NaN      3.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
-    457               URICUL          ertapenem     3.0  NaN NaN      3.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
+    446               URICUL          aztreonam     3.0  NaN NaN      3.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
     461               URICUL       fusidic acid     NaN  1.0 NaN      NaN  3.0 NaN        NaN  0.6667 NaN  0.6667  0.8165
-    466               URICUL          meropenem     5.0  NaN NaN      5.0  NaN NaN     0.6000     NaN NaN  0.6000  0.7746
-    450               URICUL        ceftazidime     5.0  NaN NaN      5.0  NaN NaN     0.6000     NaN NaN  0.6000  0.7746
+    477               URICUL         temocillin     3.0  NaN NaN      3.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
+    457               URICUL          ertapenem     3.0  NaN NaN      3.0  NaN NaN     0.6667     NaN NaN  0.6667  0.8165
+    463               URICUL           imipenem     5.0  NaN NaN      5.0  NaN NaN     0.6000     NaN NaN  0.6000  0.7746
     480               URICUL         tobramycin     5.0  NaN NaN      5.0  NaN NaN     0.6000     NaN NaN  0.6000  0.7746
+    450               URICUL        ceftazidime     5.0  NaN NaN      5.0  NaN NaN     0.6000     NaN NaN  0.6000  0.7746
+    466               URICUL          meropenem     5.0  NaN NaN      5.0  NaN NaN     0.6000     NaN NaN  0.6000  0.7746
     472               URICUL         penicillin     1.0  2.0 NaN      1.0  6.0 NaN     0.0000  0.5000 NaN  0.5000  0.0000
     474               URICUL  sulphamethoxazole     2.0  NaN NaN      2.0  NaN NaN     0.5000     NaN NaN  0.5000  0.7071
     465               URICUL         mecillinam     5.0  NaN NaN      5.0  NaN NaN     0.4000     NaN NaN  0.4000  0.6325
     448               URICUL          cefoxitin     5.0  NaN NaN      5.0  NaN NaN     0.4000     NaN NaN  0.4000  0.6325
+    456               URICUL      cotrimoxazole     3.0  NaN NaN      3.0  NaN NaN     0.3333     NaN NaN  0.3333  0.5774
     467               URICUL        mls markers     NaN  1.0 NaN      NaN  3.0 NaN        NaN  0.3333 NaN  0.3333  0.5774
     444               URICUL      amp c markers     4.0  NaN NaN      4.0  NaN NaN     0.2500     NaN NaN  0.2500  0.5000
-    447               URICUL         cefotaxime     5.0  NaN NaN      5.0  NaN NaN     0.2000     NaN NaN  0.2000  0.4472
     459               URICUL       esbl markers     5.0  NaN NaN      5.0  NaN NaN     0.2000     NaN NaN  0.2000  0.4472
+    447               URICUL         cefotaxime     5.0  NaN NaN      5.0  NaN NaN     0.2000     NaN NaN  0.2000  0.4472
     451               URICUL         cefuroxime     5.0  NaN NaN      5.0  NaN NaN     0.0000     NaN NaN  0.0000  0.0000
 
 
@@ -353,10 +327,10 @@ ASAI - Gram stain (by specimen)
     529               WOUCUL        cefpodoxime     7.0  NaN NaN      7.0   NaN NaN     0.5714     NaN NaN  0.5714  0.7559
     530               WOUCUL        ceftazidime     7.0  NaN NaN      7.0   NaN NaN     0.5714     NaN NaN  0.5714  0.7559
     559               WOUCUL           timentin     7.0  NaN NaN      7.0   NaN NaN     0.5714     NaN NaN  0.5714  0.7559
-    525               WOUCUL          augmentin     6.0  NaN NaN      6.0   NaN NaN     0.5000     NaN NaN  0.5000  0.7071
     543               WOUCUL     flucloxacillin     NaN  1.0 NaN      NaN   2.0 NaN        NaN  0.5000 NaN  0.5000  0.7071
     544               WOUCUL       fusidic acid     NaN  1.0 NaN      NaN   2.0 NaN        NaN  0.5000 NaN  0.5000  0.7071
     552               WOUCUL         penicillin     NaN  2.0 NaN      NaN  11.0 NaN        NaN  0.5000 NaN  0.5000  0.7071
+    525               WOUCUL          augmentin     6.0  NaN NaN      6.0   NaN NaN     0.3333     NaN NaN  0.3333  0.5774
     524               WOUCUL      amp c markers     3.0  NaN NaN      3.0   NaN NaN     0.3333     NaN NaN  0.3333  0.5774
     549               WOUCUL        mls markers     NaN  2.0 NaN      NaN   4.0 NaN        NaN  0.0000 NaN  0.0000  0.0000
     542               WOUCUL       esbl markers     3.0  NaN NaN      3.0   NaN NaN     0.0000     NaN NaN  0.0000  0.0000
@@ -367,7 +341,6 @@ ASAI - Gram stain (by specimen)
     gram_stain                                        n    p   u        n    p   u          n    p   u                
     584               XINCUL         gentamicin     4.0  1.0 NaN      4.0  1.0 NaN     0.7500  1.0 NaN  1.7500  0.8660
     599               XINCUL         vancomycin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
-    583               XINCUL       fusidic acid     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
     565               XINCUL      amp c markers     1.0  NaN NaN      1.0  NaN NaN     1.0000  NaN NaN  1.0000  1.0000
     598               XINCUL       trimethoprim     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
     593               XINCUL        teicoplanin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
@@ -375,30 +348,31 @@ ASAI - Gram stain (by specimen)
     589               XINCUL          mupirocin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
     588               XINCUL        mls markers     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
     586               XINCUL          linezolid     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
-    574               XINCUL    chloramphenicol     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
+    583               XINCUL       fusidic acid     NaN  1.0 NaN      NaN  1.0 NaN        NaN  1.0 NaN  1.0000  1.0000
+    577               XINCUL  colistin sulphate     4.0  NaN NaN      4.0  NaN NaN     0.7500  NaN NaN  0.7500  0.8660
     592               XINCUL            tazocin     4.0  NaN NaN      4.0  NaN NaN     0.7500  NaN NaN  0.7500  0.8660
     587               XINCUL          meropenem     4.0  NaN NaN      4.0  NaN NaN     0.7500  NaN NaN  0.7500  0.8660
     585               XINCUL           imipenem     4.0  NaN NaN      4.0  NaN NaN     0.7500  NaN NaN  0.7500  0.8660
     563               XINCUL           amikacin     4.0  NaN NaN      4.0  NaN NaN     0.7500  NaN NaN  0.7500  0.8660
-    577               XINCUL  colistin sulphate     4.0  NaN NaN      4.0  NaN NaN     0.7500  NaN NaN  0.7500  0.8660
     569               XINCUL          cefoxitin     3.0  NaN NaN      3.0  NaN NaN     0.6667  NaN NaN  0.6667  0.8165
     578               XINCUL      cotrimoxazole     4.0  NaN NaN      4.0  NaN NaN     0.5000  NaN NaN  0.5000  0.7071
-    567               XINCUL          aztreonam     2.0  NaN NaN      2.0  NaN NaN     0.5000  NaN NaN  0.5000  0.7071
     580               XINCUL       erythromycin     NaN  2.0 NaN      NaN  2.0 NaN        NaN  0.5 NaN  0.5000  0.7071
     597               XINCUL         tobramycin     4.0  NaN NaN      4.0  NaN NaN     0.5000  NaN NaN  0.5000  0.7071
     576               XINCUL        clindamycin     NaN  2.0 NaN      NaN  2.0 NaN        NaN  0.5 NaN  0.5000  0.7071
     595               XINCUL       tetracycline     NaN  2.0 NaN      NaN  2.0 NaN        NaN  0.5 NaN  0.5000  0.7071
+    567               XINCUL          aztreonam     2.0  NaN NaN      2.0  NaN NaN     0.5000  NaN NaN  0.5000  0.7071
     590               XINCUL         penicillin     NaN  2.0 NaN      NaN  2.0 NaN        NaN  0.5 NaN  0.5000  0.7071
     575               XINCUL      ciprofloxacin     4.0  1.0 NaN      4.0  1.0 NaN     0.2500  0.0 NaN  0.2500  0.0000
     571               XINCUL        ceftazidime     4.0  NaN NaN      4.0  NaN NaN     0.2500  NaN NaN  0.2500  0.5000
+    568               XINCUL         cefotaxime     3.0  NaN NaN      3.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     566               XINCUL          augmentin     3.0  NaN NaN      3.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     596               XINCUL           timentin     4.0  NaN NaN      4.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     594               XINCUL         temocillin     1.0  NaN NaN      1.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     570               XINCUL        cefpodoxime     3.0  NaN NaN      3.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
-    568               XINCUL         cefotaxime     3.0  NaN NaN      3.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     579               XINCUL          ertapenem     1.0  NaN NaN      1.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     572               XINCUL         cefuroxime     3.0  NaN NaN      3.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     573               XINCUL         cephalexin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  0.0 NaN  0.0000  0.0000
+    574               XINCUL    chloramphenicol     NaN  1.0 NaN      NaN  1.0 NaN        NaN  0.0 NaN  0.0000  0.0000
     582               XINCUL     flucloxacillin     NaN  1.0 NaN      NaN  1.0 NaN        NaN  0.0 NaN  0.0000  0.0000
     564               XINCUL        amoxycillin     3.0  NaN NaN      3.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
     581               XINCUL       esbl markers     1.0  NaN NaN      1.0  NaN NaN     0.0000  NaN NaN  0.0000  0.0000
@@ -695,28 +669,23 @@ ASAI - Gram stain (by specimen)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.679 seconds)
+   **Total running time of the script:** ( 0 minutes  6.244 seconds)
 
 
 .. _sphx_glr_download__examples_indexes_plot_spectrum_gramtype.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_spectrum_gramtype.py <plot_spectrum_gramtype.py>`
 
-     :download:`Download Python source code: plot_spectrum_gramtype.py <plot_spectrum_gramtype.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_spectrum_gramtype.ipynb <plot_spectrum_gramtype.ipynb>`
+      :download:`Download Jupyter notebook: plot_spectrum_gramtype.ipynb <plot_spectrum_gramtype.ipynb>`
 
 
 .. only:: html

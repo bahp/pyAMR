@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Statistical test - Stationarity &mdash; pyamr 0.0.1 documentation</title>
+  <title>Stationarity &mdash; pyamr 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
@@ -23,9 +23,7 @@
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Examples with indexes" href="../../indexes/index.html" />
-    <link rel="prev" title="Statistical test - Kendall" href="plot_core_stats_kendall.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,30 +45,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#regression">Regression</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#statistics">Statistics</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_adfuller.html">Statistical test - ADFuller</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_correlation.html">Statistical test - Correlation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_kendall.html">Statistical test - Kendall</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Statistical test - Stationarity</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -87,8 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Tutorial</a> &raquo;</li>
-      <li>Statistical test - Stationarity</li>
+      <li>Stationarity</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/statistics/plot_core_stats_stationarity.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,47 +88,34 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-statistics-plot-core-stats-stationarity-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="statistical-test-stationarity">
-<span id="sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"></span><h1>Statistical test - Stationarity<a class="headerlink" href="#statistical-test-stationarity" title="Permalink to this headline"></a></h1>
+<section class="sphx-glr-example-title" id="stationarity">
+<span id="sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"></span><h1>Stationarity<a class="headerlink" href="#stationarity" title="Permalink to this headline"></a></h1>
 <p>Example using your package</p>
-<img src="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" srcset="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" alt="Study of Stationarity" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2190: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-(4.9, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+<img src="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" srcset="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" alt="Study of Stationarity" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(4.8, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
 
 Series:
-stationarity-adf_ct_statistic                    -2.5585
-stationarity-adf_ct_pvalue                        0.2994
+stationarity-adf_ct_statistic                    -2.3503
+stationarity-adf_ct_pvalue                        0.4064
 stationarity-adf_ct_nlags                              0
 stationarity-adf_ct_nobs                              99
 stationarity-adf_ct_criticalvalue_1%             -4.0533
 stationarity-adf_ct_criticalvalue_5%             -3.4558
 stationarity-adf_ct_criticalvalue_10%            -3.1536
-stationarity-adf_c_statistic                     -0.9008
-stationarity-adf_c_pvalue                         0.7877
+stationarity-adf_c_statistic                     -0.7948
+stationarity-adf_c_pvalue                         0.8206
 stationarity-adf_c_nlags                               0
 stationarity-adf_c_nobs                               99
 stationarity-adf_c_criticalvalue_1%              -3.4982
 stationarity-adf_c_criticalvalue_5%              -2.8912
 stationarity-adf_c_criticalvalue_10%             -2.5826
-stationarity-kpss_ct_statistic                    0.1673
-stationarity-kpss_ct_pvalue                       0.0322
+stationarity-kpss_ct_statistic                    0.1596
+stationarity-kpss_ct_pvalue                       0.0387
 stationarity-kpss_ct_nlags                             5
 stationarity-kpss_ct_criticalvalue_10%             0.119
 stationarity-kpss_ct_criticalvalue_5%              0.146
 stationarity-kpss_ct_criticalvalue_2.5%            0.176
 stationarity-kpss_ct_criticalvalue_1%              0.216
-stationarity-kpss_c_statistic                     1.5741
+stationarity-kpss_c_statistic                     1.5662
 stationarity-kpss_c_pvalue                          0.01
 stationarity-kpss_c_nlags                              5
 stationarity-kpss_c_criticalvalue_10%              0.347
@@ -154,101 +126,23 @@ stationarity-root_ct_stationary                    False
 stationarity-root_c_stationary                     False
 stationarity-trend_ct_stationary                   False
 stationarity-trend_c_stationary                    False
-stationarity-rur_statistic                           4.9
+stationarity-rur_statistic                           4.8
 stationarity-rur_pvalue                             0.95
 stationarity-rur_criticalvalue_10%                1.2888
 stationarity-rur_criticalvalue_5%                 1.1412
 stationarity-rur_criticalvalue_2.5%               1.0243
 stationarity-rur_criticalvalue_1%                  0.907
-stationarity-model                         {&#39;x&#39;: [106...
+stationarity-model                         {&#39;x&#39;: [103...
 stationarity-id                             Stationarity
 dtype: object
 
 Identifier:
 Stationarity
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2023: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is greater than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2023: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is greater than the p-value returned.
-
-
-(1.4, 0.9, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2023: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is greater than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2190: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
+(0.9, 0.01, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
 (9.9, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2023: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is greater than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2190: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-(6.3, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2190: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-(4.9, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2190: InterpolationWarning:
-
-The test statistic is outside of the range of p-values available in the
-look-up table. The actual p-value is smaller than the p-value returned.
-
-
-(3.1, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+(6.0, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+(4.8, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+(3.3, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
 </pre></div>
 </div>
 <div class="line-block">
@@ -367,8 +261,8 @@ look-up table. The actual p-value is smaller than the p-value returned.
 <span class="linenos">117</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.117 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-statistics-plot-core-stats-stationarity-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.500 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-statistics-plot-core-stats-stationarity-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/e56385d562436dad5677ef0c09b28271/plot_core_stats_stationarity.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_stats_stationarity.py</span></code></a></p>
 </div>
@@ -382,15 +276,12 @@ look-up table. The actual p-value is smaller than the p-value returned.
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_core_stats_kendall.html" class="btn btn-neutral float-left" title="Statistical test - Kendall" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../indexes/index.html" class="btn btn-neutral float-right" title="Examples with indexes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

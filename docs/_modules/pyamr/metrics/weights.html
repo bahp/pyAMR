@@ -44,21 +44,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -150,14 +147,21 @@
 
 <span class="sd">    Note: The approximated sigmoid is defined within the interval [0,1].</span>
 
+<span class="sd">    .. note: Produces a RuntimeWarning: invalid value encountered in</span>
+<span class="sd">             true_divide z = (x-cmin) / (cmax-cmin) when the parameter</span>
+<span class="sd">             x has always the same value.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x        : numpy array with the values to be converted to weights.</span>
-<span class="sd">    x_curves : tuple indicating where the low/upper curves should start.</span>
+<span class="sd">    x: numpy.array</span>
+<span class="sd">      The values to be converted to weights.</span>
+<span class="sd">    x_curves: tuple</span>
+<span class="sd">      The values indicating where the low/upper curves should start.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    r :</span>
+<span class="sd">    r : numpy.array</span>
+<span class="sd">      The weights.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Where the two curves should start.</span>
     <span class="n">cmin</span><span class="p">,</span> <span class="n">cmax</span> <span class="o">=</span> <span class="n">x_curves</span> <span class="k">if</span> <span class="n">x_curves</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
@@ -179,10 +183,14 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x             : numpy array with the values to be converted to weights.</span>
-<span class="sd">    r             : numpy array with the weights to be tresholded.</span>
-<span class="sd">    threshold_low : number; values in x lower will have minimum weight.</span>
-<span class="sd">    treshold_high : number; values in x higher will have maximum weight.</span>
+<span class="sd">    x: numpy.array</span>
+<span class="sd">      The values to be converted to weights.</span>
+<span class="sd">    r: numpy.array</span>
+<span class="sd">      The weights to be thresholded.</span>
+<span class="sd">    threshold_low: number;</span>
+<span class="sd">      The values in x lower will have minimum weight.</span>
+<span class="sd">    treshold_high: number;</span>
+<span class="sd">      The values in x higher will have maximum weight.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -263,11 +271,31 @@
 
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1"># pragma: no cover</span>
 
   <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
   <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
   <span class="kn">import</span> <span class="nn">statsmodels.robust.norms</span> <span class="k">as</span> <span class="nn">norms</span>
+
+
+  <span class="c1"># ------------</span>
+  <span class="c1"># Basic sample</span>
+  <span class="c1"># ------------</span>
+  <span class="c1"># Create SigmoidA instance</span>
+  <span class="n">W</span> <span class="o">=</span> <span class="n">SigmoidA</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+  <span class="c1"># Compute weights</span>
+  <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">*</span> <span class="mi">3</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+  <span class="c1"># Show</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Weights:&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+  <span class="c1"># ----------------</span>
+  <span class="c1"># Various samples</span>
+  <span class="c1"># ----------------</span>
 
   <span class="c1"># Matplotlib options</span>
   <span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -324,7 +352,7 @@
   <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
   <span class="c1"># Show</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+  <span class="c1"># plt.show()</span>
 </pre></div>
 
            </div>
@@ -334,7 +362,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

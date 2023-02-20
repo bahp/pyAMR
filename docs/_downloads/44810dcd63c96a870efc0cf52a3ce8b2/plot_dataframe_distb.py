@@ -2,7 +2,6 @@
 Table Boxplot
 =============
 
-Example using your package
 """
 # Libraries
 import numpy as np
@@ -13,27 +12,8 @@ import matplotlib.gridspec as gridspec
 
 from matplotlib import colors
 
-# -----------------------------------------------------------
-# Helpers
-# -----------------------------------------------------------
-def hlinebgplot(ax, right, yv, bg=None):
-    """This function adds a vertical line and background
+from pyamr.graphics.utils import hlinebgplot
 
-    Parameters
-    ----------
-
-    Returns
-    -------
-    """
-    # Plot line
-    ax.plot((-1, right), (yv, yv), color='gray',
-            linestyle='--', linewidth=1, zorder=0)
-
-    # Plot background.
-    if bg is not None:
-        cb = sns.color_palette("Set2", 10)[1]
-        ax.fill_between([-1, right], [yv, yv], [bg, bg],
-                        zorder=0, alpha=0.2, color=cb)
 
 # -------------------
 # PLOTTING SETTINGS
@@ -101,6 +81,7 @@ info_coefficient = {
   'yticks': [.0, .2, .4, .6, .8 ]
 }
 
+
 # Now we combine all of them together. Note
 # that the key value corresponds to the name
 # of the column it should be applied to.
@@ -115,12 +96,11 @@ info = {
     'f_prob': info_fprob
 }
 
-
 # -------------------------------------------
 # Main
 # -------------------------------------------
-# Path
-path = '../../pyamr/datasets/other/susceptibility_full.csv'
+# Data path.
+path = '../../pyamr/fixtures/fixture_surveillance.csv'
 
 # Rename
 rename = {

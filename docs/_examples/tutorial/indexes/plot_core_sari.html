@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Single Antimicrobial Resistance (SARI) &mdash; pyamr 0.0.1 documentation</title>
+  <title>Single Resistance Index (SARI) &mdash; pyamr 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
@@ -23,9 +23,7 @@
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Metrics - scores" href="../metrics/plot_metrics_scores.html" />
-    <link rel="prev" title="Multiple Resistance (MARI)" href="plot_core_mari.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,30 +45,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="plot_code_freq.html">Frequency counts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_asai.html">Spectrum of Activity (ASAI)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_mari.html">Multiple Resistance (MARI)</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Single Antimicrobial Resistance (SARI)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#regression">Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -87,8 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Tutorial</a> &raquo;</li>
-      <li>Single Antimicrobial Resistance (SARI)</li>
+      <li>Single Resistance Index (SARI)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/indexes/plot_core_sari.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,8 +88,8 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-core-sari-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="single-antimicrobial-resistance-sari">
-<span id="sphx-glr-examples-tutorial-indexes-plot-core-sari-py"></span><h1>Single Antimicrobial Resistance (SARI)<a class="headerlink" href="#single-antimicrobial-resistance-sari" title="Permalink to this headline"></a></h1>
+<section class="sphx-glr-example-title" id="single-resistance-index-sari">
+<span id="sphx-glr-examples-tutorial-indexes-plot-core-sari-py"></span><h1>Single Resistance Index (SARI)<a class="headerlink" href="#single-resistance-index-sari" title="Permalink to this headline"></a></h1>
 <p>The Single Antimicrobial Resistance Index - <code class="docutils literal notranslate"><span class="pre">SARI</span></code> - describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a
 value within the range [0, 1] where values close to one indicate high resistance.
@@ -115,14 +100,120 @@ intermediate category is not always considered.</p>
 <p>The parameter strategy accepts three different options:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">soft</span></code>   as R / R+I+S</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">medium</span></code> as R / R+S</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hard</span></code>  as R+I / R+I+S</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code>  as R+0.5I / R+0.5I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">soft</span></code>   as R / (R+I+S)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">medium</span></code> as R / (R+S)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hard</span></code>   as (R+I) / (R+I+S)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code>  as (R+0.5I) / (R+0.5I+S)</p></li>
 </ul>
 </div></blockquote>
-<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.SARI</span></code></p>
-<p class="sphx-glr-script-out">Out:</p>
+<p>For more information see: <a class="reference internal" href="../../../_apidoc/pyamr.core.html#pyamr.core.sari.SARI" title="pyamr.core.sari.SARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 31</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 32</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 33</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 34</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span> <span class="c1"># Specific</span>
+<span class="linenos"> 37</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span> <span class="c1"># Set matplotlib</span>
+<span class="linenos"> 40</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 41</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 42</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos"> 43</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos"> 46</span> <span class="c1"># Create data</span>
+<span class="linenos"> 47</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos"> 48</span> <span class="c1"># Define susceptibility test records</span>
+<span class="linenos"> 49</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 50</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 51</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 52</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 53</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 54</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 55</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 56</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 57</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 58</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 59</span>     <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 62</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 63</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 64</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 65</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 66</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 67</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 68</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 69</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 70</span>     <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 73</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 74</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 75</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 76</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 77</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 78</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 79</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 80</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 81</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 82</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 83</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 84</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 85</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 86</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 87</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 88</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 89</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span>     <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 92</span>     <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+<span class="linenos"> 93</span>     <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 94</span>     <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 95</span>     <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 96</span>     <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 97</span>     <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 98</span>     <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 99</span>     <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+<span class="linenos">100</span>     <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+<span class="linenos">101</span> <span class="p">]</span>
+<span class="linenos">102</span>
+<span class="linenos">103</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">104</span>     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">105</span>              <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">106</span>              <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">107</span>              <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">108</span>              <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span> <span class="c1"># Create SARI instance</span>
+<span class="linenos">112</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">113</span>                      <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">114</span>                      <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">115</span>                      <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span> <span class="c1"># Compute SARI overall</span>
+<span class="linenos">118</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">119</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span> <span class="c1"># Compute SARI temporal (ITI)</span>
+<span class="linenos">122</span> <span class="n">sari_iti</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+<span class="linenos">123</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span> <span class="c1"># Compute SARI temporal (OTI)</span>
+<span class="linenos">126</span> <span class="n">sari_oti</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+<span class="linenos">127</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+<span class="linenos">128</span>
+<span class="linenos">129</span> <span class="c1"># Show</span>
+<span class="linenos">130</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (overall):&quot;</span><span class="p">)</span>
+<span class="linenos">131</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
+<span class="linenos">132</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (iti):&quot;</span><span class="p">)</span>
+<span class="linenos">133</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_iti</span><span class="p">)</span>
+<span class="linenos">134</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (oti):&quot;</span><span class="p">)</span>
+<span class="linenos">135</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_oti</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (overall):
 SPECIMEN  MICROORGANISM  ANTIMICROBIAL
 BLDCUL    ECOL           AAUG             0.4000
@@ -132,7 +223,7 @@ URICUL    SAUR           ACIP             0.7000
 Name: sari, dtype: float64
 
 SARI (iti):
-SENSITIVITY                                      intermediate  resistant  sensitive  freq    sari
+                                                 intermediate  resistant  sensitive  freq    sari
 SPECIMEN MICROORGANISM ANTIMICROBIAL DATE
 BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.2500
                                      2021-01-02           0.0        1.0        2.0   3.0  0.3333
@@ -153,7 +244,7 @@ URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        
                                      2021-01-16           2.0        0.0        0.0   2.0  1.0000
 
 SARI (oti):
-SENSITIVITY                                      intermediate  resistant  sensitive  freq    sari
+                                                 intermediate  resistant  sensitive  freq    sari
 SPECIMEN MICROORGANISM ANTIMICROBIAL DATE
 BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.2500
                                      2021-01-02           0.0        2.0        5.0   7.0  0.2857
@@ -174,139 +265,466 @@ URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        
                                      2021-01-16           2.0        0.0        2.0   4.0  0.5000
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 24</span> <span class="c1"># Import libraries</span>
-<span class="linenos"> 25</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="linenos"> 26</span> <span class="kn">import</span> <span class="nn">glob</span>
-<span class="linenos"> 27</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="linenos"> 28</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="linenos"> 29</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="linenos"> 30</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="linenos"> 31</span>
-<span class="linenos"> 32</span> <span class="c1"># Import specific libraries</span>
-<span class="linenos"> 33</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
-<span class="linenos"> 34</span>
-<span class="linenos"> 35</span> <span class="c1"># Set matplotlib</span>
-<span class="linenos"> 36</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="linenos"> 37</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="linenos"> 38</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
-<span class="linenos"> 39</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="linenos"> 40</span>
-<span class="linenos"> 41</span>
-<span class="linenos"> 42</span> <span class="c1"># -------------------------</span>
-<span class="linenos"> 43</span> <span class="c1"># Constants</span>
-<span class="linenos"> 44</span> <span class="c1"># -------------------------</span>
-<span class="linenos"> 45</span> <span class="c1"># Replace codes</span>
-<span class="linenos"> 46</span> <span class="n">replace_codes</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 47</span>   <span class="s1">&#39;9MRSN&#39;</span><span class="p">:</span><span class="s1">&#39;MRSCUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 48</span>   <span class="s1">&#39;URINE CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;URICUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 49</span>   <span class="s1">&#39;WOUND CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;WOUCUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 50</span>   <span class="s1">&#39;BLOOD CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 51</span>   <span class="s1">&#39;SPUTUM CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;SPTCUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 52</span>   <span class="s1">&#39;CSF CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;CSFCUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 53</span>   <span class="s1">&#39;EYE CULTURE&#39;</span><span class="p">:</span><span class="s1">&#39;EYECUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 54</span>   <span class="s1">&#39;GENITALCUL&#39;</span><span class="p">:</span><span class="s1">&#39;GENCUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 55</span>   <span class="s1">&#39;NEONATAL SCREEN&#39;</span><span class="p">:</span><span class="s1">&#39;NEOCUL&#39;</span><span class="p">,</span>
-<span class="linenos"> 56</span> <span class="p">}</span>
-<span class="linenos"> 57</span>
-<span class="linenos"> 58</span> <span class="c1"># ---------------------</span>
-<span class="linenos"> 59</span> <span class="c1"># Create data</span>
-<span class="linenos"> 60</span> <span class="c1"># ---------------------</span>
-<span class="linenos"> 61</span> <span class="c1"># Create data</span>
-<span class="linenos"> 62</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-<span class="linenos"> 63</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 64</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 65</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 66</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 67</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 68</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 69</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 70</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 71</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 72</span>     <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 73</span>
-<span class="linenos"> 74</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 75</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 76</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 77</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 78</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 79</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 80</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 81</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 82</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 83</span>     <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 84</span>
-<span class="linenos"> 85</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 86</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 87</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 88</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 89</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 90</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 91</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 92</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 93</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 94</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 95</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 96</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 97</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos"> 98</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos"> 99</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos">100</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos">101</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos">102</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos">103</span>
-<span class="linenos">104</span>     <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos">105</span>     <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
-<span class="linenos">106</span>     <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos">107</span>     <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos">108</span>     <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos">109</span>     <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
-<span class="linenos">110</span>     <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos">111</span>     <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
-<span class="linenos">112</span>     <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
-<span class="linenos">113</span>     <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
-<span class="linenos">114</span> <span class="p">]</span>
-<span class="linenos">115</span>
-<span class="linenos">116</span>
-<span class="linenos">117</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
-<span class="linenos">118</span>     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
-<span class="linenos">119</span>              <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
-<span class="linenos">120</span>              <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
-<span class="linenos">121</span>              <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
-<span class="linenos">122</span>              <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
-<span class="linenos">123</span>
-<span class="linenos">124</span>
-<span class="linenos">125</span> <span class="c1"># Create SARI instance</span>
-<span class="linenos">126</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
-<span class="linenos">127</span>                      <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
-<span class="linenos">128</span>                      <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
-<span class="linenos">129</span>                      <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
-<span class="linenos">130</span>
-<span class="linenos">131</span> <span class="c1"># Compute SARI overall</span>
-<span class="linenos">132</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
-<span class="linenos">133</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">134</span>
-<span class="linenos">135</span> <span class="c1"># Compute SARI temporal (ITI)</span>
-<span class="linenos">136</span> <span class="n">sari_iti</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
-<span class="linenos">137</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
-<span class="linenos">138</span>
-<span class="linenos">139</span> <span class="c1"># Compute SARI temporal (OTI)</span>
-<span class="linenos">140</span> <span class="n">sari_oti</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
-<span class="linenos">141</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
-<span class="linenos">142</span>
-<span class="linenos">143</span> <span class="c1"># Show</span>
-<span class="linenos">144</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (overall):&quot;</span><span class="p">)</span>
-<span class="linenos">145</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
-<span class="linenos">146</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (iti):&quot;</span><span class="p">)</span>
-<span class="linenos">147</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_iti</span><span class="p">)</span>
-<span class="linenos">148</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (oti):&quot;</span><span class="p">)</span>
-<span class="linenos">149</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_oti</span><span class="p">)</span>
+<p>Let’s display the overall resistance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">142</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.078 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-sari-py">
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">BLDCUL</th>
+      <th rowspan="2" valign="top">ECOL</th>
+      <th>AAUG</th>
+      <td>0.4000</td>
+    </tr>
+    <tr>
+      <th>ACIP</th>
+      <td>0.6000</td>
+    </tr>
+    <tr>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>0.6111</td>
+    </tr>
+    <tr>
+      <th>URICUL</th>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>0.7000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the resistance time-series using <strong>independent</strong> time intervals (ITI)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">147</span> <span class="n">sari_iti</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>intermediate</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>freq</th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="12" valign="top">BLDCUL</th>
+      <th rowspan="8" valign="top">ECOL</th>
+      <th rowspan="4" valign="top">AAUG</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>0.2500</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0.5000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.7500</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>0.6667</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0.5000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">SAUR</th>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>2021-01-08</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>0.8333</td>
+    </tr>
+    <tr>
+      <th>2021-01-09</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>0.2000</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">URICUL</th>
+      <th rowspan="5" valign="top">SAUR</th>
+      <th rowspan="5" valign="top">ACIP</th>
+      <th>2021-01-12</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th>2021-01-13</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0.5000</td>
+    </tr>
+    <tr>
+      <th>2021-01-14</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th>2021-01-15</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>2021-01-16</th>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the resistance time-series using <strong>overlapping</strong> time intervals (OTI)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">153</span> <span class="n">sari_oti</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>intermediate</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>freq</th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="12" valign="top">BLDCUL</th>
+      <th rowspan="8" valign="top">ECOL</th>
+      <th rowspan="4" valign="top">AAUG</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>0.2500</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>7.0</td>
+      <td>0.2857</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>0.4000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>0.6667</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.7500</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>0.7143</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>0.6000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">SAUR</th>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>0.7143</td>
+    </tr>
+    <tr>
+      <th>2021-01-08</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>0.8333</td>
+    </tr>
+    <tr>
+      <th>2021-01-09</th>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>11.0</td>
+      <td>0.5455</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">URICUL</th>
+      <th rowspan="5" valign="top">SAUR</th>
+      <th rowspan="5" valign="top">ACIP</th>
+      <th>2021-01-12</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th>2021-01-13</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.7500</td>
+    </tr>
+    <tr>
+      <th>2021-01-14</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.7500</td>
+    </tr>
+    <tr>
+      <th>2021-01-15</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.5000</td>
+    </tr>
+    <tr>
+      <th>2021-01-16</th>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.5000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On a side note, the variable <em>sari_overall</em> returned is a <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code>.
+However, it has been converted to a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> for display purposes.
+The <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> library used to create the documentation uses the method
+<code class="docutils literal notranslate"><span class="pre">_repr_html_</span></code> from the latter to display it nicely in the docs.</p>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.060 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-sari-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/93d13a72ba2ca1f4f124bbf28e2d0b45/plot_core_sari.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_sari.py</span></code></a></p>
 </div>
@@ -320,15 +738,12 @@ URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_core_mari.html" class="btn btn-neutral float-left" title="Multiple Resistance (MARI)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../metrics/plot_metrics_scores.html" class="btn btn-neutral float-right" title="Metrics - scores" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

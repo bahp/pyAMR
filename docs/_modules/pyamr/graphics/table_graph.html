@@ -44,21 +44,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -94,7 +91,7 @@
 <span class="c1">#</span>
 <span class="c1">###############################################################################</span>
 
-<span class="c1"># Generica libraries</span>
+<span class="c1"># Libraries</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -108,9 +105,19 @@
 <span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
 
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interp</span>
-
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
 
+<span class="c1"># Own</span>
+<span class="kn">from</span> <span class="nn">pyamr.graphics.utils</span> <span class="kn">import</span> <span class="n">MidpointNormalize</span>
+<span class="kn">from</span> <span class="nn">pyamr.graphics.utils</span> <span class="kn">import</span> <span class="n">vlinebgplot</span>
+
+
+<span class="c1"># ------------------------------------------------------------------</span>
+<span class="c1"># CONSTANTS</span>
+<span class="c1"># ------------------------------------------------------------------</span>
+<span class="c1"># These are some pre-defined configurations to facilitate the display</span>
+<span class="c1"># of some common statistics (R2, jarque-bera, skew) and amr metrics</span>
+<span class="c1"># (sari, sart, ...) computed in this library.</span>
 
 <span class="n">_DEFAULT_KWGS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
@@ -119,37 +126,210 @@
     <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
     <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
     <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
-    <span class="s1">&#39;vmin&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s1">&#39;vmax&#39;</span><span class="p">:</span><span class="mi">1</span>
+        <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
+        <span class="s1">&#39;vmin&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;vmax&#39;</span><span class="p">:</span><span class="mi">1</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1"># set the colormap and centre the colorbar</span>
-<div class="viewcode-block" id="MidpointNormalize"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.MidpointNormalize">[docs]</a><span class="k">class</span> <span class="nc">MidpointNormalize</span><span class="p">(</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Normalise the colorbar so that diverging bars work</span>
-<span class="sd">    there way either side from a prescribed midpoint value)</span>
+<span class="c1"># Configuration for each columns</span>
+<span class="n">_DEFAULT_SARI</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;SARI&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
 
-<span class="sd">    use: MidpointNormalize(midpoint=0.,vmin=-100, vmax=100)</span>
+<span class="n">_DEFAULT_SARI_PCT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;SARI (%)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+<span class="p">}</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                       <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                       <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                       <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span> <span class="o">=</span> <span class="n">midpoint</span>
-        <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">clip</span><span class="p">)</span>
+<span class="n">_DEFAULT_SARI_LR</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;SARI-lr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># I&#39;m ignoring masked values and all kinds of edge cases to make a</span>
-        <span class="c1"># simple example...</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">midpoint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmax</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div>
+<span class="n">_DEFAULT_SART_M</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;SART (m)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_SART_Y</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;SART (y)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_R2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;R2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_R2ADJ</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;R2 Adj&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_JB</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Prob(JB)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_JB_PROB</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Prob(JB)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_DW</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;DW&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mf">4.4</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_FREQ</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Freq&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">80000</span><span class="p">],</span>
+    <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="s1">&#39;vmin&#39;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_PEARSON</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Pearson&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">},</span>
+              <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mf">1.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_KENDALL</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Kendall&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">},</span>
+              <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mf">1.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_SPEARMAN</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Spearman&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">},</span>
+              <span class="p">{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mf">1.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_SKEW</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Skew&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}]</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_KURTOSIS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Kurtosis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">3</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}]</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_OMNIBUS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Omnibus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mf">1.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_SLOPE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;x1_tprob&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;P&gt;|t| m&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mf">1.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">MidpointNormalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_COEFFICIENT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;c_tprob&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;P&gt;|t| n&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;xv&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span> <span class="mf">11.1</span><span class="p">}],</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">MidpointNormalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">_DEFAULT_PERCENT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Percent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="s1">&#39;vline&#39;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+
+<span class="c1"># Now we combine all of them together. Note</span>
+<span class="c1"># that the &lt;key&gt; value corresponds to the name</span>
+<span class="c1"># of the column it should be applied to.</span>
+<span class="n">_DEFAULT_CONFIGURATION</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sari&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_SARI</span><span class="p">,</span>
+    <span class="s1">&#39;sari_pct&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_SARI_PCT</span><span class="p">,</span>
+    <span class="s1">&#39;sart_m&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_SART_M</span><span class="p">,</span>
+    <span class="s1">&#39;sart_y&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_SART_Y</span><span class="p">,</span>
+    <span class="s1">&#39;dw&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_DW</span><span class="p">,</span>
+    <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_R2</span><span class="p">,</span>
+    <span class="s1">&#39;r2_adj&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_R2ADJ</span><span class="p">,</span>
+    <span class="s1">&#39;pearson&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_PEARSON</span><span class="p">,</span>
+    <span class="s1">&#39;jb&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_JB</span><span class="p">,</span>
+    <span class="s1">&#39;jb_prob&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_JB_PROB</span><span class="p">,</span>
+    <span class="s1">&#39;percent&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_PERCENT</span><span class="p">,</span>
+    <span class="s1">&#39;ptm&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_SLOPE</span><span class="p">,</span>
+    <span class="s1">&#39;ptn&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_COEFFICIENT</span><span class="p">,</span>
+    <span class="s1">&#39;omnibus&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_OMNIBUS</span><span class="p">,</span>
+    <span class="s1">&#39;kurtosis&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_KURTOSIS</span><span class="p">,</span>
+    <span class="s1">&#39;skew&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_SKEW</span><span class="p">,</span>
+    <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="n">_DEFAULT_FREQ</span>
+<span class="p">}</span>
+
+
 
 
 
@@ -174,7 +354,8 @@
                              <span class="n">midpoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                              <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
                              <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
-                             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+                             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+                             <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This function helps creating a configuration map.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Create new map.</span>
@@ -509,17 +690,17 @@
                                       <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span></div>
 
 
-
-
 <div class="viewcode-block" id="TableGraph.plot"><a class="viewcode-back" href="../../../_apidoc/pyamr.graphics.html#pyamr.graphics.table_graph.TableGraph.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
           <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
-          <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">to_frame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+          <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_dataframe</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
           <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+
+
 
 
 
@@ -580,7 +761,7 @@
   <span class="n">axes</span> <span class="o">=</span> <span class="n">TableGraph</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
 
   <span class="c1"># Show.</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+  <span class="c1">#plt.show()</span>
 
 
 
@@ -752,7 +933,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

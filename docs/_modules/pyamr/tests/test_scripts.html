@@ -44,21 +44,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -87,23 +84,125 @@
              
   <h1>Source code for pyamr.tests.test_scripts</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">runpy</span>
 
 <span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">patch</span>
 
+<span class="c1"># .. note: When using &lt;runpy&gt;, the patch works so that we avoid</span>
+<span class="c1">#          running the pyplot.show method but the code run does</span>
+<span class="c1">#          not count for coverage. When using &lt;os&gt; the opposite</span>
+<span class="c1">#          happens.</span>
+
 <span class="c1"># Find the examples folder</span>
 <span class="n">examples</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s1">&#39;../../../&#39;</span><span class="p">,</span> <span class="s1">&#39;examples&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">pyamr_core</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s1">&#39;../../&#39;</span><span class="p">,</span> <span class="s1">&#39;core&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+<span class="n">pyamr_stats</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s1">&#39;../../&#39;</span><span class="p">,</span> <span class="s1">&#39;core/stats&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
 <span class="c1"># Find all the scripts</span>
 <span class="n">scripts_tutorial</span> <span class="o">=</span> <span class="p">(</span><span class="n">examples</span> <span class="o">/</span> <span class="s1">&#39;tutorial&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">)</span>
 <span class="n">scripts_visualisation</span> <span class="o">=</span> <span class="p">(</span><span class="n">examples</span> <span class="o">/</span> <span class="s1">&#39;visualisation&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">)</span>
+<span class="n">scripts_stats</span> <span class="o">=</span> <span class="nb">list</span><span class="p">((</span><span class="n">pyamr_core</span> <span class="o">/</span> <span class="s1">&#39;stats&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">))</span>
+<span class="n">scripts_core</span> <span class="o">=</span> <span class="p">(</span><span class="n">pyamr_core</span> <span class="o">/</span> <span class="s1">&#39;stats&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.py&#39;</span><span class="p">)</span>
+<span class="n">scripts_metrics</span> <span class="o">=</span> <span class="p">(</span><span class="n">pyamr_core</span> <span class="o">/</span> <span class="s1">&#39;stats&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.py&#39;</span><span class="p">)</span>
 
-<span class="c1">#@pytest.mark.parametrize(&#39;script&#39;, scripts_tutorial)</span>
-<span class="c1">#def test_script_execution_widgets(script):</span>
-<span class="c1">#    runpy.run_path(str(script))</span>
+<span class="n">pyamr</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="s1">&#39;../../&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
+<span class="c1"># --------------------------------------</span>
+<span class="c1"># Run scripts</span>
+<span class="c1"># --------------------------------------</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
+<span class="sd">def test_script_run_pyamr(self):</span>
+<span class="sd">    for f in (pyamr).glob(&#39;**/*.py&#39;):</span>
+<span class="sd">        runpy.run_path(str(f))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="test_script_run_pyamr_metrics"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_run_pyamr_metrics">[docs]</a><span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot.show&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_script_run_pyamr_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pyamr</span> <span class="o">/</span> <span class="s1">&#39;metrics&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span></div>
+        <span class="c1">#runpy.run_path(str(f))</span>
+
+<div class="viewcode-block" id="test_script_run_pyamr_graphics"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_run_pyamr_graphics">[docs]</a><span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot.show&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_script_run_pyamr_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pyamr</span> <span class="o">/</span> <span class="s1">&#39;graphics&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span></div>
+        <span class="c1">#runpy.run_path(str(f))</span>
+
+<div class="viewcode-block" id="test_script_run_pyamr_core"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_run_pyamr_core">[docs]</a><span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot.show&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_script_run_pyamr_core</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pyamr</span> <span class="o">/</span> <span class="s1">&#39;core&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.py&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span></div>
+        <span class="c1">#runpy.run_path(str(f))</span>
+
+<div class="viewcode-block" id="test_script_run_pyamr_core_regression"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_run_pyamr_core_regression">[docs]</a><span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot.show&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_script_run_pyamr_core_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pyamr</span> <span class="o">/</span> <span class="s1">&#39;core&#39;</span> <span class="o">/</span> <span class="s1">&#39;regression&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span></div>
+        <span class="c1">#runpy.run_path(str(f))</span>
+
+<div class="viewcode-block" id="test_script_run_pyamr_core_stats"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_run_pyamr_core_stats">[docs]</a><span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot.show&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_script_run_pyamr_core_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pyamr</span> <span class="o">/</span> <span class="s1">&#39;core&#39;</span> <span class="o">/</span> <span class="s1">&#39;stats&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span></div>
+        <span class="c1">#runpy.run_path(str(f))</span>
+
+<div class="viewcode-block" id="test_script_run_pyamr_core_table"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_run_pyamr_core_table">[docs]</a><span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot.show&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_script_run_pyamr_core_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">pyamr</span> <span class="o">/</span> <span class="s1">&#39;core&#39;</span> <span class="o">/</span> <span class="s1">&#39;table&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span></div>
+        <span class="c1">#runpy.run_path(str(f))</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
+<span class="sd">def test_script_run_core(self):</span>
+<span class="sd">    for f in [pyamr_core / &#39;sari.py&#39;,</span>
+<span class="sd">              pyamr_core / &#39;asai.py&#39;,</span>
+<span class="sd">              pyamr_core / &#39;sart.py&#39;,</span>
+<span class="sd">              pyamr_core / &#39;mari.py&#39;]:</span>
+<span class="sd">        runpy.run_path(str(f))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">def test_script_run_stats(self):</span>
+<span class="sd">    #for f in [pyamr_stats / &#39;adfuller.py&#39;,</span>
+<span class="sd">    #          pyamr_stats / &#39;correlation.py&#39;,</span>
+<span class="sd">    #          pyamr_stats / &#39;kendall.py&#39;,</span>
+<span class="sd">    #          pyamr_stats / &#39;kpss.py&#39;,</span>
+<span class="sd">    #          pyamr_stats / &#39;stationarity.py&#39;]:</span>
+<span class="sd">    #    print(f)</span>
+<span class="sd">    #    #runpy.run_path(str(f))</span>
+<span class="sd">    #    assert 4 == 5</span>
+<span class="sd">    aux = pathlib.Path(__file__, &#39;../../&#39;, &#39;core/stats&#39;).resolve()</span>
+<span class="sd">    print(aux)</span>
+<span class="sd">    assert 4==5</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">def test_script_execution_core_stats():</span>
+<span class="sd">    f = pathlib.Path(__file__, &#39;../../&#39;, &#39;core/stats&#39;).resolve()</span>
+<span class="sd">    print(f / &#39;adfuller.py&#39;)</span>
+<span class="sd">    runpy.run_path(str(f / &#39;adfuller.py&#39;))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@pytest.mark.parametrize(&#39;script&#39;, scripts_stats)</span>
+<span class="sd">def test_script_execution_core_stats(script):</span>
+<span class="sd">    runpy.run_path(str(script))</span>
+
+<span class="sd">@pytest.mark.parametrize(&#39;script&#39;, scripts_core)</span>
+<span class="sd">def test_script_execution_core(script):</span>
+<span class="sd">    runpy.run_path(str(script))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@pytest.mark.parametrize(&#39;script&#39;, scripts_tutorial)</span>
+<span class="sd">def test_script_execution_widgets(script):</span>
+<span class="sd">    runpy.run_path(str(script))</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
@@ -118,19 +217,20 @@
 <span class="sd">    for f in examples.glob(&#39;**/*.py&#39;):</span>
 <span class="sd">        runpy.run_path(str(f))</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="c1"># .. note: For some reason, I have not managed to combine</span>
-<span class="c1">#          parametrize and mock together into one single</span>
-<span class="c1">#          method.</span>
-<div class="viewcode-block" id="test_script_run_examples_tutorials_no_show"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_scripts.test_script_run_examples_tutorials_no_show">[docs]</a><span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;matplotlib.pyplot.show&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">test_script_run_examples_tutorials_no_show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="n">examples</span> <span class="o">/</span> <span class="s1">&#39;tutorials&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.py&#39;</span><span class="p">):</span>
-        <span class="n">runpy</span><span class="o">.</span><span class="n">run_path</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">))</span></div>
-
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
-<span class="sd">def test_script_run_examples_forecasting_no_show(self):</span>
-<span class="sd">    for f in (examples / &#39;forecasting&#39;).glob(&#39;**/*.py&#39;):</span>
+<span class="sd">def test_script_run_examples_tutorials_no_show(self):</span>
+<span class="sd">    for f in (examples / &#39;tutorials&#39;).glob(&#39;**/*.py&#39;):</span>
+<span class="sd">        runpy.run_path(str(f))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"># .. note: For some reason, I have not managed to combine</span>
+<span class="sd">#          parametrize and mock together into one single</span>
+<span class="sd">#          method.</span>
+<span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
+<span class="sd">def test_script_run_examples_tutorials_no_show(self):</span>
+<span class="sd">    for f in (examples / &#39;tutorials&#39;).glob(&#39;**/*.py&#39;):</span>
 <span class="sd">        runpy.run_path(str(f))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -139,9 +239,17 @@
 <span class="sd">def test_script_run_examples_indexes_no_show(self):</span>
 <span class="sd">    for f in (examples / &#39;indexes&#39;).glob(&#39;**/*.py&#39;):</span>
 <span class="sd">        runpy.run_path(str(f))</span>
-<span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
+<span class="sd">def test_script_run_examples_forecasting_no_show(self):</span>
+<span class="sd">    for f in (examples / &#39;forecasting&#39;).glob(&#39;**/*.py&#39;):</span>
+<span class="sd">        runpy.run_path(str(f))</span>
+
+<span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
+<span class="sd">def test_script_run_examples_indexes_no_show(self):</span>
+<span class="sd">    for f in (examples / &#39;indexes&#39;).glob(&#39;**/*.py&#39;):</span>
+<span class="sd">        runpy.run_path(str(f))</span>
+
 <span class="sd">@patch(&#39;matplotlib.pyplot.show&#39;)</span>
 <span class="sd">def test_script_run_examples_visualization_no_show(self):</span>
 <span class="sd">    for f in (examples / &#39;visualization&#39;).glob(&#39;**/*.py&#39;):</span>
@@ -156,7 +264,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

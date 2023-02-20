@@ -1,6 +1,6 @@
 """
-Regression - WLS
-================
+Using weighted least squares (WLS)
+==================================
 
 """
 # Import class.

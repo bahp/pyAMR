@@ -44,21 +44,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -91,6 +88,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
 <span class="c1"># Specific</span>
 <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">sari</span>
 <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">asai</span>
@@ -99,39 +98,64 @@
 <span class="kn">from</span> <span class="nn">pyamr.core.mari</span> <span class="kn">import</span> <span class="n">MARI</span>
 
 <span class="c1"># ----------------------------------------------------</span>
-<span class="c1">#</span>
+<span class="c1"># Fixtures</span>
 <span class="c1"># ----------------------------------------------------</span>
-
+<span class="c1"># Define path to fixtures folder</span>
+<span class="n">fixtures_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;fixtures&#39;</span>
 
 <div class="viewcode-block" id="func"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.func">[docs]</a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span></div>
 
+<div class="viewcode-block" id="timeseries"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.timeseries">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">timeseries</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+    <span class="c1"># Constants</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">slope</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="c1"># Create timeseries.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">offset</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span></div>
+
 <div class="viewcode-block" id="fixture"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.fixture">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">fixture</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;This ...&quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
     <span class="p">]</span>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
-        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">])</span></div>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;hard&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="s1">&#39;basic&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="fixture1"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.fixture1">[docs]</a><span class="k">def</span> <span class="nf">fixture1</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;This ...&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="fixture3"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.fixture3">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">fixture3</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;pyamr/fixtures/fixture_3.csv&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fixtures_path</span> <span class="o">/</span> <span class="s1">&#39;fixture_3.csv&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="fixture4"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.fixture4">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">fixture4</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;pyamr/fixtures/fixture_4.csv&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fixtures_path</span> <span class="o">/</span> <span class="s1">&#39;fixture_4.csv&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="fixture5"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.fixture5">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">fixture5</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;pyamr/fixtures/fixture_5.csv&#39;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fixtures_path</span> <span class="o">/</span> <span class="s1">&#39;fixture_5.csv&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fixture_index_mari"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.fixture_index_mari">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">fixture_index_mari</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fixtures_path</span> <span class="o">/</span> <span class="s1">&#39;indexes&#39;</span> <span class="o">/</span> <span class="s1">&#39;fixture_mari.csv&#39;</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="test_answer"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_answer">[docs]</a><span class="k">def</span> <span class="nf">test_answer</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -147,26 +171,17 @@
 <div class="viewcode-block" id="test_sari_method_empty"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_method_empty">[docs]</a><span class="k">def</span> <span class="nf">test_sari_method_empty</span><span class="p">(</span><span class="n">fixture3</span><span class="p">):</span>
     <span class="k">assert</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">4</span></div>
 
-<div class="viewcode-block" id="test_sari_strategy_hard"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_strategy_hard">[docs]</a><span class="k">def</span> <span class="nf">test_sari_strategy_hard</span><span class="p">(</span><span class="n">fixture</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">fixture</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span></div>
+<div class="viewcode-block" id="test_sari_empty_dataframe"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_empty_dataframe">[docs]</a><span class="k">def</span> <span class="nf">test_sari_empty_dataframe</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">sari</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="test_sari_strategy_soft"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_strategy_soft">[docs]</a><span class="k">def</span> <span class="nf">test_sari_strategy_soft</span><span class="p">(</span><span class="n">fixture</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">fixture</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="test_sari_strategy"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_strategy">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;strategy&quot;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;hard&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="s1">&#39;basic&#39;</span><span class="p">,</span>
+     <span class="n">pytest</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">xfail</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">test_sari_strategy</span><span class="p">(</span><span class="n">fixture</span><span class="p">,</span> <span class="n">strategy</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">fixture</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="n">strategy</span><span class="p">)</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="test_sari_strategy_medium"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_strategy_medium">[docs]</a><span class="k">def</span> <span class="nf">test_sari_strategy_medium</span><span class="p">(</span><span class="n">fixture</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">fixture</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;medium&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="test_sari_strategy_basic"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_strategy_basic">[docs]</a><span class="k">def</span> <span class="nf">test_sari_strategy_basic</span><span class="p">(</span><span class="n">fixture</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">fixture</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;basic&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span></div>
+    <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">fixture</span><span class="p">[</span><span class="n">strategy</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="test_sari_class_overall"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_sari_class_overall">[docs]</a><span class="k">def</span> <span class="nf">test_sari_class_overall</span><span class="p">(</span><span class="n">fixture3</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">fixture3</span><span class="p">)</span>
@@ -189,57 +204,60 @@
         <span class="n">retyrn_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span></div>
 
-<div class="viewcode-block" id="test_mari_class_temporal_iti"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_mari_class_temporal_iti">[docs]</a><span class="k">def</span> <span class="nf">test_mari_class_temporal_iti</span><span class="p">(</span><span class="n">fixture5</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">MARI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">fixture5</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
-        <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
-        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span></div>
-
 <div class="viewcode-block" id="test_mari_class_temporal_oti"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_mari_class_temporal_oti">[docs]</a><span class="k">def</span> <span class="nf">test_mari_class_temporal_oti</span><span class="p">(</span><span class="n">fixture5</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">MARI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">fixture5</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
         <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
         <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span></div>
 
+<div class="viewcode-block" id="test_mari_class_temporal_iti_period_is_integer_fails"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_mari_class_temporal_iti_period_is_integer_fails">[docs]</a><span class="k">def</span> <span class="nf">test_mari_class_temporal_iti_period_is_integer_fails</span><span class="p">(</span><span class="n">fixture5</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">MARI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">fixture5</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+            <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+            <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 <span class="c1"># ---------------------------------------------------</span>
 <span class="c1">#   Antimicrobial Spectrum of Activity Index (ASAI)</span>
 <span class="c1"># ---------------------------------------------------</span>
-<div class="viewcode-block" id="test_asai_error_missing_column_resistance"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_missing_column_resistance">[docs]</a><span class="k">def</span> <span class="nf">test_asai_error_missing_column_resistance</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
+<div class="viewcode-block" id="test_asai_error_missing_column"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_missing_column">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;columns,kwargs&quot;</span><span class="p">,</span>
+    <span class="p">[(</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span> <span class="p">{}),</span>
+     <span class="p">(</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span> <span class="p">{}),</span>
+     <span class="p">(</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span> <span class="p">{}),</span>
+     <span class="p">(</span><span class="s1">&#39;FREQUENCY&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;weights&#39;</span><span class="p">:</span><span class="s1">&#39;frequency&#39;</span><span class="p">}),</span>
+     <span class="p">(</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;weights&#39;</span><span class="p">:</span><span class="s1">&#39;specified&#39;</span><span class="p">}),</span>
+     <span class="p">(</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;weights&#39;</span><span class="p">:</span><span class="s1">&#39;specified&#39;</span><span class="p">})])</span>
+<span class="k">def</span> <span class="nf">test_asai_error_missing_column</span><span class="p">(</span><span class="n">fixture4</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">])</span> \
+        <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span> \
             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
-            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span></div>
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="test_asai_error_missing_column_genus"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_missing_column_genus">[docs]</a><span class="k">def</span> <span class="nf">test_asai_error_missing_column_genus</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
+<div class="viewcode-block" id="test_asai_error_weights_not_valid"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_weights_not_valid">[docs]</a><span class="k">def</span> <span class="nf">test_asai_error_weights_not_valid</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GENUS&#39;</span><span class="p">])</span> \
+        <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span> \
             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
-            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span></div>
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;invalid&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="test_asai_error_missing_column_specie"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_missing_column_specie">[docs]</a><span class="k">def</span> <span class="nf">test_asai_error_missing_column_specie</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
+<div class="viewcode-block" id="test_asai_error_weights_wcolumn_not_valid"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_weights_wcolumn_not_valid">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;column&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;W_SPECIE&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_asai_error_weights_wcolumn_not_valid</span><span class="p">(</span><span class="n">fixture4</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">])</span> \
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">fixture4</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">aux</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">aux</span> \
             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
-            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span></div>
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;specified&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="test_asai_error_missing_column_wgenus"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_missing_column_wgenus">[docs]</a><span class="k">def</span> <span class="nf">test_asai_error_missing_column_wgenus</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">])</span> \
-            <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
-            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="test_asai_error_threshold_double_defined"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_threshold_double_defined">[docs]</a><span class="k">def</span> <span class="nf">test_asai_error_threshold_double_defined</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
+<div class="viewcode-block" id="test_asai_warn_threshold_double_defined"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_warn_threshold_double_defined">[docs]</a><span class="k">def</span> <span class="nf">test_asai_warn_threshold_double_defined</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">():</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span> \
             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
             <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="test_asai_error_threshold_not_defined"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_error_threshold_not_defined">[docs]</a><span class="k">def</span> <span class="nf">test_asai_error_threshold_not_defined</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
+<div class="viewcode-block" id="test_asai_warn_threshold_not_defined"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_warn_threshold_not_defined">[docs]</a><span class="k">def</span> <span class="nf">test_asai_warn_threshold_not_defined</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">():</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">])</span> \
             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">])</span> \
-            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">)</span></div>
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">asai</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="test_asai_weights_from_column"><a class="viewcode-back" href="../../../_apidoc/pyamr.tests.html#pyamr.tests.test_sample.test_asai_weights_from_column">[docs]</a><span class="k">def</span> <span class="nf">test_asai_weights_from_column</span><span class="p">(</span><span class="n">fixture4</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">fixture4</span> \
@@ -280,7 +298,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

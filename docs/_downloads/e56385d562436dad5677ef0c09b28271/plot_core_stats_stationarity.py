@@ -1,5 +1,5 @@
 """
-Statistical test - Stationarity
+Stationarity
 ===============================
 
 Example using your package

@@ -68,31 +68,29 @@ SARI - Clustermap (by specimen)
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
     Data:
-           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
-    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMI           amikacin                NaN   sensitive NaN       NaN
-    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   resistant NaN       NaN
-    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAZT          aztreonam                NaN   sensitive NaN       NaN
-    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               ACAZ        ceftazidime                NaN   sensitive NaN       NaN
-    ...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
-    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   sensitive NaN       NaN
-    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ALIN          linezolid                NaN   sensitive NaN       NaN
-    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ASYN           synercid                NaN   resistant NaN       NaN
-    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ATEI        teicoplanin                NaN   sensitive NaN       NaN
-    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AVAN         vancomycin                NaN   sensitive NaN       NaN
+           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
+    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMI           amikacin                NaN    sensitive NaN       NaN
+    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMO        amoxycillin                NaN    resistant NaN       NaN
+    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAUG          augmentin                NaN    sensitive NaN       NaN
+    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAZT          aztreonam                NaN    sensitive NaN       NaN
+    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               ACAZ        ceftazidime                NaN    sensitive NaN       NaN
+    ...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
+    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AAMO        amoxycillin                NaN    sensitive NaN       NaN
+    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ALIN          linezolid                NaN    sensitive NaN       NaN
+    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ASYN           synercid                NaN    resistant NaN       NaN
+    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ATEI        teicoplanin                NaN    sensitive NaN       NaN
+    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AVAN         vancomycin                NaN    sensitive NaN       NaN
 
     [319122 rows x 15 columns]
 
     Columns:
     Index(['date_received', 'date_outcome', 'patient_id', 'laboratory_number', 'specimen_code', 'specimen_name', 'specimen_description', 'microorganism_code', 'microorganism_name', 'antimicrobial_code', 'antimicrobial_name', 'sensitivity_method', 'sensitivity', 'mic', 'reported'], dtype='object')
     SARI (overall):
-    sensitivity                                                             intermediate  resistant  sensitive  freq    sari
+                                                                            intermediate  resistant  sensitive  freq    sari
     specimen_code microorganism_name                    antimicrobial_name                                                  
     BFLCUL        anaerobes                             metronidazole                0.0        0.0        1.0   1.0  0.0000
                   bacillus                              ciprofloxacin                0.0        0.0        1.0   1.0  0.0000
@@ -212,52 +210,44 @@ SARI - Clustermap (by specimen)
     streptococcus pneumoniae                Streptococcus                  0                0           0              0              0  ...           0             4             0               0            0
 
     [49 rows x 32 columns]
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\matrix.py:1124: UserWarning:
-
-    ``square=True`` ignored in clustermap
-
 
 
 
     Data (SPTCUL)
-    antimicrobial_name                                              Amikacin      Amoxycillin Azithromycin   Aztreonam     Cefotaxime  ...  Teicoplanin  Temocillin  Tetracycline      Tobramycin   Vancomycin
-    category                                                 Aminoglycosides Aminopenicillins   Macrolides Monobactams Cephalosporins  ... Glycopeptide Penicillins Tetracyclines Aminoglycosides Glycopeptide
-    microorganism_name                      genus                                                                                      ...                                                                    
-    acinetobacter                           Acinetobacter                 50              100            0         100             66  ...            0         100             0             100            0
-    acinetobacter baumannii                 Acinetobacter                 56              100            0         100            100  ...            0         100             0              66            0
-    aeromonas                               Aeromonas                      0              100            0           0              0  ...            0           0             0               0            0
-    anaerobes                               Anaerobes                      0                0            0           0              0  ...            0           0             0               0            0
-    arcanobacterium haemolyticum            Arcanobacterium                0                0            0           0              0  ...            0           0           100               0            0
-    burkholderia cepacia                    Burkholderia                  50                0            0           0              0  ...            0           0             0             100            0
-    citrobacter                             Citrobacter                    0               94            0           0             11  ...            0           0             0               0            0
-    coliform                                Coliform                       3               83            0          11             11  ...            0           3             0               0            0
-    enterobacter                            Enterobacter                   0               95            0          12             21  ...            0          16             0               9            0
-    enterococcus                            Enterococcus                   0               51            0           0              0  ...           29           0           100               0           29
-    escherichia coli                        Escherichia                    2               84            0           5             22  ...            0           6             0              22            0
-    haemophilus                             Haemophilus                    0               30            0           0              0  ...            0           0            14               0            0
-    haemophilus influenzae                  Haemophilus                    0               25          100           0              0  ...            0           0             3               0            0
-    hafnia alvei                            Hafnia                         0               75            0           0              0  ...            0           0             0               0            0
-    klebsiella                              Klebsiella                     3               98            0          40             19  ...            0         100             0              14            0
-    kluyvera                                Kluyvera                       0              100            0           0              0  ...            0           0             0               0            0
-    moraxella catarrhalis                   Moraxella                      0               88            0           0              0  ...            0           0             0               0            0
-    morganella morganii                     Morganella                     0              100            0           0              0  ...            0           0             0               0            0
-    proteus                                 Proteus                       11               27            0          16              5  ...            0           0             0               0            0
-    pseudomonas                             Pseudomonas                    8              100            0          38             66  ...            0           0             0              18            0
-    pseudomonas aeruginosa                  Pseudomonas                    1                0            0          26              0  ...            0           0             0              10            0
-    serratia                                Serratia                       0              100            0           0              5  ...            0           0             0               0            0
-    staphylococcus aureus                   Staphylococcus                 0                0            0           0              0  ...            0           0             5               0            0
-    staphylococcus coagulase negative       Staphylococcus                 0                0            0           0              0  ...            0           0            28               0            0
-    stenotrophomonas maltophilia            Stenotrophomonas               0              100            0         100            100  ...            0         100             0               0            0
-    streptococcus beta-haemolytic group a   Streptococcus                  0                0            0           0              0  ...            0           0             0               0            0
-    streptococcus beta-haemolytic group b   Streptococcus                  0                0            0           0              0  ...            0           0           100               0            0
-    streptococcus beta-haemolytic group c/g Streptococcus                  0                0            0           0              0  ...            0           0            60               0            0
-    streptococcus pneumoniae                Streptococcus                  0                0          100           0              0  ...            0           0            24               0            0
+    antimicrobial_name                                              Amikacin      Amoxycillin Azithromycin   Aztreonam     Cefotaxime      Cefoxitin  ...  Penicillin  Teicoplanin  Temocillin  Tetracycline      Tobramycin   Vancomycin
+    category                                                 Aminoglycosides Aminopenicillins   Macrolides Monobactams Cephalosporins Cephalosporins  ... Penicillins Glycopeptide Penicillins Tetracyclines Aminoglycosides Glycopeptide
+    microorganism_name                      genus                                                                                                     ...                                                                                
+    acinetobacter                           Acinetobacter                 50              100            0         100             66            100  ...           0            0         100             0             100            0
+    acinetobacter baumannii                 Acinetobacter                 56              100            0         100            100             94  ...           0            0         100             0              66            0
+    aeromonas                               Aeromonas                      0              100            0           0              0            100  ...           0            0           0             0               0            0
+    anaerobes                               Anaerobes                      0                0            0           0              0              0  ...           0            0           0             0               0            0
+    arcanobacterium haemolyticum            Arcanobacterium                0                0            0           0              0              0  ...           0            0           0           100               0            0
+    burkholderia cepacia                    Burkholderia                  50                0            0           0              0              0  ...           0            0           0             0             100            0
+    citrobacter                             Citrobacter                    0               94            0           0             11             27  ...           0            0           0             0               0            0
+    coliform                                Coliform                       3               83            0          11             11             17  ...           0            0           3             0               0            0
+    enterobacter                            Enterobacter                   0               95            0          12             21             94  ...           0            0          16             0               9            0
+    enterococcus                            Enterococcus                   0               51            0           0              0              0  ...           0           29           0           100               0           29
+    escherichia coli                        Escherichia                    2               84            0           5             22             10  ...           0            0           6             0              22            0
+    haemophilus                             Haemophilus                    0               30            0           0              0              0  ...           0            0           0            14               0            0
+    haemophilus influenzae                  Haemophilus                    0               25          100           0              0              0  ...           0            0           0             3               0            0
+    hafnia alvei                            Hafnia                         0               75            0           0              0              0  ...           0            0           0             0               0            0
+    klebsiella                              Klebsiella                     3               98            0          40             19             10  ...           0            0         100             0              14            0
+    kluyvera                                Kluyvera                       0              100            0           0              0              0  ...           0            0           0             0               0            0
+    moraxella catarrhalis                   Moraxella                      0               88            0           0              0              0  ...           0            0           0             0               0            0
+    morganella morganii                     Morganella                     0              100            0           0              0              0  ...           0            0           0             0               0            0
+    proteus                                 Proteus                       11               27            0          16              5              0  ...           0            0           0             0               0            0
+    pseudomonas                             Pseudomonas                    8              100            0          38             66             66  ...           0            0           0             0              18            0
+    pseudomonas aeruginosa                  Pseudomonas                    1                0            0          26              0              0  ...           0            0           0             0              10            0
+    serratia                                Serratia                       0              100            0           0              5             43  ...           0            0           0             0               0            0
+    staphylococcus aureus                   Staphylococcus                 0                0            0           0              0              0  ...          92            0           0             5               0            0
+    staphylococcus coagulase negative       Staphylococcus                 0                0            0           0              0              0  ...         100            0           0            28               0            0
+    stenotrophomonas maltophilia            Stenotrophomonas               0              100            0         100            100            100  ...           0            0         100             0               0            0
+    streptococcus beta-haemolytic group a   Streptococcus                  0                0            0           0              0              0  ...           0            0           0             0               0            0
+    streptococcus beta-haemolytic group b   Streptococcus                  0                0            0           0              0              0  ...           0            0           0           100               0            0
+    streptococcus beta-haemolytic group c/g Streptococcus                  0                0            0           0              0              0  ...           0            0           0            60               0            0
+    streptococcus pneumoniae                Streptococcus                  0                0          100           0              0              0  ...          10            0           0            24               0            0
 
     [29 rows x 31 columns]
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\matrix.py:1124: UserWarning:
-
-    ``square=True`` ignored in clustermap
-
 
 
 
@@ -293,10 +283,6 @@ SARI - Clustermap (by specimen)
     streptococcus beta-haemolytic group c/g Streptococcus                  0                0           0              0              0  ...            0           0             0               0            0
 
     [26 rows x 31 columns]
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\matrix.py:1124: UserWarning:
-
-    ``square=True`` ignored in clustermap
-
 
 
 
@@ -351,39 +337,31 @@ SARI - Clustermap (by specimen)
     streptococcus pneumoniae                Streptococcus                  0                0           0              0              0  ...           0            36             0               0            0
 
     [45 rows x 31 columns]
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\matrix.py:1124: UserWarning:
-
-    ``square=True`` ignored in clustermap
-
 
 
 
     Data (XINCUL)
-    antimicrobial_name                                            Amikacin      Amoxycillin   Aztreonam     Cefotaxime      Cefoxitin  ...  Teicoplanin  Temocillin  Tetracycline      Tobramycin   Vancomycin
-    category                                               Aminoglycosides Aminopenicillins Monobactams Cephalosporins Cephalosporins  ... Glycopeptide Penicillins Tetracyclines Aminoglycosides Glycopeptide
-    microorganism_name                    genus                                                                                        ...                                                                    
-    acinetobacter                         Acinetobacter                 50              100         100            100            100  ...            0           0             0             100            0
-    acinetobacter baumannii               Acinetobacter                 90              100         100            100            100  ...            0         100             0              87            0
-    anaerobes                             Anaerobes                      0                0           0              0              0  ...            0           0             0               0            0
-    bacillus                              Bacillus                       0                0           0              0              0  ...            0           0             0               0            0
-    citrobacter                           Citrobacter                    0              100           0             50            100  ...            0           0             0               0            0
-    coliform                              Coliform                       0               82          33             17             11  ...            0           0             0               0            0
-    enterobacter                          Enterobacter                   0              100           0             90            100  ...            0           0             0              20            0
-    enterococcus                          Enterococcus                   0               87           0              0              0  ...           87           0            66               0           87
-    escherichia coli                      Escherichia                    5              100           0             88             41  ...            0           0             0              46            0
-    klebsiella                            Klebsiella                     8              100          50             92             28  ...            0           0             0              80            0
-    morganella morganii                   Morganella                     0              100           0            100              0  ...            0           0             0               0            0
-    pseudomonas                           Pseudomonas                    0                0           0              0              0  ...            0           0             0               0            0
-    pseudomonas aeruginosa                Pseudomonas                    0                0           0              0              0  ...            0           0             0              66            0
-    staphylococcus aureus                 Staphylococcus                 0                0           0              0              0  ...            0           0             4               0            0
-    stenotrophomonas maltophilia          Stenotrophomonas               0                0           0              0              0  ...            0           0             0               0            0
-    streptococcus beta-haemolytic group b Streptococcus                  0                0           0              0              0  ...            0           0            88               0            0
+    antimicrobial_name                                            Amikacin      Amoxycillin   Aztreonam     Cefotaxime      Cefoxitin    Ceftazidime  ...  Penicillin  Teicoplanin  Temocillin  Tetracycline      Tobramycin   Vancomycin
+    category                                               Aminoglycosides Aminopenicillins Monobactams Cephalosporins Cephalosporins Cephalosporins  ... Penicillins Glycopeptide Penicillins Tetracyclines Aminoglycosides Glycopeptide
+    microorganism_name                    genus                                                                                                       ...                                                                                
+    acinetobacter                         Acinetobacter                 50              100         100            100            100            100  ...           0            0           0             0             100            0
+    acinetobacter baumannii               Acinetobacter                 90              100         100            100            100            100  ...           0            0         100             0              87            0
+    anaerobes                             Anaerobes                      0                0           0              0              0              0  ...           0            0           0             0               0            0
+    bacillus                              Bacillus                       0                0           0              0              0              0  ...         100            0           0             0               0            0
+    citrobacter                           Citrobacter                    0              100           0             50            100             50  ...           0            0           0             0               0            0
+    coliform                              Coliform                       0               82          33             17             11             17  ...           0            0           0             0               0            0
+    enterobacter                          Enterobacter                   0              100           0             90            100             90  ...           0            0           0             0              20            0
+    enterococcus                          Enterococcus                   0               87           0              0              0              0  ...           0           87           0            66               0           87
+    escherichia coli                      Escherichia                    5              100           0             88             41             82  ...           0            0           0             0              46            0
+    klebsiella                            Klebsiella                     8              100          50             92             28             85  ...           0            0           0             0              80            0
+    morganella morganii                   Morganella                     0              100           0            100              0            100  ...           0            0           0             0               0            0
+    pseudomonas                           Pseudomonas                    0                0           0              0              0              0  ...           0            0           0             0               0            0
+    pseudomonas aeruginosa                Pseudomonas                    0                0           0              0              0             14  ...           0            0           0             0              66            0
+    staphylococcus aureus                 Staphylococcus                 0                0           0              0              0              0  ...          99            0           0             4               0            0
+    stenotrophomonas maltophilia          Stenotrophomonas               0                0           0              0              0              0  ...           0            0           0             0               0            0
+    streptococcus beta-haemolytic group b Streptococcus                  0                0           0              0              0              0  ...           0            0           0            88               0            0
 
     [16 rows x 27 columns]
-    c:\users\kelda\desktop\repositories\virtualenvs\test-pyamr\lib\site-packages\seaborn\matrix.py:1124: UserWarning:
-
-    ``square=True`` ignored in clustermap
-
 
 
 
@@ -633,28 +611,23 @@ SARI - Clustermap (by specimen)
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.693 seconds)
+   **Total running time of the script:** ( 0 minutes  5.205 seconds)
 
 
 .. _sphx_glr_download__examples_indexes_plot_sari_clustermap.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_sari_clustermap.py <plot_sari_clustermap.py>`
 
-     :download:`Download Python source code: plot_sari_clustermap.py <plot_sari_clustermap.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_sari_clustermap.ipynb <plot_sari_clustermap.ipynb>`
+      :download:`Download Jupyter notebook: plot_sari_clustermap.ipynb <plot_sari_clustermap.ipynb>`
 
 
 .. only:: html

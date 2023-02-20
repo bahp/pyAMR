@@ -1,5 +1,5 @@
 """
-Regression - WLSARMA
+Using WLS + ARMA
 ====================
 
 .. warning:: Not working yet!

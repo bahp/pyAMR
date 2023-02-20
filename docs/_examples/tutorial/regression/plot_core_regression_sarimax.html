@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regression - SARIMAX &mdash; pyamr 0.0.1 documentation</title>
+  <title>Using SARIMAX (seasonal) &mdash; pyamr 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
@@ -23,9 +23,7 @@
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Regression - Theil-Sen" href="plot_core_regression_theilsens.html" />
-    <link rel="prev" title="Regression - WLSARMA" href="plot_core_regression_ensemble.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,31 +45,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../index.html#step-by-step-guide">Step by step guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#amr-indexes">AMR indexes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#regression">Regression</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_arima.html">Regression - ARIMA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_ensemble.html">Regression - WLSARMA</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Regression - SARIMAX</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_theilsens.html">Regression - Theil-Sen</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_wls.html">Regression - WLS</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#statistics">Statistics</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -88,8 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Tutorial</a> &raquo;</li>
-      <li>Regression - SARIMAX</li>
+      <li>Using SARIMAX (seasonal)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_sarimax.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,15 +88,14 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-regression-plot-core-regression-sarimax-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="regression-sarimax">
-<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-sarimax-py"></span><h1>Regression - SARIMAX<a class="headerlink" href="#regression-sarimax" title="Permalink to this headline"></a></h1>
-<img src="../../../_images/sphx_glr_plot_core_regression_sarimax_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_sarimax_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-sarimax-aic                    768.8648
-sarimax-bic                    783.0814
-sarimax-hqic                   774.5604
-sarimax-llf                   -378.4324
-sarimax-intercept_coef          14.6756
+<section class="sphx-glr-example-title" id="using-sarimax-seasonal">
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-sarimax-py"></span><h1>Using SARIMAX (seasonal)<a class="headerlink" href="#using-sarimax-seasonal" title="Permalink to this headline"></a></h1>
+<img src="../../../_images/sphx_glr_plot_core_regression_sarimax_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_sarimax_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
+sarimax-aic                    767.2865
+sarimax-bic                    781.5032
+sarimax-hqic                   772.9822
+sarimax-llf                   -377.6433
+sarimax-intercept_coef           4.5355
                               ...
 sarimax-seasonal_order    (1, 0, 1, 12)
 sarimax-order                 (0, 1, 1)
@@ -125,31 +108,31 @@ Summary:
                                      SARIMAX Results
 ==========================================================================================
 Dep. Variable:                                  y   No. Observations:                   80
-Model:             SARIMAX(0, 1, 1)x(1, 0, 1, 12)   Log Likelihood                -378.432
-Date:                            Tue, 14 Feb 2023   AIC                            768.865
-Time:                                    18:29:33   BIC                            783.081
-Sample:                                         0   HQIC                           774.560
+Model:             SARIMAX(0, 1, 1)x(1, 0, 1, 12)   Log Likelihood                -377.643
+Date:                            Mon, 20 Feb 2023   AIC                            767.287
+Time:                                    17:41:35   BIC                            781.503
+Sample:                                         0   HQIC                           772.982
                                              - 80
 Covariance Type:                              opg
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-intercept     14.6756     24.009      0.611      0.541     -32.382      61.733
-drift         -0.2143      0.294     -0.729      0.466      -0.790       0.361
-ma.L1         -0.4248      0.095     -4.479      0.000      -0.611      -0.239
-ar.S.L12      -0.1176      1.687     -0.070      0.944      -3.424       3.188
-ma.S.L12       0.0440      1.708      0.026      0.979      -3.303       3.391
-sigma2       844.6736    123.810      6.822      0.000     602.010    1087.337
+intercept      4.5355     13.268      0.342      0.732     -21.470      30.541
+drift         -0.0904      0.150     -0.602      0.547      -0.384       0.204
+ma.L1         -0.5287      0.089     -5.970      0.000      -0.702      -0.355
+ar.S.L12       0.5857      1.107      0.529      0.597      -1.584       2.756
+ma.S.L12      -0.6475      1.045     -0.619      0.536      -2.696       1.401
+sigma2       823.5711    123.123      6.689      0.000     582.255    1064.887
 ==============================================================================
-Ljung-Box(L1)(Q):                0.03   Jarque-Bera (JB):                22.80
-Prob(Q):                         0.87   Prob(JB):                         0.00
-Heteroskedasticity(H):           0.58   Skew:                            -0.94
-Prob(H)(two-sided):              0.17   Kurtosis:                         4.83
+Ljung-Box(L1)(Q):                0.05   Jarque-Bera (JB):                 4.41
+Prob(Q):                         0.83   Prob(JB):                         0.11
+Heteroskedasticity(H):           1.06   Skew:                            -0.47
+Prob(H)(two-sided):              0.89   Kurtosis:                         3.68
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000   Durbin-Watson:                   1.950
-Normal (N):                    17.686   Prob(N):                         0.000
+Omnibus:                        0.000   Durbin-Watson:                   1.986
+Normal (N):                     4.364   Prob(N):                         0.113
 ==============================================================================
 Note that JB, P(JB), skew and kurtosis have different values.
 Note that Prob(Q) tests no correlation of residuals.
@@ -303,8 +286,8 @@ Note that Prob(Q) tests no correlation of residuals.
 <span class="linenos">148</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.423 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-sarimax-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.502 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-sarimax-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/7a133b8083f1707aea88975465bd4e87/plot_core_regression_sarimax.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_sarimax.py</span></code></a></p>
 </div>
@@ -318,15 +301,12 @@ Note that Prob(Q) tests no correlation of residuals.
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_core_regression_ensemble.html" class="btn btn-neutral float-left" title="Regression - WLSARMA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_core_regression_theilsens.html" class="btn btn-neutral float-right" title="Regression - Theil-Sen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

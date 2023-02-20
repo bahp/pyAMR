@@ -47,13 +47,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with indexes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_sari_antibiogram.html">SARI - Antibiogram (by specimen)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_sari_clustermap.html">SARI - Clustermap (by specimen)</a></li>
@@ -69,8 +67,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -212,20 +213,19 @@ the trend estimated for 1M<sub>1</sub> should be approximately thirty times the 
 <span class="linenos">134</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">date_received</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s1">&#39;2008-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2016-12-31&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-           date_received         date_outcome patient_id laboratory_number specimen_code  ...       antimicrobial_name sensitivity_method sensitivity  mic reported
-0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                 amikacin                NaN   sensitive  NaN      NaN
-1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              amoxycillin                NaN   resistant  NaN      NaN
-2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                augmentin                NaN   sensitive  NaN      NaN
-3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                aztreonam                NaN   sensitive  NaN      NaN
-4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              ceftazidime                NaN   sensitive  NaN      NaN
-...                  ...                  ...        ...               ...           ...  ...                      ...                ...         ...  ...      ...
-7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               gentamicin                 DD   resistant  NaN        Y
-7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...                meropenem                 DD   sensitive  NaN        Y
-7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...  piperacillin-tazobactam                 DD   sensitive  NaN        N
-7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               temocillin                 DD   sensitive  NaN        N
-7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...              tigecycline                 DD   sensitive  NaN        N
+           date_received         date_outcome patient_id laboratory_number specimen_code                   specimen_name  ... antimicrobial_code       antimicrobial_name sensitivity_method sensitivity  mic reported
+0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMI                 amikacin                NaN   sensitive  NaN      NaN
+1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMO              amoxycillin                NaN   resistant  NaN      NaN
+2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAUG                augmentin                NaN   sensitive  NaN      NaN
+3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAZT                aztreonam                NaN   sensitive  NaN      NaN
+4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               ACAZ              ceftazidime                NaN   sensitive  NaN      NaN
+...                  ...                  ...        ...               ...           ...                             ...  ...                ...                      ...                ...         ...  ...      ...
+7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AGEN               gentamicin                 DD   resistant  NaN        Y
+7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AMER                meropenem                 DD   sensitive  NaN        Y
+7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATAZ  piperacillin-tazobactam                 DD   sensitive  NaN        N
+7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATEM               temocillin                 DD   sensitive  NaN        N
+7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATIG              tigecycline                 DD   sensitive  NaN        N
 
 [3770034 rows x 15 columns]
 
@@ -430,21 +430,19 @@ least for more than 80 percent of the period?</p>
 <span class="linenos">315</span><span class="sd"> &quot;&quot;&quot;</span>
 </pre></div>
 </div>
-<img alt="plot spectrum temporal" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_spectrum_temporal_001.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (temporal)
-sensitivity specimen_code microorganism_code antimicrobial_code date_received  hide  intermediate  not done  resistant  sensitive  freq    sari
-0                  URICUL               ABAU               AAUG    2009-07-31   0.0           0.0       0.0        3.0        2.0   5.0  0.6000
-1                  URICUL               ABAU               AAUG    2010-01-31   0.0           0.0       0.0        4.0        3.0   7.0  0.5714
-2                  URICUL               ABAU               AAUG    2010-07-31   0.0           0.0       0.0        8.0        6.0  14.0  0.5714
-3                  URICUL               ABAU               AAUG    2011-01-31   0.0           0.0       0.0       11.0        8.0  19.0  0.5789
-4                  URICUL               ABAU               AAUG    2011-07-31   0.0           0.0       0.0       13.0        9.0  22.0  0.5909
-..                    ...                ...                ...           ...   ...           ...       ...        ...        ...   ...     ...
-514                URICUL              VIRST               AAUG    2012-07-31   0.0           0.0       0.0        0.0        1.0   1.0  0.0000
-515                URICUL              VIRST               AAUG    2013-07-31   0.0           0.0       0.0        0.0        2.0   2.0  0.0000
-516                URICUL              VIRST               AAUG    2014-01-31   0.0           0.0       0.0        0.0        3.0   3.0  0.0000
-517                URICUL              YEAST               AAUG    2015-01-31   0.0           0.0       0.0        0.0        1.0   1.0  0.0000
-518                URICUL              YEAST               AAUG    2015-07-31   0.0           0.0       0.0        0.0        2.0   2.0  0.0000
+<img src="../../_images/sphx_glr_plot_spectrum_temporal_001.png" srcset="../../_images/sphx_glr_plot_spectrum_temporal_001.png" alt="plot spectrum temporal" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (temporal)
+    specimen_code microorganism_code antimicrobial_code date_received  hide  intermediate  not done  resistant  sensitive  freq    sari
+0          URICUL               ABAU               AAUG    2009-07-31   0.0           0.0       0.0        3.0        2.0   5.0  0.6000
+1          URICUL               ABAU               AAUG    2010-01-31   0.0           0.0       0.0        4.0        3.0   7.0  0.5714
+2          URICUL               ABAU               AAUG    2010-07-31   0.0           0.0       0.0        8.0        6.0  14.0  0.5714
+3          URICUL               ABAU               AAUG    2011-01-31   0.0           0.0       0.0       11.0        8.0  19.0  0.5789
+4          URICUL               ABAU               AAUG    2011-07-31   0.0           0.0       0.0       13.0        9.0  22.0  0.5909
+..            ...                ...                ...           ...   ...           ...       ...        ...        ...   ...     ...
+514        URICUL              VIRST               AAUG    2012-07-31   0.0           0.0       0.0        0.0        1.0   1.0  0.0000
+515        URICUL              VIRST               AAUG    2013-07-31   0.0           0.0       0.0        0.0        2.0   2.0  0.0000
+516        URICUL              VIRST               AAUG    2014-01-31   0.0           0.0       0.0        0.0        3.0   3.0  0.0000
+517        URICUL              YEAST               AAUG    2015-01-31   0.0           0.0       0.0        0.0        1.0   1.0  0.0000
+518        URICUL              YEAST               AAUG    2015-07-31   0.0           0.0       0.0        0.0        2.0   2.0  0.0000
 
 [519 rows x 11 columns]
 Remaining microorganisms:
@@ -464,419 +462,6 @@ Remaining microorganisms:
 Microorganisms without gram stain:
 [&#39;A_CHRYSEOM&#39; &#39;A_ISOLATED&#39; &#39;A_MBG&#39; &#39;COLIF&#39; &#39;DIPHT&#39; &#39;LFC&#39; &#39;MCOL&#39; &#39;MODO&#39;
  &#39;NLF&#39; &#39;QMCOL&#39; &#39;QMIXY&#39; &#39;YEAST&#39;]
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:527: UserWarning:
-
-
-                 Extreme resistances were found in the DataFrame. These rows
-                 should be reviewed since these resistances might correspond
-                 to pairs with low number of records.
-
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:309: UserWarning:
-
-
-
-                  The threshold has not been defined using either
-                  an input parameter (threshold=None) or a column in the
-                  dataframe &#39;THRESHOLD&#39;. Thus a default threshold value
-                  of &#39;0.5&#39; will be used.
-
 
 ASAI:
                                  N_GENUS           N_SPECIE            ASAI_SCORE
@@ -889,20 +474,20 @@ date_received antimicrobial_code
 2011-01-31    AAUG                  10.0  4.0  1.0     11.0  10.0  1.0     0.2500  1.0000  1.0000
 2011-07-31    AAUG                  11.0  3.0  1.0     12.0   6.0  1.0     0.3182  1.0000  1.0000
 2012-01-31    AAUG                  11.0  4.0  1.0     14.0   7.0  1.0     0.3182  1.0000  1.0000
-2012-07-31    AAUG                  11.0  4.0  2.0     21.0  10.0  3.0     0.2879  1.0000  1.0000
-2013-01-31    AAUG                  14.0  6.0  3.0     29.0  17.0  5.0     0.4048  0.9667  0.8333
-2013-07-31    AAUG                  19.0  4.0  3.0     36.0  13.0  3.0     0.5000  1.0000  1.0000
-2014-01-31    AAUG                  14.0  6.0  4.0     34.0  14.0  5.0     0.5179  1.0000  1.0000
-2014-07-31    AAUG                  16.0  4.0  4.0     36.0  16.0  6.0     0.4271  1.0000  0.8750
-2015-01-31    AAUG                  16.0  6.0  5.0     34.0  19.0  7.0     0.5458  1.0000  1.0000
-2015-07-31    AAUG                  13.0  4.0  3.0     27.0  13.0  3.0     0.4423  1.0000  1.0000
+2012-07-31    AAUG                  11.0  4.0  2.0     21.0  10.0  3.0     0.2576  1.0000  1.0000
+2013-01-31    AAUG                  14.0  6.0  3.0     29.0  17.0  5.0     0.3810  0.9667  0.6667
+2013-07-31    AAUG                  19.0  4.0  3.0     36.0  13.0  3.0     0.4825  1.0000  1.0000
+2014-01-31    AAUG                  14.0  6.0  4.0     34.0  14.0  5.0     0.5179  0.9667  1.0000
+2014-07-31    AAUG                  16.0  4.0  4.0     36.0  16.0  6.0     0.4271  0.9167  0.8750
+2015-01-31    AAUG                  16.0  6.0  5.0     34.0  19.0  7.0     0.5333  1.0000  0.7000
+2015-07-31    AAUG                  13.0  4.0  3.0     27.0  13.0  3.0     0.4423  1.0000  0.6667
 2016-01-31    AAUG                  11.0  1.0  2.0     22.0   4.0  2.0     0.4394  1.0000  1.0000
 
 &#39;\n# -------------------------\n# Compute ASAI\n# -------------------------\niti = iti.rename(columns={\n    \&#39;microorganism_code\&#39;: \&#39;SPECIE\&#39;,\n    \&#39;sari\&#39;: \&#39;RESISTANCE\&#39;,\n    \&#39;genus\&#39;: \&#39;GENUS\&#39;\n})\n\n\nfig, axes = plt.subplots(1, 2, figsize=(10, 3), sharey=True)\n\n# Variable for filtering\ns = pd.crosstab(iti[\&#39;SPECIE\&#39;], iti[\&#39;date_received\&#39;])\n\n# Create aux (non filtered)\naux = iti.copy(deep=True)\naux = aux.groupby([\&#39;date_received\&#39;,\n                   \&#39;antimicrobial_code\&#39;,\n                   \&#39;gram\&#39;])         .apply(asai, weights=\&#39;uniform\&#39;, threshold=0.5)\n\n\nplt.show()\n\n# Create aux (filtered)\naux2 = iti.copy(deep=True)\naux2 = aux2[aux2[\&#39;SPECIE\&#39;].isin(s[s.all(axis=1)].index)]\naux2 = aux2.groupby([\&#39;date_received\&#39;,\n                   \&#39;antimicrobial_code\&#39;,\n                   \&#39;gram\&#39;])         .apply(asai, weights=\&#39;uniform\&#39;, threshold=0.8)\n\na = 1\n# Display\nprint(&quot;\nCrosstab:&quot;)\nprint(s)\nprint(&quot;\nSelected:&quot;)\nprint(s[s.all(axis=1)])\nprint(&quot;\nRemaining:&quot;)\nprint(iti)\nprint(aux.unstack())\nprint(aux2.unstack())\n\nsns.lineplot(data=aux.reset_index(),\n             x=\&#39;date_received\&#39;,\n             y=\&#39;ASAI_SCORE\&#39;,\n             palette=&quot;tab10&quot;,\n             linewidth=0.75,\n             hue=\&#39;gram\&#39;,\n             marker=\&#39;o\&#39;,\n             ax=axes[0])\n\nsns.lineplot(data=aux2.reset_index(),\n             x=\&#39;date_received\&#39;,\n             y=\&#39;ASAI_SCORE\&#39;,\n             palette=&quot;tab10&quot;,\n             linewidth=0.75,\n             hue=\&#39;gram\&#39;,\n             marker=\&#39;o\&#39;,\n             ax=axes[1])\n&#39;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.080 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-spectrum-temporal-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.601 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-spectrum-temporal-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/e54649232c3713beaf2762c17159bfea/plot_spectrum_temporal.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_spectrum_temporal.py</span></code></a></p>
 </div>
@@ -925,7 +510,7 @@ date_received antimicrobial_code
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

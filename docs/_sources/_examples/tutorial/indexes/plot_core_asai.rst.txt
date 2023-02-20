@@ -22,7 +22,6 @@ Spectrum of Activity (ASAI)
 ==========================================
 
 .. todo::
-    - Create data as in the example shown in the figure.
     - Improve visualization method (generic).
     - Create further examples with temporal visualization.
     - Create further examples with general heatmap.
@@ -33,12 +32,13 @@ Spectrum of Activity (ASAI)
              than the threshold (32 > 20) and therefore the antimicrobial
              is not considered effective.
 
-The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
-these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
-intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both Gram-positive
-and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited activity and are
-effective only against particular species of bacteria. While these profiles appeared in the mid-1950s,
-little effort has been made to define them. Furthermore, such ambiguous labels are overused for different
+The antimicrobial spectrum of activity refers to the range of microbe species that are
+susceptible to these agents and therefore can be treated. In general, antimicrobial agents
+are classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials
+are active against both Gram-positive and Gram-negative bacteria. In contrast, narrow
+spectrum antimicrobials have limited activity and are effective only against particular
+species of bacteria. While these profiles appeared in the mid-1950s, little effort has been
+made to define them. Furthermore, such ambiguous labels are overused for different
 and even contradictory purposes.
 
 For more information see: :py:mod:`pyamr.core.asai.ASAI`
@@ -48,115 +48,10 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
     :align: center
     :alt: ASAI
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-296
-
-
-
-.. image-sg:: /_examples/tutorial/indexes/images/sphx_glr_plot_core_asai_001.png
-   :alt: plot core asai
-   :srcset: /_examples/tutorial/indexes/images/sphx_glr_plot_core_asai_001.png
-   :class: sphx-glr-single-img
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    Data:
-                 GENUS              SPECIE    ANTIBIOTIC GRAM  RESISTANCE  FREQUENCY  THRESHOLD  W_SPECIE  W_GENUS
-    0   Staphylococcus  coagulase negative  ANTIBIOTIC_1    P        0.88          1        0.2    0.1000   0.3333
-    1   Staphylococcus         epidermidis  ANTIBIOTIC_1    P        0.11          1        0.2    0.1000   0.3333
-    2   Staphylococcus        haemolyticus  ANTIBIOTIC_1    P        0.32          1        0.2    0.1000   0.3333
-    3   Staphylococcus         lugdumensis  ANTIBIOTIC_1    P        0.45          1        0.2    0.1000   0.3333
-    4   Staphylococcus       saporphyticus  ANTIBIOTIC_1    P        0.18          1        0.2    0.1000   0.3333
-    5   Staphylococcus              aureus  ANTIBIOTIC_1    P        0.13          5        0.2    0.5000   0.3333
-    6     Enterococcus              durans  ANTIBIOTIC_1    N        0.64          1        0.2    0.2500   0.3333
-    7     Enterococcus             faecium  ANTIBIOTIC_1    N        0.48          1        0.2    0.2500   0.3333
-    8     Enterococcus         gallinarium  ANTIBIOTIC_1    N        0.10          1        0.2    0.2500   0.3333
-    9     Enterococcus            faecalis  ANTIBIOTIC_1    N        0.09          1        0.2    0.2500   0.3333
-    10   Streptococcus           viridians  ANTIBIOTIC_1    P        0.08          1        0.2    0.3333   0.3333
-    11   Streptococcus          pneumoniae  ANTIBIOTIC_1    P        0.89          2        0.2    0.6667   0.3333
-
-
-    Handling errors:
-    The following columns are missing: {'RESISTANCE'} 
-    The following columns are missing: {'GENUS'} 
-    The following columns are missing: {'SPECIE'} 
-    The following columns are missing: {'W_GENUS'} 
-    The following columns are missing: {'SPECIE', 'RESISTANCE'} 
-
-                The weights imputed do not fulfill all the requirements. Please
-                check the report below and correct the weights accordingly. Note
-                a given genus must have a consistent weight and the sum of weights
-                must add up to 1.
-
-                                  W_GENUS_UNIQUE_OK  W_GENUS_SUM_OK  W_SPECIE_SUM_OK
-                    GENUS                                                           
-                    Enterococcus               True           False             True
-
-
-    Show warnings:
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:313: UserWarning:
-
-
-
-                      The threshold has not been defined using either 
-                      an input parameter (threshold=None) or a column in the 
-                      dataframe 'THRESHOLD'. Thus a default threshold value 
-                      of '0.5' will be used.
-
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:306: UserWarning:
-
-
-
-                      The threshold has been defined both as an 
-                      input parameter (threshold=0.5) and a dataframe 
-                      column 'THRESHOLD'. The latter will be used.
-
-
-
-    No errors or warnings:
-
-
-    ASAI (weights):
-                  N_GENUS  N_SPECIE  ASAI_SCORE
-    ANTIBIOTIC                                 
-    ANTIBIOTIC_1      3.0      12.0      0.5111
-
-
-    ASAI (uniform):
-                       N_GENUS  N_SPECIE  ASAI_SCORE
-    ANTIBIOTIC   GRAM                               
-    ANTIBIOTIC_1 N         1.0       4.0         0.5
-                 P         2.0       8.0         0.5
-
-
-    ASAI (frequency):
-                       N_GENUS  N_SPECIE  ASAI_SCORE
-    ANTIBIOTIC   GRAM                               
-    ANTIBIOTIC_1 N         1.0       4.0      0.5000
-                 P         2.0       8.0      0.6154
-
-    ASAI (instance):
-                 N_GENUS      N_SPECIE      ASAI_SCORE     
-    GRAM               N    P        N    P          N    P
-    ANTIBIOTIC                                             
-    ANTIBIOTIC_1     1.0  2.0      4.0  8.0        0.5  0.5
-
-
-
-
-
-
-|
+.. GENERATED FROM PYTHON SOURCE LINES 33-103
 
 .. code-block:: default
-   :lineno-start: 36
-
-
+   :lineno-start: 34
 
 
     # Import libraries
@@ -170,6 +65,7 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
     # Import specific libraries
     from pyamr.core.asai import ASAI
     from pyamr.core.asai import asai
+    from pyamr.graphics.utils import scalar_colormap
 
     # Configure seaborn style (context=talk)
     sns.set(style="white")
@@ -190,53 +86,25 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
 
 
     # ---------------------
-    # helper method
-    # ---------------------
-    def scalar_colormap(values, cmap, vmin, vmax):
-        """This method creates a colormap based on values.
-
-        Parameters
-        ----------
-        values : array-like
-          The values to create the corresponding colors
-
-        cmap : str
-          The colormap
-
-        vmin, vmax : float
-          The minimum and maximum possible values
-
-        Returns
-        -------
-        scalar colormap
-        """
-        # Create scalar mappable
-        norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax, clip=True)
-        mapper = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
-        # Gete color map
-        colormap = sns.color_palette([mapper.to_rgba(i) for i in values])
-        # Return
-        return colormap
-
-
-    # ---------------------
     # Create data
     # ---------------------
     # Create data
-    data = [['Staphylococcus', 'coagulase negative', 'ANTIBIOTIC_1', 'P', 0.88, 1, 0.20, 1/10, 1/3],
-            ['Staphylococcus', 'epidermidis', 'ANTIBIOTIC_1', 'P', 0.11, 1, 0.20, 1/10, 1/3],
-            ['Staphylococcus', 'haemolyticus', 'ANTIBIOTIC_1', 'P', 0.32, 1, 0.20, 1/10, 1/3],
-            ['Staphylococcus', 'lugdumensis', 'ANTIBIOTIC_1', 'P', 0.45, 1, 0.20, 1/10, 1/3],
-            ['Staphylococcus', 'saporphyticus', 'ANTIBIOTIC_1', 'P', 0.18, 1, 0.20, 1/10, 1/3],
-            ['Staphylococcus', 'aureus', 'ANTIBIOTIC_1', 'P', 0.13, 5, 0.20, 5/10, 1/3],
+    data = [
+        ['Staphylococcus', 'coagulase negative', 'ANTIBIOTIC_1', 'P', 0.88, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'epidermidis', 'ANTIBIOTIC_1', 'P', 0.11, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'haemolyticus', 'ANTIBIOTIC_1', 'P', 0.32, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'lugdumensis', 'ANTIBIOTIC_1', 'P', 0.45, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'saporphyticus', 'ANTIBIOTIC_1', 'P', 0.18, 1, 0.20, 1/10, 1/3],
+        ['Staphylococcus', 'aureus', 'ANTIBIOTIC_1', 'P', 0.13, 5, 0.20, 5/10, 1/3],
 
-            ['Enterococcus', 'durans', 'ANTIBIOTIC_1', 'N', 0.64, 1, 0.20, 1/4, 1/3],
-            ['Enterococcus', 'faecium', 'ANTIBIOTIC_1', 'N', 0.48, 1, 0.20, 1/4, 1/3],
-            ['Enterococcus', 'gallinarium', 'ANTIBIOTIC_1', 'N', 0.10, 1, 0.20, 1/4, 1/3],
-            ['Enterococcus', 'faecalis', 'ANTIBIOTIC_1', 'N', 0.09, 1, 0.20, 1/4, 1/3],
+        ['Enterococcus', 'durans', 'ANTIBIOTIC_1', 'N', 0.64, 1, 0.20, 1/4, 1/3],
+        ['Enterococcus', 'faecium', 'ANTIBIOTIC_1', 'N', 0.48, 1, 0.20, 1/4, 1/3],
+        ['Enterococcus', 'gallinarium', 'ANTIBIOTIC_1', 'N', 0.10, 1, 0.20, 1/4, 1/3],
+        ['Enterococcus', 'faecalis', 'ANTIBIOTIC_1', 'N', 0.09, 1, 0.20, 1/4, 1/3],
 
-            ['Streptococcus', 'viridians', 'ANTIBIOTIC_1', 'P', 0.08, 1, 0.20, 1/3, 1/3],
-            ['Streptococcus', 'pneumoniae', 'ANTIBIOTIC_1', 'P', 0.89, 2, 0.20, 2/3, 1/3]]
+        ['Streptococcus', 'viridians', 'ANTIBIOTIC_1', 'P', 0.08, 1, 0.20, 1/3, 1/3],
+        ['Streptococcus', 'pneumoniae', 'ANTIBIOTIC_1', 'P', 0.89, 2, 0.20, 2/3, 1/3]
+    ]
 
 
     # Create dataframe
@@ -254,113 +122,43 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
     print("\nData:")
     print(dataframe)
 
-    # ---------------------------------------------------------------------
-    # ASAI - Errors
-    # ---------------------------------------------------------------------
-    # .. note: In the examples below, the method asai is meant to raise
-    #          an error either because any of the required missing columns
-    #          is missing or because the weight configuration is not
-    #          correct.
-    print("\n\nHandling errors:")
-
-    try:
-        asai = dataframe.drop(columns=['RESISTANCE']) \
-            .groupby(['ANTIBIOTIC']) \
-            .apply(asai)
-    except Exception as e:
-        print(e)
-
-    try:
-        asai = dataframe.drop(columns=['GENUS']) \
-            .groupby(['ANTIBIOTIC']) \
-            .apply(asai)
-    except Exception as e:
-        print(e)
-
-    try:
-        asai = dataframe.drop(columns=['SPECIE']) \
-            .groupby(['ANTIBIOTIC']) \
-            .apply(asai)
-    except Exception as e:
-        print(e)
-
-    try:
-        asai = dataframe.drop(columns=['W_GENUS']) \
-            .groupby(['ANTIBIOTIC']) \
-            .apply(asai)
-    except Exception as e:
-        print(e)
-
-    try:
-        asai = dataframe.drop(columns=['RESISTANCE', 'SPECIE']) \
-            .groupby(['ANTIBIOTIC']) \
-            .apply(asai)
-    except Exception as e:
-        print(e)
-
-    try:
-        asai = dataframe \
-            .groupby(['ANTIBIOTIC', 'GRAM']) \
-            .apply(asai)
-    except Exception as e:
-        print(e)
 
 
-    # ---------------------------------------------------------------------
-    # ASAI - Warnings
-    # ---------------------------------------------------------------------
-    # .. note: In the examples below, the method asai is meant to show a
-    #          warning message either no threshold has been specified or
-    #          because thresholds have been specified twice.
-    print("\n\nShow warnings:")
-
-    asai_5 = dataframe.drop(columns=['THRESHOLD']) \
-        .groupby(['ANTIBIOTIC']) \
-        .apply(asai)
-
-    asai_6 = dataframe \
-        .groupby(['ANTIBIOTIC']) \
-        .apply(asai, threshold=0.5)
 
 
-    # ---------------------------------------------------------------------
-    # ASAI
-    # ---------------------------------------------------------------------
-    # .. note: In the examples below, the method asai should be working
-    #          properly and return the expected results.
-    print("\n\nNo errors or warnings:")
 
-    # -------
-    # DEFAULT
-    # -------
-    asai_7 = dataframe \
-        .groupby(['ANTIBIOTIC']) \
-        .apply(asai, verbose=0)
+.. rst-class:: sphx-glr-script-out
 
-    # Show
-    print("\n\nASAI (weights):")
-    print(asai_7)
+ .. code-block:: none
 
-    # -------
-    # UNIFORM
-    # -------
-    asai_8 = dataframe \
-        .groupby(['ANTIBIOTIC', 'GRAM']) \
-        .apply(asai, weights='uniform')
 
-    print("\n\nASAI (uniform):")
-    print(asai_8)
+    Data:
+                 GENUS              SPECIE    ANTIBIOTIC GRAM  RESISTANCE  FREQUENCY  THRESHOLD  W_SPECIE  W_GENUS
+    0   Staphylococcus  coagulase negative  ANTIBIOTIC_1    P        0.88          1        0.2    0.1000   0.3333
+    1   Staphylococcus         epidermidis  ANTIBIOTIC_1    P        0.11          1        0.2    0.1000   0.3333
+    2   Staphylococcus        haemolyticus  ANTIBIOTIC_1    P        0.32          1        0.2    0.1000   0.3333
+    3   Staphylococcus         lugdumensis  ANTIBIOTIC_1    P        0.45          1        0.2    0.1000   0.3333
+    4   Staphylococcus       saporphyticus  ANTIBIOTIC_1    P        0.18          1        0.2    0.1000   0.3333
+    5   Staphylococcus              aureus  ANTIBIOTIC_1    P        0.13          5        0.2    0.5000   0.3333
+    6     Enterococcus              durans  ANTIBIOTIC_1    N        0.64          1        0.2    0.2500   0.3333
+    7     Enterococcus             faecium  ANTIBIOTIC_1    N        0.48          1        0.2    0.2500   0.3333
+    8     Enterococcus         gallinarium  ANTIBIOTIC_1    N        0.10          1        0.2    0.2500   0.3333
+    9     Enterococcus            faecalis  ANTIBIOTIC_1    N        0.09          1        0.2    0.2500   0.3333
+    10   Streptococcus           viridians  ANTIBIOTIC_1    P        0.08          1        0.2    0.3333   0.3333
+    11   Streptococcus          pneumoniae  ANTIBIOTIC_1    P        0.89          2        0.2    0.6667   0.3333
 
-    # ---------
-    # FREQUENCY
-    # ---------
-    asai_9 = dataframe \
-        .groupby(['ANTIBIOTIC', 'GRAM']) \
-        .apply(asai, weights='frequency')
 
-    # Show
-    print("\n\nASAI (frequency):")
-    print(asai_9)
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 104-106
+
+Lets use the ASAI object
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 107-135
+
+.. code-block:: default
+   :lineno-start: 108
 
 
     # -------------------------------
@@ -385,8 +183,90 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
     scores = scores.unstack()
 
     # Show
-    print("\nASAI (instance):")
-    print(scores)
+    #print("\nASAI (instance):")
+    #print(scores)
+
+    scores
+
+
+
+
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead tr th {
+            text-align: left;
+        }
+
+        .dataframe thead tr:last-of-type th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="2" halign="left">N_GENUS</th>
+          <th colspan="2" halign="left">N_SPECIE</th>
+          <th colspan="2" halign="left">ASAI_SCORE</th>
+        </tr>
+        <tr>
+          <th>GRAM</th>
+          <th>N</th>
+          <th>P</th>
+          <th>N</th>
+          <th>P</th>
+          <th>N</th>
+          <th>P</th>
+        </tr>
+        <tr>
+          <th>ANTIBIOTIC</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>ANTIBIOTIC_1</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>8.0</td>
+          <td>0.5</td>
+          <td>0.5</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 136-137
+
+Lets display the information graphically
+
+.. GENERATED FROM PYTHON SOURCE LINES 138-170
+
+.. code-block:: default
+   :lineno-start: 139
+
 
     # -----------------------------
     # Plot
@@ -421,30 +301,36 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
     # Display
     plt.show()
 
+
+.. image-sg:: /_examples/tutorial/indexes/images/sphx_glr_plot_core_asai_001.png
+   :alt: plot core asai
+   :srcset: /_examples/tutorial/indexes/images/sphx_glr_plot_core_asai_001.png
+   :class: sphx-glr-single-img
+
+
+
+
+
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.784 seconds)
+   **Total running time of the script:** ( 0 minutes  0.991 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_indexes_plot_core_asai.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_core_asai.py <plot_core_asai.py>`
 
-     :download:`Download Python source code: plot_core_asai.py <plot_core_asai.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_core_asai.ipynb <plot_core_asai.ipynb>`
+      :download:`Download Jupyter notebook: plot_core_asai.ipynb <plot_core_asai.ipynb>`
 
 
 .. only:: html

@@ -1,8 +1,6 @@
 """
-ARIMA basic
------------
-
-.. todo: Explain
+ARIMA - Basic
+---------------------
 
 """
 # Import.

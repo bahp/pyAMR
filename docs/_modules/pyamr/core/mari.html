@@ -44,21 +44,18 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../_examples/reports/index.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -104,10 +101,15 @@
 <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">sari</span>
 
 
+
+
 <span class="c1"># -------------------------------------------------------------------------</span>
 <span class="c1">#                            helper methods</span>
 <span class="c1"># -------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="MARI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI">[docs]</a><span class="k">class</span> <span class="nc">MARI</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Attributes</span>
     <span class="n">c_lab</span> <span class="o">=</span> <span class="s1">&#39;LAB_NUMBER&#39;</span>
     <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIMEN&#39;</span>
@@ -124,27 +126,428 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        groupby: list</span>
-<span class="sd">            The labels of the columns to groupby.</span>
+<span class="sd">            The labels of the columns to groupby. The name of</span>
+<span class="sd">            the columns it should include is as follows:</span>
+
+<span class="sd">                [</span>
+<span class="sd">                    COLUMN_SPECIMEN,</span>
+<span class="sd">                    COLUMN_MICROORGANISM,</span>
+<span class="sd">                    COLUMN_LABORATORY_NUMBER,</span>
+<span class="sd">                    COLUMN_OUTCOME</span>
+<span class="sd">                ]</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        --------</span>
-<span class="sd">        SARI instance</span>
+<span class="sd">        MARI instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span> <span class="o">=</span> <span class="n">groupby</span>
 
-<div class="viewcode-block" id="MARI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Computes single antibiotic resistance index.</span>
+
+<div class="viewcode-block" id="MARI.compute_v1"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v1">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+        <span class="c1"># Copy DataFrame</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Create grouper</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">cdate</span><span class="p">)]</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="n">grouper</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span>
+
+        <span class="c1"># Format as datetime</span>
+        <span class="k">if</span> <span class="n">cdate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">])</span>
+
+        <span class="c1"># ------------------------------------------</span>
+        <span class="c1"># Frequencies</span>
+        <span class="c1"># ------------------------------------------</span>
+        <span class="c1">#</span>
+        <span class="n">rn</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="s1">&#39;mari&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;freq&#39;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Compute frequencies</span>
+        <span class="n">isolates</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Include mari by isolate</span>
+        <span class="n">isolates</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">isolates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Compute frequencies</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># Compute mari</span>
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">mari</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">isolates</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">])</span> \
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># Create sum and count per shift</span>
+            <span class="n">aux</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">cdate</span><span class="p">]</span> <span class="o">+</span> <span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">mari</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+
+            <span class="c1"># Compute sums</span>
+            <span class="n">sums</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+            <span class="c1"># Compute isolate counts</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+            <span class="n">series</span> <span class="o">=</span> <span class="p">(</span><span class="n">sums</span><span class="o">/</span><span class="n">counts</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;mari&#39;</span><span class="p">)</span>
+
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">sums</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">series</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Wrong!!</span>
+            <span class="c1"># Compute sum and count [sum, count]</span>
+            <span class="c1">#aux = freqs.groupby([cdate] + grouper[2:-1]) \</span>
+            <span class="c1">#    .mari.agg(&#39;mean&#39;).reset_index() \</span>
+            <span class="c1">#    .set_index(cdate).groupby(grouper[2:-1]) \</span>
+            <span class="c1">#    .mari.rolling(window=period, min_period=1) \</span>
+            <span class="c1">#    .mean()</span>
+
+        <span class="c1"># Rename columns</span>
+        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rn</span><span class="p">)</span>
+
+        <span class="c1"># Remove frequencies</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_frequencies</span><span class="p">:</span>
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">if</span> <span class="n">return_isolates</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">isolates</span>
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="MARI.rolling"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.rolling">[docs]</a>    <span class="k">def</span> <span class="nf">rolling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                The input parameter &lt;shift&gt; is None. Thus, the value </span>
+<span class="s2">                of the input parameter &lt;period&gt; (</span><span class="si">%s</span><span class="s2">) has been used.&quot;&quot;&quot;</span>
+                <span class="o">%</span> <span class="n">period</span><span class="p">)</span>
+            <span class="n">shift</span> <span class="o">=</span> <span class="n">period</span>
+
+        <span class="c1"># Grouper</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">cdate</span><span class="p">)]</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="n">grouper</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="c1"># Compute frequencies</span>
+        <span class="n">freqs</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">intermediate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">resistant</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">sensitive</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sensitive&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">n_records</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">n_samples</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+                 <span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span> \
+            <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+            <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">cdate</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> \
+            <span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">freqs</span></div>
+
+
+<div class="viewcode-block" id="MARI.grouping"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.grouping">[docs]</a>    <span class="k">def</span> <span class="nf">grouping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Groups the data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create grouper</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">period</span><span class="p">)):</span>
+            <span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">period</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">cdate</span><span class="p">)]</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">grouper</span>
+
+        <span class="c1"># Compute</span>
+        <span class="n">freqs</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">intermediate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">resistant</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">sensitive</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sensitive&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">n_records</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">n_samples</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+                 <span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">freqs</span></div>
+
+
+<div class="viewcode-block" id="MARI.compute_v2"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v2">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute MARI v2.</span>
+
+<span class="sd">        .. note: No need to copy because SARI does it for us</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Libraries</span>
+        <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+
+        <span class="c1"># Not allowing period to be a number. The main reason is that the</span>
+        <span class="c1"># most common interpretation is that scenarios with shift=1D</span>
+        <span class="c1"># period=2D and shift=1D period=2 should be the same. However, the</span>
+        <span class="c1"># results are actually different. Because period=2 in rolling will</span>
+        <span class="c1"># use two adjacent rows without considering time. This introduces</span>
+        <span class="c1"># inconsistencies where there are time gaps without data.</span>
+        <span class="k">if</span> <span class="n">period</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    The input parameter &lt;period&gt; cannot be of </span><span class="si">%s</span><span class="s2">. Ensure </span>
+<span class="s2">                    it is either None or a valid string such as 2D or year.</span>
+<span class="s2">                    &quot;&quot;&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">period</span><span class="p">))</span>
+
+        <span class="c1"># Compute frequencies</span>
+        <span class="k">if</span> <span class="n">period</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># Compute freqs from sari</span>
+            <span class="n">freqs</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">groupby</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">intermediate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                     <span class="n">resistant</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                     <span class="n">sensitive</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sensitive&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                     <span class="n">n_records</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                     <span class="n">n_samples</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+                     <span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Format as datetime</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">cdate</span><span class="p">])</span>
+
+            <span class="c1"># Define new group by with date</span>
+            <span class="n">groupby</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">groupby</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">cdate</span><span class="p">)</span>
+
+            <span class="c1"># Compute mari (sari per sample)</span>
+            <span class="n">iso</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="n">groupby</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> \
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">freqs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grouping</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">iso</span><span class="p">,</span>
+                                      <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                                      <span class="n">cdate</span><span class="o">=</span><span class="n">cdate</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">freqs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">iso</span><span class="p">,</span>
+                                     <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                                     <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
+                                     <span class="n">cdate</span><span class="o">=</span><span class="n">cdate</span><span class="p">)</span>
+
+        <span class="c1"># Add mari</span>
+        <span class="n">freqs</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">freqs</span><span class="o">.</span><span class="n">total</span> <span class="o">/</span> <span class="n">freqs</span><span class="o">.</span><span class="n">n_samples</span>
+
+        <span class="c1"># Remove frequencies</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_frequencies</span><span class="p">:</span>
+            <span class="n">freqs</span> <span class="o">=</span> <span class="n">freqs</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">if</span> <span class="n">return_isolates</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">freqs</span></div>
+
+
+
+<div class="viewcode-block" id="MARI.compute_v3"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v3">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+        <span class="sd">&quot;&quot;&quot;Compute MARI v2.</span>
+
+<span class="sd">        .. note: It does not work properly.</span>
+
+<span class="sd">        .. note: It is considerably slower. Possibly because it</span>
+<span class="sd">                 is executing the rolling method twice. Try to</span>
+<span class="sd">                 remove the first rolling as it is not needed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Libraries</span>
+        <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+
+        <span class="c1"># Format as datetime</span>
+        <span class="k">if</span> <span class="n">cdate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">dataframe</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">cdate</span><span class="p">])</span>
+
+
+        <span class="c1"># Create object</span>
+        <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Compute mari (sari per sample)</span>
+        <span class="n">isolates</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
+            <span class="c1">#shift=shift, period=period, cdate=cdate,</span>
+            <span class="n">return_frequencies</span><span class="o">=</span><span class="n">return_frequencies</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        from pyamr.core.sari import sari</span>
+<span class="sd">        # Compute frequencies</span>
+<span class="sd">        isolates = dataframe.groupby([&#39;SPECIMEN&#39;,</span>
+<span class="sd">                             &#39;MICROORGANISM&#39;,</span>
+<span class="sd">                             &#39;LAB_NUMBER&#39;,</span>
+<span class="sd">                             &#39;DATE&#39;,</span>
+<span class="sd">                             &#39;SENSITIVITY&#39;]) \</span>
+<span class="sd">            .size().unstack().fillna(0)</span>
+
+<span class="sd">        # Include mari which is the SARI per isolate</span>
+<span class="sd">        isolates[&#39;sari&#39;] = sari(isolates, **kwargs)</span>
+<span class="sd">        print(isolates)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">cdate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">by</span> <span class="o">=</span> <span class="n">by</span> <span class="o">+</span> <span class="p">[</span><span class="n">cdate</span><span class="p">]</span>
+
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+            <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">intermediate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">resistant</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="n">sensitive</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sensitive&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                 <span class="c1">#n_records=(&#39;freq&#39;, &#39;sum&#39;),</span>
+                 <span class="n">n_samples</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+                 <span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">period</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Compute rolling</span>
+            <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span> \
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                         <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Format result.</span>
+            <span class="n">aux</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+
+        <span class="c1"># Add mari</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">total</span> <span class="o">/</span> <span class="n">aux</span><span class="o">.</span><span class="n">n_samples</span>
+
+        <span class="c1"># Add number of records</span>
+        <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;n_records&#39;</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">resistant</span> <span class="o">+</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">sensitive</span> <span class="o">+</span> \
+            <span class="n">aux</span><span class="o">.</span><span class="n">intermediate</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">if</span> <span class="n">return_isolates</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">aux</span><span class="p">,</span> <span class="n">isolates</span>
+        <span class="k">return</span> <span class="n">aux</span></div>
+
+
+<div class="viewcode-block" id="MARI.compute_v4"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v4">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
+        <span class="sd">&quot;&quot;&quot;Compute MARI v1.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Copy DataFrame</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Warning if dates NaN</span>
+        <span class="c1"># Warning if elements in groupby any all NaN!</span>
+
+        <span class="c1"># Create grouper</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">cdate</span><span class="p">)]</span>
+        <span class="n">grouper</span> <span class="o">=</span> <span class="n">grouper</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span>
+
+        <span class="c1"># Format as datetime</span>
+        <span class="k">if</span> <span class="n">cdate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">])</span>
+
+        <span class="c1"># ------------------------------------------</span>
+        <span class="c1"># Frequencies</span>
+        <span class="c1"># ------------------------------------------</span>
+        <span class="c1"># Compute frequencies</span>
+        <span class="n">isolates</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Include mari which is the SARI per isolate</span>
+        <span class="n">isolates</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">isolates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+
+        <span class="c1"># Compute frequencies</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="c1"># Compute mari</span>
+            <span class="c1">#dataframe = isolates.mari \</span>
+            <span class="c1">#    .groupby(level=isolates.index.names[:-1]) \</span>
+            <span class="c1">#    .agg([&#39;count&#39;, &#39;mean&#39;]) \</span>
+
+
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">isolates</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">isolates</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+                    <span class="n">intermediate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                    <span class="n">resistant</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                    <span class="n">sensitive</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sensitive&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                    <span class="n">n_samples</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mari&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+                    <span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mari&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">cdate</span><span class="p">]</span> <span class="o">+</span> <span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">intermediate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                     <span class="n">resistant</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;resistant&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                     <span class="n">sensitive</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;sensitive&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+                     <span class="n">n_samples</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mari&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+                     <span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mari&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span> \
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                         <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Format result.</span>
+            <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;DATE&#39;</span><span class="p">])</span>
+        <span class="c1"># Add mari</span>
+        <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">total</span> <span class="o">/</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">n_samples</span>
+
+        <span class="c1"># Add number of records</span>
+        <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;n_records&#39;</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="n">dataframe</span><span class="o">.</span><span class="n">resistant</span> <span class="o">+</span> \
+            <span class="n">dataframe</span><span class="o">.</span><span class="n">sensitive</span> <span class="o">+</span> \
+            <span class="n">dataframe</span><span class="o">.</span><span class="n">intermediate</span>
+
+        <span class="c1"># Remove frequencies</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_frequencies</span><span class="p">:</span>
+            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">if</span> <span class="n">return_isolates</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">isolates</span>
+        <span class="k">return</span> <span class="n">dataframe</span></div>
+
+
+<div class="viewcode-block" id="MARI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute the Multiple Antimicrobial Resistance Index.</span>
+
+<span class="sd">        .. note: The compute_v3 does not work properly</span>
 
 <span class="sd">        .. todo: Add parameters to rolling!</span>
 <span class="sd">        .. todo: Place value at the left, center, right of window?</span>
 <span class="sd">        .. todo: Ensure that works when time gaps present!</span>
 <span class="sd">        .. todo: Carefull with various indexes!</span>
+<span class="sd">        .. todo: Warning if dates NaN</span>
+<span class="sd">        .. todo: Warning if elements in groupby any all NaN!</span>
+<span class="sd">        .. todo: Warning if not all samples tested with same antimicrobials</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        dataframe: pd.DataFrame</span>
-<span class="sd">            A dataframe with the susceptibility test interpretations</span>
+<span class="sd">            A DataFrame with the susceptibility test interpretations</span>
 <span class="sd">            as columns. The default strategies used (see below) expect</span>
 <span class="sd">            the following columns [&#39;sensitive&#39;, &#39;intermediate&#39;, &#39;resistant&#39;]</span>
 <span class="sd">            and if they do not appear they weill be set to zeros.</span>
@@ -186,87 +589,194 @@
 <span class="sd">        isolates: pd.DataFrame</span>
 <span class="sd">            The resistance index and each of the sensitivity value</span>
 <span class="sd">            counts for each individual isolate.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#self.compute_v1(dataframe, **kwargs)</span>
+        <span class="c1">#self.compute_v2(dataframe, **kwargs)</span>
+        <span class="c1">#self.compute_v3(dataframe, **kwargs)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_v2</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 
-        <span class="c1"># Copy DataFrame</span>
-        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="c1"># Warning if dates NaN</span>
-        <span class="c1"># Warning if elements in groupby any all NaN!</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1"># pragma: no cover</span>
 
-        <span class="c1"># Create grouper</span>
-        <span class="n">grouper</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">grouper</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Grouper</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">cdate</span><span class="p">)]</span>
-        <span class="n">grouper</span> <span class="o">=</span> <span class="n">grouper</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span>
+    <span class="c1"># Import libraries</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="kn">import</span> <span class="nn">warnings</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-        <span class="c1"># Format as datetime</span>
-        <span class="k">if</span> <span class="n">cdate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">cdate</span><span class="p">])</span>
+    <span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">default_timer</span> <span class="k">as</span> <span class="n">timer</span>
 
-        <span class="c1"># ------------------------------------------</span>
-        <span class="c1"># Frequencies</span>
-        <span class="c1"># ------------------------------------------</span>
-        <span class="c1">#</span>
-        <span class="n">rn</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="s1">&#39;mari&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;freq&#39;</span>
-        <span class="p">}</span>
+    <span class="c1"># Import specific libraries</span>
+    <span class="kn">from</span> <span class="nn">pyamr.core.mari</span> <span class="kn">import</span> <span class="n">MARI</span>
 
-        <span class="c1"># Compute frequencies</span>
-        <span class="n">isolates</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">)</span> \
-            <span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Filter user warning</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
 
-        <span class="c1"># Include mari by isolate</span>
-        <span class="n">isolates</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sari</span><span class="p">(</span><span class="n">isolates</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="c1"># Compute frequencies</span>
-        <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-            <span class="c1"># Compute mari</span>
-            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">mari</span>\
-                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">isolates</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
-                <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">])</span> \
+    <span class="c1"># ---------------------</span>
+    <span class="c1"># Create data</span>
+    <span class="c1"># ---------------------</span>
+    <span class="c1"># Load data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../fixtures/indexes/fixture_mari.csv&#39;</span><span class="p">)</span>
 
-        <span class="k">else</span><span class="p">:</span>
 
-            <span class="c1"># Create sum and count per shift</span>
-            <span class="n">aux</span> <span class="o">=</span> <span class="n">isolates</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
-                <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">cdate</span><span class="p">]</span> <span class="o">+</span> <span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> \
-                <span class="o">.</span><span class="n">mari</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span> \
-                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">grouper</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+    <span class="c1"># Create MARI instance</span>
+    <span class="n">mari</span> <span class="o">=</span> <span class="n">MARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
 
-            <span class="c1"># Compute sums</span>
-            <span class="n">sums</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
-                <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="c1"># Compute MARI overall</span>
+    <span class="n">mari_overall</span><span class="p">,</span> <span class="n">isolates</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-            <span class="c1"># Compute isolate counts</span>
-            <span class="n">counts</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
-                <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">cdate</span><span class="p">)[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="c1"># Compute SARI temporal (ITI)</span>
+    <span class="n">mari_iti_1d_1d</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-            <span class="n">series</span> <span class="o">=</span> <span class="p">(</span><span class="n">sums</span><span class="o">/</span><span class="n">counts</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;mari&#39;</span><span class="p">)</span>
+    <span class="n">mari_iti_2d_2d</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">sums</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">series</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mari_iti_year</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-            <span class="c1"># Wrong!!</span>
-            <span class="c1"># Compute sum and count [sum, count]</span>
-            <span class="c1">#aux = freqs.groupby([cdate] + grouper[2:-1]) \</span>
-            <span class="c1">#    .mari.agg(&#39;mean&#39;).reset_index() \</span>
-            <span class="c1">#    .set_index(cdate).groupby(grouper[2:-1]) \</span>
-            <span class="c1">#    .mari.rolling(window=period, min_period=1) \</span>
-            <span class="c1">#    .mean()</span>
+    <span class="c1"># Compute MARI temporal (OTI)</span>
+    <span class="n">mari_oti_1d_2d</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="c1"># Rename columns</span>
-        <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rn</span><span class="p">)</span>
+    <span class="n">mari_oti_2d_4d</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;4D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="c1"># Remove frequencies</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_frequencies</span><span class="p">:</span>
-            <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;mari&#39;</span><span class="p">]</span>
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Isolates:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">isolates</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (overall):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mari_overall</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (iti) | 1D_1D:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mari_iti_1d_1d</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (iti) | 2D_2D:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mari_iti_2d_2d</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (iti) | year:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mari_iti_year</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (oti) | 1D_2D:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mari_oti_1d_2d</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (oti) | 2D_4D:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mari_oti_2d_4d</span><span class="p">)</span>
 
-        <span class="c1"># Return</span>
-        <span class="k">if</span> <span class="n">return_isolates</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">isolates</span>
-        <span class="k">return</span> <span class="n">dataframe</span></div></div>
+
+    <span class="c1"># -----------------------</span>
+    <span class="c1"># Full test</span>
+    <span class="c1"># -----------------------</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+    <span class="c1"># Define possible values</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">]</span>
+    <span class="n">combos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Combinations of params &lt;shift&gt; and &lt;period&gt;:&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Loop</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">combos</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%2s</span><span class="s2">/</span><span class="si">%2s</span><span class="s2">. Computing... shift=</span><span class="si">%-5s</span><span class="s2"> | period=</span><span class="si">%-5s</span><span class="s2"> ==&gt; &quot;</span> <span class="o">%</span> \
+              <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">combos</span><span class="p">),</span> <span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">s00</span><span class="p">,</span> <span class="n">s01</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+            <span class="n">s10</span><span class="p">,</span> <span class="n">s11</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+            <span class="n">s20</span><span class="p">,</span> <span class="n">s21</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v3</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ok! equals_1=</span><span class="si">%s</span><span class="s2"> equals_2=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                  <span class="p">(</span><span class="n">s00</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">s10</span><span class="p">),</span> <span class="n">s10</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">s20</span><span class="p">)))</span>
+            <span class="c1">#print(s00)</span>
+            <span class="c1">#print(s10)</span>
+            <span class="c1">#print(s20)</span>
+            <span class="c1">#print(&quot;\n\n&quot; + &quot;=&quot; * 80)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+    <span class="c1"># ---------------------------------------------------</span>
+    <span class="c1"># Test timings</span>
+    <span class="c1"># ---------------------------------------------------</span>
+    <span class="c1"># Libraries</span>
+    <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_susceptibility</span>
+
+    <span class="c1"># Constants</span>
+    <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;date_received&#39;</span><span class="p">:</span> <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;laboratory_number&#39;</span><span class="p">:</span> <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;specimen_code&#39;</span><span class="p">:</span> <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;microorganism_code&#39;</span><span class="p">:</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">:</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;sensitivity&#39;</span><span class="p">:</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Load data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">make_susceptibility</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Comparing execution times:&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Example 1</span>
+    <span class="c1"># =========</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_overall</span><span class="p">,</span> <span class="n">isolates</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_overall</span><span class="p">,</span> <span class="n">isolates</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_overall</span><span class="p">,</span> <span class="n">isolates</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v3</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.10f</span><span class="s2"> | </span><span class="si">%.10f</span><span class="s2"> | </span><span class="si">%.10f</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span> <span class="n">t3</span><span class="o">-</span><span class="n">t2</span><span class="p">))</span>
+
+
+    <span class="c1"># Example 2</span>
+    <span class="c1"># =========</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_iti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_iti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_iti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v3</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.10f</span><span class="s2"> | </span><span class="si">%.10f</span><span class="s2"> | </span><span class="si">%.10f</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span> <span class="n">t3</span><span class="o">-</span><span class="n">t2</span><span class="p">))</span>
+
+    <span class="c1"># Example 3</span>
+    <span class="c1"># =========</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_oti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_oti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="n">mari_oti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute_v3</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+        <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%.10f</span><span class="s2"> | </span><span class="si">%.10f</span><span class="s2"> | </span><span class="si">%.10f</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span> <span class="n">t3</span><span class="o">-</span><span class="n">t2</span><span class="p">))</span>
+
+
+
 </pre></div>
 
            </div>
@@ -276,7 +786,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

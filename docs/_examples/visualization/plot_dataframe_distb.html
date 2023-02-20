@@ -47,16 +47,13 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage/registries.html">Registries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reports/index.html">Reports</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Visualization</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Table Boxplot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_dataframe_table.html">Table Scatterplot</a></li>
@@ -71,6 +68,10 @@
 <li class="toctree-l2"><a class="reference internal" href="plot_pyplot_treemap.html">Plotly - Treemap (sari)</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -105,10 +106,7 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="table-boxplot">
 <span id="sphx-glr-examples-visualization-plot-dataframe-distb-py"></span><h1>Table Boxplot<a class="headerlink" href="#table-boxplot" title="Permalink to this headline"></a></h1>
-<p>Example using your package</p>
-<img alt="R2, Prob(F), Prob(JB), P&gt;|t| m, P&gt;|t| n, DW" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_dataframe_distb_001.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+<img src="../../_images/sphx_glr_plot_dataframe_distb_001.png" srcset="../../_images/sphx_glr_plot_dataframe_distb_001.png" alt="R2, Prob(F), Prob(JB), P>|t| m, P>|t| n, DW" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
        org   abx    sari        sart     r2      f_prob       jb      jb_prob    ptm    ptn     dw surveillance
 0     ABAU  AAMI  0.3906 -5.0000e-03  0.181  2.9400e-05    4.648   9.7900e-02  0.000  0.000  1.177            M
 1     ABAU  AAMO  0.9603 -1.2000e-03  0.053  1.9400e-02  631.965  5.9000e-138  0.019  0.000  1.848            M
@@ -128,202 +126,183 @@ to download the full example code</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  7</span> <span class="c1"># Libraries</span>
-<span class="linenos">  8</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="linenos">  9</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="linenos"> 10</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="linenos"> 11</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="linenos"> 12</span> <span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
-<span class="linenos"> 13</span>
-<span class="linenos"> 14</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
-<span class="linenos"> 15</span>
-<span class="linenos"> 16</span> <span class="c1"># -----------------------------------------------------------</span>
-<span class="linenos"> 17</span> <span class="c1"># Helpers</span>
-<span class="linenos"> 18</span> <span class="c1"># -----------------------------------------------------------</span>
-<span class="linenos"> 19</span> <span class="k">def</span> <span class="nf">hlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">yv</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="linenos"> 20</span>     <span class="sd">&quot;&quot;&quot;This function adds a vertical line and background</span>
-<span class="linenos"> 21</span>
-<span class="linenos"> 22</span><span class="sd">     Parameters</span>
-<span class="linenos"> 23</span><span class="sd">     ----------</span>
-<span class="linenos"> 24</span>
-<span class="linenos"> 25</span><span class="sd">     Returns</span>
-<span class="linenos"> 26</span><span class="sd">     -------</span>
-<span class="linenos"> 27</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="linenos"> 28</span>     <span class="c1"># Plot line</span>
-<span class="linenos"> 29</span>     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">),</span> <span class="p">(</span><span class="n">yv</span><span class="p">,</span> <span class="n">yv</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
-<span class="linenos"> 30</span>             <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos"> 31</span>
-<span class="linenos"> 32</span>     <span class="c1"># Plot background.</span>
-<span class="linenos"> 33</span>     <span class="k">if</span> <span class="n">bg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos"> 34</span>         <span class="n">cb</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set2&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="linenos"> 35</span>         <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">],</span> <span class="p">[</span><span class="n">yv</span><span class="p">,</span> <span class="n">yv</span><span class="p">],</span> <span class="p">[</span><span class="n">bg</span><span class="p">,</span> <span class="n">bg</span><span class="p">],</span>
-<span class="linenos"> 36</span>                         <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
-<span class="linenos"> 37</span>
-<span class="linenos"> 38</span> <span class="c1"># -------------------</span>
-<span class="linenos"> 39</span> <span class="c1"># PLOTTING SETTINGS</span>
-<span class="linenos"> 40</span> <span class="c1"># -------------------</span>
-<span class="linenos"> 41</span> <span class="c1"># Configuration for each columns</span>
-<span class="linenos"> 42</span> <span class="n">info_sari</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 43</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
-<span class="linenos"> 44</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SARI&#39;</span><span class="p">,</span>
-<span class="linenos"> 45</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
-<span class="linenos"> 46</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos"> 47</span> <span class="p">}</span>
-<span class="linenos"> 48</span>
-<span class="linenos"> 49</span> <span class="n">info_sart</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 50</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
-<span class="linenos"> 51</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SART&#39;</span><span class="p">,</span>
-<span class="linenos"> 52</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
-<span class="linenos"> 53</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="linenos"> 54</span> <span class="p">}</span>
-<span class="linenos"> 55</span>
-<span class="linenos"> 56</span> <span class="n">info_r2</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 57</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
-<span class="linenos"> 58</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span>
-<span class="linenos"> 59</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
-<span class="linenos"> 60</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
-<span class="linenos"> 61</span> <span class="p">}</span>
-<span class="linenos"> 62</span>
-<span class="linenos"> 63</span> <span class="n">info_fprob</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 64</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;f_prob&#39;</span><span class="p">,</span>
-<span class="linenos"> 65</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Prob(F)&#39;</span><span class="p">,</span>
-<span class="linenos"> 66</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
-<span class="linenos"> 67</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
-<span class="linenos"> 68</span> <span class="p">}</span>
-<span class="linenos"> 69</span>
-<span class="linenos"> 70</span> <span class="n">info_jb_prob</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 71</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
-<span class="linenos"> 72</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Prob(JB)&#39;</span><span class="p">,</span>
-<span class="linenos"> 73</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
-<span class="linenos"> 74</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">}],</span>
-<span class="linenos"> 75</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
-<span class="linenos"> 76</span> <span class="p">}</span>
-<span class="linenos"> 77</span>
-<span class="linenos"> 78</span> <span class="n">info_dw</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 79</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
-<span class="linenos"> 80</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;DW&#39;</span><span class="p">,</span>
-<span class="linenos"> 81</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">4.0</span><span class="p">}],</span>
-<span class="linenos"> 82</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">],</span>
-<span class="linenos"> 83</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="linenos"> 84</span> <span class="p">}</span>
-<span class="linenos"> 85</span>
-<span class="linenos"> 86</span> <span class="n">info_slope</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 87</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;x1_tprob&#39;</span><span class="p">,</span>
-<span class="linenos"> 88</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
-<span class="linenos"> 89</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;P&gt;|t| m&#39;</span><span class="p">,</span>
-<span class="linenos"> 90</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">}],</span>
-<span class="linenos"> 91</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
-<span class="linenos"> 92</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
-<span class="linenos"> 93</span> <span class="p">}</span>
-<span class="linenos"> 94</span>
-<span class="linenos"> 95</span> <span class="n">info_coefficient</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos"> 96</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;c_tprob&#39;</span><span class="p">,</span>
-<span class="linenos"> 97</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
-<span class="linenos"> 98</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;P&gt;|t| n&#39;</span><span class="p">,</span>
-<span class="linenos"> 99</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">}],</span>
-<span class="linenos">100</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
-<span class="linenos">101</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
-<span class="linenos">102</span> <span class="p">}</span>
-<span class="linenos">103</span>
-<span class="linenos">104</span> <span class="c1"># Now we combine all of them together. Note</span>
-<span class="linenos">105</span> <span class="c1"># that the key value corresponds to the name</span>
-<span class="linenos">106</span> <span class="c1"># of the column it should be applied to.</span>
-<span class="linenos">107</span> <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">108</span>     <span class="s1">&#39;sari&#39;</span><span class="p">:</span> <span class="n">info_sari</span><span class="p">,</span>
-<span class="linenos">109</span>     <span class="s1">&#39;sart&#39;</span><span class="p">:</span> <span class="n">info_sart</span><span class="p">,</span>
-<span class="linenos">110</span>     <span class="s1">&#39;dw&#39;</span><span class="p">:</span> <span class="n">info_dw</span><span class="p">,</span>
-<span class="linenos">111</span>     <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">info_r2</span><span class="p">,</span>
-<span class="linenos">112</span>     <span class="s1">&#39;jb_prob&#39;</span><span class="p">:</span> <span class="n">info_jb_prob</span><span class="p">,</span>
-<span class="linenos">113</span>     <span class="s1">&#39;ptm&#39;</span><span class="p">:</span> <span class="n">info_slope</span><span class="p">,</span>
-<span class="linenos">114</span>     <span class="s1">&#39;ptn&#39;</span><span class="p">:</span> <span class="n">info_coefficient</span><span class="p">,</span>
-<span class="linenos">115</span>     <span class="s1">&#39;f_prob&#39;</span><span class="p">:</span> <span class="n">info_fprob</span>
-<span class="linenos">116</span> <span class="p">}</span>
-<span class="linenos">117</span>
-<span class="linenos">118</span>
-<span class="linenos">119</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">120</span> <span class="c1"># Main</span>
-<span class="linenos">121</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">122</span> <span class="c1"># Path</span>
-<span class="linenos">123</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../pyamr/datasets/other/susceptibility_full.csv&#39;</span>
-<span class="linenos">124</span>
-<span class="linenos">125</span> <span class="c1"># Rename</span>
-<span class="linenos">126</span> <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">127</span>     <span class="s1">&#39;organismCode&#39;</span><span class="p">:</span> <span class="s1">&#39;org&#39;</span><span class="p">,</span>
-<span class="linenos">128</span>     <span class="s1">&#39;antibioticCode&#39;</span><span class="p">:</span> <span class="s1">&#39;abx&#39;</span><span class="p">,</span>
-<span class="linenos">129</span>     <span class="s1">&#39;sari&#39;</span><span class="p">:</span> <span class="s1">&#39;sari&#39;</span><span class="p">,</span>
-<span class="linenos">130</span>     <span class="s1">&#39;x1_coef&#39;</span><span class="p">:</span> <span class="s1">&#39;sart&#39;</span><span class="p">,</span>
-<span class="linenos">131</span>     <span class="s1">&#39;adj_rsquared&#39;</span><span class="p">:</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span>
-<span class="linenos">132</span>     <span class="s1">&#39;f_prob&#39;</span><span class="p">:</span> <span class="s1">&#39;f_prob&#39;</span><span class="p">,</span>
-<span class="linenos">133</span>     <span class="s1">&#39;jarque-bera&#39;</span><span class="p">:</span> <span class="s1">&#39;jb&#39;</span><span class="p">,</span>
-<span class="linenos">134</span>     <span class="s1">&#39;jarque_bera_prob&#39;</span><span class="p">:</span> <span class="s1">&#39;jb_prob&#39;</span><span class="p">,</span>
-<span class="linenos">135</span>     <span class="s1">&#39;x1_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span>
-<span class="linenos">136</span>     <span class="s1">&#39;c_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span>
-<span class="linenos">137</span>     <span class="s1">&#39;durbin-watson&#39;</span><span class="p">:</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span>
-<span class="linenos">138</span>     <span class="s1">&#39;surveillance&#39;</span><span class="p">:</span> <span class="s1">&#39;surveillance&#39;</span>
-<span class="linenos">139</span> <span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  6</span> <span class="c1"># Libraries</span>
+<span class="linenos">  7</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">  8</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">  9</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos"> 10</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 11</span> <span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span> <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.utils</span> <span class="kn">import</span> <span class="n">hlinebgplot</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span>
+<span class="linenos"> 18</span> <span class="c1"># -------------------</span>
+<span class="linenos"> 19</span> <span class="c1"># PLOTTING SETTINGS</span>
+<span class="linenos"> 20</span> <span class="c1"># -------------------</span>
+<span class="linenos"> 21</span> <span class="c1"># Configuration for each columns</span>
+<span class="linenos"> 22</span> <span class="n">info_sari</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 23</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+<span class="linenos"> 24</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SARI&#39;</span><span class="p">,</span>
+<span class="linenos"> 25</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span>
+<span class="linenos"> 26</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="linenos"> 27</span> <span class="p">}</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span> <span class="n">info_sart</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 30</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+<span class="linenos"> 31</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;SART&#39;</span><span class="p">,</span>
+<span class="linenos"> 32</span>   <span class="s1">&#39;xlim&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+<span class="linenos"> 33</span>   <span class="s1">&#39;xticks&#39;</span><span class="p">:[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="linenos"> 34</span> <span class="p">}</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span> <span class="n">info_r2</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 37</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
+<span class="linenos"> 38</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span>
+<span class="linenos"> 39</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+<span class="linenos"> 40</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
+<span class="linenos"> 41</span> <span class="p">}</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span> <span class="n">info_fprob</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 44</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;f_prob&#39;</span><span class="p">,</span>
+<span class="linenos"> 45</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Prob(F)&#39;</span><span class="p">,</span>
+<span class="linenos"> 46</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+<span class="linenos"> 47</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
+<span class="linenos"> 48</span> <span class="p">}</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span> <span class="n">info_jb_prob</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 51</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn&#39;</span><span class="p">,</span>
+<span class="linenos"> 52</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;Prob(JB)&#39;</span><span class="p">,</span>
+<span class="linenos"> 53</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+<span class="linenos"> 54</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">}],</span>
+<span class="linenos"> 55</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
+<span class="linenos"> 56</span> <span class="p">}</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span> <span class="n">info_dw</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 59</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
+<span class="linenos"> 60</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;DW&#39;</span><span class="p">,</span>
+<span class="linenos"> 61</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">4.0</span><span class="p">}],</span>
+<span class="linenos"> 62</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">],</span>
+<span class="linenos"> 63</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="linenos"> 64</span> <span class="p">}</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span> <span class="n">info_slope</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 67</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;x1_tprob&#39;</span><span class="p">,</span>
+<span class="linenos"> 68</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
+<span class="linenos"> 69</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;P&gt;|t| m&#39;</span><span class="p">,</span>
+<span class="linenos"> 70</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">}],</span>
+<span class="linenos"> 71</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+<span class="linenos"> 72</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
+<span class="linenos"> 73</span> <span class="p">}</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span> <span class="n">info_coefficient</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 76</span>   <span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;c_tprob&#39;</span><span class="p">,</span>
+<span class="linenos"> 77</span>   <span class="s1">&#39;cmap&#39;</span><span class="p">:</span><span class="s1">&#39;YlGn_r&#39;</span><span class="p">,</span>
+<span class="linenos"> 78</span>   <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="s1">&#39;P&gt;|t| n&#39;</span><span class="p">,</span>
+<span class="linenos"> 79</span>   <span class="s1">&#39;hline&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;yv&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;bg&#39;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">}],</span>
+<span class="linenos"> 80</span>   <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+<span class="linenos"> 81</span>   <span class="s1">&#39;yticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">.0</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.8</span> <span class="p">]</span>
+<span class="linenos"> 82</span> <span class="p">}</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span>
+<span class="linenos"> 85</span> <span class="c1"># Now we combine all of them together. Note</span>
+<span class="linenos"> 86</span> <span class="c1"># that the key value corresponds to the name</span>
+<span class="linenos"> 87</span> <span class="c1"># of the column it should be applied to.</span>
+<span class="linenos"> 88</span> <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 89</span>     <span class="s1">&#39;sari&#39;</span><span class="p">:</span> <span class="n">info_sari</span><span class="p">,</span>
+<span class="linenos"> 90</span>     <span class="s1">&#39;sart&#39;</span><span class="p">:</span> <span class="n">info_sart</span><span class="p">,</span>
+<span class="linenos"> 91</span>     <span class="s1">&#39;dw&#39;</span><span class="p">:</span> <span class="n">info_dw</span><span class="p">,</span>
+<span class="linenos"> 92</span>     <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">info_r2</span><span class="p">,</span>
+<span class="linenos"> 93</span>     <span class="s1">&#39;jb_prob&#39;</span><span class="p">:</span> <span class="n">info_jb_prob</span><span class="p">,</span>
+<span class="linenos"> 94</span>     <span class="s1">&#39;ptm&#39;</span><span class="p">:</span> <span class="n">info_slope</span><span class="p">,</span>
+<span class="linenos"> 95</span>     <span class="s1">&#39;ptn&#39;</span><span class="p">:</span> <span class="n">info_coefficient</span><span class="p">,</span>
+<span class="linenos"> 96</span>     <span class="s1">&#39;f_prob&#39;</span><span class="p">:</span> <span class="n">info_fprob</span>
+<span class="linenos"> 97</span> <span class="p">}</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">100</span> <span class="c1"># Main</span>
+<span class="linenos">101</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">102</span> <span class="c1"># Data path.</span>
+<span class="linenos">103</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;../../pyamr/fixtures/fixture_surveillance.csv&#39;</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span> <span class="c1"># Rename</span>
+<span class="linenos">106</span> <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">107</span>     <span class="s1">&#39;organismCode&#39;</span><span class="p">:</span> <span class="s1">&#39;org&#39;</span><span class="p">,</span>
+<span class="linenos">108</span>     <span class="s1">&#39;antibioticCode&#39;</span><span class="p">:</span> <span class="s1">&#39;abx&#39;</span><span class="p">,</span>
+<span class="linenos">109</span>     <span class="s1">&#39;sari&#39;</span><span class="p">:</span> <span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+<span class="linenos">110</span>     <span class="s1">&#39;x1_coef&#39;</span><span class="p">:</span> <span class="s1">&#39;sart&#39;</span><span class="p">,</span>
+<span class="linenos">111</span>     <span class="s1">&#39;adj_rsquared&#39;</span><span class="p">:</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span>
+<span class="linenos">112</span>     <span class="s1">&#39;f_prob&#39;</span><span class="p">:</span> <span class="s1">&#39;f_prob&#39;</span><span class="p">,</span>
+<span class="linenos">113</span>     <span class="s1">&#39;jarque-bera&#39;</span><span class="p">:</span> <span class="s1">&#39;jb&#39;</span><span class="p">,</span>
+<span class="linenos">114</span>     <span class="s1">&#39;jarque_bera_prob&#39;</span><span class="p">:</span> <span class="s1">&#39;jb_prob&#39;</span><span class="p">,</span>
+<span class="linenos">115</span>     <span class="s1">&#39;x1_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span>
+<span class="linenos">116</span>     <span class="s1">&#39;c_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span>
+<span class="linenos">117</span>     <span class="s1">&#39;durbin-watson&#39;</span><span class="p">:</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span>
+<span class="linenos">118</span>     <span class="s1">&#39;surveillance&#39;</span><span class="p">:</span> <span class="s1">&#39;surveillance&#39;</span>
+<span class="linenos">119</span> <span class="p">}</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span> <span class="c1"># Create data</span>
+<span class="linenos">122</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="linenos">123</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">rename</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+<span class="linenos">124</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span> <span class="c1"># Show</span>
+<span class="linenos">127</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+<span class="linenos">128</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">132</span> <span class="c1"># Pair Grid</span>
+<span class="linenos">133</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">134</span> <span class="c1"># Features</span>
+<span class="linenos">135</span> <span class="n">statistics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;f_prob&#39;</span><span class="p">,</span> <span class="s1">&#39;jb_prob&#39;</span><span class="p">,</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span> <span class="s1">&#39;dw&#39;</span><span class="p">]</span>
+<span class="linenos">136</span>
+<span class="linenos">137</span> <span class="c1"># Create figure</span>
+<span class="linenos">138</span> <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">statistics</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos">139</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 <span class="linenos">140</span>
-<span class="linenos">141</span> <span class="c1"># Create data</span>
-<span class="linenos">142</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="linenos">143</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">rename</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
-<span class="linenos">144</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
-<span class="linenos">145</span>
-<span class="linenos">146</span> <span class="c1"># Show</span>
-<span class="linenos">147</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
-<span class="linenos">148</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="linenos">149</span>
-<span class="linenos">150</span>
-<span class="linenos">151</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">152</span> <span class="c1"># Pair Grid</span>
-<span class="linenos">153</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">154</span> <span class="c1"># Features</span>
-<span class="linenos">155</span> <span class="n">statistics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">,</span> <span class="s1">&#39;f_prob&#39;</span><span class="p">,</span> <span class="s1">&#39;jb_prob&#39;</span><span class="p">,</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span> <span class="s1">&#39;dw&#39;</span><span class="p">]</span>
-<span class="linenos">156</span>
-<span class="linenos">157</span> <span class="c1"># Create figure</span>
-<span class="linenos">158</span> <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">statistics</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="linenos">159</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="linenos">160</span>
-<span class="linenos">161</span> <span class="c1"># Plot strips and format axes</span>
-<span class="linenos">162</span> <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">statistics</span><span class="p">):</span>
-<span class="linenos">163</span>
-<span class="linenos">164</span>     <span class="c1"># Get information</span>
-<span class="linenos">165</span>     <span class="n">d</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="p">{}</span>
-<span class="linenos">166</span>
-<span class="linenos">167</span>     <span class="c1"># Plot distributions</span>
-<span class="linenos">168</span>     <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;surveillance&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span>
-<span class="linenos">169</span>                 <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mf">1e30</span><span class="p">,</span>
-<span class="linenos">170</span>                 <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set3&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="linenos">171</span>
-<span class="linenos">172</span>     <span class="c1"># Plot horizontal lines</span>
-<span class="linenos">173</span>     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hline&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-<span class="linenos">174</span>         <span class="n">hlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="o">**</span><span class="n">e</span><span class="p">)</span>
-<span class="linenos">175</span>
-<span class="linenos">176</span>     <span class="c1"># Configure axes</span>
-<span class="linenos">177</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
-<span class="linenos">178</span>            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="linenos">179</span>            <span class="n">ylim</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ylim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="linenos">180</span>            <span class="n">yticks</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;yticks&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()))</span>
-<span class="linenos">181</span>     <span class="c1">#ax.tick_params(axis=&#39;y&#39;, which=&#39;both&#39;, length=0)</span>
-<span class="linenos">182</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">183</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">184</span>
-<span class="linenos">185</span> <span class="c1"># Despine</span>
-<span class="linenos">186</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">187</span>
-<span class="linenos">188</span> <span class="c1"># Change last ticks to right</span>
-<span class="linenos">189</span> <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
-<span class="linenos">190</span>
-<span class="linenos">191</span> <span class="c1"># Adjust space (overwritten by tight)</span>
-<span class="linenos">192</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="linenos">193</span>
-<span class="linenos">194</span> <span class="c1"># Configure layout</span>
-<span class="linenos">195</span> <span class="c1">#plt.tight_layout()</span>
-<span class="linenos">196</span>
-<span class="linenos">197</span> <span class="c1"># Show</span>
-<span class="linenos">198</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">141</span> <span class="c1"># Plot strips and format axes</span>
+<span class="linenos">142</span> <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">statistics</span><span class="p">):</span>
+<span class="linenos">143</span>
+<span class="linenos">144</span>     <span class="c1"># Get information</span>
+<span class="linenos">145</span>     <span class="n">d</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="p">{}</span>
+<span class="linenos">146</span>
+<span class="linenos">147</span>     <span class="c1"># Plot distributions</span>
+<span class="linenos">148</span>     <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;surveillance&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span>
+<span class="linenos">149</span>                 <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mf">1e30</span><span class="p">,</span>
+<span class="linenos">150</span>                 <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set3&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span>     <span class="c1"># Plot horizontal lines</span>
+<span class="linenos">153</span>     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;hline&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+<span class="linenos">154</span>         <span class="n">hlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="o">**</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">155</span>
+<span class="linenos">156</span>     <span class="c1"># Configure axes</span>
+<span class="linenos">157</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
+<span class="linenos">158</span>            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="linenos">159</span>            <span class="n">ylim</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ylim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="linenos">160</span>            <span class="n">yticks</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;yticks&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()))</span>
+<span class="linenos">161</span>     <span class="c1">#ax.tick_params(axis=&#39;y&#39;, which=&#39;both&#39;, length=0)</span>
+<span class="linenos">162</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">163</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">164</span>
+<span class="linenos">165</span> <span class="c1"># Despine</span>
+<span class="linenos">166</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span> <span class="c1"># Change last ticks to right</span>
+<span class="linenos">169</span> <span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+<span class="linenos">170</span>
+<span class="linenos">171</span> <span class="c1"># Adjust space (overwritten by tight)</span>
+<span class="linenos">172</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="linenos">173</span>
+<span class="linenos">174</span> <span class="c1"># Configure layout</span>
+<span class="linenos">175</span> <span class="c1">#plt.tight_layout()</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span> <span class="c1"># Show</span>
+<span class="linenos">178</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.324 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-dataframe-distb-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.315 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-dataframe-distb-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/44810dcd63c96a870efc0cf52a3ce8b2/plot_dataframe_distb.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_dataframe_distb.py</span></code></a></p>
 </div>
@@ -345,7 +324,7 @@ to download the full example code</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Bernard Hernandez.</p>
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

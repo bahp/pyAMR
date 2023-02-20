@@ -18,8 +18,8 @@
 .. _sphx_glr__examples_tutorial_indexes_plot_core_sari.py:
 
 
-Single Antimicrobial Resistance (SARI)
-======================================
+Single Resistance Index (SARI)
+==============================
 
 The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a
@@ -31,95 +31,31 @@ intermediate category is not always considered.
 
 The parameter strategy accepts three different options:
 
-    - ``soft``   as R / R+I+S
-    - ``medium`` as R / R+S
-    - ``hard``  as R+I / R+I+S
-    - ``other``  as R+0.5I / R+0.5I+S
+    - ``soft``   as R / (R+I+S)
+    - ``medium`` as R / (R+S)
+    - ``hard``   as (R+I) / (R+I+S)
+    - ``other``  as (R+0.5I) / (R+0.5I+S)
 
-For more information see: :py:mod:`pyamr.core.asai.SARI`
+..
+    - ``soft``   as :math:`R / (R + I + S)`
+    - ``medium`` as :math:`R / (R + S)`
+    - ``hard``   as :math:`(R + I) / (R + I + S)`
+    - ``other``  as :math:`(R + 0.5I) / (R + 0.5I + S)`
 
-.. GENERATED FROM PYTHON SOURCE LINES 23-149
+For more information see: :py:mod:`pyamr.core.sari.SARI`
 
-
-
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    SARI (overall):
-    SPECIMEN  MICROORGANISM  ANTIMICROBIAL
-    BLDCUL    ECOL           AAUG             0.4000
-                             ACIP             0.6000
-              SAUR           ACIP             0.6111
-    URICUL    SAUR           ACIP             0.7000
-    Name: sari, dtype: float64
-
-    SARI (iti):
-    SENSITIVITY                                      intermediate  resistant  sensitive  freq    sari
-    SPECIMEN MICROORGANISM ANTIMICROBIAL DATE                                                        
-    BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.2500
-                                         2021-01-02           0.0        1.0        2.0   3.0  0.3333
-                                         2021-01-03           0.0        1.0        1.0   2.0  0.5000
-                                         2021-01-04           0.0        1.0        0.0   1.0  1.0000
-                           ACIP          2021-01-01           0.0        3.0        1.0   4.0  0.7500
-                                         2021-01-02           0.0        2.0        1.0   3.0  0.6667
-                                         2021-01-03           0.0        1.0        1.0   2.0  0.5000
-                                         2021-01-04           0.0        0.0        1.0   1.0  0.0000
-             SAUR          ACIP          2021-01-01           0.0        4.0        0.0   4.0  1.0000
-                                         2021-01-02           0.0        1.0        2.0   3.0  0.3333
-                                         2021-01-08           0.0        5.0        1.0   6.0  0.8333
-                                         2021-01-09           0.0        1.0        4.0   5.0  0.2000
-    URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        0.0   2.0  1.0000
-                                         2021-01-13           0.0        1.0        1.0   2.0  0.5000
-                                         2021-01-14           0.0        2.0        0.0   2.0  1.0000
-                                         2021-01-15           0.0        0.0        2.0   2.0  0.0000
-                                         2021-01-16           2.0        0.0        0.0   2.0  1.0000
-
-    SARI (oti):
-    SENSITIVITY                                      intermediate  resistant  sensitive  freq    sari
-    SPECIMEN MICROORGANISM ANTIMICROBIAL DATE                                                        
-    BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.2500
-                                         2021-01-02           0.0        2.0        5.0   7.0  0.2857
-                                         2021-01-03           0.0        2.0        3.0   5.0  0.4000
-                                         2021-01-04           0.0        2.0        1.0   3.0  0.6667
-                           ACIP          2021-01-01           0.0        3.0        1.0   4.0  0.7500
-                                         2021-01-02           0.0        5.0        2.0   7.0  0.7143
-                                         2021-01-03           0.0        3.0        2.0   5.0  0.6000
-                                         2021-01-04           0.0        1.0        2.0   3.0  0.3333
-             SAUR          ACIP          2021-01-01           0.0        4.0        0.0   4.0  1.0000
-                                         2021-01-02           0.0        5.0        2.0   7.0  0.7143
-                                         2021-01-08           0.0        5.0        1.0   6.0  0.8333
-                                         2021-01-09           0.0        6.0        5.0  11.0  0.5455
-    URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        0.0   2.0  1.0000
-                                         2021-01-13           1.0        2.0        1.0   4.0  0.7500
-                                         2021-01-14           0.0        3.0        1.0   4.0  0.7500
-                                         2021-01-15           0.0        2.0        2.0   4.0  0.5000
-                                         2021-01-16           2.0        0.0        2.0   4.0  0.5000
-
-
-
-
-
-
-|
+.. GENERATED FROM PYTHON SOURCE LINES 30-139
 
 .. code-block:: default
-   :lineno-start: 24
+   :lineno-start: 31
 
 
-    # Import libraries
-    import sys
-    import glob
+    # Libraries
     import pandas as pd
-    import seaborn as sns
     import matplotlib as mpl
     import matplotlib.pyplot as plt
 
-    # Import specific libraries
+    # Specific
     from pyamr.core.sari import SARI
 
     # Set matplotlib
@@ -128,27 +64,10 @@ For more information see: :py:mod:`pyamr.core.asai.SARI`
     mpl.rcParams['axes.titlesize'] = 11
     mpl.rcParams['legend.fontsize'] = 9
 
-
-    # -------------------------
-    # Constants
-    # -------------------------
-    # Replace codes
-    replace_codes = {
-      '9MRSN':'MRSCUL',
-      'URINE CULTURE':'URICUL',
-      'WOUND CULTURE':'WOUCUL',
-      'BLOOD CULTURE':'BLDCUL',
-      'SPUTUM CULTURE':'SPTCUL',
-      'CSF CULTURE':'CSFCUL',
-      'EYE CULTURE':'EYECUL',
-      'GENITALCUL':'GENCUL',
-      'NEONATAL SCREEN':'NEOCUL',
-    }
-
-    # ---------------------
+    # ----------------------------------
     # Create data
-    # ---------------------
-    # Create data
+    # ----------------------------------
+    # Define susceptibility test records
     data = [
         ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
         ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
@@ -203,7 +122,6 @@ For more information see: :py:mod:`pyamr.core.asai.SARI`
         ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
     ]
 
-
     data = pd.DataFrame(data,
         columns=['DATE',
                  'SPECIMEN',
@@ -238,30 +156,600 @@ For more information see: :py:mod:`pyamr.core.asai.SARI`
     print("\nSARI (oti):")
     print(sari_oti)
 
+
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+
+    SARI (overall):
+    SPECIMEN  MICROORGANISM  ANTIMICROBIAL
+    BLDCUL    ECOL           AAUG             0.4000
+                             ACIP             0.6000
+              SAUR           ACIP             0.6111
+    URICUL    SAUR           ACIP             0.7000
+    Name: sari, dtype: float64
+
+    SARI (iti):
+                                                     intermediate  resistant  sensitive  freq    sari
+    SPECIMEN MICROORGANISM ANTIMICROBIAL DATE                                                        
+    BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.2500
+                                         2021-01-02           0.0        1.0        2.0   3.0  0.3333
+                                         2021-01-03           0.0        1.0        1.0   2.0  0.5000
+                                         2021-01-04           0.0        1.0        0.0   1.0  1.0000
+                           ACIP          2021-01-01           0.0        3.0        1.0   4.0  0.7500
+                                         2021-01-02           0.0        2.0        1.0   3.0  0.6667
+                                         2021-01-03           0.0        1.0        1.0   2.0  0.5000
+                                         2021-01-04           0.0        0.0        1.0   1.0  0.0000
+             SAUR          ACIP          2021-01-01           0.0        4.0        0.0   4.0  1.0000
+                                         2021-01-02           0.0        1.0        2.0   3.0  0.3333
+                                         2021-01-08           0.0        5.0        1.0   6.0  0.8333
+                                         2021-01-09           0.0        1.0        4.0   5.0  0.2000
+    URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        0.0   2.0  1.0000
+                                         2021-01-13           0.0        1.0        1.0   2.0  0.5000
+                                         2021-01-14           0.0        2.0        0.0   2.0  1.0000
+                                         2021-01-15           0.0        0.0        2.0   2.0  0.0000
+                                         2021-01-16           2.0        0.0        0.0   2.0  1.0000
+
+    SARI (oti):
+                                                     intermediate  resistant  sensitive  freq    sari
+    SPECIMEN MICROORGANISM ANTIMICROBIAL DATE                                                        
+    BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.2500
+                                         2021-01-02           0.0        2.0        5.0   7.0  0.2857
+                                         2021-01-03           0.0        2.0        3.0   5.0  0.4000
+                                         2021-01-04           0.0        2.0        1.0   3.0  0.6667
+                           ACIP          2021-01-01           0.0        3.0        1.0   4.0  0.7500
+                                         2021-01-02           0.0        5.0        2.0   7.0  0.7143
+                                         2021-01-03           0.0        3.0        2.0   5.0  0.6000
+                                         2021-01-04           0.0        1.0        2.0   3.0  0.3333
+             SAUR          ACIP          2021-01-01           0.0        4.0        0.0   4.0  1.0000
+                                         2021-01-02           0.0        5.0        2.0   7.0  0.7143
+                                         2021-01-08           0.0        5.0        1.0   6.0  0.8333
+                                         2021-01-09           0.0        6.0        5.0  11.0  0.5455
+    URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        0.0   2.0  1.0000
+                                         2021-01-13           1.0        2.0        1.0   4.0  0.7500
+                                         2021-01-14           0.0        3.0        1.0   4.0  0.7500
+                                         2021-01-15           0.0        2.0        2.0   4.0  0.5000
+                                         2021-01-16           2.0        0.0        2.0   4.0  0.5000
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 140-142
+
+Let's display the overall resistance.
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 142-144
+
+.. code-block:: default
+   :lineno-start: 142
+
+    sari_overall.to_frame()
+
+
+
+
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>sari</th>
+        </tr>
+        <tr>
+          <th>SPECIMEN</th>
+          <th>MICROORGANISM</th>
+          <th>ANTIMICROBIAL</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th rowspan="3" valign="top">BLDCUL</th>
+          <th rowspan="2" valign="top">ECOL</th>
+          <th>AAUG</th>
+          <td>0.4000</td>
+        </tr>
+        <tr>
+          <th>ACIP</th>
+          <td>0.6000</td>
+        </tr>
+        <tr>
+          <th>SAUR</th>
+          <th>ACIP</th>
+          <td>0.6111</td>
+        </tr>
+        <tr>
+          <th>URICUL</th>
+          <th>SAUR</th>
+          <th>ACIP</th>
+          <td>0.7000</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 145-147
+
+Let's display the resistance time-series using **independent** time intervals (ITI)
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 147-150
+
+.. code-block:: default
+   :lineno-start: 147
+
+    sari_iti
+
+
+
+
+
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>intermediate</th>
+          <th>resistant</th>
+          <th>sensitive</th>
+          <th>freq</th>
+          <th>sari</th>
+        </tr>
+        <tr>
+          <th>SPECIMEN</th>
+          <th>MICROORGANISM</th>
+          <th>ANTIMICROBIAL</th>
+          <th>DATE</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th rowspan="12" valign="top">BLDCUL</th>
+          <th rowspan="8" valign="top">ECOL</th>
+          <th rowspan="4" valign="top">AAUG</th>
+          <th>2021-01-01</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>3.0</td>
+          <td>4.0</td>
+          <td>0.2500</td>
+        </tr>
+        <tr>
+          <th>2021-01-02</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>0.3333</td>
+        </tr>
+        <tr>
+          <th>2021-01-03</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>0.5000</td>
+        </tr>
+        <tr>
+          <th>2021-01-04</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <th rowspan="4" valign="top">ACIP</th>
+          <th>2021-01-01</th>
+          <td>0.0</td>
+          <td>3.0</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td>0.7500</td>
+        </tr>
+        <tr>
+          <th>2021-01-02</th>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>3.0</td>
+          <td>0.6667</td>
+        </tr>
+        <tr>
+          <th>2021-01-03</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>0.5000</td>
+        </tr>
+        <tr>
+          <th>2021-01-04</th>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <th rowspan="4" valign="top">SAUR</th>
+          <th rowspan="4" valign="top">ACIP</th>
+          <th>2021-01-01</th>
+          <td>0.0</td>
+          <td>4.0</td>
+          <td>0.0</td>
+          <td>4.0</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <th>2021-01-02</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>0.3333</td>
+        </tr>
+        <tr>
+          <th>2021-01-08</th>
+          <td>0.0</td>
+          <td>5.0</td>
+          <td>1.0</td>
+          <td>6.0</td>
+          <td>0.8333</td>
+        </tr>
+        <tr>
+          <th>2021-01-09</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td>5.0</td>
+          <td>0.2000</td>
+        </tr>
+        <tr>
+          <th rowspan="5" valign="top">URICUL</th>
+          <th rowspan="5" valign="top">SAUR</th>
+          <th rowspan="5" valign="top">ACIP</th>
+          <th>2021-01-12</th>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <th>2021-01-13</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>0.5000</td>
+        </tr>
+        <tr>
+          <th>2021-01-14</th>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <th>2021-01-15</th>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <th>2021-01-16</th>
+          <td>2.0</td>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>1.0000</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 151-153
+
+Let's display the resistance time-series using **overlapping** time intervals (OTI)
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 153-155
+
+.. code-block:: default
+   :lineno-start: 153
+
+    sari_oti
+
+
+
+
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>intermediate</th>
+          <th>resistant</th>
+          <th>sensitive</th>
+          <th>freq</th>
+          <th>sari</th>
+        </tr>
+        <tr>
+          <th>SPECIMEN</th>
+          <th>MICROORGANISM</th>
+          <th>ANTIMICROBIAL</th>
+          <th>DATE</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th rowspan="12" valign="top">BLDCUL</th>
+          <th rowspan="8" valign="top">ECOL</th>
+          <th rowspan="4" valign="top">AAUG</th>
+          <th>2021-01-01</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>3.0</td>
+          <td>4.0</td>
+          <td>0.2500</td>
+        </tr>
+        <tr>
+          <th>2021-01-02</th>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>5.0</td>
+          <td>7.0</td>
+          <td>0.2857</td>
+        </tr>
+        <tr>
+          <th>2021-01-03</th>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>5.0</td>
+          <td>0.4000</td>
+        </tr>
+        <tr>
+          <th>2021-01-04</th>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>3.0</td>
+          <td>0.6667</td>
+        </tr>
+        <tr>
+          <th rowspan="4" valign="top">ACIP</th>
+          <th>2021-01-01</th>
+          <td>0.0</td>
+          <td>3.0</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td>0.7500</td>
+        </tr>
+        <tr>
+          <th>2021-01-02</th>
+          <td>0.0</td>
+          <td>5.0</td>
+          <td>2.0</td>
+          <td>7.0</td>
+          <td>0.7143</td>
+        </tr>
+        <tr>
+          <th>2021-01-03</th>
+          <td>0.0</td>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>5.0</td>
+          <td>0.6000</td>
+        </tr>
+        <tr>
+          <th>2021-01-04</th>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>0.3333</td>
+        </tr>
+        <tr>
+          <th rowspan="4" valign="top">SAUR</th>
+          <th rowspan="4" valign="top">ACIP</th>
+          <th>2021-01-01</th>
+          <td>0.0</td>
+          <td>4.0</td>
+          <td>0.0</td>
+          <td>4.0</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <th>2021-01-02</th>
+          <td>0.0</td>
+          <td>5.0</td>
+          <td>2.0</td>
+          <td>7.0</td>
+          <td>0.7143</td>
+        </tr>
+        <tr>
+          <th>2021-01-08</th>
+          <td>0.0</td>
+          <td>5.0</td>
+          <td>1.0</td>
+          <td>6.0</td>
+          <td>0.8333</td>
+        </tr>
+        <tr>
+          <th>2021-01-09</th>
+          <td>0.0</td>
+          <td>6.0</td>
+          <td>5.0</td>
+          <td>11.0</td>
+          <td>0.5455</td>
+        </tr>
+        <tr>
+          <th rowspan="5" valign="top">URICUL</th>
+          <th rowspan="5" valign="top">SAUR</th>
+          <th rowspan="5" valign="top">ACIP</th>
+          <th>2021-01-12</th>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <th>2021-01-13</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td>0.7500</td>
+        </tr>
+        <tr>
+          <th>2021-01-14</th>
+          <td>0.0</td>
+          <td>3.0</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td>0.7500</td>
+        </tr>
+        <tr>
+          <th>2021-01-15</th>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>0.5000</td>
+        </tr>
+        <tr>
+          <th>2021-01-16</th>
+          <td>2.0</td>
+          <td>0.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>0.5000</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 156-160
+
+.. note:: On a side note, the variable *sari_overall* returned is a ``pd.Series``.
+          However, it has been converted to a ``pd.DataFrame`` for display purposes.
+          The ``sphinx`` library used to create the documentation uses the method
+          ``_repr_html_`` from the latter to display it nicely in the docs.
+
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.078 seconds)
+   **Total running time of the script:** ( 0 minutes  0.060 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_indexes_plot_core_sari.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-  .. container:: sphx-glr-download sphx-glr-download-python
+      :download:`Download Python source code: plot_core_sari.py <plot_core_sari.py>`
 
-     :download:`Download Python source code: plot_core_sari.py <plot_core_sari.py>`
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_core_sari.ipynb <plot_core_sari.ipynb>`
+      :download:`Download Jupyter notebook: plot_core_sari.ipynb <plot_core_sari.ipynb>`
 
 
 .. only:: html
