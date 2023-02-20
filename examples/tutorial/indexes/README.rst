@@ -1,4 +1,4 @@
-AMR metrics
------------
+Computing AMR metrics
+---------------------
 
-This gallery presents some of the most important metrics.
+Examples with the most important metrics.

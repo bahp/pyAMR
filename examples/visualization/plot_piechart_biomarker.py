@@ -1,8 +1,6 @@
 """
 Piechart Biomarkers
 ===================
-
-Example using your package
 """
 
 from __future__ import division

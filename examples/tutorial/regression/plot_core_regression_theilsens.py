@@ -1,6 +1,10 @@
 """
-Regression - Theil-Sen
+Using Theil-Sen
 ======================
+
+In non-parametric statistics, the Theil–Sen estimator is a method for robustly
+fitting a line to sample points in the plane (simple linear regression) by
+choosing the median of the slopes of all lines through pairs of points.
 
 .. warning: This TheilSensWrapper imports the Regression
             base from a different file. Why do we have

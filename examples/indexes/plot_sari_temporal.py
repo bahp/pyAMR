@@ -127,7 +127,7 @@ sar = SARI(groupby=['specimen_code',
                      'sensitivity'])
 
 # Create constants
-shift, period = '1M', 1
+shift, period = '30D', '30D'
 
 # Compute sari timeseries
 iti = sar.compute(data, shift=shift,
@@ -290,7 +290,7 @@ for period in ['30D', '90D', '180D', '365D']:
 
     # Compute sari time-series
     iti = sar.compute(data, shift=period,
-        period=1, cdate='date_received')
+        period=period, cdate='date_received')
     oti = sar.compute(data, shift=shift,
         period=period, cdate='date_received')
 

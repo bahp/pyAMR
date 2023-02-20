@@ -1,8 +1,6 @@
 """
-WLS basic
-----------
-
-.. note: Explain
+WLS - Basic
+-------------------
 
 """
 # Import class.

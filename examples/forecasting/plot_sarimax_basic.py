@@ -1,8 +1,6 @@
 """
-SARIMAX basic
-----------------------------
-
-.. todo: Explain
+SARIMAX - Basic
+-----------------------
 
 See `SARIMAX <https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html>`_
 

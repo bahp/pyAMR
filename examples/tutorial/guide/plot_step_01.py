@@ -525,8 +525,10 @@ print(obj.as_summary())
 from pyamr.graphics.table_graph import _DEFAULT_CONFIGURATION
 from pyamr.graphics.table_graph import vlinebgplot
 
-# Configuration
+# Configuration for display
 info = _DEFAULT_CONFIGURATION
+
+# Lets define one as an example.
 info['freq'] = {
     'cmap': 'Blues',
     'title': 'Freq',
@@ -537,7 +539,11 @@ info['freq'] = {
     }
 }
 
+# .. note: It is important to ensure that the column names
+#          match with the keys of the previously loaded
+#          info configuration so that it is used.
 
+# Rename columns
 rename = {
     'wls-x1_coef': 'sart_m',
     'wls-const_coef': 'offset',
@@ -554,6 +560,7 @@ rename = {
 }
 
 
+# ----------------
 # Combine with SARI
 
 # Format combined DataFrame

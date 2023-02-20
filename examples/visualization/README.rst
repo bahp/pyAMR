@@ -1,4 +1,4 @@
 Visualization
 =============
 
-Below is a gallery of examples
+Some useful visualisation scripts.

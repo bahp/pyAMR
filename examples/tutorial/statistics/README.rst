@@ -1,4 +1,4 @@
-Statistics
-----------
+Statistical tests (wrappers)
+----------------------------
 
-Below is a gallery of examples ...
+Examples computing and interpreting statistical tests.

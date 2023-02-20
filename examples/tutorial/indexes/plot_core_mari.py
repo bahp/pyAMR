@@ -186,7 +186,7 @@ mari_overall, isolates = mari.compute(data,
 
 # Compute SARI temporal (ITI)
 mari_iti = mari.compute(data, shift='1D',
-    period=1, cdate='DATE',
+    period='1D', cdate='DATE',
     return_isolates=False)
 
 # Compute SARI temporal (OTI)

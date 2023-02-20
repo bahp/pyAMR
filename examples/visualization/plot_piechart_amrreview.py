@@ -1,18 +1,16 @@
 """
 Piechart AMR review
 ===================
-"""
 
-#######################################################################
-# Notes: The values can be changed to display other data.
-#
-# Useful links:
-# @see: http://matplotlib.org/examples/color/named_colors.html
-# @see: http://matplotlib.org/examples/color/colormaps_reference.html
-# @see: http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge
-# @see: http://matplotlib.org/api/text_api.html#matplotlib.text.Text
-#
-#######################################################################
+.. note:: The values can be changed to display other data.
+
+http://matplotlib.org/examples/color/named_colors.html
+http://matplotlib.org/examples/color/colormaps_reference.html
+http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge
+http://matplotlib.org/api/text_api.html#matplotlib.text.Text
+
+===================
+"""
 
 from __future__ import division
 
