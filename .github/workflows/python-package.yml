@@ -26,9 +26,9 @@ jobs:
         python-version: [3.9]
 
     steps:
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2.3.1
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
         
@@ -61,12 +61,16 @@ jobs:
         python -m pip install pytest
         python -m pip install pytest-cov
         python -m pip install mock
-        pytest
+        pytest --cov-report xml
 
+
+    # .. note: Since there pytest.ini already includes the
+    #          flags below it should have created the coverage
+    #          report on the previous step.
     # Generate report
-    - name: Generate coverage report (pytest)
-      run:
-        pytest . --cov=./ --cov-report=xml
+    #- name: Generate coverage report (pytest)
+    #  run:
+    #    pytest . --cov=pyamr --cov-report=xml
 
     # Create an upload coverage report
     - name: Upload coverage to Codecov

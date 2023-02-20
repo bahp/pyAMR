@@ -267,4 +267,4 @@ if __name__ == '__main__': # pragma: no cover
   plt.tight_layout()
 
   # Show
-  plt.show()
+  # plt.show()
