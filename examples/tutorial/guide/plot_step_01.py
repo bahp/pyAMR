@@ -1,6 +1,6 @@
 """
-Step 01 - Introduction
-============================
+Step 01 - Indexes
+=================
 """
 
 
@@ -9,7 +9,7 @@ Step 01 - Introduction
 # Loading data
 # ------------
 #
-# .. image:: ../../_static/imgs/susceptibility-test-record.png
+# .. image:: ../../../_static/imgs/susceptibility-test-record.png
 #    :width: 200
 #    :align: right
 #    :alt: ASAI
@@ -21,7 +21,7 @@ Step 01 - Introduction
 # the susceptibility test data were grouped firstly by specimen type. Moreover,
 # for each sample type, the data were grouped by pairs (pathogen, antimicrobial)
 # since it is widely accepted by clinicians as detailed in the UK five year
-# strategy in AMR
+# strategy in AMR.
 #
 # A small dataset will be used for this example.
 #
@@ -49,12 +49,14 @@ print(data)
 print("\nColumns:")
 print(data.dtypes)
 
-# -------------------------------------------
-# Show a brief description
-# -------------------------------------------
-# .. todo: Compute basic information such as the number of unique organisms,
-#          antimicrobials, pairs, species, isolates, tests, the range of
-#          dates, ....
+# Show unique elements
+print("\nUnique values:")
+for c in ['microorganism_code',
+          'antimicrobial_code',
+          'specimen_code',
+          'laboratory_number']:
+    print('%-18s -> %5s' % (c, data[c].nunique()))
+
 
 #######################################################################
 #
@@ -69,12 +71,12 @@ print(data.dtypes)
 # Susceptible outcomes respectively. The definition might vary slightly since the
 # intermediate category is not always considered.
 #
-# The parameter strategy accepts three different options:
+# The parameter strategy accepts the following options:
 #
-#  (i) ``soft``   as R / R+I+S
-#  (ii) ``medium`` as R / R+S
-#  (iii) ``hard``  as R+I / R+I+S
-#  (iv) ``other``  as R+0.5I / R+0.5I+S
+#   - ``soft``   as R / R+I+S
+#   - ``medium`` as R / R+S
+#   - ``hard``  as R+I / R+I+S
+#   - ``other``  as R+0.5I / R+0.5I+S
 #
 # For more information see: :py:mod:`pyamr.core.sari.SARI`
 #
@@ -168,22 +170,16 @@ plt.subplots_adjust(right=1.05)
 #
 # For more examples see:
 #
-#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`.
-#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`.
-#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`.
+#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`
 #
 #
-# In order to compute ``ASAI``, we need to at least have columns with the following
-# information:
-#
-#   - ``antimicrobial``
-#   - ``microorganism genus``
-#   - ``microorganism species``
-#   - ``resistance``
-#
-# Moreover, in this example we will compute the ASAI for each ``gram_stain`` category
-# independently so we will need the microorganism gram stain information too. This
-# information is available in the registries: :py:mod:`pyamr.datasets.registries`
+# In order to compute ``ASAI``, we need to have the following columns present
+# in our dataset: ``antimicrobial``, ``microorganism_genus``, ``microorganism_species``
+# and ``resistance``.  Moreover, in this example we will compute the ASAI for each
+# ``gram_stain`` category independently so we will need the microorganism gram stain
+# information too. This information is available in the registries: :py:mod:`pyamr.datasets.registries`
 #
 # Lets include all this information using the ``MicroorganismRegistry``.
 #
@@ -345,8 +341,6 @@ axes[2].set_xlim([0, 1.1])
 # Adjust
 plt.tight_layout()
 
-# Show
-plt.show()
 
 
 #######################################################################
@@ -354,92 +348,290 @@ plt.show()
 # Computing SART
 # --------------
 #
-# The antimicrobial resistance trend...
+# The single antimicrobial resistance trend - ``SART`` - measures the ratio
+# of change per time unit (e.g. monthly or yearly). To compute this metric,
+# it is necessary to generate a resistance time series from the susceptibility
+# test data. This is often achieved by computing the SARI on consecutive or
+# overlapping partitions of the data. Then, the trend can be extracted using
+# for example a linear model where the slope, which is represented by a value
+# within the range [-1, 1], indicates the ratio of change.
 #
-# .. warning:: To include.
-
-
-#######################################################################
+# For more information see: :py:mod:`pyamr.core.sart.SART`
 #
-# Dirty code to use and or delete
-# -------------------------------
+# For more examples see:
+#
+#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sart.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_trend_basic.py`
+#
+# .. note:: Be cautious when Computing the ``SART`` index using a small dataset
+#           (e.g. a low number of susceptibility tests records) since it is very
+#           likely that the statistics produced (e.g. kurtosis or skewness) will
+#           be ill defined.
+#
+# Since it is necessary to have a decent amount of records to be
+# able to compute the trends accurately, lets filter and choose
+# the tuples were are interested in.
 
-"""
 
-Summary
+# -------------------------------------------
+# Show top combinations
+# -------------------------------------------
+from pyamr.core.sari import SARI
 
-summary = data.agg(
-    norganisms=('organismCode', 'nunique'),
-    nantibiotics=('antibioticCode', 'nunique'),
-    ncultures=('orderCode', 'nunique'),
-    ntests=('labNumber', 'nunique')
+# Create SARI instance
+sar = SARI(groupby=['specimen_code',
+                    'microorganism_code',
+                    'antimicrobial_code',
+                    'sensitivity'])
+
+# Compute SARI overall
+sari_overall = sar.compute(data,
+     return_frequencies=True)
+
+# Compute top tuples
+top = sari_overall \
+    .sort_values(by='freq', ascending=False) \
+    .head(10)
+
+# Show
+print("\nTop by Frequency:")
+print(top)
+
+# -------------------------------------------
+# Filter data
+# -------------------------------------------
+# Define spec, orgs, abxs of interest
+spec = ['URICUL']
+orgs = ['ECOL']
+abxs = ['ACELX', 'ACIP', 'AAMPC', 'ATRI', 'AAUG',
+        'AMER', 'ANIT', 'AAMI', 'ACTX', 'ATAZ',
+        'AGEN', 'AERT', 'ACAZ', 'AMEC', 'ACXT']
+
+# Create auxiliary DataFrame
+aux = data.copy(deep=True) \
+
+# Filter
+idxs_spec = data.specimen_code.isin(spec)
+idxs_orgs = data.microorganism_code.isin(orgs)
+idxs_abxs = data.antimicrobial_code.isin(abxs)
+
+# Filter
+aux = aux[idxs_spec & idxs_orgs & idxs_abxs]
+
+
+########################################################
+#
+# Now, lets compute the resistance trend.
+
+# Libraries
+import warnings
+
+# Import specific libraries
+from pyamr.core.sart import SART
+
+# Variables
+shift, period = '10D', '180D'
+
+# Create instance
+sar = SART(column_specimen='specimen_code',
+           column_microorganism='microorganism_code',
+           column_antimicrobial='antimicrobial_code',
+           column_date='date_received',
+           column_outcome='sensitivity',
+           column_resistance='sari')
+
+with warnings.catch_warnings():
+    warnings.simplefilter('ignore')
+
+    # Compute resistance trends
+    table, objs = sar.compute(aux, shift=shift,
+        period=period, return_objects=True)
+
+######################################################
+#
+# Lets see the summary DataFrame (note it is transposed!)
+
+# Configure pandas
+pd.set_option(
+    'display.max_colwidth', 20,
+    'display.width', 1000
 )
 
-print(summary)
+# Show
+print("Results:")
+print(table.T)
 
-print(data.nunique())
+######################################################
+#
+# Lets see the model summary for the first entry
 
+# Display
+# This example shows how to make predictions using the wrapper and how
+# to plot the result in data. In addition, it compares the intervals
+# provided by get_prediction (confidence intervals) and the intervals
+# provided by wls_prediction_std (prediction intervals).
 
-print(len(data.groupby(['organismCode', 'antibioticCode'])))
-print(data.shape[0])
+# Variables
+name, obj = objs[2] # AAUG
 
-summary = pd.DataFrame
+# Series
+series = obj.as_series()
 
+# Variables.
+start, end = None, 50
 
-#from analysis.microbiology.statistics.frequency import Frequency
+# Get x and y
+x = series['wls-exog'][:,1]
+y = series['wls-endog']
 
-# -----------------------------------------------------------------------------
-#                                 CONSTANTS
-# -----------------------------------------------------------------------------
-# Paths
-fname_tests = "freq_tests_pairs_year"
-fname_isola = "freq_isolates_pairs_year"
-fpath_tests = "../../results/microbiology/frequencies/%s.csv" % fname_tests
-fpath_isola = "../../results/microbiology/frequencies/%s.csv" % fname_isola
+# Compute predictions (exogenous?). It returns a 2D array
+# where the rows contain the time (t), the mean, the lower
+# and upper confidence (or prediction?) interval.
+preds = obj.get_prediction(start=start, end=end)
 
-# Object
-freq = Frequency()
+# Create figure
+fig, ax = plt.subplots(1, 1, figsize=(11, 5))
 
-# Read data
-dff_tests = freq.load(fpath_tests)
-dff_isola = freq.load(fpath_isola)
-dff_reset = dff_tests.reset_index()
+# Plotting confidence intervals
+# -----------------------------
+# Plot truth values.
+ax.plot(x, y, color='#A6CEE3', alpha=0.5, marker='o',
+        markeredgecolor='k', markeredgewidth=0.5,
+        markersize=5, linewidth=0.75, label='Observed')
 
-# Basic dataframe.
-# IMPORTANT. Note that isolates refer to a single infectious organism which
-# is tested against many different anttibiotics. Hence the only way the sum
-# refers to isolate is by grouping the laboratory tests by infectious
-# organisms.
-dfy = pd.DataFrame()
-dfy['Tests'] = dff_tests['freq_ris'].groupby(level=[0]).sum()
-dfy['Isolates'] = dff_isola['freq'].groupby(level=[0]).sum()
-dfy['Tests/Isolates'] = dfy['Tests'].div(dfy['Isolates'])
-dfy['Antibiotics'] = dff_reset.groupby('dateReceived').antibioticCode.nunique()
-dfy['Organisms'] = dff_reset.groupby('dateReceived').organismCode.nunique()
+# Plot forecasted values.
+ax.plot(preds[0, :], preds[1, :], color='#FF0000', alpha=1.00,
+        linewidth=2.0, label=obj._identifier(short=True))
 
-# Fill last row.
-dfy.loc['Total',:] = np.nan
-dfy.loc['Total','Tests'] = dfy['Tests'].sum(axis=0)
-dfy.loc['Total','Isolates'] = dfy['Isolates'].sum(axis=0)
-dfy.loc['Total','Tests/Isolates'] = dfy['Tests/Isolates'].mean()
-dfy.loc['Total','Antibiotics'] = dff_reset.antibioticCode.nunique()
-dfy.loc['Total','Organisms'] = dff_reset.organismCode.nunique()
+# Plot the confidence intervals.
+ax.fill_between(preds[0, :], preds[2, :],
+                preds[3, :],
+                color='r',
+                alpha=0.1)
 
-# Print dataframe.
-print("\n\n")
-print("Pandas:")
-print("-------")
-print(dfy)
-
-# Print dataframe latex format.
-print("\n\n")
-print("Latex:")
-print("-------")
-print(dfy.to_latex())
-
-#print dff_isola.head(10)
-import sys
-sys.exit()
+# Legend
+plt.legend()
+plt.title(name)
 
 
-"""
+print("Name: %s\n" % str(name))
+print(obj.as_summary())
+
+#######################################################
+#
+# Lets display the information as a table graph
+
+# Libraries
+from pyamr.graphics.table_graph import _DEFAULT_CONFIGURATION
+from pyamr.graphics.table_graph import vlinebgplot
+
+# Configuration
+info = _DEFAULT_CONFIGURATION
+info['freq'] = {
+    'cmap': 'Blues',
+    'title': 'Freq',
+    'xticks': [0, 8000],
+    'kwargs': {
+        's': 80,
+        'vmin': 0
+    }
+}
+
+
+rename = {
+    'wls-x1_coef': 'sart_m',
+    'wls-const_coef': 'offset',
+    'wls-rsquared': 'r2',
+    'wls-rsquared_adj': 'r2_adj',
+    'wls-m_skew': 'skew',
+    'wls-m_kurtosis': 'kurtosis',
+    'wls-m_jb_prob': 'jb',
+    'wls-m_dw': 'dw',
+    'wls-const_tprob': 'ptm',
+    'wls-x1_tprob': 'ptn',
+    'wls-pearson': 'pearson',
+    'freq': 'freq',
+}
+
+
+# Combine with SARI
+
+# Format combined DataFrame
+comb = table.join(sari_overall)
+comb.index = comb.index.map('_'.join)
+comb = comb.reset_index()
+comb = comb.rename(columns=rename)
+
+# Add new columns
+comb['sart_y'] = comb.sart_m * 12   # Yearly trend
+comb['sari_pct'] = comb.sari * 100  # SARI percent
+
+# Sort by trend
+comb = comb.sort_values(by='sart_y', ascending=False)
+
+# Select only numeric columns
+# data = comb.select_dtypes(include=np.number)
+data = comb[[
+    'index',
+    'sart_m',
+    #'sart_y',
+    'sari_pct',
+    'r2',
+    #'r2_adj',
+    'skew',
+    'kurtosis',
+    'jb',
+    'dw',
+    'ptm',
+    #'ptn',
+    'pearson',
+    'freq'
+]]
+
+# Show DataFrame
+print("\nResults:")
+print(data)
+
+# Create pair grid
+g = sns.PairGrid(data, x_vars=data.columns[1:],
+    y_vars=["index"], height=4, aspect=.45)
+
+# Set common features
+g.set(xlabel='', ylabel='')
+
+# Plot strips and format axes (skipping index)
+for ax, c in zip(g.axes.flat, data.columns[1:]):
+
+    # Get information
+    d = info[c] if c in info else {}
+
+    # .. note: We need to use scatter plot if we want to
+    #          assign colors to the markers according to
+    #          their value.
+
+    # Using scatter plot
+    sns.scatterplot(data=data, x=c, y='index', s=100,
+                    ax=ax, linewidth=0.75, edgecolor='gray',
+                    c=data[c], cmap=d.get('cmap', None),
+                    norm=d.get('norm', None))
+
+    # Plot vertical lines
+    for e in d.get('vline', []):
+        vlinebgplot(ax, top=data.shape[0], **e)
+
+    # Configure axes
+    ax.set(title=d.get('title', c),
+           xlim=d.get('xlim', None),
+           xticks=d.get('xticks', []),
+           xlabel='', ylabel='')
+    ax.tick_params(axis='y', which='both', length=0)
+    ax.xaxis.grid(False)
+    ax.yaxis.grid(visible=True, which='major',
+                  color='gray', linestyle='-', linewidth=0.35)
+
+# Despine
+sns.despine(left=True, bottom=True)
+
+# Adjust layout
+plt.tight_layout()
+plt.show()

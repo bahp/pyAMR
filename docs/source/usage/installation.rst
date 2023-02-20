@@ -37,9 +37,11 @@ To deactivate the environment just type
   deactivate                                      # deactivate environment
 
 
-.. warning:: Ths is slightly different on Windows systems. It is also possible
-   to configure the virtual environment using the python IDE PyCharm. Students
-   can get a free licence.
+.. warning:: Ths might be slightly different on Windows systems. In addition, it
+    is also possible to configure the virtual environment using the python IDE
+    PyCharm and students can get a free licence.
+
+
 
 Creating repository from template
 ----------------------------------
@@ -179,7 +181,13 @@ Let's install the required libraries.
   python -m pip install sphinx-std-theme  # Install sphinx-std-theme CSS
   python -m pip install matplotlib        # Install matplotlib for plot examples
 
-Then go to the docs folder within main and run:
+Then go to the docs folder within main and generate the api docs
+
+.. code-block:: console
+
+  sphinx-apidoc -o ./source/_apidoc ../pyamr
+
+Now lets generate the documentation:
 
 .. code-block:: console
 

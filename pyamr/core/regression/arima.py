@@ -69,7 +69,7 @@ class ARIMAWrapper(RegressionWrapper):
     array-like
     """
     # Compute forecast error
-    fcasterr = _forecast_error(sigma2=self._raw.sigma2, 
+    fcasterr = _forecast_error(sigma2=self._result['sigma2_coef'],
                                arparams=self._raw.arparams, 
                                maparams=self._raw.maparams,
                                steps=predictions.shape[0])
@@ -247,7 +247,7 @@ class ARIMAWrapper(RegressionWrapper):
   # ---------------------------------------------------------------------------
   #                               auto method
   # ---------------------------------------------------------------------------
-  def auto(self, endog, exog=None, ic='bic', trends=['nc','c'], max_ar=3, 
+  def auto(self, endog, exog=None, ic='bic', trends=['n','c'], max_ar=3,
                  max_ma=3, max_d=1, warn='ignore', return_fits=False, 
                  converged=True, disp=0, verbose=0, **kwargs):
     """This method finds the best arima through bruteforce.
@@ -334,7 +334,7 @@ class ARIMAWrapper(RegressionWrapper):
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
   # Import
   import sys
@@ -545,4 +545,4 @@ if __name__ == '__main__':
   plt.suptitle("Dynamic predictions for ARIMA")
 
   # Show
-  plt.show()
+  # plt.show()

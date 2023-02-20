@@ -10,53 +10,48 @@
 # 
 ################################################################################
 # Import libraries
-import sys
 import warnings
-import numpy as np
 import pandas as pd
-import seaborn as sns
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 
-# Import own
-from pyamr.core.freq import Frequency
 
 # -------------------------------------------------------------------------
 #                            helper methods
 # -------------------------------------------------------------------------
 def _check_dataframe(dataframe):
-  """Ensure the three columns are available.
-  """
-  # Copy
-  aux = dataframe.copy(deep=True)
+    """Ensure the three columns are available.
 
-  # Add missing columns
-  if not 'resistant' in dataframe:
-    aux['resistant'] = 0
-  if not 'intermediate' in  dataframe:
-    aux['intermediate'] = 0
-  if not 'sensitive' in dataframe:
-    aux['sensitive'] = 0
-
-  # return
-  return aux
-
-def _check_sensitivities(dataframe):
+    It also fills the empty values with zeros. This is valid
+    for SARI because the columns just represent the number of
+    records in that category. Thus, nan is equivalent to 0.
+    """
+    # Check there is at least one column.
     if not 'resistant' in dataframe and \
        not 'sensitive' in dataframe and \
        not 'intermediate' in dataframe:
-       raise Exception("To compute the SARI at least one of the following"
-                       "columns must be present in the dataframe (resistant,"
-                       "senstive, intermediate)")
+       raise Exception("""
+        To compute the SARI at least one of the following
+        columns must be present in the DataFrame (resistant,
+        sensitive, intermediate)""")
 
-"""
-def sari_(r=0, i=0, s=0, dataframe=None, strategy='hard', **kwargs):
-    if dataframe is not None:
-        if isinstance(pd.DataFrame):
-            _check_sensitivities(dataframe)
-            aux = _check_dataframe(dataframe)
-            return sari_(dataframe, strategy, **kwargs)
-"""
+    # Copy
+    aux = dataframe.copy(deep=True)
+
+    # Add missing columns
+    if not 'resistant' in dataframe:
+        aux['resistant'] = 0
+    if not 'intermediate' in  dataframe:
+        aux['intermediate'] = 0
+    if not 'sensitive' in dataframe:
+        aux['sensitive'] = 0
+
+    # Fill missing.
+    aux.resistant.fillna(0, inplace=True)
+    aux.intermediate.fillna(0, inplace=True)
+    aux.sensitive.fillna(0, inplace=True)
+
+    # return
+    return aux
+
 
 def sari(dataframe=None, strategy='hard', **kwargs):
     """Computes the sari index.
@@ -110,7 +105,7 @@ def sari(dataframe=None, strategy='hard', **kwargs):
     if strategy == 'hard':
         return (r + i) / (r + i + s)
     elif strategy == 'medium':
-        return (r + 0.5*i) / (r + 0.5*i + s)
+        return (r + 0.5*i) / (r + i + s)
     elif strategy == 'soft':
         return r / (r + i + s)
     elif strategy == 'basic':
@@ -144,13 +139,13 @@ class SARI:
         self.groupby = groupby
 
 
-
     def rolling(self, dataframe, period, cdate, shift=None):
         """"""
         if shift is None:
-            warnings.warn("The input parameter <shift> is None. Thus, the value "
-                          "of the input parameter <period> has been used. {}" \
-                          .format(period, shift))
+            warnings.warn("""
+                The input parameter <shift> is None. Thus, the value 
+                of the input parameter <period> (%s) has been used."""
+                % period)
             shift = period
 
         # Grouper
@@ -167,10 +162,12 @@ class SARI:
         # Return
         return freqs
 
+
     def grouping(self, dataframe, period, cdate):
-        """"""
+        """Groups the data.
+        """
         # Create grouper
-        if hasattr(dataframe[cdate].dt, period):
+        if hasattr(dataframe[cdate].dt, str(period)):
             grouper = [getattr(dataframe[cdate].dt, period)]
         else:
             grouper = [pd.Grouper(freq=period, key=cdate)]
@@ -184,6 +181,7 @@ class SARI:
         # Return
         return freqs
 
+
     def compute(self, dataframe, period=None, shift=None, cdate=None,
                 return_frequencies=True, **kwargs):
         """Computes single antibiotic resistance index.
@@ -191,7 +189,30 @@ class SARI:
         .. todo: Add parameters to rolling!
         .. todo: Place value at the left, center, right of window?
         .. todo: Ensure that works when time gaps present!
-        .. todo: Carefull with various indexes!
+        .. todo: Compare period > shift
+        .. todo: Warning if dates NaN
+        .. todo: Warning if elements in groupby any all NaN!
+        .. todo: Warning if not all samples tested with same antimicrobials
+
+        Examples
+        --------
+
+        ======= ====== =======================================================
+        shift   period description
+        ======= ====== =======================================================
+        None    None   Uses all data (agnostic to time)
+        None    year   Value every year using whole year's data.
+        None    2D     Value every 2 days using 2 days data.
+        2D      2D     Value every 2 days using 2 days data.
+        None    2      ``Invalid``
+        2D      2      ``Invalid`` Value every 2 days using 2x2D=4 days data.
+        2D      None   ``Invalid`` - period cannot be None (in this case)
+        2D      year   ``Invalid`` - period cannot be a year (in this case)
+        year    --     ``Invalid`` - shift cannot be a named time.
+        2       --     ``Invalid`` - shift cannot be a number.
+        ======= ====== ======================================================
+
+        Note that shift=2D and period=2D is equivalent to shift=2D and period=1.
 
         Parameters
         ----------
@@ -202,10 +223,13 @@ class SARI:
             and if they do not appear they weill be set to zeros.
 
         shift: str
-            Frequency value to pass to pd.Grouper.
+            Frequency (datetime) value to group by when applying a rolling window.
 
         period: str, int
-            Window value to pass to pd.rolling.
+            If used alone (shift=None) is the value used to create groups (e.g. year).
+            The whole data within the groups will be used to compute the metrics. On
+            the contrary, when used in combinations with shift, it indicates the
+            interval used to compute the metrics (e.g. 2D, 2 times the shift value)
 
         cdate: string, default=None
             The column that will be used as date.
@@ -216,10 +240,10 @@ class SARI:
         strategy: string or func, default='hard'
             The method used to compute sari. The possible options
             are 'soft', 'medium' and 'hard'. In addition, a function
-            with the following signature func(dataframe, **kwargs)
+            with the following signature func(DataFrame, **kwargs)
             can be passed.
 
-                (i) ``soft``   as R / R+I+S
+                (i) ``soft``    as R / R+I+S
                 (ii) ``medium`` as R / R+S
                 (iii) ``hard``  as R+I / R+I+S
                 (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]
@@ -229,21 +253,30 @@ class SARI:
         Returns
         -------
         pd.Series or pd.DataFrame
-            The resistance index (pd.Series) or a pd.Dataframe with the
+            The resistance index (pd.Series) or a pd.DataFrame with the
             resistance index (sari) and the frequencies.
         """
         # Copy DataFrame
         aux = dataframe.copy(deep=True)
 
-        # Warning if dates NaN
-        # Warning if elements in groupby any all NaN!
-
+        # Not allowing period to be a number. The main reason is that the
+        # most common interpretation is that scenarios with shift=1D
+        # period=2D and shift=1D period=2 should be the same. However, the
+        # results are actually different. Because period=2 in rolling will
+        # use two adjacent rows without considering time. This introduces
+        # inconsistencies where there are time gaps without data.
+        if period is not None:
+            if not isinstance(period, str):
+                raise ValueError("""
+                    The input parameter <period> cannot be of %s. Ensure 
+                    it is either None or a valid string such as 2D or year.
+                    """ % type(period))
 
         # ------------------------------------------
         # Frequencies
         # ------------------------------------------
         # Compute frequencies
-        if period is None:
+        if period is None and shift is None:
             freqs = aux.groupby(self.groupby) \
                 .size().unstack().fillna(0)
 
@@ -252,15 +285,18 @@ class SARI:
             # Format as datetime
             aux[cdate] = pd.to_datetime(aux[cdate])
 
-            if shift is not None:
+            if shift is None:
+                freqs = self.grouping(dataframe=aux,
+                                      period=period,
+                                      cdate=cdate)
+            else:
                 freqs = self.rolling(dataframe=aux,
                                      period=period,
                                      shift=shift,
                                      cdate=cdate)
-            else:
-                freqs = self.grouping(dataframe=aux,
-                                    period=period,
-                                    cdate=cdate)
+
+        # Remove index name.
+        freqs.columns.name = None
 
         # -------------------
         # Sari
@@ -279,139 +315,169 @@ class SARI:
 
 
 
-def sari_soft(dataframe):
-  """
-  .. deprecated:: 0.0.1
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return r / (r+i+s)
-
-def sari_medium(dataframe):
-  """
-  .. deprecated:: 0.0.1
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  s = dataframe['sensitive']
-  # Compute
-  return r / (r+s)
-
-def sari_hard(dataframe):
-  """
-  .. deprecated:: 0.0.1
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return (r+i) / (r+i+s)
-
-def sari_whard(dataframe, w=0.5):
-  """
-  .. deprecated:: 0.0.1
-  """
-  # Check
-  dataframe = _check_dataframe(dataframe)
-  # Get values
-  r = dataframe['resistant']
-  i = dataframe['intermediate']
-  s = dataframe['sensitive']
-  # Compute
-  return (r+w*i) / (r+w*i+s)
 
 
-# Default methods
-_DEFAULT_STRATEGIES = {
-  'soft': sari_soft,
-  'medium': sari_medium,
-  'hard': sari_hard
-}
 
 
-class SARI_old():
-
-  """
-  .. deprecated:: 0.0.1
-  """
-
-  # Attributes
-  c_abx = 'ANTIBIOTIC'
-  c_org = 'SPECIE'
-  c_dat = 'DATE' 
-  c_out = 'SENSITIVITY'
 
 
-  # -------------------------------------------------------------------------
-  #
-  # -------------------------------------------------------------------------
-  def __init__(self, strategy='hard'):
-    """The constructor.
+if __name__ == '__main__': # pragma: no cover
 
-    Parameters
-    ----------
-    strategy : string or function
-      The mode to compute the single antibiotic resistance index. 
-      There are three predefined strategies: 
-        (i) soft as    R / R+I+S 
-        (ii) medium as R / R+S 
-        (iii) hard as  R+I / R+I+S
-        (iv) other     R+0.5I / R+0.5I+S
+    # Libraries
+    import pandas as pd
+    import matplotlib as mpl
 
-    Returns
-    -------
+    # Specific
+    from pyamr.core.sari import SARI
+
+    # Set matplotlib
+    mpl.rcParams['xtick.labelsize'] = 9
+    mpl.rcParams['ytick.labelsize'] = 9
+    mpl.rcParams['axes.titlesize'] = 11
+    mpl.rcParams['legend.fontsize'] = 9
+
+    # ----------------------------------
+    # Create data
+    # ----------------------------------
+    # Define susceptibility test records
+    data = [
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+        ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+        ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+        ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+        ['2021-01-03', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
+        ['2021-01-03', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+        ['2021-01-04', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+        ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+        ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
+        ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+        ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+        ['2021-01-03', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
+        ['2021-01-03', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
+        ['2021-01-04', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
+
+        ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
+
+        ['2021-01-12', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-12', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
+        ['2021-01-13', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-13', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-14', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-14', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
+        ['2021-01-15', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-15', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
+        ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
+        ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
+    ]
+
+    data = pd.DataFrame(data,
+                        columns=['DATE',
+                                 'SPECIMEN',
+                                 'MICROORGANISM',
+                                 'ANTIMICROBIAL',
+                                 'SENSITIVITY'])
+
+    # Create SARI instance
+    sari = SARI(groupby=['SPECIMEN',
+                         'MICROORGANISM',
+                         'ANTIMICROBIAL',
+                         'SENSITIVITY'])
+
+    # Compute SARI overall
+    sari_overall = sari.compute(data,
+         return_frequencies=True)
+
+    # Compute SARI temporal (ITI)
+    sari_iti = sari.compute(data, shift='2D',
+         period='2D', cdate='DATE')
+
+    # Compute SARI temporal (OTI)
+    sari_oti = sari.compute(data, shift='1D',
+         period='2D', cdate='DATE')
+
+    # Show
+    print("\nSARI (overall):")
+    print(sari_overall)
+    print("\nSARI (iti):")
+    print(sari_iti)
+    print("\nSARI (oti):")
+    print(sari_oti)
+    print("\n\n")
+
+
+
+
+    # -----------------------
+    # Full test
+    # -----------------------
+    from itertools import product
+
+    # Define possible values
+    values = [2, '2D', None, 'year']
+    combos = list(product(values, values))
+
+    # Show
+    print("\n\nCombinations of params <shift> and <period>:")
+
+    # Loop
+    for i, (shift, period) in enumerate(combos):
+        print("%2s/%2s. Computing... shift=%-5s | period=%-5s ==> " % \
+              (i+1, len(combos), shift, period), end="")
+        try:
+            s = sari.compute(data,
+                shift=shift, period=period, cdate='DATE')
+            print("Ok!")
+            #print(s)
+            #print("\n\n" + "="*80)
+        except Exception as e:
+            print(e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     """
-    if isinstance(strategy, str):
-
-      # Check that the strategy exists
-      if not strategy in _DEFAULT_STRATEGIES.keys():
-        raise ValueError("The strategy selected (%s) is not supported. "
-                         "Please use one of the following [%s] "
-                         % _DEFAULT_STRATEGIES.keys())
-
-      # Set strategy
-      self.func = _DEFAULT_STRATEGIES[strategy]
-
-
-    #if callable(strategy):
-    #  self.func = strategy
-
-
-  # -------------------------------------------------------------------------
-  #
-  # -------------------------------------------------------------------------
-  def compute(self, dataframe):
-    """This method computes the single antibitic resistance index
-    """
-    # Copy dataframe
-    dataframe = dataframe.copy(deep=True)
-
-    # Add column with sari
-    dataframe['sari'] = self.func(dataframe)
-
-    # Return
-    return dataframe
-    
-
-
-
-
-
-
-
-
-if __name__ == '__main__':
-
   # Import libraries
   import sys
   import matplotlib as mpl
@@ -521,3 +587,4 @@ if __name__ == '__main__':
 
   # Show
   plt.show()
+"""

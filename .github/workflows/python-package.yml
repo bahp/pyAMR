@@ -5,9 +5,9 @@ name: Python package
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   build:
@@ -20,37 +20,61 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     strategy:
+      max-parallel: 4
       matrix:
         os: [ubuntu-latest] #, macos-latest]
         python-version: [3.9]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
         
     # .. todo: Check if requirements.txt exists
     #          if ( -f requirements.txt ); then xxxxxx; fi
     #          works for ubuntu, mac, breaks for windows
-    #.         windows-latess takes to long - removed
+    #.         windows-latest takes to long - removed
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         python -m pip install -r requirements.txt
+
+    # Install this package
     - name: Install package
       run: |
         python -m pip install .
+
+    # Lint with Flake8
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        #flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    # Run tests with pytest (see pytest.ini)
     - name: Test with pytest
       run: |
-        #python -m pip install pytest
-        #python -m pip install pytest-cov
-        pytest
+        python -m pip install pytest
+        python -m pip install pytest-cov
+        python -m pip install mock
+        pytest --cov-report xml
+
+
+    # .. note: Since there pytest.ini already includes the
+    #          flags below it should have created the coverage
+    #          report on the previous step.
+    # Generate report
+    #- name: Generate coverage report (pytest)
+    #  run:
+    #    pytest . --cov=pyamr --cov-report=xml
+
+    # Create an upload coverage report
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3.1.0
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml

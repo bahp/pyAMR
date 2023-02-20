@@ -620,7 +620,7 @@ def clean_microorganism(data):
 
     # Apply regexp mapping
     aux.microorganism_name = \
-        aux.microorganism_name.replace(regex=REGEX_MAP_MICROORGANISM)
+        aux.microorganism_name.replace(regex=REGEX_MAP)
 
     # Correct hyphens
     for hp in ['haemolytic']:
@@ -1013,9 +1013,9 @@ def clean_mimic(data):
     # Replace values
     replace = {
         #'sensitivity': SENSITIVITY_MAP,
-        'microorganism_code': MICROORGANISM_CODE_MAP,
+        'microorganism_code': MICROORGANISM_CODE_REPLACE,
         'microorganism_name': MICROORGANISM_NAME_MAP,
-        'antimicrobial_code': ANTIMICROBIAL_CODE_MAP
+        'antimicrobial_code': ANTIMICROBIAL_CODE_REPLACE
     }
 
     # Rename

@@ -53,7 +53,9 @@ print(adf.as_series())
 
 # Print summary.
 print("\n")
+print("Standard:")
 print(adf.as_summary())
+print("\nVerbose:")
 print(adf.as_summary(verbose=10))
 
 # Print identifier.
@@ -80,7 +82,7 @@ print(adf._identifier())
 adf = ADFWrapper(adfuller)
 
 # Grid parameters.
-grid_params = {'x': [y], 'regression': ['c','nc','ct']}
+grid_params = {'x': [y], 'regression': ['c','n','ct']}
 
 # Get wrappers.
 lwrappers = adf.grid_search(grid_params=grid_params, verbose=1)

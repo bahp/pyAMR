@@ -2,9 +2,9 @@
 Plotly - Treemap (sari)
 -----------------------
 
-.. warning:: It might take some time to load.
+.. warning:: Please be patient, it might take some time to load.
 
-https://plotly.com/python/treemaps/
+For more information, check https://plotly.com/python/treemaps/
 
 """
 # Plotly

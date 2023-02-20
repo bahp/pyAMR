@@ -39,7 +39,7 @@ pctdistance = 0.5         # ratio betwen center and text (default=0.6)
 labeldistance = 0.7       # radial distance wich pie labels are drawn
 shadow = False            # shadow.
 startangle = 90           # rotate piechart (default=0)
-radius = None             # size of piechart (default=1)
+radius = 1                # size of piechart (default=1)
 counterclock = False      # fractions direction.
 center = (0,0)            # center position of the chart.
 frame = False             # plot axes frame with the pie chart.

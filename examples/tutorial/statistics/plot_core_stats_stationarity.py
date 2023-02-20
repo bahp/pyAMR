@@ -77,8 +77,13 @@ print(stationarity._identifier())
 # ---------------------------
 # Plot
 # ---------------------------
+# .. note:: Including in the timeseries variable the value
+#           y_c produces the following error:
+#           ValueError: cannot convert float NaN to integer.
+
 # Create array of time series
 timeseries = [y_n, y_c, y_t, y_ct, y_r, y_s]
+timeseries = [y_n, y_t, y_ct, y_r, y_s]
 
 # Create figure
 fig, axes = plt.subplots(3,2, figsize=(10,8))
@@ -86,6 +91,7 @@ axes = axes.flatten()
 
 # Loop
 for i,ts in enumerate(timeseries):
+    #print("Stationarity... %s" % i)
 
     # Create stationarity wrapper.
     stationarity = StationarityWrapper().fit(x=ts)
@@ -105,6 +111,7 @@ for i,ts in enumerate(timeseries):
 
 # Study of Stationarity
 plt.suptitle("Study of Stationarity")
+plt.tight_layout()
 
 # Show
 plt.show()

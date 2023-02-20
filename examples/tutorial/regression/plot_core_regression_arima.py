@@ -12,7 +12,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 # Import ARIMA from statsmodels.
-from statsmodels.tsa.arima_model import ARIMA
+#from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.tsa.arima.model import ARIMA
 
 # import weights.
 from pyamr.datasets.load import make_timeseries

@@ -160,7 +160,7 @@ class AntibioticsTable:
     Returns
     -------
     """
-
+    """
     # Read data.
     df = pd_read.read_data(ftype='csv', 
                            path=data_path, 
@@ -199,6 +199,9 @@ class AntibioticsTable:
 
     # Return
     return df_u
+    """
+      
+    pass
 
 
 
@@ -223,6 +226,7 @@ class AntibioticsTable:
     -------
 
     """
+    """
     # Create table using input data.
     tnew = self.create_table(input_path)
     told = pd_read.read_data(ftype='csv', path=output_path) 
@@ -242,6 +246,8 @@ class AntibioticsTable:
 
     # return
     return output_path
+    """
+    pass
 
 
 

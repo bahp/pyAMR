@@ -1,6 +1,6 @@
 """
-SARI - Index
-============================
+Single Resistance Index (SARI)
+==============================
 
 The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a
@@ -12,25 +12,28 @@ intermediate category is not always considered.
 
 The parameter strategy accepts three different options:
 
-    (i) ``soft``   as R / R+I+S
-   (ii) ``medium`` as R / R+S
-   (iii) ``hard``  as R+I / R+I+S
-   (iv) ``other``  as R+0.5I / R+0.5I+S
+    - ``soft``   as R / (R+I+S)
+    - ``medium`` as R / (R+S)
+    - ``hard``   as (R+I) / (R+I+S)
+    - ``other``  as (R+0.5I) / (R+0.5I+S)
 
-For more information see: :py:mod:`pyamr.core.asai.SARI`
+..
+    - ``soft``   as :math:`R / (R + I + S)`
+    - ``medium`` as :math:`R / (R + S)`
+    - ``hard``   as :math:`(R + I) / (R + I + S)`
+    - ``other``  as :math:`(R + 0.5I) / (R + 0.5I + S)`
+
+For more information see: :py:mod:`pyamr.core.sari.SARI`
+
 
 """
 
-
-# Import libraries
-import sys
-import glob
+# Libraries
 import pandas as pd
-import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# Import specific libraries
+# Specific
 from pyamr.core.sari import SARI
 
 # Set matplotlib
@@ -39,27 +42,10 @@ mpl.rcParams['ytick.labelsize'] = 9
 mpl.rcParams['axes.titlesize'] = 11
 mpl.rcParams['legend.fontsize'] = 9
 
-
-# -------------------------
-# Constants
-# -------------------------
-# Replace codes
-replace_codes = {
-  '9MRSN':'MRSCUL',
-  'URINE CULTURE':'URICUL',
-  'WOUND CULTURE':'WOUCUL',
-  'BLOOD CULTURE':'BLDCUL',
-  'SPUTUM CULTURE':'SPTCUL',
-  'CSF CULTURE':'CSFCUL',
-  'EYE CULTURE':'EYECUL',
-  'GENITALCUL':'GENCUL',
-  'NEONATAL SCREEN':'NEOCUL',
-}
-
-# ---------------------
+# ----------------------------------
 # Create data
-# ---------------------
-# Create data
+# ----------------------------------
+# Define susceptibility test records
 data = [
     ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
     ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
@@ -114,7 +100,6 @@ data = [
     ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
 ]
 
-
 data = pd.DataFrame(data,
     columns=['DATE',
              'SPECIMEN',
@@ -148,3 +133,27 @@ print("\nSARI (iti):")
 print(sari_iti)
 print("\nSARI (oti):")
 print(sari_oti)
+
+
+
+#%%
+# Let's display the overall resistance.
+#
+sari_overall.to_frame()
+
+#%%
+# Let's display the resistance time-series using **independent** time intervals (ITI)
+#
+sari_iti
+
+
+#%%
+# Let's display the resistance time-series using **overlapping** time intervals (OTI)
+#
+sari_oti
+
+#%%
+# .. note:: On a side note, the variable *sari_overall* returned is a ``pd.Series``.
+#           However, it has been converted to a ``pd.DataFrame`` for display purposes.
+#           The ``sphinx`` library used to create the documentation uses the method
+#           ``_repr_html_`` from the latter to display it nicely in the docs.

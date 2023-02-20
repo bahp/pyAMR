@@ -1,4 +1,4 @@
-Guide
------
+Step by step guide
+------------------
 
-Below is a gallery of examples with the steps...
+Follow the step by step guide below.

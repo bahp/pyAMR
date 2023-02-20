@@ -9,6 +9,7 @@
 ###############################################################################
 # Libraries.
 import math
+import pickle
 import inspect
 import warnings
 import numpy as np
@@ -25,7 +26,7 @@ class BaseWrapper(object):
     # Main attributes of the class.
     _raw = None  # The raw object (statsmodels, scipy, ...)
     _result = {}  # Dictionary with metrics filled in self._init_result().
-    _config = {}  # Dictioanry with configuration filled in
+    _config = {}  # Dictionary with configuration filled in
     _conkwargs = {}
     _fitkwargs = {}
 
@@ -85,7 +86,7 @@ class BaseWrapper(object):
     def fargs(self, kwargs, function):
         """This method returns elements in kwargs which are function inputs."""
         # Get all parameters for the function.
-        prms = inspect.getargspec(function)
+        prms = inspect.getfullargspec(function)
         # Create dictionary and return
         return {k: kwargs[k] for k in prms.args if k in kwargs}
 
@@ -131,8 +132,6 @@ class BaseWrapper(object):
         """
         # Create empty list.
         grid_results = []
-
-        print("UEVAAA")
 
         # Loop for all possible combinations.
         for i, params in enumerate(ParameterGrid(grid_params)):
@@ -221,7 +220,7 @@ class BaseWrapper(object):
         s.update({'id': self._identifier()})
         # No label.
         if not flabel: return pd.Series(s)
-        # Concat label at the begining of the index.
+        # Concat label at the beginning of the index.
         label = self._name if label is None and hasattr(self, '_name') else label
         f = lambda x: "%s-%s" % (label.lower(), x)
         # Return
@@ -244,7 +243,8 @@ class BaseWrapper(object):
         return self
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
+
     # Set pandas configuration.
     pd.set_option('display.max_colwidth', 14)
     pd.set_option('display.width', 80)

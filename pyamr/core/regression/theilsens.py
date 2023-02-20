@@ -115,7 +115,7 @@ class TheilSensWrapper(BaseRegressionWrapper):
         return np.concatenate((time, mean, cilo, ciup), axis=0)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     # Libraries.
     import matplotlib.pyplot as plt
 
@@ -197,4 +197,4 @@ if __name__ == '__main__':
     print(summary)
 
     # Show
-    plt.show()
+    # plt.show()

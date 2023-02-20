@@ -12,6 +12,7 @@ from __future__ import division
 # Libraries
 import sys
 import copy
+import warnings
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
@@ -118,6 +119,12 @@ class WLSWrapper(RegressionWrapper):
     # --------------------------------------------------------------------------
     def _params_from_summary(self):
         """Gets parameters from the summary result of the raw object.
+
+        .. note: There must be a way to get all the elements extracted from
+                 the summary using the raw object and the methods implemented
+                 within.
+
+                 See: https://www.statsmodels.org/dev/generated/statsmodels.regression.linear_model.RegressionResults.html
         """
         # Format summary
         summary = self._raw.summary().as_csv()
@@ -128,17 +135,27 @@ class WLSWrapper(RegressionWrapper):
         elements = summary.split(",")
         elements = [_cast_float(e.strip()) for e in elements]
 
+
+        #print(self._raw.summary())
+        #for tb in self._raw.summary().tables:
+        #    b = pd.read_html(tb.as_html(), header=0, index_col=0)[0]
+        #    print(b)
+        #    print("\n")
+
+        #import sys
+        #sys.exit()
+
         # Create series.
         d = {}
 
         # Add parameters.
-        d['s_dw'] = elements[-13]
-        d['s_jb_value'] = elements[-9]
-        d['s_jb_prob'] = elements[-5]
-        d['s_skew'] = elements[-7]
-        d['s_kurtosis'] = elements[-3]
-        d['s_omnibus_value'] = elements[-15]
-        d['s_omnibus_prob'] = elements[-11]
+        d['s_dw'] = elements[61]
+        d['s_jb_value'] = elements[65]
+        d['s_jb_prob'] = elements[69]
+        d['s_skew'] = elements[67]
+        d['s_kurtosis'] = elements[71]
+        d['s_omnibus_value'] = elements[59]
+        d['s_omnibus_prob'] = elements[63]
 
         # Return
         return d
@@ -228,7 +245,7 @@ class WLSWrapper(RegressionWrapper):
     # --------------------------------------------------------------------------
     #                          fit and predict methods
     # --------------------------------------------------------------------------
-    def fit(self, endog, exog=None, trend='nc',
+    def fit(self, endog, exog=None, trend='n',
             weights=None,
             W=None,
             **kwargs):
@@ -238,21 +255,21 @@ class WLSWrapper(RegressionWrapper):
 
         Parameters
         ----------
-        endog : array-like
+        endog: array-like
           The endogenous variable (aka. time series data)
 
-        exog : array-like
+        exog: array-like
           The exogenous variable (by default is the time t starting in 0)
 
-        trend:  str-like, options = {c, nc}
+        trend:  str-like, options = {c, n}
           Wether to add a constant or not.
 
-        weights : array-like (optional)
+        weights: array-like (optional)
           The weights for the weighted least square regression. If weights and
-          W are both not note, the W instance will be used to transform the
+          W are both not None, the W instance will be used to transform the
           weights variables.
 
-        W : object-like (optional)
+        W: object-like (optional)
           The instance to transform the weights. It must implement the
           function 'weights'.
 
@@ -264,6 +281,7 @@ class WLSWrapper(RegressionWrapper):
         -------
         object : OLSWrapper object.
         """
+
         # Create a time-series exogenous variable
         if exog is None:
             exog = np.arange(endog.size)
@@ -275,9 +293,15 @@ class WLSWrapper(RegressionWrapper):
         # Compute weights from frequency
         if weights is not None and W is not None:
             weights = W.weights(weights)
+            if np.isnan(weights).any():
+                warnings.warn("""\n
+                     There was an error computing the weights. In order to
+                     avoid a fatal error, uniform weights will be set. The 
+                     weight transformer used was: {}""".format(W))
+                weights = None
 
         # Set uniform weights
-        if weights is None:
+        if weights is None :
             weights = np.ones(endog.size)
 
         # Save all newly created parameters
@@ -286,6 +310,7 @@ class WLSWrapper(RegressionWrapper):
         kwargs['trend'] = trend
         kwargs['weights'] = weights
         kwargs['W'] = W
+
 
         # Call parents fit.
         super(WLSWrapper, self).fit(**kwargs)
@@ -300,7 +325,7 @@ class WLSWrapper(RegressionWrapper):
 
             Note that wls_predict_std has weights (those used in WLS) as
             an input parameter. However, these are not passed to the
-            function. However, those weights are available for insample
+            function. Those weights are available for insample
             predictions but not for forecasting.
 
         Parameters
@@ -352,7 +377,7 @@ class WLSWrapper(RegressionWrapper):
             return self.x1_coef * x
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
     # Import
     import sys
@@ -555,4 +580,4 @@ if __name__ == '__main__':
     plt.tight_layout()
 
     # Show.
-    plt.show()
+    # plt.show()

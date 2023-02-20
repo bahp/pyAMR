@@ -349,7 +349,7 @@ class SARIMAXWrapper(RegressionWrapper):
         return self
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
 
     # Import
     import sys
@@ -486,7 +486,7 @@ if __name__ == '__main__':
     axes[0].legend()
     axes[1].legend()
 
-    plt.show()
+    # plt.show()
 
     # -------------------------------
     # Example II - AUTO
@@ -562,4 +562,4 @@ if __name__ == '__main__':
     plt.suptitle("Dynamic predictions for SARIMAX")
 
     # Show
-    plt.show()
+    # plt.show()
