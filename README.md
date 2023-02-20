@@ -20,8 +20,6 @@
 
 [![.github/workflows/python-package.yml][badge-gh-package]][url-gh-package]
 
-https://bahp.github.io/pyAMR/
-
 [url-documentation]: https://bahp.github.io/pyAMR/index.html
 [url-installation]: https://bahp.github.io/pyAMR/usage/installation.html
 [url-development]: https://bahp.github.io/pyAMR/usage/development.html
