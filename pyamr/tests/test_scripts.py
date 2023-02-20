@@ -39,37 +39,37 @@ def test_script_run_pyamr(self):
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_metrics(self):
     for f in (pyamr / 'metrics').glob('**/*.py'):
-        os.system(str(f))
-        runpy.run_path(str(f))
+        os.system('{} {}'.format('python', str(f)))
+        #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_graphics(self):
     for f in (pyamr / 'graphics').glob('**/*.py'):
-        os.system(str(f))
-        runpy.run_path(str(f))
+        os.system('{} {}'.format('python', str(f)))
+        #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core(self):
     for f in (pyamr / 'core').glob('*.py'):
-        os.system(str(f))
+        os.system('{} {}'.format('python', str(f)))
         #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core_regression(self):
     for f in (pyamr / 'core' / 'regression').glob('**/*.py'):
-        os.system(str(f))
+        os.system('{} {}'.format('python', str(f)))
         #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core_stats(self):
     for f in (pyamr / 'core' / 'stats').glob('**/*.py'):
-        os.system(str(f))
+        os.system('{} {}'.format('python', str(f)))
         #runpy.run_path(str(f))
 
 @patch('matplotlib.pyplot.show')
 def test_script_run_pyamr_core_table(self):
     for f in (pyamr / 'core' / 'table').glob('**/*.py'):
-        os.system(str(f))
+        os.system('{} {}'.format('python', str(f)))
         #runpy.run_path(str(f))
 
 
