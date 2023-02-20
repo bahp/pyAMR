@@ -23,7 +23,7 @@
 https://bahp.github.io/pyAMR/
 
 [url-documentation]: https://bahp.github.io/pyAMR/index.html
-[url-installation]: https://bahp.github.io/pyANR/usage/installation.html
+[url-installation]: https://bahp.github.io/pyAMR/usage/installation.html
 [url-development]: https://bahp.github.io/pyAMR/usage/development.html
 
 Community | [Documentation][url-documentation] | Resources | Contributors | Release Notes

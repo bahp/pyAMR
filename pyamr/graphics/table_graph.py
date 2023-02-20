@@ -676,7 +676,7 @@ if __name__ == '__main__':
   axes = TableGraph().plot(data=data, configuration=config)
 
   # Show.
-  plt.show()
+  #plt.show()
 
 
 
