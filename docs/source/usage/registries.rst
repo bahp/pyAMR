@@ -1,8 +1,8 @@
 Registries
-==========
+----------
 
 Microorganisms
---------------
+~~~~~~~~~~~~~~
 
 A microorganism, or microbe, is an organism of microscopic size, which may exist in its
 single-celled form or as a colony of cells. Microbes are important in human culture and health
@@ -46,7 +46,7 @@ ziehl_nealson_tain
 
 
 Taxonomy
-~~~~~~~~
+********
 
 .. image:: https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme
    :width: 130
@@ -75,7 +75,7 @@ See an example below.
 
 
 Gram Stain
-~~~~~~~~~~
+**********
 
 Gram stain or Gram staining, also called Gram's method, is a method of staining used to
 distinguish and classify bacterial species into two large groups according to the chemical
@@ -103,7 +103,8 @@ Gram, who developed the technique.
 
 
 Shape or morphology
-~~~~~~~~~~~~~~~~~~~
+*******************
+
 [REF]: https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology
 
 Different types of microbes have different, but characteristic, shapes. Under suitable
@@ -134,7 +135,7 @@ examples included in the figure below.
 
 
 Growth Type
-~~~~~~~~~~~~~~~~
+***********
 
 The two main types of bacterial growth are **aerobic** and **anaerobic**. The basic difference
 between the two, is that the former thrives in oxygenated environment and latter in an environment
@@ -154,7 +155,7 @@ marked by the absence of oxygen, there also exist other differences which cannot
 
 
 Haemolysis
-~~~~~~~~~~
+**********
 
 Hemolysis (from Greek αιμόλυση, meaning 'blood breakdown') is the breakdown of red blood cells. The
 ability of bacterial colonies to induce hemolysis when grown on blood agar is used to classify certain
@@ -179,7 +180,7 @@ hemolysis is a hemolysin.
 
 
 Coagulase Production
-~~~~~~~~~~~~~~~~~~~~
+********************
 
 Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
 to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.

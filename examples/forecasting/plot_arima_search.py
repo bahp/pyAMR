@@ -1,8 +1,6 @@
 """
-ARIMA search
-------------
-
-.. todo: Explain
+ARIMA - Search
+---------------------------
 
 """
 # Import.

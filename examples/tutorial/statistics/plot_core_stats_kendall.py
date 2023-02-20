@@ -1,5 +1,5 @@
 """
-Statistical test - Kendall
+Kendall
 ============================
 
 Example using your package

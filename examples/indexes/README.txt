@@ -6,10 +6,9 @@ Examples with indexes
 
 The examples presented in the gallery below show examples to compute
 different antimicrobial resistance (AMR) indexes and possible ways to
-visualize the outcomes. Note that some of the indexes have not been yet
-implemented or integrated in the docs:
+visualize the outcomes.
 
   - ``SARI``: Single Antimicrobial Resistance Index
-  - ``MARI``: Multiple Antimicrobial Resistance Index (``Pending``)
+  - ``MARI``: Multiple Antimicrobial Resistance Index
   - ``ASAI``: Antibimicrobial Spectrum of Activity Index
-  - ``SART``: Single Antimicrobial Resistance Trend (``Pending``)
+  - ``SART``: Single Antimicrobial Resistance Trend

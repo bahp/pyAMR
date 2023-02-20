@@ -1,4 +1,4 @@
-Step by step guide
+Guide step by step
 ------------------
 
-Follow the step by step guide below.
+Outline of the process and steps required to compute various metrics.

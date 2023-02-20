@@ -256,18 +256,12 @@ if __name__ == '__main__':
     path = './nhs/clwsql008/'
 
     tuples = [
-<<<<<<< HEAD
-        #('./nhs/legacy', clean_legacy),
-        #('./nhs/clwsql008', clean_clwsql008),
-        #('./mimic/mimic-iv-v0.4', clean_mimic)
-        ('./yujia/raw', clean_clwsql008)
-=======
         ('./nhs/legacy', clean_legacy),
         ('./nhs/clwsql008', clean_clwsql008),
         #('./nhs/test', clean_clwsql008),
         #('./nhs/test2', clean_legacy),
-        #('./mimic/mimic-iv-v0.4', clean_mimic)
->>>>>>> b446ca39f46492150f1fe580273339e2ffb40774
+        #('./mimic/mimic-iv-v0.4', clean_mimic),
+        ('./yujia/raw', clean_clwsql008)
     ]
 
     # Combined data

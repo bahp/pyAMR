@@ -387,7 +387,7 @@ def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
 
     # Check range using extreme thresholds
     s1 = np.sum(wgn * wsp * (sari < 0))
-    s2 = np.sum(wgn * wsp * (sari < 1))
+    s2 = np.sum(wgn * wsp * (sari <= 1))
     if abs(s1-0) > tol or abs(s2-1) > tol:
         raise ValueError("""
             The weights argument do not fulfill all the requirements. Note

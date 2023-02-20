@@ -91,7 +91,7 @@ sar = SARI(groupby=['specimen_code',
                     'sensitivity'])
 
 # Create constants
-shift, period = '1M', 1
+shift, period = '30D', '30D'
 
 # Compute sari timeseries
 iti = sar.compute(data, shift=shift,
@@ -300,7 +300,7 @@ aux = scores[['N_GENUS', 'N_SPECIE']] \
      .astype(str).replace({'nan': '-'})
 
 # Rename columns
-aux.columns = month_abbr(range(1, len(aux.columns)+1))
+#aux.columns = month_abbr(range(1, len(aux.columns)+1))
 
 # Draw table
 table = plt.table(cellText=aux.to_numpy(),

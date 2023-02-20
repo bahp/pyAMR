@@ -1,4 +1,4 @@
 Metrics
 -------
 
-Below is a gallery of examples ...
+Examples computing metrics.

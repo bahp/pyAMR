@@ -1,10 +1,8 @@
 """
-SARIMAX search
-----------------------------
+SARIMAX - Search
+-----------------------------
 
-.. note: Explain
-
-See ```SARIMAX`` <https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html>`_
+See `SARIMAX <https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html>`_
 
 """
 # Import.

@@ -1,4 +1,4 @@
-Regression
-----------
+Time-series analysis (regression)
+---------------------------------
 
-Below is a gallery of examples ...
+Examples using regression and time-series analysis.

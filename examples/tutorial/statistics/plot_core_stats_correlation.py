@@ -1,5 +1,5 @@
 """
-Statistical test - Correlation
+Correlation
 ==============================
 
 Example using your package

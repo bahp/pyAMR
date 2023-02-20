@@ -1,6 +1,6 @@
 """
-Regression - SARIMAX
-====================
+Using SARIMAX (seasonal)
+===========================================
 
 """
 # Import.

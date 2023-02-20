@@ -1,8 +1,6 @@
 """
-WLS search
-----------
-
-.. note: Explain
+WLS - Search
+-------------------------
 
 """
 # Import class.

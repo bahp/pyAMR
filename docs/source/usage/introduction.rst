@@ -27,7 +27,7 @@ With increasing electronic recording of data, there is a growing interest in the
 use of microbiology records to provide the necessary information to support antimicrobial stewardship
 programs [20]. These programs are crucial to guide health care organizations designing evidence-based
 policies to combat AMR [21, 22]. In particular, susceptibility reporting has shown to be a determinant
-data source to inform empiric antimicrobial therapy selection
+data source to inform empiric antimicrobial therapy selection.
 
 .. image:: ../../_static/imgs/susceptibility-test-record.png
    :width: 200
@@ -41,40 +41,43 @@ or intermediate). In research, the susceptibility test data is usually first gro
 specimen or culture type, and further grouped by pairs (pathogen, antimicrobial)
 since it is widely accepted by clinicians as detailed in the UK five year strategy in AMR [21].
 
+
+
+
 The AMR indexes
 ---------------
 
-======== ============================================== =============
-Acronym  Name                                           Status
-======== ============================================== =============
-``SARI`` Single Antimicrobial Resistance Index          ``Ok``
-``MARI`` Multiple Antimicrobial Resistance Index        ``Pending``
-``DRI``  Drug Resistance Index                          ``Pending``
-``SART`` Single Antimicrobial Resistance Trend          ``Pending``
-``ASAI`` Antimicrobial Spectrum of Activity Index       ``Ok``
-======== ============================================== =============
+======== ============================================== ======= =============
+Acronym  Name                                           Range   Status
+======== ============================================== ======= =============
+``SARI`` Single Antimicrobial Resistance Index          [0, 1]  ``Ok``
+``MARI`` Multiple Antimicrobial Resistance Index        [0, 1]  ``Ok``
+``DRI``  Drug Resistance Index                                  ``Pending``
+``SART`` Single Antimicrobial Resistance Trend          [0, 1]  ``Ok``
+``ASAI`` Antimicrobial Spectrum of Activity Index       [-1, 1] ``Ok``
+======== ============================================== ======= =============
 
-- **Single Antibiotic Resistance Index (SARI)**
+- **Single Antimicrobial Resistance Index (SARI)**
 
-    This index describes the proportion of resistant isolates for a given set of susceptibility
-    tests. It provides a value within the range [0,1] where values close to one indicate high
-    resistance. It is agnostic to pathogen, antibiotic and time. The variables *R*, *I* and *S* represent
-    the number of susceptibility tests with Resistant, Intermediate and Susceptible outcomes
-    respectively. The definition might vary slightly since the intermediate category is not always
-    considered.
+    The single antimicrobial resistance index describes the proportion of resistant isolates for a
+    given set of susceptibility tests. It provides a value within the range [0,1] where values close
+    to one indicate high resistance. It is agnostic to pathogen, antibiotic and time. The variables *R*,
+    *I* and *S* represent the number of susceptibility tests with Resistant, Intermediate and Susceptible
+    outcomes respectively. The definition might vary slightly since the intermediate category is not
+    always considered.
 
     See: :py:mod:`pyamr.core.sari.SARI`
 
     Example: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`
 
-- **Multiple Antibiotic Resistance Index (MARI)**
+- **Multiple Antimicrobial Resistance Index (MARI)**
 
-    This index describes the ratio of antimicrobials tested (*T*) to which a pathogen is resistant (*R*).
-    It provides a value within the range [0,1] where values close to one indicate high multi-drug
-    resistance. It highly depends on the antimicrobials to which the pathogen is tested. Since
-    tested antimicrobials vary among health care centres and time, comparison and analysis of its
-    evolution in time is not straight forward. In addition, antibiotics which are intrinsically resistant
-    should not be considered.
+    The multiple antimicrobial resistance describes the ratio of antimicrobials tested (*T*) to which a
+    pathogen is resistant (*R*). It provides a value within the range [0,1] where values close to
+    one indicate high multi-drug resistance. It highly depends on the antimicrobials to which the
+    pathogen is tested. Since tested antimicrobials vary among health care centres and time, comparison
+    and analysis of its evolution in time is not straight forward. In addition, antibiotics which are
+    intrinsically resistant should not be considered.
 
     See: :py:mod:`pyamr.core.mari.MARI`
 
@@ -83,27 +86,27 @@ Acronym  Name                                           Status
 
 - **Drug Resistance Index (DRI)**
 
-    This index measures the proportion of pathogens that are resistant to the antimicrobials used
-    to treat them. It provides a value within the range [0,1] where values close to one indicate
-    high resistant for frequent antimicrobials. The variable *ρik* is the proportion of resistance
-    among organism *i* to antimicrobial *k* and *qik* is the frequency of drug *k* used to treat
-    organism *i*.
+    The drug resistance index measures the proportion of pathogens that are resistant to the
+    antimicrobials used to treat them. It provides a value within the range [0,1] where values
+    close to one indicate high resistant for frequent antimicrobials. The variable *ρik* is the
+    proportion of resistance among organism *i* to antimicrobial *k* and *qik* is the
+    frequency of drug *k* used to treat organism *i*.
 
     .. warning:: Not implemented!
 
 - **Antimicrobial Spectrum of Activity Index (ASAI)**
 
-    The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible to
-    these agents and therefore can be treated. In general, antimicrobial agents are classified into broad,
-    intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both Gram-positive
-    and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited activity and are
-    effective only against particular species of bacteria.
+    The antimicrobial spectrum of activity index refers to the range of microbe species that are
+    susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
+    classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
+    against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
+    have limited activity and are effective only against particular species of bacteria.
 
     See: :py:mod:`pyamr.core.asai.ASAI`
 
     Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`
 
-- **Single Antibiotic Resistance Trend (SART)**
+- **Single Antimicrobial Resistance Trend (SART)**
 
     The single antimicrobial resistance trend measures the ratio of change per time unit
     (e.g. monthly or yearly). To compute this metric, it is necessary to generate a
@@ -118,40 +121,69 @@ Acronym  Name                                           Status
 
 
 
-The Registries
---------------
+
+
 
 
 
 Time series analysis
 --------------------
 
-Summary
+Time series analysis is a specific way of analyzing a sequence of data points collected over
+an interval of time. In time series analysis, analysts record data points at consistent intervals
+over a set period of time. Time series analysis typically requires a large number of data points
+to ensure consistency and reliability. An extensive data set ensures you have a representative
+sample size and that analysis can cut through noisy data. It also ensures that any trends or patterns
+discovered are not outliers and can account for seasonal variance. Additionally, time series data
+can be used for forecasting—predicting future data based on historical data.
 
-R2  0-100 higher the better
+Examples using time-series analysis in ``pyAMR``.
 
-================= ==================================================== ============= ========
-Name              Full name                                            Range
-================= ==================================================== ============= ========
-``R2``            Goodness-of-fit measure for linear regression models [0, 100]
-``pearson``       Measures linear correlation between variables        [-1, 1]
-``kurtosis``      Measure of tailedness of a probability distribution
-``skewness``      Measure of asymmetry of a probability distribution
-``jarque-bera``   Goodness-of-fit measure data matches normal dist
-``durbin-watson`` Measure correlation of residuals in regression
-``omnibus``       Blurb
-================= ==================================================== ============= ========
+    - :ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
+    - :ref:`sphx_glr__examples_tutorial_guide_plot_step_04.py`
 
-.. warning:: Describe how linear regression and weighted linear regression
-             work. Highlight that most of the features are computed on the
-             residuals.
+..
+    - :ref:`examples-with-tsa`
+
+
+..
+    Time-series analysis is a method of analyzing data to extract useful statistical information and
+    characteristics. One of the study's main goals is to predict future value. When forecasting with
+    time series analysis, which is extremely complex, extrapolation is required. However, the forecasted
+    value and the associated uncertainty estimation can make the result extremely valuable.
+
+In time-series analysis, it is necessary to understand various statistical properties/tests
+in order to assess which method to use and to better understand the behaviour of the
+produced models. A summary of these statistical properties/tests is presented below.
+
+
+Statistical properties
+~~~~~~~~~~~~~~~~~~~~~~
+
+A statistic (singular) or sample statistic is any quantity computed from values in a sample which
+is considered for a statistical purpose. Some of the most commonly used descriptive statistics are
+central tendency, dispersion, skewness, and tailednes.
+
+
+====================== ==================================================== ============= ========
+Name                   Description                                          Range         Choose
+====================== ==================================================== ============= ========
+``pearson``            Measures linear correlation between variables        [-1, 1]         ≈0
+``kurtosis``           Measure of tailedness of a probability distribution  [1, ∞)          ≈0
+``skewness``           Measure of asymmetry of a probability distribution                   ≈0
+``R2``                 Measures goodness-of-fit or linear regression models [0, 100]        ↑
+``aic``                Measures goodness-of-fit among models                                ↓
+``bic``                Measures goodness-of-fit among models                                ↓
+``hqic``               Measures goodness-of-fit among models
+``llf``
+
+====================== ==================================================== ============= ========
 
 Pearson
-~~~~~~~
+*******
 
-
-.. https://cdn.scribbr.com/wp-content/uploads/2022/05/Strong-positive-correlation-and-strong-negative-correlation.webp
-.. https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png
+.. _R1: https://cdn.scribbr.com/wp-content/uploads/2022/05/Strong-positive-correlation-and-strong-negative-correlation.webp
+.. _R2: https://upload.wikimedia.org/wikipedia/commons/3/34/Correlation_coefficient.png
 
 .. image:: https://www.simplilearn.com/ice9/free_resources_article_thumb/Pearson_Correlation_1.jpg
    :width: 320
@@ -165,26 +197,25 @@ of the covariance, such that the result always has a value between −1 and 1. T
 can only reflect a linear correlation of variables, and ignores many other types of
 relationships or correlations.
 
-R2
-~~
 
-[R]: https://statisticsbyjim.com/regression/interpret-r-squared-regression/
+R2
+**
+
+.. _R3: https://statisticsbyjim.com/regression/interpret-r-squared-regression/
 
 R-squared is a goodness-of-fit measure for linear regression models. This
 statistic indicates the percentage of the variance in the dependent variable
 that the independent variables explain collectively. R-squared measures the
 strength of the relationship between your model and the dependent variable
-on a convenient 0 – 100% scale.
-
-R-squared is always between 0 and 100% where (i) **0%** represents a model that
-does not explain any of the variation in the response variable around its mean.
-The mean of the dependent variable predicts the dependent variable as well as the
-regression model and (ii) **100%** represents a model that explains all the variation
-in the response variable around its mean.
+on a convenient 0 – 100% scale. R-squared is always between 0 and 100% where
+(i) **0%** represents a model that does not explain any of the variation in the
+response variable around its mean. The mean of the dependent variable predicts
+the dependent variable as well as the regression model and (ii) **100%** represents
+a model that explains all the variation in the response variable around its mean.
 
 
 Skewness
-~~~~~~~~
+********
 
 .. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Negative_and_positive_skew_diagrams_%28English%29.svg/446px-Negative_and_positive_skew_diagrams_%28English%29.svg.png
    :width: 320
@@ -205,7 +236,7 @@ where one tail is long and thin, and the other is short but fat.
 
 
 Kurtosis
-~~~~~~~~
+********
 
 .. image:: https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png
    :width: 320
@@ -224,33 +255,320 @@ distribution produces fewer and/or less extreme outliers than the normal distrib
 An example of a platykurtic distribution is the uniform distribution, which does not
 produce outliers. Distributions with a positive excess kurtosis are said to be leptokurt.
 
+
+Akaike information criterion
+******************************
+
+The Akaike information criterion (AIC) is an estimator of prediction error and thereby
+relative quality of statistical models for a given set of data.[1][2][3] Given a collection
+of models for the data, AIC estimates the quality of each model, relative to each of the
+other models. Thus, AIC provides a means for model selection.
+
+Bayesian information criterion
+******************************
+
+In statistics, the Bayesian information criterion (BIC) or Schwarz information criterion
+(also SIC, SBC, SBIC) is a criterion for model selection among a finite set of models; models
+with lower BIC are generally preferred. It is based, in part, on the likelihood function and
+it is closely related to the Akaike information criterion (AIC).
+
+
+Hannan-Quinn information criterion
+**********************************
+
+The Hannan-Quinn information criterion (HQC) is a measure of the goodness of fit of a statistical
+model, and is often used as a criterion for model selection among a finite set of models. It is not
+based on log-likelihood function (LLF), and but related to Akaike's information criterion.
+
+
+Stationarity
+************
+
+.. warning:: Pending!
+
+Statistical tests
+~~~~~~~~~~~~~~~~~
+
+A statistical test provides a mechanism for making quantitative decisions about a process or
+processes. The intent is to determine whether there is enough evidence to "reject" a conjecture
+or hypothesis about the process. The conjecture is called the null hypothesis.
+
+====================== ==================================================== ============= ========
+Name                   Description                                          Range         Choose
+====================== ==================================================== ============= ========
+``jarque-bera``        Goodness-of-fit measure data matches normal dist                     ↓?
+``durbin-watson``      Measure correlation of residuals in regression       [0, 4]          ≈2
+``omnibus``                                                                                 ↓?
+``adfuller``
+``kendall``
+``kpss``
+``normal``
+``Kolmogorov-smirnov``
+``Shapiro-wilkinson``
+``Anderson-darling``
+====================== ==================================================== ============= ========
+
+Augmented Dicker-Fuller
+***********************
+
+Kendal
+************
+
+Kwiatkowski–Phillips–Schmidt–Shin
+*********************************
+
 Jarque Bera
-~~~~~~~~~~~
+************
 
 In statistics, the Jarque–Bera test is a goodness-of-fit test of whether sample data
 have the skewness and kurtosis matching a normal distribution.
 
 Durbin Watson
-~~~~~~~~~~~~~
+*************
 
 The Durbin Watson (DW) statistic is a test for autocorrelation in the residuals
 from a statistical model or regression analysis. The Durbin-Watson statistic will
 always have a value ranging between 0 and 4. A value of 2.0 indicates there is
 no autocorrelation detected in the sample.
 
-Normal Test
-~~~~~~~~~~~
+Normal
+******
 
-Kolmogorov-smirnov Test
-~~~~~~~~~~~~~~~~~~~~~~~
+.. warning:: Pending!
 
-Shapiro-wilkinson Test
-~~~~~~~~~~~~~~~~~~~~~~
+Kolmogorov-smirnov
+******************
 
-Anderson-darling Test
-~~~~~~~~~~~~~~~~~~~~~
+.. warning:: Pending!
+
+Shapiro-wilkinson
+*****************
+
+.. warning:: Pending!
+
+Anderson-darling
+****************
+
+.. warning:: Pending!
 
 Omnibus
-~~~~~~~
+*******
+
 Omnibus tests are a kind of statistical test. They test whether the explained variance
 in a set of data is significantly greater than the unexplained ...
+
+.. warning:: Pending!
+
+
+
+
+Registries
+----------
+
+Microorganisms
+~~~~~~~~~~~~~~
+
+A microorganism, or microbe, is an organism of microscopic size, which may exist in its
+single-celled form or as a colony of cells. Microbes are important in human culture and health
+in many ways, serving to ferment foods and treat sewage, and to produce fuel, enzymes, and
+other bioactive compounds. Microbes are essential tools in biology as model organisms and have
+been put to use in biological warfare and bioterrorism. Microbes are a vital component of
+fertile soil. In the human body, microorganisms make up the human microbiota, including the
+essential gut flora. The pathogens responsible for many infectious diseases are microbes and,
+as such, are the target of hygiene measures.
+
+The table below shows some relevant characteristics that can be used to describe various
+microorganisms. Therefore, these can also be used to categorise or group microorganisms
+that have similar properties
+
+==================== ============================================================= ==========
+Definition           Categories                                                    Status
+==================== ============================================================= ==========
+taxonomy             domain, kingdom, phylum, class, order, family, genus, species ``Ok``
+gram_stain           positive, negative                                            ``Ok``
+shape/morphology     cocci, bacilli, vibrio, spirochete
+growth               aerobic, anaerobic
+hemolysis            alpha, beta, gamma, no-hemolysis
+coagulase_production positive, negative
+group                A, B, C, D, ...
+arrangement
+endospores
+mobility?
+salinity
+oxygen_requirements
+habitat
+temp_range
+temp_optima
+disease
+host                 human, animals, swine, cattle, ...
+fermenting           lactose, non-lactose
+acid_fastness_stain
+ziehl_nealson_tain
+==================== ============================================================= ==========
+
+.. note:: Most of these categories have not been used within the library.
+
+
+Taxonomy
+********
+
+.. image:: https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme
+   :width: 130
+   :align: right
+   :alt: pyAMR
+
+Bacterial taxonomy is a rank-based classification, of bacteria. In the scientific classification
+established by Carl Linnaeus, each species has to be assigned to a genus (binary nomenclature),
+which in turn is a lower level of a hierarchy of ranks (family, suborder, order, subclass, class,
+division/phyla, kingdom and domain). In the currently accepted classification of life, there are
+three domains (Eukaryotes, Bacteria and Archaea), which, in terms of taxonomy, despite following
+the same principles have several different conventions between them and between their subdivisions.
+See an example below.
+
+  - life:
+  - domain: Bacteria
+  - kingdom:
+  - phylum: Proteobacteria
+  - class: Gamma Proteobacteria
+  - order: Enterobacteriales
+  - family: Enterobacteriaceae
+  - genus: Escherichia
+  - species: Escherichia coli
+  - subspecies (missing in dataset)
+
+
+Gram Stain
+**********
+
+Gram stain or Gram staining, also called Gram's method, is a method of staining used to
+distinguish and classify bacterial species into two large groups according to the chemical
+and physical properties of their cell walls: gram-positive bacteria and gram-negative
+bacteria. The name comes from the Danish bacteriologist Hans Christian
+Gram, who developed the technique.
+
+- **Gram positive** bacteria take up the crystal violet stain used in the test, and then
+  appear to be purple-coloured when seen through an optical microscope. This is because the
+  thick peptidoglycan layer in the bacterial cell wall retains the stain after it is washed
+  away from the rest of the sample, in the decolorization stage of the test.
+
+- **Gram-negative** bacteria cannot retain the violet stain after the decolorization step;
+  alcohol used in this stage degrades the outer membrane of gram-negative cells, making the
+  cell wall more porous and incapable of retaining the crystal violet stain. Their peptidoglycan
+  layer is much thinner and sandwiched between an inner cell membrane and a bacterial outer
+  membrane, causing them to take up the counterstain (safranin or fuchsine) and appear red or
+  pink.
+
+.. note:: Despite their thicker peptidoglycan layer, gram-positive bacteria are more
+    receptive to certain cell wall–targeting antibiotics than gram-negative bacteria,
+    due to the absence of the outer membrane.
+
+
+Shape or morphology
+*******************
+
+[REF]: https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology
+
+Different types of microbes have different, but characteristic, shapes. Under suitable
+conditions, the shape and size of microbes are relatively stable. It is important to know
+the morphological structure of microbes, as it provides us with a better understanding of
+microbial physiology, pathogenic mechanisms, antigenic features, and allows us to identify
+them by species. In addition, knowledge of microbial morphology can be helpful in diagnosing
+disease and in preventing microbial infections.
+
+Bacteria are complex and highly variable microbes. They come in four basic shapes: **spherical**
+(cocci), **rod-shaped** (bacilli), **arc-shaped** (vibrio), and **spiral** (spirochete). See some
+examples included in the figure below.
+
+
+.. image:: https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg
+   :width: 600
+   :align: center
+   :alt: pyAMR
+
+.. raw:: html
+
+    <!--
+    <img src="https://microbenotes.com/wp-content/uploads/2020/05/Bacterial-Shapes-and-Arrangement.jpeg"/>
+    <img src="https://ars.els-cdn.com/content/image/3-s2.0-B978012802234400001X-f01-03-9780128022344.jpg"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
+    -->
+
+
+Growth Type
+***********
+
+The two main types of bacterial growth are **aerobic** and **anaerobic**. The basic difference
+between the two, is that the former thrives in oxygenated environment and latter in an environment
+marked by the absence of oxygen, there also exist other differences which cannot be ignored.
+
+- **Aerobic:** These are the species of bacteria which require oxygen for their basic survival,
+  growth, and the process of reproduction. It is very easy to isolate these bacteria by culturing
+  a mass of bacterial strains in some liquid medium. As they require oxygen for survival, they
+  tend to come to the surface in a bid to derive maximum oxygen available. Examples are Bacillus
+  or Nocardia.
+
+- **Anaerobic**: these are the species of bacteria which don’t require oxygen for growth. There are
+  different types of anaerobic species, including the aerotolerant anaerobes, which can survive in the
+  presence of oxygen, and obligate anaerobes, which can’t survive in the presence of oxygen. Examples
+  are Escherichia coli or Bacteroides.
+
+
+
+Haemolysis
+**********
+
+Hemolysis (from Greek αιμόλυση, meaning 'blood breakdown') is the breakdown of red blood cells. The
+ability of bacterial colonies to induce hemolysis when grown on blood agar is used to classify certain
+microorganisms. This is particularly useful in classifying streptococcal species. A substance that causes
+hemolysis is a hemolysin.
+
+- **Alpha-hemolysis:** When alpha-hemolysis (α-hemolysis) is present, the agar under the colony is
+  light and greenish. Streptococcus pneumoniae and a group of oral streptococci (Streptococcus viridans
+  or viridans streptococci) display alpha hemolysis.
+
+- **Beta-hemolysis:** Sometimes called complete hemolysis, is a complete lysis of red cells in the media
+  around and under the colonies: the area appears lightened (yellow) and transparent. Streptolysin, an
+  exotoxin, is the enzyme produced by the bacteria which causes the complete lysis of red blood cells. There
+  are two types of streptolysin: Streptolysin O (SLO) and streptolysin S (SLS).
+
+- **Gamma-hemolysis:** If an organism does not induce hemolysis, the agar under and around the colony
+  is unchanged, and the organism is called non-hemolytic or said to display gamma-hemolysis (γ-hemolysis).
+  Enterococcus faecalis (formerly called "Group D Strep"), Staphylococcus saprophyticus, and Staphylococcus
+  epidermidis display gamma hemolysis.
+
+
+Coagulase Production
+********************
+
+Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
+to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
+Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
+the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
+test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
+However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
+Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
+opportunistic infection.
+
+Antimicrobials
+~~~~~~~~~~~~~~
+
+An antimicrobial is an agent that kills microorganisms or stops their growth. Antimicrobial
+medicines can be grouped according to the microorganisms they act primarily against in for main
+categories: (i) **anibiotics** which are used against bacteria, (ii) **antifungals** which are used
+against fungi, (iii) **antivirals** which are used against viruses and (iv) **antiparasitics** which
+are used against parasites.
+
+.. image:: https://antibioticguardian.com/assets/Antimicrobials_AMR-infographic_UKHSA.png
+
+An antibiotic is a type of antimicrobial substance active against bacteria. It is the most important type
+of antibacterial agent for fighting bacterial infections, and antibiotic medications are widely used in the
+treatment and prevention of such infections.
+
+[REF]: https://en.wikipedia.org/wiki/Antibiotic
+
+.. image:: https://girlymicrobiologist.files.wordpress.com/2020/10/antibiotic-classes.png
+
+
+
+
+
