@@ -39,32 +39,76 @@ such information which relay on plotting libraries such as ``matplotlib``,
 
    <br><br>
 
+Antimicrobial drugs are commonly used. We have all heard of antibiotics, which fight bacteria,
+but there are also antifungals, antivirals and antiparasitics that fight fungi, viruses and
+parasites, respectively. The more we use these drugs, the less effective they become and this
+problem is known as antimicrobial resistance (AMR). Resistant infections can be difficult, and
+sometimes impossible, to treat. Thus providing accurate and up to date AMR surveillance reports
+supports interventions and toolkits to improve antibiotic prescribing in the community, including
+prescribing in general practices (GPs), dental and other settings and hospitals.
 
-To briefly showcase some of the AMR metrics that can be computed using this library we
-have included two Figures. The first Figure presents information related to antimicrobial
-resistance metrics for those ``urine`` specimens in which ``Escherichia coli`` was grown and tested.
-The table contains the following information which is also displayed in the graphs below:
+Let's see two reports that can be computed using ``PyAMR``.
 
- - ``R`` is the overall resistance; that is, proportion of resistance isolates.
- - ``TM`` is the monthly resistance trend.
- - ``TY`` is the yearly resistance trend.
- - ``pearson`` is the correlation coefficient to discern whether there is a linear correlation
-   between the number of isolates (records) used to compute the resistance and the overall
-   resistance obtained. They should not be correlated (-0.5 <= pearson <= 0.5).
- - ``isolates`` is the the number of isolates used to compute such metrics.
- - ``references`` includes manuscripts within the literate which presented similar resistance
-   values to the ones displayed in the table. For more information about these, see the
-   original manuscript (button above).
 
+.. raw:: html
+
+   <h6> Report I: Surveillance of AMR resistance </h6>
+
+In order to present AMR surveillance results, the susceptibility test data is often first grouped
+by three parameters: (i) the specimen or sample type (e.g. urine), (i) the infectious organism or
+pathogen, and (iii) the antimicrobial. The following report provides results for all the
+antimicrobials tested in ``urine`` samples in which ``Escherichia coli`` was grown and tested.
 
 .. image:: ./_static/imgs/todo-sart-table.png
+   :width: 600
+   :align: center
 
-The second Figure presents information related to the computation of the antimicrobial spectrum of
-activity for all the antimicrobials tested on ``urine`` samples. The table includes references to
-the literature with the corresponding associated category (eg.g narrow, intermediate and broad). While
-these three profiles appeared in the mid-1950s, little effort has been made to define them. Furthermore,
-such ambiguous labels are overused for different and even contradictory purposes. In addition, the
-table includes the following columns:
+.. raw:: html
+
+   <br>
+
+The table contains the following information:
+
+ - ``R`` is the overall resistance; that is, the total proportion of resistance isolates.
+ - ``TM`` is the monthly resistance trend (it would be 1 if resistance goes from 0 to 1 in a month).
+ - ``TY`` is the yearly resistance trend (``TM`` x 12).
+ - ``pearson`` is the correlation coefficient computed between the vector with the number of
+   isolates used to compute the resistance on each time period (e.g. month or year) and the
+   overall resistance obtained. It is used to assess whether the strategy used for testing
+   might be affecting the resistance values. Ideally, there should not be a strong correlation
+   between them (-0.5 <= ``pearson`` <= 0.5).
+ - ``isolates`` is the the total number of isolates used to compute such metrics.
+ - ``references`` includes manuscripts within the literate which presented similar resistance
+   values to the ones displayed in the table. For more information about these, see the
+   original `manuscript`_.
+
+.. _manuscript: https://www.mdpi.com/2079-6382/10/10/1267
+
+.. raw:: html
+
+   <h6> Report II: Effectiveness of an Antimicrobial </h6>
+
+The antimicrobial spectrum of activity refers to the range of microbe species that are susceptible
+to these agents and therefore can be treated. In general, antimicrobial agents are classified into
+broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active against both
+Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials have limited
+activity and are effective only against particular species of bacteria. While these profiles appeared
+in the mid-1950s, little effort has been made to define them. Furthermore, such ambiguous labels are
+overused for different and even contradictory purposes.
+
+To address this issue, the library defines the Antimicrobial Spectrum of Activity Index (``ASAI``)
+which provides a way to compute a single numerical value. The following report provides results for
+all the antimicrobials and microorganisms tested in ``urine`` samples.
+
+.. image:: ./_static/imgs/todo-asai-table.png
+   :width: 600
+   :align: center
+
+.. raw:: html
+
+   <br>
+
+The table table includes the following columns:
 
  - ``antimicrobial`` is the antimicrobial
  - ``ASAI_N`` is the spectrum of activity against gram negative bacteria.
@@ -72,9 +116,11 @@ table includes the following columns:
  - ``N_gn`` is the number of different (unique) genus.
  - ``N_sp`` is the number of different (unique) species.
 
+.. raw:: html
 
-.. image:: ./_static/imgs/todo-asai-table.png
-
+   <br>
+   <br>
+   <br>
 
 When using any of this project's source code, please cite:
 
@@ -100,9 +146,11 @@ When using any of this project's source code, please cite:
    :align: right
    :alt: Imperial College London
 
+.. _Spiral: https://spiral.imperial.ac.uk/handle/10044/1/73000
+
 .. note::
 
-    The PhD thesis is available on Spiral: https://spiral.imperial.ac.uk/handle/10044/1/73000
+    The PhD thesis is available on `Spiral`_.
 
 
 .. .. bibliography::
@@ -129,8 +177,6 @@ When using any of this project's source code, please cite:
 
    usage/introduction
    usage/installation
-   usage/quickstart
-   usage/registries
    usage/todo
 
 .. toctree::
@@ -141,15 +187,17 @@ When using any of this project's source code, please cite:
    _examples/tutorial/index
    _examples/indexes/index
    _examples/forecasting/index
-   _examples/reports/index
    _examples/visualization/index
+
+.. usage/quickstart
+   _examples/reports/index
 
 .. toctree::
    :maxdepth: 2
    :caption: API
    :hidden:
 
-   _apidoc/pyamr
+   _apidoc/modules.rst
 
 
 Indices and tables
