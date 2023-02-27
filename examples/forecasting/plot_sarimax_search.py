@@ -2,6 +2,8 @@
 SARIMAX - Search
 -----------------------------
 
+Grid Search to find best fitting SARIMAX model.
+
 See `SARIMAX <https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html>`_
 
 """

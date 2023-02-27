@@ -2,7 +2,8 @@
 Stationarity
 ===============================
 
-Example using your package
+Use of ADF and KPSS to assess stationarity (or trend stationarity) of a time series.
+
 """
 # Libraries
 import numpy as np

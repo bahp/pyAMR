@@ -1,6 +1,9 @@
 """
 Step 01 - Indexes
 =================
+
+Computing the AMR indexes on the whole dataset.
+
 """
 
 

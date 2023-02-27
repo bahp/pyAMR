@@ -2,7 +2,7 @@
 Metrics - scores
 ================
 
-Example of metrics implemented.
+Computing some common score metrics such as MAE, MSE or MAP.
 
 """
 # General libraries.

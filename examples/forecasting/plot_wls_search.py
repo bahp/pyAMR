@@ -2,6 +2,8 @@
 WLS - Search
 -------------------------
 
+Grid Search to find best fitting WLS model.
+
 """
 # Import class.
 import sys

@@ -2,6 +2,8 @@
 Step 02 - Temporal evolution
 ============================
 
+Computing the AMR indexes over time periods to analyse temporal patterns.
+
 """
 
 

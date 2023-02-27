@@ -2,6 +2,8 @@
 ARIMA - Search
 ---------------------------
 
+Grid Search to find best fitting ARIMA model.
+
 """
 # Import.
 import sys

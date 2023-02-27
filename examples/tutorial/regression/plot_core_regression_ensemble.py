@@ -2,6 +2,9 @@
 Using WLS + ARMA
 ====================
 
+Using Weighted Least Squares to fit a line to sample points and further fit the residuals
+using the ARMA model.
+
 .. warning:: Not working yet!
 
 """

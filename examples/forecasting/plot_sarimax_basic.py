@@ -2,6 +2,8 @@
 SARIMAX - Basic
 -----------------------
 
+Basic example using SARIMAX to fit a timeseries.
+
 See `SARIMAX <https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html>`_
 
 """

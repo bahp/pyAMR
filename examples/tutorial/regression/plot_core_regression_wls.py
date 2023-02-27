@@ -2,6 +2,8 @@
 Using weighted least squares (WLS)
 ==================================
 
+Using Weighted Least Squares to fit a line to sample points and use it for further prediction.
+
 """
 # Import class.
 import sys

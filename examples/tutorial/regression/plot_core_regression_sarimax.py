@@ -1,6 +1,8 @@
 """
-Using SARIMAX (seasonal)
+Using SARIMAX
 ===========================================
+
+Using Seasonal ARIMA with eXogenous variables to fit a time-series and use it for further prediction.
 
 """
 # Import.

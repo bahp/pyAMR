@@ -2,7 +2,7 @@
 Metrics - weights
 =================
 
-Example of how to use the SigmoidA to compute weights.
+Using the approximated Sigmoid function to compute weights.
 
 .. todo:: The SigmoidA stants for Sigmoid Approximation. This page
           needs better explanation of the sigmoid function and how

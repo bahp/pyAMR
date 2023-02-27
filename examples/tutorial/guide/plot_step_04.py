@@ -2,6 +2,8 @@
 Step 04 - TSA to estimate trends
 ================================
 
+Using time series analysis to estimate antimicrobial resistance trends.
+
 .. warning:: To be completed!
 
 """

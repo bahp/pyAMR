@@ -2,6 +2,8 @@
 ARIMA - Basic
 ---------------------
 
+Basic example using ARIMA to fit a time series.
+
 """
 # Import.
 import sys

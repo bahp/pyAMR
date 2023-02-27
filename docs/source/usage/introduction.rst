@@ -25,8 +25,8 @@ system (GLASS) to strengthen the evidence base on AMR and inform decision-making
 
 With increasing electronic recording of data, there is a growing interest in the potential secondary
 use of microbiology records to provide the necessary information to support antimicrobial stewardship
-programs [20]. These programs are crucial to guide health care organizations designing evidence-based
-policies to combat AMR [21, 22]. In particular, susceptibility reporting has shown to be a determinant
+programs. These programs are crucial to guide health care organizations designing evidence-based
+policies to combat AMR. In particular, susceptibility reporting has shown to be a determinant
 data source to inform empiric antimicrobial therapy selection.
 
 .. image:: ../../_static/imgs/susceptibility-test-record.png
@@ -34,12 +34,12 @@ data source to inform empiric antimicrobial therapy selection.
    :align: right
    :alt: ASAI
 
-Susceptibility test records (see Figure 4.1) are composed by laboratory identification
+Susceptibility test records (see Figure) are composed by laboratory identification
 number (LID), patient identification number (PID), date, sample type or culture (e.g.
 blood or urine), pathogen, antimicrobial, reported status and outcome (resistant, sensitive
 or intermediate). In research, the susceptibility test data is usually first grouped by
 specimen or culture type, and further grouped by pairs (pathogen, antimicrobial)
-since it is widely accepted by clinicians as detailed in the UK five year strategy in AMR [21].
+since it is widely accepted by clinicians as detailed in the UK five year strategy in AMR.
 
 
 
@@ -174,9 +174,8 @@ Name                   Description                                          Rang
 ``R2``                 Measures goodness-of-fit or linear regression models [0, 100]        ↑
 ``aic``                Measures goodness-of-fit among models                                ↓
 ``bic``                Measures goodness-of-fit among models                                ↓
-``hqic``               Measures goodness-of-fit among models
-``llf``
-
+``hqic``               Measures goodness-of-fit among models                                ↓
+``llf``                Measures goodness-of-fit among models                (-∞, ∞)         ↑
 ====================== ==================================================== ============= ========
 
 Pearson
@@ -260,7 +259,7 @@ Akaike information criterion
 ******************************
 
 The Akaike information criterion (AIC) is an estimator of prediction error and thereby
-relative quality of statistical models for a given set of data.[1][2][3] Given a collection
+relative quality of statistical models for a given set of data. Given a collection
 of models for the data, AIC estimates the quality of each model, relative to each of the
 other models. Thus, AIC provides a means for model selection.
 
@@ -281,10 +280,75 @@ model, and is often used as a criterion for model selection among a finite set o
 based on log-likelihood function (LLF), and but related to Akaike's information criterion.
 
 
+Log-likelihood of a model
+*************************
+
+The log-likelihood of a model is a measure of model fit that can be used to compare different
+kinds of models (or variations on the same model). Higher values (that is, less negative values)
+correspond to better fit. The log-likelihood is available for all models.
+
+When calculating log-likelihood values, it’s important to note that adding more predictor
+variables to a model will almost always increase the log-likelihood value even if the
+additional predictor variables aren’t statistically significant. This means you should only
+compare the log-likelihood values between two regression models if each model has the same
+number of predictor variables. To compare models with different numbers of predictor variables,
+you can perform a likelihood-ratio test to compare the goodness of fit of two nested regression
+models.
+
+
 Stationarity
 ************
 
-.. warning:: Pending!
+In mathematics and statistics, a ``stationary process`` (or a strict/strictly stationary process or
+strong/strongly stationary process) is a stochastic process whose unconditional joint probability
+distribution does not change when shifted in time. Consequently, parameters such as mean and
+variance also do not change over time. If you draw a line through the middle of a stationary process
+then it should be flat; it may have 'seasonal' cycles, but overall it does not trend up nor down.
+
+
+.. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Unit_root_hypothesis_diagram.svg/2560px-Unit_root_hypothesis_diagram.svg.png
+   :width: 300
+   :align: right
+
+Since stationarity is an assumption underlying many statistical procedures used in time series
+analysis, non-stationary data are often transformed to become stationary. The most common cause
+of violation of stationarity is a trend in the mean, which can be due either to the presence of
+a unit root or of a deterministic trend. In the former case of a ``unit root``, stochastic shocks
+have permanent effects, and the process is not mean-reverting (green). In the latter case of a
+deterministic trend, the process is called a ``trend-stationary process``, and stochastic shocks
+have only transitory effects after which the variable tends toward a deterministically evolving
+(non-constant) mean (blue).
+
+A trend stationary process is not strictly stationary, but can easily be transformed into a
+stationary process by removing the underlying trend, which is solely a function of time. Similarly,
+processes with one or more unit roots can be made stationary through differencing. An important
+type of non-stationary process that does not include a trend-like behavior is a cyclostationary
+process, which is a stochastic process that varies cyclically with time.
+
+For many applications strict-sense stationarity is too restrictive. Other forms of stationarity
+such as wide-sense stationarity or N-th-order stationarity are then employed. The definitions for
+different kinds of stationarity are not consistent among different authors.
+
+.. So, in summary, there are three different types of stationarity in time-series:
+
+  - Trend stationary
+  - Seasonal stationary
+  - Strictly stationary
+
+One strategy to identify the type of stationarity is to apply both ``ADF`` and ``KPSS`` tests.
+
+============== ============== ===================== ========================
+ADF            KPSS           Outcome               Note
+============== ============== ===================== ========================
+Non-Stationary Non-Stationary Non-Stationary
+Stationary     Stationary     Stationary
+Non-Stationary Stationary     Trend-Stationary      Check de-trended series
+Stationary     Non-Stationary Difference-Stationary Check differenced-series
+============== ============== ===================== ========================
+
+References: `R5`_.
+
+.. _R5: https://machinelearningmastery.com/time-series-data-stationary-python/
 
 Statistical tests
 ~~~~~~~~~~~~~~~~~
@@ -293,72 +357,281 @@ A statistical test provides a mechanism for making quantitative decisions about 
 processes. The intent is to determine whether there is enough evidence to "reject" a conjecture
 or hypothesis about the process. The conjecture is called the null hypothesis.
 
-====================== ==================================================== ============= ========
-Name                   Description                                          Range         Choose
-====================== ==================================================== ============= ========
-``jarque-bera``        Goodness-of-fit measure data matches normal dist                     ↓?
-``durbin-watson``      Measure correlation of residuals in regression       [0, 4]          ≈2
-``omnibus``                                                                                 ↓?
-``adfuller``
-``kendall``
-``kpss``
+======================= ======================================================= ============= ========
+Name                    Description                                             Range         Choose
+======================= ======================================================= ============= ========
+``jarque-bera``         Goodness-of-fit measure data matches normal distb.                      ↓?
+``durbin-watson``       Measure auto-correlation of residuals in regression     [0, 4]          ≈2
+``omnibus``                                                                                     ↓?
+``kendall``             Tests for monotonic upward or downward trend            [0, 1]          ?
+``adfuller``            Tests for ``unit root``
+``kpss``                Tests for stationary around a deterministic trend
 ``normal``
-``Kolmogorov-smirnov``
-``Shapiro-wilkinson``
-``Anderson-darling``
-====================== ==================================================== ============= ========
+``Kolmogorov-smirnov``  Compares sample F(x) against given G(x) distributions
+``Shapiro-wilkinson``   Test data was drawn from a normal distribution
+``Anderson-darling``    Test data was drawn from a given G(x) distribution
+``D'Agostino-pearsons`` Test whether a sample differs from a normal distb
+======================= ======================================================= ============= ========
+
+| If p-value > alpha: Failed to reject H0
+| If p-value <= alpha: Reject H0
+
+Kendal
+******
+
+.. _R8: https://help.healthycities.org/hc/en-us/articles/233420187-Mann-Kendall-test-for-trend-overview
+.. _R9: https://vsp.pnnl.gov/help/vsample/design_trend_mann_kendall.htm
+
+The Mann-Kendall statistical test for trend is used to assess whether a set of
+data values is increasing over time or decreasing over time, and whether the
+trend in either direction is statistically significant. It has the range [0,1] —
+a value of zero indicates no agreement between the samples whereas a value of
+unity indicates complete agreement.The Mann-Kendall test does NOT assess the
+magnitude of change. Also, the trend may or may not be linear.
+
+  - **H0:** Existence of no trend
+  - **H1:** Existence of significant increasing or decreasing trend.
+
+Mann-Kendall trend test is ``non-parametric`` test that is this test is applicable to all
+types of distribution. It can be applied on any data set containing a number of data points
+greater than four but sometimes with less number of samples the test has more chances of not
+finding a trend.
+
+
+
+Omnibus
+*******
+
+.. warning:: Pending!
+
+
+
+Range Unit Root Test
+********************
+
+.. _R10: https://www.statsmodels.org/dev/generated/statsmodels.tsa.stattools.range_unit_root_test.html
+
+.. warning:: Pending!
+
+
 
 Augmented Dicker-Fuller
 ***********************
 
-Kendal
-************
+The Augmented Dickey-Fuller (ADF) test can be used to test for a ``unit root`` in
+a univariate process in the presence of serial correlation. It tests the
+null hypothesis that a unit root is present in a time series sample. The
+alternative hypothesis is different depending on which version of the test
+is used, but is usually stationarity or trend-stationarity. The more
+negative the statistic, the stronger the rejection of the hypothesis that
+there is a unit root at some level of confidence.
+
+  - **H0:** The series has a unit root  => ``Non-stationary``
+  - **H1:** The series has no unit root => ``Stationary`` / ``Trend-Stationary``
+
+The absence of unit root is not a proof of non-stationarity. As such, it
+is also possible to use the Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test
+to identify the existence of an underlying trend which can also be removed
+to obtain a stationary process. These are called ``trend-stationary`` processes.
+In both, unit-root and trend-stationary processes, the mean can be increasing
+or decreasing over time; however, in the presence of a shock, trend-stationary
+processes revert to this mean tendency in the long run (deterministic trend)
+while unit-root processes have a permanent impact (stochastic trend).
+
+
 
 Kwiatkowski–Phillips–Schmidt–Shin
 *********************************
 
-Jarque Bera
-************
+The Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test is used to identify
+whether a time series is stationary around a deterministic trend (thus
+trend stationary) against the alternative of a unit root. In the KPSS test,
+the absence of a unit root is not a proof of stationarity but, by design, of
+trend stationarity. This is an important distinction since it is possible for
+a time series to be non-stationary, have no unit root yet be trend-stationary.
 
-In statistics, the Jarque–Bera test is a goodness-of-fit test of whether sample data
-have the skewness and kurtosis matching a normal distribution.
+  - **H0:** The series has no unit root => ``Trend Stationary``
+  - **H1:** The series has unit root => No Trend Stationary.
 
-Durbin Watson
-*************
+Later, Denis Kwiatkowski, Peter C. B. Phillips, Peter Schmidt and Yongcheol Shin (1992)
+proposed a test of the null hypothesis that an observable series is trend-stationary
+(stationary around a deterministic trend). The series is expressed as the sum of
+deterministic trend, random walk, and stationary error, and the test is the Lagrange
+multiplier test of the hypothesis that the random walk has zero variance. KPSS-type
+tests are intended to complement unit root tests, such as the Dickey–Fuller tests. By
+testing both the unit root hypothesis and the stationarity hypothesis, one can distinguish
+series that appear to be stationary, series that appear to have a unit root, and series for
+which the data (or the tests) are not sufficiently informative to be sure whether they are
+stationary or integrated.
 
-The Durbin Watson (DW) statistic is a test for autocorrelation in the residuals
-from a statistical model or regression analysis. The Durbin-Watson statistic will
-always have a value ranging between 0 and 4. A value of 2.0 indicates there is
-no autocorrelation detected in the sample.
+.. note:: Contrary to most unit root tests, the presence of a unit root is not the null
+          hypothesis (H0) but the alternative (H1).
+
+
 
 Normal
 ******
 
 .. warning:: Pending!
 
-Kolmogorov-smirnov
+
+
+Jarque Bera
+************
+
+.. _R6: https://www.statsmodels.org/dev/generated/statsmodels.stats.stattools.jarque_bera.html
+
+In statistics, the Jarque–Bera (JB) test is a goodness-of-fit test of whether sample data
+have the ``skewness`` and ``kurtosis`` matching a normal distribution. The test statistic
+is always non negative. If it is far from zero, it signals the data do not have a normal
+distribution.
+
+  - **H0:** The data is normally distributed (skewness and kurtosis).
+  - **H1:** The data follows a different distribution.
+
+
+
+D’Agostino-Pearson
 ******************
 
-.. warning:: Pending!
+.. _r11: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.normaltest.html
+.. _r12: https://towardsdatascience.com/choose-the-appropriate-normality-test-d53146ca1f1c
 
-Shapiro-wilkinson
-*****************
+D'Agostino-Pearson test is a goodness-of-fit measure of departure from normality.
+This function tests the null hypothesis that a sample comes from a normal
+distribution. It is based on D’Agostino and Pearson’s, test that combines skew and
+kurtosis to produce an omnibus test of normality.
 
-.. warning:: Pending!
+  - **H0:** The data follows a normal distribution
+  - **H1:** The data does not follow a normal distribution.
+
+It uses a similar approach than Jarque-Bera (skewness and kurtosis)
+but it is considered to be more powerful. It is in general the
+recommended test to assess normality when there are clear differences
+in skewness and kurtosis. Overall, it is preferable that normality be assessed both
+visually and through normality tests, of which the Shapiro-Wilk test is highly
+recommended.
+
+..
+  note:: The test is based on transformations of the sample kurtosis and skewness,
+          and has power only against the alternatives that the distribution is skewed
+          and/or kurtic.
+
+
 
 Anderson-darling
 ****************
 
-.. warning:: Pending!
+The Anderson-Darling test tests the null hypothesis that a sample is drawn from a
+population that follows a particular distribution. For the Anderson-Darling test,
+the critical values depend on which distribution is being tested against. This
+function works for normal, exponential, logistic, or Gumbel (Extreme Value Type I)
+distributions.
 
-Omnibus
-*******
+  - **H0:** The data comes from the chosen distribution.
+  - **H1:** The data does not come from the chosen distribution.
 
-Omnibus tests are a kind of statistical test. They test whether the explained variance
-in a set of data is significantly greater than the unexplained ...
+Critical values provided are for the following significance levels:
 
-.. warning:: Pending!
+  - normal/exponential: 15%, 10%, 5%, 2.5%, 1%
+  - logistic: 25%, 10%, 5%, 2.5%, 1%, 0.5%
+  - Gumbel: 25%, 10%, 5%, 2.5%, 1%
 
+If the returned statistic is larger than these critical values then for the
+corresponding significance level, the null hypothesis that the data come from
+the chosen distribution can be rejected. The returned statistic is referred to
+as ‘A2’ in the references.
+
+The value of the statistic (barely) exceeds the critical value associated with
+a significance level of 2.5%, so the null hypothesis may be rejected at a
+significance level of 2.5%, but not at a significance level of 1%.
+
+
+
+Shapiro-wilkinson
+*****************
+
+The Shapiro-Wilk test tests the null hypothesis that the data was drawn from a
+normal distribution. Like most statistical significance tests, if the sample
+size is sufficiently large this test may detect even trivial departures from the
+null hypothesis (i.e., although there may be some statistically significant effect,
+it may be too small to be of any practical significance); thus, additional investigation
+of the effect size is typically advisable, e.g., a Q–Q plot in this case.
+
+  - **H0:** The population is normally distributed.
+  - **H1:** The population is not normally distributed.
+
+The popularity of this test is due to its excellent power in a wide variety of
+situations of interest. It generally comes out toward the top against a wide
+variety of non-normal distributions in power comparisons with other possible choices.
+
+.. note:: The Shapiro–Wilk test is known not to work well in samples with many identical values.
+
+
+
+Kolmogorov-smirnov
+******************
+
+Performs the (one-sample or two-sample) Kolmogorov-Smirnov test for goodness of fit.
+The one-sample test compares the underlying distribution F(x) of a sample against a
+given distribution G(x). The two-sample test compares the underlying distributions
+of two independent samples. Both tests are valid only for continuous distributions.
+
+  - **H0:** The sample data from F(x) does follow given distribution G(x).
+  - **H1:** The sample data from F(x) does not follow given distribution G(x).
+
+In statistics, the Kolmogorov–Smirnov test (K–S test or KS test) is a ``non-parametric``
+test of the equality of continuous, one-dimensional probability distributions that
+can be used to compare a sample with a reference probability distribution (one-sample K–S test),
+or to compare two samples (two-sample K–S test). In essence, the test answers the question
+"How likely is it that we would see a collection of samples like this if they were drawn
+from that probability distribution?" or, in the second case, "How likely is it that we
+would see two sets of samples like this if they were drawn from the same (but unknown)
+probability distribution?
+
+.. note:: The two-sample K–S test is one of the most useful and general nonparametric
+          methods for comparing two samples, as it is sensitive to differences in both
+          location and shape of the empirical cumulative distribution functions of the
+          two samples.
+
+The Kolmogorov–Smirnov test can be modified to serve as a goodness of fit test. In the
+special case of testing for normality of the distribution, samples are standardized and
+compared with a standard normal distribution. This is equivalent to setting the mean and
+variance of the reference distribution equal to the sample estimates, and it is known
+that using these to define the specific reference distribution changes the null distribution
+of the test statistic (see Test with estimated parameters). Various studies have found that,
+even in this corrected form, the test is less powerful for testing normality than the
+Shapiro–Wilk test or Anderson–Darling test. However, these other tests have their own
+disadvantages. For instance the Shapiro–Wilk test is known not to work well in samples
+with many identical values.
+
+
+
+Durbin Watson
+*************
+
+Durbin and Watson (1950, 1951) applied this statistic to the residuals from least
+squares regressions, and developed bounds tests for the null hypothesis that the
+errors are serially uncorrelated against the alternative that they follow a first
+order autoregressive process. Note that the distribution of this test statistic
+does not depend on the estimated regression coefficients and the variance of the
+errors.
+
+  - **H0:** Residuals (errors of regression) are serially uncorrelated.
+  - **H1:** Residuals follow a first order autoregressive process.
+
+The Durbin Watson (DW) statistic is a test for autocorrelation in the residuals
+from a statistical model or regression analysis. The Durbin-Watson statistic will
+always have a value ranging between 0 and 4. A value of 2.0 indicates there is
+no autocorrelation (also denoted as serial correlation) detected in the sample.
+Values from 0 to less than 2 point to positive autocorrelation and values from 2
+to 4 means negative autocorrelation. A rule of thumb is that DW test statistic values
+in the range of 1.5 to 2.5 are relatively normal. Values outside this range could,
+however, be a cause for concern.
+
+.. note:: The Durbin–Watson statistic, while displayed by many regression analysis programs,
+          is not applicable in certain situations. For instance, when lagged dependent variables
+          are included in the explanatory variables.
 
 
 

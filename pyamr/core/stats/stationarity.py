@@ -181,8 +181,6 @@ class StationarityWrapper(BaseWrapper):
         self._raw['kpss-c'] = kpss(x=x, regression='c', **kpss_kwargs)
         self._raw['rur'] = range_unit_root_test(x=x)
 
-        print(self._raw['rur'])
-
         # Evaluate the model
         if self.evaluate:
             self._result = self.evaluate()

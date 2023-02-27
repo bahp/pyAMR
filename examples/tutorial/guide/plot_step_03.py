@@ -2,6 +2,8 @@
 Step 03 - Time Series Analysis
 ==============================
 
+Statistical tests and other considerations for time series analysis.
+
 .. warning:: Verify tests with conditions from stattools.
 
 Useful references:

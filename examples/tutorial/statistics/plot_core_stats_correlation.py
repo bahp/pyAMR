@@ -2,7 +2,8 @@
 Correlation
 ==============================
 
-Example using your package
+Pearson and Spearman correlation.
+
 """
 
 

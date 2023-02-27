@@ -2,6 +2,8 @@
 Using ARIMA
 ==================
 
+Using ARIMA to fit a time-series and use it for further prediction.
+
 """
 
 # Import.

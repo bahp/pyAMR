@@ -2,6 +2,8 @@
 WLS - Basic
 -------------------
 
+Basic example using Weighted Least Squares to fit a time series.
+
 """
 # Import class.
 import sys

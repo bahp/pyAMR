@@ -2,7 +2,7 @@
 Kendall
 ============================
 
-Example using your package
+The Mann-Kendall statistical test for monotonic upward or downward trend.
 """
 
 
