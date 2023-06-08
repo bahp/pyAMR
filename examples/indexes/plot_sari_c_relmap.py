@@ -1,6 +1,6 @@
 """
-SARI - Relplot (by specimen)
-----------------------------
+``SARI`` - By specimen w/ ``sns.relmap``
+----------------------------------------
 
 .. todo:: Explain...
 

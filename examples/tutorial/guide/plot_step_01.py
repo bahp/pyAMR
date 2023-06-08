@@ -36,6 +36,12 @@ import matplotlib.pyplot as plt
 # Import from pyAMR
 from pyamr.datasets.load import make_susceptibility
 
+try:
+    __file__
+    TERMINAL = True
+except:
+    TERMINAL = False
+
 # -------------------------------------------
 # Load data
 # -------------------------------------------
@@ -48,15 +54,13 @@ print("\nData:")
 print(data)
 print("\nColumns:")
 print(data.dtypes)
-
-# Show unique elements
-print("\nUnique values:")
-for c in ['microorganism_code',
-          'antimicrobial_code',
-          'specimen_code',
-          'laboratory_number']:
-    print('%-18s -> %5s' % (c, data[c].nunique()))
-
+print("\nUnique:")
+print(data[[
+    'microorganism_code',
+    'antimicrobial_code',
+    'specimen_code',
+    'laboratory_number',
+    'patient_id']].nunique())
 
 #######################################################################
 #
@@ -642,3 +646,13 @@ sns.despine(left=True, bottom=True)
 # Adjust layout
 plt.tight_layout()
 plt.show()
+
+#######################################################################
+#
+# Computing DRI
+# --------------
+
+#######################################################################
+#
+# Computing MARI
+# --------------

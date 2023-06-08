@@ -1,6 +1,6 @@
 """
-Single Resistance Trend (SART)
-==============================
+Single Resistance Trend (``SART``)
+==================================
 
 .. warning:: Pending...!
 """

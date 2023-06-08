@@ -1,6 +1,6 @@
 """
-SARI - Clustermap (by specimen)
--------------------------------
+``SARI`` - By specimen w/ ``sns.clustermap``
+------------------------------------------------
 
 .. todo:: Explain...
 

@@ -1,6 +1,6 @@
 """
-SARI - Antibiogram (by specimen)
---------------------------------
+``SARI`` - By specimen w/ ``sns.heatmap``
+------------------------------------------------
 
 .. todo:: Explain...
 

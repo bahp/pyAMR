@@ -1,14 +1,14 @@
 """
-Multiple Resistance (MARI)
-========================================
+Multiple Resistance (``MARI``)
+==============================
 
 .. warning::
-        - Improve visualization.
+        - What visualisation could we use?
         - Create further examples with temporal visualization.
         - Add parameters to choose antimicrobials that are consistent in time and
           have enough number of isolates to give an accurate measurement.
 
-Determination of the Multiple Antimicrobial Resistance Index, denoted as ``MARI``,  follows the procedure
+Determination of the Multiple Antimicrobial Resistance Index or ``MARI`` follows the procedure
 described by (5), in which the number of antimicrobials an isolate is resistant to (*R*) is divided by the
 total number of the antimicrobials used in the study (*T*). Thus, the calculating formula for a single
 isolate is shown below and it provides a value within the range [0,1] where values close to one indicate
@@ -22,6 +22,8 @@ In more general scenarios, the antimicrobials to which the pathogens are tested 
 centres and time, and therefore the comparison and analysis of ``MARI`` evolution in time is not straight
 forward. At the moment, for simplicity, it is recommended to check that the antimicrobials selected are
 available in the whole study period before applying the index.
+
+.. note:: Please, ensure that all isolates contains records for all antimicrobials.
 
 For more information see: :py:mod:`pyamr.core.mari.MARI`
 
@@ -58,6 +60,7 @@ import matplotlib as mpl
 
 # Import specific libraries
 from pyamr.core.mari import MARI
+from pyamr.datasets.load import fixture
 
 # Filter user warning
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -71,125 +74,30 @@ mpl.rcParams['legend.fontsize'] = 9
 # ---------------------
 # Create data
 # ---------------------
-# Create data
-data = [
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'ATAZ', 'sensitive'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'ACAZ', 'sensitive'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'ACXM', 'sensitive'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'AGEN', 'sensitive'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'AMER', 'resistant'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'AAMI', 'sensitive'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'ATEM', 'resistant'],
-    ['2021-01-01', 'lab1', 'BLDCUL', 'ECOL', 'ACTX', 'resistant'],
-
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'ATAZ', 'intermediate'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'ACAZ', 'intermediate'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'ACIP', 'intermediate'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'ACXM', 'intermediate'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'AGEN', 'resistant'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'AMER', 'resistant'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'AAMI', 'resistant'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'ATEM', 'resistant'],
-    ['2021-01-01', 'lab2', 'BLDCUL', 'ECOL', 'ACTX', 'sensitive'],
-
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'ATAZ', 'resistant'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'ACAZ', 'resistant'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'ACXM', 'sensitive'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'AGEN', 'resistant'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'AMER', 'resistant'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'AAMI', 'sensitive'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'ATEM', 'resistant'],
-    ['2021-01-02', 'lab3', 'BLDCUL', 'ECOL', 'ACTX', 'sensitive'],
-
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'ATAZ', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'ACAZ', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'ACXM', 'sensitive'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'AGEN', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'AMER', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'AAMI', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'ATEM', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'ACTX', 'resistant'],
-    ['2021-01-03', 'lab4', 'BLDCUL', 'ECOL', 'ANEW', 'resistant'],
-
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'AAUG', 'resistant'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'ATAZ', 'resistant'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'ACAZ', 'resistant'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'ACIP', 'resistant'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'ACXM', 'sensitive'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'AGEN', 'intermediate'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'AMER', 'sensitive'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'AAMI', 'sensitive'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'ATEM', 'resistant'],
-    ['2021-01-01', 'lab5', 'BLDCUL', 'CNS', 'ACTX', 'resistant'],
-
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'AAUG', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'ATAZ', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'ACAZ', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'ACIP', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'ACXM', 'sensitive'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'AGEN', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'AMER', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'AAMI', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'ATEM', 'resistant'],
-    ['2021-02-01', 'lab6', 'BLDCUL', 'CNS', 'ACTX', 'resistant'],
-
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'AAUG', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'ATAZ', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'ACAZ', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'ACXM', 'sensitive'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'AGEN', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'AMER', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'AAMI', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'ATEM', 'resistant'],
-    ['2021-02-01', 'lab7', 'URICUL', 'ECOL', 'ACTX', 'resistant'],
-
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'AAUG', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'ATAZ', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'ACAZ', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'ACXM', 'sensitive'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'AGEN', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'AMER', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'AAMI', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'ATEM', 'resistant'],
-    ['2021-02-04', 'lab8', 'URICUL', 'ECOL', 'ACTX', 'resistant'],
-]
+# Load data
+data = fixture(name='fixture_05.csv')
 
 
-
-data = pd.DataFrame(data,
-    columns=['DATE',
-             'LAB_NUMBER',
-             'SPECIMEN',
-             'MICROORGANISM',
-             'ANTIMICROBIAL',
-             'SENSITIVITY'])
-
-# Create SARI instance
+# ---------------------
+# Compute MARI
+# ---------------------
+# Create MARI instance
 mari = MARI(groupby=['SPECIMEN',
                      'MICROORGANISM',
                      'LAB_NUMBER',
                      'SENSITIVITY'])
 
-# Compute SARI overall
+# Compute MARI overall
 mari_overall, isolates = mari.compute(data,
     return_frequencies=True,
     return_isolates=True)
 
-# Compute SARI temporal (ITI)
+# Compute MARI temporal (ITI)
 mari_iti = mari.compute(data, shift='1D',
     period='1D', cdate='DATE',
     return_isolates=False)
 
-# Compute SARI temporal (OTI)
+# Compute MARI temporal (OTI)
 mari_oti = mari.compute(data, shift='1D',
     period='2D', cdate='DATE',
     return_isolates=False)
@@ -205,4 +113,26 @@ print("\n\n\nMARI (oti):")
 print(mari_oti)
 
 
+#%%
+# Lets see the susceptibility test records.
+data.head(15)
+
+#%%
+# Let's display the ``overall_hard`` resistance.
+#
+mari_overall
+
+
+#%%
+# Let's display the resistance time-series using ``independent`` time intervals (ITI)
+#
+mari_iti
+
+
+#%%
+# Let's display the resistance time-series using ``overlapping`` time intervals (OTI)
+#
 mari_oti
+
+#%%
+# Let's display the information graphically

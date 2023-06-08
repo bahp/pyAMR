@@ -1,6 +1,6 @@
 """
-ASAI - Multiple (by specimen)
------------------------------
+``ASAI`` - By gram stain (multiple)
+-----------------------------------
 
 """
 

@@ -1,8 +1,8 @@
 """
-Single Resistance Index (SARI)
-==============================
+Single Antimicrobial Resistance (``SARI``)
+==========================================
 
-The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
+The Single Antimicrobial Resistance Index or ``SARI`` describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a
 value within the range [0, 1] where values close to one indicate high resistance.
 It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` and
@@ -12,16 +12,16 @@ intermediate category is not always considered.
 
 The parameter strategy accepts three different options:
 
+    - ``basic`` as R / (R+S)
     - ``soft``   as R / (R+I+S)
-    - ``medium`` as R / (R+S)
+    - ``medium``  as (R+0.5I) / (R+0.5I+S)
     - ``hard``   as (R+I) / (R+I+S)
-    - ``other``  as (R+0.5I) / (R+0.5I+S)
 
 ..
+    - ``basic`` as :math:`R / (R + S)`
     - ``soft``   as :math:`R / (R + I + S)`
-    - ``medium`` as :math:`R / (R + S)`
     - ``hard``   as :math:`(R + I) / (R + I + S)`
-    - ``other``  as :math:`(R + 0.5I) / (R + 0.5I + S)`
+    - ``medium``  as :math:`(R + 0.5I) / (R + 0.5I + S)`
 
 For more information see: :py:mod:`pyamr.core.sari.SARI`
 
@@ -35,6 +35,7 @@ import matplotlib.pyplot as plt
 
 # Specific
 from pyamr.core.sari import SARI
+from pyamr.datasets.load import fixture
 
 # Set matplotlib
 mpl.rcParams['xtick.labelsize'] = 9
@@ -43,80 +44,46 @@ mpl.rcParams['axes.titlesize'] = 11
 mpl.rcParams['legend.fontsize'] = 9
 
 # ----------------------------------
+# Methods
+# ----------------------------------
+def own(aux, offset):
+    """Add offset to hard"""
+    # Extract vectors
+    r = aux.resistant
+    i = aux.intermediate
+    s = aux.sensitive
+    # Compute
+    return ((r+i) / (r+i+s)) + offset
+
+# ----------------------------------
 # Create data
 # ----------------------------------
-# Define susceptibility test records
-data = [
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
-    ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-02', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
-    ['2021-01-03', 'BLDCUL', 'ECOL', 'AAUG', 'sensitive'],
-    ['2021-01-03', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
-    ['2021-01-04', 'BLDCUL', 'ECOL', 'AAUG', 'resistant'],
+# Load data
+data = fixture(name='fixture_07.csv')
 
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-01', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
-    ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-02', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-03', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
-    ['2021-01-03', 'BLDCUL', 'ECOL', 'ACIP', 'resistant'],
-    ['2021-01-04', 'BLDCUL', 'ECOL', 'ACIP', 'sensitive'],
-
-    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-01', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-02', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-08', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-09', 'BLDCUL', 'SAUR', 'ACIP', 'resistant'],
-
-    ['2021-01-12', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-12', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
-    ['2021-01-13', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-13', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-14', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-14', 'URICUL', 'SAUR', 'ACIP', 'resistant'],
-    ['2021-01-15', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-15', 'URICUL', 'SAUR', 'ACIP', 'sensitive'],
-    ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
-    ['2021-01-16', 'URICUL', 'SAUR', 'ACIP', 'intermediate'],
-]
-
-data = pd.DataFrame(data,
-    columns=['DATE',
-             'SPECIMEN',
-             'MICROORGANISM',
-             'ANTIMICROBIAL',
-             'SENSITIVITY'])
-
-
+# ---------------------------------
+# Compute SARI
+# ---------------------------------
 # Create SARI instance
 sari = SARI(groupby=['SPECIMEN',
                      'MICROORGANISM',
                      'ANTIMICROBIAL',
                      'SENSITIVITY'])
 
-# Compute SARI overall
+# Compute SARI overall (hard)
 sari_overall = sari.compute(data,
     return_frequencies=False)
+
+# Compute SARI overall (soft)
+sari_overall_soft = sari.compute(data,
+    return_frequencies=False,
+    strategy='soft')
+
+# Compute SARI overall (own)
+sari_overall_own = sari.compute(data,
+    return_frequencies=False,
+    strategy=own,
+    offset=5)
 
 # Compute SARI temporal (ITI)
 sari_iti = sari.compute(data, shift='1D',
@@ -134,21 +101,33 @@ print(sari_iti)
 print("\nSARI (oti):")
 print(sari_oti)
 
-
+#%%
+# Lets see the susceptibility test records.
+data.head(15)
 
 #%%
-# Let's display the overall resistance.
+# Let's display the ``overall_hard`` resistance.
 #
 sari_overall.to_frame()
 
 #%%
-# Let's display the resistance time-series using **independent** time intervals (ITI)
+# Let's compare with the ``overall_soft`` resistance.
+#
+sari_overall_soft.to_frame()
+
+#%%
+# Let's compare with the ``overall_own`` resistance.
+#
+sari_overall_own.to_frame()
+
+#%%
+# Let's display the resistance time-series using ``independent`` time intervals (ITI)
 #
 sari_iti
 
 
 #%%
-# Let's display the resistance time-series using **overlapping** time intervals (OTI)
+# Let's display the resistance time-series using ``overlapping`` time intervals (OTI)
 #
 sari_oti
 
@@ -157,3 +136,6 @@ sari_oti
 #           However, it has been converted to a ``pd.DataFrame`` for display purposes.
 #           The ``sphinx`` library used to create the documentation uses the method
 #           ``_repr_html_`` from the latter to display it nicely in the docs.
+
+#%%
+# Let's display the information graphically

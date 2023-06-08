@@ -1,6 +1,6 @@
 """
-ASAI - Gram stain (by specimen)
--------------------------------
+``ASAI`` - By gram stain (binary)
+---------------------------------
 
 """
 
