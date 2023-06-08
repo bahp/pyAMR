@@ -1,3 +1,11 @@
+"""
+
+Running only one test:
+
+    ​​pytest​​ ​​-v​​ ​​test_sample.py::test_dri_cddep
+
+"""
+
 # Libraries
 import pytest
 import numpy as np
@@ -11,6 +19,7 @@ from pyamr.core.asai import asai
 from pyamr.core.sari import SARI
 from pyamr.core.asai import ASAI
 from pyamr.core.mari import MARI
+from pyamr.core.dri import DRI
 
 # ----------------------------------------------------
 # Fixtures
@@ -57,19 +66,32 @@ def fixture1():
 
 @pytest.fixture
 def fixture3():
-    return pd.read_csv(fixtures_path / 'fixture_3.csv')
+    return pd.read_csv(fixtures_path / 'fixture_03.csv')
 
 @pytest.fixture
 def fixture4():
-    return pd.read_csv(fixtures_path / 'fixture_4.csv')
+    return pd.read_csv(fixtures_path / 'fixture_04.csv')
 
 @pytest.fixture
 def fixture5():
-    return pd.read_csv(fixtures_path / 'fixture_5.csv')
+    return pd.read_csv(fixtures_path / 'fixture_05.csv')
 
 @pytest.fixture
 def fixture_index_mari():
     return pd.read_csv(fixtures_path / 'indexes' / 'fixture_mari.csv')
+
+
+@pytest.fixture
+def fixture_dri_cddep_test():
+    path = Path(fixtures_path) / 'cddep'
+    smmry = pd.read_csv(path / 'summary.csv')
+    outpt = pd.read_csv(path / 'outcome.csv')
+    return smmry, outpt
+
+@pytest.fixture
+def fixture_acsi_lancet_test():
+    path = Path(fixtures_path) / 'lancet'
+    return pd.read_csv(path / 'mmc2_MIS.csv')
 
 
 def test_answer():
@@ -199,6 +221,65 @@ def test_asai_class(fixture4):
         threshold=None,
         min_freq=0)
     assert scores.shape[0]==4
+
+
+# ---------------------------------------------------
+#   Drug Resistance Index (DRI)
+# ---------------------------------------------------
+def test_dri_cddep(fixture_dri_cddep_test):
+    """Validate the output using CDDEP data."""
+    summary, output = fixture_dri_cddep_test
+    summary['RESISTANCE'] = summary.R / summary.ISOLATES
+    r = DRI().compute(summary,
+        groupby=['DATE'],
+        return_complete=True) \
+            .reset_index(drop=True) \
+            .round(decimals=3)
+    c = ['u_weight', 'w_rate', 'dri']
+    assert r[c].equals(output[c])
+
+
+
+# ---------------------------------------------------
+#   Collateral Resistance Index (CRI)
+# ---------------------------------------------------
+def test_acsi_lancet(fixture_acsi_lancet_test):
+    """
+    .. note:: There is a known issue in which the values computed
+              for those rows in which the contingency matrix contained
+              a 0 is not appropriate.
+
+
+    """
+    # Libraries
+    from pyamr.core.acsi import CRI
+    from pyamr.core.acsi import mutual_info_matrix_v3
+
+    # Parameters
+    rename = {
+        'S1S2':'SS',
+        'S1R2':'SR',
+        'R1S2':'RS',
+        'R1R2':'RR'
+    }
+    cols = list(rename.keys())
+
+    # Assign variable
+    data = fixture_acsi_lancet_test
+    # Replace zeros with NaN
+    data[cols] = data[cols].replace({'0': np.nan, 0: np.nan})
+    # Remove rows with NaN
+    data = data.dropna(subset=cols+['MIS'], how='any')
+    # Compute CRI (need renaming to work)
+    data = data.rename(columns=rename)
+    data['CRI'] = data.apply(CRI, axis=1,
+        args=(mutual_info_matrix_v3,))
+
+    # Check if they are equal
+    a = data.MIS.round(decimals=5).to_numpy()
+    b = data.CRI.round(decimals=5).to_numpy()
+    assert np.array_equal(a, b)
+
 
 
 # --------------------------------------

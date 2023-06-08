@@ -246,8 +246,16 @@ class ACSI:
         """
         return create_combinations_v1(dataframe, **kwargs)
 
+
+    def compute_from_contingency(self):
+        pass
+
+    def compute_from_combinations(self):
+        pass
+
     def compute(self, dataframe,
                 flag_combinations=False,
+                flag_contingency=False,
                 groupby=None,
                 func_mis=None,
                 return_combinations=False):
@@ -540,8 +548,6 @@ if __name__ == '__main__':
         flag_combinations=True,
         return_combinations=False)
     show(combinations, contingency, title=None)
-
-
 
     # -------------------------------------------------------------------------
     # Testing
