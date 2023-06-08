@@ -203,6 +203,34 @@ def dataset_shampoo_sales(**kwargs):
 """
 
 
+def fixture(name, **kwargs):
+    """Load fixtures
+
+    Parameters
+    ----------
+    name: string
+        The name of the file within the fixtures folder.
+
+    Returns
+    --------
+    pd.DataFrame
+    """
+    # Library
+    from pathlib import Path
+
+    # Load data
+    path = Path(dirname).parent / 'fixtures' / name
+    data = pd.read_csv(path, **kwargs)
+
+    # Format
+    if 'DATE' in data:
+        data.DATE = pd.to_datetime(data.DATE)
+
+    # Return
+    return data
+
+
+
 if __name__ == '__main__':
 
     # Import
