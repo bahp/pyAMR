@@ -70,10 +70,10 @@ def sari(dataframe=None, strategy='hard', **kwargs):
         with the following signature func(dataframe, **kwargs)
         can be passed.
 
-            (i) ``soft``   as R / R+I+S
-            (ii) ``medium`` as R / R+S
+            (i) ``soft``    as R / R+I+S
+            (ii) ``basic`` as R / R+S
             (iii) ``hard``  as R+I / R+I+S
-            (iv) ``other``  as R+0.5I / R+0.5I+S [Not yet]
+            (iv) ``mediumr``  as R+0.5I / R+0.5I+S
 
     **kwargs: arguments to pass the strategy function.
 

@@ -457,7 +457,7 @@ class MARI:
         .. todo: Carefull with various indexes!
         .. todo: Warning if dates NaN
         .. todo: Warning if elements in groupby any all NaN!
-        .. todo: Warning if not all samples tested with same antimicrobials
+        .. todo: Warning if not all samples have been tested with same antimicrobials
 
         Parameters
         ----------
