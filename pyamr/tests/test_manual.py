@@ -27,8 +27,7 @@ from pyamr.core.dri import DRI
 # Define path to fixtures folder
 fixtures_path = Path(__file__).parent.parent.absolute() / 'fixtures'
 
-def func(x):
-    return x + 1
+
 
 @pytest.fixture
 def timeseries():
@@ -38,7 +37,8 @@ def timeseries():
     offset = 100
     slope = 10
 
-    # Create timeseries.
+    # Create time-series.
+    np.random.seed(seed=42)
     x = np.arange(length)
     y = np.random.rand(length) * slope + offset
     return x, y
@@ -93,6 +93,13 @@ def fixture_acsi_lancet_test():
     path = Path(fixtures_path) / 'lancet'
     return pd.read_csv(path / 'mmc2_MIS.csv')
 
+
+
+# ------------------------
+# Example
+# ------------------------
+def func(x):
+    return x + 1
 
 def test_answer():
     """
@@ -152,6 +159,7 @@ def test_mari_class_temporal_iti_period_is_integer_fails(fixture5):
         r = MARI().compute(fixture5, shift='1D',
             period=1, cdate='DATE',
             return_isolates=False)
+
 
 # ---------------------------------------------------
 #   Antimicrobial Spectrum of Activity Index (ASAI)
