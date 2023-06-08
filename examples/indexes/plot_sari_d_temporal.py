@@ -1,6 +1,6 @@
 """
-SARI - Timeseries
------------------
+``SARI`` - Compute timeseries
+-------------------------------
 
 .. |1D30| replace:: 1D\ :sub:`30`
 .. |1M1| replace:: 1M\ :sub:`1`

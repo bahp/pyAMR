@@ -89,7 +89,7 @@ for ax, c in zip(g.axes.flat, data.columns[1:]):
     #          their value.
 
     # Using scatter plot
-    sns.scatterplot(data=data, x=c, y='abx', s=100,
+    sns.scatterplot(data=data, x=c, y='abx', s=100, alpha=1,
                     ax=ax, linewidth=0.75, edgecolor='gray',
                     c=data[c], cmap=d.get('cmap', None),
                     norm=d.get('norm', None))
@@ -107,6 +107,7 @@ for ax, c in zip(g.axes.flat, data.columns[1:]):
     ax.xaxis.grid(False)
     ax.yaxis.grid(visible=True, which='major',
                   color='gray', linestyle='-', linewidth=0.35)
+    ax.set_axisbelow(True)
 
 # Despine
 sns.despine(left=True, bottom=True)
