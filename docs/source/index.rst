@@ -1,7 +1,7 @@
 Welcome to pyAMR's documentation!
 =================================
 
-.. image:: ./_static/images/logo-pyamr-v1.png
+.. image:: ./_static/images/logo-pyamr-icon-v2.png
    :width: 100
    :align: right
    :alt: pyAMR

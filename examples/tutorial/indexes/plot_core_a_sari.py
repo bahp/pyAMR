@@ -10,22 +10,7 @@ It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` a
 Susceptible outcomes respectively. The definition might vary slightly since the
 intermediate category is not always considered.
 
-The parameter strategy accepts three different options:
-
-    - ``basic`` as R / (R+S)
-    - ``soft``   as R / (R+I+S)
-    - ``medium``  as (R+0.5I) / (R+0.5I+S)
-    - ``hard``   as (R+I) / (R+I+S)
-
-..
-    - ``basic`` as :math:`R / (R + S)`
-    - ``soft``   as :math:`R / (R + I + S)`
-    - ``hard``   as :math:`(R + I) / (R + I + S)`
-    - ``medium``  as :math:`(R + 0.5I) / (R + 0.5I + S)`
-
 For more information see: :py:mod:`pyamr.core.sari.SARI`
-
-
 """
 
 # Libraries

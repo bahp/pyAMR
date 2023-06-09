@@ -136,7 +136,7 @@ html_theme_options = {
 
 # Configuration of sphin_rtd_theme
 #html_logo = './_static/images/logo-ls2d-v1.png'
-html_favicon = './_static/images/logo-pyamr-icon.png'
+html_favicon = './_static/images/logo-pyamr-icon-v2.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -147,4 +147,9 @@ html_static_path = ['_static']
 html_css_files = ['css/custom.css']
 
 # Substitute project name into .rst files when |project_name| is used
-rst_epilog = '.. |project_name| replace:: %s' % project
+rst_epilog = """
+    .. |project_name| replace:: %s
+    .. |project_logo| image:: %s
+        :width: 100
+        :alt: pyAMR
+""" % (project, html_favicon)
