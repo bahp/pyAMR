@@ -4,10 +4,10 @@ pyamr.tests package
 Submodules
 ----------
 
-pyamr.tests.test\_sample module
+pyamr.tests.test\_manual module
 -------------------------------
 
-.. automodule:: pyamr.tests.test_sample
+.. automodule:: pyamr.tests.test_manual
    :members:
    :undoc-members:
    :show-inheritance:

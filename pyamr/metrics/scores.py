@@ -122,7 +122,6 @@ def _mean_absolute_scaled_error(y_train, y_test, y_pred):
 
 if __name__ == '__main__': # pragma: no cover
 
-
     # Libraries
     import numpy as np
 

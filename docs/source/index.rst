@@ -177,6 +177,7 @@ When using any of this project's source code, please cite:
 
    usage/introduction
    usage/installation
+   usage/quickstart
    usage/advanced
    usage/todo
 
@@ -194,11 +195,11 @@ When using any of this project's source code, please cite:
    _examples/reports/index
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: API
    :hidden:
 
-   _apidoc/modules.rst
+   _apidoc/pyamr.rst
 
 
 Indices and tables

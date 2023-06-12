@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
-class SigmoidA():
+class SigmoidA:
 
   def __init__(self, r=200, g=0.5, offset=0.0, scale=1.0,
       percentiles=None, thresholds=None):
@@ -188,6 +188,7 @@ class SigmoidA():
 
 if __name__ == '__main__': # pragma: no cover
 
+  # Libraries
   import matplotlib as mpl
   import matplotlib.pyplot as plt
   import statsmodels.robust.norms as norms

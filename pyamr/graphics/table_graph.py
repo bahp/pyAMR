@@ -23,8 +23,8 @@ from scipy import interp
 from matplotlib.colors import ListedColormap
 
 # Own
-from pyamr.graphics.utils import MidpointNormalize
-from pyamr.graphics.utils import vlinebgplot
+from pyamr.utils.plot import MidpointNormalize
+from pyamr.utils.plot import vlinebgplot
 
 
 # ------------------------------------------------------------------
@@ -676,7 +676,7 @@ if __name__ == '__main__':
   axes = TableGraph().plot(data=data, configuration=config)
 
   # Show.
-  plt.show()
+  #plt.show()
 
 
 

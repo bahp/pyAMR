@@ -9,9 +9,9 @@ and manages information about a specific subject. In our scenario, we maintain a
 of microorganisms and antimiocrobials, which includes details like their taxonomy (genus,
 species), the gram stain type (posotive, or negative), the category (penicillins) and so on.
 
-To create the scripts we have provided the following bash script
+To create the registries we have provided the following bash script
 
-.. literalinclude:: ../../../pyamr/datasets/microbiology/registry/automated_run.sh
+.. literalinclude:: ../../../pyamr/datasets/registry/automated_run.sh
     :caption: ``pyamr/datasets/microbiology/registry/automated_run.sh``
     :language: bash
 
@@ -65,14 +65,14 @@ The main ``script.py`` is used to generate the final ``registry_microorganisms.p
     ``gram_positive.txt`` and included all the information from `FGN`_ and `FGP`_
     respectively. These files look as follows:
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/microorganisms/gram_stain/gram_negative.txt
+    .. literalinclude:: ../../../pyamr/datasets/registry/microorganisms/gram_stain/gram_negative.txt
         :lines: 1-5
 
     Then, we have combined them using ``script.py`` into ``db_gram_stain.csv``.
 
     .. _FGP: https://en.wikipedia.org/wiki/Category:Gram-positive_bacteria
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/microorganisms/gram_stain/db_gram_stain.csv
+    .. literalinclude:: ../../../pyamr/datasets/registry/microorganisms/gram_stain/db_gram_stain.csv
         :lines: 1-5
 
 
@@ -85,7 +85,7 @@ The main ``script.py`` is used to generate the final ``registry_microorganisms.p
     we have done some minor amendments, corrections and checks in ``script.py`` and the result
     has been saved into a single .csv named ``db_taxonomy.csv``.
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/microorganisms/taxonomy/db_taxonomy.csv
+    .. literalinclude:: ../../../pyamr/datasets/registry/microorganisms/taxonomy/db_taxonomy.csv
         :lines: 1-5
 
 * Generating the **uuids** database
@@ -93,7 +93,7 @@ The main ``script.py`` is used to generate the final ``registry_microorganisms.p
     In this script we create a database with the unique codes that want to
     assign to each microorganism species.
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/microorganisms/uuids/db_codes.csv
+    .. literalinclude:: ../../../pyamr/datasets/registry/microorganisms/uuids/db_codes.csv
         :lines: 1-5
 
 * Generating the **subspecies** database
@@ -102,12 +102,12 @@ The main ``script.py`` is used to generate the final ``registry_microorganisms.p
     want to include. For example, we can see the categories subspecies, group,
     coagulase production, haemolysis and host.
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/microorganisms/subspecies/db_groups.csv
+    .. literalinclude:: ../../../pyamr/datasets/registry/microorganisms/subspecies/db_groups.csv
         :lines: 1-5
 
 The final registry looks as follows:
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/microorganisms/registry_microorganisms.csv
+    .. literalinclude:: ../../../pyamr/datasets/registry/registry_microorganisms.csv
         :lines: 1-5
 
 Antimicrobials
@@ -152,10 +152,159 @@ The main ``script.py`` is used to generate the final ``registry_antimicrobials.p
     has been created manually and the other ``category_xxxx.txt`` files are just
     for reference.
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/antimicrobials/categories/db_categories.csv
+    .. literalinclude:: ../../../pyamr/datasets/registry/antimicrobials/categories/db_categories.csv
         :lines: 1-5
 
 The final registry looks as follows:
 
-    .. literalinclude:: ../../../pyamr/datasets/microbiology/registry/antimicrobials/registry_antimicrobials.csv
+    .. literalinclude:: ../../../pyamr/datasets/registry/registry_antimicrobials.csv
         :lines: 1-5
+
+What fixtures are available?
+----------------------------
+
+In the context of software testing, a fixture refers to a set of predefined data or conditions
+that are used to create a known and stable starting point for tests. Fixtures provide the
+necessary context for executing tests and can include data, objects, configurations, or any
+other elements required for the test to run successfully.
+
+
+.. list-table:: List of available fixtures
+   :widths: 15 60 30
+   :header-rows: 1
+
+   * - Path
+     - Description
+     - Categories
+
+   * - ``fixtures_01.csv``
+     - Empty
+     -
+
+   * - ``fixtures_02.csv``
+     - Does not exist
+     -
+
+   * - ``fixtures_03.csv``
+     - Susceptibility test records data created manually.
+     -
+
+   * - ``fixtures_04.csv``
+     - Summary table necessary to compute ASAI.
+     -
+
+   * - ``fixtures_05.csv``
+     - Susceptibility test records data created manually for ACSI.
+     -
+
+   * - ``fixtures_06.csv``
+     - Susceptibility test records data created manually for ACSI.
+     -
+
+   * - ``fixtures_07.csv``
+     -
+     -
+
+   * - ``fixture_antibiogram.csv``
+     -
+     -
+
+   * - ``fixture_spectrum.csv``
+     -
+     -
+
+   * - ``fixture_surveillance``
+     -
+     -
+
+   * - ``cddep/summary.csv``
+       ``cddep/susceptibility.csv``
+       ``cddep/prescriptions.csv``
+       ``cddep/outcome.csv``
+     -
+     -
+
+   * - ``lancet/mmc2_MIS.csv``
+       ``lancet/mmc2_CMIS.csv``
+       ``lancet/mmc2_MARKOV.csv``
+     -
+     -
+
+   * - ``nhs``
+     - Incomplete!
+     -
+
+   * - ``mimic``
+     - Incomplete!
+     -
+
+
+
+Fixture 01
+~~~~~~~~~~
+
+Fixture 02
+~~~~~~~~~~
+
+Fixture 03
+~~~~~~~~~~
+
+    .. literalinclude:: ../../../pyamr/fixtures/fixture_03.csv
+        :lines: 1-5
+Fixture 04
+~~~~~~~~~~
+
+    .. literalinclude:: ../../../pyamr/fixtures/fixture_04.csv
+        :lines: 1-5
+
+Fixture 05
+~~~~~~~~~~
+
+    .. literalinclude:: ../../../pyamr/fixtures/fixture_05.csv
+        :lines: 1-5
+
+Fixture 06
+~~~~~~~~~~
+
+    .. literalinclude:: ../../../pyamr/fixtures/fixture_06.csv
+        :lines: 1-5
+
+Fixture 07
+~~~~~~~~~~
+
+    .. literalinclude:: ../../../pyamr/fixtures/fixture_07.csv
+        :lines: 1-5
+
+CDDEP - How to compute DRI?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    .. literalinclude:: ../../../pyamr/fixtures/summary.csv
+        :lines: 1-5
+
+    .. literalinclude:: ../../../pyamr/fixtures/outcome.csv
+        :lines: 1-5
+
+    .. literalinclude:: ../../../pyamr/fixtures/susceptibility.csv
+        :lines: 1-5
+
+    .. literalinclude:: ../../../pyamr/fixtures/prescriptions.csv
+        :lines: 1-5
+
+LANCET - How to compute ACSI?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    .. literalinclude:: ../../../pyamr/fixtures/mmc2_MIS.csv
+        :lines: 1-5
+
+    .. literalinclude:: ../../../pyamr/fixtures/mmc2_CMIS.csv
+        :lines: 1-5
+
+    .. literalinclude:: ../../../pyamr/fixtures/mmc2_MARKOV.csv
+        :lines: 1-5
+
+MIMIC
+~~~~~
+
+
+NHS
+~~~

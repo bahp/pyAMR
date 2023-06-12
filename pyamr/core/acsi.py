@@ -18,8 +18,8 @@ def create_combinations_v1(d, groupby,
 
     .. note:: If the data is right and the laboratory numbers are unique per
               isolate then the date is not necessary. However, what if we want
-              to keep it? Groupby should at least contain:
-                    specimen, microorganism and lab_id
+              to keep it? Groupby should at least contain: specimen, microorganism
+              and lab_id
 
     .. note:: How to add all data in addition to the columns manually.
 

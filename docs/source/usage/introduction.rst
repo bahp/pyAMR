@@ -29,7 +29,7 @@ programs [20]. These programs are crucial to guide health care organizations des
 policies to combat AMR [21, 22]. In particular, susceptibility reporting has shown to be a determinant
 data source to inform empiric antimicrobial therapy selection.
 
-.. image:: ../../_static/imgs/susceptibility-test-record.png
+.. image:: ../_static/imgs/susceptibility-test-record.png
    :width: 200
    :align: right
    :alt: ASAI

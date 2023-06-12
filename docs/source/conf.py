@@ -147,9 +147,12 @@ html_static_path = ['_static']
 html_css_files = ['css/custom.css']
 
 # Substitute project name into .rst files when |project_name| is used
-rst_epilog = """
+rst_epilog = """"""
+rst_epilog = """.. |project_name| replace:: %s""" % project
+
+"""
     .. |project_name| replace:: %s
     .. |project_logo| image:: %s
         :width: 100
         :alt: pyAMR
-""" % (project, html_favicon)
+"""

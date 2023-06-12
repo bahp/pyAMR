@@ -4,6 +4,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
 
+from matplotlib import colors
+
 
 def create_mapper(dataframe, column_key, column_value):
   """This method constructs a mapper
@@ -27,9 +29,10 @@ def create_mapper(dataframe, column_key, column_value):
   dataframe = dataframe.drop_duplicates()
   return dict(zip(dataframe[column_key], dataframe[column_value]))
 
-# ------------------------
-# Methods
-# ------------------------
+
+# -----------------------------------------------------------------
+#                           Methods
+# -----------------------------------------------------------------
 def scalar_colormap(values, cmap, vmin, vmax):
     """This method creates a colormap based on values.
 
@@ -55,7 +58,6 @@ def scalar_colormap(values, cmap, vmin, vmax):
     colormap = sns.color_palette([mapper.to_rgba(i) for i in values])
     # Return
     return colormap
-
 
 
 def get_category_colors(index, category, cmap='hls'):
@@ -94,6 +96,59 @@ def get_category_colors(index, category, cmap='hls'):
     return colors
 
 
+def vlinebgplot(ax, top, xv, bg=None):
+    """This function adds a vertical line and background
+
+    Parameters
+    ----------
+    ax: matplotlib axes
+    top: float
+        The max y value
+    xv: float
+        The x value
+    bg: boolean
+        Whether to include a background
+
+    Returns
+    -------
+    """
+    # Libraries
+    import seaborn as sns
+
+    # Plot line.
+    ax.plot((xv, xv), (-1, top), color='gray',
+            linestyle='--', linewidth=1, zorder=0)
+
+    # Plot background.
+    if bg is not None:
+        cb = sns.color_palette("Set2", 10)[1]
+        ax.fill_between([xv, bg], [-1, -1], [top, top],
+                        zorder=0, alpha=0.1, color=cb)
+
+
+def hlinebgplot(ax, right, yv, bg=None):
+    """This function adds a vertical line and background
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
+    # Libraries
+    import seaborn as sns
+
+    # Plot line
+    ax.plot((-1, right), (yv, yv), color='gray',
+            linestyle='--', linewidth=1, zorder=0)
+
+    # Plot background.
+    if bg is not None:
+        cb = sns.color_palette("Set2", 10)[1]
+        ax.fill_between([-1, right], [yv, yv], [bg, bg],
+                        zorder=0, alpha=0.2, color=cb)
+
+
 def plot_sns_heatmap():
     pass
 
@@ -112,3 +167,37 @@ def plot_spectrum():
 
 def plot_timeseries():
     pass
+
+
+class MidpointNormalize(colors.Normalize):
+    """Normalise the colorbar so that diverging bars
+       work there way either side from a prescribed
+       midpoint value)
+
+    Example
+    -------
+        > MidpointNormalize(midpoint=0., vmin=-100, vmax=100)
+
+    """
+
+    def __init__(self, vmin=None,
+                       vmax=None,
+                       midpoint=None,
+                       clip=False):
+        """Constructor
+        """
+        self.midpoint = midpoint
+        colors.Normalize.__init__(self, vmin, vmax, clip)
+
+    def __call__(self, value, clip=None):
+        """Call
+
+        .. note: Ignoring masked values and all kind of edge cases
+                 to keep it simple.
+        """
+        # I'm ignoring masked values and all kinds of edge cases to make a
+        # simple example...
+        x, y = [self.vmin,
+                self.midpoint,
+                self.vmax], [0, 0.5, 1]
+        return np.ma.masked_array(np.interp(value, x, y), np.isnan(value))

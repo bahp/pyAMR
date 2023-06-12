@@ -78,30 +78,16 @@ def make_timeseries():
 
 
 def make_susceptibility():
-    """This method loads susceptibility.
-
-    .. note: Default path
-    """
-    # Define path
-    path = './microbiology/sample/nhs-susceptibility-2009.csv'
-    # Return
-    return pd.read_csv("{0}/{1}".format(dirname, path))
-
+    """This method returns sample data (Anonymised)"""
+    return fixture(name='./nhs/nhs-susceptibility-2009-anonymised.csv')
 
 def load_registry_microorganisms():
     """This method returns the microorganisms registry"""
-    # Define path
-    path = 'microbiology/registry/microorganisms/registry.csv'
-    # Return
-    return pd.read_csv("{0}/{1}".format(dirname, path))
-
+    return pd.read_csv(Path(dirname) / 'registry' / 'registry_microorganisms.csv')
 
 def load_registry_antimicrobials():
     """This method returns the antimicrobials registry"""
-    # Define path
-    path = 'microbiology/registry/antimicrobials/registry.csv'
-    # Return
-    return pd.read_csv("{0}/{1}".format(dirname, path))
+    return pd.read_csv(Path(dirname) / 'registry' / 'registry_antimicrobials.csv')
 
 
 def load_microbiology_folder(path, folder,
@@ -228,6 +214,9 @@ def fixture(name, **kwargs):
 
     # Return
     return data
+
+
+
 
 
 

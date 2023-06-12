@@ -22,9 +22,7 @@ from pyamr.core.sari import sari
 #                            helper methods
 # -------------------------------------------------------------------------
 class MARI:
-    """
-
-    """
+    """Multiple Antimicrobial Resistance Index"""
     # Attributes
     c_lab = 'LAB_NUMBER'
     c_spe = 'SPECIMEN'

@@ -102,7 +102,8 @@ def sari(dataframe=None, strategy='hard', **kwargs):
 
 
 class SARI:
-
+    """Single Antimicrobial Resistance Trend
+    """
     # Attributes
     c_spe = 'SPECIMEN'
     c_org = 'MICROORGANISM'

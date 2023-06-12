@@ -12,14 +12,6 @@ Subpackages
 Submodules
 ----------
 
-pyamr.utils.display module
---------------------------
-
-.. automodule:: pyamr.utils.display
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pyamr.utils.plot module
 -----------------------
 

@@ -2,7 +2,7 @@
 
 Running only one test:
 
-    ​​pytest​​ ​​-v​​ ​​test_sample.py::test_dri_cddep
+    ​​pytest​​ ​​-v​​ ​​test_manual.py::test_dri_cddep
 
 """
 
