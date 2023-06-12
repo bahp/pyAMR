@@ -84,6 +84,13 @@ data.category = data.category.str.capitalize()
 # Final check
 data = data.drop_duplicates()
 data = data.dropna(how='all')
+data = data.sort_values(by='name')
+
+# Show
+print("\nShow")
+print(data)
+print("\nUnique")
+print(data.category.unique())
 
 # Save
 data.to_csv('db_categories.csv', index=False)

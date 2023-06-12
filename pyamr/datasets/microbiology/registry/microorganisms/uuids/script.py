@@ -4,8 +4,14 @@ if __name__ == '__main__':
     # Libraries
     import pandas as pd
 
-    # Define paths
-    path_output = './registry_microorganisms.csv'
+    # Load data
+    data = pd.read_csv('./db_codes.csv')
+
+    # Format
+    data = data.drop_duplicates()
 
     # Show
     print("\nCodes:")
+    print(data)
+    print("\nAre there any duplicated codes? %s" %
+          data.code.duplicated().any())

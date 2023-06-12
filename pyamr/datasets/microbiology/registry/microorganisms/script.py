@@ -224,9 +224,9 @@ def create_db_organisms(verbose=10):
              'gram_stain']]
 
     # Formatting
-    # lower
-    # title
-    # etc
+    # ... use str.lower()
+    # ... use str.title()
+    # ... anything else?
 
     # Drop duplicates
     db = db.drop_duplicates()
@@ -248,7 +248,7 @@ if __name__ == '__main__':
 
 
     # Define paths
-    path_output = './registry_microorganisms.csv'
+    path_output = 'registry.csv'
 
     # Create database
     db = create_db_organisms(verbose=1)

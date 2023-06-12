@@ -10,7 +10,7 @@ if __name__ == '__main__':
     from pyamr.datasets.registries import acronym_series
 
     # Define paths
-    path_output = './registry_antimicrobials.csv'
+    path_output = 'registry.csv'
 
     # Load
     db = pd.read_csv('./categories/db_categories.csv')
