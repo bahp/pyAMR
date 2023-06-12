@@ -91,7 +91,7 @@ def make_susceptibility():
 def load_registry_microorganisms():
     """This method returns the microorganisms registry"""
     # Define path
-    path = './microbiology/registry/microorganisms/registry_microorganisms.csv'
+    path = 'microbiology/registry/microorganisms/registry.csv'
     # Return
     return pd.read_csv("{0}/{1}".format(dirname, path))
 
@@ -99,7 +99,7 @@ def load_registry_microorganisms():
 def load_registry_antimicrobials():
     """This method returns the antimicrobials registry"""
     # Define path
-    path = './microbiology/registry/antimicrobials/registry_antimicrobials.csv'
+    path = 'microbiology/registry/antimicrobials/registry.csv'
     # Return
     return pd.read_csv("{0}/{1}".format(dirname, path))
 

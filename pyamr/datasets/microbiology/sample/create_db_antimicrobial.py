@@ -94,7 +94,7 @@ category = {
 # Read csv
 # -----------------------------------------
 # Read csv
-data = pd.read_csv('./susceptibility_v0.1.csv',
+data = pd.read_csv('./outputs/susceptibility.csv',
     usecols=['antimicrobial_code',
              'antimicrobial_name'])
 
@@ -176,4 +176,4 @@ print(data.nunique())
 # Save
 # --------------------------------------------
 # Save
-data.to_csv('db_antimicrobials.csv', index=False)
+data.to_csv('./outputs/db_antimicrobials.csv', index=False)

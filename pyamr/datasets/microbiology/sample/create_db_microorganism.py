@@ -133,7 +133,7 @@ gram_type = {
 # Read csv
 # -----------------------------------------
 # Read csv
-data = pd.read_csv('./susceptibility_v0.1.csv',
+data = pd.read_csv('./outputs/susceptibility.csv',
     usecols=['microorganism_code',
              'microorganism_name'])
 
@@ -226,4 +226,4 @@ data = data.reset_index(drop=True)
 # Save
 # --------------------------------------------
 # Save
-data.to_csv('db_microorganisms.csv', index=False)
+data.to_csv('./outputs/db_microorganisms.csv', index=False)

@@ -177,6 +177,7 @@ When using any of this project's source code, please cite:
 
    usage/introduction
    usage/installation
+   usage/advanced
    usage/todo
 
 .. toctree::

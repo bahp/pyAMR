@@ -162,7 +162,7 @@ def clean_clwsql008(filepath):
 # Load data
 # ---------------------------------------
 # Define path
-path = './raw'
+path = './inputs/nhs-susceptibility-2020'
 
 # Create susceptibility data
 susceptibility = clean_clwsql008(path)
@@ -176,7 +176,5 @@ susceptibility = clean_clwsql008(path)
 print("\nData:")
 print(susceptibility)
 
-
-
 # Save
-susceptibility.to_csv('susceptibility_v0.1.csv')
+susceptibility.to_csv('./outputs/susceptibility.csv')
