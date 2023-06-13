@@ -53,8 +53,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # Getting information from github interface
-          tag_name: ${{ github.ref }}
-          release_name: pyamr-${{ github.ref }}
+          name: pyamr-${{ github.ref }}
+          #tag_name: ${{ github.ref }}
+          #release_name: pyamr-${{ github.ref }}
           # Getting information from package configuration
           #tag_name: ${{ env.VERSION }}
           #release_name: Release v${{ env.VERSION }}
