@@ -29,12 +29,17 @@ on:
   #  tags:
   #    - "*"
 
+  #
+  release:
+    types: [published] # Recommended
+
+
 jobs:
-  package:
-    uses: ./.github/workflows/package.yml
+  #package:
+  #  uses: ./.github/workflows/package.yml
 
   release:
-    needs: [package]
+    #needs: [package]
     runs-on: ubuntu-latest
 
     steps:
@@ -90,10 +95,10 @@ jobs:
       #    asset_name: ${{ env.FULLNAME }}
       #    asset_content_type: application/gzip
 
-      - name: Publish package on TestPyPI
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: |
-          pip install setuptools wheel twine
-          twine upload -r testpypi dist/*
+      #- name: Publish package on TestPyPI
+      #  env:
+      #    TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+      #    TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      #  run: |
+      #    pip install setuptools wheel twine
+      #    twine upload -r testpypi dist/*
