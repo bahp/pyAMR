@@ -50,7 +50,8 @@ jobs:
       - name: Extract variables
         id: vars
         run: |
-          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          #echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          echo "tag=${{ github.event.release.tag_name }} >> $GITHUB_OUTPUT
 
       # Update version in pyproject.toml
       - name: Update version in pyproject.toml
@@ -72,23 +73,15 @@ jobs:
       # When pushing a tag from the command this would create the
       # github release associated to the tag. However, when using
       # the interface it creates a full complete release.
-      #- name: Create GitHub release
-      #  id: create-new-release
-      #  uses: actions/create-release@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    # Getting information from github interface
-      #    #name: pyamr-${{ github.ref }}
-      #    tag_name: ${{ github.ref }}
-      #    release_name: pyamr-${{ github.ref }}
-      #    # Getting information from package configuration
-      #    #tag_name: ${{ env.VERSION }}
-      #    #release_name: Release v${{ env.VERSION }}
-      #    #body
-      #    #draft: false
-      #    #prerelease: false
-      #    # ${{ github.run_number }}
+      - name: Create GitHub release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Getting information from github interface
+          tag_name: ${{ steps.vars.outputs.tag }}
+          release_name: pyamr-${{ steps.vars.outputs.tag }}
 
       #- name: Upload GitHub release asset
       #  uses: actions/upload-release-asset@v1
