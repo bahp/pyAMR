@@ -56,7 +56,7 @@ jobs:
       # Update version in pyproject.toml
       - name: Update version in pyproject.toml
         run: |
-          sed -i 's/{{VERSION_PLACEHOLDER}}/${{ steps.vars.outputs.tag }}/' pyproject.toml
+          sed -i "s/{{VERSION_PLACEHOLDER}}/${{ steps.vars.outputs.tag }}/g" pyproject.toml
 
       - name: Build distribution
         run: |
