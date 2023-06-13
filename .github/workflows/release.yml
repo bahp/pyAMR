@@ -50,11 +50,13 @@ jobs:
       - name: Extract variables
         id: vars
         run: |
-          echo "tag=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo ${{ github.ref_name }}
 
       # Update version in pyproject.toml
       - name: Update version in pyproject.toml
         run: |
+          echo ${{ steps.vars.outputs.tag }}
           sed -i "s/{{VERSION_PLACEHOLDER}}/${{ steps.vars.outputs.tag }}/g" pyproject.toml
 
       - name: Build distribution
