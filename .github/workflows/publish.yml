@@ -2,16 +2,10 @@ name: Publish to PyPI
 
 on:
 
-  # .. note: There can be many tags, which can be created directly
-  #          from the terminal. However, not all tags are completed
-  #          with a release. Note that when creating a release, for
-  #          example using the github interface, it has a tag
-  #          associated.
-
-  workflow_run:
-    workflow: ['Python package']
-    types: [completed]
-    branches: [main]
+  push:
+    branches: [ main, 'release/**' ] # All branches
+  pull_request:
+    branches: [ main, 'release/**' ] # All branches.
 
 jobs:
   publish:
