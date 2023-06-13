@@ -79,3 +79,5 @@ Please follow the [Installation Guide][url-installation].
 ## Support
 ## FAQ
 ## Contact
+
+$ python -m build --sdist --wheel

@@ -19,5 +19,5 @@ def get_version(rel_path):
         raise RuntimeError("Unable to find version string.")
 
 setup(
-    version=get_version("pyamr/__init__.py")
+    #version=get_version("pyamr/__init__.py")
 )

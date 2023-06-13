@@ -1,3 +1,81 @@
 [build-system]
-requires = ["setuptools"]
+requires = [
+    "setuptools >= 65",
+    "wheel >= 0.38"
+]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyamr"
+version = "0.0.5"
+description = "A lightweight package to compute Antimicrobial Resistance (AMR) metrics."
+readme = "README.md"
+#keywords = "antimicrobial resistance"
+#license = {file = "LICENSE.md"} # option with file
+license = {text = "MIT"}         # option with text
+#requires-python = ">=3.6"
+
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8"
+]
+
+authors = [
+    {name = "Bernard Hernandez", email = "b.hernandez-perez@imperial.ac.uk"},
+]
+
+#maintainers = [
+#    "Bernard Hernandez <b.hernandez-perez@imperial.ac.uk>"
+#]
+
+dependencies = [
+    "pandas",
+    "numpy"
+]
+
+#homepage = "https://bahp.github.io/pyAMR/"
+#repository = "https://github.com/bahp/pyamr/"
+#documentation = "https://bahp.github.io/pyAMR/"
+
+#[project.urls]
+#Documentation = "https://bahp.github.io/pyAMR/",
+#Bug Tracker = "https://github.com/bahp/pyAMR/issues",
+#Source code = "https://github.com/bahp/pyamr/"
+
+[options]
+include_package_data = true
+packages = "find:"
+#package_data
+python_requires = ">=3.7"
+install_requires = [
+    "numpy",
+    "pandas"
+]
+
+#[options.packages.find]
+#exclude =
+
+[project.optional-dependencies]
+test = [
+    "pytest >= 5.0.0",
+]
+doc = [
+    "sphinx",
+    "sphinx-gallery"
+]
+plot = [
+    "seaborn",
+    "matplotlib",
+    "plotly"
+]
+
+
+#[tool.black]
+#line-length = 120
