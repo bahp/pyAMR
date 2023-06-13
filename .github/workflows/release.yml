@@ -1,0 +1,85 @@
+name: GitHub Release
+
+#on:
+#  #release:
+#  #  types: [created]   # Default
+#  #  types: [published] # Recommended
+#  push:
+#    branches: [ main ]  # Exclude develop!
+#  pull_request:
+#    branches: [ main ]  # Exclude develop!
+
+on:
+  push:
+    tags:
+      - "*" # 'v*' would match tags like v0.1, v1.0, ...
+
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          #pip install setuptools wheel twine
+
+      - name: Build distribution
+        run: python setup.py sdist #bdist_wheel
+
+      #- name: Upload distribution artifact
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: static-site
+      #    path: ./dist/
+
+      - name: Set package variables
+        run: |
+          echo "FULLNAME=$(python setup.py --fullname)" >> $GITHUB_ENV
+          echo "VERSION=$(python setup.py --version)" >> $GITHUB_ENV
+
+      # When pushing a tag from the command this would create the
+      # github release associated to the tag. However, when using
+      # the interface it creates a full complete release.
+      - name: Create GitHub release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Getting information from github interface
+          #name: pyamr-${{ github.ref }}
+          tag_name: ${{ github.ref }}
+          release_name: pyamr-${{ github.ref }}
+          name: pyamrname-${{ github.ref }}
+          title: pyamr-title-${{ github.ref }}
+          # Getting information from package configuration
+          #tag_name: ${{ env.VERSION }}
+          #release_name: Release v${{ env.VERSION }}
+          #body
+          #draft: false
+          #prerelease: false
+          # ${{ github.run_number }}
+
+      - name: Upload GitHub release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./dist/${{ env.FULLNAME }}.tar.gz
+          asset_name: ${{ env.FULLNAME }}
+          asset_content_type: application/gzip
+
+      # - name: Publish package on PyPI
+      #  env:
+      #    TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+      #    TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      #  run: |
+      #    python setup.py sdist bdist_wheel
+      #    twine upload dist/*
