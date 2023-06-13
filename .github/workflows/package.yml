@@ -1,13 +1,24 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# This workflow runs everytime a push is done to the project,
+# and it could be in either develop, release or main branches.
+# This workflow will install Python dependencies, run linkt,
+# run tests and upload coverage.
+#
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
 name: Python package
 
 on:
+  #push:
+  #  branches: [ main, develop ]
+  #pull_request:
+  #  branches: [ main, develop ]
+
   push:
-    branches: [ main, develop ]
+    branches: [ '**' ] # All branches
   pull_request:
-    branches: [ main, develop ]
+    branches: [ '**' ] # All branches.
+  release:
+    types: [ created ]
 
 jobs:
   build:
@@ -23,7 +34,7 @@ jobs:
       max-parallel: 4
       matrix:
         os: [ubuntu-latest] #, macos-latest]
-        python-version: [3.9]
+        python-version: [3.9, 3.10]
 
     steps:
     - uses: actions/checkout@v3
@@ -66,7 +77,8 @@ jobs:
     # .. note: Since there pytest.ini already includes the
     #          flags below it should have created the coverage
     #          report on the previous step.
-    # Generate coverage report
+
+    # Generate coverage report (not need due to pystet.ini)
     #- name: Generate coverage report (pytest)
     #  run:
     #    pytest . --cov=pyamr --cov-report=xml
