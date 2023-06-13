@@ -12,7 +12,7 @@ name: GitHub Release
 on:
   push:
     tags:
-      - "*"
+      - "*" # 'v*' would match tags like v0.1, v1.0, ...
 
 jobs:
 
@@ -43,14 +43,24 @@ jobs:
           echo "FULLNAME=$(python setup.py --fullname)" >> $GITHUB_ENV
           echo "VERSION=$(python setup.py --version)" >> $GITHUB_ENV
 
+      # When pushing a tag from the command this would create the
+      # github release associated to the tag. However, when using
+      # the interface it creates a full complete release.
       - name: Create GitHub release
         id: create-new-release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: Release v${{ env.VERSION }}
+          # Getting information from github interface
+          tag_name: ${{ github.ref }}
+          release_name: pyamr-${{ github.ref }}
+          # Getting information from package configuration
+          #tag_name: ${{ env.VERSION }}
+          #release_name: Release v${{ env.VERSION }}
+          #body
+          #draft: false
+          #prerelease: false
           # ${{ github.run_number }}
 
       - name: Upload GitHub release asset
@@ -63,9 +73,9 @@ jobs:
           asset_name: ${{ env.FULLNAME }}
           asset_content_type: application/gzip
 
-      # - name: Publish package
+      # - name: Publish package on PyPI
       #  env:
-      #    TWINE_USERNAME: __token__
+      #    TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
       #    TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       #  run: |
       #    python setup.py sdist bdist_wheel
