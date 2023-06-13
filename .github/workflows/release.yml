@@ -15,7 +15,6 @@ on:
       - "*" # 'v*' would match tags like v0.1, v1.0, ...
 
 jobs:
-
   release:
     runs-on: ubuntu-latest
 
@@ -24,10 +23,12 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Python
         uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.17'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          #pip install setuptools wheel twine
+          pip install setuptools wheel twine
 
       - name: Build distribution
         run: python setup.py sdist #bdist_wheel
@@ -56,8 +57,6 @@ jobs:
           #name: pyamr-${{ github.ref }}
           tag_name: ${{ github.ref }}
           release_name: pyamr-${{ github.ref }}
-          name: pyamrname-${{ github.ref }}
-          title: pyamr-title-${{ github.ref }}
           # Getting information from package configuration
           #tag_name: ${{ env.VERSION }}
           #release_name: Release v${{ env.VERSION }}
@@ -76,10 +75,10 @@ jobs:
           asset_name: ${{ env.FULLNAME }}
           asset_content_type: application/gzip
 
-      # - name: Publish package on PyPI
-      #  env:
-      #    TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-      #    TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      #  run: |
-      #    python setup.py sdist bdist_wheel
-      #    twine upload dist/*
+      - name: Publish package on PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          python setup.py sdist
+          twine upload dist/*
