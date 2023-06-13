@@ -94,7 +94,7 @@ jobs:
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
           asset_path: ./dist/pyamr-${{ steps.vars.outputs.tag }}.tar.gz
-          asset_name: ${{ steps.vars.outputs.tag }}
+          asset_name: pyamr-${{ steps.vars.outputs.tag }}.tar.gz
           asset_content_type: application/gzip
 
       # Publish on TestPyPI
