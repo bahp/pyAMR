@@ -59,41 +59,45 @@ jobs:
           echo ${{ steps.vars.outputs.tag }}
           sed -i "s/{{VERSION_PLACEHOLDER}}/${{ steps.vars.outputs.tag }}/g" pyproject.toml
 
+      # Build distribution
       - name: Build distribution
         run: |
           python -m pip install build
           #python setup.py sdist bdist_wheel # old (setup.cfg)
           python -m build --sdist --wheel    # new (pyproject.toml)
 
-      #- name: Extract variables 2
+      #- name: Extract variables from setup.py
       #  run: |
       #    echo "FULLNAME=$(python setup.py --fullname)" >> $GITHUB_ENV
       #    echo "VERSION=$(python setup.py --version)" >> $GITHUB_ENV
 
+      # .. note:: When pushing a tag from the command this would create the
+      #           github release associated to the tag. However, when using
+      #           the interface we are creating a full release and therefore
+      #           raises an error.
 
-      # When pushing a tag from the command this would create the
-      # github release associated to the tag. However, when using
-      # the interface it creates a full complete release.
+      # Create github release
       - name: Create GitHub release
         id: create-new-release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # Getting information from github interface
           tag_name: ${{ steps.vars.outputs.tag }}
-          release_name: pyamr-${{ steps.vars.outputs.tag }}
+          release_name: v${{ steps.vars.outputs.tag }}
 
-      #- name: Upload GitHub release asset
-      #  uses: actions/upload-release-asset@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-      #    asset_path: ./dist/${{ env.FULLNAME }}.tar.gz
-      #    asset_name: ${{ env.FULLNAME }}
-      #    asset_content_type: application/gzip
+      # Include additional asset to release
+      - name: Upload GitHub release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./dist/pyamr-${{ steps.vars.outputs.tag }}.tar.gz
+          asset_name: ${{ steps.vars.outputs.tag }}
+          asset_content_type: application/gzip
 
+      # Publish on TestPyPI
       - name: Publish package on TestPyPI
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
