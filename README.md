@@ -81,3 +81,4 @@ Please follow the [Installation Guide][url-installation].
 ## Contact
 
 $ python -m build --sdist --wheel
+$ twine upload -r testpypi dist/*

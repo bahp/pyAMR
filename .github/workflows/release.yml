@@ -75,10 +75,12 @@ jobs:
           asset_name: ${{ env.FULLNAME }}
           asset_content_type: application/gzip
 
-      - name: Publish package on PyPI
+      - name: Publish package on TestPyPI
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
-          python setup.py sdist bdist_wheel
-          twine upload dist/*
+          python -m pip install build
+          #python setup.py sdist bdist_wheel # old (setup.cfg)
+          python -m build --sdist --wheel    # new (pyproject.toml)
+          twine upload -r testpypi dist/*

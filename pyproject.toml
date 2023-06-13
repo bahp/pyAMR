@@ -1,3 +1,6 @@
+# R1: https://godatadriven.com/blog/a-practical-guide-to-setuptools-and-pyproject-toml/
+# R2: https://carpentries-incubator.github.io/python_packaging/instructor/03-building-and-installing.html
+
 [build-system]
 requires = [
     "setuptools >= 65",
@@ -7,13 +10,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyamr"
-version = "0.0.5"
+version = "0.0.7"
+keywords = ["AMR"]
+license = {text = "GPL-3.0-only"}         # option with fle ({file = "LICENSE.md"})
+
 description = "A lightweight package to compute Antimicrobial Resistance (AMR) metrics."
 readme = "README.md"
-#keywords = "antimicrobial resistance"
-#license = {file = "LICENSE.md"} # option with file
-license = {text = "MIT"}         # option with text
-#requires-python = ">=3.6"
 
 classifiers = [
     "Intended Audience :: Developers",
@@ -28,11 +30,11 @@ classifiers = [
 ]
 
 authors = [
-    {name = "Bernard Hernandez", email = "b.hernandez-perez@imperial.ac.uk"},
+    {name = "Bernard Hernandez", email = "b.hernandez-perez@imperial.ac.uk"}
 ]
 
 #maintainers = [
-#    "Bernard Hernandez <b.hernandez-perez@imperial.ac.uk>"
+#    {name = "Bernard Hernandez", email = "b.hernandez-perez@imperial.ac.uk"}
 #]
 
 dependencies = [
@@ -40,14 +42,11 @@ dependencies = [
     "numpy"
 ]
 
-#homepage = "https://bahp.github.io/pyAMR/"
-#repository = "https://github.com/bahp/pyamr/"
-#documentation = "https://bahp.github.io/pyAMR/"
 
-#[project.urls]
-#Documentation = "https://bahp.github.io/pyAMR/",
-#Bug Tracker = "https://github.com/bahp/pyAMR/issues",
-#Source code = "https://github.com/bahp/pyamr/"
+[project.urls]
+Source = "https://github.com/bahp/pyamr/"
+Documentation = "https://bahp.github.io/pyAMR/"
+"Bug Tracker" = "https://github.com/bahp/pyAMR/issues"
 
 [options]
 include_package_data = true
