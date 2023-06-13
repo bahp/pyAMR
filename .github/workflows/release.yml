@@ -25,14 +25,9 @@ on:
 
   # .. note:: This would much any tag creation such as v0.1.
 
-  #push:
-  #  tags:
-  #    - "*"
-
-  #
-  release:
-    types: [published] # Recommended
-
+  push:
+    tags:
+      - "*"
 
 jobs:
   #package:
@@ -51,18 +46,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
 
+      # Extract global variables
+      - name: Extract tag name
+        run: |
+          echo "TAG=${{ github.ref }}" >> $GITHUB_ENV
+          echo "FULLNAME=$(python setup.py --fullname)" >> $GITHUB_ENV
+          echo "VERSION=$(python setup.py --version)" >> $GITHUB_ENV
+          echo "TAG=${{ github.ref }}"
+
+      # Update version in pyproject.toml
+      - name: Update version in pyproject.toml
+        run: |
+          sed -i '' 's/{{VERSION_PLACEHOLDER}}/4.5.6/' pyproject.toml
+
       - name: Build distribution
         run: |
           python -m pip install build
           #python setup.py sdist bdist_wheel # old (setup.cfg)
           python -m build --sdist --wheel    # new (pyproject.toml)
-
-      # Get version info from setup.py file (not ideal).
-      - name: Set package variables
-        run: |
-          echo "FULLNAME=$(python setup.py --fullname)" >> $GITHUB_ENV
-          echo "VERSION=$(python setup.py --version)" >> $GITHUB_ENV
-
 
       # When pushing a tag from the command this would create the
       # github release associated to the tag. However, when using
