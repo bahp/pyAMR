@@ -47,17 +47,19 @@ jobs:
           python -m pip install --upgrade pip
 
       # Extract global variables
-      - name: Extract tag name
+      - name: Extract variables
+        id: vars
         run: |
           echo "TAG=${{ github.ref }}" >> $GITHUB_ENV
           echo "FULLNAME=$(python setup.py --fullname)" >> $GITHUB_ENV
           echo "VERSION=$(python setup.py --version)" >> $GITHUB_ENV
-          echo "TAG=${{ github.ref }}"
+          echo TAG
 
       # Update version in pyproject.toml
       - name: Update version in pyproject.toml
         run: |
-          sed -i '' 's/{{VERSION_PLACEHOLDER}}/4.5.6/' pyproject.toml
+          sed -i 's/{{VERSION_PLACEHOLDER}}/4.5.6/' pyproject.toml
+          #sed -i '' 's/{{VERSION_PLACEHOLDER}}/4.5.6/' pyproject.toml
 
       - name: Build distribution
         run: |
