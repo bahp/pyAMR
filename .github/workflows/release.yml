@@ -50,7 +50,6 @@ jobs:
       - name: Extract variables
         id: vars
         run: |
-          #echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
           echo "tag=${{ github.event.release.tag_name }} >> $GITHUB_OUTPUT
 
       # Update version in pyproject.toml
