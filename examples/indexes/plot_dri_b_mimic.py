@@ -281,7 +281,7 @@ aux = aux.merge(smmry, how='left',
 # Find microorganisms with more samples
 top = aux.groupby(by='MICROORGANISM') \
     .freq.sum().sort_values(ascending=False) \
-    .head(5)
+    .head(4)
 
 # Filter by top microorganisms
 aux = aux[aux.MICROORGANISM.isin(top.index)]
