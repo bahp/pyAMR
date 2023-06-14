@@ -43,19 +43,26 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         
-    # .. todo: Check if requirements.txt exists
+    # .. note: We could check whether requirements.txt exists
     #          if ( -f requirements.txt ); then xxxxxx; fi
     #          works for ubuntu, mac, breaks for windows
     #.         windows-latest takes to long - removed
+
+    # Install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         python -m pip install -r requirements.txt
 
+    # .. note: First, it replaces the VERSION_PLACEHOLDER with a
+    #          fake version so that it can be installed properly
+    #          without pip raising an error.
+
     # Install this package
     - name: Install package
       run: |
+        sed -i "s/{{VERSION_PLACEHOLDER}}/0.0.0/g" pyproject.toml
         python -m pip install .
 
     # Lint with Flake8
@@ -74,7 +81,7 @@ jobs:
         python -m pip install mock
         pytest --cov-report xml
 
-    # .. note: Since there pytest.ini already includes the
+    # .. note: Since the file pytest.ini already includes the
     #          flags below it should have created the coverage
     #          report on the previous step.
 
