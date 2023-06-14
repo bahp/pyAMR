@@ -25,7 +25,8 @@ from pyamr.core.stats.wbase import BaseWrapper
 # ----------------------------------------------------------------------------
 
 def kendall(x):  
-  """   
+  """Computes the kendall statistical test
+
   Parameters
   ----------
   x     : a vector of data
@@ -77,8 +78,18 @@ def kendall(x):
   # Return
   return [p, z]
 
+
 class KendallWrapper(BaseWrapper):
   """
+
+  The Kendall statistical test, also known as Kendall's rank correlation test or
+  Kendall's tau test, is a nonparametric statistical test used to assess the strength
+  and direction of association between two variables. It is particularly suited for
+  analyzing ranked or ordinal data, where the values of the variables are ranked or
+  ordered but not necessarily quantitatively measurable. The coefficient ranges from
+  -1 to +1, where a value of +1 indicates a perfect positive rank correlation, -1
+  indicates a perfect negative rank correlation, and 0 indicates no rank correlation.
+
   """
 
   # --------------------------------------------------------------------------
@@ -129,7 +140,7 @@ class KendallWrapper(BaseWrapper):
   #                           override methods
   # --------------------------------------------------------------------------
   def evaluate(self, alpha=0.05, **kwargs):
-    """Evaluates the model.
+    """Evaluates the model for the specified alpha.
     """
     # Create series
     d = {}

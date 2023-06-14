@@ -2,7 +2,10 @@
 Using weighted least squares (WLS)
 ==================================
 
+Approximating a function using Weighted Least Squares (WLS)
+
 """
+
 # Import class.
 import sys
 import numpy as np

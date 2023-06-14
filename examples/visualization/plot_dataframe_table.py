@@ -13,8 +13,8 @@ import matplotlib.gridspec as gridspec
 from matplotlib import colors
 
 # Own libraries
-from pyamr.graphics.utils import MidpointNormalize
-from pyamr.graphics.utils import vlinebgplot
+from pyamr.utils.plot import MidpointNormalize
+from pyamr.utils.plot import vlinebgplot
 from pyamr.graphics.table_graph import _DEFAULT_CONFIGURATION
 
 # -------------------------------------------

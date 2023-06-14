@@ -22,7 +22,12 @@ from pyamr.core.sari import sari
 #                            helper methods
 # -------------------------------------------------------------------------
 class MARI:
-    """Multiple Antimicrobial Resistance Index"""
+    """Multiple Antimicrobial Resistance Index
+
+    .. minigallery:: pyamr.core.mari.MARI
+        :add-heading:
+
+    """
     # Attributes
     c_lab = 'LAB_NUMBER'
     c_spe = 'SPECIMEN'

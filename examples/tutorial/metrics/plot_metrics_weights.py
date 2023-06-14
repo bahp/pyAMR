@@ -2,11 +2,12 @@
 Metrics - weights
 =================
 
-Example of how to use the SigmoidA to compute weights.
+Example to show how to use the ``SigmoidA`` class to compute weights.
 
-.. todo:: The SigmoidA stants for Sigmoid Approximation. This page
-          needs better explanation of the sigmoid function and how
-          the SgimoidA (approximation) class works and how to use it.
+.. todo:: The ``SigmoidA`` class name stands for Sigmoid Approximation.
+          Probably this example should include external references, a
+          better explanation of the sigmoid function and how the ``SigmoidA``
+          (approximation) is computed and how to use it.
 """
 # Libraries
 import numpy as np

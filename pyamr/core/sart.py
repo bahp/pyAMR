@@ -6,7 +6,11 @@ import pandas as pd
 from pyamr.core.sari import SARI
 
 class SART:
+    """Class to compute the Single Antimicrobial Resistance Trend.
 
+        .. minigallery:: pyamr.core.sart.SART
+            :add-heading:
+    """
     # Attributes
     c_spe = 'SPECIMEN'
     c_org = 'MICROORGANISM'

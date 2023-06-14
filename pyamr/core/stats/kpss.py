@@ -18,8 +18,7 @@ from pyamr.core.stats.wbase import BaseWrapper
 
 
 class KPSSWrapper(BaseWrapper):
-    """The KPSS wrapper.
-
+    """
     The Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test is used to identify
     whether a time series is stationary around a deterministic trend (thus
     trend stationary) against the alternative of a unit root.
@@ -34,12 +33,14 @@ class KPSSWrapper(BaseWrapper):
     processes revert to this mean tendency in the long run (deterministic trend)
     while unit-root processes have a permanent impact (stochastic trend).
 
-    Notes
-    -----
-    H0: The series has unit root => Trend Stationary.
-    H1: The series has no unit root => No Trend Stationary.
+    ====== =========================== =====================================
+    H      Hypothesis                  Stationarity
+    ====== =========================== =====================================
+    **H0** The series has no unit root ``Trend-stationary``
+    **H1** The series has a unit root  ``No Trend-Stationary``
+    ====== =========================== =====================================
 
-    If p-value > alpha: Failed to reject H0
-    If p-value <= alpha: Reject H0
+    | If p-value > alpha: Failed to reject H0
+    | If p-value <= alpha: Reject H0
     """
     pass

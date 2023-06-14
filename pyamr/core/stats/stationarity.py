@@ -22,27 +22,34 @@ from pyamr.core.stats.wbase import fargs
 
 
 class StationarityWrapper(BaseWrapper):
-    """This method....
+    """
+    In time series analysis, "stationarity" refers to a key assumption about the behavior
+    of a time series over time. A stationary time series is one in which statistical properties,
+    such as mean, variance, and autocorrelation, remain constant over time. Stationarity is an
+    important concept because many time series analysis techniques rely on this assumption for
+    their validity. There are different types of stationarity that can be observed in time series
+    data.
 
+    The augmented Dickey–Fuller test or ``ADF`` can be used to determine the presence of a unit root.
+    When the other roots of the characteristic function lie inside the unit circle the first
+    difference of the process is stationary. Due to this property, these are also called
+    difference-stationary processes. Since the absence of unit root is not a proof of non-stationarity,
+    the Kwiatkowski–Phillips–Schmidt–Shin or ``KPSS`` test can be used to identify the existence of an
+    underlying trend which can also be removed to obtain a stationary process. These are called
+    trend-stationary processes. In both, unit-root and trend-stationary processes, the mean can be
+    increasing or decreasing over time; however, in the presence of a shock, trend-stationary
+    processes (blue) revert to this mean tendency in the long run (deterministic trend) while unit-root
+    processes (green) have a permanent impact (stochastic trend). The significance level of the tests
+    is usually set to 0.05.
 
-    Types of stationarity in time-series:
-      - Trend stationary
-      - Seasonal stationary
-      - Strictly stationary
-
-    Applies both ADF and KPSS tests.
-
-    ADF            KPSS           Outcome               Note
-    ============== ============== ===================== ========================
-    Non-Stationary Non-Stationary Non-Stationary
-    Stationary     Stationary     Stationary
-    Non-Stationary Stationary     Trend-Stationary      Check de-trended series
-    Stationary     Non-Stationary Difference-Stationary Check differenced-series
-    ============== ============== ===================== ========================
-
-    [1] https://machinelearningmastery.com/time-series-data-stationary-python/
-    [2]
-    [3]
+    ================== ================== ========================= ============================
+     ADF                KPSS               Outcome                   Note
+    ================== ================== ========================= ============================
+    ``Non-Stationary`` ``Non-Stationary`` ``Non-Stationary``
+    ``Stationary``     ``Stationary``     ``Stationary``
+    ``Non-Stationary`` ``Stationary``     ``Trend-Stationary``      Check the de-trended series
+    ``Stationary``     ``Non-Stationary`` ``Difference-Stationary`` Check the differenced-series
+    ================== ================== ========================= ============================
 
     """
 

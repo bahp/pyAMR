@@ -1,9 +1,10 @@
 """
-Using ARIMA
-==================
+Using SARIMAX for seasonality
+=============================
+
+Approximate a function using Sesonal Autoregressive Integrated Moving Average (SARIMA)
 
 """
-
 # Import.
 import sys
 import warnings
@@ -11,13 +12,12 @@ import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-# Import ARIMA from statsmodels.
-#from statsmodels.tsa.arima_model import ARIMA
-from statsmodels.tsa.arima.model import ARIMA
+# Import sarimax
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 # import weights.
 from pyamr.datasets.load import make_timeseries
-from pyamr.core.regression.arima import ARIMAWrapper
+from pyamr.core.regression.sarimax import SARIMAXWrapper
 
 # Filter warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -47,29 +47,31 @@ exog = x
 # ----------------------------
 # fit the model
 # ----------------------------
-# Create specific arima model.
-arima = ARIMAWrapper(estimator=ARIMA).fit( \
- endog=y[:80], order=(1,0,0), trend='c', disp=0)
+# Create specific sarimax model.
+sarimax = SARIMAXWrapper(estimator=SARIMAX) \
+    .fit(endog=y[:80], exog=None, trend='ct',
+         seasonal_order=(1, 0, 1, 12), order=(0, 1, 1),
+         disp=0)
 
 # Print series
 print("\nSeries:")
-print(arima.as_series())
+print(sarimax.as_series())
 
 # Print summary.
 print("\nSummary:")
-print(arima.as_summary())
+print(sarimax.as_summary())
 
 # -----------------
 # Save & Load
 # -----------------
 # File location
-#fname = '../../examples/saved/arima-sample.pickle'
+# fname = '../../examples/saved/arima-sample.pickle'
 
 # Save
-#arima.save(fname=fname)
+# arima.save(fname=fname)
 
 # Load
-#arima = ARIMAWrapper().load(fname=fname)
+# arima = ARIMAWrapper().load(fname=fname)
 
 
 # -----------------
@@ -90,11 +92,11 @@ print(arima.as_summary())
 s, e = 50, 120
 
 # Compute predictions
-preds_1 = arima.get_prediction(start=s, end=e, dynamic=False)
-preds_2 = arima.get_prediction(start=s, end=e, dynamic=True)
+preds_1 = sarimax.get_prediction(start=s, end=e, dynamic=False)
+preds_2 = sarimax.get_prediction(start=s, end=e, dynamic=True)
 
 # Create figure
-fig, axes = plt.subplots(1, 2, figsize=(8,3))
+fig, axes = plt.subplots(1, 2, figsize=(8, 3))
 
 # ----------------
 # Plot non-dynamic
@@ -105,14 +107,14 @@ axes[0].plot(y, color='#A6CEE3', alpha=0.5, marker='o',
              markersize=5, linewidth=0.75, label='Observed')
 
 # Plot forecasted values.
-axes[0].plot(preds_1[0,:], preds_1[1,:], color='#FF0000', alpha=1.00,
-         linewidth=2.0, label=arima._identifier())
+axes[0].plot(preds_1[0, :], preds_1[1, :], color='#FF0000', alpha=1.00,
+             linewidth=2.0, label=sarimax._identifier())
 
 # Plot the confidence intervals.
-axes[0].fill_between(preds_1[0,:], preds_1[2,:],
-                                preds_1[3,:],
-                                color='#FF0000',
-                                alpha=0.25)
+axes[0].fill_between(preds_1[0, :], preds_1[2, :],
+                     preds_1[3, :],
+                     color='#FF0000',
+                     alpha=0.25)
 
 # ------------
 # Plot dynamic
@@ -123,14 +125,14 @@ axes[1].plot(y, color='#A6CEE3', alpha=0.5, marker='o',
              markersize=5, linewidth=0.75, label='Observed')
 
 # Plot forecasted values.
-axes[1].plot(preds_2[0,:], preds_2[1,:], color='#FF0000', alpha=1.00,
-         linewidth=2.0, label=arima._identifier())
+axes[1].plot(preds_2[0, :], preds_2[1, :], color='#FF0000', alpha=1.00,
+             linewidth=2.0, label=sarimax._identifier())
 
 # Plot the confidence intervals.
-axes[1].fill_between(preds_2[0,:], preds_2[2,:],
-                                preds_2[3,:],
-                                color='#FF0000',
-                                alpha=0.25)
+axes[1].fill_between(preds_2[0, :], preds_2[2, :],
+                     preds_2[3, :],
+                     color='#FF0000',
+                     alpha=0.25)
 
 # Configure axes
 axes[0].set_title("ARIMA non-dynamic")

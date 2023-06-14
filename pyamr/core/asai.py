@@ -207,20 +207,19 @@ def _asai_score(weights_genus, weights_specie, resistance, threshold): # pragma:
 
 
 def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
-    """Computes the ASAI.
+    """Computes the Antimicrobial Spectrum of Activity Index (ASAI).
 
-    .. note: Since threshold and weights have a default value, the
-             warnings below will not be displayed. However, the code
-             is there in case the behaviour needs to be changed in
-             the future.
+    .. note:: Since threshold and weights have a default value, the
+              warnings below will not be displayed. However, the code
+              is there in case the behaviour needs to be changed in
+              the future.
 
-    .. note: Another way to check that the weights are correct is just
-             by computing ASAI with th=0 and th=1. These should result
-             in asai=1 and asai=0 respectively.
-
-                 # Compute score
-                 score_1 = np.sum(wgn * wsp * (sari <= 0))
-                 score_2 = np.sum(wgn * wsp * (sari <= 1))
+    .. note:: Another way to check that the weights are correct is just
+              by computing ASAI with th=0 and th=1. These should result
+              in asai=1 and asai=0 respectively.
+              | # Compute score
+              | score_1 = np.sum(wgn * wsp * (sari <= 0))
+              | score_2 = np.sum(wgn * wsp * (sari <= 1))
 
 
     .. warning:: Should the duplicated check only for the columns
@@ -240,7 +239,7 @@ def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
     weights: string, default='frequency'
         The method to compute the weights. The methods supported are:
 
-            - 'specified': weights must be specified in [W_GENUS and W_SPECIE]
+            - 'specified': weights must be in [W_GENUS and W_SPECIE]
             - 'uniform': uniform weights for genus and species within genus.
             - 'frequency': weights are proportional to the frequencies.
 
@@ -414,8 +413,12 @@ def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
 
 
 
-class ASAI():
+class ASAI:
+    """Class to compute the Antimicrobial Spectrum of Activity Index.
 
+        .. minigallery:: pyamr.core.asai.ASAI
+            :add-heading:
+    """
     # Attributes
     c_gen = 'GENUS'
     c_spe = 'SPECIE'

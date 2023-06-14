@@ -84,10 +84,7 @@ def getargspecdict(instance, funcname):
 
 
 class BaseWrapper(object):
-    """Description
-
-
-
+    """Base Wrapper
     """
 
     # Main attributes of the class.
@@ -117,8 +114,7 @@ class BaseWrapper(object):
         self._result = {}
         self._config = {}
 
-        # ---------------------------------------------------------------------------
-
+    # ---------------------------------------------------------------------------
     #                            helper methods
     # ---------------------------------------------------------------------------
     def _empty(self):
@@ -166,8 +162,7 @@ class BaseWrapper(object):
         self.__dict__.update(pickle.load(open(fname, "rb")))
         return self
 
-        # ---------------------------------------------------------------------------
-
+    # ---------------------------------------------------------------------------
     #                               grid search
     # ---------------------------------------------------------------------------
     def grid_search(self, grid_params, verbose=0):

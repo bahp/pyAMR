@@ -3,7 +3,7 @@
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
-
+# https://github.com/sphinx-gallery/sphinx-gallery/issues/797
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -34,13 +34,16 @@ release = '0.0.1'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.intersphinx',
+    'sphinx_gallery.gen_gallery',  # example galleries
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',         # docstrings
+    'sphinx.ext.autosectionlabel', # adds labels to sections
     'sphinx.ext.todo',
     'sphinx.ext.githubpages',      # gh-pages needs a .nojekyll file
-    'sphinx_gallery.gen_gallery',  # example galleries
-    'sphinxcontrib.bibtex'
+    'sphinxcontrib.bibtex',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -58,6 +61,18 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True
+
+# ---------------------
+# Autosummary extension
+# ---------------------
+# Generate autosummary even if no references
+autosummary_generate = True
+
+# ---------------------------
+# Autosection label extension
+# ---------------------------
+# Make sure the target is unique
+autosectionlabel_prefix_document = True
 
 # ------------------
 # Plotly outcomes
@@ -84,7 +99,8 @@ sphinx_gallery_conf = {
         '../../examples/indexes',
         '../../examples/forecasting',
         #'../../examples/reports',
-        '../../examples/visualization'
+        '../../examples/visualization',
+        '../../pyamr/examples'
     ],
     # path to where to save gallery generated output
     'gallery_dirs': [
@@ -92,11 +108,36 @@ sphinx_gallery_conf = {
         '../source/_examples/indexes',
         '../source/_examples/forecasting',
         #'../source/_examples/reports',
-        '../source/_examples/visualization'],
+        '../source/_examples/visualization',
+        '../source/_examples/pyamr/examples'
+    ],
     # Other
     'line_numbers': True,
     'download_all_examples': False,
-    'within_subsection_order': FileNameSortKey
+
+    # Sort galleries
+    # --------------
+    'within_subsection_order': FileNameSortKey,
+
+    # Add intersphinx links to the examples
+    # -------------------------------------
+    'reference_url': {
+        # The module you locally document uses None
+        'sphinx_gallery': None,
+    },
+
+    # Mini galleries for API documentation
+    # ------------------------------------
+    # directory where function/class granular galleries are stored
+    'backreferences_dir': '_backreferences',
+
+    # Modules for which function/class level galleries are created.
+    # In this case sphinx_gallery and numpy in a tuple of strings.
+    'doc_module': ('numpy', 'pyamr'),
+
+    # Objects to exclude from implicit backreferences. The default
+    # option is an empty set, i.e. exclude nothing.
+    'exclude_implicit_doc': {},
 }
 
 # ------------------

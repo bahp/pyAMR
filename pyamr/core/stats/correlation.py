@@ -9,7 +9,7 @@
 #
 ###############################################################################
 # Forces decimals on divisions.
-from __future__ import division 
+from __future__ import division
 
 # Libraries
 import sys
@@ -24,126 +24,141 @@ from pyamr.core.stats.wbase import BaseWrapper
 
 
 class CorrelationWrapper(BaseWrapper):
-
-  # --------------------------------------------------------------------------
-  #                          overriden methods
-  # --------------------------------------------------------------------------
-  def evaluate(self, alpha=0.05):
-    """This method set all the variables into this class.
     """
-    # Create series.
-    d = {}
-    # Add results
-    d['spearman_corr'] = self._raw['scipy.stats.spearmanr'].correlation
-    d['spearman_pval'] = self._raw['scipy.stats.spearmanr'].pvalue
-    d['pearson_corr'] = self._raw['scipy.stats.pearsonr'][0]
-    d['pearson_pval'] = self._raw['scipy.stats.pearsonr'][1]
-    d['crosscorr'] = self._raw['numpy.correlate']
-    # Return
-    return d
-    
-  def as_summary(self, alpha=0.05):
-    """This method displays the summary.
+
+    The Pearson Correlation Coefficient measures the linear correlation between two
+    variables with a value within the range [-1,1]. Coefficient values of -1, 0 and
+    1 indicate total negative linear correlation, no inear correlation and total
+    positive correlation respectively. In this study, the coefficient is used to assess
+    whether or not there is a linear correlation between the number of observations
+    (susceptibility test records) and the computed resistance index.
+
+    The Spearman Correlation Coefficient...
+
+    The Cross-Correlation ....
     """
-    # Create summary base
-    summary = "         Correlation\n"
-    summary+= "==============================\n"
-    summary+= "Pearson:           %#11.3f\n" % self.pearson_corr
-    summary+= "Spearman:          %#11.3f\n" % self.spearman_corr
-    summary+= "Cross correlation: %#11.3f\n" % self.crosscorr
-    summary+= "=============================="
-    # Return
-    return summary
 
-  def fit(self, x1, x2, **kwargs):
-    """This method computes kendall for monotonic increase
+    # --------------------------------------------------------------------------
+    #                          overriden methods
+    # --------------------------------------------------------------------------
+    def evaluate(self, alpha=0.05):
+        """This method sets all the variables into this class.
+        """
+        # Create series.
+        d = {}
+        # Add results
+        d['spearman_corr'] = self._raw['scipy.stats.spearmanr'].correlation
+        d['spearman_pval'] = self._raw['scipy.stats.spearmanr'].pvalue
+        d['pearson_corr'] = self._raw['scipy.stats.pearsonr'][0]
+        d['pearson_pval'] = self._raw['scipy.stats.pearsonr'][1]
+        d['crosscorr'] = self._raw['numpy.correlate']
+        # Return
+        return d
 
-    NOTES: - scipy pvalues are not reliavble if less than 500 observations.
+    def as_summary(self, alpha=0.05):
+        """This method displays the summary.
+        """
+        # Create summary base
+        summary = "         Correlation\n"
+        summary += "==============================\n"
+        summary += "Pearson:           %#11.3f\n" % self.pearson_corr
+        summary += "Spearman:          %#11.3f\n" % self.spearman_corr
+        summary += "Cross correlation: %#11.3f\n" % self.crosscorr
+        summary += "=============================="
+        # Return
+        return summary
 
-    Parameters
-    ----------
-    x1        :
-    y2        :
+    def fit(self, x1, x2, **kwargs):
+        """This method computes kendall for monotonic increase
 
-    Returns
-    -------
-    object : A CorrelationWrapper objects.
-    """
-    # Library.
-    import scipy as sp
+          .. note:: the pvalues produced by scipy are not reliable if less than 500 observations.
 
-    # Empty the class
-    self._empty()
+        Parameters
+        ----------
+        x1: np.array
+            Variable x1
 
-    # Update the configuration
-    self._config.update(kwargs)
+        y2: np.array
+            Variable y2
 
-    # Initialize raw data
-    self._raw = {} 
+        Returns
+        -------
+        object : A CorrelationWrapper objects.
+        """
+        # Library.
+        import scipy as sp
 
-    # Compute correlations
-    self._raw['numpy.correlate'] = np.correlate(x1, x2)
-    self._raw['numpy.corrcoef'] = np.corrcoef(x1, x2)
-    self._raw['scipy.stats.pearsonr'] = sp.stats.pearsonr(x1, x2)  
-    self._raw['scipy.stats.spearmanr'] = sp.stats.spearmanr(x1, x2) 
+        # Empty the class
+        self._empty()
 
-    # Evaluate the model
-    if self.evaluate:
-      self._result = self.evaluate()
+        # Update the configuration
+        self._config.update(kwargs)
 
-    # Save results.
-    return self
-    
+        # Initialize raw data
+        self._raw = {}
+
+        # Compute correlations
+        self._raw['numpy.correlate'] = np.correlate(x1, x2)
+        self._raw['numpy.corrcoef'] = np.corrcoef(x1, x2)
+        self._raw['scipy.stats.pearsonr'] = sp.stats.pearsonr(x1, x2)
+        self._raw['scipy.stats.spearmanr'] = sp.stats.spearmanr(x1, x2)
+
+        # Evaluate the model
+        if self.evaluate:
+            self._result = self.evaluate()
+
+        # Save results.
+        return self
 
 
 if __name__ == '__main__':
- 
-  # ----------------------------
-  # set basic configuration
-  # ----------------------------
-  # Set pandas configuration.
-  pd.set_option('display.max_colwidth', 80)
-  pd.set_option('display.width', 150)
-  pd.set_option('display.precision', 4)
 
-  # ----------------------------
-  # create data
-  # ----------------------------
-  # Constants
-  length = 100
-  offset = 100
-  slope = 10
+    # ----------------------------
+    # set basic configuration
+    # ----------------------------
+    # Set pandas configuration.
+    pd.set_option('display.max_colwidth', 80)
+    pd.set_option('display.width', 150)
+    pd.set_option('display.precision', 4)
 
-  # Create time-series.
-  x = np.arange(length)
-  n = np.random.rand(length)
-  y1 = n*slope + offset
-  y2 = n*(-slope) + offset 
+    # ----------------------------
+    # create data
+    # ----------------------------
+    # Constants
+    length = 100
+    offset = 100
+    slope = 10
 
-  # ----------------------------
-  # create correlation object
-  # ----------------------------
-  # Create object
-  correlation = CorrelationWrapper().fit(x1=y1, x2=y2)
+    # Create time-series.
+    x = np.arange(length)
+    n = np.random.rand(length)
+    y1 = n * slope + offset
+    y2 = n * (-slope) + offset
 
-  # Print series.
-  print("\n")
-  print(correlation.as_series())
+    # ----------------------------
+    # create correlation object
+    # ----------------------------
+    # Create object
+    correlation = CorrelationWrapper().fit(x1=y1, x2=y2)
 
-  # Print summary.
-  print("\n")
-  print(correlation.as_summary())
+    # Print series.
+    print("\n")
+    print(correlation.as_series())
 
-  correlation
+    # Print summary.
+    print("\n")
+    print(correlation.as_summary())
 
-  # -----------------
-  # Save and load
-  # -----------------
-  # File location
-  #fname = '../examples/saved/correlation-sample.pickle'
+    correlation
 
-  # Save
-  #correlation.save(fname=fname)
+    # -----------------
+    # Save and load
+    # -----------------
+    # File location
+    # fname = '../examples/saved/correlation-sample.pickle'
 
-  # Load
-  #correlation = CorrelationWrapper().load(fname=fname)
+    # Save
+    # correlation.save(fname=fname)
+
+    # Load
+    # correlation = CorrelationWrapper().load(fname=fname)

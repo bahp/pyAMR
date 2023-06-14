@@ -1,4 +1,4 @@
-Statistical tests (wrappers)
-----------------------------
+Using the statistical tests wrappers
+------------------------------------
 
-Examples computing and interpreting statistical tests.
+Examples using some wrappers implemented to compute statistical tests.

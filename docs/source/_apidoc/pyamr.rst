@@ -9,6 +9,7 @@ Subpackages
 
    pyamr.core
    pyamr.datasets
+   pyamr.examples
    pyamr.graphics
    pyamr.metrics
    pyamr.tests

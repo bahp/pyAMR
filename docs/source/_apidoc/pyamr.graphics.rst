@@ -12,14 +12,6 @@ pyamr.graphics.antibiogram module
    :undoc-members:
    :show-inheritance:
 
-pyamr.graphics.spectrum module
-------------------------------
-
-.. automodule:: pyamr.graphics.spectrum
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pyamr.graphics.table\_graph module
 ----------------------------------
 
@@ -28,10 +20,10 @@ pyamr.graphics.table\_graph module
    :undoc-members:
    :show-inheritance:
 
-pyamr.graphics.utils module
----------------------------
+pyamr.graphics.utils\_to\_delete module
+---------------------------------------
 
-.. automodule:: pyamr.graphics.utils
+.. automodule:: pyamr.graphics.utils_to_delete
    :members:
    :undoc-members:
    :show-inheritance:

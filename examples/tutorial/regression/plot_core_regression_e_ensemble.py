@@ -1,6 +1,10 @@
 """
-Using WLS + ARMA
-====================
+Using an ensemble WLS + ARMA
+============================
+
+This method shows an ensemble method that combines the use of Weighted
+Linear Regression (WLS) to fit the main function and ARMA to fit the
+residuals.
 
 .. warning:: Not working yet!
 

@@ -146,8 +146,10 @@ def drug_resistance_index(dataframe,
 
 
 class DRI:
-    """
+    """Class to compute the Drug Resistance Index.
 
+        .. minigallery:: pyamr.core.dri.DRI
+            :add-heading:
     """
     # Attributes
     c_spe = 'SPECIMEN'

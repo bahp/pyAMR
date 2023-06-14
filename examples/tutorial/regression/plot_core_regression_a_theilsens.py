@@ -1,6 +1,6 @@
 """
-Using Theil-Sen
-======================
+Using Theil-Sen estimator
+=========================
 
 In non-parametric statistics, the Theil–Sen estimator is a method for robustly
 fitting a line to sample points in the plane (simple linear regression) by
@@ -59,6 +59,8 @@ print(theilsens.as_series())
 print("\nSummary:")
 print(theilsens.as_summary())
 
+#%%
+# Lets visualise the predictions
 
 # -----------------
 #  Predictions
@@ -91,6 +93,12 @@ ax.fill_between(preds[0, :],
 # Legend
 plt.legend()
 
+# Show
+plt.show()
+
+#%%
+# Let's perform Grid Search
+
 # ----------
 # Grid search
 # -----------
@@ -100,9 +108,10 @@ grid_params = {'x': [x], 'y': [y], 'alpha': [0.05, 0.1]}
 # Get summary.
 summary = TheilSensWrapper().grid_search_dataframe(grid_params=grid_params)
 
-# Plot result (drop x which is an array to improve visualization).
-print("Grid Search:")
-print(summary)
+# Plot result
+#print("Grid Search:")
+#print(summary)
 
-# Show
-plt.show()
+#%%
+#
+summary

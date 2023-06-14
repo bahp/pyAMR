@@ -43,8 +43,8 @@ since it is widely accepted by clinicians as detailed in the UK five year strate
 
 
 
-Basics of susceptibility testing
-------------------------------------
+What is susceptibility testing?
+-------------------------------
 
 Antimicrobial susceptibility testing or ``AST`` is a laboratory method used to determine the
 effectiveness of antimicrobial agents against specific microorganisms. It helps in guiding
@@ -65,7 +65,7 @@ are involved in this process:
   serve as guidelines for determining appropriate treatment options.
 
 - **Quality Control:** Quality control measures are essential to ensure the accuracy and reliability
-  of antimicrobial susceptibility testing. It involves testing reference strains with known
+  of antimicrobial susceptibility testing (AST). It involves testing reference strains with known
   susceptibility patterns to verify that the testing process is performing as expected.
 
 - **Interpretive Criteria:** Interpretive criteria are guidelines provided by regulatory bodies,
@@ -73,11 +73,46 @@ are involved in this process:
   Antimicrobial Susceptibility Testing (EUCAST). These criteria help interpret the test results
   and provide recommendations for appropriate antimicrobial therapy.
 
-Overall, antimicrobial susceptibility testing plays a vital role in guiding the selection of
+Overall, antimicrobial susceptibility testing (AST) plays a vital role in guiding the selection of
 appropriate antimicrobial agents, optimizing treatment outcomes, and combating antimicrobial resistance.
 
-Microorganisms
-~~~~~~~~~~~~~~
+
+Let's see in more detail some concepts related with AST.
+
+Specimen
+~~~~~~~~
+
+A microbiology specimen sample refers to a biological material or substance collected from a
+patient or the environment for laboratory analysis in the field of microbiology. These samples
+are collected to identify and study microorganisms, such as bacteria, viruses, fungi, and parasites,
+present in the specimen. Microbiology specimen samples play a crucial role in diagnosing and monitoring
+infectious diseases, identifying the causative agents, and guiding appropriate treatment strategies.
+In clinical specimens, these samples are collected from patients to diagnose and monitor infectious
+diseases. Common types of clinical microbiology specimen samples include:
+
+- **Blood:** A blood sample collected for blood cultures to identify bacteria or fungi
+  causing bloodstream infections.
+
+- **Urine:** A urine sample collected for urinalysis and urine culture to detect urinary
+  tract infections and identify the causative organisms.
+
+- **Respiratory Specimens:** These include sputum (mucus coughed up from the lungs),
+  throat swabs, nasopharyngeal swabs, and bronchoalveolar lavage (BAL) samples. They
+  are used to diagnose respiratory tract infections, such as pneumonia, tuberculosis,
+  and influenza.
+
+- **Stool:** A stool sample collected for fecal analysis and culture to detect
+  gastrointestinal infections, including bacterial, viral, or parasitic causes.
+
+- **Wound Swabs:** Swabs taken from infected wounds or abscesses to identify the
+  bacteria or fungi causing the infection.
+
+- **Genital Specimens:** These include vaginal swabs, cervical swabs, urethral swabs,
+  and genital ulcers. They are collected to diagnose sexually transmitted infections
+  (STIs) and other genital infections.
+
+Microorganism
+~~~~~~~~~~~~~
 
 A microorganism, or microbe, is an organism of microscopic size, which may exist in its
 single-celled form or as a colony of cells. Microbes are important in human culture and health
@@ -127,18 +162,15 @@ characteristics.
      - Wehther require oxygen for growth and metabolism
      - aerobic, anaerobic
 
-   * - ``fermenting``
+   * - ``lactose-fermenting``
      - Whether they can derive energy through fermentation in the absence of oxygen, or
-       oxidative, meaning they require oxygen for energy production.
+       oxidative, meaning they require oxygen for energy production. It is not universally
+       performed by all microorganisms.
      - lactose, non-lactose
 
-   * - ``hemolysis``
+   * - ``haemolysis``
      - Refers to the ability of bacteria to lyse red blood cells
      - alpha, beta, gamma, no-hemolysis
-
-   * - ``group``
-     -
-     - A, B, C, D, ...
 
    * - ``arrangement``
      -
@@ -148,19 +180,18 @@ characteristics.
      -
      -
 
-   * - ``mobility``
-     -
-     -
+   * - ``strep_group``
+     - Streptococcus is a diverse group of bacteria and the most common classification is
+       the so-called Lancefield which groups bacterias based on the presence of specific
+       carbohydrate antigens on their cell walls.
+     - A, B, C, D
+
 
    * - ``temp_range``
      -
      -
 
    * - ``temp_optima``
-     -
-     -
-
-   * - ``temp_range``
      -
      -
 
@@ -172,19 +203,24 @@ characteristics.
      -
      -
 
+   * - ``mobility``
+     - methods that allow microorganisms to move and navigate through their environments.
+     - flagellar, ciliary, amoeboid, gliding, tumbling/twitching, spore dispersal, passive
+
    * - ``transmission``
      - How they spread from one host to another
-     -
+     - direct contact, indirect contact, airborn, vector-born, fecal-oral, vertical
+
+   * - ``host``
+     - refers to an organism that provides a suitable environment and resources for the
+       growth, survival, and reproduction of microorganisms
+     - human, animal, swine, cattle, ...
 
    * - ``habitat``
      - Whether their are found in the environment (soil bacteria or waterborne bacteria),
        whether they coexist with the host without causing harm (commensal) or cause a
        disease (pathogenic)
      - environmental, commensal, pathogenic
-
-   * - ``host``
-     -
-     - human, animal, swine, cattle, ...
 
    * - ``disease``
      -
@@ -221,32 +257,6 @@ See an example below.
   - subspecies (missing in dataset)
 
 
-Gram Stain
-**********
-
-Gram stain or Gram staining, also called Gram's method, is a method of staining used to
-distinguish and classify bacterial species into two large groups according to the chemical
-and physical properties of their cell walls: gram-positive bacteria and gram-negative
-bacteria. The name comes from the Danish bacteriologist Hans Christian
-Gram, who developed the technique.
-
-- **Gram positive** bacteria take up the crystal violet stain used in the test, and then
-  appear to be purple-coloured when seen through an optical microscope. This is because the
-  thick peptidoglycan layer in the bacterial cell wall retains the stain after it is washed
-  away from the rest of the sample, in the decolorization stage of the test.
-
-- **Gram-negative** bacteria cannot retain the violet stain after the decolorization step;
-  alcohol used in this stage degrades the outer membrane of gram-negative cells, making the
-  cell wall more porous and incapable of retaining the crystal violet stain. Their peptidoglycan
-  layer is much thinner and sandwiched between an inner cell membrane and a bacterial outer
-  membrane, causing them to take up the counterstain (safranin or fuchsine) and appear red or
-  pink.
-
-.. note:: Despite their thicker peptidoglycan layer, gram-positive bacteria are more
-    receptive to certain cell wall–targeting antibiotics than gram-negative bacteria,
-    due to the absence of the outer membrane.
-
-
 Shape or morphology
 *******************
 
@@ -279,9 +289,47 @@ examples included in the figure below.
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
     -->
 
+Gram Stain
+**********
 
-Growth Type
-***********
+Gram stain or Gram staining, also called Gram's method, is a method of staining used to
+distinguish and classify bacterial species into two large groups according to the chemical
+and physical properties of their cell walls: gram-positive bacteria and gram-negative
+bacteria. The name comes from the Danish bacteriologist Hans Christian
+Gram, who developed the technique.
+
+- **Gram positive** bacteria take up the crystal violet stain used in the test, and then
+  appear to be purple-coloured when seen through an optical microscope. This is because the
+  thick peptidoglycan layer in the bacterial cell wall retains the stain after it is washed
+  away from the rest of the sample, in the decolorization stage of the test.
+
+- **Gram-negative** bacteria cannot retain the violet stain after the decolorization step;
+  alcohol used in this stage degrades the outer membrane of gram-negative cells, making the
+  cell wall more porous and incapable of retaining the crystal violet stain. Their peptidoglycan
+  layer is much thinner and sandwiched between an inner cell membrane and a bacterial outer
+  membrane, causing them to take up the counterstain (safranin or fuchsine) and appear red or
+  pink.
+
+.. note:: Despite their thicker peptidoglycan layer, gram-positive bacteria are more
+    receptive to certain cell wall–targeting antibiotics than gram-negative bacteria,
+    due to the absence of the outer membrane.
+
+
+Coagulase Production
+********************
+
+Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
+to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
+Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
+the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
+test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
+However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
+Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
+opportunistic infection.
+
+
+Oxygen requirements
+*******************
 
 The two main types of bacterial growth are **aerobic** and **anaerobic**. The basic difference
 between the two, is that the former thrives in oxygenated environment and latter in an environment
@@ -323,19 +371,134 @@ hemolysis is a hemolysin.
   epidermidis display gamma hemolysis.
 
 
-Coagulase Production
+
+Streptococcus groups
 ********************
 
-Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
-to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
-Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
-the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
-test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
-However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
-Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
-opportunistic infection.
+When discussing Streptococcus, a genus of bacteria, the categorization typically refers to different
+groups or serotypes within the genus. Streptococcus is a diverse group of bacteria that are classified
+based on their cell wall composition, hemolytic activity (ability to lyse red blood cells), and specific
+antigenic properties.
 
-Antimicrobials
+The most common classification system for Streptococcus is the Lancefield classification, which groups
+the bacteria based on the presence of specific carbohydrate antigens on their cell walls. The Lancefield
+system assigns letters to different serological groups: Groups A, B, C, D, etc. These letters are
+determined by the reactions of the bacteria with specific antisera.
+
+Here is a brief overview of the four groups you mentioned within the context of Streptococcus:
+
+- **Group A Streptococcus (GAS):** Group A streptococcus, also known as Streptococcus pyogenes, is
+  associated with a wide range of human infections. It can cause conditions such as strep throat,
+  impetigo (skin infection), cellulitis, necrotizing fasciitis (flesh-eating disease), and scarlet
+  fever.
+
+- **Group B Streptococcus (GBS):** Group B streptococcus, also known as Streptococcus agalactiae, is
+  commonly found in the gastrointestinal and genital tracts of healthy adults. However, it can cause
+  serious infections in newborns, pregnant women, and individuals with weakened immune systems. GBS
+  is a leading cause of sepsis, pneumonia, and meningitis in newborns.
+
+- **Group C Streptococcus:** Group C streptococcus comprises several different species within the genus
+  Streptococcus that share certain antigenic characteristics. Some strains of Group C streptococcus
+  can cause human infections, including respiratory tract infections, skin and soft tissue infections,
+  and invasive diseases.
+
+- **Group D Streptococcus:** Group D streptococcus includes various species, such as Streptococcus
+  faecalis and Streptococcus faecium. These bacteria are part of the normal flora of the human
+  gastrointestinal tract. However, they can also cause infections, particularly in individuals with
+  underlying health conditions. Group D streptococci are associated with infections such as urinary
+  tract infections, endocarditis (infection of the heart valves), and intra-abdominal infections.
+
+It's important to note that there are other serogroups and species within the genus Streptococcus,
+each with its own unique characteristics and disease associations.
+
+
+
+Mobility
+********
+
+Microorganisms exhibit various types of mobility that allow them to move and navigate through their
+environments. Here are some common types of microorganism mobility:
+
+- **Flagellar Mobility:** Many bacteria possess whip-like appendages called flagella that enable
+  them to move. These flagella can rotate, allowing the microorganism to propel itself through
+  liquid environments such as water or mucus.
+
+- **Ciliary Mobility:** Some microorganisms, particularly certain protozoa and certain types of
+  algae, have numerous tiny hair-like structures called cilia. Coordinated beating of these cilia
+  creates a wave-like motion, allowing the microorganism to move through liquids.
+
+- **Amoeboid Movement:** Amoebas and certain types of other protozoa exhibit amoeboid movement.
+  They extend and retract pseudopods, which are temporary bulges or projections of the cell membrane.
+  By changing the shape of their bodies, they can crawl or ooze along surfaces.
+
+- **Gliding:** Some bacteria and algae exhibit gliding motility, which involves smooth, continuous
+  movement across surfaces. The exact mechanisms of gliding are not fully understood, but they may
+  involve secretion of slime or other surface interactions.
+
+- **Tumbling and Twitching:** Certain bacteria, such as Escherichia coli, use a combination of tumbling
+  and twitching for movement. Tumbling involves a change in direction by randomly reorienting their
+  flagella, while twitching involves the extension, attachment, and retraction of pili (thin, hair-like
+  structures) to pull the cell along surfaces.
+
+- **Spore Dispersal:** Fungi and some bacteria produce spores as a means of dispersal. These spores can
+  be carried by wind, water, or animals to colonize new environments.
+
+- **Passive Movement:** Some microorganisms rely on external factors like air or water currents to carry
+  them to new locations. They may possess adaptations such as lightweight structures or structures that
+  facilitate floating to aid in passive dispersal.
+
+It's important to note that not all microorganisms are motile. Some microorganisms, such as certain
+bacteria and fungi, are non-motile and rely on other means of dispersal, such as wind, water, or the
+movement of other organisms.
+
+
+Transmission
+************
+
+Microorganisms can be transmitted through various routes or modes of transmission. The primary modes
+of transmission include:
+
+- **Direct Contact:** Transmission occurs through direct physical contact between an infected
+  individual and a susceptible person. This can involve touching, kissing, sexual contact, or
+  contact with infected bodily fluids or lesions.
+
+- **Indirect Contact:** Transmission occurs indirectly through contact with contaminated surfaces,
+  objects, or fomites. Examples include touching a doorknob, using contaminated utensils, or
+  sharing personal items like towels or razors.
+
+- **Respiratory Droplets:** Transmission occurs when an infected person coughs, sneezes, talks,
+  or breathes, releasing respiratory droplets containing microorganisms into the air. These
+  droplets can be inhaled by nearby individuals, leading to infection. Diseases such as influenza,
+  common cold, and COVID-19 can be transmitted through respiratory droplets.
+
+- **Airborne Transmission:** Microorganisms can remain suspended in the air for longer periods
+  and can be inhaled over longer distances. Airborne transmission typically involves smaller
+  particles or droplet nuclei that can carry infectious agents, such as tuberculosis bacteria
+  or certain fungal spores.
+
+- **Vector-borne Transmission:** Certain microorganisms are transmitted through vectors, which are
+  living organisms that can carry and transmit pathogens. Vectors include mosquitoes (e.g., malaria,
+  dengue fever), ticks (e.g., Lyme disease), fleas (e.g., plague), and flies (e.g., sleeping sickness).
+
+- **Fecal-Oral Transmission:** Microorganisms can be transmitted when fecal matter from an infected
+  individual contaminates food, water, or surfaces, and is subsequently ingested by another person.
+  This transmission route is common for diseases such as cholera, hepatitis A, and norovirus.
+
+- **Vertical Transmission:** Microorganisms can be transmitted from an infected mother to her child
+  during pregnancy, childbirth, or breastfeeding. This mode of transmission can occur for certain
+  viruses like HIV, hepatitis B, and Zika virus.
+
+It's important to note that the modes of transmission can vary depending on the specific microorganism
+and the disease it causes. Public health measures such as hand hygiene, respiratory etiquette, proper
+food and water handling, vector control, and vaccination are crucial in preventing the transmission of
+microorganisms and controlling infectious diseases.
+
+
+
+
+
+
+Antimicrobial
 ~~~~~~~~~~~~~~
 
 An antimicrobial is an agent that kills microorganisms or stops their growth. Antimicrobial
@@ -403,8 +566,8 @@ and effective use.
 
 
 
-Description of metrics for AMR
-------------------------------
+Summary of AMR metrics
+----------------------
 
 Establishing quantifiable metrics is essential to gain a standardized and objective framework to
 monitor the emergence and spread of resistant strains, assess the effectiveness of antimicrobial
@@ -534,8 +697,8 @@ outcomes, and mitigate the further development and dissemination of antimicrobia
 
 
 
-Essentials of time series analysis
-----------------------------------
+Concepts for time series analysis
+---------------------------------
 
 Time series analysis is a specific way of analyzing a sequence of data points collected over
 an interval of time. In time series analysis, analysts record data points at consistent intervals
@@ -616,6 +779,7 @@ central tendency, dispersion, skewness, and tailednes.
 
 
 
+
 Pearson
 *******
 
@@ -634,21 +798,28 @@ of the covariance, such that the result always has a value between −1 and 1. T
 can only reflect a linear correlation of variables, and ignores many other types of
 relationships or correlations.
 
+See :ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
 
-R2
-**
 
-.. _R3: https://statisticsbyjim.com/regression/interpret-r-squared-regression/
+Kurtosis
+********
 
-R-squared is a goodness-of-fit measure for linear regression models. This
-statistic indicates the percentage of the variance in the dependent variable
-that the independent variables explain collectively. R-squared measures the
-strength of the relationship between your model and the dependent variable
-on a convenient 0 – 100% scale. R-squared is always between 0 and 100% where
-(i) **0%** represents a model that does not explain any of the variation in the
-response variable around its mean. The mean of the dependent variable predicts
-the dependent variable as well as the regression model and (ii) **100%** represents
-a model that explains all the variation in the response variable around its mean.
+.. image:: https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png
+   :width: 320
+   :align: right
+   :alt: kurtosis
+
+Kurtosis describes the extent to which the tails (or extremes) of a set of data
+differ from those of a normal distribution. A bell curve distribution would exhibit
+kurtosis of 3, so only numbers above or below 3 can be described as “excess” Kurtosis.
+
+It is common to compare the excess kurtosis (defined below) of a distribution to 0,
+which is the excess kurtosis of any univariate normal distribution. Distributions
+with negative excess kurtosis are said to be platykurtic, although this does not
+imply the distribution is "flat-topped" as is sometimes stated. Rather, it means the
+distribution produces fewer and/or less extreme outliers than the normal distribution.
+An example of a platykurtic distribution is the uniform distribution, which does not
+produce outliers. Distributions with a positive excess kurtosis are said to be leptokurt.
 
 
 Skewness
@@ -672,25 +843,20 @@ symmetric distribution, but can also be true for an asymmetric distribution
 where one tail is long and thin, and the other is short but fat.
 
 
-Kurtosis
-********
+R2
+**
 
-.. image:: https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png
-   :width: 320
-   :align: right
-   :alt: kurtosis
+.. _R3: https://statisticsbyjim.com/regression/interpret-r-squared-regression/
 
-Kurtosis describes the extent to which the tails (or extremes) of a set of data
-differ from those of a normal distribution. A bell curve distribution would exhibit
-kurtosis of 3, so only numbers above or below 3 can be described as “excess” Kurtosis.
-
-It is common to compare the excess kurtosis (defined below) of a distribution to 0,
-which is the excess kurtosis of any univariate normal distribution. Distributions
-with negative excess kurtosis are said to be platykurtic, although this does not
-imply the distribution is "flat-topped" as is sometimes stated. Rather, it means the
-distribution produces fewer and/or less extreme outliers than the normal distribution.
-An example of a platykurtic distribution is the uniform distribution, which does not
-produce outliers. Distributions with a positive excess kurtosis are said to be leptokurt.
+R-squared is a goodness-of-fit measure for linear regression models. This
+statistic indicates the percentage of the variance in the dependent variable
+that the independent variables explain collectively. R-squared measures the
+strength of the relationship between your model and the dependent variable
+on a convenient 0 – 100% scale. R-squared is always between 0 and 100% where
+(i) **0%** represents a model that does not explain any of the variation in the
+response variable around its mean. The mean of the dependent variable predicts
+the dependent variable as well as the regression model and (ii) **100%** represents
+a model that explains all the variation in the response variable around its mean.
 
 
 Akaike information criterion
@@ -721,7 +887,8 @@ based on log-likelihood function (LLF), and but related to Akaike's information 
 Stationarity
 ************
 
-.. warning:: Pending!
+See :ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
+
 
 Statistical tests
 ~~~~~~~~~~~~~~~~~
@@ -785,7 +952,7 @@ or hypothesis about the process. The conjecture is called the null hypothesis.
 Augmented Dicker-Fuller
 ***********************
 
-.. warning:: Pending!
+:ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
 
 Kendal
 ************
@@ -795,7 +962,7 @@ Kendal
 Kwiatkowski–Phillips–Schmidt–Shin
 *********************************
 
-.. warning:: Pending!
+:ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
 
 Jarque Bera
 ************
@@ -834,10 +1001,12 @@ Anderson-darling
 Omnibus
 *******
 
-Omnibus tests are a kind of statistical test. They test whether the explained variance
-in a set of data is significantly greater than the unexplained ...
+It's important to note that the term "omnibus statistical test" is not limited to a specific
+statistical method or test but rather refers to a general concept of assessing the overall
+significance of a set of variables or factors collectively. The specific statistical test used
+as an omnibus test may vary depending on the research design, data type, and analysis
+objectives.
+
+They test whether the explained variance in a set of data is significantly greater than the unexplained.
 
 .. warning:: Pending!
-
-
-

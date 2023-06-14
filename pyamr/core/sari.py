@@ -102,7 +102,11 @@ def sari(dataframe=None, strategy='hard', **kwargs):
 
 
 class SARI:
-    """Single Antimicrobial Resistance Trend
+    """Class to compute the Single Antimicrobial Resistance Index.
+
+    .. minigallery:: pyamr.core.sari.SARI
+        :add-heading:
+
     """
     # Attributes
     c_spe = 'SPECIMEN'

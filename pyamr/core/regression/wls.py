@@ -37,7 +37,7 @@ def _cast_float(e):
         return e
 
 
-class PredictionResult():
+class PredictionResult:
 
     def __init__(self, mean, cilo, ciup, pstd, pilo,
                  piup, time, nobs, endog):
@@ -453,7 +453,7 @@ if __name__ == '__main__': # pragma: no cover
     #  Example I
     # -------------
     # This example shows how to make predictions using the wrapper and how
-    # to plot the resulting data. In addition, it compares the intervales
+    # to plot the resulting data. In addition, it compares the intervals
     # provided by get_prediction (confidence intervals) and the intervals
     # provided by wls_prediction_std (prediction intervals).
     #
@@ -479,9 +479,12 @@ if __name__ == '__main__': # pragma: no cover
     ax.plot(preds[0, :], preds[1, :], color='#FF0000', alpha=1.00,
             linewidth=2.0, label=wls._identifier(short=True))
 
+    print(preds.shape)
+
     # Plot the confidence intervals.
-    ax.fill_between(preds[0, :], preds[2, :],
-                    preds[3, :],
+    ax.fill_between(x=preds[0, :],
+                    y1=preds[2, :],
+                    y2=preds[3, :],
                     color='r',
                     alpha=0.1)
 

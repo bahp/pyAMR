@@ -47,7 +47,28 @@ sometimes impossible, to treat. Thus providing accurate and up to date AMR surve
 supports interventions and toolkits to improve antibiotic prescribing in the community, including
 prescribing in general practices (GPs), dental and other settings and hospitals.
 
-Let's see two reports that can be computed using ``PyAMR``.
+Let's see some reports that can be computed using ``PyAMR``.
+
+
+.. list-table:: Example of AMR reports
+   :widths: 15 50 35
+   :header-rows: 1
+
+   * - Name
+     - Title
+     - Metrics
+
+   * - Report I
+     - Surveillance on AMR resistance
+     - | number of isolates,
+       | resistance rate or ``SARI``
+       | resistance trend or ``SART``
+
+   * - Report II
+     - Effectiveness of an antimicrobial
+     - spectrum of activity or ``ASAI``
+
+
 
 
 .. raw:: html
@@ -201,6 +222,37 @@ When using any of this project's source code, please cite:
 
    _apidoc/pyamr.rst
 
+.. toctree::
+
+.. currentmodule:: pyamr
+
+
+aaaa
+
+.. automodule:: pyamr
+   :no-members:
+   :no-inherited-members:
+
+bbbb
+
+.. autosummary::
+   :toctree: source/
+   :template: module.rst
+
+cccc
+
+.. autosummary::
+   :toctree: _autosummary
+   :recursive:
+
+ddd
+
+.. autosummary::
+   :toctree: source/
+   :template: module.rst
+
+   utils
+   core
 
 Indices and tables
 ==================

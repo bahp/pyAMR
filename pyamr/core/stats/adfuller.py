@@ -18,8 +18,7 @@ from pyamr.core.stats.wbase import BaseWrapper
 
 
 class ADFWrapper(BaseWrapper):
-    """The ADF wrapper.
-
+    """
     The Augmented Dickey-Fuller test can be used to test for a unit root in
     a univariate process in the presence of serial correlation. It tests the
     null hypothesis that a unit root is present in a time series sample. The
@@ -28,13 +27,15 @@ class ADFWrapper(BaseWrapper):
     negative the statistic, the stronger the rejection of the hypothesis that
     there is a unit root at some level of confidence.
 
-    Notes
-    -----
-    H0: The series has a unit root => Non-stationary
-    H1: The series has no unit root => Stationary / Trend-Stationary
+    ====== =========================== =====================================
+    H      Hypothesis                  Stationarity
+    ====== =========================== =====================================
+    **H0** The series has a unit root  ``Non-stationary``
+    **H1** The series has no unit root ``Stationary`` / ``Trend-Stationary``
+    ====== =========================== =====================================
 
-    If p-value > 0.05: Failed to reject H0.
-    If p-value <= 0.05: Reject H0.
+    | If p-value > 0.05: Failed to reject H0.
+    | If p-value <= 0.05: Reject H0.
 
     The absence of unit root is not a proof of non-stationarity. As such, it
     is also possible to use the Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test
@@ -46,10 +47,19 @@ class ADFWrapper(BaseWrapper):
     processes revert to this mean tendency in the long run (deterministic trend)
     while unit-root processes have a permanent impact (stochastic trend).
 
-    [1] https://machinelearningmastery.com/time-series-data-stationary-python/
-    [2] https://www.statsmodels.org/stable/examples/notebooks/generated/stationarity_detrending_adf_kpss.html
 
-    .. todo: .
+    .. minigallery:: numpy.diff
+        :add-heading:
+
+    .. minigallery:: numpy.exp
+        :add-heading:
+
+    .. minigallery:: pyamr.utils.plot.scalar_colormap
+        :add-heading:
+
+    .. minigallery:: pyamr.core.stats.adfuller.ADFWrapper
+        :add-heading:
+
     """
 
     def _identifier(self):
