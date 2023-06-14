@@ -1,6 +1,6 @@
 # pyamr
 
-<img src="docs/source/_static/images/logo-pyamr-icon-v2.png" align="right" width="130">
+<img src="docs/source/_static/images/logo-pyamr-icon-v2.png" align="right" width="90">
 
 [url-epicimpoc]: https://bahp.github.io/portfolio-academic/projects/epicimpoc/
 [url-documentation]: https://bahp.github.io/pyAMR/index.html
@@ -46,8 +46,9 @@ sometimes impossible, to treat. Thus providing accurate and up to date AMR surve
 supports interventions and toolkits to improve antibiotic prescribing in the community, including 
 prescribing in general practices (GPs), dental and other settings and hospitals.
 
-<img src="docs/source/_static/imgs/todo-sart-table.png" width=600 align="right">  
-
+<div>
+    <img src="docs/source/_static/imgs/todo-sart-table.png" width=00 align="right">  
+</div>
 <br>
 <br>
 
