@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARIMA - Search &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -64,10 +72,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -82,9 +86,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Examples with TSA</a> &raquo;</li>
-      <li>ARIMA - Search</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples with TSA</a></li>
+      <li class="breadcrumb-item active">ARIMA - Search</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/forecasting/plot_arima_search.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,8 +104,9 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="arima-search">
-<span id="sphx-glr-examples-forecasting-plot-arima-search-py"></span><h1>ARIMA - Search<a class="headerlink" href="#arima-search" title="Permalink to this headline"></a></h1>
-<img src="../../_images/sphx_glr_plot_arima_search_001.png" srcset="../../_images/sphx_glr_plot_arima_search_001.png" alt="Non-dynamic predictions for ARIMA" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>4/128. ARIMA(0, 1, 1) [c, False] ... failed: In models with integration (`d &gt; 0`) or seasonal integration (`D &gt; 0`), trend terms of lower order than `d + D` cannot be (as they would be eliminated due to the differencing operation). For example, a constant cannot be included in an ARIMA(1, 1, 1) model, but including a linear trend, which would have the same effect as fitting a constant to the differenced data, is allowed.
+<span id="sphx-glr-examples-forecasting-plot-arima-search-py"></span><h1>ARIMA - Search<a class="headerlink" href="#arima-search" title="Permalink to this heading"></a></h1>
+<img src="../../_images/sphx_glr_plot_arima_search_001.png" srcset="../../_images/sphx_glr_plot_arima_search_001.png" alt="Non-dynamic predictions for ARIMA" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>4/128. ARIMA(0, 1, 1) [c, False] ... failed: In models with integration (`d &gt; 0`) or seasonal integration (`D &gt; 0`), trend terms of lower order than `d + D` cannot be (as they would be eliminated due to the differencing operation). For example, a constant cannot be included in an ARIMA(1, 1, 1) model, but including a linear trend, which would have the same effect as fitting a constant to the differenced data, is allowed.
 8/128. ARIMA(1, 3, 2) [c, False] ... failed: In models with integration (`d &gt; 0`) or seasonal integration (`D &gt; 0`), trend terms of lower order than `d + D` cannot be (as they would be eliminated due to the differencing operation). For example, a constant cannot be included in an ARIMA(1, 1, 1) model, but including a linear trend, which would have the same effect as fitting a constant to the differenced data, is allowed.
 12/128. ARIMA(0, 1, 2) [c, False] ... failed: In models with integration (`d &gt; 0`) or seasonal integration (`D &gt; 0`), trend terms of lower order than `d + D` cannot be (as they would be eliminated due to the differencing operation). For example, a constant cannot be included in an ARIMA(1, 1, 1) model, but including a linear trend, which would have the same effect as fitting a constant to the differenced data, is allowed.
 16/128. ARIMA(1, 3, 1) [c, False] ... failed: In models with integration (`d &gt; 0`) or seasonal integration (`D &gt; 0`), trend terms of lower order than `d + D` cannot be (as they would be eliminated due to the differencing operation). For example, a constant cannot be included in an ARIMA(1, 1, 1) model, but including a linear trend, which would have the same effect as fitting a constant to the differenced data, is allowed.
@@ -152,28 +157,28 @@ to download the full example code</p>
 
 Summary:
    arima-order arima-trend  arima-aic  arima-bic
-0    (1, 2, 1)           n    729.549   736.6191
-1    (0, 2, 2)           n   732.5547   739.6248
-2    (2, 2, 1)           n   731.5298   740.9566
-3    (1, 2, 2)           n    731.535   740.9618
-4    (0, 2, 3)           n   732.0211   741.4479
+0    (0, 2, 2)           n   757.2235   764.2936
+1    (1, 2, 1)           n    757.897   764.9671
+2    (1, 2, 2)           n   758.7304   768.1573
+3    (0, 2, 3)           n    758.867   768.2939
+4    (2, 2, 1)           n   758.8815   768.3083
 ..         ...         ...        ...        ...
-62   (0, 0, 1)           c   940.9026   948.0487
-63   (0, 0, 2)           n  1003.3333  1010.4794
-64   (0, 0, 0)           c   1018.962   1023.726
-65   (0, 0, 1)           n  1079.2068  1083.9708
-66   (0, 0, 0)           n  1172.7002  1175.0823
+67   (0, 0, 3)           n   966.6819     976.21
+68   (0, 0, 0)           c  1014.5576  1019.3217
+69   (0, 0, 2)           n  1013.1619   1020.308
+70   (0, 0, 1)           n  1075.7365  1080.5005
+71   (0, 0, 0)           n  1170.9886  1173.3707
 
-[67 rows x 4 columns]
- 0. Estimator (bic=736.62): ARIMA(1, 2, 1) [n, False]
- 1. Estimator (bic=739.62): ARIMA(0, 2, 2) [n, False]
- 2. Estimator (bic=740.96): ARIMA(2, 2, 1) [n, False]
- 3. Estimator (bic=740.96): ARIMA(1, 2, 2) [n, False]
- 4. Estimator (bic=741.45): ARIMA(0, 2, 3) [n, False]
- 5. Estimator (bic=742.12): ARIMA(1, 3, 2) [n, False]
- 6. Estimator (bic=744.25): ARIMA(1, 1, 0) [n, False]
- 7. Estimator (bic=744.81): ARIMA(3, 2, 1) [n, False]
- 8. Estimator (bic=744.99): ARIMA(1, 2, 3) [n, False]
+[72 rows x 4 columns]
+ 0. Estimator (bic=764.29): ARIMA(0, 2, 2) [n, False]
+ 1. Estimator (bic=764.97): ARIMA(1, 2, 1) [n, False]
+ 2. Estimator (bic=768.16): ARIMA(1, 2, 2) [n, False]
+ 3. Estimator (bic=768.29): ARIMA(0, 2, 3) [n, False]
+ 4. Estimator (bic=768.31): ARIMA(2, 2, 1) [n, False]
+ 5. Estimator (bic=768.94): ARIMA(1, 3, 2) [n, False]
+ 6. Estimator (bic=769.01): ARIMA(0, 3, 3) [n, False]
+ 7. Estimator (bic=770.12): ARIMA(1, 1, 0) [n, False]
+ 8. Estimator (bic=772.09): ARIMA(0, 1, 1) [n, False]
 </pre></div>
 </div>
 <div class="line-block">
@@ -290,8 +295,8 @@ Summary:
 <span class="linenos">114</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.072 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-arima-search-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.226 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-arima-search-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/2040da64c719026ba4b303ddc19de564/plot_arima_search.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_arima_search.py</span></code></a></p>
 </div>

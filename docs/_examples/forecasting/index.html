@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Examples with TSA &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,12 +20,14 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="ARIMA - Basic" href="plot_arima_basic.html" />
-    <link rel="prev" title="SART - Trend as slope of WLS" href="../indexes/plot_trend_basic.html" /> 
+    <link rel="prev" title="SART - Trend as slope of WLS" href="../indexes/plot_sart_a_basic.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -64,10 +72,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -82,8 +86,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Examples with TSA</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples with TSA</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/forecasting/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,7 +98,7 @@
            <div itemprop="articleBody">
              
   <section id="examples-with-tsa">
-<h1>Examples with TSA<a class="headerlink" href="#examples-with-tsa" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-forecasting"></span><h1>Examples with TSA<a class="headerlink" href="#examples-with-tsa" title="Permalink to this heading"></a></h1>
 <p>The examples presented in the gallery below show how to use some of the
 tools provided in this module to forecast trend. The forecast methods
 supported are:</p>
@@ -105,34 +109,62 @@ supported are:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">SARIMAX</span></code>: Seasonal <code class="docutils literal notranslate"><span class="pre">ARIMA</span></code> with eXogenous regressors</p></li>
 </ul>
 </div></blockquote>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="ARIMA - Basic"><img alt="ARIMA - Basic" src="../../_images/sphx_glr_plot_arima_basic_thumb.png" />
-<p><a class="reference internal" href="plot_arima_basic.html#sphx-glr-examples-forecasting-plot-arima-basic-py"><span class="std std-ref">ARIMA - Basic</span></a></p>
-  <div class="sphx-glr-thumbnail-title">ARIMA - Basic</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="ARIMA - Search"><img alt="ARIMA - Search" src="../../_images/sphx_glr_plot_arima_search_thumb.png" />
-<p><a class="reference internal" href="plot_arima_search.html#sphx-glr-examples-forecasting-plot-arima-search-py"><span class="std std-ref">ARIMA - Search</span></a></p>
-  <div class="sphx-glr-thumbnail-title">ARIMA - Search</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="See `SARIMAX &lt;https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.S..."><img alt="SARIMAX - Basic" src="../../_images/sphx_glr_plot_sarimax_basic_thumb.png" />
-<p><a class="reference internal" href="plot_sarimax_basic.html#sphx-glr-examples-forecasting-plot-sarimax-basic-py"><span class="std std-ref">SARIMAX - Basic</span></a></p>
-  <div class="sphx-glr-thumbnail-title">SARIMAX - Basic</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="See `SARIMAX &lt;https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.S..."><img alt="SARIMAX - Search" src="../../_images/sphx_glr_plot_sarimax_search_thumb.png" />
-<p><a class="reference internal" href="plot_sarimax_search.html#sphx-glr-examples-forecasting-plot-sarimax-search-py"><span class="std std-ref">SARIMAX - Search</span></a></p>
-  <div class="sphx-glr-thumbnail-title">SARIMAX - Search</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="WLS - Basic"><img alt="WLS - Basic" src="../../_images/sphx_glr_plot_wls_basic_thumb.png" />
-<p><a class="reference internal" href="plot_wls_basic.html#sphx-glr-examples-forecasting-plot-wls-basic-py"><span class="std std-ref">WLS - Basic</span></a></p>
-  <div class="sphx-glr-thumbnail-title">WLS - Basic</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="WLS - Search"><img alt="WLS - Search" src="../../_images/sphx_glr_plot_wls_search_thumb.png" />
-<p><a class="reference internal" href="plot_wls_search.html#sphx-glr-examples-forecasting-plot-wls-search-py"><span class="std std-ref">WLS - Search</span></a></p>
-  <div class="sphx-glr-thumbnail-title">WLS - Search</div>
-</div></div><div class="toctree-wrapper compound">
+<div class="sphx-glr-thumbcontainer" tooltip="ARIMA - Basic"><figure class="align-default" id="id1">
+<img alt="ARIMA - Basic" src="../../_images/sphx_glr_plot_arima_basic_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="plot_arima_basic.html#sphx-glr-examples-forecasting-plot-arima-basic-py"><span class="std std-ref">ARIMA - Basic</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-thumbcontainer" tooltip="ARIMA - Search"><figure class="align-default" id="id2">
+<img alt="ARIMA - Search" src="../../_images/sphx_glr_plot_arima_search_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="plot_arima_search.html#sphx-glr-examples-forecasting-plot-arima-search-py"><span class="std std-ref">ARIMA - Search</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="See `SARIMAX &lt;https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.S..."><figure class="align-default" id="id3">
+<img alt="SARIMAX - Basic" src="../../_images/sphx_glr_plot_sarimax_basic_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="plot_sarimax_basic.html#sphx-glr-examples-forecasting-plot-sarimax-basic-py"><span class="std std-ref">SARIMAX - Basic</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="See `SARIMAX &lt;https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.S..."><figure class="align-default" id="id4">
+<img alt="SARIMAX - Search" src="../../_images/sphx_glr_plot_sarimax_search_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="plot_sarimax_search.html#sphx-glr-examples-forecasting-plot-sarimax-search-py"><span class="std std-ref">SARIMAX - Search</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="WLS - Basic"><figure class="align-default" id="id5">
+<img alt="WLS - Basic" src="../../_images/sphx_glr_plot_wls_basic_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="plot_wls_basic.html#sphx-glr-examples-forecasting-plot-wls-basic-py"><span class="std std-ref">WLS - Basic</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="WLS - Search"><figure class="align-default" id="id6">
+<img alt="WLS - Search" src="../../_images/sphx_glr_plot_wls_search_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="plot_wls_search.html#sphx-glr-examples-forecasting-plot-wls-search-py"><span class="std std-ref">WLS - Search</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div><p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../indexes/plot_trend_basic.html" class="btn btn-neutral float-left" title="SART - Trend as slope of WLS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../indexes/plot_sart_a_basic.html" class="btn btn-neutral float-left" title="SART - Trend as slope of WLS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="plot_arima_basic.html" class="btn btn-neutral float-right" title="ARIMA - Basic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

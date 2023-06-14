@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SARI - By specimen w/ sns.clustermap &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SARI - By specimen w/ sns.relmap" href="plot_sari_c_relmap.html" />
+    <link rel="prev" title="SARI - By specimen w/ sns.heatmap" href="plot_sari_a_antibiogram.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with indexes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_acsi_b_mimic.html"><code class="docutils literal notranslate"><span class="pre">ACSI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_a_gramtype.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (binary)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_b_multiple.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (multiple)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_c_temporal.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - Compute timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_dri_b_mimic.html"><code class="docutils literal notranslate"><span class="pre">DRI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_a_antibiogram.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.heatmap</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.clustermap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_c_relmap.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.relmap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_d_temporal.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - Compute timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sart_a_basic.html"><code class="docutils literal notranslate"><span class="pre">SART</span></code> - Trend as slope of <code class="docutils literal notranslate"><span class="pre">WLS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples with indexes</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.clustermap</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_examples/indexes/plot_sari_b_clustermap.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-sari-b-clustermap-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="sari-by-specimen-w-sns-clustermap">
+<span id="sphx-glr-examples-indexes-plot-sari-b-clustermap-py"></span><h1><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.clustermap</span></code><a class="headerlink" href="#sari-by-specimen-w-sns-clustermap" title="Permalink to this heading"></a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Explain…</p>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../../_images/sphx_glr_plot_sari_b_clustermap_001.png" srcset="../../_images/sphx_glr_plot_sari_b_clustermap_001.png" alt="Antibiogram (clustered) - BLDCUL" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_sari_b_clustermap_002.png" srcset="../../_images/sphx_glr_plot_sari_b_clustermap_002.png" alt="Antibiogram (clustered) - SPTCUL" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_sari_b_clustermap_003.png" srcset="../../_images/sphx_glr_plot_sari_b_clustermap_003.png" alt="Antibiogram (clustered) - URICUL" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_sari_b_clustermap_004.png" srcset="../../_images/sphx_glr_plot_sari_b_clustermap_004.png" alt="Antibiogram (clustered) - WOUCUL" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../_images/sphx_glr_plot_sari_b_clustermap_005.png" srcset="../../_images/sphx_glr_plot_sari_b_clustermap_005.png" alt="Antibiogram (clustered) - XINCUL" class = "sphx-glr-multi-img"/></li>
+</ul>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+       date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
+0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMI           amikacin                NaN   sensitive NaN       NaN
+1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   resistant NaN       NaN
+2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAZT          aztreonam                NaN   sensitive NaN       NaN
+4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               ACAZ        ceftazidime                NaN   sensitive NaN       NaN
+...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
+319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   sensitive NaN       NaN
+319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ALIN          linezolid                NaN   sensitive NaN       NaN
+319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ASYN           synercid                NaN   resistant NaN       NaN
+319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ATEI        teicoplanin                NaN   sensitive NaN       NaN
+319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AVAN         vancomycin                NaN   sensitive NaN       NaN
+
+[319122 rows x 15 columns]
+
+Columns:
+Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;patient_id&#39;, &#39;laboratory_number&#39;, &#39;specimen_code&#39;, &#39;specimen_name&#39;, &#39;specimen_description&#39;, &#39;microorganism_code&#39;, &#39;microorganism_name&#39;, &#39;antimicrobial_code&#39;, &#39;antimicrobial_name&#39;, &#39;sensitivity_method&#39;, &#39;sensitivity&#39;, &#39;mic&#39;, &#39;reported&#39;], dtype=&#39;object&#39;)
+SARI (overall):
+                                                                        intermediate  resistant  sensitive  freq    sari
+specimen_code microorganism_name                    antimicrobial_name
+BFLCUL        anaerobes                             metronidazole                0.0        0.0        1.0   1.0  0.0000
+              bacillus                              ciprofloxacin                0.0        0.0        1.0   1.0  0.0000
+                                                    clindamycin                  0.0        3.0        1.0   4.0  0.7500
+                                                    erythromycin                 0.0        1.0        3.0   4.0  0.2500
+                                                    fusidic acid                 0.0        3.0        1.0   4.0  0.7500
+...                                                                              ...        ...        ...   ...     ...
+XINCUL        streptococcus beta-haemolytic group b cephalexin                   0.0        1.0        0.0   1.0  1.0000
+                                                    clindamycin                  0.0        1.0        8.0   9.0  0.1111
+                                                    erythromycin                 0.0        1.0        8.0   9.0  0.1111
+                                                    penicillin                   0.0        0.0        9.0   9.0  0.0000
+                                                    tetracycline                 0.0        8.0        1.0   9.0  0.8889
+
+[4491 rows x 5 columns]
+specimen_code          object
+microorganism_name     object
+antimicrobial_name     object
+intermediate          float64
+resistant             float64
+sensitive             float64
+freq                  float64
+sari                  float64
+genus                  object
+species                object
+domain                 object
+phylum                 object
+class                  object
+order                  object
+family                 object
+acronym_x              object
+gram_stain             object
+exists_in_registry       bool
+name                   object
+category               object
+acronym_y              object
+dtype: object
+Cultures:
+specimen_code
+URICUL    116627.0
+WOUCUL     94918.0
+XINCUL     21427.0
+SPTCUL     21113.0
+BLDCUL     20333.0
+ENTCUL     13110.0
+T&amp;FCUL      8150.0
+MRSCUL      7865.0
+VAGCUL      7425.0
+EYECUL      2839.0
+GUMCUL      1634.0
+FAECUL      1317.0
+URECUL       802.0
+TISCUL       474.0
+BFLCUL       450.0
+SEMCUL       290.0
+NEOCUL       213.0
+PDFCUL        68.0
+CSFCUL        32.0
+RGNS          20.0
+FUNSTC        14.0
+TBCUL          1.0
+Name: freq, dtype: float64
+
+
+
+Data (BLDCUL)
+antimicrobial_name                                              Amikacin      Amoxycillin   Aztreonam     Cefotaxime      Cefoxitin  ...  Temocillin  Tetracycline   Tigecycline      Tobramycin   Vancomycin
+category                                                 Aminoglycosides Aminopenicillins Monobactams Cephalosporins Cephalosporins  ... Penicillins Tetracyclines Tetracyclines Aminoglycosides Glycopeptide
+microorganism_name                      genus                                                                                        ...
+achromobacter                           Achromobacter                  0                0           0              0              0  ...           0             0             0               0            0
+achromobacter xylosoxidans              Achromobacter                100              100         100            100            100  ...           0             0             0             100            0
+acinetobacter                           Acinetobacter                 10                6          87             33             33  ...          80             0             0              25            0
+acinetobacter baumannii                 Acinetobacter                 14               77         100             77             77  ...         100             0             0               0            0
+aerococcus                              Aerococcus                     0                0           0              0              0  ...           0             0             0               0            0
+aeromonas                               Aeromonas                      0              100           0              0              0  ...           0             0             0               0            0
+anaerobes                               Anaerobes                      0                0           0              0              0  ...           0             0             0               0            0
+bacillus                                Bacillus                       0                0         100              0              0  ...           0             0             0               0            0
+burkholderia cepacia                    Burkholderia                   0              100           0              0            100  ...           0             0             0               0            0
+campylobacter                           Campylobacter                  0                0           0              0              0  ...           0           100             0               0            0
+chryseobacterium                        Chryseobacterium               0              100         100            100            100  ...         100             0             0               0            0
+citrobacter                             Citrobacter                   33              100          50             40             40  ...           0             0             0              50            0
+coliform                                Coliform                       0              100          25             25             18  ...          28             0             0               0            0
+comamonas testosteroni                  Comamonas                      0                0           0              0              0  ...           0             0             0               0            0
+corynebacterium                         Corynebacterium                0                0           0              0              0  ...           0            12             0               0            0
+enterobacter                            Enterobacter                   0               96          15             32             90  ...           0             0             0              15            0
+enterococcus                            Enterococcus                   0               60           0            100              0  ...           0            75             0               0           35
+escherichia coli                        Escherichia                    4               76          25             23             12  ...           0             0             0              72            0
+gemella morbillorum                     Gemella                        0                0           0              0              0  ...           0             0             0               0            0
+haemophilus                             Haemophilus                    0               50           0              0              0  ...           0             0             0               0            0
+haemophilus influenzae                  Haemophilus                    0               20           0              0              0  ...           0             0             0               0            0
+klebsiella                              Klebsiella                     6               99          30             16             10  ...           3             0             0              54            0
+lactobacillus                           Lactobacillus                  0                0           0              0              0  ...           0             0             0               0          100
+leuconostoc                             Leuconostoc                    0                0           0              0              0  ...           0             0             0               0          100
+listeria monocytogenes                  Listeria                       0                0           0              0              0  ...           0             0             0               0            0
+micrococcus                             Micrococcus                    0                0           0              0              0  ...           0             0             0               0            0
+moraxella catarrhalis                   Moraxella                      0              100           0              0              0  ...           0             0             0               0            0
+morganella morganii                     Morganella                     0              100          50             33             33  ...           0             0             0               0            0
+neisseria                               Neisseria                      0                0           0              0              0  ...           0             0             0               0            0
+neisseria meningitidis                  Neisseria                      0                0           0              0              0  ...           0             0             0               0            0
+proteus                                 Proteus                        5               50           0              0              0  ...           0             0             0              33            0
+providencia                             Providencia                    0              100           0              0              0  ...           0             0             0               0            0
+pseudomonas                             Pseudomonas                   20               33          66             33             33  ...           0             0             0              22            0
+pseudomonas aeruginosa                  Pseudomonas                    9              100          27            100            100  ...           0             0             0              12            0
+ralstonia pickettii                     Ralstonia                      0              100           0            100            100  ...           0             0             0               0            0
+raoultella                              Raoultella                     0              100           0              0              0  ...           0             0             0               0            0
+rhizobium radiobacter                   Rhizobium                      0                0           0              0              0  ...           0             0             0             100            0
+salmonella                              Salmonella                     0                0           0              0              0  ...           0             0             0               0            0
+serratia                                Serratia                       0               90          33             30             50  ...           0             0             0             100            0
+staphylococcus aureus                   Staphylococcus                 0                0           0              0              0  ...           0            16             0               0            0
+staphylococcus coagulase negative       Staphylococcus                 0                0           0              0              0  ...           0            23             0               0            0
+stenotrophomonas maltophilia            Stenotrophomonas               0                0           0              0              0  ...           0             0             0               0            0
+streptococcus alpha-haemolytic          Streptococcus                  0                2           0              2              0  ...           0            27             0               0            0
+streptococcus anginosus                 Streptococcus                  0                0           0              0              0  ...           0             0             0               0            0
+streptococcus beta-haemolytic group a   Streptococcus                  0                0           0              0              0  ...           0             9             0               0            0
+streptococcus beta-haemolytic group b   Streptococcus                  0                0           0              0              0  ...           0           100             0               0            0
+streptococcus beta-haemolytic group c/g Streptococcus                  0                0           0              0              0  ...           0            16             0               0            0
+streptococcus milleri                   Streptococcus                  0                0           0              0              0  ...           0            50             0               0            0
+streptococcus pneumoniae                Streptococcus                  0                0           0              0              0  ...           0             4             0               0            0
+
+[49 rows x 32 columns]
+
+
+
+Data (SPTCUL)
+antimicrobial_name                                              Amikacin      Amoxycillin Azithromycin   Aztreonam     Cefotaxime  ...  Teicoplanin  Temocillin  Tetracycline      Tobramycin   Vancomycin
+category                                                 Aminoglycosides Aminopenicillins   Macrolides Monobactams Cephalosporins  ... Glycopeptide Penicillins Tetracyclines Aminoglycosides Glycopeptide
+microorganism_name                      genus                                                                                      ...
+acinetobacter                           Acinetobacter                 50              100            0         100             66  ...            0         100             0             100            0
+acinetobacter baumannii                 Acinetobacter                 56              100            0         100            100  ...            0         100             0              66            0
+aeromonas                               Aeromonas                      0              100            0           0              0  ...            0           0             0               0            0
+anaerobes                               Anaerobes                      0                0            0           0              0  ...            0           0             0               0            0
+arcanobacterium haemolyticum            Arcanobacterium                0                0            0           0              0  ...            0           0           100               0            0
+burkholderia cepacia                    Burkholderia                  50                0            0           0              0  ...            0           0             0             100            0
+citrobacter                             Citrobacter                    0               94            0           0             11  ...            0           0             0               0            0
+coliform                                Coliform                       3               83            0          11             11  ...            0           3             0               0            0
+enterobacter                            Enterobacter                   0               95            0          12             21  ...            0          16             0               9            0
+enterococcus                            Enterococcus                   0               51            0           0              0  ...           29           0           100               0           29
+escherichia coli                        Escherichia                    2               84            0           5             22  ...            0           6             0              22            0
+haemophilus                             Haemophilus                    0               30            0           0              0  ...            0           0            14               0            0
+haemophilus influenzae                  Haemophilus                    0               25          100           0              0  ...            0           0             3               0            0
+hafnia alvei                            Hafnia                         0               75            0           0              0  ...            0           0             0               0            0
+klebsiella                              Klebsiella                     3               98            0          40             19  ...            0         100             0              14            0
+kluyvera                                Kluyvera                       0              100            0           0              0  ...            0           0             0               0            0
+moraxella catarrhalis                   Moraxella                      0               88            0           0              0  ...            0           0             0               0            0
+morganella morganii                     Morganella                     0              100            0           0              0  ...            0           0             0               0            0
+proteus                                 Proteus                       11               27            0          16              5  ...            0           0             0               0            0
+pseudomonas                             Pseudomonas                    8              100            0          38             66  ...            0           0             0              18            0
+pseudomonas aeruginosa                  Pseudomonas                    1                0            0          26              0  ...            0           0             0              10            0
+serratia                                Serratia                       0              100            0           0              5  ...            0           0             0               0            0
+staphylococcus aureus                   Staphylococcus                 0                0            0           0              0  ...            0           0             5               0            0
+staphylococcus coagulase negative       Staphylococcus                 0                0            0           0              0  ...            0           0            28               0            0
+stenotrophomonas maltophilia            Stenotrophomonas               0              100            0         100            100  ...            0         100             0               0            0
+streptococcus beta-haemolytic group a   Streptococcus                  0                0            0           0              0  ...            0           0             0               0            0
+streptococcus beta-haemolytic group b   Streptococcus                  0                0            0           0              0  ...            0           0           100               0            0
+streptococcus beta-haemolytic group c/g Streptococcus                  0                0            0           0              0  ...            0           0            60               0            0
+streptococcus pneumoniae                Streptococcus                  0                0          100           0              0  ...            0           0            24               0            0
+
+[29 rows x 31 columns]
+
+
+
+Data (URICUL)
+antimicrobial_name                                              Amikacin      Amoxycillin   Aztreonam     Cefotaxime      Cefoxitin  ...  Teicoplanin  Temocillin  Tetracycline      Tobramycin   Vancomycin
+category                                                 Aminoglycosides Aminopenicillins Monobactams Cephalosporins Cephalosporins  ... Glycopeptide Penicillins Tetracyclines Aminoglycosides Glycopeptide
+microorganism_name                      genus                                                                                        ...
+acinetobacter                           Acinetobacter                  0                0         100            100            100  ...            0           0             0               0            0
+acinetobacter baumannii                 Acinetobacter                 50              100         100            100            100  ...            0         100             0               0            0
+anaerobes                               Anaerobes                      0                0           0              0              0  ...            0           0             0               0            0
+citrobacter                             Citrobacter                    0                0           0             57            100  ...            0           0             0              33            0
+coliform                                Coliform                       3               70         100             40             46  ...            0           6             0              28            0
+enterobacter                            Enterobacter                   0              100         100             57             97  ...            0           0             0              18            0
+enterococcus                            Enterococcus                   0                2           0              0              0  ...            1           0            78               0            1
+escherichia coli                        Escherichia                    0               33           0             66             27  ...            0           6             0              54            0
+haemophilus                             Haemophilus                    0                0           0              0              0  ...            0           0             0               0            0
+hafnia                                  Hafnia                         0                0           0            100              0  ...            0           0             0               0            0
+klebsiella                              Klebsiella                     2              100          75             83             19  ...            0           0             0              76            0
+morganella morganii                     Morganella                     0                0           0             18             31  ...            0           0             0               0            0
+neisseria                               Neisseria                      0                0           0              0              0  ...            0           0             0               0            0
+neisseria gonorrhoeae                   Neisseria                      0                0           0              0              0  ...            0           0             0               0            0
+proteus                                 Proteus                        1              100           0             17              7  ...            0           0             0              13            0
+pseudomonas                             Pseudomonas                    6                0          39            100             50  ...            0           0             0              20            0
+pseudomonas aeruginosa                  Pseudomonas                    0                0          21            100            100  ...            0           0             0               8            0
+serratia                                Serratia                       0                0           0             13             80  ...            0           0             0               0            0
+staphylococcus aureus                   Staphylococcus                 0               66           0              0              0  ...            0           0             1               0            0
+staphylococcus coagulase negative       Staphylococcus                 0               44           0              0              0  ...            0           0            25               0            0
+staphylococcus saprophyticus            Staphylococcus                 0                8           0              0              0  ...            0           0            25               0            0
+stenotrophomonas maltophilia            Stenotrophomonas               0                0           0            100            100  ...            0           0             0             100            0
+streptococcus alpha-haemolytic          Streptococcus                  0                7           0              0              0  ...            0           0             0               0            0
+streptococcus beta-haemolytic group a   Streptococcus                  0                0           0              0              0  ...            0           0             0               0            0
+streptococcus beta-haemolytic group b   Streptococcus                  0                0           0              0              0  ...            0           0           100               0            0
+streptococcus beta-haemolytic group c/g Streptococcus                  0                0           0              0              0  ...            0           0             0               0            0
+
+[26 rows x 31 columns]
+
+
+
+Data (WOUCUL)
+antimicrobial_name                                              Amikacin      Amoxycillin   Aztreonam     Cefotaxime      Cefoxitin  ...  Temocillin  Tetracycline   Tigecycline      Tobramycin   Vancomycin
+category                                                 Aminoglycosides Aminopenicillins Monobactams Cephalosporins Cephalosporins  ... Penicillins Tetracyclines Tetracyclines Aminoglycosides Glycopeptide
+microorganism_name                      genus                                                                                        ...
+achromobacter                           Achromobacter                100              100           0              0            100  ...           0             0             0             100            0
+acinetobacter                           Acinetobacter                  8               25         100             25             34  ...          33             0             0              10            0
+acinetobacter baumannii                 Acinetobacter                 33              100         100             96             88  ...           0             0             0              17            0
+aeromonas                               Aeromonas                      0              100           0              0            100  ...           0             0             0               0            0
+alcaligenes                             Alcaligenes                  100                0           0             50             50  ...           0             0             0             100            0
+anaerobes                               Anaerobes                      0                0           0              0              0  ...           0             0             0               0            0
+bacillus                                Bacillus                       0                0           0              0              0  ...           0             0             0               0            3
+citrobacter                             Citrobacter                    0               97           0              8             48  ...           0             0             0               0            0
+clostridium                             Clostridium                    0                0           0              0              0  ...           0             0             0               0            0
+coliform                                Coliform                       2               71          23             13             19  ...           2             0             0               8            0
+corynebacterium                         Corynebacterium                0                0           0              0              0  ...           0            42             0               0            0
+enterobacter                            Enterobacter                   0               94           9             17             93  ...           2             0             0              15            0
+enterococcus                            Enterococcus                   0               39           0              0              0  ...           0            80             0               0           32
+escherichia coli                        Escherichia                    0               84          37             41             17  ...           7             0             0              34            0
+haemophilus                             Haemophilus                    0               60           0              0              0  ...           0            42             0               0            0
+hafnia alvei                            Hafnia                         0              100           0            100              0  ...           0             0             0               0            0
+klebsiella                              Klebsiella                    12               96          53             48             15  ...           0             0             0              69            0
+microbacterium                          Microbacterium                 0                0           0              0              0  ...           0             0             0               0          100
+micrococcus                             Micrococcus                    0                0           0              0              0  ...           0             0             0               0            0
+morganella morganii                     Morganella                     0               95           0             10             15  ...           0             0             0               0            0
+neisseria                               Neisseria                      0                0           0              0              0  ...           0             0             0               0            0
+neisseria gonorrhoeae                   Neisseria                      0                0           0              0              0  ...           0            73             0               0            0
+neisseria meningitidis                  Neisseria                      0                0           0              0              0  ...           0            84             0               0            0
+pantoea                                 Pantoea                        0                0           0              0              0  ...           0             0             0               0            0
+pasteurella                             Pasteurella                    0                0           0              0              0  ...           0             0             0              50            0
+proteus                                 Proteus                        0               31           0              0              2  ...           0             0             0              33            0
+providencia                             Providencia                    0               66           0              0              0  ...           0             0             0              50            0
+pseudomonas                             Pseudomonas                    8               75          36             75             75  ...         100             0             0              11            0
+pseudomonas aeruginosa                  Pseudomonas                    1                0          17              0              0  ...           0             0             0               2            0
+raoultella                              Raoultella                     0              100           0            100              0  ...           0             0             0               0            0
+raoultella terrigena                    Raoultella                     0              100          66             75            100  ...           0             0             0               0            0
+rhizobium radiobacter                   Rhizobium                      0                0           0              0              0  ...           0             0             0               0            0
+serratia                                Serratia                       9              100           0             10             86  ...           0             0             0              22            0
+staphylococcus aureus                   Staphylococcus                 0                0           0              0             85  ...           0             9             0               0            0
+staphylococcus coagulase negative       Staphylococcus                 0                0           0              0              0  ...           0            29             0               0            0
+stenotrophomonas maltophilia            Stenotrophomonas               0                0           0              0              0  ...           0             0             0               0            0
+streptococcus alpha-haemolytic          Streptococcus                  0                0           0              0              0  ...           0            25             0               0            0
+streptococcus anginosus                 Streptococcus                  0                0           0              0              0  ...           0            66             0               0            0
+streptococcus beta-haemolytic group a   Streptococcus                  0                0           0              0              0  ...           0            30             0               0            0
+streptococcus beta-haemolytic group b   Streptococcus                  0                0           0              0              0  ...           0            87             0               0            0
+streptococcus beta-haemolytic group c/g Streptococcus                  0                0           0              0              0  ...           0            33             0               0            0
+streptococcus beta-haemolytic group g   Streptococcus                  0                0           0              0              0  ...           0             0             0               0            0
+streptococcus constellatus              Streptococcus                  0                0           0              0              0  ...           0             0             0               0            0
+streptococcus milleri                   Streptococcus                  0                0           0              0              0  ...           0            27             0               0            0
+streptococcus pneumoniae                Streptococcus                  0                0           0              0              0  ...           0            36             0               0            0
+
+[45 rows x 31 columns]
+
+
+
+Data (XINCUL)
+antimicrobial_name                                            Amikacin      Amoxycillin   Aztreonam     Cefotaxime      Cefoxitin  ...  Teicoplanin  Temocillin  Tetracycline      Tobramycin   Vancomycin
+category                                               Aminoglycosides Aminopenicillins Monobactams Cephalosporins Cephalosporins  ... Glycopeptide Penicillins Tetracyclines Aminoglycosides Glycopeptide
+microorganism_name                    genus                                                                                        ...
+acinetobacter                         Acinetobacter                 50              100         100            100            100  ...            0           0             0             100            0
+acinetobacter baumannii               Acinetobacter                 90              100         100            100            100  ...            0         100             0              87            0
+anaerobes                             Anaerobes                      0                0           0              0              0  ...            0           0             0               0            0
+bacillus                              Bacillus                       0                0           0              0              0  ...            0           0             0               0            0
+citrobacter                           Citrobacter                    0              100           0             50            100  ...            0           0             0               0            0
+coliform                              Coliform                       0               82          33             17             11  ...            0           0             0               0            0
+enterobacter                          Enterobacter                   0              100           0             90            100  ...            0           0             0              20            0
+enterococcus                          Enterococcus                   0               87           0              0              0  ...           87           0            66               0           87
+escherichia coli                      Escherichia                    5              100           0             88             41  ...            0           0             0              46            0
+klebsiella                            Klebsiella                     8              100          50             92             28  ...            0           0             0              80            0
+morganella morganii                   Morganella                     0              100           0            100              0  ...            0           0             0               0            0
+pseudomonas                           Pseudomonas                    0                0           0              0              0  ...            0           0             0               0            0
+pseudomonas aeruginosa                Pseudomonas                    0                0           0              0              0  ...            0           0             0              66            0
+staphylococcus aureus                 Staphylococcus                 0                0           0              0              0  ...            0           0             4               0            0
+stenotrophomonas maltophilia          Stenotrophomonas               0                0           0              0              0  ...            0           0             0               0            0
+streptococcus beta-haemolytic group b Streptococcus                  0                0           0              0              0  ...            0           0            88               0            0
+
+[16 rows x 27 columns]
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  9</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 10</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 11</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 12</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 13</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos"> 14</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 15</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span> <span class="c1"># Import specific libraries</span>
+<span class="linenos"> 18</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos"> 19</span> <span class="kn">from</span> <span class="nn">pyamr.core.freq</span> <span class="kn">import</span> <span class="n">Frequency</span>
+<span class="linenos"> 20</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_susceptibility</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span> <span class="c1"># -------------------------</span>
+<span class="linenos"> 23</span> <span class="c1"># Configuration</span>
+<span class="linenos"> 24</span> <span class="c1"># -------------------------</span>
+<span class="linenos"> 25</span> <span class="c1"># Configure seaborn style (context=talk)</span>
+<span class="linenos"> 26</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span> <span class="c1"># Set matplotlib</span>
+<span class="linenos"> 29</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 30</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 31</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos"> 32</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span> <span class="c1"># Pandas configuration</span>
+<span class="linenos"> 35</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="linenos"> 36</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="linenos"> 37</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span> <span class="c1"># Numpy configuration</span>
+<span class="linenos"> 40</span> <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span> <span class="c1"># ------------------</span>
+<span class="linenos"> 43</span> <span class="c1"># Methods</span>
+<span class="linenos"> 44</span> <span class="c1"># ------------------</span>
+<span class="linenos"> 45</span> <span class="k">def</span> <span class="nf">get_category_colors</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hls&#39;</span><span class="p">):</span>
+<span class="linenos"> 46</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;This method creates the colors for the different elements in</span>
+<span class="linenos"> 47</span><span class="sd">     categorical feature vector.</span>
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span><span class="sd">     Parameters</span>
+<span class="linenos"> 50</span><span class="sd">     ----------</span>
+<span class="linenos"> 51</span><span class="sd">     values : array-like</span>
+<span class="linenos"> 52</span><span class="sd">         The vector with the categorical values</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span><span class="sd">     cmap: string-like</span>
+<span class="linenos"> 55</span><span class="sd">         The colormap to use</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="sd">     default: string-like</span>
+<span class="linenos"> 58</span><span class="sd">         The color to be used for the first value. Note that this</span>
+<span class="linenos"> 59</span><span class="sd">         value needs to appear first on the the sorted list, as such</span>
+<span class="linenos"> 60</span><span class="sd">         it is recommended to set is as _default.</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="sd">     Returns</span>
+<span class="linenos"> 63</span><span class="sd">     -------</span>
+<span class="linenos"> 64</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="linenos"> 65</span>     <span class="c1"># Get categories</span>
+<span class="linenos"> 66</span>     <span class="n">categories</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+<span class="linenos"> 67</span>     <span class="c1"># Get unique elements</span>
+<span class="linenos"> 68</span>     <span class="n">unique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span>
+<span class="linenos"> 69</span>     <span class="c1"># Create the palette</span>
+<span class="linenos"> 70</span>     <span class="n">palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="n">unique</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos"> 71</span>     <span class="c1"># Create mappers from category to color</span>
+<span class="linenos"> 72</span>     <span class="n">mapper</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unique</span><span class="p">),</span> <span class="n">palette</span><span class="p">))</span>
+<span class="linenos"> 73</span>     <span class="c1"># Create list with colors for each category</span>
+<span class="linenos"> 74</span>     <span class="n">colors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">)</span>
+<span class="linenos"> 75</span>     <span class="c1"># Return</span>
+<span class="linenos"> 76</span>     <span class="k">return</span> <span class="n">colors</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span> <span class="c1"># ------------------------</span>
+<span class="linenos"> 80</span> <span class="c1"># Methods</span>
+<span class="linenos"> 81</span> <span class="c1"># ------------------------</span>
+<span class="linenos"> 82</span> <span class="k">def</span> <span class="nf">create_mapper</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">column_key</span><span class="p">,</span> <span class="n">column_value</span><span class="p">):</span>
+<span class="linenos"> 83</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;This method constructs a mapper</span>
+<span class="linenos"> 84</span>
+<span class="linenos"> 85</span><span class="sd">     Parameters</span>
+<span class="linenos"> 86</span><span class="sd">     ----------</span>
+<span class="linenos"> 87</span><span class="sd">     dataframe: dataframe-like</span>
+<span class="linenos"> 88</span><span class="sd">       The dataframe from which the columns are extracted</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="sd">     column_key: string-like</span>
+<span class="linenos"> 91</span><span class="sd">       The name of the column with the values for the keys of the mapper</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span><span class="sd">     column_value: string-like</span>
+<span class="linenos"> 94</span><span class="sd">       The name of the column with the values for the values of the mapper</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="sd">     Returns</span>
+<span class="linenos"> 97</span><span class="sd">     -------</span>
+<span class="linenos"> 98</span><span class="sd">     dictionary</span>
+<span class="linenos"> 99</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="linenos">100</span>     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[[</span><span class="n">column_key</span><span class="p">,</span> <span class="n">column_value</span><span class="p">]]</span>
+<span class="linenos">101</span>     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="linenos">102</span>     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">column_key</span><span class="p">],</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">column_value</span><span class="p">]))</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">105</span> <span class="c1"># Load data</span>
+<span class="linenos">106</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">107</span> <span class="c1"># Load data</span>
+<span class="linenos">108</span> <span class="n">data</span> <span class="o">=</span> <span class="n">make_susceptibility</span><span class="p">()</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span> <span class="c1"># Show</span>
+<span class="linenos">111</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+<span class="linenos">112</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">113</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
+<span class="linenos">114</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">117</span> <span class="c1"># Compute SARI</span>
+<span class="linenos">118</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">119</span> <span class="c1"># Libraries</span>
+<span class="linenos">120</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span> <span class="c1"># Create sari instance</span>
+<span class="linenos">123</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+<span class="linenos">124</span>                      <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+<span class="linenos">125</span>                      <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+<span class="linenos">126</span>                      <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span> <span class="c1"># Compute SARI overall</span>
+<span class="linenos">129</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">130</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span> <span class="c1"># Show</span>
+<span class="linenos">133</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SARI (overall):&quot;</span><span class="p">)</span>
+<span class="linenos">134</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
+<span class="linenos">135</span>
+<span class="linenos">136</span>
+<span class="linenos">137</span> <span class="c1"># ------------------------------</span>
+<span class="linenos">138</span> <span class="c1"># Include registries information</span>
+<span class="linenos">139</span> <span class="c1"># ------------------------------</span>
+<span class="linenos">140</span> <span class="c1"># Libraries</span>
+<span class="linenos">141</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">MicroorganismRegistry</span>
+<span class="linenos">142</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">AntimicrobialRegistry</span>
+<span class="linenos">143</span>
+<span class="linenos">144</span> <span class="c1"># Load registry</span>
+<span class="linenos">145</span> <span class="n">mreg</span> <span class="o">=</span> <span class="n">MicroorganismRegistry</span><span class="p">()</span>
+<span class="linenos">146</span> <span class="n">areg</span> <span class="o">=</span> <span class="n">AntimicrobialRegistry</span><span class="p">()</span>
+<span class="linenos">147</span>
+<span class="linenos">148</span> <span class="c1"># Format sari dataframe</span>
+<span class="linenos">149</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">150</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span> <span class="c1"># Create genus and species</span>
+<span class="linenos">153</span> <span class="n">dataframe</span><span class="p">[[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]]</span> <span class="o">=</span> \
+<span class="linenos">154</span>     <span class="n">dataframe</span><span class="o">.</span><span class="n">microorganism_name</span> \
+<span class="linenos">155</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> \
+<span class="linenos">156</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">157</span>
+<span class="linenos">158</span> <span class="c1"># Combine with registry information</span>
+<span class="linenos">159</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
+<span class="linenos">160</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">areg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">)</span>
+<span class="linenos">161</span>
+<span class="linenos">162</span> <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">165</span> <span class="c1"># Plot</span>
+<span class="linenos">166</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">167</span> <span class="c1"># Reset</span>
+<span class="linenos">168</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="linenos">169</span>
+<span class="linenos">170</span> <span class="c1"># Count records per specimen</span>
+<span class="linenos">171</span> <span class="n">specimen_count</span> <span class="o">=</span> <span class="n">dataframe</span> \
+<span class="linenos">172</span>     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> \
+<span class="linenos">173</span>     <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span> <span class="c1"># Show</span>
+<span class="linenos">176</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cultures:&quot;</span><span class="p">)</span>
+<span class="linenos">177</span> <span class="nb">print</span><span class="p">(</span><span class="n">specimen_count</span><span class="p">)</span>
+<span class="linenos">178</span>
+<span class="linenos">179</span> <span class="c1"># Filter</span>
+<span class="linenos">180</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">dataframe</span> \
+<span class="linenos">181</span>     <span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span> \
+<span class="linenos">182</span>         <span class="n">specimen_count</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">5</span><span class="p">])]</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span> <span class="c1"># Loop</span>
+<span class="linenos">185</span> <span class="k">for</span> <span class="n">specimen</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">):</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span>     <span class="c1"># -------------------------------</span>
+<span class="linenos">188</span>     <span class="c1"># Create matrix</span>
+<span class="linenos">189</span>     <span class="c1"># -------------------------------</span>
+<span class="linenos">190</span>     <span class="c1"># Filter</span>
+<span class="linenos">191</span>     <span class="n">matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">192</span>     <span class="n">matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="linenos">193</span>
+<span class="linenos">194</span>     <span class="c1"># Pivot table</span>
+<span class="linenos">195</span>     <span class="n">matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span>
+<span class="linenos">196</span>          <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span> <span class="s1">&#39;genus&#39;</span><span class="p">],</span>
+<span class="linenos">197</span>          <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">],</span>
+<span class="linenos">198</span>          <span class="n">values</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">)</span>
+<span class="linenos">199</span>
+<span class="linenos">200</span>     <span class="c1"># Convert to percent</span>
+<span class="linenos">201</span>     <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="linenos">202</span>
+<span class="linenos">203</span>     <span class="c1"># Create mask</span>
+<span class="linenos">204</span>     <span class="n">mask</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+<span class="linenos">205</span>
+<span class="linenos">206</span>     <span class="c1"># Fill missing (error when computing distance)</span>
+<span class="linenos">207</span>     <span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">1e-10</span><span class="p">)</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span>     <span class="c1"># Show</span>
+<span class="linenos">210</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">Data (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">specimen</span><span class="p">)</span>
+<span class="linenos">211</span>     <span class="nb">print</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="linenos">212</span>
+<span class="linenos">213</span>     <span class="c1"># -------------------------------</span>
+<span class="linenos">214</span>     <span class="c1"># Plot</span>
+<span class="linenos">215</span>     <span class="c1"># -------------------------------</span>
+<span class="linenos">216</span>     <span class="c1"># Create colormap</span>
+<span class="linenos">217</span>     <span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Reds&quot;</span><span class="p">,</span> <span class="n">desat</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">218</span>
+<span class="linenos">219</span>     <span class="c1"># Row and col colors</span>
+<span class="linenos">220</span>     <span class="n">col_colors</span> <span class="o">=</span> <span class="n">get_category_colors</span><span class="p">(</span> \
+<span class="linenos">221</span>         <span class="n">index</span><span class="o">=</span><span class="n">matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">matrix</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">222</span>     <span class="n">row_colors</span> <span class="o">=</span> <span class="n">get_category_colors</span><span class="p">(</span> \
+<span class="linenos">223</span>         <span class="n">index</span><span class="o">=</span><span class="n">matrix</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">matrix</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="linenos">224</span>
+<span class="linenos">225</span>     <span class="c1"># .. note: It is possible to also pass kwargs that would</span>
+<span class="linenos">226</span>     <span class="c1">#          be used by sns.heatmap function (annot, fmt,</span>
+<span class="linenos">227</span>     <span class="c1">#          annot_kws, ...</span>
+<span class="linenos">228</span>     <span class="k">try</span><span class="p">:</span>
+<span class="linenos">229</span>         <span class="c1"># Plot cluster map</span>
+<span class="linenos">230</span>         <span class="n">grid</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">matrix</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="linenos">231</span>             <span class="n">method</span><span class="o">=</span><span class="s1">&#39;centroid&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+<span class="linenos">232</span>             <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">233</span>             <span class="n">row_colors</span><span class="o">=</span><span class="n">row_colors</span><span class="p">,</span> <span class="n">col_colors</span><span class="o">=</span><span class="n">col_colors</span><span class="p">)</span>
+<span class="linenos">234</span>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">235</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+<span class="linenos">236</span>
+<span class="linenos">237</span>     <span class="c1"># Configuration</span>
+<span class="linenos">238</span>     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Antibiogram (clustered) - </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">specimen</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="linenos">239</span>     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">240</span>
+<span class="linenos">241</span> <span class="c1"># Show</span>
+<span class="linenos">242</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.551 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-sari-b-clustermap-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/fe8b4a13b6102b839752359791b46a3e/plot_sari_b_clustermap.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_sari_b_clustermap.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/0eddb3abfac9aa891877a3e760bd2fb1/plot_sari_b_clustermap.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_sari_b_clustermap.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_sari_a_antibiogram.html" class="btn btn-neutral float-left" title="SARI - By specimen w/ sns.heatmap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_sari_c_relmap.html" class="btn btn-neutral float-right" title="SARI - By specimen w/ sns.relmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

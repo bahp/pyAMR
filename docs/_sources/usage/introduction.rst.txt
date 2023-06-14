@@ -29,7 +29,7 @@ programs [20]. These programs are crucial to guide health care organizations des
 policies to combat AMR [21, 22]. In particular, susceptibility reporting has shown to be a determinant
 data source to inform empiric antimicrobial therapy selection.
 
-.. image:: ../../_static/imgs/susceptibility-test-record.png
+.. image:: ../_static/imgs/susceptibility-test-record.png
    :width: 200
    :align: right
    :alt: ASAI
@@ -43,19 +43,412 @@ since it is widely accepted by clinicians as detailed in the UK five year strate
 
 
 
+Basics of susceptibility testing
+------------------------------------
 
-The AMR indexes
----------------
+Antimicrobial susceptibility testing or ``AST`` is a laboratory method used to determine the
+effectiveness of antimicrobial agents against specific microorganisms. It helps in guiding
+appropriate antimicrobial therapy by providing valuable information about the susceptibility
+or resistance of bacteria, fungi, or other pathogens to different drugs. Several key concepts
+are involved in this process:
 
-======== ============================================== ======= =============
-Acronym  Name                                           Range   Status
-======== ============================================== ======= =============
-``SARI`` Single Antimicrobial Resistance Index          [0, 1]  ``Ok``
-``MARI`` Multiple Antimicrobial Resistance Index        [0, 1]  ``Ok``
-``DRI``  Drug Resistance Index                                  ``Pending``
-``SART`` Single Antimicrobial Resistance Trend          [0, 1]  ``Ok``
-``ASAI`` Antimicrobial Spectrum of Activity Index       [-1, 1] ``Ok``
-======== ============================================== ======= =============
+- **Minimum Inhibitory Concentration (MIC):** MIC is the lowest concentration of an antimicrobial
+  agent that inhibits the visible growth of a microorganism. It provides a quantitative measure
+  of the susceptibility of the organism to the drug.
+
+- **Zone of Inhibition:** This concept is specific to disc diffusion tests, where antimicrobial agents
+  are applied to a culture plate and diffuse outward. The zone of inhibition is the area around the
+  disc where microbial growth is inhibited due to the effectiveness of the drug.
+
+- **Breakpoints:** Breakpoints are predefined thresholds that categorize organisms as susceptible,
+  intermediate, or resistant based on their MIC or zone of inhibition values. These breakpoints
+  serve as guidelines for determining appropriate treatment options.
+
+- **Quality Control:** Quality control measures are essential to ensure the accuracy and reliability
+  of antimicrobial susceptibility testing. It involves testing reference strains with known
+  susceptibility patterns to verify that the testing process is performing as expected.
+
+- **Interpretive Criteria:** Interpretive criteria are guidelines provided by regulatory bodies,
+  such as the Clinical and Laboratory Standards Institute (CLSI) or the European Committee on
+  Antimicrobial Susceptibility Testing (EUCAST). These criteria help interpret the test results
+  and provide recommendations for appropriate antimicrobial therapy.
+
+Overall, antimicrobial susceptibility testing plays a vital role in guiding the selection of
+appropriate antimicrobial agents, optimizing treatment outcomes, and combating antimicrobial resistance.
+
+Microorganisms
+~~~~~~~~~~~~~~
+
+A microorganism, or microbe, is an organism of microscopic size, which may exist in its
+single-celled form or as a colony of cells. Microbes are important in human culture and health
+in many ways, serving to ferment foods and treat sewage, and to produce fuel, enzymes, and
+other bioactive compounds. Microbes are essential tools in biology as model organisms and have
+been put to use in biological warfare and bioterrorism. Microbes are a vital component of
+fertile soil. In the human body, microorganisms make up the human microbiota, including the
+essential gut flora. The pathogens responsible for many infectious diseases are microbes and,
+as such, are the target of hygiene measures.
+
+There are several approaches to categorizing infectious microorganisms. It's important to note
+that these approaches are not mutually exclusive, and often multiple methods are used in
+combination to fully understand and categorize infectious microorganisms. Furthermore, advances
+in molecular techniques and genomics have provided new insights into the classification and
+identification of microorganisms, allowing for more precise categorization based on genetic
+characteristics.
+
+.. list-table:: Example of categories
+   :widths: 15 60 30
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Categories
+
+   * - ``taxonomy``
+     - Taxonomic characteristics, such as their genetic makeup, morphology, and
+       evolutionary relationships
+     - domain, kingdom, phylum, class, order, family, genus, species
+
+   * - ``shape/morphology``
+     - Refers to the shape and arrangement of bacterial cells including cocci (spherical),
+       bacilli (rod-shaped), spirilla (spiral-shaped), and vibrios (comma-shaped)
+     - cocci, bacilli, vibrio, spirochete
+
+   * - ``gram_stain``
+     - Helps identify the differences in the structure of the bacterial cell wall.
+     - positive, negative
+
+   * - ``coagulase_production``
+     - It plays a role in the clotting of plasma proteins. Coagulase-positive bacteria can
+       cause the formation of fibrin clots, while coagulase-negative bacteria do not produce
+       this enzyme.
+     - positive, negative
+
+   * - ``oxygen_requirements``
+     - Wehther require oxygen for growth and metabolism
+     - aerobic, anaerobic
+
+   * - ``fermenting``
+     - Whether they can derive energy through fermentation in the absence of oxygen, or
+       oxidative, meaning they require oxygen for energy production.
+     - lactose, non-lactose
+
+   * - ``hemolysis``
+     - Refers to the ability of bacteria to lyse red blood cells
+     - alpha, beta, gamma, no-hemolysis
+
+   * - ``group``
+     -
+     - A, B, C, D, ...
+
+   * - ``arrangement``
+     -
+     -
+
+   * - ``endospores``
+     -
+     -
+
+   * - ``mobility``
+     -
+     -
+
+   * - ``temp_range``
+     -
+     -
+
+   * - ``temp_optima``
+     -
+     -
+
+   * - ``temp_range``
+     -
+     -
+
+   * - ``acid_fastness_stain``
+     -
+     -
+
+   * - ``ziehl_nealson_stain``
+     -
+     -
+
+   * - ``transmission``
+     - How they spread from one host to another
+     -
+
+   * - ``habitat``
+     - Whether their are found in the environment (soil bacteria or waterborne bacteria),
+       whether they coexist with the host without causing harm (commensal) or cause a
+       disease (pathogenic)
+     - environmental, commensal, pathogenic
+
+   * - ``host``
+     -
+     - human, animal, swine, cattle, ...
+
+   * - ``disease``
+     -
+     -
+
+.. note:: These categories are for reference, most have not been used within the library.
+
+
+Taxonomy
+********
+
+.. image:: https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme
+   :width: 130
+   :align: right
+   :alt: pyAMR
+
+Bacterial taxonomy is a rank-based classification, of bacteria. In the scientific classification
+established by Carl Linnaeus, each species has to be assigned to a genus (binary nomenclature),
+which in turn is a lower level of a hierarchy of ranks (family, suborder, order, subclass, class,
+division/phyla, kingdom and domain). In the currently accepted classification of life, there are
+three domains (Eukaryotes, Bacteria and Archaea), which, in terms of taxonomy, despite following
+the same principles have several different conventions between them and between their subdivisions.
+See an example below.
+
+  - life:
+  - domain: Bacteria
+  - kingdom:
+  - phylum: Proteobacteria
+  - class: Gamma Proteobacteria
+  - order: Enterobacteriales
+  - family: Enterobacteriaceae
+  - genus: Escherichia
+  - species: Escherichia coli
+  - subspecies (missing in dataset)
+
+
+Gram Stain
+**********
+
+Gram stain or Gram staining, also called Gram's method, is a method of staining used to
+distinguish and classify bacterial species into two large groups according to the chemical
+and physical properties of their cell walls: gram-positive bacteria and gram-negative
+bacteria. The name comes from the Danish bacteriologist Hans Christian
+Gram, who developed the technique.
+
+- **Gram positive** bacteria take up the crystal violet stain used in the test, and then
+  appear to be purple-coloured when seen through an optical microscope. This is because the
+  thick peptidoglycan layer in the bacterial cell wall retains the stain after it is washed
+  away from the rest of the sample, in the decolorization stage of the test.
+
+- **Gram-negative** bacteria cannot retain the violet stain after the decolorization step;
+  alcohol used in this stage degrades the outer membrane of gram-negative cells, making the
+  cell wall more porous and incapable of retaining the crystal violet stain. Their peptidoglycan
+  layer is much thinner and sandwiched between an inner cell membrane and a bacterial outer
+  membrane, causing them to take up the counterstain (safranin or fuchsine) and appear red or
+  pink.
+
+.. note:: Despite their thicker peptidoglycan layer, gram-positive bacteria are more
+    receptive to certain cell wall–targeting antibiotics than gram-negative bacteria,
+    due to the absence of the outer membrane.
+
+
+Shape or morphology
+*******************
+
+`ROS1`_: Microbial morphology.
+
+.. _ROS1: https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology
+
+Different types of microbes have different, but characteristic, shapes. Under suitable
+conditions, the shape and size of microbes are relatively stable. It is important to know
+the morphological structure of microbes, as it provides us with a better understanding of
+microbial physiology, pathogenic mechanisms, antigenic features, and allows us to identify
+them by species. In addition, knowledge of microbial morphology can be helpful in diagnosing
+disease and in preventing microbial infections.
+
+Bacteria are complex and highly variable microbes. They come in four basic shapes: **spherical**
+(cocci), **rod-shaped** (bacilli), **arc-shaped** (vibrio), and **spiral** (spirochete). See some
+examples included in the figure below.
+
+
+.. image:: https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg
+   :width: 600
+   :align: center
+   :alt: pyAMR
+
+.. raw:: html
+
+    <!--
+    <img src="https://microbenotes.com/wp-content/uploads/2020/05/Bacterial-Shapes-and-Arrangement.jpeg"/>
+    <img src="https://ars.els-cdn.com/content/image/3-s2.0-B978012802234400001X-f01-03-9780128022344.jpg"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
+    -->
+
+
+Growth Type
+***********
+
+The two main types of bacterial growth are **aerobic** and **anaerobic**. The basic difference
+between the two, is that the former thrives in oxygenated environment and latter in an environment
+marked by the absence of oxygen, there also exist other differences which cannot be ignored.
+
+- **Aerobic:** These are the species of bacteria which require oxygen for their basic survival,
+  growth, and the process of reproduction. It is very easy to isolate these bacteria by culturing
+  a mass of bacterial strains in some liquid medium. As they require oxygen for survival, they
+  tend to come to the surface in a bid to derive maximum oxygen available. Examples are Bacillus
+  or Nocardia.
+
+- **Anaerobic**: these are the species of bacteria which don’t require oxygen for growth. There are
+  different types of anaerobic species, including the aerotolerant anaerobes, which can survive in the
+  presence of oxygen, and obligate anaerobes, which can’t survive in the presence of oxygen. Examples
+  are Escherichia coli or Bacteroides.
+
+
+
+Haemolysis
+**********
+
+Hemolysis (from Greek αιμόλυση, meaning 'blood breakdown') is the breakdown of red blood cells. The
+ability of bacterial colonies to induce hemolysis when grown on blood agar is used to classify certain
+microorganisms. This is particularly useful in classifying streptococcal species. A substance that causes
+hemolysis is a hemolysin.
+
+- **Alpha-hemolysis:** When alpha-hemolysis (α-hemolysis) is present, the agar under the colony is
+  light and greenish. Streptococcus pneumoniae and a group of oral streptococci (Streptococcus viridans
+  or viridans streptococci) display alpha hemolysis.
+
+- **Beta-hemolysis:** Sometimes called complete hemolysis, is a complete lysis of red cells in the media
+  around and under the colonies: the area appears lightened (yellow) and transparent. Streptolysin, an
+  exotoxin, is the enzyme produced by the bacteria which causes the complete lysis of red blood cells. There
+  are two types of streptolysin: Streptolysin O (SLO) and streptolysin S (SLS).
+
+- **Gamma-hemolysis:** If an organism does not induce hemolysis, the agar under and around the colony
+  is unchanged, and the organism is called non-hemolytic or said to display gamma-hemolysis (γ-hemolysis).
+  Enterococcus faecalis (formerly called "Group D Strep"), Staphylococcus saprophyticus, and Staphylococcus
+  epidermidis display gamma hemolysis.
+
+
+Coagulase Production
+********************
+
+Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
+to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
+Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
+the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
+test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
+However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
+Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
+opportunistic infection.
+
+Antimicrobials
+~~~~~~~~~~~~~~
+
+An antimicrobial is an agent that kills microorganisms or stops their growth. Antimicrobial
+medicines can be grouped according to the microorganisms they act primarily against in for main
+categories: (i) **anibiotics** which are used against bacteria, (ii) **antifungals** which are used
+against fungi, (iii) **antivirals** which are used against viruses and (iv) **antiparasitics** which
+are used against parasites.
+
+.. image:: https://antibioticguardian.com/assets/Antimicrobials_AMR-infographic_UKHSA.png
+
+Antibiotics are powerful medications that are used to treat bacterial infections. They work by either killing
+the bacteria or inhibiting their growth, thereby helping the body's immune system to overcome the infection.
+There are various types of antibiotics, each with its own mechanism of action and spectrum of activity. Here's
+an brief introduction to some of the different types of antibiotics:
+
+- **Penicillins:** Penicillins were the first antibiotics discovered and are still widely used today.
+  They work by interfering with the synthesis of bacterial cell walls, leading to their destruction.
+  Examples of penicillins include amoxicillin and ampicillin.
+
+- **Cephalosporins:** Cephalosporins are similar to penicillins in their mechanism of action. They also
+  disrupt bacterial cell wall synthesis, but they have a broader spectrum of activity and are often
+  used as an alternative to penicillins. Examples of cephalosporins include cephalexin and ceftriaxone.
+
+- **Macrolides:** Macrolides are a class of antibiotics that inhibit bacterial protein synthesis. They bind
+  to the bacterial ribosome, preventing the synthesis of new proteins. Macrolides are effective against
+  many different types of bacteria and are often used to treat respiratory tract infections. Examples of
+  macrolides include erythromycin and azithromycin.
+
+- **Tetracyclines:** Tetracyclines are broad-spectrum antibiotics that inhibit protein synthesis in bacteria.
+  They are often used to treat acne and respiratory tract infections. Tetracycline and doxycycline are
+  examples of tetracycline antibiotics.
+
+- **Fluoroquinolones:** Fluoroquinolones work by interfering with bacterial DNA replication and repair. They
+  are effective against a wide range of bacteria and are commonly used to treat urinary tract infections
+  and respiratory infections. Ciprofloxacin and levofloxacin are examples of fluoroquinolones.
+
+- **Sulfonamides:** Sulfonamides, also known as sulfa drugs, inhibit the synthesis of folic acid in bacteria,
+  which is essential for their growth. They are used to treat urinary tract infections, respiratory infections,
+  and other bacterial infections. Examples of sulfonamides include sulfamethoxazole and trimethoprim.
+
+- **Aminoglycosides:** Aminoglycosides are bactericidal antibiotics that inhibit bacterial protein synthesis.
+  They are particularly effective against aerobic gram-negative bacteria. Aminoglycosides are often used in
+  combination with other antibiotics to treat severe infections. Gentamicin and streptomycin are examples of
+  aminoglycosides.
+
+.. image:: https://girlymicrobiologist.files.wordpress.com/2020/10/antibiotic-classes.png
+
+These are just a few examples of the different types of antibiotics available. It's important to note that
+the choice of antibiotic depends on the specific infection being treated, as well as factors such as the type
+of bacteria involved, the site of infection, and the patient's individual circumstances. Antibiotics should
+always be used judiciously and under the guidance of a healthcare professional to ensure their appropriate
+and effective use.
+
+  - `RA1`_: Entry in wikipedia for Antibiotic.
+
+.. _RA1: https://en.wikipedia.org/wiki/Antibiotic
+
+
+
+
+
+
+
+
+
+
+
+Description of metrics for AMR
+------------------------------
+
+Establishing quantifiable metrics is essential to gain a standardized and objective framework to
+monitor the emergence and spread of resistant strains, assess the effectiveness of antimicrobial
+interventions, and evaluate the impact of various interventions and policies. Such metrics enable
+us to quantify resistance levels, track trends over time, and compare data across different regions
+and healthcare settings, facilitating evidence-based decision making. Furthermore, these metrics
+provide a foundation for the development of sophisticated algorithms that can analyze vast amounts
+of data, identify patterns, predict resistance patterns, and assist clinicians in making informed
+treatment choices. By integrating these metrics into clinical decision support systems, healthcare
+providers can access real-time, data-driven insights to optimize antimicrobial therapy, improve patient
+outcomes, and mitigate the further development and dissemination of antimicrobial resistance.
+
+.. list-table:: Summary of AMR metrics
+   :widths: 4 49 13 43
+   :header-rows: 1
+
+   * -
+     - Name
+     - Range
+     - Description
+   * - ``SARI``
+     - Single Antimicrobial Resistance Index
+     - [0, 1]
+     - Ratio of resistant isolates
+   * - ``MARI``
+     - Multiple Antimicrobial Resistance Index
+     - [0, 1]
+     - Ratio of agents tested to which a pathogen is resistant
+   * - ``SART``
+     - Single Antimicrobial Resistance Trend
+     - [0, 1]
+     - Ratio of change of resistance rates per time unit
+   * - ``ASAI``
+     - Antimicrobial Spectrum of Activity Index
+     - [-1, 1]
+     - Range of microbe species that are susceptible to an agent
+   * - ``ACSI``
+     - Antimicrobial Collateral Sensitivity Index
+     - [-.7, .7]
+     - Degree of dependence between two agents
+   * - ``DRI``
+     - Drug Resistance Index
+     - [0, 1]
+     - Ratio of pathogens resistant to the antimicrobials used to treat them
 
 - **Single Antimicrobial Resistance Index (SARI)**
 
@@ -68,7 +461,7 @@ Acronym  Name                                           Range   Status
 
     See: :py:mod:`pyamr.core.sari.SARI`
 
-    Example: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`
+    Example: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_a_sari.py`
 
 - **Multiple Antimicrobial Resistance Index (MARI)**
 
@@ -81,30 +474,7 @@ Acronym  Name                                           Range   Status
 
     See: :py:mod:`pyamr.core.mari.MARI`
 
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_mari.py`
-
-
-- **Drug Resistance Index (DRI)**
-
-    The drug resistance index measures the proportion of pathogens that are resistant to the
-    antimicrobials used to treat them. It provides a value within the range [0,1] where values
-    close to one indicate high resistant for frequent antimicrobials. The variable *ρik* is the
-    proportion of resistance among organism *i* to antimicrobial *k* and *qik* is the
-    frequency of drug *k* used to treat organism *i*.
-
-    .. warning:: Not implemented!
-
-- **Antimicrobial Spectrum of Activity Index (ASAI)**
-
-    The antimicrobial spectrum of activity index refers to the range of microbe species that are
-    susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
-    classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
-    against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
-    have limited activity and are effective only against particular species of bacteria.
-
-    See: :py:mod:`pyamr.core.asai.ASAI`
-
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`
+    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_c_mari.py`
 
 - **Single Antimicrobial Resistance Trend (SART)**
 
@@ -117,17 +487,55 @@ Acronym  Name                                           Range   Status
 
     See: :py:mod:`pyamr.core.sart.SART`
 
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sart.py`
+    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_d_sart.py`
+
+- **Antimicrobial Spectrum of Activity Index (ASAI)**
+
+    The antimicrobial spectrum of activity index refers to the range of microbe species that are
+    susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
+    classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
+    against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
+    have limited activity and are effective only against particular species of bacteria.
+
+    See: :py:mod:`pyamr.core.asai.ASAI`
+
+    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_b_asai.py`
+
+- **Antimicrobial Collateral Sensitivity Index (ACSI)**
+
+    The antimicrobial collateral sensitivity index is based on the mutual information score
+    and is useful to identify antibiotic pairs displaying concurrent resistance, independence, or
+    disjoint resistance. Mutual information quantifies the degree of dependence between two antibiotic
+    susceptibility test results (X and Y) by measuring the amount of information gained about one test
+    result (X) by knowing that of the other (Y). Susceptibility test results for pairs of antibiotics
+    (X/Y) belong to one of four possible states: susceptible/susceptible, susceptible/resistant,
+    resistant/susceptible, or resistant/resistant. Concurrent resistance manifests as an X/Y bias toward
+    susceptible/susceptible and resistant/resistant states, resulting in a positive MIS. Conversely, an
+    X/Y bias toward susceptible/resistant and resistant/susceptible due to disjoint resistance would result
+    in a negative MIS. The MIS is maximised (0·7) when susceptibility to one antibiotic always predicts
+    susceptibility to another antibiotic and similarly for non-susceptibility. The MIS is minimised
+    (−0·7) when resistance to one antibiotic always predicts susceptibility to another and vice versa.
+
+    See: :py:mod:`pyamr.core.acsi.ACSI`
+
+    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_f_acri.py`
+
+- **Drug Resistance Index (DRI)**
+
+    The drug resistance index measures the proportion of pathogens that are resistant to the
+    antimicrobials used to treat them. It provides a value within the range [0,1] where values
+    close to one indicate high resistant for frequent antimicrobials. The variable *ρik* is the
+    proportion of resistance among organism *i* to antimicrobial *k* and *qik* is the
+    frequency of drug *k* used to treat organism *i*.
+
+    See: :py:mod:`pyamr.core.dri.DRI`
+
+    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_e_dri.py`
 
 
 
-
-
-
-
-
-Time series analysis
---------------------
+Essentials of time series analysis
+----------------------------------
 
 Time series analysis is a specific way of analyzing a sequence of data points collected over
 an interval of time. In time series analysis, analysts record data points at consistent intervals
@@ -165,19 +573,48 @@ is considered for a statistical purpose. Some of the most commonly used descript
 central tendency, dispersion, skewness, and tailednes.
 
 
-====================== ==================================================== ============= ========
-Name                   Description                                          Range         Choose
-====================== ==================================================== ============= ========
-``pearson``            Measures linear correlation between variables        [-1, 1]         ≈0
-``kurtosis``           Measure of tailedness of a probability distribution  [1, ∞)          ≈0
-``skewness``           Measure of asymmetry of a probability distribution                   ≈0
-``R2``                 Measures goodness-of-fit or linear regression models [0, 100]        ↑
-``aic``                Measures goodness-of-fit among models                                ↓
-``bic``                Measures goodness-of-fit among models                                ↓
-``hqic``               Measures goodness-of-fit among models
-``llf``
+.. list-table:: Summary of statistical properties
+   :widths: 10 70 15 5
+   :header-rows: 1
 
-====================== ==================================================== ============= ========
+   * - Name
+     - Description
+     - Range
+     - Choose
+   * - ``pearson``
+     - Measures linear correlation between variables
+     - [-1, 1]
+     - ≈0
+   * - ``kurtosis``
+     - Measure of tailedness of a probability distribution
+     - [1, ∞)
+     - ≈0
+   * - ``skewness``
+     - Measure of asymmetry of a probability distribution
+     -
+     - ≈0
+   * - ``R2``
+     - Measures goodness-of-fit or linear regression models
+     - [0, 100]
+     - ↑
+   * - ``aic``
+     - Measures goodness-of-fit among models
+     -
+     - ↓
+   * - ``bic``
+     - Measures goodness-of-fit among models
+     -
+     - ↓
+   * - ``hqic``
+     - Measures goodness-of-fit among models
+     -
+     -
+   * - ``llf``
+     -
+     -
+     -
+
+
 
 Pearson
 *******
@@ -293,29 +730,72 @@ A statistical test provides a mechanism for making quantitative decisions about 
 processes. The intent is to determine whether there is enough evidence to "reject" a conjecture
 or hypothesis about the process. The conjecture is called the null hypothesis.
 
-====================== ==================================================== ============= ========
-Name                   Description                                          Range         Choose
-====================== ==================================================== ============= ========
-``jarque-bera``        Goodness-of-fit measure data matches normal dist                     ↓?
-``durbin-watson``      Measure correlation of residuals in regression       [0, 4]          ≈2
-``omnibus``                                                                                 ↓?
-``adfuller``
-``kendall``
-``kpss``
-``normal``
-``Kolmogorov-smirnov``
-``Shapiro-wilkinson``
-``Anderson-darling``
-====================== ==================================================== ============= ========
+
+.. list-table:: Summary of statistical tests
+   :widths: 25 60 10 5
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Range
+     - Choose
+   * - ``jarque-bera``
+     - Goodness-of-fit measure data matches normal dist
+     -
+     - ↓?
+   * - ``durbin-watson``
+     - Measure correlation of residuals in regression
+     - [0, 4]
+     - ≈2
+   * - ``omnibus``
+     -
+     -
+     - ↓?
+   * - ``adfuller``
+     -
+     -
+     -
+   * - ``kendall``
+     -
+     -
+     -
+   * - ``kpss``
+     -
+     -
+     -
+   * - ``normal``
+     -
+     -
+     -
+   * - ``Kolmogorov-smirnov``
+     -
+     -
+     -
+   * - ``Shapiro-wilkinson``
+     -
+     -
+     -
+   * - ``Anderson-darling``
+     -
+     -
+     -
+
+
 
 Augmented Dicker-Fuller
 ***********************
 
+.. warning:: Pending!
+
 Kendal
 ************
 
+.. warning:: Pending!
+
 Kwiatkowski–Phillips–Schmidt–Shin
 *********************************
+
+.. warning:: Pending!
 
 Jarque Bera
 ************
@@ -358,217 +838,6 @@ Omnibus tests are a kind of statistical test. They test whether the explained va
 in a set of data is significantly greater than the unexplained ...
 
 .. warning:: Pending!
-
-
-
-
-Registries
-----------
-
-Microorganisms
-~~~~~~~~~~~~~~
-
-A microorganism, or microbe, is an organism of microscopic size, which may exist in its
-single-celled form or as a colony of cells. Microbes are important in human culture and health
-in many ways, serving to ferment foods and treat sewage, and to produce fuel, enzymes, and
-other bioactive compounds. Microbes are essential tools in biology as model organisms and have
-been put to use in biological warfare and bioterrorism. Microbes are a vital component of
-fertile soil. In the human body, microorganisms make up the human microbiota, including the
-essential gut flora. The pathogens responsible for many infectious diseases are microbes and,
-as such, are the target of hygiene measures.
-
-The table below shows some relevant characteristics that can be used to describe various
-microorganisms. Therefore, these can also be used to categorise or group microorganisms
-that have similar properties
-
-==================== ============================================================= ==========
-Definition           Categories                                                    Status
-==================== ============================================================= ==========
-taxonomy             domain, kingdom, phylum, class, order, family, genus, species ``Ok``
-gram_stain           positive, negative                                            ``Ok``
-shape/morphology     cocci, bacilli, vibrio, spirochete
-growth               aerobic, anaerobic
-hemolysis            alpha, beta, gamma, no-hemolysis
-coagulase_production positive, negative
-group                A, B, C, D, ...
-arrangement
-endospores
-mobility?
-salinity
-oxygen_requirements
-habitat
-temp_range
-temp_optima
-disease
-host                 human, animals, swine, cattle, ...
-fermenting           lactose, non-lactose
-acid_fastness_stain
-ziehl_nealson_tain
-==================== ============================================================= ==========
-
-.. note:: Most of these categories have not been used within the library.
-
-
-Taxonomy
-********
-
-.. image:: https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme
-   :width: 130
-   :align: right
-   :alt: pyAMR
-
-Bacterial taxonomy is a rank-based classification, of bacteria. In the scientific classification
-established by Carl Linnaeus, each species has to be assigned to a genus (binary nomenclature),
-which in turn is a lower level of a hierarchy of ranks (family, suborder, order, subclass, class,
-division/phyla, kingdom and domain). In the currently accepted classification of life, there are
-three domains (Eukaryotes, Bacteria and Archaea), which, in terms of taxonomy, despite following
-the same principles have several different conventions between them and between their subdivisions.
-See an example below.
-
-  - life:
-  - domain: Bacteria
-  - kingdom:
-  - phylum: Proteobacteria
-  - class: Gamma Proteobacteria
-  - order: Enterobacteriales
-  - family: Enterobacteriaceae
-  - genus: Escherichia
-  - species: Escherichia coli
-  - subspecies (missing in dataset)
-
-
-Gram Stain
-**********
-
-Gram stain or Gram staining, also called Gram's method, is a method of staining used to
-distinguish and classify bacterial species into two large groups according to the chemical
-and physical properties of their cell walls: gram-positive bacteria and gram-negative
-bacteria. The name comes from the Danish bacteriologist Hans Christian
-Gram, who developed the technique.
-
-- **Gram positive** bacteria take up the crystal violet stain used in the test, and then
-  appear to be purple-coloured when seen through an optical microscope. This is because the
-  thick peptidoglycan layer in the bacterial cell wall retains the stain after it is washed
-  away from the rest of the sample, in the decolorization stage of the test.
-
-- **Gram-negative** bacteria cannot retain the violet stain after the decolorization step;
-  alcohol used in this stage degrades the outer membrane of gram-negative cells, making the
-  cell wall more porous and incapable of retaining the crystal violet stain. Their peptidoglycan
-  layer is much thinner and sandwiched between an inner cell membrane and a bacterial outer
-  membrane, causing them to take up the counterstain (safranin or fuchsine) and appear red or
-  pink.
-
-.. note:: Despite their thicker peptidoglycan layer, gram-positive bacteria are more
-    receptive to certain cell wall–targeting antibiotics than gram-negative bacteria,
-    due to the absence of the outer membrane.
-
-
-Shape or morphology
-*******************
-
-[REF]: https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology
-
-Different types of microbes have different, but characteristic, shapes. Under suitable
-conditions, the shape and size of microbes are relatively stable. It is important to know
-the morphological structure of microbes, as it provides us with a better understanding of
-microbial physiology, pathogenic mechanisms, antigenic features, and allows us to identify
-them by species. In addition, knowledge of microbial morphology can be helpful in diagnosing
-disease and in preventing microbial infections.
-
-Bacteria are complex and highly variable microbes. They come in four basic shapes: **spherical**
-(cocci), **rod-shaped** (bacilli), **arc-shaped** (vibrio), and **spiral** (spirochete). See some
-examples included in the figure below.
-
-
-.. image:: https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg
-   :width: 600
-   :align: center
-   :alt: pyAMR
-
-.. raw:: html
-
-    <!--
-    <img src="https://microbenotes.com/wp-content/uploads/2020/05/Bacterial-Shapes-and-Arrangement.jpeg"/>
-    <img src="https://ars.els-cdn.com/content/image/3-s2.0-B978012802234400001X-f01-03-9780128022344.jpg"/>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
-    -->
-
-
-Growth Type
-***********
-
-The two main types of bacterial growth are **aerobic** and **anaerobic**. The basic difference
-between the two, is that the former thrives in oxygenated environment and latter in an environment
-marked by the absence of oxygen, there also exist other differences which cannot be ignored.
-
-- **Aerobic:** These are the species of bacteria which require oxygen for their basic survival,
-  growth, and the process of reproduction. It is very easy to isolate these bacteria by culturing
-  a mass of bacterial strains in some liquid medium. As they require oxygen for survival, they
-  tend to come to the surface in a bid to derive maximum oxygen available. Examples are Bacillus
-  or Nocardia.
-
-- **Anaerobic**: these are the species of bacteria which don’t require oxygen for growth. There are
-  different types of anaerobic species, including the aerotolerant anaerobes, which can survive in the
-  presence of oxygen, and obligate anaerobes, which can’t survive in the presence of oxygen. Examples
-  are Escherichia coli or Bacteroides.
-
-
-
-Haemolysis
-**********
-
-Hemolysis (from Greek αιμόλυση, meaning 'blood breakdown') is the breakdown of red blood cells. The
-ability of bacterial colonies to induce hemolysis when grown on blood agar is used to classify certain
-microorganisms. This is particularly useful in classifying streptococcal species. A substance that causes
-hemolysis is a hemolysin.
-
-- **Alpha-hemolysis:** When alpha-hemolysis (α-hemolysis) is present, the agar under the colony is
-  light and greenish. Streptococcus pneumoniae and a group of oral streptococci (Streptococcus viridans
-  or viridans streptococci) display alpha hemolysis.
-
-- **Beta-hemolysis:** Sometimes called complete hemolysis, is a complete lysis of red cells in the media
-  around and under the colonies: the area appears lightened (yellow) and transparent. Streptolysin, an
-  exotoxin, is the enzyme produced by the bacteria which causes the complete lysis of red blood cells. There
-  are two types of streptolysin: Streptolysin O (SLO) and streptolysin S (SLS).
-
-- **Gamma-hemolysis:** If an organism does not induce hemolysis, the agar under and around the colony
-  is unchanged, and the organism is called non-hemolytic or said to display gamma-hemolysis (γ-hemolysis).
-  Enterococcus faecalis (formerly called "Group D Strep"), Staphylococcus saprophyticus, and Staphylococcus
-  epidermidis display gamma hemolysis.
-
-
-Coagulase Production
-********************
-
-Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
-to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
-Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
-the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
-test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
-However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
-Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
-opportunistic infection.
-
-Antimicrobials
-~~~~~~~~~~~~~~
-
-An antimicrobial is an agent that kills microorganisms or stops their growth. Antimicrobial
-medicines can be grouped according to the microorganisms they act primarily against in for main
-categories: (i) **anibiotics** which are used against bacteria, (ii) **antifungals** which are used
-against fungi, (iii) **antivirals** which are used against viruses and (iv) **antiparasitics** which
-are used against parasites.
-
-.. image:: https://antibioticguardian.com/assets/Antimicrobials_AMR-infographic_UKHSA.png
-
-An antibiotic is a type of antimicrobial substance active against bacteria. It is the most important type
-of antibacterial agent for fighting bacterial infections, and antibiotic medications are widely used in the
-treatment and prevention of such infections.
-
-[REF]: https://en.wikipedia.org/wiki/Antibiotic
-
-.. image:: https://girlymicrobiologist.files.wordpress.com/2020/10/antibiotic-classes.png
-
-
 
 
 

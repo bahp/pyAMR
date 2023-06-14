@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Piechart Cultures &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -69,10 +77,6 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -87,9 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Visualization</a> &raquo;</li>
-      <li>Piechart Cultures</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Visualization</a></li>
+      <li class="breadcrumb-item active">Piechart Cultures</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/visualization/plot_piechart_culture.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,7 +109,7 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="piechart-cultures">
-<span id="sphx-glr-examples-visualization-plot-piechart-culture-py"></span><h1>Piechart Cultures<a class="headerlink" href="#piechart-cultures" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-visualization-plot-piechart-culture-py"></span><h1>Piechart Cultures<a class="headerlink" href="#piechart-cultures" title="Permalink to this heading"></a></h1>
 <p>Example using your package</p>
 <img src="../../_images/sphx_glr_plot_piechart_culture_001.png" srcset="../../_images/sphx_glr_plot_piechart_culture_001.png" alt="plot piechart culture" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  8</span> <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="linenos">  9</span>
@@ -125,7 +129,7 @@ to download the full example code</p>
 <span class="linenos"> 23</span> <span class="c1">#                            HELPER METHODS</span>
 <span class="linenos"> 24</span> <span class="c1"># ------------------------------------------------------------------------</span>
 <span class="linenos"> 25</span> <span class="k">def</span> <span class="nf">transparency</span><span class="p">(</span><span class="n">cmap</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
-<span class="linenos"> 26</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 26</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 27</span><span class="sd">     &quot;&quot;&quot;</span>
 <span class="linenos"> 28</span>     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">rgb</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cmap</span><span class="p">):</span>
 <span class="linenos"> 29</span>         <span class="n">cmap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rgb</span> <span class="o">+</span> <span class="p">(</span><span class="n">alpha</span><span class="p">,)</span>
@@ -210,8 +214,8 @@ to download the full example code</p>
 <span class="linenos">108</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.055 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-piechart-culture-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.090 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-piechart-culture-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c23d4b7a0bbf58ae174265994ea776d5/plot_piechart_culture.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_piechart_culture.py</span></code></a></p>
 </div>

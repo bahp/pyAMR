@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.metrics.weights</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.metrics.weights</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -102,11 +110,11 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
-<div class="viewcode-block" id="SigmoidA"><a class="viewcode-back" href="../../../_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA">[docs]</a><span class="k">class</span> <span class="nc">SigmoidA</span><span class="p">():</span>
+<div class="viewcode-block" id="SigmoidA"><a class="viewcode-back" href="../../../_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA">[docs]</a><span class="k">class</span> <span class="nc">SigmoidA</span><span class="p">:</span>
 
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
       <span class="n">percentiles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thresholds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function initialises the parameters.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function initialises the parameters.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -128,7 +136,7 @@
   <span class="c1">#                            HELPER METHODS</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
   <span class="k">def</span> <span class="nf">_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">short</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This methods describes de model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This methods describes de model.&quot;&quot;&quot;</span>
     <span class="c1"># Return short description.</span>
     <span class="k">if</span> <span class="n">short</span><span class="p">:</span>
       <span class="n">per</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">percentiles</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">percentiles</span>
@@ -143,7 +151,7 @@
   <span class="c1">#                                SIGMOID</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SigmoidA.approximated_sigmoid"><a class="viewcode-back" href="../../../_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA.approximated_sigmoid">[docs]</a>  <span class="k">def</span> <span class="nf">approximated_sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_curves</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function computes the approximated sigmoid.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function computes the approximated sigmoid.</span>
 
 <span class="sd">    Note: The approximated sigmoid is defined within the interval [0,1].</span>
 
@@ -179,7 +187,7 @@
   <span class="c1">#                            HELPER METHODS</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SigmoidA.threshold"><a class="viewcode-back" href="../../../_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA.threshold">[docs]</a>  <span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">thresholds</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">)):</span>
-    <span class="sd">&quot;&quot;&quot;This function thresholds the r given the values of x.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function thresholds the r given the values of x.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -214,12 +222,12 @@
   <span class="c1">#                                WEIGHTS</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SigmoidA.weights_standard"><a class="viewcode-back" href="../../../_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA.weights_standard">[docs]</a>  <span class="k">def</span> <span class="nf">weights_standard</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function returns the weights.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function returns the weights.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">approximated_sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SigmoidA.weights_percentile"><a class="viewcode-back" href="../../../_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA.weights_percentile">[docs]</a>  <span class="k">def</span> <span class="nf">weights_percentile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">percentiles</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function returns the weights.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function returns the weights.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -240,7 +248,7 @@
 
 
 <div class="viewcode-block" id="SigmoidA.weights"><a class="viewcode-back" href="../../../_apidoc/pyamr.metrics.html#pyamr.metrics.weights.SigmoidA.weights">[docs]</a>  <span class="k">def</span> <span class="nf">weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This cuntion computes the weights.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This cuntion computes the weights.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -273,6 +281,7 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span> <span class="c1"># pragma: no cover</span>
 
+  <span class="c1"># Libraries</span>
   <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
   <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
   <span class="kn">import</span> <span class="nn">statsmodels.robust.norms</span> <span class="k">as</span> <span class="nn">norms</span>

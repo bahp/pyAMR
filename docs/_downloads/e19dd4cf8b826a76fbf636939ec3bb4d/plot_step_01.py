@@ -36,6 +36,12 @@ import matplotlib.pyplot as plt
 # Import from pyAMR
 from pyamr.datasets.load import make_susceptibility
 
+try:
+    __file__
+    TERMINAL = True
+except:
+    TERMINAL = False
+
 # -------------------------------------------
 # Load data
 # -------------------------------------------
@@ -48,15 +54,13 @@ print("\nData:")
 print(data)
 print("\nColumns:")
 print(data.dtypes)
-
-# Show unique elements
-print("\nUnique values:")
-for c in ['microorganism_code',
-          'antimicrobial_code',
-          'specimen_code',
-          'laboratory_number']:
-    print('%-18s -> %5s' % (c, data[c].nunique()))
-
+print("\nUnique:")
+print(data[[
+    'microorganism_code',
+    'antimicrobial_code',
+    'specimen_code',
+    'laboratory_number',
+    'patient_id']].nunique())
 
 #######################################################################
 #
@@ -71,21 +75,14 @@ for c in ['microorganism_code',
 # Susceptible outcomes respectively. The definition might vary slightly since the
 # intermediate category is not always considered.
 #
-# The parameter strategy accepts the following options:
-#
-#   - ``soft``   as R / R+I+S
-#   - ``medium`` as R / R+S
-#   - ``hard``  as R+I / R+I+S
-#   - ``other``  as R+0.5I / R+0.5I+S
-#
 # For more information see: :py:mod:`pyamr.core.sari.SARI`
 #
 # For more examples see:
 #
-#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`
-#   - :ref:`sphx_glr__examples_indexes_plot_sari_antibiogram.py`
-#   - :ref:`sphx_glr__examples_indexes_plot_sari_clustermap.py`
-#   - :ref:`sphx_glr__examples_indexes_plot_sari_relmap.py`
+#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_a_sari.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_a_antibiogram.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_b_clustermap.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_c_relmap.py`
 #
 
 # -------------------------------------------
@@ -170,16 +167,16 @@ plt.subplots_adjust(right=1.05)
 #
 # For more examples see:
 #
-#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`
-#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`
-#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_asai_a_gramtype.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_asai_b_multiple.py`
 #
 #
 # In order to compute ``ASAI``, we need to have the following columns present
 # in our dataset: ``antimicrobial``, ``microorganism_genus``, ``microorganism_species``
 # and ``resistance``.  Moreover, in this example we will compute the ASAI for each
 # ``gram_stain`` category independently so we will need the microorganism gram stain
-# information too. This information is available in the registries: :py:mod:`pyamr.datasets.registries`
+# information too. This information is available in the registries:
+# :py:mod:`pyamr.datasets.registries`
 #
 # Lets include all this information using the ``MicroorganismRegistry``.
 #
@@ -251,35 +248,6 @@ print(scores)
 #
 # Lets plot it now!
 
-# ----------------
-# Helper method
-# ----------------
-def scalar_colormap(values, cmap, vmin, vmax):
-    """This method creates a colormap based on values.
-
-    Parameters
-    ----------
-    values : array-like
-      The values to create the corresponding colors
-
-    cmap : str
-      The colormap
-
-    vmin, vmax : float
-      The minimum and maximum possible values
-
-    Returns
-    -------
-    scalar colormap
-    """
-    # Create scalar mappable
-    norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax, clip=True)
-    mapper = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
-    # Gete color map
-    colormap = sns.color_palette([mapper.to_rgba(i) for i in values])
-    # Return
-    return colormap
-
 # ---------------------------------------------------------------
 # Plot
 # ---------------------------------------------------------------
@@ -287,6 +255,10 @@ def scalar_colormap(values, cmap, vmin, vmax):
 #          that combine the different subcategories (e.g. gram-negative
 #          and gram-positive). Two possible options are: (i) use the
 #          gmean or (ii) the width.
+
+# Libraries
+from pyamr.graphics.utils import scalar_colormap
+
 # Measures
 scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
 
@@ -360,8 +332,8 @@ plt.tight_layout()
 #
 # For more examples see:
 #
-#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sart.py`
-#   - :ref:`sphx_glr__examples_indexes_plot_trend_basic.py`
+#   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_d_sart.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sart_a_basic.py`
 #
 # .. note:: Be cautious when Computing the ``SART`` index using a small dataset
 #           (e.g. a low number of susceptibility tests records) since it is very
@@ -642,3 +614,13 @@ sns.despine(left=True, bottom=True)
 # Adjust layout
 plt.tight_layout()
 plt.show()
+
+#######################################################################
+#
+# Computing DRI
+# --------------
+
+#######################################################################
+#
+# Computing MARI
+# --------------

@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.datasets.microbiology.create_susceptibility</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.datasets.microbiology.create_susceptibility</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -97,7 +105,7 @@
 <span class="c1"># Methods</span>
 <span class="c1"># ---------------------------------</span>
 <div class="viewcode-block" id="create_microorganisms_lookup_table"><a class="viewcode-back" href="../../../../_apidoc/pyamr.datasets.microbiology.html#pyamr.datasets.microbiology.create_susceptibility.create_microorganisms_lookup_table">[docs]</a><span class="k">def</span> <span class="nf">create_microorganisms_lookup_table</span><span class="p">(</span><span class="n">orgs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates the look up table for the organisms.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates the look up table for the organisms.</span>
 
 <span class="sd">    This method uses the information in the organisms dataframe</span>
 <span class="sd">    and the information in the default microorganisms registry</span>
@@ -220,7 +228,7 @@
 
 
 <div class="viewcode-block" id="create_antimicrobials_lookup_table"><a class="viewcode-back" href="../../../../_apidoc/pyamr.datasets.microbiology.html#pyamr.datasets.microbiology.create_susceptibility.create_antimicrobials_lookup_table">[docs]</a><span class="k">def</span> <span class="nf">create_antimicrobials_lookup_table</span><span class="p">(</span><span class="n">abxs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates the look up table for the antimicorbials.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates the look up table for the antimicorbials.</span>
 
 <span class="sd">    This method uses the information in the antibiotics dataframe</span>
 <span class="sd">    and the information in the default antimicrobials registry</span>
@@ -490,7 +498,7 @@
     <span class="c1"># Report duplicated values (antimicrobials)</span>
 
 
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    # Create basic information</span>
 <span class="sd">    sensitivity = data.sensitivity_code.value_counts()</span>
 <span class="sd">    gram_stain = orgs.gram_stain.value_counts()</span>

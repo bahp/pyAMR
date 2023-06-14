@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.core.stats package &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -58,20 +66,97 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyamr</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="pyamr.html">pyamr package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pyamr.html">pyamr package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pyamr.core.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="pyamr.core.regression.html">pyamr.core.regression package</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">pyamr.core.stats package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-pyamr.core.stats.adfuller">pyamr.core.stats.adfuller module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.adfuller.ADFWrapper"><code class="docutils literal notranslate"><span class="pre">ADFWrapper</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.adfuller.ADFWrapper.as_summary"><code class="docutils literal notranslate"><span class="pre">ADFWrapper.as_summary()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.adfuller.ADFWrapper.evaluate"><code class="docutils literal notranslate"><span class="pre">ADFWrapper.evaluate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.adfuller.ADFWrapper.is_stationary"><code class="docutils literal notranslate"><span class="pre">ADFWrapper.is_stationary()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.adfuller.ADFWrapper.stationarity"><code class="docutils literal notranslate"><span class="pre">ADFWrapper.stationarity()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#module-pyamr.core.stats.correlation">pyamr.core.stats.correlation module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.correlation.CorrelationWrapper"><code class="docutils literal notranslate"><span class="pre">CorrelationWrapper</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.correlation.CorrelationWrapper.as_summary"><code class="docutils literal notranslate"><span class="pre">CorrelationWrapper.as_summary()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.correlation.CorrelationWrapper.evaluate"><code class="docutils literal notranslate"><span class="pre">CorrelationWrapper.evaluate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.correlation.CorrelationWrapper.fit"><code class="docutils literal notranslate"><span class="pre">CorrelationWrapper.fit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#module-pyamr.core.stats.kendall">pyamr.core.stats.kendall module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper"><code class="docutils literal notranslate"><span class="pre">KendallWrapper</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.as_summary"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.as_summary()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.evaluate"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.evaluate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.trend_direction"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.trend_direction()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.trend_exists"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.trend_exists()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.kendall.kendall"><code class="docutils literal notranslate"><span class="pre">kendall()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#module-pyamr.core.stats.kpss">pyamr.core.stats.kpss module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.kpss.KPSSWrapper"><code class="docutils literal notranslate"><span class="pre">KPSSWrapper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#module-pyamr.core.stats.stationarity">pyamr.core.stats.stationarity module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.stationarity.StationarityWrapper"><code class="docutils literal notranslate"><span class="pre">StationarityWrapper</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.stationarity.StationarityWrapper.as_summary"><code class="docutils literal notranslate"><span class="pre">StationarityWrapper.as_summary()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.stationarity.StationarityWrapper.evaluate"><code class="docutils literal notranslate"><span class="pre">StationarityWrapper.evaluate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.stationarity.StationarityWrapper.fit"><code class="docutils literal notranslate"><span class="pre">StationarityWrapper.fit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#module-pyamr.core.stats.wbase">pyamr.core.stats.wbase module</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper"><code class="docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.as_series"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.as_series()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.as_summary"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.as_summary()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.evaluate"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.evaluate()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.fit"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.fit()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.from_list_dataframe"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.from_list_dataframe()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.grid_search"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.grid_search()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.load"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.load()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper.save"><code class="docutils literal notranslate"><span class="pre">BaseWrapper.save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.wbase.fargs"><code class="docutils literal notranslate"><span class="pre">fargs()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#pyamr.core.stats.wbase.getargspecdict"><code class="docutils literal notranslate"><span class="pre">getargspecdict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#module-pyamr.core.stats">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="pyamr.core.table.html">pyamr.core.table package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core.acsi">pyamr.core.acsi module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core.asai">pyamr.core.asai module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core.dri">pyamr.core.dri module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core.freq">pyamr.core.freq module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core.mari">pyamr.core.mari module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core.sari">pyamr.core.sari module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core.sart">pyamr.core.sart module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html#module-pyamr.core">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -89,11 +174,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">pyamr</a> &raquo;</li>
-          <li><a href="pyamr.html">pyamr package</a> &raquo;</li>
-          <li><a href="pyamr.core.html">pyamr.core package</a> &raquo;</li>
-      <li>pyamr.core.stats package</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="pyamr.html">pyamr package</a></li>
+          <li class="breadcrumb-item"><a href="pyamr.core.html">pyamr.core package</a></li>
+      <li class="breadcrumb-item active">pyamr.core.stats package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_apidoc/pyamr.core.stats.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,16 +188,16 @@
            <div itemprop="articleBody">
              
   <section id="pyamr-core-stats-package">
-<h1>pyamr.core.stats package<a class="headerlink" href="#pyamr-core-stats-package" title="Permalink to this headline"></a></h1>
+<h1>pyamr.core.stats package<a class="headerlink" href="#pyamr-core-stats-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-pyamr.core.stats.adfuller">
-<span id="pyamr-core-stats-adfuller-module"></span><h2>pyamr.core.stats.adfuller module<a class="headerlink" href="#module-pyamr.core.stats.adfuller" title="Permalink to this headline"></a></h2>
+<span id="pyamr-core-stats-adfuller-module"></span><h2>pyamr.core.stats.adfuller module<a class="headerlink" href="#module-pyamr.core.stats.adfuller" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.stats.adfuller.ADFWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.adfuller.</span></span><span class="sig-name descname"><span class="pre">ADFWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/adfuller.html#ADFWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.adfuller.ADFWrapper" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a></p>
 <p>The ADF wrapper.</p>
 <p>The Augmented Dickey-Fuller test can be used to test for a unit root in
 a univariate process in the presence of serial correlation. It tests the
@@ -154,7 +238,7 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 <span class="sig-name descname"><span class="pre">is_stationary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/adfuller.html#ADFWrapper.is_stationary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.adfuller.ADFWrapper.is_stationary" title="Permalink to this definition"></a></dt>
 <dd><p>This method returns a boolean with the stationarity outocme.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>alpha</strong> (<em>float</em>) – The statistical significance</p>
 </dd>
 </dl>
@@ -165,7 +249,7 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 <span class="sig-name descname"><span class="pre">stationarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/adfuller.html#ADFWrapper.stationarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.adfuller.ADFWrapper.stationarity" title="Permalink to this definition"></a></dt>
 <dd><p>This method returns the stationarity outcome.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>alpha</strong> (<em>float</em>) – The stastistical significance</p>
 </dd>
 </dl>
@@ -175,11 +259,11 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 
 </section>
 <section id="module-pyamr.core.stats.correlation">
-<span id="pyamr-core-stats-correlation-module"></span><h2>pyamr.core.stats.correlation module<a class="headerlink" href="#module-pyamr.core.stats.correlation" title="Permalink to this headline"></a></h2>
+<span id="pyamr-core-stats-correlation-module"></span><h2>pyamr.core.stats.correlation module<a class="headerlink" href="#module-pyamr.core.stats.correlation" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.stats.correlation.CorrelationWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.correlation.</span></span><span class="sig-name descname"><span class="pre">CorrelationWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/correlation.html#CorrelationWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.correlation.CorrelationWrapper" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.stats.correlation.CorrelationWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/correlation.html#CorrelationWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.correlation.CorrelationWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -198,16 +282,16 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 <dd><p>This method computes kendall for monotonic increase</p>
 <p>NOTES: - scipy pvalues are not reliavble if less than 500 observations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x1</strong></p></li>
 <li><p><strong>y2</strong></p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>object</strong></p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A CorrelationWrapper objects.</p>
 </dd>
 </dl>
@@ -217,11 +301,11 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 
 </section>
 <section id="module-pyamr.core.stats.kendall">
-<span id="pyamr-core-stats-kendall-module"></span><h2>pyamr.core.stats.kendall module<a class="headerlink" href="#module-pyamr.core.stats.kendall" title="Permalink to this headline"></a></h2>
+<span id="pyamr-core-stats-kendall-module"></span><h2>pyamr.core.stats.kendall module<a class="headerlink" href="#module-pyamr.core.stats.kendall" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.stats.kendall.KendallWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.kendall.</span></span><span class="sig-name descname"><span class="pre">KendallWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.stats.kendall.KendallWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -239,7 +323,7 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 <span class="sig-name descname"><span class="pre">trend_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper.trend_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper.trend_direction" title="Permalink to this definition"></a></dt>
 <dd><p>This method returns the trend direction.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>alpha</strong> (<em>float</em>) – The significance level</p>
 </dd>
 </dl>
@@ -250,7 +334,7 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 <span class="sig-name descname"><span class="pre">trend_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper.trend_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper.trend_exists" title="Permalink to this definition"></a></dt>
 <dd><p>This method returns a boolean with the stationarity outocme.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>alpha</strong> (<em>float</em>) – The significance level</p>
 </dd>
 </dl>
@@ -262,13 +346,13 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 <dt class="sig sig-object py" id="pyamr.core.stats.kendall.kendall">
 <span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.kendall.</span></span><span class="sig-name descname"><span class="pre">kendall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#kendall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.kendall" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>a vector of data</em>)</p></li>
 <li><p><strong>alpha</strong> (<em>significance level (0.05 default)</em>)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>trend</strong> (<em>tells the trend (increasing, decreasing or no trend)</em>)</p></li>
 <li><p><strong>h</strong> (<em>True (if trend is present) or False (if trend is absence)</em>)</p></li>
@@ -282,11 +366,11 @@ while unit-root processes have a permanent impact (stochastic trend).</p>
 
 </section>
 <section id="module-pyamr.core.stats.kpss">
-<span id="pyamr-core-stats-kpss-module"></span><h2>pyamr.core.stats.kpss module<a class="headerlink" href="#module-pyamr.core.stats.kpss" title="Permalink to this headline"></a></h2>
+<span id="pyamr-core-stats-kpss-module"></span><h2>pyamr.core.stats.kpss module<a class="headerlink" href="#module-pyamr.core.stats.kpss" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.stats.kpss.KPSSWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.kpss.</span></span><span class="sig-name descname"><span class="pre">KPSSWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kpss.html#KPSSWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kpss.KPSSWrapper" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a></p>
 <p>The KPSS wrapper.</p>
 <p>The Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test is used to identify
 whether a time series is stationary around a deterministic trend (thus
@@ -308,11 +392,11 @@ If p-value &lt;= alpha: Reject H0</p>
 
 </section>
 <section id="module-pyamr.core.stats.stationarity">
-<span id="pyamr-core-stats-stationarity-module"></span><h2>pyamr.core.stats.stationarity module<a class="headerlink" href="#module-pyamr.core.stats.stationarity" title="Permalink to this headline"></a></h2>
+<span id="pyamr-core-stats-stationarity-module"></span><h2>pyamr.core.stats.stationarity module<a class="headerlink" href="#module-pyamr.core.stats.stationarity" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.stats.stationarity.StationarityWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.stationarity.</span></span><span class="sig-name descname"><span class="pre">StationarityWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/stationarity.html#StationarityWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.stationarity.StationarityWrapper" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.core.stats.wbase.BaseWrapper</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a></p>
 <p>This method….</p>
 <dl class="simple">
 <dt>Types of stationarity in time-series:</dt><dd><ul class="simple">
@@ -358,17 +442,17 @@ are listed below:</p>
 <p>&#64;see statsmodels.tsa.stattools.adfuller
 &#64;see statsmodels.tsa.stattoosl.kpss</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>array-like</em>) – The time series</p></li>
 <li><p><strong>adf_kwargs</strong> (<em>dict-like</em>) – The parameters to pass to the adfuller function</p></li>
 <li><p><strong>kpss_kwargs</strong> (<em>dict-like</em>) – The parameters to apss to the kpss function</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>object</strong></p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>An StationarityWrapper objects.</p>
 </dd>
 </dl>
@@ -378,7 +462,7 @@ are listed below:</p>
 
 </section>
 <section id="module-pyamr.core.stats.wbase">
-<span id="pyamr-core-stats-wbase-module"></span><h2>pyamr.core.stats.wbase module<a class="headerlink" href="#module-pyamr.core.stats.wbase" title="Permalink to this headline"></a></h2>
+<span id="pyamr-core-stats-wbase-module"></span><h2>pyamr.core.stats.wbase module<a class="headerlink" href="#module-pyamr.core.stats.wbase" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.stats.wbase.BaseWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.wbase.</span></span><span class="sig-name descname"><span class="pre">BaseWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/wbase.html#BaseWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.wbase.BaseWrapper" title="Permalink to this definition"></a></dt>
@@ -389,17 +473,17 @@ are listed below:</p>
 <span class="sig-name descname"><span class="pre">as_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/wbase.html#BaseWrapper.as_series"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.wbase.BaseWrapper.as_series" title="Permalink to this definition"></a></dt>
 <dd><p>This method returns a series with all the information.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>flabel</strong> (<em>boolean</em>) – Wether to include a label before the attributes.</p></li>
 <li><p><strong>label</strong> (<em>string</em>) – The label to include before the attributes. By default it includes
 the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>series</strong></p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas series with the results, configuration and model.</p>
 </dd>
 </dl>
@@ -421,7 +505,7 @@ the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/wbase.html#BaseWrapper.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.wbase.BaseWrapper.fit" title="Permalink to this definition"></a></dt>
 <dd><p>This method performs the fit.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>kwargs</strong> (<em>dict-like</em>) – The arguments that will be passed to the method.</p>
 </dd>
 </dl>
@@ -432,7 +516,7 @@ the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 <span class="sig-name descname"><span class="pre">from_list_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper_list</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/wbase.html#BaseWrapper.from_list_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.wbase.BaseWrapper.from_list_dataframe" title="Permalink to this definition"></a></dt>
 <dd><p>This methods creates a dataframe summary from a list.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>wrapper_list</strong> (<em>array-like</em>) – The list with wrapper objects.</p></li>
 <li><p><strong>flabel</strong> (<em>boolean</em>) – Wether to include a label before the attributes.</p></li>
@@ -440,10 +524,10 @@ the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>summary</strong></p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas dataframe.</p>
 </dd>
 </dl>
@@ -454,16 +538,16 @@ the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 <span class="sig-name descname"><span class="pre">grid_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/wbase.html#BaseWrapper.grid_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.wbase.BaseWrapper.grid_search" title="Permalink to this definition"></a></dt>
 <dd><p>This method computes grid search.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>grid_params</strong> (<em>array-like</em>) – The grid of parameters to search.</p></li>
 <li><p><strong>verbose</strong> (<em>int</em>) – Wether to show the progress of the search.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>summary</strong></p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>summary with all the elements.</p>
 </dd>
 </dl>
@@ -488,7 +572,7 @@ the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 <span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.wbase.</span></span><span class="sig-name descname"><span class="pre">fargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/wbase.html#fargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.wbase.fargs" title="Permalink to this definition"></a></dt>
 <dd><p>Finds parameters in kwargs tho use in function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>function</strong> (<em>callable</em>) – The function</p></li>
 <li><p><strong>kwargs</strong> (<em>dict-like</em>) – The parameters and corresponding values.</p></li>
@@ -502,16 +586,16 @@ the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 <span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.wbase.</span></span><span class="sig-name descname"><span class="pre">getargspecdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/wbase.html#getargspecdict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.wbase.getargspecdict" title="Permalink to this definition"></a></dt>
 <dd><p>This method creates a dictionary with pairs name and value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>instance</strong> (<em>object with values</em>)</p></li>
 <li><p><strong>funcname</strong> (<em>function which parameters name will be looked for.</em>)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>tpls</strong></p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dictionary with argument name and value.</p>
 </dd>
 </dl>
@@ -519,7 +603,7 @@ the value of the attribute <cite>self._name</cite> in lowercase.</p></li>
 
 </section>
 <section id="module-pyamr.core.stats">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.core.stats" title="Permalink to this headline"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.core.stats" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 

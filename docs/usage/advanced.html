@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Future Actions" href="todo.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-registries">Building the Registries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#microorganisms">Microorganisms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#antimicrobials">Antimicrobials</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-fixtures-are-available">What fixtures are available?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fixture-01">Fixture 01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixture-02">Fixture 02</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixture-03">Fixture 03</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixture-04">Fixture 04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixture-05">Fixture 05</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixture-06">Fixture 06</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixture-07">Fixture 07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cddep-how-to-compute-dri">CDDEP - How to compute DRI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lancet-how-to-compute-acsi">LANCET - How to compute ACSI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mimic">MIMIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nhs">NHS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Advanced</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usage/advanced.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced">
+<h1>Advanced<a class="headerlink" href="#advanced" title="Permalink to this heading"></a></h1>
+<section id="building-the-registries">
+<h2>Building the Registries<a class="headerlink" href="#building-the-registries" title="Permalink to this heading"></a></h2>
+<p>A registry can be described as a centralized database or record-keeping system that stores
+and manages information about a specific subject. In our scenario, we maintain a registry
+of microorganisms and antimiocrobials, which includes details like their taxonomy (genus,
+species), the gram stain type (posotive, or negative), the category (penicillins) and so on.</p>
+<p>To create the registries we have provided the following bash script</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">pyamr/datasets/microbiology/registry/automated_run.sh</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ------------------------------</span>
+<span class="c1"># Create Microorganisms Registry</span>
+<span class="c1"># ------------------------------</span>
+<span class="c1"># Create gram_stain database</span>
+<span class="nb">cd</span><span class="w"> </span>microorganisms/gram_stain/
+python<span class="w"> </span>script.py
+
+<span class="c1"># Create taxonomy database</span>
+<span class="nb">cd</span><span class="w"> </span>../../
+<span class="nb">cd</span><span class="w"> </span>microorganisms/taxonomy/
+python<span class="w"> </span>script.py
+
+<span class="c1"># Create microorganism registry</span>
+<span class="nb">cd</span><span class="w"> </span>../../
+<span class="nb">cd</span><span class="w"> </span>microorganisms/
+python<span class="w"> </span>script.py
+
+<span class="c1"># ------------------------------</span>
+<span class="c1"># Create Antimicrobials Registry</span>
+<span class="c1"># ------------------------------</span>
+<span class="c1"># Create categories database</span>
+<span class="nb">cd</span><span class="w"> </span>../
+<span class="nb">cd</span><span class="w"> </span>antimicrobials/categories/
+python<span class="w"> </span>script.py
+
+<span class="c1"># Create antimicrobials registry</span>
+<span class="nb">cd</span><span class="w"> </span>../../
+<span class="nb">cd</span><span class="w"> </span>antimicrobials/
+python<span class="w"> </span>script.py
+
+<span class="nv">$SHELL</span>
+</pre></div>
+</div>
+</div>
+<p>which can be run as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">automated_run</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Each of the steps within the script are explained below.</p>
+<section id="microorganisms">
+<h3>Microorganisms<a class="headerlink" href="#microorganisms" title="Permalink to this heading"></a></h3>
+<p>The folder structure looks as follows. Note that each of the folder has at least the
+<code class="docutils literal notranslate"><span class="pre">script.py</span></code> and <code class="docutils literal notranslate"><span class="pre">db_xxx.csv</span></code> files. The former is a python script with the code
+necessary to format, validate and finally create the corresponding database. This
+database is named <code class="docutils literal notranslate"><span class="pre">db_xxx.csv</span></code> and is used at a latter stage to create the final
+registry.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">microorganisms</span>
+    <span class="o">|-</span> <span class="n">gram_stain</span>
+        <span class="o">|-</span> <span class="n">db_gram_stain</span><span class="o">.</span><span class="n">csv</span>
+        <span class="o">|-</span> <span class="n">gram_negative</span><span class="o">.</span><span class="n">txt</span>      <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">gram_positive</span><span class="o">.</span><span class="n">txt</span>      <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">subspecies</span>
+        <span class="o">|-</span> <span class="n">db_groups</span><span class="o">.</span><span class="n">csv</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">taxonomy</span>
+        <span class="o">|-</span> <span class="n">db_taxonomy</span><span class="o">.</span><span class="n">py</span>
+        <span class="o">|-</span> <span class="n">bac120_taxonomy</span><span class="o">.</span><span class="n">tsv</span>    <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">uuids</span>
+        <span class="o">|-</span> <span class="n">db_codes</span><span class="o">.</span><span class="n">csv</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>                  <span class="o">//</span> <span class="n">generates</span> <span class="n">registry_microorganisms</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>The main <code class="docutils literal notranslate"><span class="pre">script.py</span></code> is used to generate the final <code class="docutils literal notranslate"><span class="pre">registry_microorganisms.py</span></code></p>
+<ul>
+<li><p>Generating the <strong>Gram stain</strong> database</p>
+<blockquote>
+<div><p>In this script we create a database with the gram stain information. For this,
+we have downloaded the list of genus and species belonging to each of the groups
+from the Wikipedia. Thus, we have created two files <code class="docutils literal notranslate"><span class="pre">gram_negative.txt</span></code> and
+<code class="docutils literal notranslate"><span class="pre">gram_positive.txt</span></code> and included all the information from <a class="reference external" href="https://en.wikipedia.org/wiki/Category:Gram-negative_bacteria">FGN</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Category:Gram-positive_bacteria">FGP</a>
+respectively. These files look as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+<span class="n">Acetic</span> <span class="n">acid</span> <span class="n">bacteria</span>
+<span class="n">Acidaminococcus</span>
+<span class="n">Acinetobacter</span> <span class="n">baumannii</span>
+<span class="n">Acinetobacter</span> <span class="n">guerrae</span>
+</pre></div>
+</div>
+<p>Then, we have combined them using <code class="docutils literal notranslate"><span class="pre">script.py</span></code> into <code class="docutils literal notranslate"><span class="pre">db_gram_stain.csv</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">genus</span><span class="p">,</span><span class="n">species</span><span class="p">,</span><span class="n">gram_stain</span>
+<span class="n">Acetic</span><span class="p">,</span><span class="n">acid</span> <span class="n">bacteria</span><span class="p">,</span><span class="n">n</span>
+<span class="n">Achromobacter</span><span class="p">,,</span><span class="n">n</span>
+<span class="n">Acidaminococcus</span><span class="p">,,</span><span class="n">n</span>
+<span class="n">Acinetobacter</span><span class="p">,</span><span class="n">baumannii</span><span class="p">,</span><span class="n">n</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Generating the <strong>Taxonomy</strong> database</p>
+<blockquote>
+<div><p>In this script we create a daabase with the taxonomy information. For this, we have
+downloaded the information from <a class="reference external" href="https://data.gtdb.ecogenomic.org/releases/latest/">FBT</a> and saved the file <code class="docutils literal notranslate"><span class="pre">bac120_taxonomy.tsv</span></code>. Then
+we have done some minor amendments, corrections and checks in <code class="docutils literal notranslate"><span class="pre">script.py</span></code> and the result
+has been saved into a single .csv named <code class="docutils literal notranslate"><span class="pre">db_taxonomy.csv</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span><span class="p">,</span><span class="n">phylum</span><span class="p">,</span><span class="n">class</span><span class="p">,</span><span class="n">order</span><span class="p">,</span><span class="n">family</span><span class="p">,</span><span class="n">genus</span><span class="p">,</span><span class="n">species</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Proteobacteria</span><span class="p">,</span><span class="n">Gammaproteobacteria</span><span class="p">,</span><span class="n">Enterobacterales</span><span class="p">,</span><span class="n">Enterobacteriaceae</span><span class="p">,</span><span class="n">Escherichia</span><span class="p">,</span><span class="n">flexneri</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Proteobacteria</span><span class="p">,</span><span class="n">Gammaproteobacteria</span><span class="p">,</span><span class="n">Enterobacterales</span><span class="p">,</span><span class="n">Enterobacteriaceae</span><span class="p">,</span><span class="n">Salmonella</span><span class="p">,</span><span class="n">enterica</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Firmicutes</span><span class="p">,</span><span class="n">Bacilli</span><span class="p">,</span><span class="n">Staphylococcales</span><span class="p">,</span><span class="n">Staphylococcaceae</span><span class="p">,</span><span class="n">Staphylococcus</span><span class="p">,</span><span class="n">aureus</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Firmicutes</span><span class="p">,</span><span class="n">Bacilli</span><span class="p">,</span><span class="n">Lactobacillales</span><span class="p">,</span><span class="n">Streptococcaceae</span><span class="p">,</span><span class="n">Streptococcus</span><span class="p">,</span><span class="n">pneumoniae</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Generating the <strong>uuids</strong> database</p>
+<blockquote>
+<div><p>In this script we create a database with the unique codes that want to
+assign to each microorganism species.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">genus</span><span class="p">,</span><span class="n">species</span><span class="p">,</span><span class="n">subspecies</span><span class="p">,</span><span class="n">code</span>
+<span class="n">Achromobacter</span><span class="p">,</span><span class="n">xylosoxidans</span><span class="p">,,</span><span class="n">AXYL</span>
+<span class="n">Achromobacter</span><span class="p">,,,</span><span class="n">SACHRO</span>
+<span class="n">Acinetobacter</span><span class="p">,</span><span class="n">baumannii</span><span class="p">,,</span><span class="n">ABAU</span>
+<span class="n">Acinetobacter</span><span class="p">,</span><span class="n">lwoffi</span><span class="p">,,</span><span class="n">ALWO</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Generating the <strong>subspecies</strong> database</p>
+<blockquote>
+<div><p>In this script we create a database with any additional category that we
+want to include. For example, we can see the categories subspecies, group,
+coagulase production, haemolysis and host.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">genus</span><span class="p">,</span><span class="n">species</span><span class="p">,</span><span class="n">subspecies</span><span class="p">,</span><span class="n">group</span><span class="p">,</span><span class="n">coagulase_production</span><span class="p">,</span><span class="n">haemolysis</span><span class="p">,</span><span class="n">host</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">aureus</span><span class="p">,,</span><span class="n">A</span><span class="p">,</span><span class="n">positive</span><span class="p">,,</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">borealis</span><span class="p">,,</span><span class="n">A</span><span class="p">,</span><span class="n">negative</span><span class="p">,,</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">capitis</span><span class="p">,,</span><span class="n">A</span><span class="p">,</span><span class="n">negative</span><span class="p">,,</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">epidermis</span><span class="p">,,</span><span class="n">A</span><span class="p">,</span><span class="n">negative</span><span class="p">,,</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>The final registry looks as follows:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span><span class="p">,</span><span class="n">phylum</span><span class="p">,</span><span class="n">class</span><span class="p">,</span><span class="n">order</span><span class="p">,</span><span class="n">family</span><span class="p">,</span><span class="n">genus</span><span class="p">,</span><span class="n">species</span><span class="p">,</span><span class="n">acronym</span><span class="p">,</span><span class="n">gram_stain</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Armatimonadota</span><span class="p">,</span><span class="n">Abditibacteria</span><span class="p">,</span><span class="n">Abditibacteriales</span><span class="p">,</span><span class="n">Abditibacteriaceae</span><span class="p">,</span><span class="n">Abditibacterium</span><span class="p">,</span><span class="n">utsteinense</span><span class="p">,</span><span class="n">ABDI_UTST</span><span class="p">,</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Armatimonadota</span><span class="p">,</span><span class="n">Abditibacteria</span><span class="p">,</span><span class="n">Abditibacteriales</span><span class="p">,</span><span class="n">Abditibacteriaceae</span><span class="p">,</span><span class="n">Abditibacterium</span><span class="p">,,</span><span class="n">ABDITIBACTERIUM</span><span class="p">,</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Firmicutes</span><span class="p">,</span><span class="n">Bacilli</span><span class="p">,</span><span class="n">Lactobacillales</span><span class="p">,</span><span class="n">Aerococcaceae</span><span class="p">,</span><span class="n">Abiotrophia</span><span class="p">,</span><span class="n">defectiva</span><span class="p">,</span><span class="n">ABIO_DEFE</span><span class="p">,</span>
+<span class="n">Bacteria</span><span class="p">,</span><span class="n">Firmicutes</span><span class="p">,</span><span class="n">Bacilli</span><span class="p">,</span><span class="n">Lactobacillales</span><span class="p">,</span><span class="n">Aerococcaceae</span><span class="p">,</span><span class="n">Abiotrophia</span><span class="p">,,</span><span class="n">ABIOTROPHIA</span><span class="p">,</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="antimicrobials">
+<h3>Antimicrobials<a class="headerlink" href="#antimicrobials" title="Permalink to this heading"></a></h3>
+<p>The folder structure looks as follows. Note that each of the folder has at least the
+<code class="docutils literal notranslate"><span class="pre">script.py</span></code> and <code class="docutils literal notranslate"><span class="pre">db_xxx.csv</span></code> files. The former is a python script with the code
+necessary to format, validate and finally create the corresponding database. This
+database is named <code class="docutils literal notranslate"><span class="pre">db_xxx.csv</span></code> and is used at a latter stage to create the final
+registry.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">antimicrobials</span>
+    <span class="o">|-</span> <span class="n">categories</span>
+        <span class="o">|-</span> <span class="n">db_categories</span><span class="o">.</span><span class="n">csv</span>
+        <span class="o">|-</span> <span class="n">category_aminoglycosides</span><span class="o">.</span><span class="n">txt</span>      <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">category_carbapenems</span><span class="o">.</span><span class="n">txt</span>          <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">category_aminoglycosides</span><span class="o">.</span><span class="n">txt</span>      <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">category_oxazolidinones</span><span class="o">.</span><span class="n">txt</span>       <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">category_penicillins</span><span class="o">.</span><span class="n">txt</span>          <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">category_quinolones</span><span class="o">.</span><span class="n">txt</span>           <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">category_tetracyclines</span><span class="o">.</span><span class="n">txt</span>        <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">subspecies</span>
+        <span class="o">|-</span> <span class="n">db_groups</span><span class="o">.</span><span class="n">csv</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">taxonomy</span>
+        <span class="o">|-</span> <span class="n">db_taxonomy</span><span class="o">.</span><span class="n">py</span>
+        <span class="o">|-</span> <span class="n">bac120_taxonomy</span><span class="o">.</span><span class="n">tsv</span>    <span class="o">//</span> <span class="n">external</span> <span class="n">resource</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">uuids</span>
+        <span class="o">|-</span> <span class="n">db_codes</span><span class="o">.</span><span class="n">csv</span>
+        <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>                  <span class="o">//</span> <span class="n">generates</span> <span class="n">registry_microorganisms</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>The main <code class="docutils literal notranslate"><span class="pre">script.py</span></code> is used to generate the final <code class="docutils literal notranslate"><span class="pre">registry_antimicrobials.py</span></code></p>
+<ul>
+<li><p>Generating the <strong>categories</strong> database</p>
+<blockquote>
+<div><p>In this script we create a database with the main categories. The database
+has been created manually and the other <code class="docutils literal notranslate"><span class="pre">category_xxxx.txt</span></code> files are just
+for reference.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">,</span><span class="n">category</span>
+<span class="n">Amikacin</span><span class="p">,</span><span class="n">Aminoglycosides</span>
+<span class="n">Amoxycillin</span><span class="p">,</span><span class="n">Aminopenicillins</span>
+<span class="n">Amp</span> <span class="n">c</span> <span class="n">markers</span><span class="p">,</span>
+<span class="n">Amphotericin</span><span class="p">,</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>The final registry looks as follows:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">,</span><span class="n">category</span><span class="p">,</span><span class="n">acronym</span>
+<span class="n">Amikacin</span><span class="p">,</span><span class="n">Aminoglycosides</span><span class="p">,</span><span class="n">AMIK</span>
+<span class="n">Amoxycillin</span><span class="p">,</span><span class="n">Aminopenicillins</span><span class="p">,</span><span class="n">AMOX</span>
+<span class="n">Amp</span> <span class="n">c</span> <span class="n">markers</span><span class="p">,,</span><span class="n">AMP_C</span>
+<span class="n">Amphotericin</span><span class="p">,,</span><span class="n">AMPH</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="what-fixtures-are-available">
+<h2>What fixtures are available?<a class="headerlink" href="#what-fixtures-are-available" title="Permalink to this heading"></a></h2>
+<p>In the context of software testing, a fixture refers to a set of predefined data or conditions
+that are used to create a known and stable starting point for tests. Fixtures provide the
+necessary context for executing tests and can include data, objects, configurations, or any
+other elements required for the test to run successfully.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">List of available fixtures</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 14.3%" />
+<col style="width: 57.1%" />
+<col style="width: 28.6%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Path</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Categories</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixtures_01.csv</span></code></p></td>
+<td><p>Empty</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixtures_02.csv</span></code></p></td>
+<td><p>Does not exist</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixtures_03.csv</span></code></p></td>
+<td><p>Susceptibility test records data created manually.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixtures_04.csv</span></code></p></td>
+<td><p>Summary table necessary to compute ASAI.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixtures_05.csv</span></code></p></td>
+<td><p>Susceptibility test records data created manually for ACSI.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixtures_06.csv</span></code></p></td>
+<td><p>Susceptibility test records data created manually for ACSI.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixtures_07.csv</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixture_antibiogram.csv</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixture_spectrum.csv</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixture_surveillance</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cddep/summary.csv</span></code>
+<code class="docutils literal notranslate"><span class="pre">cddep/susceptibility.csv</span></code>
+<code class="docutils literal notranslate"><span class="pre">cddep/prescriptions.csv</span></code>
+<code class="docutils literal notranslate"><span class="pre">cddep/outcome.csv</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lancet/mmc2_MIS.csv</span></code>
+<code class="docutils literal notranslate"><span class="pre">lancet/mmc2_CMIS.csv</span></code>
+<code class="docutils literal notranslate"><span class="pre">lancet/mmc2_MARKOV.csv</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nhs</span></code></p></td>
+<td><p>Incomplete!</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mimic</span></code></p></td>
+<td><p>Incomplete!</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<section id="fixture-01">
+<h3>Fixture 01<a class="headerlink" href="#fixture-01" title="Permalink to this heading"></a></h3>
+</section>
+<section id="fixture-02">
+<h3>Fixture 02<a class="headerlink" href="#fixture-02" title="Permalink to this heading"></a></h3>
+</section>
+<section id="fixture-03">
+<h3>Fixture 03<a class="headerlink" href="#fixture-03" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATE</span><span class="p">,</span><span class="n">SPECIMEN</span><span class="p">,</span><span class="n">MICROORGANISM</span><span class="p">,</span><span class="n">ANTIMICROBIAL</span><span class="p">,</span><span class="n">SENSITIVITY</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">resistant</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="fixture-04">
+<h3>Fixture 04<a class="headerlink" href="#fixture-04" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GENUS</span><span class="p">,</span><span class="n">SPECIE</span><span class="p">,</span><span class="n">ANTIBIOTIC</span><span class="p">,</span><span class="n">GRAM</span><span class="p">,</span><span class="n">RESISTANCE</span><span class="p">,</span><span class="n">FREQUENCY</span><span class="p">,</span><span class="n">THRESHOLD</span><span class="p">,</span><span class="n">W_SPECIE</span><span class="p">,</span><span class="n">W_GENUS</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">coagulase</span> <span class="n">negative</span><span class="p">,</span><span class="n">ANTIBIOTIC_1</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="mf">0.88</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.20</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.3333333333333</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">epidermidis</span><span class="p">,</span><span class="n">ANTIBIOTIC_1</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="mf">0.11</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.20</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.3333333333333</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">haemolyticus</span><span class="p">,</span><span class="n">ANTIBIOTIC_1</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="mf">0.32</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.20</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.3333333333333</span>
+<span class="n">Staphylococcus</span><span class="p">,</span><span class="n">lugdumensis</span><span class="p">,</span><span class="n">ANTIBIOTIC_1</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="mf">0.45</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.20</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.3333333333333</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="fixture-05">
+<h3>Fixture 05<a class="headerlink" href="#fixture-05" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATE</span><span class="p">,</span><span class="n">LAB_NUMBER</span><span class="p">,</span><span class="n">SPECIMEN</span><span class="p">,</span><span class="n">MICROORGANISM</span><span class="p">,</span><span class="n">ANTIMICROBIAL</span><span class="p">,</span><span class="n">SENSITIVITY</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab1</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab1</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">ATAZ</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab1</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">ACAZ</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab1</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">ACIP</span><span class="p">,</span><span class="n">resistant</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="fixture-06">
+<h3>Fixture 06<a class="headerlink" href="#fixture-06" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATE</span><span class="p">,</span><span class="n">LAB_NUMBER</span><span class="p">,</span><span class="n">SPECIMEN</span><span class="p">,</span><span class="n">MICROORGANISM</span><span class="p">,</span><span class="n">ANTIMICROBIAL</span><span class="p">,</span><span class="n">SENSITIVITY</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab1</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab1</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">ACIP</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab2</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">lab2</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">ACIP</span><span class="p">,</span><span class="n">resistant</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="fixture-07">
+<h3>Fixture 07<a class="headerlink" href="#fixture-07" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DATE</span><span class="p">,</span><span class="n">SPECIMEN</span><span class="p">,</span><span class="n">MICROORGANISM</span><span class="p">,</span><span class="n">ANTIMICROBIAL</span><span class="p">,</span><span class="n">SENSITIVITY</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">sensitive</span>
+<span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="p">,</span><span class="n">BLDCUL</span><span class="p">,</span><span class="n">ECOL</span><span class="p">,</span><span class="n">AAUG</span><span class="p">,</span><span class="n">resistant</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="cddep-how-to-compute-dri">
+<h3>CDDEP - How to compute DRI?<a class="headerlink" href="#cddep-how-to-compute-dri" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div></div></blockquote>
+</section>
+<section id="lancet-how-to-compute-acsi">
+<h3>LANCET - How to compute ACSI?<a class="headerlink" href="#lancet-how-to-compute-acsi" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div></div></blockquote>
+</section>
+<section id="mimic">
+<h3>MIMIC<a class="headerlink" href="#mimic" title="Permalink to this heading"></a></h3>
+</section>
+<section id="nhs">
+<h3>NHS<a class="headerlink" href="#nhs" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="todo.html" class="btn btn-neutral float-right" title="Future Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

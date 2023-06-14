@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.core.asai</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.core.asai</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -106,7 +114,7 @@
 <span class="c1">#                                 methods</span>
 <span class="c1"># ------------------------------------------------------------------------------</span>
 <span class="k">def</span> <span class="nf">_check_asai_weights_genus</span><span class="p">(</span><span class="n">dataframe</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-  <span class="sd">&quot;&quot;&quot;Checks that the weights for each genus add up to one.</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Checks that the weights for each genus add up to one.</span>
 
 <span class="sd">  .. deprecated:: 0.0.1</span>
 
@@ -131,7 +139,7 @@
 
 
 <span class="k">def</span> <span class="nf">_check_asai_weights_specie</span><span class="p">(</span><span class="n">dataframe</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-  <span class="sd">&quot;&quot;&quot;Check that the weights for all the species add up to one.</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Check that the weights for all the species add up to one.</span>
 
 <span class="sd">  .. deprecated:: 0.0.1</span>
 
@@ -164,7 +172,7 @@
 
 
 <span class="k">def</span> <span class="nf">_check_asai_dataframe_columns</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">required_columns</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-  <span class="sd">&quot;&quot;&quot;This method checks that the dataframe has all attributes.</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;This method checks that the dataframe has all attributes.</span>
 
 <span class="sd">  .. deprecated:: 0.0.1</span>
 
@@ -191,7 +199,7 @@
 
 
 <span class="k">def</span> <span class="nf">_asai</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-  <span class="sd">&quot;&quot;&quot;Computes the antimicrobial spectrum of activity.</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Computes the antimicrobial spectrum of activity.</span>
 
 <span class="sd">  .. deprecated:: 0.0.1</span>
 
@@ -265,7 +273,7 @@
 
 
 <span class="k">def</span> <span class="nf">_asai_score</span><span class="p">(</span><span class="n">weights_genus</span><span class="p">,</span> <span class="n">weights_specie</span><span class="p">,</span> <span class="n">resistance</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-  <span class="sd">&quot;&quot;&quot;Computes the asai score.</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Computes the asai score.</span>
 
 <span class="sd">  .. deprecated:: 0.0.1</span>
 
@@ -292,7 +300,7 @@
 
 
 <div class="viewcode-block" id="asai"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.asai">[docs]</a><span class="k">def</span> <span class="nf">asai</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Computes the ASAI.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the ASAI.</span>
 
 <span class="sd">    .. note: Since threshold and weights have a default value, the</span>
 <span class="sd">             warnings below will not be displayed. However, the code</span>
@@ -374,7 +382,7 @@
 
     <span class="c1"># Bad input type</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2"></span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span>
 <span class="s2">            The instance passed as argument needs to be a pandas </span>
 <span class="s2">            &quot;DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert </span>
 <span class="s2">            the input accordingly.&quot;&quot;&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
@@ -393,7 +401,7 @@
 
     <span class="c1"># Show warning and correct</span>
     <span class="k">if</span> <span class="n">idxs</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2"></span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span>
 <span class="s2">              There are NULL values in columns that are required.</span>
 <span class="s2">              Please correct this issue and try again. See below </span>
 <span class="s2">              for more information:</span><span class="se">\n\n\t\t</span><span class="si">{0}</span><span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -407,14 +415,14 @@
     <span class="c1"># Check threshold</span>
     <span class="k">if</span> <span class="s1">&#39;THRESHOLD&#39;</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2"></span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span>
 <span class="s2">                  The threshold has been defined both as an </span>
 <span class="s2">                  input parameter (threshold=</span><span class="si">{0}</span><span class="s2">) and a DataFrame </span>
 <span class="s2">                  column &#39;THRESHOLD&#39;. The latter will be used.&quot;&quot;&quot;</span>
                   <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">threshold</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2"></span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span>
 <span class="s2">                  The threshold has not been defined using either </span>
 <span class="s2">                  an input parameter (threshold=</span><span class="si">{0}</span><span class="s2">) or a column in the </span>
 <span class="s2">                  dataframe named &#39;THRESHOLD&#39;. Thus a default threshold </span>
@@ -517,7 +525,7 @@
                        <span class="n">column_frequency</span><span class="o">=</span><span class="n">c_fre</span><span class="p">,</span>
                        <span class="n">column_wgenus</span><span class="o">=</span><span class="n">c_wgen</span><span class="p">,</span>
                        <span class="n">column_wspecie</span><span class="o">=</span><span class="n">c_wspe</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The constructor.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The constructor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -554,7 +562,7 @@
 
 
 <div class="viewcode-block" id="ASAI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Computes the ASAI index (safely).</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the ASAI index (safely).</span>
 
 <span class="sd">        .. note: Review first NaN and then duplicated?</span>
 <span class="sd">        .. note: Review extreme values in resistance?</span>
@@ -686,7 +694,7 @@
 
 
 <div class="viewcode-block" id="ASAI_old"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI_old">[docs]</a><span class="k">class</span> <span class="nc">ASAI_old</span><span class="p">():</span> <span class="c1"># pragma: no cover</span>
-  <span class="sd">&quot;&quot;&quot;This class computes the antimicrobial spectrum of activity. </span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;This class computes the antimicrobial spectrum of activity. </span>
 
 <span class="sd">  .. deprecated:: 0.0.1</span>
 
@@ -711,7 +719,7 @@
                                         <span class="n">column_frequency</span><span class="o">=</span><span class="n">c_fre</span><span class="p">,</span>
                                         <span class="n">column_wgenus</span><span class="o">=</span><span class="n">c_wgen</span><span class="p">,</span>
                                         <span class="n">column_wspecie</span><span class="o">=</span><span class="n">c_wspe</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The constructor.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The constructor.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -762,7 +770,7 @@
 
 
 <div class="viewcode-block" id="ASAI_old.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI_old.compute">[docs]</a>  <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function computes the asai index by category.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function computes the asai index by category.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -846,7 +854,7 @@
   <span class="c1"># helper method</span>
   <span class="c1"># ---------------------</span>
   <span class="k">def</span> <span class="nf">scalar_colormap</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method creates a colormap based on values.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates a colormap based on values.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

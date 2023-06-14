@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARIMA - Basic &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -64,10 +72,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -82,9 +86,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Examples with TSA</a> &raquo;</li>
-      <li>ARIMA - Basic</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples with TSA</a></li>
+      <li class="breadcrumb-item active">ARIMA - Basic</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/forecasting/plot_arima_basic.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,45 +104,46 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="arima-basic">
-<span id="sphx-glr-examples-forecasting-plot-arima-basic-py"></span><h1>ARIMA - Basic<a class="headerlink" href="#arima-basic" title="Permalink to this headline"></a></h1>
-<img src="../../_images/sphx_glr_plot_arima_basic_001.png" srcset="../../_images/sphx_glr_plot_arima_basic_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-arima-aic                   809.9186
-arima-bic                   817.0647
-arima-hqic                  812.7837
-arima-llf                  -401.9593
-arima-const_coef            291.4154
-arima-const_std             104.4723
-arima-const_tvalue            2.7894
-arima-const_tprob             0.0053
-arima-const_cil              86.6534
-arima-const_ciu             496.1774
-arima-ar.L1_coef              0.9769
-arima-ar.L1_std               0.0253
-arima-ar.L1_tvalue           38.5628
+<span id="sphx-glr-examples-forecasting-plot-arima-basic-py"></span><h1>ARIMA - Basic<a class="headerlink" href="#arima-basic" title="Permalink to this heading"></a></h1>
+<img src="../../_images/sphx_glr_plot_arima_basic_001.png" srcset="../../_images/sphx_glr_plot_arima_basic_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
+arima-aic                   790.8599
+arima-bic                    798.006
+arima-hqic                   793.725
+arima-llf                    -392.43
+arima-const_coef            277.4599
+arima-const_std             135.0188
+arima-const_tvalue             2.055
+arima-const_tprob             0.0399
+arima-const_cil              12.8279
+arima-const_ciu             542.0919
+arima-ar.L1_coef              0.9861
+arima-ar.L1_std               0.0211
+arima-ar.L1_tvalue           46.7468
 arima-ar.L1_tprob                0.0
-arima-ar.L1_cil               0.9273
-arima-ar.L1_ciu               1.0266
-arima-sigma2_coef          1303.2158
-arima-sigma2_std            200.6393
-arima-sigma2_tvalue           6.4953
+arima-ar.L1_cil               0.9447
+arima-ar.L1_ciu               1.0274
+arima-sigma2_coef          1020.4152
+arima-sigma2_std            164.1814
+arima-sigma2_tvalue           6.2152
 arima-sigma2_tprob               0.0
-arima-sigma2_cil              909.97
-arima-sigma2_ciu           1696.4616
-arima-m_dw                    2.0744
-arima-m_jb_value            446.8865
+arima-sigma2_cil            698.6256
+arima-sigma2_ciu           1342.2048
+arima-m_dw                    1.9186
+arima-m_jb_value           1073.5552
 arima-m_jb_prob                  0.0
-arima-m_skew                 -2.2672
-arima-m_kurtosis             13.6539
-arima-m_nm_value             62.8307
+arima-m_skew                 -3.1626
+arima-m_kurtosis             19.7946
+arima-m_nm_value             85.0844
 arima-m_nm_prob                  0.0
-arima-m_ks_value              0.5999
+arima-m_ks_value              0.5889
 arima-m_ks_prob                  0.0
-arima-m_shp_value             0.8389
+arima-m_shp_value             0.7595
 arima-m_shp_prob                 0.0
-arima-m_ad_value               2.011
+arima-m_ad_value              3.0312
 arima-m_ad_nnorm               False
 arima-converged                 True
-arima-endog            [41.745196...
+arima-endog            [12.085319...
 arima-order                (1, 0, 0)
 arima-trend                        c
 arima-disp                         0
@@ -150,26 +155,26 @@ Summary:
                                SARIMAX Results
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                   80
-Model:                 ARIMA(1, 0, 0)   Log Likelihood                -401.959
-Date:                Mon, 20 Feb 2023   AIC                            809.919
-Time:                        17:55:00   BIC                            817.065
-Sample:                             0   HQIC                           812.784
+Model:                 ARIMA(1, 0, 0)   Log Likelihood                -392.430
+Date:                Mon, 12 Jun 2023   AIC                            790.860
+Time:                        16:01:52   BIC                            798.006
+Sample:                             0   HQIC                           793.725
                                  - 80
 Covariance Type:                  opg
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        291.4154    104.472      2.789      0.005      86.653     496.177
-ar.L1          0.9769      0.025     38.563      0.000       0.927       1.027
-sigma2      1303.2158    200.639      6.495      0.000     909.970    1696.462
+const        277.4599    135.019      2.055      0.040      12.828     542.092
+ar.L1          0.9861      0.021     46.747      0.000       0.945       1.027
+sigma2      1020.4152    164.181      6.215      0.000     698.626    1342.205
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000  Durbin-Watson:                    2.074
-Prob(Omnibus):                  0.000  Jarque-Bera (JB):               446.886
-Skew:                          -2.267  Prob(JB):                         0.000
-Kurtosis_m:                    13.654  Cond No:
-Normal (N):                    62.831  Prob(N):                          0.000
+Omnibus:                        0.000  Durbin-Watson:                    1.919
+Prob(Omnibus):                  0.000  Jarque-Bera (JB):              1073.555
+Skew:                          -3.163  Prob(JB):                         0.000
+Kurtosis_m:                    19.795  Cond No:
+Normal (N):                    85.084  Prob(N):                          0.000
 ==============================================================================
 </pre></div>
 </div>
@@ -319,8 +324,8 @@ Normal (N):                    62.831  Prob(N):                          0.000
 <span class="linenos">146</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.202 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-arima-basic-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.194 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-arima-basic-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/69dda70bc8a77638deb433d35948fdf9/plot_arima_basic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_arima_basic.py</span></code></a></p>
 </div>

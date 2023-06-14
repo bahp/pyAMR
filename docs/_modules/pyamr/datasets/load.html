@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.datasets.load</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.datasets.load</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -141,7 +149,7 @@
 <span class="c1">#                              HELPER METHODS</span>
 <span class="c1"># -----------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="make_timeseries"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.make_timeseries">[docs]</a><span class="k">def</span> <span class="nf">make_timeseries</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;This method creates a hard-coded time series.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates a hard-coded time series.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -163,35 +171,21 @@
 
 
 <div class="viewcode-block" id="make_susceptibility"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.make_susceptibility">[docs]</a><span class="k">def</span> <span class="nf">make_susceptibility</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;This method loads susceptibility.</span>
-
-<span class="sd">    .. note: Default path</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Define path</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;./microbiology/sample/nhs-susceptibility-2009.csv&#39;</span>
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span></div>
-
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method returns sample data (Anonymised)&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;./nhs/nhs-susceptibility-2009-anonymised.csv&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="load_registry_microorganisms"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.load_registry_microorganisms">[docs]</a><span class="k">def</span> <span class="nf">load_registry_microorganisms</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;This method returns the microorganisms registry&quot;&quot;&quot;</span>
-    <span class="c1"># Define path</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;./microbiology/registry/microorganisms/registry_microorganisms.csv&#39;</span>
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span></div>
-
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method returns the microorganisms registry&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;registry&#39;</span> <span class="o">/</span> <span class="s1">&#39;registry_microorganisms.csv&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="load_registry_antimicrobials"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.load_registry_antimicrobials">[docs]</a><span class="k">def</span> <span class="nf">load_registry_antimicrobials</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;This method returns the antimicrobials registry&quot;&quot;&quot;</span>
-    <span class="c1"># Define path</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;./microbiology/registry/antimicrobials/registry_antimicrobials.csv&#39;</span>
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method returns the antimicrobials registry&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;registry&#39;</span> <span class="o">/</span> <span class="s1">&#39;registry_antimicrobials.csv&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="load_microbiology_folder"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.load_microbiology_folder">[docs]</a><span class="k">def</span> <span class="nf">load_microbiology_folder</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span>
         <span class="n">glob_pattern</span><span class="o">=</span><span class="s1">&#39;susceptibility-*.csv&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method loads the susceptibility data.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method loads the susceptibility data.</span>
 
 <span class="sd">    .. note:: It assumes all the susceptibility data is stored in csv</span>
 <span class="sd">              files whose files name starts with &#39;susceptibility&#39;. In</span>
@@ -237,7 +231,7 @@
 
 
 <div class="viewcode-block" id="load_data_nhs"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.load_data_nhs">[docs]</a><span class="k">def</span> <span class="nf">load_data_nhs</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="s1">&#39;susceptibility-v0.0.2&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method loads the susceptibility data.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method loads the susceptibility data.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">load_microbiology_folder</span><span class="p">(</span> \
@@ -246,7 +240,7 @@
 
 
 <div class="viewcode-block" id="load_data_mimic"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.load_data_mimic">[docs]</a><span class="k">def</span> <span class="nf">load_data_mimic</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="s1">&#39;susceptibility-v0.0.1&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method loads the susceptibility data.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method loads the susceptibility data.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">load_microbiology_folder</span><span class="p">(</span> \
@@ -286,6 +280,37 @@
 <span class="sd">def dataset_shampoo_sales(**kwargs):</span>
 <span class="sd">    return pd.read_csv(&#39;%s/%s&#39; % (dirname, other_shampoo_sales), **kwargs)</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="fixture"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.load.fixture">[docs]</a><span class="k">def</span> <span class="nf">fixture</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load fixtures</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name: string</span>
+<span class="sd">        The name of the file within the fixtures folder.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    --------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Library</span>
+    <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+    <span class="c1"># Load data</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;fixtures&#39;</span> <span class="o">/</span> <span class="n">name</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Format</span>
+    <span class="k">if</span> <span class="s1">&#39;DATE&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">DATE</span><span class="p">)</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

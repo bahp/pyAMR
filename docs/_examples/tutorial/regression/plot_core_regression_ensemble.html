@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Using WLS + ARMA &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,10 +20,14 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Using SARIMAX (seasonal)" href="plot_core_regression_sarimax.html" />
+    <link rel="prev" title="Using ARIMA" href="plot_core_regression_arima.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,18 +53,30 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_arima.html">Using ARIMA</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using WLS + ARMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_sarimax.html">Using SARIMAX (seasonal)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_theilsens.html">Using Theil-Sen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_wls.html">Using weighted least squares (WLS)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -72,8 +92,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Using WLS + ARMA</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Using WLS + ARMA</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_ensemble.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,18 +110,19 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="using-wls-arma">
-<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-ensemble-py"></span><h1>Using WLS + ARMA<a class="headerlink" href="#using-wls-arma" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-ensemble-py"></span><h1>Using WLS + ARMA<a class="headerlink" href="#using-wls-arma" title="Permalink to this heading"></a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Not working yet!</p>
 </div>
+<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;\n# Import class.\nimport numpy as np\nimport pandas as pd\nimport matplotlib as mpl\nimport matplotlib.pyplot as plt\nimport statsmodels.api as sm\nimport statsmodels.robust.norms as norms\n\nfrom statsmodels.tsa.arima_model import ARIMA\n\n\n# import weights.\nfrom pyamr.datasets.load import make_timeseries\nfrom pyamr.metrics.weights import SigmoidA\nfrom pyamr.core.regression.wls import WLSWrapper\nfrom pyamr.core.regression.wlsarma import WLSARMAWrapper\n\n# Matplotlib options\nmpl.rc(&#39;legend&#39;, fontsize=6)\nmpl.rc(&#39;xtick&#39;, labelsize=6)\nmpl.rc(&#39;ytick&#39;, labelsize=6)\n\n# Set pandas configuration.\npd.set_option(&#39;display.max_colwidth&#39;, 14)\npd.set_option(&#39;display.width&#39;, 150)\npd.set_option(&#39;display.precision&#39;, 4)\n\n# Create timeseries data\nx, y, f = make_timeseries()\n\n# Create method to compute weights from frequencies\nW = SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0)\n\n# Note that the function fit will call M.weights(weights) inside and will\n# store the M converter in the instance. Therefore, the code execute is\n# equivalent to &lt;weights=M.weights(f)&gt; with the only difference being that\n# the weight converter is not saved.\nwls = WLSWrapper(estimator=sm.WLS).fit(     exog=x, endog=y, trend=&#39;c&#39;, weights=f,\n    W=W, missing=&#39;raise&#39;)\n\n# Create WLS + ARIMA model.\nwlsarima = WLSARMAWrapper().fit(endog=y, exog=x, weights=f,\n    wls_kwargs={&#39;W&#39;: W, &#39;trend&#39;: &#39;c&#39;, &#39;missing&#39;: &#39;raise&#39;},\n     arima_kwargs={&#39;exog&#39;: None, &#39;max_ar&#39;: 1,\n                   &#39;max_ma&#39;: 1, &#39;max_d&#39;: 0, &#39;ic&#39;: &#39;bic&#39;,\n                   &#39;order&#39;: (1,0,0)})\n\npred1 = wlsarima.get_prediction(start=None, end=140)\npred2 = wls.get_prediction(start=None, end=140)\n\nendog = getattr(wlsarima._wls, &#39;endog&#39;)\nexog = getattr(wlsarima._wls, &#39;exog&#39;)[:, 1]\n\n# Create figures.\nfig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True, sharex=True)\n# Plot observations.\naxes[0].plot(exog, endog, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,\n             markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,\n             markersize=5, linewidth=0.75, label=&#39;Observed&#39;)\naxes[0].plot(pred1[0, :], pred1[1, :], color=&#39;#39ac73&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=&#39;WLSARMA&#39;)\naxes[1].plot(pred2[0, :], pred2[1, :], color=&#39;r&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=&#39;WLS&#39;)\n\nplt.legend()\nplt.show()\n\nimport sys\n\nsys.exit()\n\n# Create WLS + SARIMAX model.\nwlssarimax = WLSARMAWrapper().fit(endog=y, exog=x, weights=f,\n                                  wls_kwargs={&#39;W&#39;: W, &#39;trend&#39;: &#39;c&#39;, &#39;missing&#39;: &#39;raise&#39;},\n                                  sarimax_kwargs={&#39;exog&#39;: None, &#39;ic&#39;: &#39;bic&#39;, &#39;max_ar&#39;: 1, &#39;max_ma&#39;: 1, &#39;max_d&#39;: 0,\n                                                  &#39;max_P&#39;: 0, &#39;max_D&#39;: 0, &#39;max_Q&#39;: 0, &#39;list_s&#39;: [12]})\n\n# Create best SARIMAX model\nmodels, sarimax = SARIMAXWrapper().fit(endog=y, ic=&#39;bic&#39;,\n                                       max_ar=1, max_ma=1, max_d=1,\n                                       max_P=0, max_D=0, max_Q=0,\n                                       list_s=[0], return_fits=True)\n\n# Print series.\nprint(wlsarima.as_series())\n\n# Print summaries.\nprint(wlsarima.as_summary())\nprint(wlssarimax.as_summary())\nprint(wlsarima._arma.as_summary())\nprint(wlssarimax._arma.as_summary())\n\n# -----------------\n# Save &amp; Load\n# -----------------\n# File location\nfname_wlsarima = &#39;../../examples/saved/wlsarima-sample.pickle&#39;\nfname_wlssarimax = &#39;../../examples/saved/wlssarimax-sample.pickle&#39;\n\n# Save\nwlsarima.save(fname=fname_wlsarima)\n# wlssarimax.save(fname=fname_wlssarimax) (zstatespace can&#39;t be pickled)\n\n# Load\nwlsarima = WLSARMAWrapper().load(fname=fname_wlsarima)\n# wlssarimax = WLSARMAWrapper().load(fname=fname_wlssarimax)\n\n# -----------------\n#  Predictions\n# -----------------\n# Variables.\nstart, end = None, None\n\n# Compute predictions.\npreds_wls = wlsarima.get_prediction(start=start, end=end, ptype=&#39;wls&#39;)\npreds_arima = wlsarima.get_prediction(start=start, end=end, ptype=&#39;arma&#39;)\npreds_sarimax = wlssarimax.get_prediction(start=start, end=end, ptype=&#39;arma&#39;)\npreds_wlsarima = wlsarima.get_prediction(start=start, end=end)\npreds_wlssarimax = wlssarimax.get_prediction(start=start, end=end)\npreds_sarimax = sarimax.get_prediction(start=start, end=end)\n\n# Create figures.\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\n\n# Subplot 0\n# ---------\n# Plot observed values\nendog = getattr(wlsarima._wls, &#39;endog&#39;)\nexog = getattr(wlsarima._wls, &#39;exog&#39;)[:, 1]\naxes[0].plot(exog, endog, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,\n             markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,\n             markersize=5, linewidth=0.75, label=&#39;Observed&#39;)\n\n# Plot forecasted values (WLS-ARIMA).\naxes[0].plot(preds_wlsarima[0, :], preds_wlsarima[1, :], color=&#39;#39ac73&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlsarima._identifier(short=True))\n\n# Plot confidence intervals (WLS-ARIMA)\naxes[0].fill_between(preds_wlsarima[0, 3:],\n                     preds_wlsarima[2, 3:],\n                     preds_wlsarima[3, 3:],\n                     color=&#39;#39ac73&#39;, alpha=0.1)\n\n# Plot forecasted values (WLS-SARIMAX).\naxes[0].plot(preds_wlssarimax[0, :], preds_wlssarimax[1, :], color=&#39;b&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlssarimax._identifier(short=True))\n\n# Plot confidence intervals (WLS-SARIMAX)\naxes[0].fill_between(preds_wlssarimax[0, 3:],\n                     preds_wlssarimax[2, 3:],\n                     preds_wlssarimax[3, 3:],\n                     color=&#39;b&#39;, alpha=0.1)\n\n# Plot forecasted values and confidence intervals (SARIMAX).\naxes[0].plot(preds_sarimax[0, :], preds_sarimax[1, :], color=&#39;#FF0000&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=sarimax._identifier())\n\n# Plot confidence intervals\naxes[0].fill_between(preds_sarimax[0, 3:],\n                     preds_sarimax[2, 3:],\n                     preds_sarimax[3, 3:],\n                     color=&#39;#FF0000&#39;, alpha=0.1)\n\n# Subplot 1\n# ---------\n# Plot observed values.\naxes[1].plot(x, y, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,\n             markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,\n             markersize=5, linewidth=0.75, label=&#39;Observed&#39;)\n\n# Plot wls separately.\naxes[1].plot(preds_wls[0, :], preds_wls[1, :], color=&#39;#39ac73&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlsarima._wls._identifier(short=True))\n\naxes[1].fill_between(preds_wls[0, :],\n                     preds_wls[2, :],\n                     preds_wls[3, :],\n                     color=&#39;#39ac73&#39;, alpha=0.1)\n\n# Plot arma separately.\naxes[1].plot(preds_arima[0, :], preds_arima[1, :], color=&#39;#FF0000&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlsarima._arma._identifier())\n\naxes[1].fill_between(preds_arima[0, :],\n                     preds_arima[2, :],\n                     preds_arima[3, :],\n                     color=&#39;#FF0000&#39;, alpha=0.1)\n\n# Grid\naxes[0].grid(linestyle=&#39;--&#39;, linewidth=0.35, alpha=0.5)\naxes[1].grid(linestyle=&#39;--&#39;, linewidth=0.35, alpha=0.5)\n\n# Legend\naxes[0].legend()\naxes[1].legend()\n\n# Show\nplt.show()\n&quot;
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  9</span> <span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  9</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos"> 10</span><span class="sd"> # Import class.</span>
 <span class="linenos"> 11</span><span class="sd"> import numpy as np</span>
 <span class="linenos"> 12</span><span class="sd"> import pandas as pd</span>
@@ -318,7 +340,7 @@ to download the full example code</p>
 </pre></div>
 </div>
 <p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.001 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-ensemble-py">
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-ensemble-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/705e2e0c8a693064df0f1896fc43b594/plot_core_regression_ensemble.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_ensemble.py</span></code></a></p>
 </div>
@@ -332,7 +354,10 @@ to download the full example code</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_core_regression_arima.html" class="btn btn-neutral float-left" title="Using ARIMA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_regression_sarimax.html" class="btn btn-neutral float-right" title="Using SARIMAX (seasonal)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plotly - Timeseries &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -69,10 +77,6 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -87,9 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Visualization</a> &raquo;</li>
-      <li>Plotly - Timeseries</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Visualization</a></li>
+      <li class="breadcrumb-item active">Plotly - Timeseries</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/visualization/plot_pyplot_timeseries.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,11 +109,12 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="plotly-timeseries">
-<span id="sphx-glr-examples-visualization-plot-pyplot-timeseries-py"></span><h1>Plotly - Timeseries<a class="headerlink" href="#plotly-timeseries" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-visualization-plot-pyplot-timeseries-py"></span><h1>Plotly - Timeseries<a class="headerlink" href="#plotly-timeseries" title="Permalink to this heading"></a></h1>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>Explain and Simplify</p>
 </div>
+<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n\n# --------------------------------------------------------------------\n#                               Main\n# --------------------------------------------------------------------\n# Load data\ndata, antibiotics, organisms = load_data_nhs()\n\n# Count records per specimen code\nspecimen_code_count = data     .groupby(\&#39;laboratory_number\&#39;).head(1)     .specimen_code.value_counts(normalize=True)     .sort_values(ascending=False)\n\n# Filter most frequent specimens\ndata = data[data.specimen_code.isin(     specimen_code_count.index.values[:1])]\n\n# -------------------------------------------\n# Compute Freq and SARI\n# -------------------------------------------\n# Create instance\nfreq = Frequency(column_antibiotic=\&#39;antimicrobial_code\&#39;,\n                 column_organism=\&#39;microorganism_code\&#39;,\n                 column_date=\&#39;date_received\&#39;,\n                 column_outcome=\&#39;sensitivity\&#39;)\n\n# Create daily frequency\ndaily = freq.compute(data, strategy=\&#39;ITI\&#39;,\n                      by_category=\&#39;pairs\&#39;,\n                      fs=\&#39;1M\&#39;)\n\ndaily[\&#39;freq\&#39;] = daily.sum(axis=1)\n\nimport plotly.express as px\nimport pandas as pd\n\nprint(daily)\n\ndaily = daily.reset_index()\ndaily = daily[daily.SPECIE.isin([\&#39;ECOL\&#39;, \&#39;PSEUD\&#39;]) &amp;\n              daily.ANTIBIOTIC.isin([\&#39;AAUG\&#39;])]\n\n\n\nfig = px.bar(daily, x=\&#39;DATE\&#39;, y=\&#39;freq\&#39;,\n    title=\&#39;Time Series with Range Slider and Selectors\&#39;,\n    facet_col=\&#39;SPECIE\&#39;)\n\nfig.update_xaxes(\n    rangeslider_visible=True,\n    rangeselector=dict(\n        buttons=list([\n            dict(count=1, label=&quot;1m&quot;, step=&quot;month&quot;, stepmode=&quot;backward&quot;),\n            dict(count=6, label=&quot;6m&quot;, step=&quot;month&quot;, stepmode=&quot;backward&quot;),\n            dict(count=1, label=&quot;YTD&quot;, step=&quot;year&quot;, stepmode=&quot;todate&quot;),\n            dict(count=1, label=&quot;1y&quot;, step=&quot;year&quot;, stepmode=&quot;backward&quot;),\n            dict(step=&quot;all&quot;)\n        ])\n    )\n)\n\nfig.show()\n&#39;
 </pre></div>
 </div>
@@ -129,7 +134,7 @@ to download the full example code</p>
 <span class="linenos">22</span> <span class="kn">from</span> <span class="nn">pyamr.core.freq</span> <span class="kn">import</span> <span class="n">Frequency</span>
 <span class="linenos">23</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">load_data_nhs</span>
 <span class="linenos">24</span>
-<span class="linenos">25</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">25</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos">26</span>
 <span class="linenos">27</span><span class="sd"> # --------------------------------------------------------------------</span>
 <span class="linenos">28</span><span class="sd"> #                               Main</span>
@@ -195,8 +200,8 @@ to download the full example code</p>
 <span class="linenos">88</span><span class="sd"> &quot;&quot;&quot;</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.001 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-pyplot-timeseries-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.038 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-pyplot-timeseries-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/4c1fa8b6250a4d6dfda00664daf6fd11/plot_pyplot_timeseries.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_pyplot_timeseries.py</span></code></a></p>
 </div>

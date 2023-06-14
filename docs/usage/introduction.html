@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -46,8 +52,21 @@
               <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-amr-indexes">The AMR indexes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#time-series-analysis">Time series analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basics-of-susceptibility-testing">Basics of susceptibility testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#microorganisms">Microorganisms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#taxonomy">Taxonomy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gram-stain">Gram Stain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shape-or-morphology">Shape or morphology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#growth-type">Growth Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#haemolysis">Haemolysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coagulase-production">Coagulase Production</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#antimicrobials">Antimicrobials</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#description-of-metrics-for-amr">Description of metrics for AMR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#essentials-of-time-series-analysis">Essentials of time series analysis</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#statistical-properties">Statistical properties</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pearson">Pearson</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id1">R2</a></li>
@@ -74,22 +93,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#registries">Registries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#microorganisms">Microorganisms</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#taxonomy">Taxonomy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gram-stain">Gram Stain</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#shape-or-morphology">Shape or morphology</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#growth-type">Growth Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#haemolysis">Haemolysis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#coagulase-production">Coagulase Production</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#antimicrobials">Antimicrobials</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -98,10 +106,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -117,8 +121,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Introduction</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/usage/introduction.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -129,7 +133,7 @@
            <div itemprop="articleBody">
              
   <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
 <p>The growing threat of antimicrobial resistance (AMR) is a leading patient health and
 safety issue, with estimates that AMR will be responsible for more than 10 million deaths
 by 2050. A major driver of AMR has been the misuse of antimicrobials
@@ -153,54 +157,388 @@ use of microbiology records to provide the necessary information to support anti
 programs [20]. These programs are crucial to guide health care organizations designing evidence-based
 policies to combat AMR [21, 22]. In particular, susceptibility reporting has shown to be a determinant
 data source to inform empiric antimicrobial therapy selection.</p>
-<a class="reference internal image-reference" href="../_static/imgs/susceptibility-test-record.png"><img alt="ASAI" class="align-right" src="../_static/imgs/susceptibility-test-record.png" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../_images/susceptibility-test-record.png"><img alt="ASAI" class="align-right" src="../_images/susceptibility-test-record.png" style="width: 200px;" /></a>
 <p>Susceptibility test records (see Figure 4.1) are composed by laboratory identification
 number (LID), patient identification number (PID), date, sample type or culture (e.g.
 blood or urine), pathogen, antimicrobial, reported status and outcome (resistant, sensitive
 or intermediate). In research, the susceptibility test data is usually first grouped by
 specimen or culture type, and further grouped by pairs (pathogen, antimicrobial)
 since it is widely accepted by clinicians as detailed in the UK five year strategy in AMR [21].</p>
-<section id="the-amr-indexes">
-<h2>The AMR indexes<a class="headerlink" href="#the-amr-indexes" title="Permalink to this headline"></a></h2>
-<table class="docutils align-default">
+<section id="basics-of-susceptibility-testing">
+<h2>Basics of susceptibility testing<a class="headerlink" href="#basics-of-susceptibility-testing" title="Permalink to this heading"></a></h2>
+<p>Antimicrobial susceptibility testing or <code class="docutils literal notranslate"><span class="pre">AST</span></code> is a laboratory method used to determine the
+effectiveness of antimicrobial agents against specific microorganisms. It helps in guiding
+appropriate antimicrobial therapy by providing valuable information about the susceptibility
+or resistance of bacteria, fungi, or other pathogens to different drugs. Several key concepts
+are involved in this process:</p>
+<ul class="simple">
+<li><p><strong>Minimum Inhibitory Concentration (MIC):</strong> MIC is the lowest concentration of an antimicrobial
+agent that inhibits the visible growth of a microorganism. It provides a quantitative measure
+of the susceptibility of the organism to the drug.</p></li>
+<li><p><strong>Zone of Inhibition:</strong> This concept is specific to disc diffusion tests, where antimicrobial agents
+are applied to a culture plate and diffuse outward. The zone of inhibition is the area around the
+disc where microbial growth is inhibited due to the effectiveness of the drug.</p></li>
+<li><p><strong>Breakpoints:</strong> Breakpoints are predefined thresholds that categorize organisms as susceptible,
+intermediate, or resistant based on their MIC or zone of inhibition values. These breakpoints
+serve as guidelines for determining appropriate treatment options.</p></li>
+<li><p><strong>Quality Control:</strong> Quality control measures are essential to ensure the accuracy and reliability
+of antimicrobial susceptibility testing. It involves testing reference strains with known
+susceptibility patterns to verify that the testing process is performing as expected.</p></li>
+<li><p><strong>Interpretive Criteria:</strong> Interpretive criteria are guidelines provided by regulatory bodies,
+such as the Clinical and Laboratory Standards Institute (CLSI) or the European Committee on
+Antimicrobial Susceptibility Testing (EUCAST). These criteria help interpret the test results
+and provide recommendations for appropriate antimicrobial therapy.</p></li>
+</ul>
+<p>Overall, antimicrobial susceptibility testing plays a vital role in guiding the selection of
+appropriate antimicrobial agents, optimizing treatment outcomes, and combating antimicrobial resistance.</p>
+<section id="microorganisms">
+<h3>Microorganisms<a class="headerlink" href="#microorganisms" title="Permalink to this heading"></a></h3>
+<p>A microorganism, or microbe, is an organism of microscopic size, which may exist in its
+single-celled form or as a colony of cells. Microbes are important in human culture and health
+in many ways, serving to ferment foods and treat sewage, and to produce fuel, enzymes, and
+other bioactive compounds. Microbes are essential tools in biology as model organisms and have
+been put to use in biological warfare and bioterrorism. Microbes are a vital component of
+fertile soil. In the human body, microorganisms make up the human microbiota, including the
+essential gut flora. The pathogens responsible for many infectious diseases are microbes and,
+as such, are the target of hygiene measures.</p>
+<p>There are several approaches to categorizing infectious microorganisms. It’s important to note
+that these approaches are not mutually exclusive, and often multiple methods are used in
+combination to fully understand and categorize infectious microorganisms. Furthermore, advances
+in molecular techniques and genomics have provided new insights into the classification and
+identification of microorganisms, allowing for more precise categorization based on genetic
+characteristics.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Example of categories</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 11%" />
-<col style="width: 62%" />
-<col style="width: 9%" />
-<col style="width: 18%" />
+<col style="width: 14.3%" />
+<col style="width: 57.1%" />
+<col style="width: 28.6%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Acronym</p></th>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Categories</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">taxonomy</span></code></p></td>
+<td><p>Taxonomic characteristics, such as their genetic makeup, morphology, and
+evolutionary relationships</p></td>
+<td><p>domain, kingdom, phylum, class, order, family, genus, species</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shape/morphology</span></code></p></td>
+<td><p>Refers to the shape and arrangement of bacterial cells including cocci (spherical),
+bacilli (rod-shaped), spirilla (spiral-shaped), and vibrios (comma-shaped)</p></td>
+<td><p>cocci, bacilli, vibrio, spirochete</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gram_stain</span></code></p></td>
+<td><p>Helps identify the differences in the structure of the bacterial cell wall.</p></td>
+<td><p>positive, negative</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">coagulase_production</span></code></p></td>
+<td><p>It plays a role in the clotting of plasma proteins. Coagulase-positive bacteria can
+cause the formation of fibrin clots, while coagulase-negative bacteria do not produce
+this enzyme.</p></td>
+<td><p>positive, negative</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">oxygen_requirements</span></code></p></td>
+<td><p>Wehther require oxygen for growth and metabolism</p></td>
+<td><p>aerobic, anaerobic</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fermenting</span></code></p></td>
+<td><p>Whether they can derive energy through fermentation in the absence of oxygen, or
+oxidative, meaning they require oxygen for energy production.</p></td>
+<td><p>lactose, non-lactose</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hemolysis</span></code></p></td>
+<td><p>Refers to the ability of bacteria to lyse red blood cells</p></td>
+<td><p>alpha, beta, gamma, no-hemolysis</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">group</span></code></p></td>
+<td></td>
+<td><p>A, B, C, D, …</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">arrangement</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">endospores</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mobility</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temp_range</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp_optima</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temp_range</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">acid_fastness_stain</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ziehl_nealson_stain</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transmission</span></code></p></td>
+<td><p>How they spread from one host to another</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">habitat</span></code></p></td>
+<td><p>Whether their are found in the environment (soil bacteria or waterborne bacteria),
+whether they coexist with the host without causing harm (commensal) or cause a
+disease (pathogenic)</p></td>
+<td><p>environmental, commensal, pathogenic</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">host</span></code></p></td>
+<td></td>
+<td><p>human, animal, swine, cattle, …</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">disease</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These categories are for reference, most have not been used within the library.</p>
+</div>
+<section id="taxonomy">
+<h4>Taxonomy<a class="headerlink" href="#taxonomy" title="Permalink to this heading"></a></h4>
+<a class="reference internal image-reference" href="https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme"><img alt="pyAMR" class="align-right" src="https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme" style="width: 130px;" /></a>
+<p>Bacterial taxonomy is a rank-based classification, of bacteria. In the scientific classification
+established by Carl Linnaeus, each species has to be assigned to a genus (binary nomenclature),
+which in turn is a lower level of a hierarchy of ranks (family, suborder, order, subclass, class,
+division/phyla, kingdom and domain). In the currently accepted classification of life, there are
+three domains (Eukaryotes, Bacteria and Archaea), which, in terms of taxonomy, despite following
+the same principles have several different conventions between them and between their subdivisions.
+See an example below.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>life:</p></li>
+<li><p>domain: Bacteria</p></li>
+<li><p>kingdom:</p></li>
+<li><p>phylum: Proteobacteria</p></li>
+<li><p>class: Gamma Proteobacteria</p></li>
+<li><p>order: Enterobacteriales</p></li>
+<li><p>family: Enterobacteriaceae</p></li>
+<li><p>genus: Escherichia</p></li>
+<li><p>species: Escherichia coli</p></li>
+<li><p>subspecies (missing in dataset)</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="gram-stain">
+<h4>Gram Stain<a class="headerlink" href="#gram-stain" title="Permalink to this heading"></a></h4>
+<p>Gram stain or Gram staining, also called Gram’s method, is a method of staining used to
+distinguish and classify bacterial species into two large groups according to the chemical
+and physical properties of their cell walls: gram-positive bacteria and gram-negative
+bacteria. The name comes from the Danish bacteriologist Hans Christian
+Gram, who developed the technique.</p>
+<ul class="simple">
+<li><p><strong>Gram positive</strong> bacteria take up the crystal violet stain used in the test, and then
+appear to be purple-coloured when seen through an optical microscope. This is because the
+thick peptidoglycan layer in the bacterial cell wall retains the stain after it is washed
+away from the rest of the sample, in the decolorization stage of the test.</p></li>
+<li><p><strong>Gram-negative</strong> bacteria cannot retain the violet stain after the decolorization step;
+alcohol used in this stage degrades the outer membrane of gram-negative cells, making the
+cell wall more porous and incapable of retaining the crystal violet stain. Their peptidoglycan
+layer is much thinner and sandwiched between an inner cell membrane and a bacterial outer
+membrane, causing them to take up the counterstain (safranin or fuchsine) and appear red or
+pink.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Despite their thicker peptidoglycan layer, gram-positive bacteria are more
+receptive to certain cell wall–targeting antibiotics than gram-negative bacteria,
+due to the absence of the outer membrane.</p>
+</div>
+</section>
+<section id="shape-or-morphology">
+<h4>Shape or morphology<a class="headerlink" href="#shape-or-morphology" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology">ROS1</a>: Microbial morphology.</p>
+<p>Different types of microbes have different, but characteristic, shapes. Under suitable
+conditions, the shape and size of microbes are relatively stable. It is important to know
+the morphological structure of microbes, as it provides us with a better understanding of
+microbial physiology, pathogenic mechanisms, antigenic features, and allows us to identify
+them by species. In addition, knowledge of microbial morphology can be helpful in diagnosing
+disease and in preventing microbial infections.</p>
+<p>Bacteria are complex and highly variable microbes. They come in four basic shapes: <strong>spherical</strong>
+(cocci), <strong>rod-shaped</strong> (bacilli), <strong>arc-shaped</strong> (vibrio), and <strong>spiral</strong> (spirochete). See some
+examples included in the figure below.</p>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"><img alt="pyAMR" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg" width="600" /></a>
+<!--
+<img src="https://microbenotes.com/wp-content/uploads/2020/05/Bacterial-Shapes-and-Arrangement.jpeg"/>
+<img src="https://ars.els-cdn.com/content/image/3-s2.0-B978012802234400001X-f01-03-9780128022344.jpg"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
+--></section>
+<section id="growth-type">
+<h4>Growth Type<a class="headerlink" href="#growth-type" title="Permalink to this heading"></a></h4>
+<p>The two main types of bacterial growth are <strong>aerobic</strong> and <strong>anaerobic</strong>. The basic difference
+between the two, is that the former thrives in oxygenated environment and latter in an environment
+marked by the absence of oxygen, there also exist other differences which cannot be ignored.</p>
+<ul class="simple">
+<li><p><strong>Aerobic:</strong> These are the species of bacteria which require oxygen for their basic survival,
+growth, and the process of reproduction. It is very easy to isolate these bacteria by culturing
+a mass of bacterial strains in some liquid medium. As they require oxygen for survival, they
+tend to come to the surface in a bid to derive maximum oxygen available. Examples are Bacillus
+or Nocardia.</p></li>
+<li><p><strong>Anaerobic</strong>: these are the species of bacteria which don’t require oxygen for growth. There are
+different types of anaerobic species, including the aerotolerant anaerobes, which can survive in the
+presence of oxygen, and obligate anaerobes, which can’t survive in the presence of oxygen. Examples
+are Escherichia coli or Bacteroides.</p></li>
+</ul>
+</section>
+<section id="haemolysis">
+<h4>Haemolysis<a class="headerlink" href="#haemolysis" title="Permalink to this heading"></a></h4>
+<p>Hemolysis (from Greek αιμόλυση, meaning ‘blood breakdown’) is the breakdown of red blood cells. The
+ability of bacterial colonies to induce hemolysis when grown on blood agar is used to classify certain
+microorganisms. This is particularly useful in classifying streptococcal species. A substance that causes
+hemolysis is a hemolysin.</p>
+<ul class="simple">
+<li><p><strong>Alpha-hemolysis:</strong> When alpha-hemolysis (α-hemolysis) is present, the agar under the colony is
+light and greenish. Streptococcus pneumoniae and a group of oral streptococci (Streptococcus viridans
+or viridans streptococci) display alpha hemolysis.</p></li>
+<li><p><strong>Beta-hemolysis:</strong> Sometimes called complete hemolysis, is a complete lysis of red cells in the media
+around and under the colonies: the area appears lightened (yellow) and transparent. Streptolysin, an
+exotoxin, is the enzyme produced by the bacteria which causes the complete lysis of red blood cells. There
+are two types of streptolysin: Streptolysin O (SLO) and streptolysin S (SLS).</p></li>
+<li><p><strong>Gamma-hemolysis:</strong> If an organism does not induce hemolysis, the agar under and around the colony
+is unchanged, and the organism is called non-hemolytic or said to display gamma-hemolysis (γ-hemolysis).
+Enterococcus faecalis (formerly called “Group D Strep”), Staphylococcus saprophyticus, and Staphylococcus
+epidermidis display gamma hemolysis.</p></li>
+</ul>
+</section>
+<section id="coagulase-production">
+<h4>Coagulase Production<a class="headerlink" href="#coagulase-production" title="Permalink to this heading"></a></h4>
+<p>Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
+to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
+Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
+the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
+test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
+However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
+Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
+opportunistic infection.</p>
+</section>
+</section>
+<section id="antimicrobials">
+<h3>Antimicrobials<a class="headerlink" href="#antimicrobials" title="Permalink to this heading"></a></h3>
+<p>An antimicrobial is an agent that kills microorganisms or stops their growth. Antimicrobial
+medicines can be grouped according to the microorganisms they act primarily against in for main
+categories: (i) <strong>anibiotics</strong> which are used against bacteria, (ii) <strong>antifungals</strong> which are used
+against fungi, (iii) <strong>antivirals</strong> which are used against viruses and (iv) <strong>antiparasitics</strong> which
+are used against parasites.</p>
+<img alt="https://antibioticguardian.com/assets/Antimicrobials_AMR-infographic_UKHSA.png" src="https://antibioticguardian.com/assets/Antimicrobials_AMR-infographic_UKHSA.png" />
+<p>Antibiotics are powerful medications that are used to treat bacterial infections. They work by either killing
+the bacteria or inhibiting their growth, thereby helping the body’s immune system to overcome the infection.
+There are various types of antibiotics, each with its own mechanism of action and spectrum of activity. Here’s
+an brief introduction to some of the different types of antibiotics:</p>
+<ul class="simple">
+<li><p><strong>Penicillins:</strong> Penicillins were the first antibiotics discovered and are still widely used today.
+They work by interfering with the synthesis of bacterial cell walls, leading to their destruction.
+Examples of penicillins include amoxicillin and ampicillin.</p></li>
+<li><p><strong>Cephalosporins:</strong> Cephalosporins are similar to penicillins in their mechanism of action. They also
+disrupt bacterial cell wall synthesis, but they have a broader spectrum of activity and are often
+used as an alternative to penicillins. Examples of cephalosporins include cephalexin and ceftriaxone.</p></li>
+<li><p><strong>Macrolides:</strong> Macrolides are a class of antibiotics that inhibit bacterial protein synthesis. They bind
+to the bacterial ribosome, preventing the synthesis of new proteins. Macrolides are effective against
+many different types of bacteria and are often used to treat respiratory tract infections. Examples of
+macrolides include erythromycin and azithromycin.</p></li>
+<li><p><strong>Tetracyclines:</strong> Tetracyclines are broad-spectrum antibiotics that inhibit protein synthesis in bacteria.
+They are often used to treat acne and respiratory tract infections. Tetracycline and doxycycline are
+examples of tetracycline antibiotics.</p></li>
+<li><p><strong>Fluoroquinolones:</strong> Fluoroquinolones work by interfering with bacterial DNA replication and repair. They
+are effective against a wide range of bacteria and are commonly used to treat urinary tract infections
+and respiratory infections. Ciprofloxacin and levofloxacin are examples of fluoroquinolones.</p></li>
+<li><p><strong>Sulfonamides:</strong> Sulfonamides, also known as sulfa drugs, inhibit the synthesis of folic acid in bacteria,
+which is essential for their growth. They are used to treat urinary tract infections, respiratory infections,
+and other bacterial infections. Examples of sulfonamides include sulfamethoxazole and trimethoprim.</p></li>
+<li><p><strong>Aminoglycosides:</strong> Aminoglycosides are bactericidal antibiotics that inhibit bacterial protein synthesis.
+They are particularly effective against aerobic gram-negative bacteria. Aminoglycosides are often used in
+combination with other antibiotics to treat severe infections. Gentamicin and streptomycin are examples of
+aminoglycosides.</p></li>
+</ul>
+<img alt="https://girlymicrobiologist.files.wordpress.com/2020/10/antibiotic-classes.png" src="https://girlymicrobiologist.files.wordpress.com/2020/10/antibiotic-classes.png" />
+<p>These are just a few examples of the different types of antibiotics available. It’s important to note that
+the choice of antibiotic depends on the specific infection being treated, as well as factors such as the type
+of bacteria involved, the site of infection, and the patient’s individual circumstances. Antibiotics should
+always be used judiciously and under the guidance of a healthcare professional to ensure their appropriate
+and effective use.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Antibiotic">RA1</a>: Entry in wikipedia for Antibiotic.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="description-of-metrics-for-amr">
+<h2>Description of metrics for AMR<a class="headerlink" href="#description-of-metrics-for-amr" title="Permalink to this heading"></a></h2>
+<p>Establishing quantifiable metrics is essential to gain a standardized and objective framework to
+monitor the emergence and spread of resistant strains, assess the effectiveness of antimicrobial
+interventions, and evaluate the impact of various interventions and policies. Such metrics enable
+us to quantify resistance levels, track trends over time, and compare data across different regions
+and healthcare settings, facilitating evidence-based decision making. Furthermore, these metrics
+provide a foundation for the development of sophisticated algorithms that can analyze vast amounts
+of data, identify patterns, predict resistance patterns, and assist clinicians in making informed
+treatment choices. By integrating these metrics into clinical decision support systems, healthcare
+providers can access real-time, data-driven insights to optimize antimicrobial therapy, improve patient
+outcomes, and mitigate the further development and dissemination of antimicrobial resistance.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Summary of AMR metrics</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 3.7%" />
+<col style="width: 45.0%" />
+<col style="width: 11.9%" />
+<col style="width: 39.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
 <th class="head"><p>Name</p></th>
 <th class="head"><p>Range</p></th>
-<th class="head"><p>Status</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SARI</span></code></p></td>
 <td><p>Single Antimicrobial Resistance Index</p></td>
 <td><p>[0, 1]</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
+<td><p>Ratio of resistant isolates</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MARI</span></code></p></td>
 <td><p>Multiple Antimicrobial Resistance Index</p></td>
 <td><p>[0, 1]</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
+<td><p>Ratio of agents tested to which a pathogen is resistant</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DRI</span></code></p></td>
-<td><p>Drug Resistance Index</p></td>
-<td></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Pending</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SART</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SART</span></code></p></td>
 <td><p>Single Antimicrobial Resistance Trend</p></td>
 <td><p>[0, 1]</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
+<td><p>Ratio of change of resistance rates per time unit</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ASAI</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ASAI</span></code></p></td>
 <td><p>Antimicrobial Spectrum of Activity Index</p></td>
 <td><p>[-1, 1]</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
+<td><p>Range of microbe species that are susceptible to an agent</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ACSI</span></code></p></td>
+<td><p>Antimicrobial Collateral Sensitivity Index</p></td>
+<td><p>[-.7, .7]</p></td>
+<td><p>Degree of dependence between two agents</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DRI</span></code></p></td>
+<td><p>Drug Resistance Index</p></td>
+<td><p>[0, 1]</p></td>
+<td><p>Ratio of pathogens resistant to the antimicrobials used to treat them</p></td>
 </tr>
 </tbody>
 </table>
@@ -213,8 +551,8 @@ to one indicate high resistance. It is agnostic to pathogen, antibiotic and time
 <em>I</em> and <em>S</em> represent the number of susceptibility tests with Resistant, Intermediate and Susceptible
 outcomes respectively. The definition might vary slightly since the intermediate category is not
 always considered.</p>
-<p>See: <a class="reference internal" href="../_apidoc/pyamr.core.html#pyamr.core.sari.SARI" title="pyamr.core.sari.SARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></a></p>
-<p>Example: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_sari.html#sphx-glr-examples-tutorial-indexes-plot-core-sari-py"><span class="std std-ref">Single Resistance Index (SARI)</span></a></p>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></p>
+<p>Example: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_a_sari.html#sphx-glr-examples-tutorial-indexes-plot-core-a-sari-py"><span class="std std-ref">Single Antimicrobial Resistance (SARI)</span></a></p>
 </div></blockquote>
 </li>
 <li><p><strong>Multiple Antimicrobial Resistance Index (MARI)</strong></p>
@@ -225,32 +563,8 @@ one indicate high multi-drug resistance. It highly depends on the antimicrobials
 pathogen is tested. Since tested antimicrobials vary among health care centres and time, comparison
 and analysis of its evolution in time is not straight forward. In addition, antibiotics which are
 intrinsically resistant should not be considered.</p>
-<p>See: <a class="reference internal" href="../_apidoc/pyamr.core.html#pyamr.core.mari.MARI" title="pyamr.core.mari.MARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.mari.MARI</span></code></a></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_mari.html#sphx-glr-examples-tutorial-indexes-plot-core-mari-py"><span class="std std-ref">Multiple Resistance (MARI)</span></a></p>
-</div></blockquote>
-</li>
-<li><p><strong>Drug Resistance Index (DRI)</strong></p>
-<blockquote>
-<div><p>The drug resistance index measures the proportion of pathogens that are resistant to the
-antimicrobials used to treat them. It provides a value within the range [0,1] where values
-close to one indicate high resistant for frequent antimicrobials. The variable <em>ρik</em> is the
-proportion of resistance among organism <em>i</em> to antimicrobial <em>k</em> and <em>qik</em> is the
-frequency of drug <em>k</em> used to treat organism <em>i</em>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Not implemented!</p>
-</div>
-</div></blockquote>
-</li>
-<li><p><strong>Antimicrobial Spectrum of Activity Index (ASAI)</strong></p>
-<blockquote>
-<div><p>The antimicrobial spectrum of activity index refers to the range of microbe species that are
-susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
-classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
-against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
-have limited activity and are effective only against particular species of bacteria.</p>
-<p>See: <a class="reference internal" href="../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI" title="pyamr.core.asai.ASAI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></a></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_asai.html#sphx-glr-examples-tutorial-indexes-plot-core-asai-py"><span class="std std-ref">Spectrum of Activity (ASAI)</span></a></p>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.mari.MARI</span></code></p>
+<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_c_mari.html#sphx-glr-examples-tutorial-indexes-plot-core-c-mari-py"><span class="std std-ref">Multiple Resistance (MARI)</span></a></p>
 </div></blockquote>
 </li>
 <li><p><strong>Single Antimicrobial Resistance Trend (SART)</strong></p>
@@ -262,13 +576,53 @@ computing the SARI consecutive or overlapping partitions of the data. Then, the 
 can be extracted using for example a linear model where the slope, which is a value
 within the range [-1, 1] indicates the ratio of change.</p>
 <p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sart.SART</span></code></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_sart.html#sphx-glr-examples-tutorial-indexes-plot-core-sart-py"><span class="std std-ref">Single Resistance Trend (SART)</span></a></p>
+<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_d_sart.html#sphx-glr-examples-tutorial-indexes-plot-core-d-sart-py"><span class="std std-ref">Single Resistance Trend (SART)</span></a></p>
+</div></blockquote>
+</li>
+<li><p><strong>Antimicrobial Spectrum of Activity Index (ASAI)</strong></p>
+<blockquote>
+<div><p>The antimicrobial spectrum of activity index refers to the range of microbe species that are
+susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
+classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
+against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
+have limited activity and are effective only against particular species of bacteria.</p>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></p>
+<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_b_asai.html#sphx-glr-examples-tutorial-indexes-plot-core-b-asai-py"><span class="std std-ref">Spectrum of Activity (ASAI)</span></a></p>
+</div></blockquote>
+</li>
+<li><p><strong>Antimicrobial Collateral Sensitivity Index (ACSI)</strong></p>
+<blockquote>
+<div><p>The antimicrobial collateral sensitivity index is based on the mutual information score
+and is useful to identify antibiotic pairs displaying concurrent resistance, independence, or
+disjoint resistance. Mutual information quantifies the degree of dependence between two antibiotic
+susceptibility test results (X and Y) by measuring the amount of information gained about one test
+result (X) by knowing that of the other (Y). Susceptibility test results for pairs of antibiotics
+(X/Y) belong to one of four possible states: susceptible/susceptible, susceptible/resistant,
+resistant/susceptible, or resistant/resistant. Concurrent resistance manifests as an X/Y bias toward
+susceptible/susceptible and resistant/resistant states, resulting in a positive MIS. Conversely, an
+X/Y bias toward susceptible/resistant and resistant/susceptible due to disjoint resistance would result
+in a negative MIS. The MIS is maximised (0·7) when susceptibility to one antibiotic always predicts
+susceptibility to another antibiotic and similarly for non-susceptibility. The MIS is minimised
+(−0·7) when resistance to one antibiotic always predicts susceptibility to another and vice versa.</p>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.acsi.ACSI</span></code></p>
+<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_f_acri.html#sphx-glr-examples-tutorial-indexes-plot-core-f-acri-py"><span class="std std-ref">Collateral Sensitivity Index (ACSI)</span></a></p>
+</div></blockquote>
+</li>
+<li><p><strong>Drug Resistance Index (DRI)</strong></p>
+<blockquote>
+<div><p>The drug resistance index measures the proportion of pathogens that are resistant to the
+antimicrobials used to treat them. It provides a value within the range [0,1] where values
+close to one indicate high resistant for frequent antimicrobials. The variable <em>ρik</em> is the
+proportion of resistance among organism <em>i</em> to antimicrobial <em>k</em> and <em>qik</em> is the
+frequency of drug <em>k</em> used to treat organism <em>i</em>.</p>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.dri.DRI</span></code></p>
+<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_e_dri.html#sphx-glr-examples-tutorial-indexes-plot-core-e-dri-py"><span class="std std-ref">Drug Resistance Index (DRI)</span></a></p>
 </div></blockquote>
 </li>
 </ul>
 </section>
-<section id="time-series-analysis">
-<h2>Time series analysis<a class="headerlink" href="#time-series-analysis" title="Permalink to this headline"></a></h2>
+<section id="essentials-of-time-series-analysis">
+<h2>Essentials of time series analysis<a class="headerlink" href="#essentials-of-time-series-analysis" title="Permalink to this heading"></a></h2>
 <p>Time series analysis is a specific way of analyzing a sequence of data points collected over
 an interval of time. In time series analysis, analysts record data points at consistent intervals
 over a set period of time. Time series analysis typically requires a large number of data points
@@ -287,16 +641,17 @@ can be used for forecasting—predicting future data based on historical data.</
 in order to assess which method to use and to better understand the behaviour of the
 produced models. A summary of these statistical properties/tests is presented below.</p>
 <section id="statistical-properties">
-<h3>Statistical properties<a class="headerlink" href="#statistical-properties" title="Permalink to this headline"></a></h3>
+<h3>Statistical properties<a class="headerlink" href="#statistical-properties" title="Permalink to this heading"></a></h3>
 <p>A statistic (singular) or sample statistic is any quantity computed from values in a sample which
 is considered for a statistical purpose. Some of the most commonly used descriptive statistics are
 central tendency, dispersion, skewness, and tailednes.</p>
-<table class="docutils align-default">
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Summary of statistical properties</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 55%" />
-<col style="width: 14%" />
-<col style="width: 8%" />
+<col style="width: 10.0%" />
+<col style="width: 70.0%" />
+<col style="width: 15.0%" />
+<col style="width: 5.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -349,7 +704,7 @@ central tendency, dispersion, skewness, and tailednes.</p>
 </tbody>
 </table>
 <section id="pearson">
-<h4>Pearson<a class="headerlink" href="#pearson" title="Permalink to this headline"></a></h4>
+<h4>Pearson<a class="headerlink" href="#pearson" title="Permalink to this heading"></a></h4>
 <a class="reference internal image-reference" href="https://www.simplilearn.com/ice9/free_resources_article_thumb/Pearson_Correlation_1.jpg"><img alt="pearson" class="align-right" src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Pearson_Correlation_1.jpg" style="width: 320px;" /></a>
 <p>In statistics, the Pearson correlation coefficient is a measure of linear correlation
 between two sets of data. It is the ratio between the covariance of two variables and
@@ -359,7 +714,7 @@ can only reflect a linear correlation of variables, and ignores many other types
 relationships or correlations.</p>
 </section>
 <section id="id1">
-<h4>R2<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h4>
+<h4>R2<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <p>R-squared is a goodness-of-fit measure for linear regression models. This
 statistic indicates the percentage of the variance in the dependent variable
 that the independent variables explain collectively. R-squared measures the
@@ -371,7 +726,7 @@ the dependent variable as well as the regression model and (ii) <strong>100%</st
 a model that explains all the variation in the response variable around its mean.</p>
 </section>
 <section id="skewness">
-<h4>Skewness<a class="headerlink" href="#skewness" title="Permalink to this headline"></a></h4>
+<h4>Skewness<a class="headerlink" href="#skewness" title="Permalink to this heading"></a></h4>
 <a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Negative_and_positive_skew_diagrams_%28English%29.svg/446px-Negative_and_positive_skew_diagrams_%28English%29.svg.png"><img alt="skewness" class="align-right" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Negative_and_positive_skew_diagrams_%28English%29.svg/446px-Negative_and_positive_skew_diagrams_%28English%29.svg.png" style="width: 320px;" /></a>
 <p>Skewness is a measure of the asymmetry of the probability distribution of a
 real-valued random variable about its mean. The skewness value can be positive,
@@ -385,7 +740,7 @@ symmetric distribution, but can also be true for an asymmetric distribution
 where one tail is long and thin, and the other is short but fat.</p>
 </section>
 <section id="kurtosis">
-<h4>Kurtosis<a class="headerlink" href="#kurtosis" title="Permalink to this headline"></a></h4>
+<h4>Kurtosis<a class="headerlink" href="#kurtosis" title="Permalink to this heading"></a></h4>
 <a class="reference internal image-reference" href="https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png"><img alt="kurtosis" class="align-right" src="https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png" style="width: 320px;" /></a>
 <p>Kurtosis describes the extent to which the tails (or extremes) of a set of data
 differ from those of a normal distribution. A bell curve distribution would exhibit
@@ -399,27 +754,27 @@ An example of a platykurtic distribution is the uniform distribution, which does
 produce outliers. Distributions with a positive excess kurtosis are said to be leptokurt.</p>
 </section>
 <section id="akaike-information-criterion">
-<h4>Akaike information criterion<a class="headerlink" href="#akaike-information-criterion" title="Permalink to this headline"></a></h4>
+<h4>Akaike information criterion<a class="headerlink" href="#akaike-information-criterion" title="Permalink to this heading"></a></h4>
 <p>The Akaike information criterion (AIC) is an estimator of prediction error and thereby
 relative quality of statistical models for a given set of data.[1][2][3] Given a collection
 of models for the data, AIC estimates the quality of each model, relative to each of the
 other models. Thus, AIC provides a means for model selection.</p>
 </section>
 <section id="bayesian-information-criterion">
-<h4>Bayesian information criterion<a class="headerlink" href="#bayesian-information-criterion" title="Permalink to this headline"></a></h4>
+<h4>Bayesian information criterion<a class="headerlink" href="#bayesian-information-criterion" title="Permalink to this heading"></a></h4>
 <p>In statistics, the Bayesian information criterion (BIC) or Schwarz information criterion
 (also SIC, SBC, SBIC) is a criterion for model selection among a finite set of models; models
 with lower BIC are generally preferred. It is based, in part, on the likelihood function and
 it is closely related to the Akaike information criterion (AIC).</p>
 </section>
 <section id="hannan-quinn-information-criterion">
-<h4>Hannan-Quinn information criterion<a class="headerlink" href="#hannan-quinn-information-criterion" title="Permalink to this headline"></a></h4>
+<h4>Hannan-Quinn information criterion<a class="headerlink" href="#hannan-quinn-information-criterion" title="Permalink to this heading"></a></h4>
 <p>The Hannan-Quinn information criterion (HQC) is a measure of the goodness of fit of a statistical
 model, and is often used as a criterion for model selection among a finite set of models. It is not
 based on log-likelihood function (LLF), and but related to Akaike’s information criterion.</p>
 </section>
 <section id="stationarity">
-<h4>Stationarity<a class="headerlink" href="#stationarity" title="Permalink to this headline"></a></h4>
+<h4>Stationarity<a class="headerlink" href="#stationarity" title="Permalink to this heading"></a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Pending!</p>
@@ -427,16 +782,17 @@ based on log-likelihood function (LLF), and but related to Akaike’s informatio
 </section>
 </section>
 <section id="statistical-tests">
-<h3>Statistical tests<a class="headerlink" href="#statistical-tests" title="Permalink to this headline"></a></h3>
+<h3>Statistical tests<a class="headerlink" href="#statistical-tests" title="Permalink to this heading"></a></h3>
 <p>A statistical test provides a mechanism for making quantitative decisions about a process or
 processes. The intent is to determine whether there is enough evidence to “reject” a conjecture
 or hypothesis about the process. The conjecture is called the null hypothesis.</p>
-<table class="docutils align-default">
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Summary of statistical tests</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 55%" />
-<col style="width: 14%" />
-<col style="width: 8%" />
+<col style="width: 25.0%" />
+<col style="width: 60.0%" />
+<col style="width: 10.0%" />
+<col style="width: 5.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -499,56 +855,68 @@ or hypothesis about the process. The conjecture is called the null hypothesis.</
 </tbody>
 </table>
 <section id="augmented-dicker-fuller">
-<h4>Augmented Dicker-Fuller<a class="headerlink" href="#augmented-dicker-fuller" title="Permalink to this headline"></a></h4>
+<h4>Augmented Dicker-Fuller<a class="headerlink" href="#augmented-dicker-fuller" title="Permalink to this heading"></a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending!</p>
+</div>
 </section>
 <section id="kendal">
-<h4>Kendal<a class="headerlink" href="#kendal" title="Permalink to this headline"></a></h4>
+<h4>Kendal<a class="headerlink" href="#kendal" title="Permalink to this heading"></a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending!</p>
+</div>
 </section>
 <section id="kwiatkowskiphillipsschmidtshin">
-<h4>Kwiatkowski–Phillips–Schmidt–Shin<a class="headerlink" href="#kwiatkowskiphillipsschmidtshin" title="Permalink to this headline"></a></h4>
+<h4>Kwiatkowski–Phillips–Schmidt–Shin<a class="headerlink" href="#kwiatkowskiphillipsschmidtshin" title="Permalink to this heading"></a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending!</p>
+</div>
 </section>
 <section id="jarque-bera">
-<h4>Jarque Bera<a class="headerlink" href="#jarque-bera" title="Permalink to this headline"></a></h4>
+<h4>Jarque Bera<a class="headerlink" href="#jarque-bera" title="Permalink to this heading"></a></h4>
 <p>In statistics, the Jarque–Bera test is a goodness-of-fit test of whether sample data
 have the skewness and kurtosis matching a normal distribution.</p>
 </section>
 <section id="durbin-watson">
-<h4>Durbin Watson<a class="headerlink" href="#durbin-watson" title="Permalink to this headline"></a></h4>
+<h4>Durbin Watson<a class="headerlink" href="#durbin-watson" title="Permalink to this heading"></a></h4>
 <p>The Durbin Watson (DW) statistic is a test for autocorrelation in the residuals
 from a statistical model or regression analysis. The Durbin-Watson statistic will
 always have a value ranging between 0 and 4. A value of 2.0 indicates there is
 no autocorrelation detected in the sample.</p>
 </section>
 <section id="normal">
-<h4>Normal<a class="headerlink" href="#normal" title="Permalink to this headline"></a></h4>
+<h4>Normal<a class="headerlink" href="#normal" title="Permalink to this heading"></a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Pending!</p>
 </div>
 </section>
 <section id="kolmogorov-smirnov">
-<h4>Kolmogorov-smirnov<a class="headerlink" href="#kolmogorov-smirnov" title="Permalink to this headline"></a></h4>
+<h4>Kolmogorov-smirnov<a class="headerlink" href="#kolmogorov-smirnov" title="Permalink to this heading"></a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Pending!</p>
 </div>
 </section>
 <section id="shapiro-wilkinson">
-<h4>Shapiro-wilkinson<a class="headerlink" href="#shapiro-wilkinson" title="Permalink to this headline"></a></h4>
+<h4>Shapiro-wilkinson<a class="headerlink" href="#shapiro-wilkinson" title="Permalink to this heading"></a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Pending!</p>
 </div>
 </section>
 <section id="anderson-darling">
-<h4>Anderson-darling<a class="headerlink" href="#anderson-darling" title="Permalink to this headline"></a></h4>
+<h4>Anderson-darling<a class="headerlink" href="#anderson-darling" title="Permalink to this heading"></a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Pending!</p>
 </div>
 </section>
 <section id="omnibus">
-<h4>Omnibus<a class="headerlink" href="#omnibus" title="Permalink to this headline"></a></h4>
+<h4>Omnibus<a class="headerlink" href="#omnibus" title="Permalink to this heading"></a></h4>
 <p>Omnibus tests are a kind of statistical test. They test whether the explained variance
 in a set of data is significantly greater than the unexplained …</p>
 <div class="admonition warning">
@@ -556,253 +924,6 @@ in a set of data is significantly greater than the unexplained …</p>
 <p>Pending!</p>
 </div>
 </section>
-</section>
-</section>
-<section id="registries">
-<h2>Registries<a class="headerlink" href="#registries" title="Permalink to this headline"></a></h2>
-<section id="microorganisms">
-<h3>Microorganisms<a class="headerlink" href="#microorganisms" title="Permalink to this headline"></a></h3>
-<p>A microorganism, or microbe, is an organism of microscopic size, which may exist in its
-single-celled form or as a colony of cells. Microbes are important in human culture and health
-in many ways, serving to ferment foods and treat sewage, and to produce fuel, enzymes, and
-other bioactive compounds. Microbes are essential tools in biology as model organisms and have
-been put to use in biological warfare and bioterrorism. Microbes are a vital component of
-fertile soil. In the human body, microorganisms make up the human microbiota, including the
-essential gut flora. The pathogens responsible for many infectious diseases are microbes and,
-as such, are the target of hygiene measures.</p>
-<p>The table below shows some relevant characteristics that can be used to describe various
-microorganisms. Therefore, these can also be used to categorise or group microorganisms
-that have similar properties</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 67%" />
-<col style="width: 11%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Definition</p></th>
-<th class="head"><p>Categories</p></th>
-<th class="head"><p>Status</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>taxonomy</p></td>
-<td><p>domain, kingdom, phylum, class, order, family, genus, species</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>gram_stain</p></td>
-<td><p>positive, negative</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ok</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p>shape/morphology</p></td>
-<td><p>cocci, bacilli, vibrio, spirochete</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>growth</p></td>
-<td><p>aerobic, anaerobic</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>hemolysis</p></td>
-<td><p>alpha, beta, gamma, no-hemolysis</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>coagulase_production</p></td>
-<td><p>positive, negative</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>group</p></td>
-<td><p>A, B, C, D, …</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>arrangement</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>endospores</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>mobility?</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>salinity</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>oxygen_requirements</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>habitat</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>temp_range</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>temp_optima</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>disease</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>host</p></td>
-<td><p>human, animals, swine, cattle, …</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>fermenting</p></td>
-<td><p>lactose, non-lactose</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>acid_fastness_stain</p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>ziehl_nealson_tain</p></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Most of these categories have not been used within the library.</p>
-</div>
-<section id="taxonomy">
-<h4>Taxonomy<a class="headerlink" href="#taxonomy" title="Permalink to this headline"></a></h4>
-<a class="reference internal image-reference" href="https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme"><img alt="pyAMR" class="align-right" src="https://textimgs.s3.amazonaws.com/boundless-microbiology/assification-l-pengo-vflip.svg#fixme" style="width: 130px;" /></a>
-<p>Bacterial taxonomy is a rank-based classification, of bacteria. In the scientific classification
-established by Carl Linnaeus, each species has to be assigned to a genus (binary nomenclature),
-which in turn is a lower level of a hierarchy of ranks (family, suborder, order, subclass, class,
-division/phyla, kingdom and domain). In the currently accepted classification of life, there are
-three domains (Eukaryotes, Bacteria and Archaea), which, in terms of taxonomy, despite following
-the same principles have several different conventions between them and between their subdivisions.
-See an example below.</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>life:</p></li>
-<li><p>domain: Bacteria</p></li>
-<li><p>kingdom:</p></li>
-<li><p>phylum: Proteobacteria</p></li>
-<li><p>class: Gamma Proteobacteria</p></li>
-<li><p>order: Enterobacteriales</p></li>
-<li><p>family: Enterobacteriaceae</p></li>
-<li><p>genus: Escherichia</p></li>
-<li><p>species: Escherichia coli</p></li>
-<li><p>subspecies (missing in dataset)</p></li>
-</ul>
-</div></blockquote>
-</section>
-<section id="gram-stain">
-<h4>Gram Stain<a class="headerlink" href="#gram-stain" title="Permalink to this headline"></a></h4>
-<p>Gram stain or Gram staining, also called Gram’s method, is a method of staining used to
-distinguish and classify bacterial species into two large groups according to the chemical
-and physical properties of their cell walls: gram-positive bacteria and gram-negative
-bacteria. The name comes from the Danish bacteriologist Hans Christian
-Gram, who developed the technique.</p>
-<ul class="simple">
-<li><p><strong>Gram positive</strong> bacteria take up the crystal violet stain used in the test, and then
-appear to be purple-coloured when seen through an optical microscope. This is because the
-thick peptidoglycan layer in the bacterial cell wall retains the stain after it is washed
-away from the rest of the sample, in the decolorization stage of the test.</p></li>
-<li><p><strong>Gram-negative</strong> bacteria cannot retain the violet stain after the decolorization step;
-alcohol used in this stage degrades the outer membrane of gram-negative cells, making the
-cell wall more porous and incapable of retaining the crystal violet stain. Their peptidoglycan
-layer is much thinner and sandwiched between an inner cell membrane and a bacterial outer
-membrane, causing them to take up the counterstain (safranin or fuchsine) and appear red or
-pink.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Despite their thicker peptidoglycan layer, gram-positive bacteria are more
-receptive to certain cell wall–targeting antibiotics than gram-negative bacteria,
-due to the absence of the outer membrane.</p>
-</div>
-</section>
-<section id="shape-or-morphology">
-<h4>Shape or morphology<a class="headerlink" href="#shape-or-morphology" title="Permalink to this headline"></a></h4>
-<p>[REF]: <a class="reference external" href="https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology">https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology</a></p>
-<p>Different types of microbes have different, but characteristic, shapes. Under suitable
-conditions, the shape and size of microbes are relatively stable. It is important to know
-the morphological structure of microbes, as it provides us with a better understanding of
-microbial physiology, pathogenic mechanisms, antigenic features, and allows us to identify
-them by species. In addition, knowledge of microbial morphology can be helpful in diagnosing
-disease and in preventing microbial infections.</p>
-<p>Bacteria are complex and highly variable microbes. They come in four basic shapes: <strong>spherical</strong>
-(cocci), <strong>rod-shaped</strong> (bacilli), <strong>arc-shaped</strong> (vibrio), and <strong>spiral</strong> (spirochete). See some
-examples included in the figure below.</p>
-<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"><img alt="pyAMR" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg" width="600" /></a>
-<!--
-<img src="https://microbenotes.com/wp-content/uploads/2020/05/Bacterial-Shapes-and-Arrangement.jpeg"/>
-<img src="https://ars.els-cdn.com/content/image/3-s2.0-B978012802234400001X-f01-03-9780128022344.jpg"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
---></section>
-<section id="growth-type">
-<h4>Growth Type<a class="headerlink" href="#growth-type" title="Permalink to this headline"></a></h4>
-<p>The two main types of bacterial growth are <strong>aerobic</strong> and <strong>anaerobic</strong>. The basic difference
-between the two, is that the former thrives in oxygenated environment and latter in an environment
-marked by the absence of oxygen, there also exist other differences which cannot be ignored.</p>
-<ul class="simple">
-<li><p><strong>Aerobic:</strong> These are the species of bacteria which require oxygen for their basic survival,
-growth, and the process of reproduction. It is very easy to isolate these bacteria by culturing
-a mass of bacterial strains in some liquid medium. As they require oxygen for survival, they
-tend to come to the surface in a bid to derive maximum oxygen available. Examples are Bacillus
-or Nocardia.</p></li>
-<li><p><strong>Anaerobic</strong>: these are the species of bacteria which don’t require oxygen for growth. There are
-different types of anaerobic species, including the aerotolerant anaerobes, which can survive in the
-presence of oxygen, and obligate anaerobes, which can’t survive in the presence of oxygen. Examples
-are Escherichia coli or Bacteroides.</p></li>
-</ul>
-</section>
-<section id="haemolysis">
-<h4>Haemolysis<a class="headerlink" href="#haemolysis" title="Permalink to this headline"></a></h4>
-<p>Hemolysis (from Greek αιμόλυση, meaning ‘blood breakdown’) is the breakdown of red blood cells. The
-ability of bacterial colonies to induce hemolysis when grown on blood agar is used to classify certain
-microorganisms. This is particularly useful in classifying streptococcal species. A substance that causes
-hemolysis is a hemolysin.</p>
-<ul class="simple">
-<li><p><strong>Alpha-hemolysis:</strong> When alpha-hemolysis (α-hemolysis) is present, the agar under the colony is
-light and greenish. Streptococcus pneumoniae and a group of oral streptococci (Streptococcus viridans
-or viridans streptococci) display alpha hemolysis.</p></li>
-<li><p><strong>Beta-hemolysis:</strong> Sometimes called complete hemolysis, is a complete lysis of red cells in the media
-around and under the colonies: the area appears lightened (yellow) and transparent. Streptolysin, an
-exotoxin, is the enzyme produced by the bacteria which causes the complete lysis of red blood cells. There
-are two types of streptolysin: Streptolysin O (SLO) and streptolysin S (SLS).</p></li>
-<li><p><strong>Gamma-hemolysis:</strong> If an organism does not induce hemolysis, the agar under and around the colony
-is unchanged, and the organism is called non-hemolytic or said to display gamma-hemolysis (γ-hemolysis).
-Enterococcus faecalis (formerly called “Group D Strep”), Staphylococcus saprophyticus, and Staphylococcus
-epidermidis display gamma hemolysis.</p></li>
-</ul>
-</section>
-<section id="coagulase-production">
-<h4>Coagulase Production<a class="headerlink" href="#coagulase-production" title="Permalink to this headline"></a></h4>
-<p>Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
-to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
-Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
-the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
-test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
-However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
-Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
-opportunistic infection.</p>
-</section>
-</section>
-<section id="antimicrobials">
-<h3>Antimicrobials<a class="headerlink" href="#antimicrobials" title="Permalink to this headline"></a></h3>
-<p>An antimicrobial is an agent that kills microorganisms or stops their growth. Antimicrobial
-medicines can be grouped according to the microorganisms they act primarily against in for main
-categories: (i) <strong>anibiotics</strong> which are used against bacteria, (ii) <strong>antifungals</strong> which are used
-against fungi, (iii) <strong>antivirals</strong> which are used against viruses and (iv) <strong>antiparasitics</strong> which
-are used against parasites.</p>
-<img alt="https://antibioticguardian.com/assets/Antimicrobials_AMR-infographic_UKHSA.png" src="https://antibioticguardian.com/assets/Antimicrobials_AMR-infographic_UKHSA.png" />
-<p>An antibiotic is a type of antimicrobial substance active against bacteria. It is the most important type
-of antibacterial agent for fighting bacterial infections, and antibiotic medications are widely used in the
-treatment and prevention of such infections.</p>
-<p>[REF]: <a class="reference external" href="https://en.wikipedia.org/wiki/Antibiotic">https://en.wikipedia.org/wiki/Antibiotic</a></p>
-<img alt="https://girlymicrobiologist.files.wordpress.com/2020/10/antibiotic-classes.png" src="https://girlymicrobiologist.files.wordpress.com/2020/10/antibiotic-classes.png" />
 </section>
 </section>
 </section>

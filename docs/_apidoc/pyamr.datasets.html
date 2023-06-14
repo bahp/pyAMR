@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.datasets package &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -58,20 +66,89 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyamr</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="pyamr.html">pyamr package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">pyamr.datasets package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pyamr.html">pyamr package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pyamr.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pyamr.datasets.microbiology.html">pyamr.datasets.microbiology package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.datasets.clean">pyamr.datasets.clean module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_basic"><code class="docutils literal notranslate"><span class="pre">clean_basic()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_clwsql008"><code class="docutils literal notranslate"><span class="pre">clean_clwsql008()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_clwsql008_old"><code class="docutils literal notranslate"><span class="pre">clean_clwsql008_old()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_common"><code class="docutils literal notranslate"><span class="pre">clean_common()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_format"><code class="docutils literal notranslate"><span class="pre">clean_format()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_legacy"><code class="docutils literal notranslate"><span class="pre">clean_legacy()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_legacy_old"><code class="docutils literal notranslate"><span class="pre">clean_legacy_old()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_microorganism"><code class="docutils literal notranslate"><span class="pre">clean_microorganism()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.clean_mimic"><code class="docutils literal notranslate"><span class="pre">clean_mimic()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.hyphen_before"><code class="docutils literal notranslate"><span class="pre">hyphen_before()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.invert"><code class="docutils literal notranslate"><span class="pre">invert()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.string_replace"><code class="docutils literal notranslate"><span class="pre">string_replace()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.clean.word_to_start"><code class="docutils literal notranslate"><span class="pre">word_to_start()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.datasets.load">pyamr.datasets.load module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.fixture"><code class="docutils literal notranslate"><span class="pre">fixture()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.load_data_mimic"><code class="docutils literal notranslate"><span class="pre">load_data_mimic()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.load_data_nhs"><code class="docutils literal notranslate"><span class="pre">load_data_nhs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.load_microbiology_folder"><code class="docutils literal notranslate"><span class="pre">load_microbiology_folder()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.load_registry_antimicrobials"><code class="docutils literal notranslate"><span class="pre">load_registry_antimicrobials()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.load_registry_microorganisms"><code class="docutils literal notranslate"><span class="pre">load_registry_microorganisms()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.make_susceptibility"><code class="docutils literal notranslate"><span class="pre">make_susceptibility()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.load.make_timeseries"><code class="docutils literal notranslate"><span class="pre">make_timeseries()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.datasets.registries">pyamr.datasets.registries module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.AntimicrobialRegistry"><code class="docutils literal notranslate"><span class="pre">AntimicrobialRegistry</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.AntimicrobialRegistry.combine"><code class="docutils literal notranslate"><span class="pre">AntimicrobialRegistry.combine()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.AntimicrobialRegistry.reg"><code class="docutils literal notranslate"><span class="pre">AntimicrobialRegistry.reg</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.MicroorganismRegistry"><code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.MicroorganismRegistry.binomial_name"><code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry.binomial_name()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.MicroorganismRegistry.combine"><code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry.combine()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.MicroorganismRegistry.reg"><code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry.reg</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.MicroorganismRegistry.taxonomy"><code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry.taxonomy</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.MicroorganismRegistry.uuid"><code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry.uuid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.FCLEAN"><code class="docutils literal notranslate"><span class="pre">Registry.FCLEAN</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.ORDER"><code class="docutils literal notranslate"><span class="pre">Registry.ORDER</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.REG"><code class="docutils literal notranslate"><span class="pre">Registry.REG</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.RENAME_COLUMNS"><code class="docutils literal notranslate"><span class="pre">Registry.RENAME_COLUMNS</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.SUBSET"><code class="docutils literal notranslate"><span class="pre">Registry.SUBSET</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.clean"><code class="docutils literal notranslate"><span class="pre">Registry.clean()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.combine"><code class="docutils literal notranslate"><span class="pre">Registry.combine()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.fit"><code class="docutils literal notranslate"><span class="pre">Registry.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.fit_transform"><code class="docutils literal notranslate"><span class="pre">Registry.fit_transform()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.getr"><code class="docutils literal notranslate"><span class="pre">Registry.getr()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.replace"><code class="docutils literal notranslate"><span class="pre">Registry.replace()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.datasets.registries.Registry.transform"><code class="docutils literal notranslate"><span class="pre">Registry.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.acronym_series"><code class="docutils literal notranslate"><span class="pre">acronym_series()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.acronym_series_unique"><code class="docutils literal notranslate"><span class="pre">acronym_series_unique()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.clean_specimen"><code class="docutils literal notranslate"><span class="pre">clean_specimen()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.create_registry"><code class="docutils literal notranslate"><span class="pre">create_registry()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.invert"><code class="docutils literal notranslate"><span class="pre">invert()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.datasets.registries.length_exceptions"><code class="docutils literal notranslate"><span class="pre">length_exceptions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.datasets">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -89,10 +166,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">pyamr</a> &raquo;</li>
-          <li><a href="pyamr.html">pyamr package</a> &raquo;</li>
-      <li>pyamr.datasets package</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="pyamr.html">pyamr package</a></li>
+      <li class="breadcrumb-item active">pyamr.datasets package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_apidoc/pyamr.datasets.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,17 +179,27 @@
            <div itemprop="articleBody">
              
   <section id="pyamr-datasets-package">
-<h1>pyamr.datasets package<a class="headerlink" href="#pyamr-datasets-package" title="Permalink to this headline"></a></h1>
+<h1>pyamr.datasets package<a class="headerlink" href="#pyamr-datasets-package" title="Permalink to this heading"></a></h1>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pyamr.datasets.microbiology.html">pyamr.datasets.microbiology package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.create_quickimport">pyamr.datasets.microbiology.create_quickimport module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.create_susceptibility">pyamr.datasets.microbiology.create_susceptibility module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.create_quickimport">pyamr.datasets.microbiology.create_quickimport module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.microbiology.html#pyamr.datasets.microbiology.create_quickimport.create_registry"><code class="docutils literal notranslate"><span class="pre">create_registry()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.create_susceptibility">pyamr.datasets.microbiology.create_susceptibility module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.microbiology.html#pyamr.datasets.microbiology.create_susceptibility.create_antimicrobials_lookup_table"><code class="docutils literal notranslate"><span class="pre">create_antimicrobials_lookup_table()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.microbiology.html#pyamr.datasets.microbiology.create_susceptibility.create_microorganisms_lookup_table"><code class="docutils literal notranslate"><span class="pre">create_microorganisms_lookup_table()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.quickimport_create">pyamr.datasets.microbiology.quickimport_create module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.quickimport_run">pyamr.datasets.microbiology.quickimport_run module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.quickimport_run">pyamr.datasets.microbiology.quickimport_run module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.microbiology.html#pyamr.datasets.microbiology.quickimport_run.quickimport"><code class="docutils literal notranslate"><span class="pre">quickimport()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology.test">pyamr.datasets.microbiology.test module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyamr.datasets.microbiology.html#module-pyamr.datasets.microbiology">Module contents</a></li>
 </ul>
@@ -122,10 +208,10 @@
 </div>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-pyamr.datasets.clean">
-<span id="pyamr-datasets-clean-module"></span><h2>pyamr.datasets.clean module<a class="headerlink" href="#module-pyamr.datasets.clean" title="Permalink to this headline"></a></h2>
+<span id="pyamr-datasets-clean-module"></span><h2>pyamr.datasets.clean module<a class="headerlink" href="#module-pyamr.datasets.clean" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.datasets.clean.clean_basic">
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.clean.</span></span><span class="sig-name descname"><span class="pre">clean_basic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/clean.html#clean_basic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.clean.clean_basic" title="Permalink to this definition"></a></dt>
@@ -137,13 +223,13 @@
 <li><p>Remove duplicates</p></li>
 </ol>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The data to clean.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The cleaned data</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
@@ -160,13 +246,13 @@
 <li><p>correct issue with date_received</p></li>
 </ol>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The data to clean.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The cleaned data</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
@@ -177,13 +263,13 @@
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.clean.</span></span><span class="sig-name descname"><span class="pre">clean_clwsql008_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/clean.html#clean_clwsql008_old"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.clean.clean_clwsql008_old" title="Permalink to this definition"></a></dt>
 <dd><p>This method cleans microbiology data from clwsql008.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The dataframe with the data</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The cleaned dataframe.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
@@ -207,13 +293,13 @@ sensitivity_name</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The dataframe to clean</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The cleaned dataframe</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
@@ -236,13 +322,13 @@ sensitivity_name</p>
 <li><p>Correct specimen issue</p></li>
 </ol>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The data to clean</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The cleaned data</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
@@ -253,13 +339,13 @@ sensitivity_name</p>
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.clean.</span></span><span class="sig-name descname"><span class="pre">clean_legacy_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/clean.html#clean_legacy_old"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.clean.clean_legacy_old" title="Permalink to this definition"></a></dt>
 <dd><p>This method cleans microbiology data from legacy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The dataframe with the data</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The cleaned dataframe.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
@@ -282,16 +368,16 @@ sensitivity_name</p>
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.clean.</span></span><span class="sig-name descname"><span class="pre">hyphen_before</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/clean.html#hyphen_before"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.clean.hyphen_before" title="Permalink to this definition"></a></dt>
 <dd><p>Ensures hyphen between words is correct.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>string</em>) – The string to format</p></li>
 <li><p><strong>w</strong> (<em>string</em>) – The word preceded by hyphen.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The formatted string</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string</p>
 </dd>
 </dl>
@@ -307,7 +393,7 @@ sensitivity_name</p>
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.clean.</span></span><span class="sig-name descname"><span class="pre">string_replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/clean.html#string_replace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.clean.string_replace" title="Permalink to this definition"></a></dt>
 <dd><p>This method corrects the strings.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>series</strong></p></li>
 <li><p><strong>remove</strong></p></li>
@@ -321,7 +407,7 @@ sensitivity_name</p>
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.clean.</span></span><span class="sig-name descname"><span class="pre">word_to_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/clean.html#word_to_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.clean.word_to_start" title="Permalink to this definition"></a></dt>
 <dd><p>Moves the word within the string.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>string</em>) – The string to format</p></li>
 <li><p><strong>w</strong> (<em>word</em>) – The word to relocate within the string.</p></li>
@@ -331,10 +417,10 @@ string.</p></li>
 <li><p><strong>verbose</strong> (<em>int</em>) – Level of verbosity</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Formatted string</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string</p>
 </dd>
 </dl>
@@ -342,7 +428,21 @@ string.</p></li>
 
 </section>
 <section id="module-pyamr.datasets.load">
-<span id="pyamr-datasets-load-module"></span><h2>pyamr.datasets.load module<a class="headerlink" href="#module-pyamr.datasets.load" title="Permalink to this headline"></a></h2>
+<span id="pyamr-datasets-load-module"></span><h2>pyamr.datasets.load module<a class="headerlink" href="#module-pyamr.datasets.load" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.datasets.load.fixture">
+<span class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></span><span class="sig-name descname"><span class="pre">fixture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/load.html#fixture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.load.fixture" title="Permalink to this definition"></a></dt>
+<dd><p>Load fixtures</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>string</em>) – The name of the file within the fixtures folder.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.datasets.load.load_data_mimic">
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></span><span class="sig-name descname"><span class="pre">load_data_mimic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'susceptibility-v0.0.1'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/load.html#load_data_mimic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.load.load_data_mimic" title="Permalink to this definition"></a></dt>
@@ -368,14 +468,14 @@ is available in files named ‘antimicrobials.csv’ and
 ‘microorganisms.csv’</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<em>string</em>) – The path where the folder is located.</p></li>
 <li><p><strong>folder</strong> (<em>string</em>) – Name of the folder with the data.</p></li>
 <li><p><strong>kwargs</strong> – Arguments to pass to pd.read_csv</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><em>susceptibility</em> – The susceptibility test data</p></li>
 <li><p><em>db_abxs</em> – The registries with the antimicrobials</p></li>
@@ -401,7 +501,7 @@ is available in files named ‘antimicrobials.csv’ and
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.datasets.load.make_susceptibility">
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></span><span class="sig-name descname"><span class="pre">make_susceptibility</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/load.html#make_susceptibility"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.load.make_susceptibility" title="Permalink to this definition"></a></dt>
-<dd><p>This method loads susceptibility.</p>
+<dd><p>This method returns sample data (Anonymised)</p>
 </dd></dl>
 
 <dl class="py function">
@@ -409,10 +509,10 @@ is available in files named ‘antimicrobials.csv’ and
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.load.</span></span><span class="sig-name descname"><span class="pre">make_timeseries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/load.html#make_timeseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.load.make_timeseries" title="Permalink to this definition"></a></dt>
 <dd><p>This method creates a hard-coded time series.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The x values, the y values and the frequencies.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>x, y, f</p>
 </dd>
 </dl>
@@ -420,11 +520,11 @@ is available in files named ‘antimicrobials.csv’ and
 
 </section>
 <section id="module-pyamr.datasets.registries">
-<span id="pyamr-datasets-registries-module"></span><h2>pyamr.datasets.registries module<a class="headerlink" href="#module-pyamr.datasets.registries" title="Permalink to this headline"></a></h2>
+<span id="pyamr-datasets-registries-module"></span><h2>pyamr.datasets.registries module<a class="headerlink" href="#module-pyamr.datasets.registries" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.datasets.registries.AntimicrobialRegistry">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.datasets.registries.</span></span><span class="sig-name descname"><span class="pre">AntimicrobialRegistry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keyword</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['id',</span> <span class="pre">'name',</span> <span class="pre">'code',</span> <span class="pre">'description',</span> <span class="pre">'original']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['name',</span> <span class="pre">'original']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fclean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/registries.html#AntimicrobialRegistry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.registries.AntimicrobialRegistry" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyamr.datasets.registries.Registry" title="pyamr.datasets.registries.Registry"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.datasets.registries.Registry</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.datasets.registries.Registry" title="pyamr.datasets.registries.Registry"><code class="xref py py-class docutils literal notranslate"><span class="pre">Registry</span></code></a></p>
 <p>Registry for antimicrobials</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.datasets.registries.AntimicrobialRegistry.combine">
@@ -442,7 +542,7 @@ is available in files named ‘antimicrobials.csv’ and
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.datasets.registries.MicroorganismRegistry">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.datasets.registries.</span></span><span class="sig-name descname"><span class="pre">MicroorganismRegistry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/registries.html#MicroorganismRegistry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.registries.MicroorganismRegistry" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyamr.datasets.registries.Registry" title="pyamr.datasets.registries.Registry"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyamr.datasets.registries.Registry</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#pyamr.datasets.registries.Registry" title="pyamr.datasets.registries.Registry"><code class="xref py py-class docutils literal notranslate"><span class="pre">Registry</span></code></a></p>
 <p>Registry for microorganisms</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.datasets.registries.MicroorganismRegistry.binomial_name">
@@ -517,7 +617,7 @@ is available in files named ‘antimicrobials.csv’ and
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/registries.html#Registry.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.registries.Registry.fit" title="Permalink to this definition"></a></dt>
 <dd><p>This method…</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – The DataFrame expects to have the code, the
 name and the description. Specially the name.
 Think what happens if other missing.</p>
@@ -548,17 +648,17 @@ Think what happens if other missing.</p>
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/registries.html#Registry.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.registries.Registry.transform" title="Permalink to this definition"></a></dt>
 <dd><p>Transform data</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>pd.DataFrame</em>) – The data to transform.</p></li>
 <li><p><strong>replace</strong></p></li>
 <li><p><strong>include_id</strong></p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The data transformed</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
@@ -571,7 +671,7 @@ Think what happens if other missing.</p>
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.registries.</span></span><span class="sig-name descname"><span class="pre">acronym_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_acronyms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/registries.html#acronym_series"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.registries.acronym_series" title="Permalink to this definition"></a></dt>
 <dd><p>This method…</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>series</strong> (<em>pd.Series</em>) – The series with the names to convert in acronyms.</p></li>
 <li><p><strong>unique_acronyms</strong></p></li>
@@ -585,10 +685,10 @@ series in two and returns all possible lengths from (4, 4)
 till (max_len, max_len). The signature of the function to
 pass as loops_strategy is as follows:</p>
 <dl class="field-list simple">
-<dt class="field-odd">param x</dt>
+<dt class="field-odd">param x<span class="colon">:</span></dt>
 <dd class="field-odd"><p>series</p>
 </dd>
-<dt class="field-even">return</dt>
+<dt class="field-even">return<span class="colon">:</span></dt>
 <dd class="field-even"><p>list (array of lengths)</p>
 </dd>
 </dl>
@@ -597,10 +697,10 @@ pass as loops_strategy is as follows:</p>
 <li><p><strong>kwgs_acronym</strong> (<em>dict</em>) – The parameters to pass to the acronym function.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The acronym series</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.Series</p>
 </dd>
 </dl>
@@ -618,10 +718,10 @@ pass as loops_strategy is as follows:</p>
 <dd><p>srs = right -&gt; end
 sls = left -&gt; end</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>series</strong> – </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p></p>
 </dd>
 </dl>
@@ -632,7 +732,7 @@ sls = left -&gt; end</p>
 <span class="sig-prename descclassname"><span class="pre">pyamr.datasets.registries.</span></span><span class="sig-name descname"><span class="pre">create_registry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyword</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/datasets/registries.html#create_registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.datasets.registries.create_registry" title="Permalink to this definition"></a></dt>
 <dd><p>Creates registry from data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>pd.DataFrame</em>) – The data</p></li>
 <li><p><strong>keyword</strong> (<em>string</em>) – The keyword for the columns. All columns starting
@@ -657,7 +757,7 @@ registry.</p></li>
 
 </section>
 <section id="module-pyamr.datasets">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.datasets" title="Permalink to this headline"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.datasets" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 

@@ -76,7 +76,7 @@ print(data.dtypes)
 #
 # For more examples see:
 #
-#   - :ref:`sphx_glr__examples_indexes_plot_sari_temporal.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_sari_d_temporal.py`
 #
 
 # -----------------------------------------
@@ -224,7 +224,7 @@ dataframe.head(4).T
 #
 # For more examples see:
 #
-#   - :ref:`sphx_glr__examples_indexes_plot_spectrum_temporal.py`
+#   - :ref:`sphx_glr__examples_indexes_plot_asai_c_temporal.py`
 #
 
 # -------------------------------------------

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.core.dri &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.core.dri</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyamr.core.dri</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<div class="viewcode-block" id="dri"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.dri">[docs]</a><span class="k">def</span> <span class="nf">dri</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">drug_resistance_index</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="drug_resistance_index_v2"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.drug_resistance_index_v2">[docs]</a><span class="k">def</span> <span class="nf">drug_resistance_index_v2</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span> <span class="n">cu</span><span class="o">=</span><span class="s1">&#39;use&#39;</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+                          <span class="n">return_all</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">reference_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the Drug Resistance Index</span>
+
+<span class="sd">        An possible summary table would look like this...</span>
+
+<span class="sd">        DATE     MICROORGANISM ANTIMICROBIAL     sari   use</span>
+<span class="sd">        2011 Q2  E. Coli       Aminopenicillins  0.422  300</span>
+<span class="sd">        2011 Q2  E. Coli       Quinolones        0.130  250</span>
+<span class="sd">        2011 Q2  E. Coli       Cephalosporins    0.010  100</span>
+<span class="sd">        2011 Q3  E. Coli       Aminopenicillins  0.437  250</span>
+<span class="sd">        2011 Q3  E. Coli       Quinolones        0.132  300</span>
+<span class="sd">        2011 Q3  E. Coli       Cephalosporins    0.014  1500</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        smmry: pd.DataFrame</span>
+<span class="sd">            The summary DataFrame with the data required to compute the</span>
+<span class="sd">            drug resistance index. The following information needs to be</span>
+<span class="sd">            present in the DataFrame:</span>
+<span class="sd">               (i) the date (e.g. DATE)</span>
+<span class="sd">               (ii) the resistance (e.g. sari)</span>
+<span class="sd">               (iii) the drug use (e.g. use)</span>
+
+<span class="sd">        cu: str</span>
+<span class="sd">            Column name with use</span>
+<span class="sd">        cr: str</span>
+<span class="sd">            Column name with resistance</span>
+<span class="sd">        ct: str</span>
+<span class="sd">            Column name with time</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Arguments to pass to groupby</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Enable to chose whether to return all columns or only dri.</span>
+        <span class="c1"># Ensure that the summary matrix is consistent</span>
+
+        <span class="c1"># Clone matrix</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">smmry</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Compute</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;use_period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span> \
+            <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)[</span><span class="n">cu</span><span class="p">]</span> \
+            <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;u_weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">cu</span><span class="p">]</span> <span class="o">/</span> <span class="n">m</span><span class="o">.</span><span class="n">use_period</span><span class="p">)</span>  <span class="c1"># .round(decimals=2)</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;w_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">cr</span><span class="p">]</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">u_weight</span><span class="p">)</span>      <span class="c1"># .round(decimals=3)</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;dri&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span> \
+            <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">w_rate</span> \
+            <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+        <span class="c1"># Check result for validity.</span>
+        <span class="c1">#if (m.dri &gt; 1).any():</span>
+        <span class="c1">#    raise warnings.warn(&quot;&quot;&quot;</span>
+        <span class="c1">#            The dri column is ill defined because it has</span>
+        <span class="c1">##            values larger than one. Please revisit the</span>
+        <span class="c1">#            summary table and ensure that all the data</span>
+        <span class="c1">#            is consistent with the requirements.&quot;&quot;&quot;)</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        if reference_time is not None:</span>
+<span class="sd">            for t in reference_time:</span>
+<span class="sd">                # Get use_period uses</span>
+<span class="sd">                aux = m.groupby(**kwargs).use_period.first()</span>
+
+<span class="sd">                use = aux.values[0]</span>
+<span class="sd">                u_weight = (m[cu] / use)</span>
+<span class="sd">                w_rate = (m[cr] * u_weight)</span>
+<span class="sd">                print(w_rate)</span>
+
+<span class="sd">                a = m.groupby(**kwargs).groups.keys()</span>
+<span class="sd">                print(a)</span>
+<span class="sd">                m[&#39;dri_%s&#39; % t] = m \</span>
+<span class="sd">                    .groupby(**kwargs).w_rate1 \</span>
+<span class="sd">                    .transform(lambda x: x.sum())</span>
+
+<span class="sd">        print(m)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">return_all</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">m</span>
+
+        <span class="c1"># Update use</span>
+        <span class="n">m</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">use</span> \
+            <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span>
+            <span class="s1">&#39;use_period&#39;</span><span class="p">,</span> <span class="s1">&#39;u_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;w_rate&#39;</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="drug_resistance_index"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.drug_resistance_index">[docs]</a><span class="k">def</span> <span class="nf">drug_resistance_index</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
+            <span class="n">return_complete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">return_usage</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the DRI.</span>
+
+<span class="sd">    .. note:</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Required columns</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;USE&#39;</span><span class="p">,</span> <span class="s1">&#39;RESISTANCE&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Check columns</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">required</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The following columns are missing: </span><span class="si">{0}</span><span class="s2"> &quot;</span> \
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">required</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
+
+    <span class="c1"># Clone matrix</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Compute</span>
+    <span class="n">u</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">USE</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">RESISTANCE</span>
+    <span class="n">wu</span> <span class="o">=</span> <span class="n">u</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">wr</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">wu</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">if</span> <span class="n">return_complete</span><span class="p">:</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;use_period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;u_weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wu</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;w_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wr</span>
+        <span class="n">m</span><span class="p">[</span><span class="s1">&#39;dri&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">m</span>
+    <span class="k">if</span> <span class="n">return_usage</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+            <span class="s1">&#39;use_period&#39;</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+            <span class="s1">&#39;dri&#39;</span><span class="p">:</span> <span class="n">wr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">wr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="DRI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.DRI">[docs]</a><span class="k">class</span> <span class="nc">DRI</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Attributes</span>
+    <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIMEN&#39;</span>
+    <span class="n">c_org</span> <span class="o">=</span> <span class="s1">&#39;MICROORGANISM&#39;</span>
+    <span class="n">c_abx</span> <span class="o">=</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span>
+    <span class="n">c_dat</span> <span class="o">=</span> <span class="s1">&#39;DATE&#39;</span>
+    <span class="n">c_out</span> <span class="o">=</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
+    <span class="n">c_drg</span> <span class="o">=</span> <span class="s1">&#39;DRUG&#39;</span>
+
+    <span class="n">c_res</span> <span class="o">=</span> <span class="s1">&#39;RESISTANCE&#39;</span>
+    <span class="n">c_use</span> <span class="o">=</span> <span class="s1">&#39;USE&#39;</span>
+
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column_resistance</span><span class="o">=</span><span class="n">c_res</span><span class="p">,</span>
+                       <span class="n">column_usage</span><span class="o">=</span><span class="n">c_use</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+        <span class="c1"># Create dictionary to rename columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">column_resistance</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">,</span>
+            <span class="n">column_usage</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_use</span>
+        <span class="p">}</span>
+
+<div class="viewcode-block" id="DRI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.DRI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">column_usage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the DRI index.</span>
+
+<span class="sd">        .. note:: Include checks.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe: pd.DataFrame</span>
+<span class="sd">            The pandas dataframe with the information. The following columns</span>
+<span class="sd">            are always required [RESISTANCE and USE]. The RESISTANCE columns</span>
+<span class="sd">            indicates the proportion of resistance isolates and the USE the</span>
+<span class="sd">            amount of antimicrobial doses applied.</span>
+
+<span class="sd">        groupby: list, default=None</span>
+<span class="sd">            The elements to groupby (pd.groupby)</span>
+
+<span class="sd">        column_usage: str</span>
+<span class="sd">            The column with the usage values. This value overwrites the</span>
+<span class="sd">            column_usage value passed during the instance creation. If</span>
+<span class="sd">            the value is None, the default value passed during the instance</span>
+<span class="sd">            creation will be used.</span>
+
+<span class="sd">        **kwargs</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Bad input type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                The instance passed as argument needs to be a pandas</span>
+<span class="s2">                DataFrame. Instead, a &lt;</span><span class="si">%s</span><span class="s2">&gt; was found. Please convert </span>
+<span class="s2">                the input accordingly.&quot;&quot;&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataframe</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">groupby</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span><span class="n">groupby</span><span class="p">]</span>
+
+        <span class="c1"># Temporal update of usage column</span>
+        <span class="n">rename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rename</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">column_usage</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">rename</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_use</span><span class="p">}</span>
+            <span class="n">rename</span><span class="p">[</span><span class="n">column_usage</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_use</span>
+
+        <span class="c1"># Rename columns</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Compute overall</span>
+        <span class="k">if</span> <span class="n">groupby</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">groupby</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dri</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Compute</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">groupby</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">dri</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Format</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+            <span class="n">scores</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;dri&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">scores</span></div></div>
+
+
+
+
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># Libraries</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+    <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+    <span class="c1"># ----------------------------------</span>
+    <span class="c1"># Create data</span>
+    <span class="c1"># ----------------------------------</span>
+    <span class="c1"># Define susceptibility test records</span>
+    <span class="n">susceptibility_records</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Define prescription test records</span>
+    <span class="n">prescription_records</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">220</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">250</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">320</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">350</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">450</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">420</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">450</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+
+    <span class="p">]</span>
+
+    <span class="n">prescription_records</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">1500</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">2000</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">320</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">350</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">505</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">1124</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">643</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">2330</span><span class="p">],</span>
+
+    <span class="p">]</span>
+
+
+    <span class="c1"># Create DataFrames</span>
+    <span class="n">susceptibility</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">susceptibility_records</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+
+    <span class="n">prescriptions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prescription_records</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;PATIENT&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;DRUG&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;DOSE&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Format dates</span>
+    <span class="n">susceptibility</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">susceptibility</span><span class="o">.</span><span class="n">DATE</span><span class="p">)</span>
+    <span class="n">prescriptions</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">prescriptions</span><span class="o">.</span><span class="n">DATE</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Susceptibility records&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">susceptibility</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Prescription records&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">prescriptions</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+    <span class="c1"># .. note:: Uncomment to load the CDDEP example data instead</span>
+
+    <span class="c1"># Load default CDDEP sample</span>
+    <span class="c1">#path = Path(&#39;../datasets/cddep&#39;)</span>
+    <span class="c1">#susceptibility = pd.read_csv(path / &#39;susceptibility.csv&#39;)</span>
+    <span class="c1">#prescriptions = pd.read_csv(path / &#39;prescriptions.csv&#39;)</span>
+
+
+    <span class="c1"># ------------------------</span>
+    <span class="c1"># Compute summary table</span>
+    <span class="c1"># ------------------------</span>
+    <span class="c1"># Libraries</span>
+    <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+
+    <span class="c1"># Create sari instance</span>
+    <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Compute susceptibility summary table</span>
+    <span class="n">smmry1</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+        <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Compute prescriptions summary table.</span>
+    <span class="n">smmry2</span> <span class="o">=</span> <span class="n">prescriptions</span> \
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DRUG&#39;</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">DOSE</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;use&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Combine both summary tables</span>
+    <span class="n">smmry</span> <span class="o">=</span> <span class="n">smmry1</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">smmry2</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span>
+        <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">],</span>
+        <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DRUG&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">smmry</span><span class="p">)</span>
+
+
+    <span class="c1"># -------------------------</span>
+    <span class="c1"># Compute DRI</span>
+    <span class="c1"># -------------------------</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">DRI</span><span class="p">(</span>
+        <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+        <span class="n">column_usage</span><span class="o">=</span><span class="s1">&#39;use&#39;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Compute DRI overall</span>
+    <span class="n">dri1</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">)</span>
+
+    <span class="c1"># Compute DRI</span>
+    <span class="n">dri2</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Compute DRI</span>
+    <span class="n">dri3</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Compute DRI</span>
+    <span class="n">dri4</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Compute DRI</span>
+    <span class="n">dri5</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span>
+        <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Compute DRI</span>
+    <span class="n">dri6</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">],</span>
+        <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Compute DRI</span>
+    <span class="n">dri7</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">],</span>
+        <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">return_complete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Compute DRI (return all elements of summary table).</span>
+    <span class="n">dri8</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">],</span>
+        <span class="n">return_complete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (1):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (2):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (3):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (4):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri4</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (5):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri5</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (6):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri6</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (7):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri7</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (8):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dri8</span><span class="p">)</span>
+
+
+    <span class="c1"># --------------------------------------------</span>
+    <span class="c1"># Compute DRI fixed</span>
+    <span class="c1"># --------------------------------------------</span>
+    <span class="c1"># Compute prescriptions on t0.</span>
+    <span class="n">use_t0</span> <span class="o">=</span> <span class="n">prescriptions</span> \
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DRUG&#39;</span><span class="p">])</span> \
+        <span class="o">.</span><span class="n">DOSE</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;use&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;DRUG&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">use</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="c1"># Add to summary table</span>
+    <span class="n">smmry</span> <span class="o">=</span> <span class="n">smmry</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">use_t0</span><span class="o">=</span><span class="n">smmry</span><span class="o">.</span><span class="n">DRUG</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">use_t0</span><span class="p">))</span>
+
+    <span class="c1"># Define groupby</span>
+    <span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MICROORGANISM&#39;</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Compute DRI</span>
+    <span class="n">dri9a</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="n">groupby</span><span class="p">,</span>
+        <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Compute DRI using new USE</span>
+    <span class="n">dri9b</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="n">groupby</span><span class="p">,</span>
+        <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">column_usage</span><span class="o">=</span><span class="s1">&#39;use_t0&#39;</span><span class="p">)</span>
+
+    <span class="c1">#aux = pd.concat([dri9a, dri9b], axis=1)</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">dri9a</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dri9b</span><span class="p">,</span>
+        <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;_fixed&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Concatenate (series)</span>
+    <span class="c1">#aux = pd.concat([</span>
+    <span class="c1">#    dri9a.rename(&#39;dri&#39;),</span>
+    <span class="c1">#    dri9b.rename(&#39;dri_fixed&#39;)], axis=1)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary (variable):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">smmry</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (9):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
+
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Testing</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># Success</span>
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># .. note: All this examples should succeed. At the moment the code</span>
+    <span class="c1">#          breaks if gram is not included. This is because the data</span>
+    <span class="c1">#          we have created has duplicated values for each gram.</span>
+    <span class="c1">#          Should we consider this within the ASAI?</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # Compute DRI overall</span>
+<span class="sd">    dri1 = dri(smmry)</span>
+
+<span class="sd">    # Compute DRI</span>
+<span class="sd">    dri8 = smmry \</span>
+<span class="sd">        .groupby(by=[&#39;SPECIMEN&#39;]) \</span>
+<span class="sd">        .apply(drug_resistance_index_v2)</span>
+
+<span class="sd">    # Compute DRI</span>
+<span class="sd">    dri2 = smmry \</span>
+<span class="sd">        .groupby(by=[&#39;MICROORGANISM&#39;]) \</span>
+<span class="sd">        .apply(drug_resistance_index_v2)</span>
+
+<span class="sd">    dri3 = smmry \</span>
+<span class="sd">        .groupby(by=[&#39;MICROORGANISM&#39;, &#39;ANTIMICROBIAL&#39;]) \</span>
+<span class="sd">        .apply(drug_resistance_index_v2,</span>
+<span class="sd">               return_components=True)</span>
+
+<span class="sd">    # Compute DRI</span>
+<span class="sd">    dri9 = smmry \</span>
+<span class="sd">        .groupby(by=[&#39;DATE&#39;]) \</span>
+<span class="sd">        .apply(drug_resistance_index_v2)</span>
+
+<span class="sd">    dri4 = smmry \</span>
+<span class="sd">        .groupby(by=[&#39;DATE&#39;, &#39;MICROORGANISM&#39;]) \</span>
+<span class="sd">        .apply(drug_resistance_index_v2,</span>
+<span class="sd">               return_components=True)</span>
+
+<span class="sd">    dri5 = smmry \</span>
+<span class="sd">        .groupby(by=[&#39;DATE&#39;, &#39;MICROORGANISM&#39;, &#39;ANTIMICROBIAL&#39;]) \</span>
+<span class="sd">        .apply(drug_resistance_index_v2,</span>
+<span class="sd">               return_components=True)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># Errors</span>
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># .. note: In the examples below, the method acsi is meant to raise</span>
+    <span class="c1">#          an error either because any of the required missing columns</span>
+    <span class="c1">#          is missing or because the configuration is not correct.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Handling errors:&quot;</span><span class="p">)</span>
+
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># Warnings</span>
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># .. note: In the examples below, the method acsi is meant to show a</span>
+    <span class="c1">#          warning message either no threshold has been specified or</span>
+    <span class="c1">#          because thresholds have been specified twice.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Show warnings:&quot;</span><span class="p">)</span>
+
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # -------------------------</span>
+<span class="sd">    # Compute resistance index</span>
+<span class="sd">    # -------------------------</span>
+<span class="sd">    r = drug_resistance_index(smmry,</span>
+<span class="sd">        by=[&#39;DATE&#39;],</span>
+<span class="sd">        return_all=True,</span>
+<span class="sd">        reference_time=[1,2])</span>
+
+<span class="sd">    # Show</span>
+<span class="sd">    print(&quot;\nResult:&quot;)</span>
+<span class="sd">    print(r.round(decimals=3))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

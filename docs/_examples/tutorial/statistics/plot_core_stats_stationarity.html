@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stationarity &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,10 +20,14 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Examples with indexes" href="../../indexes/index.html" />
+    <link rel="prev" title="Kendall" href="plot_core_stats_kendall.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,18 +53,29 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_adfuller.html">ADFuller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_correlation.html">Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_stats_kendall.html">Kendall</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Stationarity</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -72,8 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Stationarity</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Stationarity</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/statistics/plot_core_stats_stationarity.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,33 +109,34 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="stationarity">
-<span id="sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"></span><h1>Stationarity<a class="headerlink" href="#stationarity" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"></span><h1>Stationarity<a class="headerlink" href="#stationarity" title="Permalink to this heading"></a></h1>
 <p>Example using your package</p>
-<img src="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" srcset="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" alt="Study of Stationarity" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(4.8, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+<img src="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" srcset="../../../_images/sphx_glr_plot_core_stats_stationarity_001.png" alt="Study of Stationarity" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(4.1, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
 
 Series:
-stationarity-adf_ct_statistic                    -2.3503
-stationarity-adf_ct_pvalue                        0.4064
+stationarity-adf_ct_statistic                     -2.702
+stationarity-adf_ct_pvalue                        0.2352
 stationarity-adf_ct_nlags                              0
 stationarity-adf_ct_nobs                              99
 stationarity-adf_ct_criticalvalue_1%             -4.0533
 stationarity-adf_ct_criticalvalue_5%             -3.4558
 stationarity-adf_ct_criticalvalue_10%            -3.1536
-stationarity-adf_c_statistic                     -0.7948
-stationarity-adf_c_pvalue                         0.8206
+stationarity-adf_c_statistic                     -1.0167
+stationarity-adf_c_pvalue                         0.7471
 stationarity-adf_c_nlags                               0
 stationarity-adf_c_nobs                               99
 stationarity-adf_c_criticalvalue_1%              -3.4982
 stationarity-adf_c_criticalvalue_5%              -2.8912
 stationarity-adf_c_criticalvalue_10%             -2.5826
-stationarity-kpss_ct_statistic                    0.1596
-stationarity-kpss_ct_pvalue                       0.0387
+stationarity-kpss_ct_statistic                    0.1673
+stationarity-kpss_ct_pvalue                       0.0322
 stationarity-kpss_ct_nlags                             5
 stationarity-kpss_ct_criticalvalue_10%             0.119
 stationarity-kpss_ct_criticalvalue_5%              0.146
 stationarity-kpss_ct_criticalvalue_2.5%            0.176
 stationarity-kpss_ct_criticalvalue_1%              0.216
-stationarity-kpss_c_statistic                     1.5662
+stationarity-kpss_c_statistic                     1.5548
 stationarity-kpss_c_pvalue                          0.01
 stationarity-kpss_c_nlags                              5
 stationarity-kpss_c_criticalvalue_10%              0.347
@@ -126,23 +147,23 @@ stationarity-root_ct_stationary                    False
 stationarity-root_c_stationary                     False
 stationarity-trend_ct_stationary                   False
 stationarity-trend_c_stationary                    False
-stationarity-rur_statistic                           4.8
+stationarity-rur_statistic                           4.1
 stationarity-rur_pvalue                             0.95
 stationarity-rur_criticalvalue_10%                1.2888
 stationarity-rur_criticalvalue_5%                 1.1412
 stationarity-rur_criticalvalue_2.5%               1.0243
 stationarity-rur_criticalvalue_1%                  0.907
-stationarity-model                         {&#39;x&#39;: [103...
+stationarity-model                         {&#39;x&#39;: [105...
 stationarity-id                             Stationarity
 dtype: object
 
 Identifier:
 Stationarity
-(0.9, 0.01, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+(1.1, 0.05, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
 (9.9, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
-(6.0, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
-(4.8, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
-(3.3, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+(5.6, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+(4.1, 0.95, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
+(2.7, 0.9, {&#39;10%&#39;: 1.2888, &#39;5%&#39;: 1.1412, &#39;2.5%&#39;: 1.0243, &#39;1%&#39;: 0.907})
 </pre></div>
 </div>
 <div class="line-block">
@@ -261,8 +282,8 @@ Stationarity
 <span class="linenos">117</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.500 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-statistics-plot-core-stats-stationarity-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.422 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-statistics-plot-core-stats-stationarity-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/e56385d562436dad5677ef0c09b28271/plot_core_stats_stationarity.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_stats_stationarity.py</span></code></a></p>
 </div>
@@ -276,7 +297,10 @@ Stationarity
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_core_stats_kendall.html" class="btn btn-neutral float-left" title="Kendall" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../indexes/index.html" class="btn btn-neutral float-right" title="Examples with indexes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

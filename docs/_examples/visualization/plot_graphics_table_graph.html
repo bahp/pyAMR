@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Graphics TableGraph example &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -69,10 +77,6 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -87,9 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Visualization</a> &raquo;</li>
-      <li>Graphics TableGraph example</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Visualization</a></li>
+      <li class="breadcrumb-item active">Graphics TableGraph example</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/visualization/plot_graphics_table_graph.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,40 +109,34 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="graphics-tablegraph-example">
-<span id="sphx-glr-examples-visualization-plot-graphics-table-graph-py"></span><h1>Graphics TableGraph example<a class="headerlink" href="#graphics-tablegraph-example" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-visualization-plot-graphics-table-graph-py"></span><h1>Graphics TableGraph example<a class="headerlink" href="#graphics-tablegraph-example" title="Permalink to this heading"></a></h1>
 <ul class="sphx-glr-horizontal">
 <li><img src="../../_images/sphx_glr_plot_graphics_table_graph_001.png" srcset="../../_images/sphx_glr_plot_graphics_table_graph_001.png" alt="Column 0, c1, Column 2" class = "sphx-glr-multi-img"/></li>
 <li><img src="../../_images/sphx_glr_plot_graphics_table_graph_002.png" srcset="../../_images/sphx_glr_plot_graphics_table_graph_002.png" alt="0, 1, Column 2" class = "sphx-glr-multi-img"/></li>
 </ul>
+<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
     c0  c1  c2
-0   45  31  96
-1    4  30  98
-2   88  84  69
-3   68  90  11
-4   50  67  96
-5   19  78  53
-6   14  97  24
-7   58  90  44
-8   88  53  26
-9   43  81  23
-10  35  81  62
-11  29  84  65
-12  43  79  88
-13  10  51  16
-14   1   9  14
-15  58   7  66
-16  18  54  59
-17  70   4  26
-18  32  25  44
-19  45  68  15
-C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_graphics_table_graph.py:73: UserWarning:
-
-This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-
-C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\visualization\plot_graphics_table_graph.py:78: UserWarning:
-
-This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+0   35  61  79
+1   54   8  90
+2   77  78  55
+3   91  70  74
+4   84   0  63
+5   12  43  32
+6   63  54  58
+7   26  14  44
+8   37  84  22
+9   32  74  83
+10  17  11   1
+11  87  83  18
+12  50  85  91
+13  85  37  50
+14  54   1  29
+15  66  32   8
+16  95   7  91
+17  63  68  34
+18   7  52  71
+19  34  20  59
 </pre></div>
 </div>
 <div class="line-block">
@@ -162,7 +160,7 @@ This figure includes Axes that are not compatible with tight_layout, so results 
 <span class="linenos">20</span>
 <span class="linenos">21</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.table_graph</span> <span class="kn">import</span> <span class="n">TableGraph</span>
 <span class="linenos">22</span>
-<span class="linenos">23</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">23</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="linenos">24</span>
 <span class="linenos">25</span><span class="sd">    Example of axis configuration</span>
 <span class="linenos">26</span><span class="sd">    -----------------------------</span>
@@ -223,8 +221,8 @@ This figure includes Axes that are not compatible with tight_layout, so results 
 <span class="linenos">81</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.990 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-graphics-table-graph-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.427 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-graphics-table-graph-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/718153debfa897d8c716c01e82f98b79/plot_graphics_table_graph.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_graphics_table_graph.py</span></code></a></p>
 </div>

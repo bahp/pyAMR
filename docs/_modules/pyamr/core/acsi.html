@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.core.acsi &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.core.acsi</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyamr.core.acsi</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="create_combinations_v1"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.create_combinations_v1">[docs]</a><span class="k">def</span> <span class="nf">create_combinations_v1</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">groupby</span><span class="p">,</span>
+                              <span class="n">col_spe</span><span class="o">=</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                              <span class="n">col_lab</span><span class="o">=</span><span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+                              <span class="n">col_org</span><span class="o">=</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+                              <span class="n">col_abx</span><span class="o">=</span><span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+                              <span class="n">col_sns</span><span class="o">=</span><span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates the DataFrame with all combinations.</span>
+
+<span class="sd">    .. note:: There might be an issue if there are two different outcomes</span>
+<span class="sd">              for the same record. For example, a susceptibility test</span>
+<span class="sd">              record for penicillin (APEN) with R and another one with</span>
+<span class="sd">              S. Warn of this issue if it appears!</span>
+
+<span class="sd">    .. note:: If the data is right and the laboratory numbers are unique per</span>
+<span class="sd">              isolate then the date is not necessary. However, what if we want</span>
+<span class="sd">              to keep it? Groupby should at least contain: specimen, microorganism</span>
+<span class="sd">              and lab_id</span>
+
+<span class="sd">    .. note:: How to add all data in addition to the columns manually.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    --------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Libraries</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+    <span class="c1"># Initialize</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Loop</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupby</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">col_abx</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">aux</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">groupby</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+
+            <span class="n">aux</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_x&#39;</span> <span class="o">%</span> <span class="n">col_abx</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">col_abx</span><span class="p">],</span>
+                <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_y&#39;</span> <span class="o">%</span> <span class="n">col_abx</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">col_abx</span><span class="p">],</span>
+                <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_x&#39;</span> <span class="o">%</span> <span class="n">col_sns</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">col_sns</span><span class="p">],</span>
+                <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_y&#39;</span> <span class="o">%</span> <span class="n">col_sns</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">col_sns</span><span class="p">]</span>
+            <span class="p">})</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
+
+    <span class="c1"># Create DataFrame</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="c1"># Add class</span>
+    <span class="n">c</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_x&#39;</span> <span class="o">%</span> <span class="n">col_sns</span><span class="p">]</span> <span class="o">+</span> \
+                 <span class="n">c</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_y&#39;</span> <span class="o">%</span> <span class="n">col_sns</span><span class="p">]</span>
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">c</span></div>
+
+
+
+
+
+
+<div class="viewcode-block" id="mutual_info_matrix_v3"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.mutual_info_matrix_v3">[docs]</a><span class="k">def</span> <span class="nf">mutual_info_matrix_v3</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ct</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the component information score.</span>
+
+<span class="sd">    .. note: Might be inefficient but good for testing.</span>
+
+<span class="sd">    .. note: In order to be able to compute the mutual</span>
+<span class="sd">             information score it is necessary to have</span>
+<span class="sd">             variation within the variable. Thus, if</span>
+<span class="sd">             there is only one class, should we return</span>
+<span class="sd">             a result or a warning?</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x: list</span>
+<span class="sd">        List with the classes</span>
+<span class="sd">    y: list</span>
+<span class="sd">        List with the classes</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Libraries</span>
+    <span class="kn">from</span> <span class="nn">scipy.stats.contingency</span> <span class="kn">import</span> <span class="n">crosstab</span>
+
+    <span class="k">def</span> <span class="nf">_check_nparray</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">param_name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">obj</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                       The input parameter &#39;</span><span class="si">{0}</span><span class="s2">&#39; is of type &#39;</span><span class="si">{1}</span><span class="s2"> which is </span>
+<span class="s2">                       not supported. Please ensure it is a np.ndarray.&quot;&quot;&quot;</span>
+                                 <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param_name</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)))</span>
+
+    <span class="c1"># Ensure they are all np arrays</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">_check_nparray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">_check_nparray</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="n">_check_nparray</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="s1">&#39;ct&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Compute contingency</span>
+    <span class="k">if</span> <span class="n">ct</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">crosstab</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># older scipy</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">count</span> <span class="c1"># newer scipy</span>
+
+    <span class="c1"># Variables</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">pj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="c1"># Create empty matrix</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># Fill with component information score</span>
+    <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">pxy</span> <span class="o">=</span> <span class="n">ct</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="n">n</span>
+                <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pxy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pxy</span> <span class="o">/</span> <span class="p">(</span><span class="n">pi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">pj</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+
+    <span class="c1"># Fill with na (lim x-&gt;0 =&gt; 0)</span>
+    <span class="n">m</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Return</span>
+    <span class="k">return</span> <span class="n">m</span></div>
+
+
+<div class="viewcode-block" id="collateral_resistance_index"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.collateral_resistance_index">[docs]</a><span class="k">def</span> <span class="nf">collateral_resistance_index</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collateral Resistance Index</span>
+
+<span class="sd">    The collateral resistance index is based on the mutual</span>
+<span class="sd">    information matrix. This implementation assumes there</span>
+<span class="sd">    are only two classes resistant (R) and sensitive (S).</span>
+
+<span class="sd">    .. warning:: Only works for a 2x2 contingency matrix</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m: np.array</span>
+<span class="sd">        A numpy array with the mutual information matrix.</span>
+<span class="sd">        Also called the contingency matrix.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="CRI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.CRI">[docs]</a><span class="k">def</span> <span class="nf">CRI</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">func_mis</span><span class="o">=</span><span class="n">mutual_info_matrix_v3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collateral resistance index</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x: pd.Series</span>
+<span class="sd">        Contains the combinations classes (e.g. SS, SR, RS, RR)</span>
+
+<span class="sd">    func_mis: function</span>
+<span class="sd">        The function to use to compute the contingency matrix from the</span>
+<span class="sd">        mutual information score. By default it uses the function</span>
+<span class="sd">        mutual_info_matrix_v3.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">x</span><span class="o">.</span><span class="n">SS</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">SR</span><span class="p">],</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">RS</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">RR</span><span class="p">]])</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">func_mis</span><span class="p">(</span><span class="n">ct</span><span class="o">=</span><span class="n">ct</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">collateral_resistance_index</span><span class="p">(</span><span class="n">m</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ACSI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.ACSI">[docs]</a><span class="k">class</span> <span class="nc">ACSI</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Antimicrobial Collateral Sensitivity Index</span>
+
+<span class="sd">    How should we call this index?</span>
+<span class="sd">       a) Antimicrobial Disjoint Resistance Index</span>
+<span class="sd">       b) Antimicrobial Collateral Resistance Index</span>
+<span class="sd">       c) Antimicrobial Collateral Sensitivity Index</span>
+<span class="sd">       d) Antimicrobial Collateral Resistance Index</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Attributes</span>
+    <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIMEN&#39;</span>
+    <span class="n">c_org</span> <span class="o">=</span> <span class="s1">&#39;MICROORGANISM&#39;</span>
+    <span class="n">c_abx</span> <span class="o">=</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span>
+    <span class="n">c_sns</span> <span class="o">=</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
+    <span class="n">c_lab</span> <span class="o">=</span> <span class="s1">&#39;LAB_NUMBER&#39;</span>
+    <span class="n">c_dat</span> <span class="o">=</span> <span class="s1">&#39;DATE&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">column_specimen</span><span class="o">=</span><span class="n">c_spe</span><span class="p">,</span>
+                 <span class="n">column_microorganism</span><span class="o">=</span><span class="n">c_org</span><span class="p">,</span>
+                 <span class="n">column_antimicrobial</span><span class="o">=</span><span class="n">c_abx</span><span class="p">,</span>
+                 <span class="n">column_sensitivity</span><span class="o">=</span><span class="n">c_sns</span><span class="p">,</span>
+                 <span class="n">column_laboratory</span><span class="o">=</span><span class="n">c_lab</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        column_specimen: string</span>
+<span class="sd">            The column name with the specimen</span>
+
+<span class="sd">        column_antimicrobial: string</span>
+<span class="sd">            The column name with the antimicrobial</span>
+
+<span class="sd">        column_microorganism: string</span>
+<span class="sd">            The column name with the microorganism</span>
+
+<span class="sd">        column_sensitivity: string</span>
+<span class="sd">            The column name with the sensitivity</span>
+
+<span class="sd">        column_laboratory: string</span>
+<span class="sd">            The column name with the laboratory id</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        none</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Create dictionary to rename columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">column_specimen</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span>
+                               <span class="n">column_antimicrobial</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span>
+                               <span class="n">column_microorganism</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span>
+                               <span class="n">column_sensitivity</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_sns</span><span class="p">,</span>
+                               <span class="n">column_laboratory</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_lab</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="ACSI.combinations"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.ACSI.combinations">[docs]</a>    <span class="k">def</span> <span class="nf">combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates the combinations.</span>
+
+<span class="sd">        .. note:: In theory the combinations only need to be grouped</span>
+<span class="sd">                  by laboratory number, however, in order to maintain</span>
+<span class="sd">                  the rest of the information (like date) we need to</span>
+<span class="sd">                  pass all of them.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">create_combinations_v1</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ACSI.compute_from_contingency"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.ACSI.compute_from_contingency">[docs]</a>    <span class="k">def</span> <span class="nf">compute_from_contingency</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="ACSI.compute_from_combinations"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.ACSI.compute_from_combinations">[docs]</a>    <span class="k">def</span> <span class="nf">compute_from_combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="ACSI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.acsi.ACSI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span>
+                <span class="n">flag_combinations</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">flag_contingency</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">func_mis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">return_combinations</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the antimicrobial collateral sensitivity index.</span>
+
+<span class="sd">        .. note:: Enable to pass a combinations dataframe.</span>
+<span class="sd">        .. note:: The lab number should be used only to compute</span>
+<span class="sd">                  the combinations. It should not be used when</span>
+<span class="sd">                  computing the ACSI.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataframe: pd.DataFrame</span>
+<span class="sd">            A dataframe with the susceptibility test interpretations as columns.</span>
+
+<span class="sd">        combinations: boolean</span>
+<span class="sd">            Indicates whether the variable DataFrame contains susceptibility</span>
+<span class="sd">            test records (combinations=False) or the antimicrobial combinations</span>
+<span class="sd">            and the class (combination=True)</span>
+
+<span class="sd">        func_mis: function</span>
+<span class="sd">            The function to use to compute the contingency matrix from the</span>
+<span class="sd">            mutual information score. By default it uses the function</span>
+<span class="sd">            mutual_info_matrix_v3.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.Series or pd.DataFrame</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Do checks</span>
+
+        <span class="c1"># Set default groupby</span>
+        <span class="k">if</span> <span class="n">groupby</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">c_dat</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">,</span>
+            <span class="p">]</span>
+
+        <span class="c1"># Set default function</span>
+        <span class="k">if</span> <span class="n">func_mis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">func_mis</span> <span class="o">=</span> <span class="n">mutual_info_matrix_v3</span>
+
+        <span class="c1"># Rename columns</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rename_columns</span><span class="p">)</span>
+
+        <span class="c1"># Create combinations</span>
+        <span class="k">if</span> <span class="n">flag_combinations</span><span class="p">:</span>
+            <span class="n">combinations</span> <span class="o">=</span> <span class="n">aux</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">combinations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span>
+                <span class="n">groupby</span><span class="o">=</span><span class="n">groupby</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_lab</span><span class="p">])</span>
+
+        <span class="c1"># Create contingency DataFrame</span>
+        <span class="n">contingency</span> <span class="o">=</span> <span class="n">combinations</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+            <span class="n">by</span><span class="o">=</span><span class="n">groupby</span> <span class="o">+</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span> <span class="o">+</span> <span class="s1">&#39;_x&#39;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span> <span class="o">+</span> <span class="s1">&#39;_y&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;class&#39;</span><span class="p">])</span>\
+            <span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+
+        <span class="c1"># Ensure that variables in CRI needed exist</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SS&#39;</span><span class="p">,</span> <span class="s1">&#39;RS&#39;</span><span class="p">,</span> <span class="s1">&#39;SR&#39;</span><span class="p">,</span> <span class="s1">&#39;RR&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">contingency</span><span class="p">:</span>
+                <span class="n">contingency</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Compute CRI</span>
+        <span class="n">contingency</span><span class="p">[</span><span class="s1">&#39;acsi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contingency</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> \
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">CRI</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">func_mis</span><span class="p">,),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">if</span> <span class="n">return_combinations</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">combinations</span>
+        <span class="k">return</span> <span class="n">contingency</span></div></div>
+
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="c1"># Libraries</span>
+    <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+    <span class="c1"># ----------------------------------</span>
+    <span class="c1"># Create data</span>
+    <span class="c1"># ----------------------------------</span>
+    <span class="c1"># Define susceptibility test records</span>
+    <span class="n">susceptibility_records</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_1&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_1&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_2&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_2&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_3&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_3&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_4&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_4&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_5&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_5&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_6&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_6&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_7&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_7&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_8&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_8&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_9&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_9&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_9&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_9&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+
+        <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_10&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_10&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_10&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;LAB_10&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;APEN&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Create DataFrames</span>
+    <span class="n">susceptibility</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">susceptibility_records</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Format DataFrame</span>
+    <span class="n">susceptibility</span><span class="o">.</span><span class="n">SENSITIVITY</span> <span class="o">=</span> \
+        <span class="n">susceptibility</span><span class="o">.</span><span class="n">SENSITIVITY</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span>
+            <span class="s1">&#39;resistant&#39;</span><span class="p">:</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intermediate&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;sensitive&#39;</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span>
+    <span class="p">})</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Susceptibility:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">)</span>
+
+    <span class="c1"># .. note: It is important to ensure that there are not susceptibility</span>
+    <span class="c1">#          test records with contradicting results. For example being</span>
+    <span class="c1">#          resistant and sensitive at the same time. Integrate this</span>
+    <span class="c1">#          check in the computation!</span>
+
+    <span class="c1"># ---------------------------</span>
+    <span class="c1"># Create combinations</span>
+    <span class="c1"># ---------------------------</span>
+    <span class="c1"># Create combinations</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">create_combinations_v1</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span>
+            <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;MICROORGANISM&#39;</span>
+        <span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Combinations:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="c1"># Build contingency</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span>
+        <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ANTIMICROBIAL_x&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ANTIMICROBIAL_y&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;class&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contingency:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+    <span class="c1"># Compute CRI</span>
+    <span class="n">r</span><span class="p">[</span><span class="s1">&#39;MIS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">CRI</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">mutual_info_matrix_v3</span><span class="p">,),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Result&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+
+    <span class="c1"># ------------------------------------------</span>
+    <span class="c1"># Computes ACSI using class</span>
+    <span class="c1"># ------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper function to display outcomes.&quot;&quot;&quot;</span>
+        <span class="c1"># Variables</span>
+        <span class="n">n_comb</span> <span class="o">=</span> <span class="n">combinations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">n_cont</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">contingency</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Grouped By: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">contingency</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="c1"># Display</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">title</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total combinations: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_comb</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total contingency:  </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_cont</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Combinations:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">combinations</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contingency:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+
+
+    <span class="c1"># Create ACSI instance</span>
+    <span class="n">acsi</span> <span class="o">=</span> <span class="n">ACSI</span><span class="p">()</span>
+
+    <span class="c1"># ---------------</span>
+    <span class="c1"># Compute overall</span>
+    <span class="c1"># ---------------</span>
+    <span class="c1"># .. note:: Why removing LAB_NUMBER returns only</span>
+    <span class="c1">#           the first letter...?</span>
+    <span class="c1"># Compute index</span>
+    <span class="n">contingency</span><span class="p">,</span> <span class="n">combinations</span> <span class="o">=</span> \
+        <span class="n">acsi</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+                     <span class="n">groupby</span><span class="o">=</span><span class="p">[],</span>
+                     <span class="n">return_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Overall&#39;</span><span class="p">)</span>
+
+
+    <span class="c1"># ---------------</span>
+    <span class="c1"># Compute by</span>
+    <span class="c1"># ---------------</span>
+    <span class="c1"># Compute index</span>
+    <span class="n">contingency</span><span class="p">,</span> <span class="n">combinations</span> <span class="o">=</span> \
+        <span class="n">acsi</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+                     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span>
+                     <span class="n">return_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;By &lt;DATE&gt;&#39;</span><span class="p">)</span>
+
+
+    <span class="c1"># ----------------</span>
+    <span class="c1"># Compute by pairs</span>
+    <span class="c1"># ----------------</span>
+    <span class="c1"># Compute index</span>
+    <span class="n">contingency</span><span class="p">,</span> <span class="n">combinations</span> <span class="o">=</span> \
+        <span class="n">acsi</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+            <span class="n">groupby</span><span class="o">=</span><span class="p">[</span>
+                <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;MICROORGANISM&#39;</span>
+            <span class="p">],</span>
+            <span class="n">return_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;By &lt;SPECIMEN, MICROORGANISM&gt;&#39;</span><span class="p">)</span>
+
+    <span class="c1"># -------------------------</span>
+    <span class="c1"># Compute by date and pairs</span>
+    <span class="c1"># -------------------------</span>
+    <span class="c1"># .. note:: It seems that it is important to include all the</span>
+    <span class="c1">#           parameters when computing the combinations. Otherwise</span>
+    <span class="c1">#           it might create ill defined combinations. Think this</span>
+    <span class="c1">#           through...</span>
+
+    <span class="c1"># Compute index</span>
+    <span class="n">contingency</span><span class="p">,</span> <span class="n">combinations</span> <span class="o">=</span> \
+        <span class="n">acsi</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+            <span class="n">groupby</span><span class="o">=</span><span class="p">[</span>
+                 <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;MICROORGANISM&#39;</span>
+            <span class="p">],</span>
+            <span class="n">return_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Show</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># Compute contingency reusing combinations.</span>
+    <span class="n">contingency</span> <span class="o">=</span> <span class="n">acsi</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">combinations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">],</span>
+        <span class="n">flag_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">return_combinations</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># Compute contingency reusing combinations.</span>
+    <span class="n">contingency</span> <span class="o">=</span> <span class="n">acsi</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">combinations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">],</span>
+        <span class="n">flag_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">return_combinations</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">combinations</span><span class="p">,</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Testing</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># Success</span>
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># .. note: All this examples should succeed. At the moment the code</span>
+    <span class="c1">#          breaks if gram is not included. This is because the data</span>
+    <span class="c1">#          we have created has duplicated values for each gram.</span>
+    <span class="c1">#          Should we consider this within the ASAI?</span>
+
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># Errors</span>
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># .. note: In the examples below, the method acsi is meant to raise</span>
+    <span class="c1">#          an error either because any of the required missing columns</span>
+    <span class="c1">#          is missing or because the configuration is not correct.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Handling errors:&quot;</span><span class="p">)</span>
+
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># Warnings</span>
+    <span class="c1"># ---------------------------------------------------------------------</span>
+    <span class="c1"># .. note: In the examples below, the method acsi is meant to show a</span>
+    <span class="c1">#          warning message either no threshold has been specified or</span>
+    <span class="c1">#          because thresholds have been specified twice.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Show warnings:&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

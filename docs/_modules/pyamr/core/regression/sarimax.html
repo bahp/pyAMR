@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.core.regression.sarimax</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.core.regression.sarimax</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -117,7 +125,7 @@
 <span class="c1">#                              helper methods</span>
 <span class="c1"># -------------------------------------------------------------------------- </span>
 <span class="k">def</span> <span class="nf">_cast_float</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Casts an element to float when feasible.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Casts an element to float when feasible.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -126,7 +134,7 @@
 
 
 <div class="viewcode-block" id="SARIMAXWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper">[docs]</a><span class="k">class</span> <span class="nc">SARIMAXWrapper</span><span class="p">(</span><span class="n">RegressionWrapper</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Description</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Description</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -134,7 +142,7 @@
     <span class="c1">#                              overriden</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="k">def</span> <span class="nf">_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method returns the name to idenfy the model.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method returns the name to idenfy the model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2">x</span><span class="si">%s</span><span class="s2"> [</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
                                     <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
@@ -146,7 +154,7 @@
     <span class="c1">#                        parameters from summary</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="k">def</span> <span class="nf">_params_from_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method returns a dictionariy with the parameters from summary.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method returns a dictionariy with the parameters from summary.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Format summary</span>
         <span class="n">summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">as_csv</span><span class="p">()</span>
@@ -177,7 +185,7 @@
         <span class="k">return</span> <span class="n">d</span>
 
 <div class="viewcode-block" id="SARIMAXWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method creates a dictioanry with the relevant parameters.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates a dictioanry with the relevant parameters.</span>
 
 <span class="sd">        @see: statsmodels.Sarimax</span>
 <span class="sd">        @see: statsmodels.SarimaxResults</span>
@@ -230,7 +238,7 @@
     <span class="c1">#                             summary method</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SARIMAXWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method creates a summary string.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates a summary string.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Elements to split by.</span>
         <span class="n">find</span> <span class="o">=</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">78</span>
@@ -263,7 +271,7 @@
     <span class="c1">#                           prediction method</span>
     <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SARIMAXWrapper.get_prediction"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction">[docs]</a>    <span class="k">def</span> <span class="nf">get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method calls the get prediction function in ARIMA.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method calls the get prediction function in ARIMA.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -326,7 +334,7 @@
              <span class="n">max_P</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_D</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_Q</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">list_s</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">warn</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
              <span class="n">trends</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;ct&#39;</span><span class="p">],</span> <span class="n">return_fits</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
              <span class="n">converged</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method finds the best arima through bruteforce.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method finds the best arima through bruteforce.</span>
 
 <span class="sd">        Note: It uses grid search through the base wrapper.</span>
 
@@ -418,12 +426,12 @@
     <span class="c1">#                             OTHER METHODS</span>
     <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="SARIMAXWrapper.save"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method saves the information.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method saves the information.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SARIMAXWrapper.load"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.sarimax.SARIMAXWrapper.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method loads the information.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method loads the information.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Load.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

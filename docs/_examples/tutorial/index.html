@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tutorials &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,11 +20,13 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examples with indexes" href="../indexes/index.html" />
+    <link rel="next" title="Step 01 - Indexes" href="guide/plot_step_01.html" />
     <link rel="prev" title="Future Actions" href="../../usage/todo.html" /> 
 </head>
 
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,16 +53,47 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#guide-step-by-step">Guide step by step</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#computing-amr-metrics">Computing AMR metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#time-series-analysis-regression">Time-series analysis (regression)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#statistical-tests-wrappers">Statistical tests (wrappers)</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#guide-step-by-step">Guide step by step</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guide/plot_step_01.html">Step 01 - Indexes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/plot_step_02.html">Step 02 - Temporal evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/plot_step_03.html">Step 03 - Time Series Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/plot_step_04.html">Step 04 - TSA to estimate trends</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#computing-amr-metrics">Computing AMR metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="indexes/plot_core_a_sari.html">Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="indexes/plot_core_b_asai.html">Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="indexes/plot_core_c_mari.html">Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="indexes/plot_core_d_sart.html">Single Resistance Trend (<code class="docutils literal notranslate"><span class="pre">SART</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="indexes/plot_core_e_dri.html">Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="indexes/plot_core_f_acri.html">Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#metrics">Metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="metrics/plot_metrics_scores.html">Metrics - scores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metrics/plot_metrics_weights.html">Metrics - weights</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#time-series-analysis-regression">Time-series analysis (regression)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="regression/plot_core_regression_arima.html">Using ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression/plot_core_regression_ensemble.html">Using WLS + ARMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression/plot_core_regression_sarimax.html">Using SARIMAX (seasonal)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression/plot_core_regression_theilsens.html">Using Theil-Sen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="regression/plot_core_regression_wls.html">Using weighted least squares (WLS)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#statistical-tests-wrappers">Statistical tests (wrappers)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statistics/plot_core_stats_adfuller.html">ADFuller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics/plot_core_stats_correlation.html">Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics/plot_core_stats_kendall.html">Kendall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statistics/plot_core_stats_stationarity.html">Stationarity</a></li>
 </ul>
 </li>
 </ul>
@@ -64,10 +101,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -83,8 +116,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Tutorials</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorials</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/tutorial/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,89 +128,195 @@
            <div itemprop="articleBody">
              
   <section id="tutorials">
-<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline"></a></h1>
-<div class="sphx-glr-thumbnails"></div><section id="guide-step-by-step">
-<h2>Guide step by step<a class="headerlink" href="#guide-step-by-step" title="Permalink to this headline"></a></h2>
+<span id="sphx-glr-examples-tutorial"></span><h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this heading"></a></h1>
+<div class="sphx-glr-clear"></div><section id="guide-step-by-step">
+<span id="sphx-glr-examples-tutorial-guide"></span><h2>Guide step by step<a class="headerlink" href="#guide-step-by-step" title="Permalink to this heading"></a></h2>
 <p>Outline of the process and steps required to compute various metrics.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Step 00 - Registries"><img alt="Step 00 - Registries" src="../../_images/sphx_glr_plot_step_00_thumb.png" />
-<p><a class="reference internal" href="guide/plot_step_00.html#sphx-glr-examples-tutorial-guide-plot-step-00-py"><span class="std std-ref">Step 00 - Registries</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Step 00 - Registries</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Step 01 - Indexes"><img alt="Step 01 - Indexes" src="../../_images/sphx_glr_plot_step_01_thumb.png" />
-<p><a class="reference internal" href="guide/plot_step_01.html#sphx-glr-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">Step 01 - Indexes</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Step 01 - Indexes</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Step 02 - Temporal evolution"><img alt="Step 02 - Temporal evolution" src="../../_images/sphx_glr_plot_step_02_thumb.png" />
-<p><a class="reference internal" href="guide/plot_step_02.html#sphx-glr-examples-tutorial-guide-plot-step-02-py"><span class="std std-ref">Step 02 - Temporal evolution</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Step 02 - Temporal evolution</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Useful references:"><img alt="Step 03 - Time Series Analysis" src="../../_images/sphx_glr_plot_step_03_thumb.png" />
-<p><a class="reference internal" href="guide/plot_step_03.html#sphx-glr-examples-tutorial-guide-plot-step-03-py"><span class="std std-ref">Step 03 - Time Series Analysis</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Step 03 - Time Series Analysis</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Step 04 - TSA to estimate trends"><img alt="Step 04 - TSA to estimate trends" src="../../_images/sphx_glr_plot_step_04_thumb.png" />
-<p><a class="reference internal" href="guide/plot_step_04.html#sphx-glr-examples-tutorial-guide-plot-step-04-py"><span class="std std-ref">Step 04 - TSA to estimate trends</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Step 04 - TSA to estimate trends</div>
-</div></div></section>
-<section id="computing-amr-metrics">
-<h2>Computing AMR metrics<a class="headerlink" href="#computing-amr-metrics" title="Permalink to this headline"></a></h2>
-<p>Examples with the most important metrics.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The antimicrobial spectrum of activity refers to the range of microbe species that are suscepti..."><img alt="Spectrum of Activity (ASAI)" src="../../_images/sphx_glr_plot_core_asai_thumb.png" />
-<p><a class="reference internal" href="indexes/plot_core_asai.html#sphx-glr-examples-tutorial-indexes-plot-core-asai-py"><span class="std std-ref">Spectrum of Activity (ASAI)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Spectrum of Activity (ASAI)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Determination of the Multiple Antimicrobial Resistance Index, denoted as MARI,  follows the pro..."><img alt="Multiple Resistance (MARI)" src="../../_images/sphx_glr_plot_core_mari_thumb.png" />
-<p><a class="reference internal" href="indexes/plot_core_mari.html#sphx-glr-examples-tutorial-indexes-plot-core-mari-py"><span class="std std-ref">Multiple Resistance (MARI)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Multiple Resistance (MARI)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="The Single Antimicrobial Resistance Index - SARI - describes the proportion of resistant isolat..."><img alt="Single Resistance Index (SARI)" src="../../_images/sphx_glr_plot_core_sari_thumb.png" />
-<p><a class="reference internal" href="indexes/plot_core_sari.html#sphx-glr-examples-tutorial-indexes-plot-core-sari-py"><span class="std std-ref">Single Resistance Index (SARI)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Single Resistance Index (SARI)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Single Resistance Trend (SART)"><img alt="Single Resistance Trend (SART)" src="../../_images/sphx_glr_plot_core_sart_thumb.png" />
-<p><a class="reference internal" href="indexes/plot_core_sart.html#sphx-glr-examples-tutorial-indexes-plot-core-sart-py"><span class="std std-ref">Single Resistance Trend (SART)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Single Resistance Trend (SART)</div>
-</div></div></section>
-<section id="metrics">
-<h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline"></a></h2>
-<p>Examples computing metrics.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Example of metrics implemented."><img alt="Metrics - scores" src="../../_images/sphx_glr_plot_metrics_scores_thumb.png" />
-<p><a class="reference internal" href="metrics/plot_metrics_scores.html#sphx-glr-examples-tutorial-metrics-plot-metrics-scores-py"><span class="std std-ref">Metrics - scores</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Metrics - scores</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example of how to use the SigmoidA to compute weights."><img alt="Metrics - weights" src="../../_images/sphx_glr_plot_metrics_weights_thumb.png" />
-<p><a class="reference internal" href="metrics/plot_metrics_weights.html#sphx-glr-examples-tutorial-metrics-plot-metrics-weights-py"><span class="std std-ref">Metrics - weights</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Metrics - weights</div>
-</div></div></section>
-<section id="time-series-analysis-regression">
-<h2>Time-series analysis (regression)<a class="headerlink" href="#time-series-analysis-regression" title="Permalink to this headline"></a></h2>
-<p>Examples using regression and time-series analysis.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Using ARIMA"><img alt="Using ARIMA" src="../../_images/sphx_glr_plot_core_regression_arima_thumb.png" />
-<p><a class="reference internal" href="regression/plot_core_regression_arima.html#sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"><span class="std std-ref">Using ARIMA</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using ARIMA</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using WLS + ARMA"><img alt="Using WLS + ARMA" src="../../_images/sphx_glr_plot_core_regression_ensemble_thumb.png" />
-<p><a class="reference internal" href="regression/plot_core_regression_ensemble.html#sphx-glr-examples-tutorial-regression-plot-core-regression-ensemble-py"><span class="std std-ref">Using WLS + ARMA</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using WLS + ARMA</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using SARIMAX (seasonal)"><img alt="Using SARIMAX (seasonal)" src="../../_images/sphx_glr_plot_core_regression_sarimax_thumb.png" />
-<p><a class="reference internal" href="regression/plot_core_regression_sarimax.html#sphx-glr-examples-tutorial-regression-plot-core-regression-sarimax-py"><span class="std std-ref">Using SARIMAX (seasonal)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using SARIMAX (seasonal)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="In non-parametric statistics, the Theil–Sen estimator is a method for robustly fitting a line t..."><img alt="Using Theil-Sen" src="../../_images/sphx_glr_plot_core_regression_theilsens_thumb.png" />
-<p><a class="reference internal" href="regression/plot_core_regression_theilsens.html#sphx-glr-examples-tutorial-regression-plot-core-regression-theilsens-py"><span class="std std-ref">Using Theil-Sen</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using Theil-Sen</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using weighted least squares (WLS)"><img alt="Using weighted least squares (WLS)" src="../../_images/sphx_glr_plot_core_regression_wls_thumb.png" />
-<p><a class="reference internal" href="regression/plot_core_regression_wls.html#sphx-glr-examples-tutorial-regression-plot-core-regression-wls-py"><span class="std std-ref">Using weighted least squares (WLS)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using weighted least squares (WLS)</div>
-</div></div></section>
-<section id="statistical-tests-wrappers">
-<h2>Statistical tests (wrappers)<a class="headerlink" href="#statistical-tests-wrappers" title="Permalink to this headline"></a></h2>
-<p>Examples computing and interpreting statistical tests.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The Augmented Dickey-Fuller test..."><img alt="ADFuller" src="../../_images/sphx_glr_plot_core_stats_adfuller_thumb.png" />
-<p><a class="reference internal" href="statistics/plot_core_stats_adfuller.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-adfuller-py"><span class="std std-ref">ADFuller</span></a></p>
-  <div class="sphx-glr-thumbnail-title">ADFuller</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="Correlation" src="../../_images/sphx_glr_plot_core_stats_correlation_thumb.png" />
-<p><a class="reference internal" href="statistics/plot_core_stats_correlation.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-correlation-py"><span class="std std-ref">Correlation</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Correlation</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="Kendall" src="../../_images/sphx_glr_plot_core_stats_kendall_thumb.png" />
-<p><a class="reference internal" href="statistics/plot_core_stats_kendall.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-kendall-py"><span class="std std-ref">Kendall</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Kendall</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="Stationarity" src="../../_images/sphx_glr_plot_core_stats_stationarity_thumb.png" />
-<p><a class="reference internal" href="statistics/plot_core_stats_stationarity.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"><span class="std std-ref">Stationarity</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Stationarity</div>
-</div></div><div class="toctree-wrapper compound">
+<div class="sphx-glr-thumbcontainer" tooltip="Step 01 - Indexes"><figure class="align-default" id="id1">
+<img alt="Step 01 - Indexes" src="../../_images/sphx_glr_plot_step_01_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="guide/plot_step_01.html#sphx-glr-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">Step 01 - Indexes</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
 </div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+<div class="sphx-glr-thumbcontainer" tooltip="Step 02 - Temporal evolution"><figure class="align-default" id="id2">
+<img alt="Step 02 - Temporal evolution" src="../../_images/sphx_glr_plot_step_02_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="guide/plot_step_02.html#sphx-glr-examples-tutorial-guide-plot-step-02-py"><span class="std std-ref">Step 02 - Temporal evolution</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Useful references:"><figure class="align-default" id="id3">
+<img alt="Step 03 - Time Series Analysis" src="../../_images/sphx_glr_plot_step_03_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="guide/plot_step_03.html#sphx-glr-examples-tutorial-guide-plot-step-03-py"><span class="std std-ref">Step 03 - Time Series Analysis</span></a></span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Step 04 - TSA to estimate trends"><figure class="align-default" id="id4">
+<img alt="Step 04 - TSA to estimate trends" src="../../_images/sphx_glr_plot_step_04_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="guide/plot_step_04.html#sphx-glr-examples-tutorial-guide-plot-step-04-py"><span class="std std-ref">Step 04 - TSA to estimate trends</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></section>
+<section id="computing-amr-metrics">
+<span id="sphx-glr-examples-tutorial-indexes"></span><h2>Computing AMR metrics<a class="headerlink" href="#computing-amr-metrics" title="Permalink to this heading"></a></h2>
+<p>Examples with the most important metrics.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="The Single Antimicrobial Resistance Index or SARI describes the proportion of resistant isolate..."><figure class="align-default" id="id5">
+<img alt="Single Antimicrobial Resistance (``SARI``)" src="../../_images/sphx_glr_plot_core_a_sari_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="indexes/plot_core_a_sari.html#sphx-glr-examples-tutorial-indexes-plot-core-a-sari-py"><span class="std std-ref">Single Antimicrobial Resistance (SARI)</span></a></span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="The Antimicrobial Spectrum of Activity Index or ASAI refers to the range of microbe species tha..."><figure class="align-default" id="id6">
+<img alt="Spectrum of Activity (``ASAI``)" src="../../_images/sphx_glr_plot_core_b_asai_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="indexes/plot_core_b_asai.html#sphx-glr-examples-tutorial-indexes-plot-core-b-asai-py"><span class="std std-ref">Spectrum of Activity (ASAI)</span></a></span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Determination of the Multiple Antimicrobial Resistance Index or MARI follows the procedure desc..."><figure class="align-default" id="id7">
+<img alt="Multiple Resistance (``MARI``)" src="../../_images/sphx_glr_plot_core_c_mari_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="indexes/plot_core_c_mari.html#sphx-glr-examples-tutorial-indexes-plot-core-c-mari-py"><span class="std std-ref">Multiple Resistance (MARI)</span></a></span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Single Resistance Trend (``SART``)"><figure class="align-default" id="id8">
+<img alt="Single Resistance Trend (``SART``)" src="../../_images/sphx_glr_plot_core_d_sart_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="indexes/plot_core_d_sart.html#sphx-glr-examples-tutorial-indexes-plot-core-d-sart-py"><span class="std std-ref">Single Resistance Trend (SART)</span></a></span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="The Drug Resistance Index or DRI measures changes through time in the proportion of disease-cau..."><figure class="align-default" id="id9">
+<img alt="Drug Resistance Index (``DRI``)" src="../../_images/sphx_glr_plot_core_e_dri_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="indexes/plot_core_e_dri.html#sphx-glr-examples-tutorial-indexes-plot-core-e-dri-py"><span class="std std-ref">Drug Resistance Index (DRI)</span></a></span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="The Collateral Sensitivity Index - ACSI ..."><figure class="align-default" id="id10">
+<img alt="Collateral Sensitivity Index (``ACSI``)" src="../../_images/sphx_glr_plot_core_f_acri_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="indexes/plot_core_f_acri.html#sphx-glr-examples-tutorial-indexes-plot-core-f-acri-py"><span class="std std-ref">Collateral Sensitivity Index (ACSI)</span></a></span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></section>
+<section id="metrics">
+<span id="sphx-glr-examples-tutorial-metrics"></span><h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this heading"></a></h2>
+<p>Examples computing metrics.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Example of metrics implemented."><figure class="align-default" id="id11">
+<img alt="Metrics - scores" src="../../_images/sphx_glr_plot_metrics_scores_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="metrics/plot_metrics_scores.html#sphx-glr-examples-tutorial-metrics-plot-metrics-scores-py"><span class="std std-ref">Metrics - scores</span></a></span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example of how to use the SigmoidA to compute weights."><figure class="align-default" id="id12">
+<img alt="Metrics - weights" src="../../_images/sphx_glr_plot_metrics_weights_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="metrics/plot_metrics_weights.html#sphx-glr-examples-tutorial-metrics-plot-metrics-weights-py"><span class="std std-ref">Metrics - weights</span></a></span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></section>
+<section id="time-series-analysis-regression">
+<span id="sphx-glr-examples-tutorial-regression"></span><h2>Time-series analysis (regression)<a class="headerlink" href="#time-series-analysis-regression" title="Permalink to this heading"></a></h2>
+<p>Examples using regression and time-series analysis.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Using ARIMA"><figure class="align-default" id="id13">
+<img alt="Using ARIMA" src="../../_images/sphx_glr_plot_core_regression_arima_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="regression/plot_core_regression_arima.html#sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"><span class="std std-ref">Using ARIMA</span></a></span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Using WLS + ARMA"><figure class="align-default" id="id14">
+<img alt="Using WLS + ARMA" src="../../_images/sphx_glr_plot_core_regression_ensemble_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="regression/plot_core_regression_ensemble.html#sphx-glr-examples-tutorial-regression-plot-core-regression-ensemble-py"><span class="std std-ref">Using WLS + ARMA</span></a></span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Using SARIMAX (seasonal)"><figure class="align-default" id="id15">
+<img alt="Using SARIMAX (seasonal)" src="../../_images/sphx_glr_plot_core_regression_sarimax_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="regression/plot_core_regression_sarimax.html#sphx-glr-examples-tutorial-regression-plot-core-regression-sarimax-py"><span class="std std-ref">Using SARIMAX (seasonal)</span></a></span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="In non-parametric statistics, the Theil–Sen estimator is a method for robustly fitting a line t..."><figure class="align-default" id="id16">
+<img alt="Using Theil-Sen" src="../../_images/sphx_glr_plot_core_regression_theilsens_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="regression/plot_core_regression_theilsens.html#sphx-glr-examples-tutorial-regression-plot-core-regression-theilsens-py"><span class="std std-ref">Using Theil-Sen</span></a></span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Using weighted least squares (WLS)"><figure class="align-default" id="id17">
+<img alt="Using weighted least squares (WLS)" src="../../_images/sphx_glr_plot_core_regression_wls_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="regression/plot_core_regression_wls.html#sphx-glr-examples-tutorial-regression-plot-core-regression-wls-py"><span class="std std-ref">Using weighted least squares (WLS)</span></a></span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div></section>
+<section id="statistical-tests-wrappers">
+<span id="sphx-glr-examples-tutorial-statistics"></span><h2>Statistical tests (wrappers)<a class="headerlink" href="#statistical-tests-wrappers" title="Permalink to this heading"></a></h2>
+<p>Examples computing and interpreting statistical tests.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="The Augmented Dickey-Fuller test..."><figure class="align-default" id="id18">
+<img alt="ADFuller" src="../../_images/sphx_glr_plot_core_stats_adfuller_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="statistics/plot_core_stats_adfuller.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-adfuller-py"><span class="std std-ref">ADFuller</span></a></span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><figure class="align-default" id="id19">
+<img alt="Correlation" src="../../_images/sphx_glr_plot_core_stats_correlation_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="statistics/plot_core_stats_correlation.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-correlation-py"><span class="std std-ref">Correlation</span></a></span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><figure class="align-default" id="id20">
+<img alt="Kendall" src="../../_images/sphx_glr_plot_core_stats_kendall_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="statistics/plot_core_stats_kendall.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-kendall-py"><span class="std std-ref">Kendall</span></a></span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><figure class="align-default" id="id21">
+<img alt="Stationarity" src="../../_images/sphx_glr_plot_core_stats_stationarity_thumb.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference internal" href="statistics/plot_core_stats_stationarity.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"><span class="std std-ref">Stationarity</span></a></span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-clear"></div><p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
 </section>
 
@@ -186,7 +325,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../../usage/todo.html" class="btn btn-neutral float-left" title="Future Actions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../indexes/index.html" class="btn btn-neutral float-right" title="Examples with indexes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="guide/plot_step_01.html" class="btn btn-neutral float-right" title="Step 01 - Indexes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

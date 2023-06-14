@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Step 02 - Temporal evolution &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,10 +20,14 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Step 03 - Time Series Analysis" href="plot_step_03.html" />
+    <link rel="prev" title="Step 01 - Indexes" href="plot_step_01.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,18 +53,35 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_step_01.html">Step 01 - Indexes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Step 02 - Temporal evolution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-data">Loading data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computing-sari-timeseries">Computing SARI timeseries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#computing-asai-timeseries">Computing ASAI timeseries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#considerations">Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 03 - Time Series Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_step_04.html">Step 04 - TSA to estimate trends</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -72,8 +97,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Step 02 - Temporal evolution</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Step 02 - Temporal evolution</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/guide/plot_step_02.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,9 +115,9 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="step-02-temporal-evolution">
-<span id="sphx-glr-examples-tutorial-guide-plot-step-02-py"></span><h1>Step 02 - Temporal evolution<a class="headerlink" href="#step-02-temporal-evolution" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-tutorial-guide-plot-step-02-py"></span><h1>Step 02 - Temporal evolution<a class="headerlink" href="#step-02-temporal-evolution" title="Permalink to this heading"></a></h1>
 <section id="loading-data">
-<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this headline"></a></h2>
+<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this heading"></a></h2>
 <p>A small dataset will be used for this example.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">15</span> <span class="c1"># Libraries</span>
 <span class="linenos">16</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -127,19 +153,20 @@ to download the full example code</p>
 <span class="linenos">46</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
 </pre></div>
 </div>
+<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-       date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
-113       2009-01-03           NaN       20099           X428892        URICUL            NaN                urine  ...           coliform               AAUG          augmentin                NaN    sensitive NaN       NaN
-119       2009-01-03           NaN       20100           X429141        URICUL            NaN       catheter urine  ...           coliform               AAUG          augmentin                NaN    sensitive NaN       NaN
-164       2009-01-03           NaN       22571           X429323        URICUL            NaN     mid stream urine  ...           coliform               AAUG          augmentin                NaN    sensitive NaN       NaN
-268       2009-01-03           NaN       22576           X428467        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
-293       2009-01-03           NaN       24017           X429325        URICUL            NaN    clean catch urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
-...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
-318940    2009-12-31           NaN       20088          H2011867        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
-318946    2009-12-31           NaN       20089          H2012653        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
-318983    2009-12-31           NaN       22565          F1741389        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
-319048    2009-12-31           NaN       24013          H2012150        URICUL            NaN                urine  ...       enterococcus               AAUG          augmentin                NaN    sensitive NaN       NaN
-319070    2009-12-31           NaN       24015          H2012340        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
+       date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
+113       2009-01-03           NaN       20099           X428892        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+119       2009-01-03           NaN       20100           X429141        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+164       2009-01-03           NaN       22571           X429323        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+268       2009-01-03           NaN       22576           X428467        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+293       2009-01-03           NaN       24017           X429325        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
+318940    2009-12-31           NaN       20088          H2011867        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+318946    2009-12-31           NaN       20089          H2012653        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+318983    2009-12-31           NaN       22565          F1741389        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+319048    2009-12-31           NaN       24013          H2012150        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+319070    2009-12-31           NaN       24015          H2012340        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
 
 [15269 rows x 15 columns]
 
@@ -164,7 +191,7 @@ dtype: object
 </div>
 </section>
 <section id="computing-sari-timeseries">
-<h2>Computing SARI timeseries<a class="headerlink" href="#computing-sari-timeseries" title="Permalink to this headline"></a></h2>
+<h2>Computing SARI timeseries<a class="headerlink" href="#computing-sari-timeseries" title="Permalink to this heading"></a></h2>
 <p>In order to study the temporal evolution of AMR, it is necessary to generate
 a resistance time series from the susceptibility test data. This is often
 achieved by calculating the resistance index  (e.g. <code class="docutils literal notranslate"><span class="pre">SARI</span></code>) on consecutive
@@ -174,11 +201,11 @@ tests that will be used to compute the resistance index.</p>
 1M<sub>1</sub> defines a time series with monthly resistance indexes and 7D<sub>4</sub> defines a time series
 with weekly resistance indexes (7D) calculated using the microbiology records available for
 the previous four weeks (4x7D).</p>
-<p>For more information see: <a class="reference internal" href="../../../_apidoc/pyamr.core.html#pyamr.core.sari.SARI" title="pyamr.core.sari.SARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></a></p>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="../../indexes/plot_sari_temporal.html#sphx-glr-examples-indexes-plot-sari-temporal-py"><span class="std std-ref">SARI - Timeseries</span></a></p></li>
+<li><p><a class="reference internal" href="../../indexes/plot_sari_d_temporal.html#sphx-glr-examples-indexes-plot-sari-d-temporal-py"><span class="std std-ref">SARI - Compute timeseries</span></a></p></li>
 </ul>
 </div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 82</span> <span class="c1"># -----------------------------------------</span>
@@ -207,6 +234,7 @@ the previous four weeks (4x7D).</p>
 <span class="linenos">105</span> <span class="nb">print</span><span class="p">(</span><span class="n">iti</span><span class="p">)</span>
 </pre></div>
 </div>
+<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (temporal):
     specimen_code   microorganism_name antimicrobial_name date_received  resistant  sensitive  freq  sari
 0          URICUL        acinetobacter          augmentin    2009-03-04        0.0        1.0   1.0   0.0
@@ -273,7 +301,8 @@ the previous four weeks (4x7D).</p>
 <span class="linenos">157</span> <span class="nb">print</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_step_02_001.png" srcset="../../../_images/sphx_glr_plot_step_02_001.png" alt="Time-series $30D_{30D}$" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\tutorial\guide\plot_step_02.py:136: UserWarning:
+<img src="../../../_images/sphx_glr_plot_step_02_001.png" srcset="../../../_images/sphx_glr_plot_step_02_001.png" alt="Time-series $30D_{30D}$" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\tutorial\guide\plot_step_02.py:136: UserWarning:
 
 Ignoring `palette` because no `hue` variable has been assigned.
 
@@ -297,7 +326,7 @@ Temporal (ITI):
 </div>
 </section>
 <section id="computing-asai-timeseries">
-<h2>Computing ASAI timeseries<a class="headerlink" href="#computing-asai-timeseries" title="Permalink to this headline"></a></h2>
+<h2>Computing ASAI timeseries<a class="headerlink" href="#computing-asai-timeseries" title="Permalink to this heading"></a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <ul class="simple">
@@ -320,7 +349,7 @@ information:</p>
 </div></blockquote>
 <p>Moreover, in this example we will compute the ASAI for each <code class="docutils literal notranslate"><span class="pre">gram_stain</span></code> category
 independently so we will need the microorganism gram stain information too. This
-information is available in the registries: <a class="reference internal" href="../../../_apidoc/pyamr.datasets.html#module-pyamr.datasets.registries" title="pyamr.datasets.registries"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.datasets.registries</span></code></a>.</p>
+information is available in the registries: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.datasets.registries</span></code>.</p>
 <p>Lets include all this information using the <code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">188</span> <span class="c1"># ------------------------------</span>
 <span class="linenos">189</span> <span class="c1"># Include gram stain</span>
@@ -519,11 +548,11 @@ information is available in the registries: <a class="reference internal" href="
 lets see how compute <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> in a temporal fashion with an example. It is
 important to highlight that now the date (<code class="docutils literal notranslate"><span class="pre">date_received</span></code>) is also included
 in the groupby parameter when calling the compute method.</p>
-<p>For more information see: <a class="reference internal" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI" title="pyamr.core.asai.ASAI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></a></p>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="../../indexes/plot_spectrum_temporal.html#sphx-glr-examples-indexes-plot-spectrum-temporal-py"><span class="std std-ref">ASAI - Timeseries</span></a></p></li>
+<li><p><a class="reference internal" href="../../indexes/plot_asai_c_temporal.html#sphx-glr-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">ASAI - Compute timeseries</span></a></p></li>
 </ul>
 </div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">230</span> <span class="c1"># -------------------------------------------</span>
@@ -557,7 +586,8 @@ in the groupby parameter when calling the compute method.</p>
 <span class="linenos">258</span> <span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:570: UserWarning:
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:570: UserWarning:
 
 
                  Extreme resistances [0, 1] were found in the DataFrame. These
@@ -565,7 +595,7 @@ in the groupby parameter when calling the compute method.</p>
                  to pairs with low number of records.
 
 
-C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:584: UserWarning:
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:584: UserWarning:
 
 
                  There are NULL values in columns that are required. These
@@ -867,7 +897,8 @@ date_received specimen_code antimicrobial_name
 <span class="linenos">325</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_step_02_002.png" srcset="../../../_images/sphx_glr_plot_step_02_002.png" alt="ASAI evolution 2009" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ASAI (overall):
+<img src="../../../_images/sphx_glr_plot_step_02_002.png" srcset="../../../_images/sphx_glr_plot_step_02_002.png" alt="ASAI evolution 2009" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ASAI (overall):
               N_GENUS      N_SPECIE      ASAI_SCORE
 gram_stain          n    p        n    p          n     p
 date_received
@@ -888,13 +919,13 @@ date_received
 </div>
 </section>
 <section id="considerations">
-<h2>Considerations<a class="headerlink" href="#considerations" title="Permalink to this headline"></a></h2>
+<h2>Considerations<a class="headerlink" href="#considerations" title="Permalink to this heading"></a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Pending!</p>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.555 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-02-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.594 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-02-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/d92cffb9255a81837fa25e002aff4919/plot_step_02.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_02.py</span></code></a></p>
 </div>
@@ -909,7 +940,10 @@ date_received
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_step_01.html" class="btn btn-neutral float-left" title="Step 01 - Indexes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_step_03.html" class="btn btn-neutral float-right" title="Step 03 - Time Series Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

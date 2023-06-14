@@ -21,7 +21,7 @@
 Table Scatterplot
 =================
 
-.. GENERATED FROM PYTHON SOURCE LINES 6-118
+.. GENERATED FROM PYTHON SOURCE LINES 6-119
 
 
 
@@ -32,6 +32,8 @@ Table Scatterplot
 
 
 .. rst-class:: sphx-glr-script-out
+
+ Out:
 
  .. code-block:: none
 
@@ -145,7 +147,7 @@ Table Scatterplot
         #          their value.
 
         # Using scatter plot
-        sns.scatterplot(data=data, x=c, y='abx', s=100,
+        sns.scatterplot(data=data, x=c, y='abx', s=100, alpha=1,
                         ax=ax, linewidth=0.75, edgecolor='gray',
                         c=data[c], cmap=d.get('cmap', None),
                         norm=d.get('norm', None))
@@ -163,6 +165,7 @@ Table Scatterplot
         ax.xaxis.grid(False)
         ax.yaxis.grid(visible=True, which='major',
                       color='gray', linestyle='-', linewidth=0.35)
+        ax.set_axisbelow(True)
 
     # Despine
     sns.despine(left=True, bottom=True)
@@ -175,23 +178,28 @@ Table Scatterplot
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.506 seconds)
+   **Total running time of the script:** ( 0 minutes  0.543 seconds)
 
 
 .. _sphx_glr_download__examples_visualization_plot_dataframe_table.py:
 
-.. only:: html
 
-  .. container:: sphx-glr-footer sphx-glr-footer-example
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
 
 
-    .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_dataframe_table.py <plot_dataframe_table.py>`
+  .. container:: sphx-glr-download sphx-glr-download-python
 
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
+     :download:`Download Python source code: plot_dataframe_table.py <plot_dataframe_table.py>`
 
-      :download:`Download Jupyter notebook: plot_dataframe_table.ipynb <plot_dataframe_table.ipynb>`
+
+
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+     :download:`Download Jupyter notebook: plot_dataframe_table.ipynb <plot_dataframe_table.ipynb>`
 
 
 .. only:: html

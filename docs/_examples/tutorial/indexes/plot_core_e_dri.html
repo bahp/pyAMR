@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drug Resistance Index (DRI) &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Collateral Sensitivity Index (ACSI)" href="plot_core_f_acri.html" />
+    <link rel="prev" title="Single Resistance Trend (SART)" href="plot_core_d_sart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_a_sari.html">Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_b_asai.html">Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_c_mari.html">Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_d_sart.html">Single Resistance Trend (<code class="docutils literal notranslate"><span class="pre">SART</span></code>)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_f_acri.html">Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/_examples/tutorial/indexes/plot_core_e_dri.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-core-e-dri-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="drug-resistance-index-dri">
+<span id="sphx-glr-examples-tutorial-indexes-plot-core-e-dri-py"></span><h1>Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)<a class="headerlink" href="#drug-resistance-index-dri" title="Permalink to this heading"></a></h1>
+<p>The Drug Resistance Index or <code class="docutils literal notranslate"><span class="pre">DRI</span></code> measures changes through time in the proportion
+of disease-causing pathogens that are resistant to the antibiotics commonly used to
+treat them. The annual percentage change in the <code class="docutils literal notranslate"><span class="pre">DRI</span></code> is a measure of the rate of
+depletion of antibiotic effectiveness.</p>
+<p>Since antibiotic use may change over time in response to changing levels of
+antibiotic resistance, we compare trends in the index with the counterfactual
+case, where antibiotic use remains fixed to a baseline year. A static-use <code class="docutils literal notranslate"><span class="pre">DRI</span></code>
+allows assessment of the extent to which drug use has adapted in response to
+resistance and the burden that this resistance would have caused if antibiotic
+use patterns had not changed. Changing antibiotic use patterns over time may
+mitigate the burden of antibiotic resistance. To incorporate changing trends
+in antibiotic use, we also construct an adaptive version of the <code class="docutils literal notranslate"><span class="pre">DRI</span></code>.</p>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.dri.DRI</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 21</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 22</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos"> 25</span> <span class="c1"># Create data</span>
+<span class="linenos"> 26</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos"> 27</span> <span class="c1"># Define susceptibility test records</span>
+<span class="linenos"> 28</span> <span class="n">susceptibility_records</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 29</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 30</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 31</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 32</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 33</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 34</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 35</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 36</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 37</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 38</span>     <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 41</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 42</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 43</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 44</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 45</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 46</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 47</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 48</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 49</span>     <span class="p">[</span><span class="s1">&#39;2021-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;ECOL&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 50</span>
+<span class="linenos"> 51</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 52</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 53</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 54</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 55</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 56</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 57</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 58</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 59</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 60</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 61</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 62</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 63</span>     <span class="p">[</span><span class="s1">&#39;2021-01-08&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 64</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 65</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 66</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 67</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 68</span>     <span class="p">[</span><span class="s1">&#39;2021-01-09&#39;</span><span class="p">,</span> <span class="s1">&#39;BLDCUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span>     <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 71</span>     <span class="p">[</span><span class="s1">&#39;2021-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+<span class="linenos"> 72</span>     <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 73</span>     <span class="p">[</span><span class="s1">&#39;2021-01-13&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 74</span>     <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 75</span>     <span class="p">[</span><span class="s1">&#39;2021-01-14&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;resistant&#39;</span><span class="p">],</span>
+<span class="linenos"> 76</span>     <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 77</span>     <span class="p">[</span><span class="s1">&#39;2021-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">],</span>
+<span class="linenos"> 78</span>     <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+<span class="linenos"> 79</span>     <span class="p">[</span><span class="s1">&#39;2021-01-16&#39;</span><span class="p">,</span> <span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="s1">&#39;SAUR&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">],</span>
+<span class="linenos"> 80</span> <span class="p">]</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span> <span class="c1"># Define prescription test records</span>
+<span class="linenos"> 83</span> <span class="n">prescription_records</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 84</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+<span class="linenos"> 85</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">221</span><span class="p">],</span>
+<span class="linenos"> 86</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_1&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">152</span><span class="p">],</span>
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">254</span><span class="p">],</span>
+<span class="linenos"> 89</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">325</span><span class="p">],</span>
+<span class="linenos"> 90</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_2&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span> <span class="mi">356</span><span class="p">],</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">457</span><span class="p">],</span>
+<span class="linenos"> 93</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">428</span><span class="p">],</span>
+<span class="linenos"> 94</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_3&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">459</span><span class="p">],</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span>     <span class="p">[</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+<span class="linenos"> 97</span>     <span class="p">[</span><span class="s1">&#39;2021-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+<span class="linenos"> 98</span>     <span class="p">[</span><span class="s1">&#39;2021-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;PATIENT_4&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span> <span class="p">]</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span> <span class="c1"># Create DataFrames</span>
+<span class="linenos">103</span> <span class="n">susceptibility</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">susceptibility_records</span><span class="p">,</span>
+<span class="linenos">104</span>                               <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">105</span>                                        <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">106</span>                                        <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">107</span>                                        <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">108</span>                                        <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span> <span class="n">prescriptions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prescription_records</span><span class="p">,</span>
+<span class="linenos">111</span>                              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">112</span>                                       <span class="s1">&#39;PATIENT&#39;</span><span class="p">,</span>
+<span class="linenos">113</span>                                       <span class="s1">&#39;DRUG&#39;</span><span class="p">,</span>
+<span class="linenos">114</span>                                       <span class="s1">&#39;DOSE&#39;</span><span class="p">])</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span> <span class="c1"># Format dates</span>
+<span class="linenos">117</span> <span class="n">susceptibility</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">susceptibility</span><span class="o">.</span><span class="n">DATE</span><span class="p">)</span>
+<span class="linenos">118</span> <span class="n">prescriptions</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">prescriptions</span><span class="o">.</span><span class="n">DATE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Lets see the susceptibility test records</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">122</span> <span class="n">susceptibility</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>SENSITIVITY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets see the prescription records</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">126</span> <span class="n">prescriptions</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>PATIENT</th>
+      <th>DRUG</th>
+      <th>DOSE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>PATIENT_1</td>
+      <td>AAUG</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-02</td>
+      <td>PATIENT_1</td>
+      <td>AAUG</td>
+      <td>221</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-03</td>
+      <td>PATIENT_1</td>
+      <td>AAUG</td>
+      <td>152</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-01</td>
+      <td>PATIENT_2</td>
+      <td>AAUG</td>
+      <td>254</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-02</td>
+      <td>PATIENT_2</td>
+      <td>AAUG</td>
+      <td>325</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets create the summary table and compute the <code class="docutils literal notranslate"><span class="pre">DRI</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">132</span> <span class="c1"># ------------------------</span>
+<span class="linenos">133</span> <span class="c1"># Compute summary table</span>
+<span class="linenos">134</span> <span class="c1"># ------------------------</span>
+<span class="linenos">135</span> <span class="c1"># Libraries</span>
+<span class="linenos">136</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span> <span class="c1"># Create sari instance</span>
+<span class="linenos">139</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">140</span>                      <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">141</span>                      <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">142</span>                      <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">143</span>                      <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span> <span class="c1"># Compute susceptibility summary table</span>
+<span class="linenos">146</span> <span class="n">smmry1</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+<span class="linenos">147</span>                       <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span> <span class="c1"># Compute prescriptions summary table.</span>
+<span class="linenos">150</span> <span class="n">smmry2</span> <span class="o">=</span> <span class="n">prescriptions</span> \
+<span class="linenos">151</span>     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DRUG&#39;</span><span class="p">])</span> \
+<span class="linenos">152</span>     <span class="o">.</span><span class="n">DOSE</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;use&#39;</span><span class="p">)</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span> <span class="c1"># Combine both summary tables</span>
+<span class="linenos">155</span> <span class="n">smmry</span> <span class="o">=</span> <span class="n">smmry1</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<span class="linenos">156</span>     <span class="n">smmry2</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span>
+<span class="linenos">157</span>     <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">],</span>
+<span class="linenos">158</span>     <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DRUG&#39;</span><span class="p">]</span>
+<span class="linenos">159</span> <span class="p">)</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span> <span class="c1"># -------------------------</span>
+<span class="linenos">162</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">163</span> <span class="c1"># -------------------------</span>
+<span class="linenos">164</span> <span class="c1"># Librarie</span>
+<span class="linenos">165</span> <span class="kn">from</span> <span class="nn">pyamr.core.dri</span> <span class="kn">import</span> <span class="n">DRI</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span> <span class="c1"># Instance</span>
+<span class="linenos">168</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">DRI</span><span class="p">(</span>
+<span class="linenos">169</span>     <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+<span class="linenos">170</span>     <span class="n">column_usage</span><span class="o">=</span><span class="s1">&#39;use&#39;</span>
+<span class="linenos">171</span> <span class="p">)</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span> <span class="c1"># Compute DRI overall</span>
+<span class="linenos">174</span> <span class="n">dri1</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">)</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">177</span> <span class="n">dri2</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">178</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">])</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">181</span> <span class="n">dri3</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">182</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">])</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">185</span> <span class="n">dri4</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">186</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">])</span>
+<span class="linenos">187</span>
+<span class="linenos">188</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">189</span> <span class="n">dri5</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">190</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span>
+<span class="linenos">191</span>     <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">194</span> <span class="n">dri6</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">195</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">],</span>
+<span class="linenos">196</span>     <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">197</span>
+<span class="linenos">198</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">199</span> <span class="n">dri7</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">200</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">],</span>
+<span class="linenos">201</span>     <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">202</span>     <span class="n">return_complete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span> <span class="c1"># Compute DRI (return all elements of summary table).</span>
+<span class="linenos">205</span> <span class="n">dri8</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">206</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">],</span>
+<span class="linenos">207</span>     <span class="n">return_complete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span> <span class="c1"># Show</span>
+<span class="linenos">210</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (1):&quot;</span><span class="p">)</span>
+<span class="linenos">211</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri1</span><span class="p">)</span>
+<span class="linenos">212</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (2):&quot;</span><span class="p">)</span>
+<span class="linenos">213</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri2</span><span class="p">)</span>
+<span class="linenos">214</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (3):&quot;</span><span class="p">)</span>
+<span class="linenos">215</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri3</span><span class="p">)</span>
+<span class="linenos">216</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (4):&quot;</span><span class="p">)</span>
+<span class="linenos">217</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri4</span><span class="p">)</span>
+<span class="linenos">218</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (5):&quot;</span><span class="p">)</span>
+<span class="linenos">219</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri5</span><span class="p">)</span>
+<span class="linenos">220</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (6):&quot;</span><span class="p">)</span>
+<span class="linenos">221</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri6</span><span class="p">)</span>
+<span class="linenos">222</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (7):&quot;</span><span class="p">)</span>
+<span class="linenos">223</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri7</span><span class="p">)</span>
+<span class="linenos">224</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (8):&quot;</span><span class="p">)</span>
+<span class="linenos">225</span> <span class="nb">print</span><span class="p">(</span><span class="n">dri8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DRI (1):
+0.5478155956311913
+
+DRI (2):
+SPECIMEN
+BLDCUL    0.5478
+Name: dri, dtype: float64
+
+DRI (3):
+MICROORGANISM
+ECOL    0.5049
+SAUR    0.6765
+Name: dri, dtype: float64
+
+DRI (4):
+MICROORGANISM  ANTIMICROBIAL
+ECOL           AAUG             0.3683
+               ACIP             0.6382
+SAUR           ACIP             0.6765
+Name: dri, dtype: float64
+
+DRI (5):
+            use_period     dri
+DATE
+2021-01-01      1418.0  0.6969
+2021-01-02      1502.0  0.4394
+2021-01-03      1017.0  0.5000
+
+DRI (6):
+                          use_period     dri
+DATE       MICROORGANISM
+2021-01-01 ECOL                911.0  0.5283
+           SAUR                507.0  1.0000
+2021-01-02 ECOL               1024.0  0.4889
+           SAUR                478.0  0.3333
+2021-01-03 ECOL               1017.0  0.5000
+
+DRI (7):
+        DATE SPECIMEN MICROORGANISM ANTIMICROBIAL  RESISTANCE  DRUG  USE  use_period  u_weight  w_rate     dri
+0 2021-01-01   BLDCUL          ECOL          AAUG      0.2500  AAUG  404         404       1.0  0.2500  0.2500
+1 2021-01-01   BLDCUL          ECOL          ACIP      0.7500  ACIP  507         507       1.0  0.7500  0.7500
+2 2021-01-01   BLDCUL          SAUR          ACIP      1.0000  ACIP  507         507       1.0  1.0000  1.0000
+3 2021-01-02   BLDCUL          ECOL          AAUG      0.3333  AAUG  546         546       1.0  0.3333  0.3333
+4 2021-01-02   BLDCUL          ECOL          ACIP      0.6667  ACIP  478         478       1.0  0.6667  0.6667
+5 2021-01-02   BLDCUL          SAUR          ACIP      0.3333  ACIP  478         478       1.0  0.3333  0.3333
+6 2021-01-03   BLDCUL          ECOL          AAUG      0.5000  AAUG  508         508       1.0  0.5000  0.5000
+7 2021-01-03   BLDCUL          ECOL          ACIP      0.5000  ACIP  509         509       1.0  0.5000  0.5000
+
+DRI (8):
+        DATE SPECIMEN MICROORGANISM ANTIMICROBIAL  RESISTANCE  DRUG  USE  use_period  u_weight  w_rate     dri
+0 2021-01-01   BLDCUL          ECOL          AAUG      0.2500  AAUG  404        2952    0.1369  0.0342  0.5049
+1 2021-01-01   BLDCUL          ECOL          ACIP      0.7500  ACIP  507        2952    0.1717  0.1288  0.5049
+2 2021-01-01   BLDCUL          SAUR          ACIP      1.0000  ACIP  507         985    0.5147  0.5147  0.6765
+3 2021-01-02   BLDCUL          ECOL          AAUG      0.3333  AAUG  546        2952    0.1850  0.0617  0.5049
+4 2021-01-02   BLDCUL          ECOL          ACIP      0.6667  ACIP  478        2952    0.1619  0.1079  0.5049
+5 2021-01-02   BLDCUL          SAUR          ACIP      0.3333  ACIP  478         985    0.4853  0.1618  0.6765
+6 2021-01-03   BLDCUL          ECOL          AAUG      0.5000  AAUG  508        2952    0.1721  0.0860  0.5049
+7 2021-01-03   BLDCUL          ECOL          ACIP      0.5000  ACIP  509        2952    0.1724  0.0862  0.5049
+</pre></div>
+</div>
+<p>Lets see the summary table</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">229</span> <span class="n">smmry</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>sari</th>
+      <th>DRUG</th>
+      <th>use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.2500</td>
+      <td>AAUG</td>
+      <td>404</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.7500</td>
+      <td>ACIP</td>
+      <td>507</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>1.0000</td>
+      <td>ACIP</td>
+      <td>507</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.3333</td>
+      <td>AAUG</td>
+      <td>546</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.6667</td>
+      <td>ACIP</td>
+      <td>478</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>0.3333</td>
+      <td>ACIP</td>
+      <td>478</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.5000</td>
+      <td>AAUG</td>
+      <td>508</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.5000</td>
+      <td>ACIP</td>
+      <td>509</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets see the sample <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">233</span> <span class="n">dri4</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>dri</th>
+    </tr>
+    <tr>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">ECOL</th>
+      <th>AAUG</th>
+      <td>0.368</td>
+    </tr>
+    <tr>
+      <th>ACIP</th>
+      <td>0.638</td>
+    </tr>
+    <tr>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>0.676</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets see the sample <code class="docutils literal notranslate"><span class="pre">7</span></code> with <code class="docutils literal notranslate"><span class="pre">return_components=True</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">237</span> <span class="n">dri7</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">238</span>     <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">:</span> <span class="s1">&#39;ORG&#39;</span><span class="p">,</span>
+<span class="linenos">239</span>     <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">:</span> <span class="s1">&#39;ABX&#39;</span>
+<span class="linenos">240</span> <span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>SPECIMEN</th>
+      <th>ORG</th>
+      <th>ABX</th>
+      <th>RESISTANCE</th>
+      <th>DRUG</th>
+      <th>USE</th>
+      <th>use_period</th>
+      <th>u_weight</th>
+      <th>w_rate</th>
+      <th>dri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.250</td>
+      <td>AAUG</td>
+      <td>404</td>
+      <td>404</td>
+      <td>1.0</td>
+      <td>0.250</td>
+      <td>0.250</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.750</td>
+      <td>ACIP</td>
+      <td>507</td>
+      <td>507</td>
+      <td>1.0</td>
+      <td>0.750</td>
+      <td>0.750</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>1.000</td>
+      <td>ACIP</td>
+      <td>507</td>
+      <td>507</td>
+      <td>1.0</td>
+      <td>1.000</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.333</td>
+      <td>AAUG</td>
+      <td>546</td>
+      <td>546</td>
+      <td>1.0</td>
+      <td>0.333</td>
+      <td>0.333</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.667</td>
+      <td>ACIP</td>
+      <td>478</td>
+      <td>478</td>
+      <td>1.0</td>
+      <td>0.667</td>
+      <td>0.667</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>0.333</td>
+      <td>ACIP</td>
+      <td>478</td>
+      <td>478</td>
+      <td>1.0</td>
+      <td>0.333</td>
+      <td>0.333</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.500</td>
+      <td>AAUG</td>
+      <td>508</td>
+      <td>508</td>
+      <td>1.0</td>
+      <td>0.500</td>
+      <td>0.500</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.500</td>
+      <td>ACIP</td>
+      <td>509</td>
+      <td>509</td>
+      <td>1.0</td>
+      <td>0.500</td>
+      <td>0.500</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets see the sample <code class="docutils literal notranslate"><span class="pre">8</span></code> with <code class="docutils literal notranslate"><span class="pre">return_complete=True</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">244</span> <span class="n">dri8</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">245</span>     <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">:</span> <span class="s1">&#39;ORG&#39;</span><span class="p">,</span>
+<span class="linenos">246</span>     <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">:</span> <span class="s1">&#39;ABX&#39;</span>
+<span class="linenos">247</span> <span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>SPECIMEN</th>
+      <th>ORG</th>
+      <th>ABX</th>
+      <th>RESISTANCE</th>
+      <th>DRUG</th>
+      <th>USE</th>
+      <th>use_period</th>
+      <th>u_weight</th>
+      <th>w_rate</th>
+      <th>dri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.250</td>
+      <td>AAUG</td>
+      <td>404</td>
+      <td>2952</td>
+      <td>0.137</td>
+      <td>0.034</td>
+      <td>0.505</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.750</td>
+      <td>ACIP</td>
+      <td>507</td>
+      <td>2952</td>
+      <td>0.172</td>
+      <td>0.129</td>
+      <td>0.505</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>1.000</td>
+      <td>ACIP</td>
+      <td>507</td>
+      <td>985</td>
+      <td>0.515</td>
+      <td>0.515</td>
+      <td>0.676</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.333</td>
+      <td>AAUG</td>
+      <td>546</td>
+      <td>2952</td>
+      <td>0.185</td>
+      <td>0.062</td>
+      <td>0.505</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.667</td>
+      <td>ACIP</td>
+      <td>478</td>
+      <td>2952</td>
+      <td>0.162</td>
+      <td>0.108</td>
+      <td>0.505</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>0.333</td>
+      <td>ACIP</td>
+      <td>478</td>
+      <td>985</td>
+      <td>0.485</td>
+      <td>0.162</td>
+      <td>0.676</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.500</td>
+      <td>AAUG</td>
+      <td>508</td>
+      <td>2952</td>
+      <td>0.172</td>
+      <td>0.086</td>
+      <td>0.505</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.500</td>
+      <td>ACIP</td>
+      <td>509</td>
+      <td>2952</td>
+      <td>0.172</td>
+      <td>0.086</td>
+      <td>0.505</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets compute the <code class="docutils literal notranslate"><span class="pre">fixed</span></code> index for comparison</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">252</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">253</span> <span class="c1"># Compute DRI fixed</span>
+<span class="linenos">254</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">255</span> <span class="c1"># Compute prescriptions on t0.</span>
+<span class="linenos">256</span> <span class="n">use_t0</span> <span class="o">=</span> <span class="n">prescriptions</span> \
+<span class="linenos">257</span>     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;DRUG&#39;</span><span class="p">])</span> \
+<span class="linenos">258</span>     <span class="o">.</span><span class="n">DOSE</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;use&#39;</span><span class="p">)</span> \
+<span class="linenos">259</span>     <span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+<span class="linenos">260</span>     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;DRUG&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">use</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="linenos">261</span>
+<span class="linenos">262</span> <span class="c1"># Add to summary table</span>
+<span class="linenos">263</span> <span class="n">smmry</span> <span class="o">=</span> <span class="n">smmry</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">use_t0</span><span class="o">=</span><span class="n">smmry</span><span class="o">.</span><span class="n">DRUG</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">use_t0</span><span class="p">))</span>
+<span class="linenos">264</span>
+<span class="linenos">265</span> <span class="c1"># Define groupby</span>
+<span class="linenos">266</span> <span class="n">groupby</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">267</span>     <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">268</span>     <span class="s1">&#39;MICROORGANISM&#39;</span>
+<span class="linenos">269</span> <span class="p">]</span>
+<span class="linenos">270</span>
+<span class="linenos">271</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">272</span> <span class="n">dri9a</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">273</span>                     <span class="n">groupby</span><span class="o">=</span><span class="n">groupby</span><span class="p">,</span>
+<span class="linenos">274</span>                     <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">275</span>
+<span class="linenos">276</span> <span class="c1"># Compute DRI using new USE</span>
+<span class="linenos">277</span> <span class="n">dri9b</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">278</span>                     <span class="n">groupby</span><span class="o">=</span><span class="n">groupby</span><span class="p">,</span>
+<span class="linenos">279</span>                     <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">280</span>                     <span class="n">column_usage</span><span class="o">=</span><span class="s1">&#39;use_t0&#39;</span><span class="p">)</span>
+<span class="linenos">281</span>
+<span class="linenos">282</span> <span class="c1"># aux = pd.concat([dri9a, dri9b], axis=1)</span>
+<span class="linenos">283</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">dri9a</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dri9b</span><span class="p">,</span>
+<span class="linenos">284</span>                   <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">285</span>                   <span class="n">suffixes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;_fixed&#39;</span><span class="p">])</span>
+<span class="linenos">286</span>
+<span class="linenos">287</span> <span class="c1"># Concatenate (series)</span>
+<span class="linenos">288</span> <span class="c1"># aux = pd.concat([</span>
+<span class="linenos">289</span> <span class="c1">#    dri9a.rename(&#39;dri&#39;),</span>
+<span class="linenos">290</span> <span class="c1">#    dri9b.rename(&#39;dri_fixed&#39;)], axis=1)</span>
+<span class="linenos">291</span>
+<span class="linenos">292</span> <span class="c1"># Show</span>
+<span class="linenos">293</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">294</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary (variable):&quot;</span><span class="p">)</span>
+<span class="linenos">295</span> <span class="nb">print</span><span class="p">(</span><span class="n">smmry</span><span class="p">)</span>
+<span class="linenos">296</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">DRI (9):&quot;</span><span class="p">)</span>
+<span class="linenos">297</span> <span class="nb">print</span><span class="p">(</span><span class="n">aux</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Summary (variable):
+        DATE SPECIMEN MICROORGANISM ANTIMICROBIAL    sari  DRUG  use  use_t0
+0 2021-01-01   BLDCUL          ECOL          AAUG  0.2500  AAUG  404     404
+1 2021-01-01   BLDCUL          ECOL          ACIP  0.7500  ACIP  507     507
+2 2021-01-01   BLDCUL          SAUR          ACIP  1.0000  ACIP  507     507
+3 2021-01-02   BLDCUL          ECOL          AAUG  0.3333  AAUG  546     404
+4 2021-01-02   BLDCUL          ECOL          ACIP  0.6667  ACIP  478     507
+5 2021-01-02   BLDCUL          SAUR          ACIP  0.3333  ACIP  478     507
+6 2021-01-03   BLDCUL          ECOL          AAUG  0.5000  AAUG  508     404
+7 2021-01-03   BLDCUL          ECOL          ACIP  0.5000  ACIP  509     507
+
+DRI (9):
+                          use_period     dri  use_period_fixed  dri_fixed
+DATE       MICROORGANISM
+2021-01-01 ECOL                911.0  0.5283             911.0     0.5283
+           SAUR                507.0  1.0000             507.0     1.0000
+2021-01-02 ECOL               1024.0  0.4889             911.0     0.5188
+           SAUR                478.0  0.3333             507.0     0.3333
+2021-01-03 ECOL               1017.0  0.5000             911.0     0.5000
+</pre></div>
+</div>
+<p>Lets see the new summary (added old use column &lt;old&gt; for comparison)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">302</span> <span class="n">smmry</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>sari</th>
+      <th>DRUG</th>
+      <th>use</th>
+      <th>use_t0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.2500</td>
+      <td>AAUG</td>
+      <td>404</td>
+      <td>404</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.7500</td>
+      <td>ACIP</td>
+      <td>507</td>
+      <td>507</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>1.0000</td>
+      <td>ACIP</td>
+      <td>507</td>
+      <td>507</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.3333</td>
+      <td>AAUG</td>
+      <td>546</td>
+      <td>404</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.6667</td>
+      <td>ACIP</td>
+      <td>478</td>
+      <td>507</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>0.3333</td>
+      <td>ACIP</td>
+      <td>478</td>
+      <td>507</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>0.5000</td>
+      <td>AAUG</td>
+      <td>508</td>
+      <td>404</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>0.5000</td>
+      <td>ACIP</td>
+      <td>509</td>
+      <td>507</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets see the results for both fixed and dynamic.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">306</span> <span class="n">aux</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>use_period</th>
+      <th>dri</th>
+      <th>use_period_fixed</th>
+      <th>dri_fixed</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th>MICROORGANISM</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">2021-01-01</th>
+      <th>ECOL</th>
+      <td>911.0</td>
+      <td>0.5283</td>
+      <td>911.0</td>
+      <td>0.5283</td>
+    </tr>
+    <tr>
+      <th>SAUR</th>
+      <td>507.0</td>
+      <td>1.0000</td>
+      <td>507.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">2021-01-02</th>
+      <th>ECOL</th>
+      <td>1024.0</td>
+      <td>0.4889</td>
+      <td>911.0</td>
+      <td>0.5188</td>
+    </tr>
+    <tr>
+      <th>SAUR</th>
+      <td>478.0</td>
+      <td>0.3333</td>
+      <td>507.0</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <th>ECOL</th>
+      <td>1017.0</td>
+      <td>0.5000</td>
+      <td>911.0</td>
+      <td>0.5000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets visualise it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">311</span> <span class="c1"># --------------------------</span>
+<span class="linenos">312</span> <span class="c1"># Plot</span>
+<span class="linenos">313</span> <span class="c1"># --------------------------</span>
+<span class="linenos">314</span> <span class="c1"># Libraries</span>
+<span class="linenos">315</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">316</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">317</span>
+<span class="linenos">318</span> <span class="c1"># Filter</span>
+<span class="linenos">319</span> <span class="n">stacked</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[[</span><span class="s1">&#39;dri&#39;</span><span class="p">,</span> <span class="s1">&#39;dri_fixed&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="linenos">320</span>
+<span class="linenos">321</span> <span class="c1"># Display using relplot</span>
+<span class="linenos">322</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">stacked</span><span class="p">,</span>
+<span class="linenos">323</span>     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;level_2&#39;</span><span class="p">,</span>
+<span class="linenos">324</span>     <span class="c1"># hue=&#39;event&#39;, style=&#39;event&#39;, col=&#39;region&#39;, palette=&#39;palette&#39;,</span>
+<span class="linenos">325</span>     <span class="c1">#height=4, aspect=2.0,</span>
+<span class="linenos">326</span>     <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span>
+<span class="linenos">327</span> <span class="p">)</span>
+<span class="linenos">328</span>
+<span class="linenos">329</span> <span class="c1"># Show</span>
+<span class="linenos">330</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_plot_core_e_dri_001.png" srcset="../../../_images/sphx_glr_plot_core_e_dri_001.png" alt="MICROORGANISM = ECOL, MICROORGANISM = SAUR" class = "sphx-glr-single-img"/><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The summary table for the prescriptions data computed above
+aggregated the values in the column <code class="docutils literal notranslate"><span class="pre">dose</span></code> which indicates the
+specific dose delivered to the patient. In many scenarios, this
+information might not be available or dosage units might vary (e.g.
+mg or ml). A possible workaround is to count the number of
+entries in the prescriptions data by using <code class="docutils literal notranslate"><span class="pre">DOSE.count()</span></code> but
+this workaround should be use with caution.</p>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.493 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-e-dri-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/6b90fa3598c57c0c8533c6805db27ce5/plot_core_e_dri.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_e_dri.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/a173194663068e42408f339a457e93f9/plot_core_e_dri.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_e_dri.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_core_d_sart.html" class="btn btn-neutral float-left" title="Single Resistance Trend (SART)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_f_acri.html" class="btn btn-neutral float-right" title="Collateral Sensitivity Index (ACSI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

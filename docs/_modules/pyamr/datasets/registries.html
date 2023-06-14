@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.datasets.registries</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.datasets.registries</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -94,7 +102,7 @@
 <span class="c1"># Helper methods</span>
 <span class="c1"># -----------------------------------------</span>
 <div class="viewcode-block" id="length_exceptions"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.length_exceptions">[docs]</a><span class="k">def</span> <span class="nf">length_exceptions</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method...&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method...&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
@@ -102,7 +110,7 @@
     <span class="k">return</span> <span class="kc">None</span></div>
 
 <span class="k">def</span> <span class="nf">_loops_strategy_lengths</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param x:</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -123,7 +131,7 @@
 
 
 <span class="k">def</span> <span class="nf">_acronym</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">exceptions</span><span class="o">=</span><span class="n">ACRONYM_EXCEPTIONS</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create an acronym from a string single.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an acronym from a string single.</span>
 
 <span class="sd">    .. note: Add variable to chose whether we want to keep</span>
 <span class="sd">             the whole word if the split length is 1.</span>
@@ -188,7 +196,7 @@
                           <span class="n">loops_strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                           <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                           <span class="n">kwgs_acronym</span><span class="o">=</span><span class="p">{}):</span>
-    <span class="sd">&quot;&quot;&quot;Computes unique acronyms.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes unique acronyms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -239,7 +247,7 @@
 
 
 <div class="viewcode-block" id="acronym_series"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.acronym_series">[docs]</a><span class="k">def</span> <span class="nf">acronym_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">unique_acronyms</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method...</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method...</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -303,7 +311,7 @@
 
 
 <div class="viewcode-block" id="create_registry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.create_registry">[docs]</a><span class="k">def</span> <span class="nf">create_registry</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keyword</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Creates registry from data.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates registry from data.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -375,7 +383,7 @@
                          <span class="n">hyphens</span><span class="o">=</span><span class="n">HYPHENS</span><span class="p">,</span>
                          <span class="n">move_to_start</span><span class="o">=</span><span class="n">MOVE_TO_START</span><span class="p">,</span>
                          <span class="n">move_to_end</span><span class="o">=</span><span class="n">MOVE_TO_END</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Cleans the microorganism names.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cleans the microorganism names.</span>
 
 <span class="sd">    .. todo: Put everything below as our own defined function</span>
 <span class="sd">             but allow users to pass their own functions.</span>
@@ -433,7 +441,7 @@
 
 
 <div class="viewcode-block" id="clean_specimen"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.clean_specimen">[docs]</a><span class="k">def</span> <span class="nf">clean_specimen</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    \sr\s = right -&gt; end</span>
 <span class="sd">    \sl\s = left -&gt; end</span>
 
@@ -446,7 +454,7 @@
 <span class="c1"># Registry Base</span>
 <span class="c1"># ---------------------------------------------------</span>
 <div class="viewcode-block" id="Registry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry">[docs]</a><span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;This is basically a lookup table.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is basically a lookup table.&quot;&quot;&quot;</span>
 
     <span class="c1"># The order of the columns within the registry</span>
     <span class="n">ORDER</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;original&#39;</span><span class="p">]</span>
@@ -464,7 +472,7 @@
                        <span class="n">order</span><span class="o">=</span><span class="n">ORDER</span><span class="p">,</span>
                        <span class="n">subset</span><span class="o">=</span><span class="n">SUBSET</span><span class="p">,</span>
                        <span class="n">fclean</span><span class="o">=</span><span class="n">FCLEAN</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Constructor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        .. note: Raise type errors</span>
 <span class="sd">        .. note: Allow to load from file</span>
@@ -483,7 +491,7 @@
 
 
 <div class="viewcode-block" id="Registry.getr"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.getr">[docs]</a>    <span class="k">def</span> <span class="nf">getr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the registry DataFrame&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the registry DataFrame&quot;&quot;&quot;</span>
         <span class="c1"># Get registry</span>
         <span class="n">aux</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">REG</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -500,7 +508,7 @@
 
 
 <div class="viewcode-block" id="Registry.fit"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method...</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method...</span>
 
 <span class="sd">        .. note: It assumes name exists...</span>
 
@@ -540,7 +548,7 @@
         <span class="c1"># Restore original</span>
         <span class="n">aux</span><span class="p">[</span><span class="s1">&#39;original&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">original</span>
 
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        # Add code and fill empty name</span>
 <span class="sd">        aux.name.fillna(aux.code, inplace=True)</span>
 
@@ -560,7 +568,7 @@
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">FCLEAN</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">aux</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">aux</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">aux</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cleaned </span><span class="si">%s</span><span class="s2"> with </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
@@ -585,12 +593,12 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="Registry.replace"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.replace">[docs]</a>    <span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;original&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method...&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method...&quot;&quot;&quot;</span>
         <span class="n">tup</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">REG</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">REG</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">tup</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Registry.transform"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="p">{},</span> <span class="n">include_id</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Transform data</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Transform data</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -621,7 +629,7 @@
 
 
 <div class="viewcode-block" id="Registry.fit_transform"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.Registry.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Fits and transforms&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fits and transforms&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
@@ -636,7 +644,7 @@
 <span class="c1"># Registry Microorganism</span>
 <span class="c1"># ---------------------------------------------------</span>
 <div class="viewcode-block" id="MicroorganismRegistry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.MicroorganismRegistry">[docs]</a><span class="k">class</span> <span class="nc">MicroorganismRegistry</span><span class="p">(</span><span class="n">Registry</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Registry for microorganisms&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Registry for microorganisms&quot;&quot;&quot;</span>
 
     <span class="n">taxonomy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;class&#39;</span><span class="p">,</span>
@@ -649,7 +657,7 @@
     <span class="n">reg</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
         <span class="c1"># Super</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -663,7 +671,7 @@
 
 
 <div class="viewcode-block" id="MicroorganismRegistry.combine"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.MicroorganismRegistry.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Combines an external dataframe with the registry.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Combines an external dataframe with the registry.</span>
 
 <span class="sd">        .. note: The dataframe must contain genus, species..</span>
 
@@ -743,12 +751,12 @@
 <span class="c1"># Registry Antimicrobial</span>
 <span class="c1"># ---------------------------------------------------</span>
 <div class="viewcode-block" id="AntimicrobialRegistry"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.AntimicrobialRegistry">[docs]</a><span class="k">class</span> <span class="nc">AntimicrobialRegistry</span><span class="p">(</span><span class="n">Registry</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Registry for antimicrobials&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Registry for antimicrobials&quot;&quot;&quot;</span>
 
     <span class="n">reg</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="AntimicrobialRegistry.combine"><a class="viewcode-back" href="../../../_apidoc/pyamr.datasets.html#pyamr.datasets.registries.AntimicrobialRegistry.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Combines an external dataframe with the registry.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Combines an external dataframe with the registry.</span>
 
 <span class="sd">        .. note: I am assuming the columns that exist in dataframe...</span>
 
@@ -800,14 +808,14 @@
     <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
     <span class="k">def</span> <span class="nf">len1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param x: array obtained from split</span>
 <span class="sd">        :return: boolean</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">wordl</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param x: array obtained from split</span>
 <span class="sd">        :return: array with lenghts</span>
 <span class="sd">        &quot;&quot;&quot;</span><span class="s2">&quot;&quot;</span>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collateral Sensitivity Index (ACSI) &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Metrics - scores" href="../metrics/plot_metrics_scores.html" />
+    <link rel="prev" title="Drug Resistance Index (DRI)" href="plot_core_e_dri.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_a_sari.html">Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_b_asai.html">Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_c_mari.html">Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_d_sart.html">Single Resistance Trend (<code class="docutils literal notranslate"><span class="pre">SART</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_e_dri.html">Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/_examples/tutorial/indexes/plot_core_f_acri.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-core-f-acri-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="collateral-sensitivity-index-acsi">
+<span id="sphx-glr-examples-tutorial-indexes-plot-core-f-acri-py"></span><h1>Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)<a class="headerlink" href="#collateral-sensitivity-index-acsi" title="Permalink to this heading"></a></h1>
+<p>The Collateral Sensitivity Index - <code class="docutils literal notranslate"><span class="pre">ACSI</span></code> …</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending…!</p>
+</div>
+<p>First, lets create the susceptibility test records dataset</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">14</span> <span class="c1"># Libraries</span>
+<span class="linenos">15</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">fixture</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos">20</span> <span class="c1"># Create data</span>
+<span class="linenos">21</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos">22</span> <span class="c1"># Load the fixture_05.csv file.</span>
+<span class="linenos">23</span> <span class="n">susceptibility</span> <span class="o">=</span> <span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fixture_06.csv&#39;</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span> <span class="c1"># Format DataFrame</span>
+<span class="linenos">26</span> <span class="n">susceptibility</span><span class="o">.</span><span class="n">SENSITIVITY</span> <span class="o">=</span> \
+<span class="linenos">27</span>     <span class="n">susceptibility</span><span class="o">.</span><span class="n">SENSITIVITY</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span>
+<span class="linenos">28</span>         <span class="s1">&#39;resistant&#39;</span><span class="p">:</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span>
+<span class="linenos">29</span>         <span class="s1">&#39;intermediate&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span>
+<span class="linenos">30</span>         <span class="s1">&#39;sensitive&#39;</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span>
+<span class="linenos">31</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>Lets see the susceptibility test records</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">35</span> <span class="n">susceptibility</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>LAB_NUMBER</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>SENSITIVITY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>lab2</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-01</td>
+      <td>lab2</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>R</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-01</td>
+      <td>lab3</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-01</td>
+      <td>lab3</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>R</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2021-01-01</td>
+      <td>lab4</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>R</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2021-01-01</td>
+      <td>lab4</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>R</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2021-01-02</td>
+      <td>lab5</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2021-01-02</td>
+      <td>lab5</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets compute the Antimicrobial Collateral Sensitivity Index or <code class="docutils literal notranslate"><span class="pre">ACSI</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">42</span> <span class="c1"># ------------------------------------------</span>
+<span class="linenos">43</span> <span class="c1"># Compute the index</span>
+<span class="linenos">44</span> <span class="c1"># ------------------------------------------</span>
+<span class="linenos">45</span> <span class="c1"># Libraries</span>
+<span class="linenos">46</span> <span class="kn">from</span> <span class="nn">pyamr.core.acsi</span> <span class="kn">import</span> <span class="n">ACSI</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span> <span class="c1"># Compute index</span>
+<span class="linenos">49</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">combinations</span> <span class="o">=</span> \
+<span class="linenos">50</span>     <span class="n">ACSI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+<span class="linenos">51</span>         <span class="n">groupby</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">52</span>             <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">53</span>             <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">54</span>             <span class="s1">&#39;MICROORGANISM&#39;</span>
+<span class="linenos">55</span>         <span class="p">],</span>
+<span class="linenos">56</span>         <span class="n">return_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span> <span class="c1"># Show</span>
+<span class="linenos">59</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Combinations:&quot;</span><span class="p">)</span>
+<span class="linenos">60</span> <span class="nb">print</span><span class="p">(</span><span class="n">combinations</span><span class="p">)</span>
+<span class="linenos">61</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contingency:&quot;</span><span class="p">)</span>
+<span class="linenos">62</span> <span class="nb">print</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Combinations:
+         DATE SPECIMEN MICROORGANISM LAB_NUMBER ANTIMICROBIAL_x ANTIMICROBIAL_y SENSITIVITY_x SENSITIVITY_y class
+0  2021-01-01   BLDCUL          ECOL       lab1            AAUG            ACIP             S             S    SS
+1  2021-01-01   BLDCUL          ECOL       lab2            AAUG            ACIP             S             R    SR
+2  2021-01-01   BLDCUL          ECOL       lab3            AAUG            ACIP             S             R    SR
+3  2021-01-01   BLDCUL          ECOL       lab4            AAUG            ACIP             R             R    RR
+4  2021-01-02   BLDCUL          ECOL       lab5            AAUG            ACIP             S             S    SS
+5  2021-01-02   BLDCUL          ECOL       lab6            AAUG            ACIP             S             R    SR
+6  2021-01-02   BLDCUL          ECOL       lab7            AAUG            ACIP             R             R    RR
+7  2021-01-03   BLDCUL          ECOL       lab8            AAUG            ACIP             S             I    SI
+8  2021-01-03   BLDCUL          ECOL       lab9            AAUG            ACIP             R             R    RR
+9  2021-01-03   BLDCUL          SAUR       lab9            ACIP            ACIP             R             R    RR
+10 2021-01-04   URICUL          ECOL      lab10            AAUG            ACIP             R             S    RS
+11 2021-01-04   URICUL          SAUR      lab10            AAUG            APEN             R             R    RR
+
+Contingency:
+class                                                               RR   RS   SI   SR   SS    acsi
+DATE       SPECIMEN MICROORGANISM ANTIMICROBIAL_x ANTIMICROBIAL_y
+2021-01-01 BLDCUL   ECOL          AAUG            ACIP             1.0  NaN  NaN  2.0  1.0  0.2027
+2021-01-02 BLDCUL   ECOL          AAUG            ACIP             1.0  NaN  NaN  1.0  1.0  0.3662
+2021-01-03 BLDCUL   ECOL          AAUG            ACIP             1.0  NaN  1.0  NaN  NaN  0.0000
+                    SAUR          ACIP            ACIP             1.0  NaN  NaN  NaN  NaN  0.0000
+2021-01-04 URICUL   ECOL          AAUG            ACIP             NaN  1.0  NaN  NaN  NaN  0.0000
+                    SAUR          AAUG            APEN             1.0  NaN  NaN  NaN  NaN  0.0000
+</pre></div>
+</div>
+<p>Lets see the contingency matrix</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">67</span> <span class="c1"># Rename for docs display</span>
+<span class="linenos">68</span> <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">69</span>     <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">:</span> <span class="s1">&#39;ORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">70</span>     <span class="s1">&#39;ANTIMICROBIAL_x&#39;</span><span class="p">:</span> <span class="s1">&#39;ANTIBIOTIC_x&#39;</span><span class="p">,</span>
+<span class="linenos">71</span>     <span class="s1">&#39;ANTIMICROBIAL_y&#39;</span><span class="p">:</span> <span class="s1">&#39;ANTIBIOTIC_y&#39;</span>
+<span class="linenos">72</span> <span class="p">}</span>
+<span class="linenos">73</span>
+<span class="linenos">74</span> <span class="c1"># Show</span>
+<span class="linenos">75</span> <span class="n">contingency</span> \
+<span class="linenos">76</span>     <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> \
+<span class="linenos">77</span>     <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span> \
+<span class="linenos">78</span>     <span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>DATE</th>
+      <th>SPECIMEN</th>
+      <th>ORGANISM</th>
+      <th>ANTIBIOTIC_x</th>
+      <th>ANTIBIOTIC_y</th>
+      <th>RR</th>
+      <th>RS</th>
+      <th>SI</th>
+      <th>SR</th>
+      <th>SS</th>
+      <th>acsi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>ACIP</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.203</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>ACIP</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.366</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>ACIP</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>SAUR</td>
+      <td>ACIP</td>
+      <td>ACIP</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-04</td>
+      <td>URICUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>ACIP</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-04</td>
+      <td>URICUL</td>
+      <td>SAUR</td>
+      <td>AAUG</td>
+      <td>APEN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets compute and visualise the <code class="docutils literal notranslate"><span class="pre">overall</span></code> contingency matrix</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 85</span> <span class="c1"># Lets compute the overall index</span>
+<span class="linenos"> 86</span> <span class="n">contingency</span> <span class="o">=</span> <span class="n">ACSI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span>
+<span class="linenos"> 87</span>     <span class="n">combinations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+<span class="linenos"> 88</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[],</span>
+<span class="linenos"> 89</span>     <span class="n">flag_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos"> 90</span>     <span class="n">return_combinations</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos"> 91</span> <span class="p">)</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span> <span class="c1"># Show</span>
+<span class="linenos"> 94</span> <span class="nb">print</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span> <span class="c1"># Display</span>
+<span class="linenos"> 97</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 98</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos"> 99</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span> <span class="c1"># Create index with all pairs</span>
+<span class="linenos">102</span> <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
+<span class="linenos">103</span>     <span class="p">[</span><span class="n">susceptibility</span><span class="o">.</span><span class="n">ANTIMICROBIAL</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+<span class="linenos">104</span>      <span class="n">susceptibility</span><span class="o">.</span><span class="n">ANTIMICROBIAL</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+<span class="linenos">105</span> <span class="p">)</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span> <span class="c1"># Reformat</span>
+<span class="linenos">108</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">contingency</span><span class="p">[</span><span class="s1">&#39;acsi&#39;</span><span class="p">]</span> \
+<span class="linenos">109</span>     <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>\
+<span class="linenos">110</span>     <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span> <span class="c1"># Display</span>
+<span class="linenos">113</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aux</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
+<span class="linenos">114</span>             <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">70</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="linenos">115</span>             <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span> <span class="c1"># Show</span>
+<span class="linenos">118</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_plot_core_f_acri_001.png" srcset="../../../_images/sphx_glr_plot_core_f_acri_001.png" alt="plot core f acri" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>class                             RR   RS   SI   SR   SS    acsi
+ANTIMICROBIAL_x ANTIMICROBIAL_y
+AAUG            ACIP             3.0  1.0  1.0  3.0  2.0  0.1469
+                APEN             1.0  NaN  NaN  NaN  NaN  0.0000
+ACIP            ACIP             1.0  NaN  NaN  NaN  NaN  0.0000
+</pre></div>
+</div>
+<p>Lets compute and visualise the <code class="docutils literal notranslate"><span class="pre">temporal</span></code> contingency matrix</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">123</span> <span class="c1"># Lets compute the overall index</span>
+<span class="linenos">124</span> <span class="n">contingency</span> <span class="o">=</span> <span class="n">ACSI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span>
+<span class="linenos">125</span>     <span class="n">combinations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+<span class="linenos">126</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span>
+<span class="linenos">127</span>     <span class="n">flag_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">128</span>     <span class="n">return_combinations</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span> <span class="c1"># Show</span>
+<span class="linenos">131</span> <span class="nb">print</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+<span class="linenos">132</span>
+<span class="linenos">133</span> <span class="c1"># .. note:: Look for a nice visualisation of a matrix over time. In</span>
+<span class="linenos">134</span> <span class="c1">#           addition to python libraries such as plotly, animations,</span>
+<span class="linenos">135</span> <span class="c1">#           ... we can also check for js libraries such as Apache</span>
+<span class="linenos">136</span> <span class="c1">#           echarts.</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>class                                        RR   RS   SI   SR   SS    acsi
+DATE       ANTIMICROBIAL_x ANTIMICROBIAL_y
+2021-01-01 AAUG            ACIP             1.0  NaN  NaN  2.0  1.0  0.2027
+2021-01-02 AAUG            ACIP             1.0  NaN  NaN  1.0  1.0  0.3662
+2021-01-03 AAUG            ACIP             1.0  NaN  1.0  NaN  NaN  0.0000
+           ACIP            ACIP             1.0  NaN  NaN  NaN  NaN  0.0000
+2021-01-04 AAUG            ACIP             NaN  1.0  NaN  NaN  NaN  0.0000
+                           APEN             1.0  NaN  NaN  NaN  NaN  0.0000
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.190 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-f-acri-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/615bf23b8ee35fb293442679827aba4d/plot_core_f_acri.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_f_acri.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/ace457336e8bf534214650389dc73cb6/plot_core_f_acri.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_f_acri.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_core_e_dri.html" class="btn btn-neutral float-left" title="Drug Resistance Index (DRI)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../metrics/plot_metrics_scores.html" class="btn btn-neutral float-right" title="Metrics - scores" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

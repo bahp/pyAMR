@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.core.regression.wregression</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.core.regression.wregression</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -127,7 +135,7 @@
   <span class="c1">#                             HELPER METHODS</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
   <span class="k">def</span> <span class="nf">_init_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method fills self._config with the configuration.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method fills self._config with the configuration.&quot;&quot;&quot;</span>
     <span class="c1"># Create dir.</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="c1"># Find attributes values for interesting methods.</span>
@@ -137,7 +145,7 @@
     <span class="k">return</span> <span class="n">d</span>
 
   <span class="k">def</span> <span class="nf">_getargspecdict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">funcname</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method creates a dictionary with pairs name and value.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates a dictionary with pairs name and value.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -169,7 +177,7 @@
   <span class="c1">#                              BASIC METHODS</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
   <span class="k">def</span> <span class="nf">_params_from_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method returns params from summary.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method returns params from summary.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">{}</span>
 
@@ -177,7 +185,7 @@
   <span class="c1">#              STATISTIC METHODS FOR REGRESSION ANALYSIS</span>
   <span class="c1"># --------------------------------------------------------------------------- </span>
   <span class="k">def</span> <span class="nf">_resid_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method computes basic stats on the residuals </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method computes basic stats on the residuals </span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -247,7 +255,7 @@
 
 
 <div class="viewcode-block" id="BaseRegressionWrapper.conf_int_insample"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wregression.BaseRegressionWrapper.conf_int_insample">[docs]</a>  <span class="k">def</span> <span class="nf">conf_int_insample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forecast</span><span class="p">,</span> <span class="n">resid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function computes a basic confidence interval.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function computes a basic confidence interval.</span>
 
 <span class="sd">    Note: It might not be the adecuate way of computing it.</span>
 
@@ -284,7 +292,7 @@
    
 
   <span class="k">def</span> <span class="nf">_exog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method generates the exogenous variable time. </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method generates the exogenous variable time. </span>
 
 <span class="sd">    Note: it is only used for those regression methods that do not support</span>
 <span class="sd">    the parameters stard and end in the prediction (wls, ols, rlm, ...). </span>
@@ -319,7 +327,7 @@
 
 
   <span class="k">def</span> <span class="nf">_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method generates the time variable.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method generates the time variable.</span>
 
 <span class="sd">    Note: The value indicated by &#39;end&#39; is included. This is that way </span>
 <span class="sd">    to match with the implementation of ARIMA from statsmodels.</span>

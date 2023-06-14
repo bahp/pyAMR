@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRI - Example using MIMIC &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SARI - By specimen w/ sns.heatmap" href="plot_sari_a_antibiogram.html" />
+    <link rel="prev" title="ASAI - Compute timeseries" href="plot_asai_c_temporal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with indexes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_acsi_b_mimic.html"><code class="docutils literal notranslate"><span class="pre">ACSI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_a_gramtype.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (binary)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_b_multiple.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (multiple)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_c_temporal.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - Compute timeseries</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">DRI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_a_antibiogram.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.heatmap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_b_clustermap.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.clustermap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_c_relmap.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.relmap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_d_temporal.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - Compute timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sart_a_basic.html"><code class="docutils literal notranslate"><span class="pre">SART</span></code> - Trend as slope of <code class="docutils literal notranslate"><span class="pre">WLS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples with indexes</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">DRI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_examples/indexes/plot_dri_b_mimic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-dri-b-mimic-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="dri-example-using-mimic">
+<span id="sphx-glr-examples-indexes-plot-dri-b-mimic-py"></span><h1><code class="docutils literal notranslate"><span class="pre">DRI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code><a class="headerlink" href="#dri-example-using-mimic" title="Permalink to this heading"></a></h1>
+<p>In the field of healthcare, analyzing drug resistance in antimicrobial
+use is crucial for understanding and combating the growing problem of
+antibiotic resistance. One example is the Drug Resistance Index o <code class="docutils literal notranslate"><span class="pre">DRI</span></code>.
+In this example, we compute such index using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code>, comprehensive,
+a widely-used and freely available healthcare database that contains
+de-identified electronic health records of over 60,000 intensive care unit
+patients. Within <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code>, researchers have access to rich information,
+including patient demographics, clinical notes, laboratory results, and
+medication records. This dataset provides the necessary data, susceptibility
+and prescription information, to compute the drug resistance  index.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code>, the deidentification process for structured data
+required the removal of dates. In particular, dates were shifted
+into the future by a random offset for each individual patient in
+a consistent manner to preserve intervals, resulting in stays which
+occur sometime between the years 2100 and 2200. Time of day, day of
+the week, and approximate seasonality were conserved during date
+shifting.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">26</span> <span class="c1"># Define sphinx gallery configuration</span>
+<span class="linenos">27</span> <span class="c1"># sphinx_gallery_thumbnail_number = 2</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span> <span class="c1"># Libraries</span>
+<span class="linenos">30</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos">31</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="linenos">32</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">33</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">34</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">35</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span> <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span> <span class="k">try</span><span class="p">:</span>
+<span class="linenos">40</span>     <span class="vm">__file__</span>
+<span class="linenos">41</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">42</span> <span class="k">except</span><span class="p">:</span>
+<span class="linenos">43</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span> <span class="c1"># -------------------------</span>
+<span class="linenos">46</span> <span class="c1"># Configuration</span>
+<span class="linenos">47</span> <span class="c1"># -------------------------</span>
+<span class="linenos">48</span> <span class="c1"># Params</span>
+<span class="linenos">49</span> <span class="n">rc</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">50</span>     <span class="s1">&#39;axes.linewidth&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">51</span>     <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+<span class="linenos">52</span>     <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+<span class="linenos">53</span>     <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+<span class="linenos">54</span>     <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+<span class="linenos">55</span> <span class="p">}</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span> <span class="c1"># Configure seaborn style (context=talk)</span>
+<span class="linenos">58</span> <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="n">rc</span><span class="p">)</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span> <span class="c1"># Configure warnings</span>
+<span class="linenos">61</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span>
+<span class="linenos">62</span>     <span class="n">category</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DtypeWarning</span><span class="p">)</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span> <span class="c1"># -------------------------------------------------------</span>
+<span class="linenos">65</span> <span class="c1"># Constants</span>
+<span class="linenos">66</span> <span class="c1"># -------------------------------------------------------</span>
+<span class="linenos">67</span> <span class="c1"># Rename columns for susceptibility</span>
+<span class="linenos">68</span> <span class="n">rename_susceptibility</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">69</span>     <span class="s1">&#39;chartdate&#39;</span><span class="p">:</span> <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">70</span>     <span class="s1">&#39;micro_specimen_id&#39;</span><span class="p">:</span> <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+<span class="linenos">71</span>     <span class="s1">&#39;spec_type_desc&#39;</span><span class="p">:</span> <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">72</span>     <span class="s1">&#39;org_name&#39;</span><span class="p">:</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">73</span>     <span class="s1">&#39;ab_name&#39;</span><span class="p">:</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">74</span>     <span class="s1">&#39;interpretation&#39;</span><span class="p">:</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
+<span class="linenos">75</span> <span class="p">}</span>
+<span class="linenos">76</span>
+<span class="linenos">77</span> <span class="c1"># Rename columns for prescriptions</span>
+<span class="linenos">78</span> <span class="n">rename_prescriptions</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">79</span>     <span class="s1">&#39;drug&#39;</span><span class="p">:</span> <span class="s1">&#39;DRUG&#39;</span>
+<span class="linenos">80</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>First, we need to load the <code class="docutils literal notranslate"><span class="pre">susceptibility</span></code> test data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 87</span> <span class="c1"># -----------------------------</span>
+<span class="linenos"> 88</span> <span class="c1"># Load susceptibility test data</span>
+<span class="linenos"> 89</span> <span class="c1"># -----------------------------</span>
+<span class="linenos"> 90</span> <span class="c1"># Helper</span>
+<span class="linenos"> 91</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">rename_susceptibility</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span> <span class="c1"># Load data</span>
+<span class="linenos"> 94</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../../pyamr/datasets/mimic&#39;</span><span class="p">)</span>
+<span class="linenos"> 95</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;susceptibility.csv&#39;</span><span class="p">)</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span> <span class="c1"># Rename columns</span>
+<span class="linenos"> 98</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">data1</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename_susceptibility</span><span class="p">)</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span> <span class="c1"># Format data</span>
+<span class="linenos">101</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[</span><span class="n">subset</span><span class="p">]</span>
+<span class="linenos">102</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">data1</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">subset</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="linenos">103</span> <span class="n">data1</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">DATE</span><span class="p">)</span>
+<span class="linenos">104</span> <span class="n">data1</span><span class="o">.</span><span class="n">SENSITIVITY</span> <span class="o">=</span> <span class="n">data1</span><span class="o">.</span><span class="n">SENSITIVITY</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span>
+<span class="linenos">105</span>     <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="s1">&#39;sensitive&#39;</span><span class="p">,</span>
+<span class="linenos">106</span>     <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="s1">&#39;resistant&#39;</span><span class="p">,</span>
+<span class="linenos">107</span>     <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="s1">&#39;intermediate&#39;</span><span class="p">,</span>
+<span class="linenos">108</span>     <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="s1">&#39;pass&#39;</span>
+<span class="linenos">109</span> <span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">112</span> <span class="n">data1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>LAB_NUMBER</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>SENSITIVITY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>AMPICILLIN</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>CEFAZOLIN</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>TRIMETHOPRIM/SULFA</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>NITROFURANTOIN</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>GENTAMICIN</td>
+      <td>sensitive</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets also load the <code class="docutils literal notranslate"><span class="pre">prescriptions</span></code> (could be also overall usage) data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">118</span> <span class="c1"># ----------------------------</span>
+<span class="linenos">119</span> <span class="c1"># Load prescriptions</span>
+<span class="linenos">120</span> <span class="c1"># ----------------------------</span>
+<span class="linenos">121</span> <span class="c1"># Load prescription data (limited to first nrows).</span>
+<span class="linenos">122</span> <span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;prescriptions.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="linenos">123</span> <span class="n">data2</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename_prescriptions</span><span class="p">)</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span> <span class="c1"># Format data</span>
+<span class="linenos">126</span> <span class="n">data2</span><span class="o">.</span><span class="n">DRUG</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">DRUG</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="linenos">127</span> <span class="n">data2</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data2</span><span class="o">.</span><span class="n">starttime</span><span class="p">)</span>
+<span class="linenos">128</span> <span class="n">data2</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span> <span class="c1"># .. note:: We are only keeping those DRUGS which have</span>
+<span class="linenos">131</span> <span class="c1">#           the exact name of the antimicrobial tested</span>
+<span class="linenos">132</span> <span class="c1">#           in the susceptibility test record. There are</span>
+<span class="linenos">133</span> <span class="c1">#           also brand names that could/should be</span>
+<span class="linenos">134</span> <span class="c1">#           included</span>
+<span class="linenos">135</span>
+<span class="linenos">136</span> <span class="c1"># Filter</span>
+<span class="linenos">137</span> <span class="n">data2</span> <span class="o">=</span> <span class="n">data2</span><span class="p">[</span><span class="n">data2</span><span class="o">.</span><span class="n">DRUG</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">ANTIMICROBIAL</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">140</span> <span class="nb">print</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>       subject_id   hadm_id  pharmacy_id            starttime             stoptime drug_type  ... dose_unit_rx form_val_disp  form_unit_disp doses_per_24_hrs  route                DATE
+26       17868682  25218370     81568564  2167-05-24 20:00:00  2167-05-26 02:00:00      MAIN  ...            g             1             BAG              3.0     IV 2167-05-24 20:00:00
+48       17868682  24052239     59994266  2167-06-20 23:00:00  2167-06-22 11:00:00      MAIN  ...           mg           200              mL              2.0     IV 2167-06-20 23:00:00
+58       17868682  24052239     39104292  2167-06-22 20:00:00  2167-06-25 12:00:00      MAIN  ...           mg             3            VIAL              2.0     IV 2167-06-22 20:00:00
+60       17868682  24052239      1791946  2167-06-24 20:00:00  2167-06-25 12:00:00      MAIN  ...           mg             3            VIAL              2.0     IV 2167-06-24 20:00:00
+76       12315540  24554730     25748315  2172-08-15 11:00:00  2172-08-16 20:00:00      MAIN  ...           mg           1.5             TAB              0.0     PO 2172-08-15 11:00:00
+...           ...       ...          ...                  ...                  ...       ...  ...          ...           ...             ...              ...    ...                 ...
+99154    15276693  21600683     24768410  2141-08-21 08:00:00  2141-08-26 18:00:00      MAIN  ...           mg             1             TAB              0.0  PO/NG 2141-08-21 08:00:00
+99218    10819462  26263456     61192290  2181-12-01 16:00:00  2181-12-02 15:00:00      MAIN  ...           mg             4              mL              3.0     IV 2181-12-01 16:00:00
+99435    17442082  26038207     88544744  2135-08-07 15:00:00  2135-08-08 14:00:00      MAIN  ...            g             1            VIAL              1.0     IV 2135-08-07 15:00:00
+99511    17442082  20010297     74705027  2135-09-10 07:00:00  2135-09-10 11:00:00      MAIN  ...           gm             1            VIAL              1.0     IV 2135-09-10 07:00:00
+99760    19103067  28239677     20279428  2124-06-02 04:00:00  2124-06-02 22:00:00      MAIN  ...           mg             2             CAP              3.0  PO/NG 2124-06-02 04:00:00
+
+[2655 rows x 18 columns]
+</pre></div>
+</div>
+<p>Lets rename the variables.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">145</span> <span class="c1"># Rename variables</span>
+<span class="linenos">146</span> <span class="n">susceptibility</span><span class="p">,</span> <span class="n">prescriptions</span> <span class="o">=</span> <span class="n">data1</span><span class="p">,</span> <span class="n">data2</span>
+<span class="linenos">147</span>
+<span class="linenos">148</span> <span class="c1"># Show</span>
+<span class="linenos">149</span> <span class="k">if</span> <span class="n">TERMINAL</span><span class="p">:</span>
+<span class="linenos">150</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Susceptibility:&quot;</span><span class="p">)</span>
+<span class="linenos">151</span>     <span class="nb">print</span><span class="p">(</span><span class="n">susceptibility</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="linenos">152</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Prescriptions:&quot;</span><span class="p">)</span>
+<span class="linenos">153</span>     <span class="nb">print</span><span class="p">(</span><span class="n">prescriptions</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Now we need to create a summary table including the resistance
+value, which will be computed using <code class="docutils literal notranslate"><span class="pre">SARI</span></code> and the usage which
+will be computed manually. This summary table is required as a
+preliminary step to compute the <code class="docutils literal notranslate"><span class="pre">DRI</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">162</span> <span class="c1"># ------------------------</span>
+<span class="linenos">163</span> <span class="c1"># Compute summary table</span>
+<span class="linenos">164</span> <span class="c1"># ------------------------</span>
+<span class="linenos">165</span> <span class="c1"># Libraries</span>
+<span class="linenos">166</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span> <span class="c1"># Create sari instance</span>
+<span class="linenos">169</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">170</span>     <span class="n">susceptibility</span><span class="o">.</span><span class="n">DATE</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+<span class="linenos">171</span>     <span class="c1">#&#39;SPECIMEN&#39;,</span>
+<span class="linenos">172</span>     <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">173</span>     <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">174</span>     <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">]</span>
+<span class="linenos">175</span> <span class="p">)</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span> <span class="c1"># Compute susceptibility summary table</span>
+<span class="linenos">178</span> <span class="n">smmry1</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">susceptibility</span><span class="p">,</span>
+<span class="linenos">179</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">180</span>
+<span class="linenos">181</span> <span class="c1"># .. note:: We are counting the number of rows as an indicator</span>
+<span class="linenos">182</span> <span class="c1">#           of prescriptions. However, it would be possible to</span>
+<span class="linenos">183</span> <span class="c1">#           sum the doses (with caution due to units, ...)</span>
+<span class="linenos">184</span>
+<span class="linenos">185</span> <span class="c1"># Compute prescriptions summary table.</span>
+<span class="linenos">186</span> <span class="n">smmry2</span> <span class="o">=</span> <span class="n">prescriptions</span> \
+<span class="linenos">187</span>     <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="n">prescriptions</span><span class="o">.</span><span class="n">DATE</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="s1">&#39;DRUG&#39;</span><span class="p">])</span> \
+<span class="linenos">188</span>     <span class="o">.</span><span class="n">DRUG</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;use&#39;</span><span class="p">)</span>
+<span class="linenos">189</span>     <span class="c1">#.DOSE.sum().rename(&#39;use&#39;)</span>
+<span class="linenos">190</span> <span class="n">smmry2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">]</span>
+<span class="linenos">191</span>
+<span class="linenos">192</span> <span class="c1"># Combine both summary tables</span>
+<span class="linenos">193</span> <span class="n">smmry</span> <span class="o">=</span> <span class="n">smmry1</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<span class="linenos">194</span>     <span class="n">smmry2</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span>
+<span class="linenos">195</span>     <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">],</span>
+<span class="linenos">196</span>     <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">]</span>
+<span class="linenos">197</span> <span class="p">)</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span> <span class="c1"># Show</span>
+<span class="linenos">200</span> <span class="k">if</span> <span class="n">TERMINAL</span><span class="p">:</span>
+<span class="linenos">201</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary:&quot;</span><span class="p">)</span>
+<span class="linenos">202</span>     <span class="nb">print</span><span class="p">(</span><span class="n">smmry</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">206</span> <span class="n">smmry</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>intermediate</th>
+      <th>pass</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>freq</th>
+      <th>sari</th>
+      <th>use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2110</td>
+      <td>BETA STREPTOCOCCUS GROUP B</td>
+      <td>ERYTHROMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2110</td>
+      <td>CORYNEBACTERIUM UREALYTICUM SP. NOV.</td>
+      <td>ERYTHROMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2110</td>
+      <td>POSITIVE FOR GROUP B BETA STREPTOCOCCI</td>
+      <td>ERYTHROMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2110</td>
+      <td>POSITIVE FOR METHICILLIN RESISTANT STAPH AUREUS</td>
+      <td>ERYTHROMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2110</td>
+      <td>STAPH AUREUS COAG +</td>
+      <td>ERYTHROMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>39.0</td>
+      <td>21.0</td>
+      <td>60.0</td>
+      <td>0.65</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9933</th>
+      <td>2210</td>
+      <td>STAPHYLOCOCCUS, COAGULASE NEGATIVE</td>
+      <td>VANCOMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9934</th>
+      <td>2210</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>MEROPENEM</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>9.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9935</th>
+      <td>2210</td>
+      <td>KLEBSIELLA PNEUMONIAE</td>
+      <td>MEROPENEM</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9936</th>
+      <td>2210</td>
+      <td>PSEUDOMONAS AERUGINOSA</td>
+      <td>MEROPENEM</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9937</th>
+      <td>2210</td>
+      <td>SERRATIA MARCESCENS</td>
+      <td>MEROPENEM</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>9938 rows × 10 columns</p>
+</div>
+</div>
+<br />
+<br /><p>Lets compute the <code class="docutils literal notranslate"><span class="pre">DRI</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">212</span> <span class="c1"># -------------------------</span>
+<span class="linenos">213</span> <span class="c1"># Compute DRI</span>
+<span class="linenos">214</span> <span class="c1"># -------------------------</span>
+<span class="linenos">215</span> <span class="c1"># Libraries</span>
+<span class="linenos">216</span> <span class="kn">from</span> <span class="nn">pyamr.core.dri</span> <span class="kn">import</span> <span class="n">DRI</span>
+<span class="linenos">217</span>
+<span class="linenos">218</span> <span class="c1"># Instance</span>
+<span class="linenos">219</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">DRI</span><span class="p">(</span>
+<span class="linenos">220</span>     <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+<span class="linenos">221</span>     <span class="n">column_usage</span><span class="o">=</span><span class="s1">&#39;use&#39;</span>
+<span class="linenos">222</span> <span class="p">)</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span> <span class="c1"># Compute overall DRI</span>
+<span class="linenos">225</span> <span class="n">dri1</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">226</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">],</span>
+<span class="linenos">227</span>     <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">228</span>
+<span class="linenos">229</span> <span class="c1"># Compute DRI by organism</span>
+<span class="linenos">230</span> <span class="n">dri2</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span>
+<span class="linenos">231</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">],</span>
+<span class="linenos">232</span>     <span class="n">return_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">233</span>
+<span class="linenos">234</span>
+<span class="linenos">235</span> <span class="k">if</span> <span class="n">TERMINAL</span><span class="p">:</span>
+<span class="linenos">236</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DRI overall:&quot;</span><span class="p">)</span>
+<span class="linenos">237</span>     <span class="nb">print</span><span class="p">(</span><span class="n">dri1</span><span class="p">)</span>
+<span class="linenos">238</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DRI by microorganism:&quot;</span><span class="p">)</span>
+<span class="linenos">239</span>     <span class="nb">print</span><span class="p">(</span><span class="n">dri2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">243</span> <span class="n">dri1</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>use_period</th>
+      <th>dri</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2110</th>
+      <td>30.0</td>
+      <td>0.681667</td>
+    </tr>
+    <tr>
+      <th>2111</th>
+      <td>262.0</td>
+      <td>0.251580</td>
+    </tr>
+    <tr>
+      <th>2112</th>
+      <td>196.0</td>
+      <td>0.103980</td>
+    </tr>
+    <tr>
+      <th>2113</th>
+      <td>159.0</td>
+      <td>0.132956</td>
+    </tr>
+    <tr>
+      <th>2114</th>
+      <td>64.0</td>
+      <td>0.057600</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2206</th>
+      <td>303.0</td>
+      <td>0.110191</td>
+    </tr>
+    <tr>
+      <th>2207</th>
+      <td>135.0</td>
+      <td>0.261192</td>
+    </tr>
+    <tr>
+      <th>2208</th>
+      <td>36.0</td>
+      <td>0.214109</td>
+    </tr>
+    <tr>
+      <th>2209</th>
+      <td>192.0</td>
+      <td>0.217839</td>
+    </tr>
+    <tr>
+      <th>2210</th>
+      <td>75.0</td>
+      <td>0.037037</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 2 columns</p>
+</div>
+</div>
+<br />
+<br /><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">247</span> <span class="n">dri2</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>use_period</th>
+      <th>dri</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th>MICROORGANISM</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">2110</th>
+      <th>BETA STREPTOCOCCUS GROUP B</th>
+      <td>3.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>CORYNEBACTERIUM UREALYTICUM SP. NOV.</th>
+      <td>3.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>POSITIVE FOR GROUP B BETA STREPTOCOCCI</th>
+      <td>3.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>POSITIVE FOR METHICILLIN RESISTANT STAPH AUREUS</th>
+      <td>3.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>STAPH AUREUS COAG +</th>
+      <td>3.0</td>
+      <td>0.65</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">2210</th>
+      <th>PSEUDOMONAS AERUGINOSA</th>
+      <td>5.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>SERRATIA MARCESCENS</th>
+      <td>10.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>STAPH AUREUS COAG +</th>
+      <td>5.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>STAPHYLOCOCCUS LUGDUNENSIS</th>
+      <td>5.0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>STAPHYLOCOCCUS, COAGULASE NEGATIVE</th>
+      <td>5.0</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>4125 rows × 2 columns</p>
+</div>
+</div>
+<br />
+<br /><p>Lets visualise the overall <code class="docutils literal notranslate"><span class="pre">DRI</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">252</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">253</span> <span class="c1"># Plot</span>
+<span class="linenos">254</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">255</span> <span class="c1"># Libraries</span>
+<span class="linenos">256</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">257</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">258</span>
+<span class="linenos">259</span> <span class="c1"># Display using relplot</span>
+<span class="linenos">260</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dri1</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;dri&#39;</span><span class="p">,</span>
+<span class="linenos">261</span>     <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span>
+<span class="linenos">262</span>     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span>
+<span class="linenos">263</span> <span class="p">)</span>
+<span class="linenos">264</span>
+<span class="linenos">265</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_dri_b_mimic_001.png" srcset="../../_images/sphx_glr_plot_dri_b_mimic_001.png" alt="plot dri b mimic" class = "sphx-glr-single-img"/><p>Lets visualise the microorganism-wise <code class="docutils literal notranslate"><span class="pre">DRI</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">270</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">271</span> <span class="c1"># Format</span>
+<span class="linenos">272</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">273</span> <span class="c1"># Copy results</span>
+<span class="linenos">274</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">dri2</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">275</span>
+<span class="linenos">276</span> <span class="c1"># Combine with summary</span>
+<span class="linenos">277</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+<span class="linenos">278</span>     <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">],</span>
+<span class="linenos">279</span>     <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">])</span>
+<span class="linenos">280</span>
+<span class="linenos">281</span> <span class="c1"># Find microorganisms with more samples</span>
+<span class="linenos">282</span> <span class="n">top</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">)</span> \
+<span class="linenos">283</span>     <span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> \
+<span class="linenos">284</span>     <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="linenos">285</span>
+<span class="linenos">286</span> <span class="c1"># Filter by top microorganisms</span>
+<span class="linenos">287</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">aux</span><span class="o">.</span><span class="n">MICROORGANISM</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+<span class="linenos">288</span>
+<span class="linenos">289</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">290</span> <span class="c1"># Plot</span>
+<span class="linenos">291</span> <span class="c1"># --------------------------------------------</span>
+<span class="linenos">292</span> <span class="c1"># Display</span>
+<span class="linenos">293</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aux</span><span class="p">,</span>
+<span class="linenos">294</span>     <span class="n">x</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;dri&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">295</span>     <span class="n">row</span><span class="o">=</span><span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;rocket&#39;</span><span class="p">,</span>
+<span class="linenos">296</span>     <span class="c1">#style=&#39;event&#39;, col=&#39;region&#39;, palette=&#39;palette&#39;,</span>
+<span class="linenos">297</span>     <span class="n">height</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">298</span>     <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="linenos">299</span>
+<span class="linenos">300</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">301</span><span class="sd"> # Iterate over each subplot to customize further</span>
+<span class="linenos">302</span><span class="sd"> for title, ax in g.axes_dict.items():</span>
+<span class="linenos">303</span><span class="sd">     ax.text(1., .85, title, transform=ax.transAxes,</span>
+<span class="linenos">304</span><span class="sd">         fontsize=9, fontweight=&quot;normal&quot;,</span>
+<span class="linenos">305</span><span class="sd">         horizontalalignment=&#39;right&#39;)</span>
+<span class="linenos">306</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="linenos">307</span> <span class="c1"># Configure</span>
+<span class="linenos">308</span> <span class="n">g</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">309</span> <span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{row_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">310</span> <span class="c1">#g.set_titles(&quot;&quot;)</span>
+<span class="linenos">311</span>
+<span class="linenos">312</span> <span class="c1"># Show</span>
+<span class="linenos">313</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_dri_b_mimic_002.png" srcset="../../_images/sphx_glr_plot_dri_b_mimic_002.png" alt="STAPH AUREUS COAG +, ENTEROCOCCUS SP., ESCHERICHIA COLI, KLEBSIELLA PNEUMONIAE" class = "sphx-glr-single-img"/><p>The top microorganisms are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">317</span> <span class="n">top</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>MICROORGANISM
+ESCHERICHIA COLI         101050.0
+STAPH AUREUS COAG +       28165.0
+KLEBSIELLA PNEUMONIAE     28094.0
+ENTEROCOCCUS SP.          10585.0
+Name: freq, dtype: float64
+</pre></div>
+</div>
+<p>The results look as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">321</span> <span class="n">aux</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">322</span>     <span class="s1">&#39;intermediate&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span>
+<span class="linenos">323</span>     <span class="s1">&#39;sensitive&#39;</span><span class="p">:</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span>
+<span class="linenos">324</span>     <span class="s1">&#39;resistant&#39;</span><span class="p">:</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span>
+<span class="linenos">325</span>     <span class="s1">&#39;pass&#39;</span><span class="p">:</span> <span class="s1">&#39;P&#39;</span>
+<span class="linenos">326</span> <span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>MICROORGANISM</th>
+      <th>use_period</th>
+      <th>dri</th>
+      <th>ANTIMICROBIAL</th>
+      <th>I</th>
+      <th>P</th>
+      <th>R</th>
+      <th>S</th>
+      <th>freq</th>
+      <th>sari</th>
+      <th>use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>2110</td>
+      <td>STAPH AUREUS COAG +</td>
+      <td>3.0</td>
+      <td>0.65</td>
+      <td>ERYTHROMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>39.0</td>
+      <td>21.0</td>
+      <td>60.0</td>
+      <td>0.65</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>2111</td>
+      <td>ENTEROCOCCUS SP.</td>
+      <td>7.0</td>
+      <td>0.35</td>
+      <td>VANCOMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>23.0</td>
+      <td>43.0</td>
+      <td>66.0</td>
+      <td>0.35</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>2111</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>5.0</td>
+      <td>0.23</td>
+      <td>CEFTRIAXONE</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>25.0</td>
+      <td>107.0</td>
+      <td>133.0</td>
+      <td>0.20</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>2111</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>5.0</td>
+      <td>0.23</td>
+      <td>CEFAZOLIN</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>32.0</td>
+      <td>100.0</td>
+      <td>133.0</td>
+      <td>0.25</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>2111</td>
+      <td>KLEBSIELLA PNEUMONIAE</td>
+      <td>5.0</td>
+      <td>0.04</td>
+      <td>CEFTRIAXONE</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>25.0</td>
+      <td>26.0</td>
+      <td>0.04</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9928</th>
+      <td>2210</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>10.0</td>
+      <td>0.28</td>
+      <td>CEFTRIAXONE</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>9.0</td>
+      <td>0.56</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9929</th>
+      <td>2210</td>
+      <td>ESCHERICHIA COLI</td>
+      <td>10.0</td>
+      <td>0.28</td>
+      <td>MEROPENEM</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>9.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9930</th>
+      <td>2210</td>
+      <td>KLEBSIELLA PNEUMONIAE</td>
+      <td>10.0</td>
+      <td>0.00</td>
+      <td>CEFTRIAXONE</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9931</th>
+      <td>2210</td>
+      <td>KLEBSIELLA PNEUMONIAE</td>
+      <td>10.0</td>
+      <td>0.00</td>
+      <td>MEROPENEM</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9935</th>
+      <td>2210</td>
+      <td>STAPH AUREUS COAG +</td>
+      <td>5.0</td>
+      <td>0.00</td>
+      <td>VANCOMYCIN</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.00</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>1108 rows × 12 columns</p>
+</div>
+</div>
+<br />
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  13.613 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-dri-b-mimic-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/6d662cef3a7b2edcd7728079cd4198a8/plot_dri_b_mimic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_dri_b_mimic.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/dfe2830140cea0112c33e7a5f3c36407/plot_dri_b_mimic.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_dri_b_mimic.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_asai_c_temporal.html" class="btn btn-neutral float-left" title="ASAI - Compute timeseries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_sari_a_antibiogram.html" class="btn btn-neutral float-right" title="SARI - By specimen w/ sns.heatmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

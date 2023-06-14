@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACSI - Example using MIMIC &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ASAI - By gram stain (binary)" href="plot_asai_a_gramtype.html" />
+    <link rel="prev" title="Examples with indexes" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with indexes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">ACSI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_a_gramtype.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (binary)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_b_multiple.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (multiple)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_c_temporal.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - Compute timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_dri_b_mimic.html"><code class="docutils literal notranslate"><span class="pre">DRI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_a_antibiogram.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.heatmap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_b_clustermap.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.clustermap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_c_relmap.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.relmap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_d_temporal.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - Compute timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sart_a_basic.html"><code class="docutils literal notranslate"><span class="pre">SART</span></code> - Trend as slope of <code class="docutils literal notranslate"><span class="pre">WLS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples with indexes</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">ACSI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_examples/indexes/plot_acsi_b_mimic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-acsi-b-mimic-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="acsi-example-using-mimic">
+<span id="sphx-glr-examples-indexes-plot-acsi-b-mimic-py"></span><h1><code class="docutils literal notranslate"><span class="pre">ACSI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code><a class="headerlink" href="#acsi-example-using-mimic" title="Permalink to this heading"></a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 7</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 8</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 9</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="linenos">10</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">11</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">12</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">13</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span> <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span> <span class="k">try</span><span class="p">:</span>
+<span class="linenos">18</span>     <span class="vm">__file__</span>
+<span class="linenos">19</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">20</span> <span class="k">except</span><span class="p">:</span>
+<span class="linenos">21</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span> <span class="c1"># Configure seaborn style (context=talk)</span>
+<span class="linenos">25</span> <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span> <span class="c1"># Configure warnings</span>
+<span class="linenos">28</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>     <span class="n">category</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DtypeWarning</span><span class="p">)</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span> <span class="c1"># -------------------------------------------------------</span>
+<span class="linenos">32</span> <span class="c1"># Constants</span>
+<span class="linenos">33</span> <span class="c1"># -------------------------------------------------------</span>
+<span class="linenos">34</span> <span class="c1"># Rename columns for susceptibility</span>
+<span class="linenos">35</span> <span class="n">rename_susceptibility</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">36</span>     <span class="s1">&#39;chartdate&#39;</span><span class="p">:</span> <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">37</span>     <span class="s1">&#39;micro_specimen_id&#39;</span><span class="p">:</span> <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+<span class="linenos">38</span>     <span class="s1">&#39;spec_type_desc&#39;</span><span class="p">:</span> <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">39</span>     <span class="s1">&#39;org_name&#39;</span><span class="p">:</span> <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">40</span>     <span class="s1">&#39;ab_name&#39;</span><span class="p">:</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">41</span>     <span class="s1">&#39;interpretation&#39;</span><span class="p">:</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
+<span class="linenos">42</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Let’s load the <code class="docutils literal notranslate"><span class="pre">susceptibility</span></code> test data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">48</span> <span class="c1"># -----------------------------</span>
+<span class="linenos">49</span> <span class="c1"># Load susceptibility test data</span>
+<span class="linenos">50</span> <span class="c1"># -----------------------------</span>
+<span class="linenos">51</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1000</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span> <span class="c1"># Helper</span>
+<span class="linenos">54</span> <span class="n">subset</span> <span class="o">=</span> <span class="n">rename_susceptibility</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span> <span class="c1"># Load data</span>
+<span class="linenos">57</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;../../pyamr/datasets/mimic&#39;</span><span class="p">)</span>
+<span class="linenos">58</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s1">&#39;susceptibility.csv&#39;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">nrows</span><span class="p">)</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span> <span class="c1"># Rename columns</span>
+<span class="linenos">61</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">data1</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename_susceptibility</span><span class="p">)</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span> <span class="c1"># Format data</span>
+<span class="linenos">64</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">data1</span><span class="p">[</span><span class="n">subset</span><span class="p">]</span>
+<span class="linenos">65</span> <span class="n">data1</span> <span class="o">=</span> <span class="n">data1</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">subset</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="linenos">66</span> <span class="n">data1</span><span class="o">.</span><span class="n">DATE</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data1</span><span class="o">.</span><span class="n">DATE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">69</span> <span class="n">data1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>LAB_NUMBER</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>SENSITIVITY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHI...</td>
+      <td>AMPICILLIN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHI...</td>
+      <td>CEFAZOLIN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHI...</td>
+      <td>TRIMETHOPR...</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHI...</td>
+      <td>NITROFURAN...</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2171-06-10</td>
+      <td>3685553</td>
+      <td>URINE</td>
+      <td>ESCHERICHI...</td>
+      <td>GENTAMICIN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s compute the <code class="docutils literal notranslate"><span class="pre">ACSI</span></code> and return the combinations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This step is quite computationally expensive since it has to create all
+possible antimicrobial combinations within each isolate in the
+susceptibility test data. Thus, it is recommended to save the results
+for future analysis and/or visualisation.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 80</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 81</span> <span class="kn">from</span> <span class="nn">pyamr.core.acsi</span> <span class="kn">import</span> <span class="n">ACSI</span>
+<span class="linenos"> 82</span>
+<span class="linenos"> 83</span> <span class="c1"># Compute index</span>
+<span class="linenos"> 84</span> <span class="n">contingency</span><span class="p">,</span> <span class="n">combinations</span> <span class="o">=</span> \
+<span class="linenos"> 85</span>     <span class="n">ACSI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span>
+<span class="linenos"> 86</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 87</span>         <span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos"> 88</span>         <span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos"> 89</span>         <span class="s1">&#39;MICROORGANISM&#39;</span>
+<span class="linenos"> 90</span>     <span class="p">],</span>
+<span class="linenos"> 91</span>     <span class="n">return_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span> <span class="c1"># Save</span>
+<span class="linenos"> 94</span> <span class="c1">#contingency.to_csv(&#39;contingency_%s.csv&#39; % nrows)</span>
+<span class="linenos"> 95</span> <span class="c1">#combinations.to_csv(&#39;combinations_%s.csv&#39; % nrows)</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span> <span class="c1"># Display</span>
+<span class="linenos"> 98</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Combinations:&quot;</span><span class="p">)</span>
+<span class="linenos"> 99</span> <span class="nb">print</span><span class="p">(</span><span class="n">combinations</span><span class="p">)</span>
+<span class="linenos">100</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contingency:&quot;</span><span class="p">)</span>
+<span class="linenos">101</span> <span class="nb">print</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\acsi.py:120: RuntimeWarning:
+
+invalid value encountered in true_divide
+
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\acsi.py:121: RuntimeWarning:
+
+invalid value encountered in true_divide
+
+
+Combinations:
+           DATE       SPECIMEN  MICROORGANISM  LAB_NUMBER ANTIMICROBIAL_x ANTIMICROBIAL_y SENSITIVITY_x SENSITIVITY_y class
+0    2112-10-05  BLOOD CULTURE  VIRIDANS S...     3530668    CLINDAMYCIN    ERYTHROMYCIN              S             R    SR
+1    2112-10-05  BLOOD CULTURE  VIRIDANS S...     3530668    CLINDAMYCIN    PENICILLIN G              S             S    SS
+2    2112-10-05  BLOOD CULTURE  VIRIDANS S...     3530668    CLINDAMYCIN      VANCOMYCIN              S             S    SS
+3    2112-10-05  BLOOD CULTURE  VIRIDANS S...     3530668   ERYTHROMYCIN    PENICILLIN G              R             S    RS
+4    2112-10-05  BLOOD CULTURE  VIRIDANS S...     3530668   ERYTHROMYCIN      VANCOMYCIN              R             S    RS
+...         ...            ...            ...         ...            ...             ...            ...           ...   ...
+5074 2202-04-26          URINE  MORGANELLA...     8654517  NITROFURAN...      TOBRAMYCIN              R             R    RR
+5075 2202-04-26          URINE  MORGANELLA...     8654517  NITROFURAN...   TRIMETHOPR...              R             R    RR
+5076 2202-04-26          URINE  MORGANELLA...     8654517  PIPERACILL...      TOBRAMYCIN              S             R    SR
+5077 2202-04-26          URINE  MORGANELLA...     8654517  PIPERACILL...   TRIMETHOPR...              S             R    SR
+5078 2202-04-26          URINE  MORGANELLA...     8654517     TOBRAMYCIN   TRIMETHOPR...              R             R    RR
+
+[5079 rows x 9 columns]
+
+Contingency:
+class                                                                  II  IR  IS  RI   RR   RS  SI   SR   SS  acsi
+DATE       SPECIMEN      MICROORGANISM  ANTIMICROBI... ANTIMICROBI...
+2112-10-05 BLOOD CULTURE VIRIDANS ST... CLINDAMYCIN    ERYTHROMYCIN   NaN NaN NaN NaN  NaN  NaN NaN  1.0  NaN   0.0
+                                                       PENICILLIN G   NaN NaN NaN NaN  NaN  NaN NaN  NaN  1.0   0.0
+                                                       VANCOMYCIN     NaN NaN NaN NaN  NaN  NaN NaN  NaN  1.0   0.0
+                                        ERYTHROMYCIN   PENICILLIN G   NaN NaN NaN NaN  NaN  1.0 NaN  NaN  NaN   0.0
+                                                       VANCOMYCIN     NaN NaN NaN NaN  NaN  1.0 NaN  NaN  NaN   0.0
+...                                                                    ..  ..  ..  ..  ...  ...  ..  ...  ...   ...
+2202-04-26 URINE         MORGANELLA ... NITROFURANTOIN TOBRAMYCIN     NaN NaN NaN NaN  1.0  NaN NaN  NaN  NaN   0.0
+                                                       TRIMETHOPRI... NaN NaN NaN NaN  1.0  NaN NaN  NaN  NaN   0.0
+                                        PIPERACILLI... TOBRAMYCIN     NaN NaN NaN NaN  NaN  NaN NaN  1.0  NaN   0.0
+                                                       TRIMETHOPRI... NaN NaN NaN NaN  NaN  NaN NaN  1.0  NaN   0.0
+                                        TOBRAMYCIN     TRIMETHOPRI... NaN NaN NaN NaN  1.0  NaN NaN  NaN  NaN   0.0
+
+[4464 rows x 10 columns]
+</pre></div>
+</div>
+<p>Let’s compute the <code class="docutils literal notranslate"><span class="pre">ACSI</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are loading previously computed combinations.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">112</span> <span class="c1"># Libraries</span>
+<span class="linenos">113</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">fixture</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span> <span class="c1"># Path</span>
+<span class="linenos">116</span> <span class="n">combinations</span> <span class="o">=</span> <span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mimic/asci/combinations.csv&#39;</span><span class="p">)</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span> <span class="c1"># Lets compute the overall index</span>
+<span class="linenos">119</span> <span class="n">contingency</span> <span class="o">=</span> <span class="n">ACSI</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span>
+<span class="linenos">120</span>     <span class="n">combinations</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+<span class="linenos">121</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[],</span>
+<span class="linenos">122</span>     <span class="n">flag_combinations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">123</span>     <span class="n">return_combinations</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">124</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s visualise the result</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">130</span> <span class="c1"># ------------------------------------------</span>
+<span class="linenos">131</span> <span class="c1"># Display</span>
+<span class="linenos">132</span> <span class="c1"># ------------------------------------------</span>
+<span class="linenos">133</span> <span class="c1"># Display</span>
+<span class="linenos">134</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">135</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">136</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span> <span class="c1"># Get unique antimicrobials</span>
+<span class="linenos">139</span> <span class="n">s1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">combinations</span><span class="o">.</span><span class="n">ANTIMICROBIAL_x</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="linenos">140</span> <span class="n">s2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">combinations</span><span class="o">.</span><span class="n">ANTIMICROBIAL_x</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="linenos">141</span> <span class="n">abxs</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="linenos">142</span>
+<span class="linenos">143</span> <span class="c1"># Create index with all pairs</span>
+<span class="linenos">144</span> <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">([</span><span class="n">abxs</span><span class="p">,</span> <span class="n">abxs</span><span class="p">])</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span> <span class="c1"># Reformat</span>
+<span class="linenos">147</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">contingency</span><span class="p">[</span><span class="s1">&#39;acsi&#39;</span><span class="p">]</span> \
+<span class="linenos">148</span>     <span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span> \
+<span class="linenos">149</span>     <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span> <span class="c1"># Create figure</span>
+<span class="linenos">152</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="linenos">153</span>      <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="linenos">154</span> <span class="p">)</span>
+<span class="linenos">155</span>
+<span class="linenos">156</span> <span class="c1"># Display</span>
+<span class="linenos">157</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">aux</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span>
+<span class="linenos">158</span>     <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">},</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">159</span>     <span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">160</span>     <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">70</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="linenos">161</span>     <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Collateral Sensitivity Index&#39;</span><span class="p">})</span>
+<span class="linenos">162</span>
+<span class="linenos">163</span> <span class="c1"># Show</span>
+<span class="linenos">164</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">165</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_acsi_b_mimic_001.png" srcset="../../_images/sphx_glr_plot_acsi_b_mimic_001.png" alt="plot acsi b mimic" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.350 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-acsi-b-mimic-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/46a66463945b7b18ce749e2f95505232/plot_acsi_b_mimic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_acsi_b_mimic.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/64e26322e2ba82db90c85a3bb39429b2/plot_acsi_b_mimic.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_acsi_b_mimic.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Examples with indexes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_asai_a_gramtype.html" class="btn btn-neutral float-right" title="ASAI - By gram stain (binary)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

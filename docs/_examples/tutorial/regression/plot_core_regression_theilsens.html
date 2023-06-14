@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Using Theil-Sen &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,10 +20,14 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Using weighted least squares (WLS)" href="plot_core_regression_wls.html" />
+    <link rel="prev" title="Using SARIMAX (seasonal)" href="plot_core_regression_sarimax.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,18 +53,30 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_arima.html">Using ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_ensemble.html">Using WLS + ARMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_sarimax.html">Using SARIMAX (seasonal)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using Theil-Sen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_wls.html">Using weighted least squares (WLS)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -72,8 +92,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Using Theil-Sen</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Using Theil-Sen</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_theilsens.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,39 +110,40 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="using-theil-sen">
-<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-theilsens-py"></span><h1>Using Theil-Sen<a class="headerlink" href="#using-theil-sen" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-theilsens-py"></span><h1>Using Theil-Sen<a class="headerlink" href="#using-theil-sen" title="Permalink to this heading"></a></h1>
 <p>In non-parametric statistics, the Theil–Sen estimator is a method for robustly
 fitting a line to sample points in the plane (simple linear regression) by
 choosing the median of the slopes of all lines through pairs of points.</p>
-<img src="../../../_images/sphx_glr_plot_core_regression_theilsens_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_theilsens_001.png" alt="plot core regression theilsens" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-theilsens-slope               3.7412
-theilsens-intercept         236.6932
-theilsens-ci_lower            3.0235
-theilsens-ci_upper            4.3116
+<img src="../../../_images/sphx_glr_plot_core_regression_theilsens_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_theilsens_001.png" alt="plot core regression theilsens" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
+theilsens-slope               3.6899
+theilsens-intercept         245.2529
+theilsens-ci_lower            3.0092
+theilsens-ci_upper              4.27
 theilsens-x            [0, 1, 2, ...
-theilsens-y            [51.961193...
-theilsens-model        (3.7411689...
+theilsens-y            [53.120652...
+theilsens-model        (3.6899243...
 theilsens-id               THEILSENS
 dtype: object
 
 Summary:
          TheilSens Slope
 ==================================
-slope:                      3.7412
-intercept:                236.6932
-ci_lower:                   3.0235
-ci_upper:                   4.3116
+slope:                      3.6899
+intercept:                245.2529
+ci_lower:                   3.0092
+ci_upper:                     4.27
 ==================================
 Grid Search:
                             0              1
-theilsens-s...         3.7412         3.7412
-theilsens-i...       236.6932       236.6932
-theilsens-c...         3.0235         3.1706
-theilsens-c...         4.3116         4.2222
+theilsens-s...         3.6899         3.6899
+theilsens-i...       245.2529       245.2529
+theilsens-c...         3.0092         3.1172
+theilsens-c...           4.27         4.1788
 theilsens-a...           0.05            0.1
 theilsens-x     [0, 1, 2, ...  [0, 1, 2, ...
-theilsens-y     [51.961193...  [51.961193...
-theilsens-m...  (3.7411689...  (3.7411689...
+theilsens-y     [53.120652...  [53.120652...
+theilsens-m...  (3.6899243...  (3.6899243...
 theilsens-id        THEILSENS      THEILSENS
 </pre></div>
 </div>
@@ -145,7 +167,7 @@ theilsens-id        THEILSENS      THEILSENS
 <span class="linenos"> 28</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="linenos"> 29</span>
 <span class="linenos"> 30</span> <span class="k">def</span> <span class="nf">make_line</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">slope</span><span class="p">):</span>
-<span class="linenos"> 31</span>     <span class="sd">&quot;&quot;&quot;Create straight series.&quot;&quot;&quot;</span>
+<span class="linenos"> 31</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Create straight series.&quot;&quot;&quot;</span>
 <span class="linenos"> 32</span>     <span class="c1"># Create timeseries.</span>
 <span class="linenos"> 33</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
 <span class="linenos"> 34</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">x</span>
@@ -225,8 +247,8 @@ theilsens-id        THEILSENS      THEILSENS
 <span class="linenos">108</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.101 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-theilsens-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.089 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-theilsens-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/8011f301f194f8a14c93436999934771/plot_core_regression_theilsens.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_theilsens.py</span></code></a></p>
 </div>
@@ -240,7 +262,10 @@ theilsens-id        THEILSENS      THEILSENS
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_core_regression_sarimax.html" class="btn btn-neutral float-left" title="Using SARIMAX (seasonal)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_regression_wls.html" class="btn btn-neutral float-right" title="Using weighted least squares (WLS)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

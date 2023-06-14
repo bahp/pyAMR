@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Table Scatterplot &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -69,10 +77,6 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -87,9 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Visualization</a> &raquo;</li>
-      <li>Table Scatterplot</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Visualization</a></li>
+      <li class="breadcrumb-item active">Table Scatterplot</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/visualization/plot_dataframe_table.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,8 +109,9 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="table-scatterplot">
-<span id="sphx-glr-examples-visualization-plot-dataframe-table-py"></span><h1>Table Scatterplot<a class="headerlink" href="#table-scatterplot" title="Permalink to this headline"></a></h1>
-<img src="../../_images/sphx_glr_plot_dataframe_table_001.png" srcset="../../_images/sphx_glr_plot_dataframe_table_001.png" alt="SART (m), SARI, R2, Prob(JB), DW, P>|t| m, P>|t| n, Pearson, Percent" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+<span id="sphx-glr-examples-visualization-plot-dataframe-table-py"></span><h1>Table Scatterplot<a class="headerlink" href="#table-scatterplot" title="Permalink to this heading"></a></h1>
+<img src="../../_images/sphx_glr_plot_dataframe_table_001.png" srcset="../../_images/sphx_glr_plot_dataframe_table_001.png" alt="SART (m), SARI, R2, Prob(JB), DW, P>|t| m, P>|t| n, Pearson, Percent" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
    idx   org  abx  sart_m   sari     r2     jb     dw    ptm  ptn  pearson  percent
 0    9  SAUR  TRI   0.720  0.100  0.274  0.112  0.056  0.000  0.0   -0.046    7.189
 1    8  SAUR  MUP   0.084  0.025 -0.007  0.009  0.064  0.429  0.0   -0.499    7.230
@@ -209,7 +214,7 @@ to download the full example code</p>
 <span class="linenos"> 89</span>     <span class="c1">#          their value.</span>
 <span class="linenos"> 90</span>
 <span class="linenos"> 91</span>     <span class="c1"># Using scatter plot</span>
-<span class="linenos"> 92</span>     <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;abx&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="linenos"> 92</span>     <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;abx&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="linenos"> 93</span>                     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
 <span class="linenos"> 94</span>                     <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cmap&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
 <span class="linenos"> 95</span>                     <span class="n">norm</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
@@ -227,19 +232,20 @@ to download the full example code</p>
 <span class="linenos">107</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="linenos">108</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
 <span class="linenos">109</span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
-<span class="linenos">110</span>
-<span class="linenos">111</span> <span class="c1"># Despine</span>
-<span class="linenos">112</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">113</span>
-<span class="linenos">114</span> <span class="c1"># Adjust layout</span>
-<span class="linenos">115</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">116</span>
-<span class="linenos">117</span> <span class="c1"># Show</span>
-<span class="linenos">118</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">110</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set_axisbelow</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span> <span class="c1"># Despine</span>
+<span class="linenos">113</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span> <span class="c1"># Adjust layout</span>
+<span class="linenos">116</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span> <span class="c1"># Show</span>
+<span class="linenos">119</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.506 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-dataframe-table-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.543 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-visualization-plot-dataframe-table-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/feabf30ab5e10e2f5c0e7532babaa211/plot_dataframe_table.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_dataframe_table.py</span></code></a></p>
 </div>

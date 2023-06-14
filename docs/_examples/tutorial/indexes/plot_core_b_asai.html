@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spectrum of Activity (ASAI) &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Multiple Resistance (MARI)" href="plot_core_c_mari.html" />
+    <link rel="prev" title="Single Antimicrobial Resistance (SARI)" href="plot_core_a_sari.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_a_sari.html">Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_c_mari.html">Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_d_sart.html">Single Resistance Trend (<code class="docutils literal notranslate"><span class="pre">SART</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_e_dri.html">Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_f_acri.html">Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/_examples/tutorial/indexes/plot_core_b_asai.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-core-b-asai-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="spectrum-of-activity-asai">
+<span id="sphx-glr-examples-tutorial-indexes-plot-core-b-asai-py"></span><h1>Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)<a class="headerlink" href="#spectrum-of-activity-asai" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is an error in the Figure displayed below. The contribution (cont) value
+for Staphylococcus haemolyticus should be 0 instead of 1/10 because the sari
+index is higher than the threshold (32 &gt; 20) and therefore the antimicrobial
+is not considered effective.</p>
+</div>
+<p>The Antimicrobial Spectrum of Activity Index or <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> refers to the range of microbe species that are
+susceptible to these agents and therefore can be treated. In general, antimicrobial agents
+are classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials
+are active against both Gram-positive and Gram-negative bacteria. In contrast, narrow
+spectrum antimicrobials have limited activity and are effective only against particular
+species of bacteria. While these profiles appeared in the mid-1950s, little effort has been
+made to define them. Furthermore, such ambiguous labels are overused for different
+and even contradictory purposes.</p>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></p>
+<a class="reference internal image-reference" href="../../../_images/index-asai.png"><img alt="ASAI" class="align-center" src="../../../_images/index-asai.png" style="width: 600px;" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">28</span> <span class="c1"># Import libraries</span>
+<span class="linenos">29</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos">30</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">31</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">32</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">33</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos">34</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span> <span class="c1"># Import specific libraries</span>
+<span class="linenos">37</span> <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">ASAI</span>
+<span class="linenos">38</span> <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">asai</span>
+<span class="linenos">39</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">fixture</span>
+<span class="linenos">40</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.utils</span> <span class="kn">import</span> <span class="n">scalar_colormap</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span> <span class="c1"># Configure seaborn style (context=talk)</span>
+<span class="linenos">43</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span> <span class="c1"># Set matplotlib</span>
+<span class="linenos">46</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">47</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">48</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos">49</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span> <span class="c1"># Pandas configuration</span>
+<span class="linenos">52</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="linenos">53</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="linenos">54</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span> <span class="c1"># Numpy configuration</span>
+<span class="linenos">57</span> <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span> <span class="c1"># ---------------------</span>
+<span class="linenos">61</span> <span class="c1"># Create data</span>
+<span class="linenos">62</span> <span class="c1"># ---------------------</span>
+<span class="linenos">63</span> <span class="c1"># Load data</span>
+<span class="linenos">64</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fixture_04.csv&#39;</span><span class="p">)</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span> <span class="c1"># Show</span>
+<span class="linenos">67</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Summary:&quot;</span><span class="p">)</span>
+<span class="linenos">68</span> <span class="nb">print</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Summary:
+             GENUS              SPECIE    ANTIBIOTIC GRAM  RESISTANCE  FREQUENCY  THRESHOLD  W_SPECIE  W_GENUS
+0   Staphylococcus  coagulase negative  ANTIBIOTIC_1    P        0.88          1        0.2    0.1000   0.3333
+1   Staphylococcus         epidermidis  ANTIBIOTIC_1    P        0.11          1        0.2    0.1000   0.3333
+2   Staphylococcus        haemolyticus  ANTIBIOTIC_1    P        0.32          1        0.2    0.1000   0.3333
+3   Staphylococcus         lugdumensis  ANTIBIOTIC_1    P        0.45          1        0.2    0.1000   0.3333
+4   Staphylococcus       saporphyticus  ANTIBIOTIC_1    P        0.18          1        0.2    0.1000   0.3333
+5   Staphylococcus              aureus  ANTIBIOTIC_1    P        0.13          5        0.2    0.5000   0.3333
+6     Enterococcus              durans  ANTIBIOTIC_1    N        0.64          1        0.2    0.2500   0.3333
+7     Enterococcus             faecium  ANTIBIOTIC_1    N        0.48          1        0.2    0.2500   0.3333
+8     Enterococcus         gallinarium  ANTIBIOTIC_1    N        0.10          1        0.2    0.2500   0.3333
+9     Enterococcus            faecalis  ANTIBIOTIC_1    N        0.09          1        0.2    0.2500   0.3333
+10   Streptococcus           viridians  ANTIBIOTIC_1    P        0.08          1        0.2    0.3333   0.3333
+11   Streptococcus          pneumoniae  ANTIBIOTIC_1    P        0.89          2        0.2    0.6667   0.3333
+12  Staphylococcus  coagulase negative  ANTIBIOTIC_2    P        0.88          1        0.2    0.1000   0.3333
+13  Staphylococcus         epidermidis  ANTIBIOTIC_2    P        0.11          1        0.5    0.1000   0.3333
+14  Staphylococcus        haemolyticus  ANTIBIOTIC_2    P        0.32          1        0.5    0.1000   0.3333
+15  Staphylococcus         lugdumensis  ANTIBIOTIC_2    P        0.45          1        0.5    0.1000   0.3333
+16  Staphylococcus       saporphyticus  ANTIBIOTIC_2    P        0.18          1        0.2    0.1000   0.3333
+17  Staphylococcus              aureus  ANTIBIOTIC_2    P        0.13          5        0.2    0.5000   0.3333
+18    Enterococcus              durans  ANTIBIOTIC_2    N        0.64          1        0.2    0.2500   0.3333
+19    Enterococcus             faecium  ANTIBIOTIC_2    N        0.48          1        0.2    0.2500   0.3333
+20    Enterococcus         gallinarium  ANTIBIOTIC_2    N        0.10          1        0.5    0.2500   0.3333
+21    Enterococcus            faecalis  ANTIBIOTIC_2    N        0.09          1        0.5    0.2500   0.3333
+22   Streptococcus           viridians  ANTIBIOTIC_2    P        0.08          1        0.5    0.3333   0.3333
+23   Streptococcus          pneumoniae  ANTIBIOTIC_2    P        0.89          2        0.5    0.6667   0.3333
+</pre></div>
+</div>
+<p>Lets see the dataframe</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">72</span> <span class="n">dataframe</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GENUS</th>
+      <th>SPECIE</th>
+      <th>ANTIBIOTIC</th>
+      <th>GRAM</th>
+      <th>RESISTANCE</th>
+      <th>FREQUENCY</th>
+      <th>THRESHOLD</th>
+      <th>W_SPECIE</th>
+      <th>W_GENUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Staphylococcus</td>
+      <td>coagulase negative</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.88</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Staphylococcus</td>
+      <td>epidermidis</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.11</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Staphylococcus</td>
+      <td>haemolyticus</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.32</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Staphylococcus</td>
+      <td>lugdumensis</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.45</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Staphylococcus</td>
+      <td>saporphyticus</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.18</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Staphylococcus</td>
+      <td>aureus</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.13</td>
+      <td>5</td>
+      <td>0.2</td>
+      <td>0.5000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Enterococcus</td>
+      <td>durans</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>N</td>
+      <td>0.64</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Enterococcus</td>
+      <td>faecium</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>N</td>
+      <td>0.48</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Enterococcus</td>
+      <td>gallinarium</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>N</td>
+      <td>0.10</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Enterococcus</td>
+      <td>faecalis</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>N</td>
+      <td>0.09</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Streptococcus</td>
+      <td>viridians</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.08</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.3333</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Streptococcus</td>
+      <td>pneumoniae</td>
+      <td>ANTIBIOTIC_1</td>
+      <td>P</td>
+      <td>0.89</td>
+      <td>2</td>
+      <td>0.2</td>
+      <td>0.6667</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Staphylococcus</td>
+      <td>coagulase negative</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.88</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Staphylococcus</td>
+      <td>epidermidis</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.11</td>
+      <td>1</td>
+      <td>0.5</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Staphylococcus</td>
+      <td>haemolyticus</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.32</td>
+      <td>1</td>
+      <td>0.5</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Staphylococcus</td>
+      <td>lugdumensis</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.45</td>
+      <td>1</td>
+      <td>0.5</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Staphylococcus</td>
+      <td>saporphyticus</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.18</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.1000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Staphylococcus</td>
+      <td>aureus</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.13</td>
+      <td>5</td>
+      <td>0.2</td>
+      <td>0.5000</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Enterococcus</td>
+      <td>durans</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>N</td>
+      <td>0.64</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Enterococcus</td>
+      <td>faecium</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>N</td>
+      <td>0.48</td>
+      <td>1</td>
+      <td>0.2</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Enterococcus</td>
+      <td>gallinarium</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>N</td>
+      <td>0.10</td>
+      <td>1</td>
+      <td>0.5</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Enterococcus</td>
+      <td>faecalis</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>N</td>
+      <td>0.09</td>
+      <td>1</td>
+      <td>0.5</td>
+      <td>0.2500</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Streptococcus</td>
+      <td>viridians</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.08</td>
+      <td>1</td>
+      <td>0.5</td>
+      <td>0.3333</td>
+      <td>0.3333</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Streptococcus</td>
+      <td>pneumoniae</td>
+      <td>ANTIBIOTIC_2</td>
+      <td>P</td>
+      <td>0.89</td>
+      <td>2</td>
+      <td>0.5</td>
+      <td>0.6667</td>
+      <td>0.3333</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets use the ASAI object</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 79</span> <span class="c1"># -------------------------------</span>
+<span class="linenos"> 80</span> <span class="c1"># Create antimicrobial spectrum</span>
+<span class="linenos"> 81</span> <span class="c1"># -------------------------------</span>
+<span class="linenos"> 82</span> <span class="c1"># Create antimicrobial spectrum of activity instance</span>
+<span class="linenos"> 83</span> <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;GENUS&#39;</span><span class="p">,</span>
+<span class="linenos"> 84</span>             <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;SPECIE&#39;</span><span class="p">,</span>
+<span class="linenos"> 85</span>             <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;RESISTANCE&#39;</span><span class="p">,</span>
+<span class="linenos"> 86</span>             <span class="n">column_frequency</span><span class="o">=</span><span class="s1">&#39;FREQUENCY&#39;</span><span class="p">,</span>
+<span class="linenos"> 87</span>             <span class="n">column_threshold</span><span class="o">=</span><span class="s1">&#39;THRESHOLD&#39;</span><span class="p">,</span>
+<span class="linenos"> 88</span>             <span class="n">column_wgenus</span><span class="o">=</span><span class="s1">&#39;W_GENUS&#39;</span><span class="p">,</span>
+<span class="linenos"> 89</span>             <span class="n">column_wspecie</span><span class="o">=</span><span class="s1">&#39;W_SPECIE&#39;</span><span class="p">)</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span> <span class="c1"># Compute ASAI with uniform weights</span>
+<span class="linenos"> 92</span> <span class="n">scores1</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
+<span class="linenos"> 93</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="s1">&#39;GRAM&#39;</span><span class="p">],</span>
+<span class="linenos"> 94</span>     <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+<span class="linenos"> 95</span>     <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="linenos"> 96</span>     <span class="n">min_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span> <span class="c1"># compute ASAI with frequency weights</span>
+<span class="linenos"> 99</span> <span class="n">scores2</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
+<span class="linenos">100</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ANTIBIOTIC&#39;</span><span class="p">,</span> <span class="s1">&#39;GRAM&#39;</span><span class="p">],</span>
+<span class="linenos">101</span>     <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;frequency&#39;</span><span class="p">,</span>
+<span class="linenos">102</span>     <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="linenos">103</span>     <span class="n">min_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Lets see the <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> with <code class="docutils literal notranslate"><span class="pre">uniform</span></code> weights</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">107</span> <span class="n">scores1</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">N_GENUS</th>
+      <th colspan="2" halign="left">N_SPECIE</th>
+      <th colspan="2" halign="left">ASAI_SCORE</th>
+    </tr>
+    <tr>
+      <th>GRAM</th>
+      <th>N</th>
+      <th>P</th>
+      <th>N</th>
+      <th>P</th>
+      <th>N</th>
+      <th>P</th>
+    </tr>
+    <tr>
+      <th>ANTIBIOTIC</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ANTIBIOTIC_1</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>0.5</td>
+      <td>0.5000</td>
+    </tr>
+    <tr>
+      <th>ANTIBIOTIC_2</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>0.5</td>
+      <td>0.6667</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets see the <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> with <code class="docutils literal notranslate"><span class="pre">frequency</span></code> weights</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">111</span> <span class="n">scores2</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">N_GENUS</th>
+      <th colspan="2" halign="left">N_SPECIE</th>
+      <th colspan="2" halign="left">ASAI_SCORE</th>
+    </tr>
+    <tr>
+      <th>GRAM</th>
+      <th>N</th>
+      <th>P</th>
+      <th>N</th>
+      <th>P</th>
+      <th>N</th>
+      <th>P</th>
+    </tr>
+    <tr>
+      <th>ANTIBIOTIC</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ANTIBIOTIC_1</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>0.5</td>
+      <td>0.6154</td>
+    </tr>
+    <tr>
+      <th>ANTIBIOTIC_2</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>0.5</td>
+      <td>0.7692</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets display the information graphically</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">117</span> <span class="k">def</span> <span class="nf">plot_graph_asai</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+<span class="linenos">118</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Display ASAI as a horizontal bars</span>
+<span class="linenos">119</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="linenos">120</span>     <span class="c1"># Variables to plot.</span>
+<span class="linenos">121</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos">122</span>     <span class="n">y_n</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;N&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos">123</span>     <span class="n">y_p</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;P&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span>     <span class="c1"># Constants</span>
+<span class="linenos">126</span>     <span class="n">colormap_p</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="linenos">127</span>     <span class="n">colormap_n</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_n</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="linenos">128</span>
+<span class="linenos">129</span>     <span class="c1"># Create figure</span>
+<span class="linenos">130</span>     <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span>     <span class="c1"># Plot</span>
+<span class="linenos">133</span>     <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_p</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_p</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
+<span class="linenos">134</span>                 <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
+<span class="linenos">135</span>     <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="n">y_n</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_n</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
+<span class="linenos">136</span>                 <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span>     <span class="c1"># Configure</span>
+<span class="linenos">139</span>     <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span>     <span class="c1"># Configure</span>
+<span class="linenos">142</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="linenos">143</span>     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">)</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span> <span class="c1"># -----------------------------</span>
+<span class="linenos">146</span> <span class="c1"># Plot</span>
+<span class="linenos">147</span> <span class="c1"># -----------------------------</span>
+<span class="linenos">148</span> <span class="c1"># Display bar graphs</span>
+<span class="linenos">149</span> <span class="n">plot_graph_asai</span><span class="p">(</span><span class="n">scores1</span><span class="p">)</span>
+<span class="linenos">150</span> <span class="n">plot_graph_asai</span><span class="p">(</span><span class="n">scores2</span><span class="p">)</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span> <span class="c1"># Display</span>
+<span class="linenos">153</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../../../_images/sphx_glr_plot_core_b_asai_001.png" srcset="../../../_images/sphx_glr_plot_core_b_asai_001.png" alt="plot core b asai" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../../_images/sphx_glr_plot_core_b_asai_002.png" srcset="../../../_images/sphx_glr_plot_core_b_asai_002.png" alt="plot core b asai" class = "sphx-glr-multi-img"/></li>
+</ul>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.213 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-b-asai-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/0dffe6b0b2209e7b22a42453964dcae7/plot_core_b_asai.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_b_asai.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/0524b078057edb5d250c361cf9a6e364/plot_core_b_asai.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_b_asai.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_core_a_sari.html" class="btn btn-neutral float-left" title="Single Antimicrobial Resistance (SARI)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_c_mari.html" class="btn btn-neutral float-right" title="Multiple Resistance (MARI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -43,7 +43,7 @@ strategy in AMR.
 A small dataset will be used for this example.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-61
+.. GENERATED FROM PYTHON SOURCE LINES 28-65
 
 .. code-block:: default
    :lineno-start: 29
@@ -59,6 +59,12 @@ A small dataset will be used for this example.
     # Import from pyAMR
     from pyamr.datasets.load import make_susceptibility
 
+    try:
+        __file__
+        TERMINAL = True
+    except:
+        TERMINAL = False
+
     # -------------------------------------------
     # Load data
     # -------------------------------------------
@@ -71,15 +77,13 @@ A small dataset will be used for this example.
     print(data)
     print("\nColumns:")
     print(data.dtypes)
-
-    # Show unique elements
-    print("\nUnique values:")
-    for c in ['microorganism_code',
-              'antimicrobial_code',
-              'specimen_code',
-              'laboratory_number']:
-        print('%-18s -> %5s' % (c, data[c].nunique()))
-
+    print("\nUnique:")
+    print(data[[
+        'microorganism_code',
+        'antimicrobial_code',
+        'specimen_code',
+        'laboratory_number',
+        'patient_id']].nunique())
 
 
 
@@ -87,22 +91,24 @@ A small dataset will be used for this example.
 
 .. rst-class:: sphx-glr-script-out
 
+ Out:
+
  .. code-block:: none
 
 
     Data:
-           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
-    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMI           amikacin                NaN    sensitive NaN       NaN
-    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMO        amoxycillin                NaN    resistant NaN       NaN
-    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAUG          augmentin                NaN    sensitive NaN       NaN
-    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAZT          aztreonam                NaN    sensitive NaN       NaN
-    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               ACAZ        ceftazidime                NaN    sensitive NaN       NaN
-    ...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
-    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AAMO        amoxycillin                NaN    sensitive NaN       NaN
-    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ALIN          linezolid                NaN    sensitive NaN       NaN
-    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ASYN           synercid                NaN    resistant NaN       NaN
-    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ATEI        teicoplanin                NaN    sensitive NaN       NaN
-    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AVAN         vancomycin                NaN    sensitive NaN       NaN
+           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
+    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMI           amikacin                NaN   sensitive NaN       NaN
+    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   resistant NaN       NaN
+    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAZT          aztreonam                NaN   sensitive NaN       NaN
+    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               ACAZ        ceftazidime                NaN   sensitive NaN       NaN
+    ...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
+    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   sensitive NaN       NaN
+    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ALIN          linezolid                NaN   sensitive NaN       NaN
+    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ASYN           synercid                NaN   resistant NaN       NaN
+    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ATEI        teicoplanin                NaN   sensitive NaN       NaN
+    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AVAN         vancomycin                NaN   sensitive NaN       NaN
 
     [319122 rows x 15 columns]
 
@@ -124,16 +130,18 @@ A small dataset will be used for this example.
     reported                float64
     dtype: object
 
-    Unique values:
-    microorganism_code ->    67
-    antimicrobial_code ->    58
-    specimen_code      ->    22
-    laboratory_number  -> 34816
+    Unique:
+    microorganism_code       67
+    antimicrobial_code       58
+    specimen_code            22
+    laboratory_number     34816
+    patient_id            24646
+    dtype: int64
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-89
+.. GENERATED FROM PYTHON SOURCE LINES 66-86
 
 Computing SARI
 --------------
@@ -146,27 +154,20 @@ It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` a
 Susceptible outcomes respectively. The definition might vary slightly since the
 intermediate category is not always considered.
 
-The parameter strategy accepts the following options:
-
-  - ``soft``   as R / R+I+S
-  - ``medium`` as R / R+S
-  - ``hard``  as R+I / R+I+S
-  - ``other``  as R+0.5I / R+0.5I+S
-
 For more information see: :py:mod:`pyamr.core.sari.SARI`
 
 For more examples see:
 
-  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sari.py`
-  - :ref:`sphx_glr__examples_indexes_plot_sari_antibiogram.py`
-  - :ref:`sphx_glr__examples_indexes_plot_sari_clustermap.py`
-  - :ref:`sphx_glr__examples_indexes_plot_sari_relmap.py`
+  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_a_sari.py`
+  - :ref:`sphx_glr__examples_indexes_plot_sari_a_antibiogram.py`
+  - :ref:`sphx_glr__examples_indexes_plot_sari_b_clustermap.py`
+  - :ref:`sphx_glr__examples_indexes_plot_sari_c_relmap.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 90-144
+.. GENERATED FROM PYTHON SOURCE LINES 87-141
 
 .. code-block:: default
-   :lineno-start: 91
+   :lineno-start: 88
 
 
     # -------------------------------------------
@@ -233,6 +234,8 @@ For more examples see:
 
 .. rst-class:: sphx-glr-script-out
 
+ Out:
+
  .. code-block:: none
 
     SARI (overall):
@@ -255,7 +258,7 @@ For more examples see:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 145-185
+.. GENERATED FROM PYTHON SOURCE LINES 142-182
 
 Computing ASAI
 --------------
@@ -284,24 +287,24 @@ For more information see: :py:mod:`pyamr.core.asai.ASAI`
 
 For more examples see:
 
-  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_asai.py`
-  - :ref:`sphx_glr__examples_indexes_plot_spectrum_gramtype.py`
-  - :ref:`sphx_glr__examples_indexes_plot_spectrum_multiple.py`
+  - :ref:`sphx_glr__examples_indexes_plot_asai_a_gramtype.py`
+  - :ref:`sphx_glr__examples_indexes_plot_asai_b_multiple.py`
 
 
 In order to compute ``ASAI``, we need to have the following columns present
 in our dataset: ``antimicrobial``, ``microorganism_genus``, ``microorganism_species``
 and ``resistance``.  Moreover, in this example we will compute the ASAI for each
 ``gram_stain`` category independently so we will need the microorganism gram stain
-information too. This information is available in the registries: :py:mod:`pyamr.datasets.registries`
+information too. This information is available in the registries:
+:py:mod:`pyamr.datasets.registries`
 
 Lets include all this information using the ``MicroorganismRegistry``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 186-212
+.. GENERATED FROM PYTHON SOURCE LINES 183-209
 
 .. code-block:: default
-   :lineno-start: 187
+   :lineno-start: 184
 
 
     # ------------------------------
@@ -336,16 +339,16 @@ Lets include all this information using the ``MicroorganismRegistry``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 213-216
+.. GENERATED FROM PYTHON SOURCE LINES 210-213
 
 Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
 lets compute ``ASAI``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 217-250
+.. GENERATED FROM PYTHON SOURCE LINES 214-247
 
 .. code-block:: default
-   :lineno-start: 218
+   :lineno-start: 215
 
 
     # -------------------------------------------
@@ -386,9 +389,11 @@ lets compute ``ASAI``.
 
 .. rst-class:: sphx-glr-script-out
 
+ Out:
+
  .. code-block:: none
 
-    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:570: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:570: UserWarning:
 
 
                      Extreme resistances [0, 1] were found in the DataFrame. These 
@@ -396,7 +401,7 @@ lets compute ``ASAI``.
                      to pairs with low number of records.
 
 
-    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\pyamr\core\asai.py:584: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:584: UserWarning:
 
 
                      There are NULL values in columns that are required. These
@@ -462,44 +467,15 @@ lets compute ``ASAI``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 251-252
+.. GENERATED FROM PYTHON SOURCE LINES 248-249
 
 Lets plot it now!
 
-.. GENERATED FROM PYTHON SOURCE LINES 253-346
+.. GENERATED FROM PYTHON SOURCE LINES 250-318
 
 .. code-block:: default
-   :lineno-start: 254
+   :lineno-start: 251
 
-
-    # ----------------
-    # Helper method
-    # ----------------
-    def scalar_colormap(values, cmap, vmin, vmax):
-        """This method creates a colormap based on values.
-
-        Parameters
-        ----------
-        values : array-like
-          The values to create the corresponding colors
-
-        cmap : str
-          The colormap
-
-        vmin, vmax : float
-          The minimum and maximum possible values
-
-        Returns
-        -------
-        scalar colormap
-        """
-        # Create scalar mappable
-        norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax, clip=True)
-        mapper = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
-        # Gete color map
-        colormap = sns.color_palette([mapper.to_rgba(i) for i in values])
-        # Return
-        return colormap
 
     # ---------------------------------------------------------------
     # Plot
@@ -508,6 +484,10 @@ Lets plot it now!
     #          that combine the different subcategories (e.g. gram-negative
     #          and gram-positive). Two possible options are: (i) use the
     #          gmean or (ii) the width.
+
+    # Libraries
+    from pyamr.graphics.utils import scalar_colormap
+
     # Measures
     scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
 
@@ -576,7 +556,7 @@ Lets plot it now!
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 347-373
+.. GENERATED FROM PYTHON SOURCE LINES 319-345
 
 Computing SART
 --------------
@@ -593,8 +573,8 @@ For more information see: :py:mod:`pyamr.core.sart.SART`
 
 For more examples see:
 
-  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_sart.py`
-  - :ref:`sphx_glr__examples_indexes_plot_trend_basic.py`
+  - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_d_sart.py`
+  - :ref:`sphx_glr__examples_indexes_plot_sart_a_basic.py`
 
 .. note:: Be cautious when Computing the ``SART`` index using a small dataset
           (e.g. a low number of susceptibility tests records) since it is very
@@ -605,10 +585,10 @@ Since it is necessary to have a decent amount of records to be
 able to compute the trends accurately, lets filter and choose
 the tuples were are interested in.
 
-.. GENERATED FROM PYTHON SOURCE LINES 374-422
+.. GENERATED FROM PYTHON SOURCE LINES 346-394
 
 .. code-block:: default
-   :lineno-start: 376
+   :lineno-start: 348
 
 
 
@@ -664,6 +644,8 @@ the tuples were are interested in.
 
 .. rst-class:: sphx-glr-script-out
 
+ Out:
+
  .. code-block:: none
 
 
@@ -684,14 +666,14 @@ the tuples were are interested in.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 423-424
+.. GENERATED FROM PYTHON SOURCE LINES 395-396
 
 Now, lets compute the resistance trend.
 
-.. GENERATED FROM PYTHON SOURCE LINES 425-450
+.. GENERATED FROM PYTHON SOURCE LINES 397-422
 
 .. code-block:: default
-   :lineno-start: 426
+   :lineno-start: 398
 
 
     # Libraries
@@ -724,6 +706,8 @@ Now, lets compute the resistance trend.
 
 .. rst-class:: sphx-glr-script-out
 
+ Out:
+
  .. code-block:: none
 
      1/15. Computing... ('URICUL', 'ECOL', 'AAMI')
@@ -745,14 +729,14 @@ Now, lets compute the resistance trend.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 451-452
+.. GENERATED FROM PYTHON SOURCE LINES 423-424
 
 Lets see the summary DataFrame (note it is transposed!)
 
-.. GENERATED FROM PYTHON SOURCE LINES 453-464
+.. GENERATED FROM PYTHON SOURCE LINES 425-436
 
 .. code-block:: default
-   :lineno-start: 454
+   :lineno-start: 426
 
 
     # Configure pandas
@@ -770,6 +754,8 @@ Lets see the summary DataFrame (note it is transposed!)
 
 
 .. rst-class:: sphx-glr-script-out
+
+ Out:
 
  .. code-block:: none
 
@@ -834,14 +820,14 @@ Lets see the summary DataFrame (note it is transposed!)
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 465-466
+.. GENERATED FROM PYTHON SOURCE LINES 437-438
 
 Lets see the model summary for the first entry
 
-.. GENERATED FROM PYTHON SOURCE LINES 467-520
+.. GENERATED FROM PYTHON SOURCE LINES 439-492
 
 .. code-block:: default
-   :lineno-start: 468
+   :lineno-start: 440
 
 
     # Display
@@ -907,6 +893,8 @@ Lets see the model summary for the first entry
 
 .. rst-class:: sphx-glr-script-out
 
+ Out:
+
  .. code-block:: none
 
     Name: ('URICUL', 'ECOL', 'AAUG')
@@ -916,8 +904,8 @@ Lets see the model summary for the first entry
     Dep. Variable:                      y   R-squared:                       0.906
     Model:                            WLS   Adj. R-squared:                  0.904
     Method:                 Least Squares   F-statistic:                     339.1
-    Date:                Mon, 20 Feb 2023   Prob (F-statistic):           1.38e-19
-    Time:                        17:41:30   Log-Likelihood:                   -inf
+    Date:                Mon, 12 Jun 2023   Prob (F-statistic):           1.38e-19
+    Time:                        16:00:31   Log-Likelihood:                   -inf
     No. Observations:                  37   AIC:                               inf
     Df Residuals:                      35   BIC:                               inf
     Df Model:                           1                                         
@@ -938,14 +926,14 @@ Lets see the model summary for the first entry
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 521-522
+.. GENERATED FROM PYTHON SOURCE LINES 493-494
 
 Lets display the information as a table graph
 
-.. GENERATED FROM PYTHON SOURCE LINES 523-645
+.. GENERATED FROM PYTHON SOURCE LINES 495-618
 
 .. code-block:: default
-   :lineno-start: 524
+   :lineno-start: 496
 
 
     # Libraries
@@ -1072,6 +1060,7 @@ Lets display the information as a table graph
 
 
 
+
 .. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_004.png
    :alt: SART (m), SARI (%), R2, Skew, Kurtosis, Prob(JB), DW, P>|t| m, Pearson, Freq
    :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_004.png
@@ -1079,6 +1068,8 @@ Lets display the information as a table graph
 
 
 .. rst-class:: sphx-glr-script-out
+
+ Out:
 
  .. code-block:: none
 
@@ -1104,26 +1095,41 @@ Lets display the information as a table graph
 
 
 
+.. GENERATED FROM PYTHON SOURCE LINES 619-621
+
+Computing DRI
+--------------
+
+.. GENERATED FROM PYTHON SOURCE LINES 624-626
+
+Computing MARI
+--------------
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.014 seconds)
+   **Total running time of the script:** ( 0 minutes  7.458 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:
 
-.. only:: html
 
-  .. container:: sphx-glr-footer sphx-glr-footer-example
+.. only :: html
+
+ .. container:: sphx-glr-footer
+    :class: sphx-glr-footer-example
 
 
-    .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_step_01.py <plot_step_01.py>`
+  .. container:: sphx-glr-download sphx-glr-download-python
 
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
+     :download:`Download Python source code: plot_step_01.py <plot_step_01.py>`
 
-      :download:`Download Jupyter notebook: plot_step_01.ipynb <plot_step_01.ipynb>`
+
+
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+     :download:`Download Jupyter notebook: plot_step_01.ipynb <plot_step_01.ipynb>`
 
 
 .. only:: html

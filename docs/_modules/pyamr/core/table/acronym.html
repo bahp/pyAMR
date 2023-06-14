@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +19,9 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -55,7 +63,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
 
         </div>
@@ -71,9 +79,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pyamr.core.table.acronym</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyamr.core.table.acronym</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -103,7 +111,7 @@
 <span class="c1">#                              helper methods</span>
 <span class="c1"># --------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="acronym"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.acronym">[docs]</a><span class="k">def</span> <span class="nf">acronym</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;A_&#39;</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;This method created the acronym for a given string</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;This method created the acronym for a given string</span>
 
 <span class="sd">  Parameters</span>
 <span class="sd">  ----------</span>
@@ -137,7 +145,7 @@
 
 
 <span class="k">def</span> <span class="nf">_check_acronym_conflicts</span><span class="p">(</span><span class="n">transdict</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;This method check that all acronyms are unique.</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;This method check that all acronyms are unique.</span>
 
 <span class="sd">  Parameters</span>
 <span class="sd">  ----------</span>
@@ -160,7 +168,7 @@
 
 
 <div class="viewcode-block" id="AcronymBuilder"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.AcronymBuilder">[docs]</a><span class="k">class</span> <span class="nc">AcronymBuilder</span><span class="p">:</span>
-  <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="c1"># Attributes</span>
@@ -168,7 +176,7 @@
 
   <span class="c1"># Constructor</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
   
@@ -182,7 +190,7 @@
     <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="AcronymBuilder.fit"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.AcronymBuilder.fit">[docs]</a>  <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">acronyms</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method creates a dictionary with the acronyms</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates a dictionary with the acronyms</span>
 
 <span class="sd">    TODO: Instead of just checking whether there are acronym conflicts or not</span>
 <span class="sd">    ensure that always unique acronyms are created. Note that the implemented</span>
@@ -225,7 +233,7 @@
 
 
 <div class="viewcode-block" id="AcronymBuilder.transform"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.AcronymBuilder.transform">[docs]</a>  <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method returns the acronyms for given values</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method returns the acronyms for given values</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -238,7 +246,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_transdict</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="AcronymBuilder.inverse_transform"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.table.html#pyamr.core.table.acronym.AcronymBuilder.inverse_transform">[docs]</a>  <span class="k">def</span> <span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acronyms</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This method returns the values for given acronyms.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method returns the values for given acronyms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>

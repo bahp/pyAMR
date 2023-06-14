@@ -14,10 +14,26 @@ Subpackages
 Submodules
 ----------
 
+pyamr.core.acsi module
+----------------------
+
+.. automodule:: pyamr.core.acsi
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyamr.core.asai module
 ----------------------
 
 .. automodule:: pyamr.core.asai
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyamr.core.dri module
+---------------------
+
+.. automodule:: pyamr.core.dri
    :members:
    :undoc-members:
    :show-inheritance:
@@ -42,6 +58,14 @@ pyamr.core.sari module
 ----------------------
 
 .. automodule:: pyamr.core.sari
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyamr.core.sart module
+----------------------
+
+.. automodule:: pyamr.core.sart
    :members:
    :undoc-members:
    :show-inheritance:

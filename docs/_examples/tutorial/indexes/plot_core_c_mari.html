@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiple Resistance (MARI) &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Single Resistance Trend (SART)" href="plot_core_d_sart.html" />
+    <link rel="prev" title="Spectrum of Activity (ASAI)" href="plot_core_b_asai.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_core_a_sari.html">Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_b_asai.html">Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_d_sart.html">Single Resistance Trend (<code class="docutils literal notranslate"><span class="pre">SART</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_e_dri.html">Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_f_acri.html">Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/_examples/tutorial/indexes/plot_core_c_mari.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-core-c-mari-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="multiple-resistance-mari">
+<span id="sphx-glr-examples-tutorial-indexes-plot-core-c-mari-py"></span><h1>Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)<a class="headerlink" href="#multiple-resistance-mari" title="Permalink to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>What visualisation could we use?</p></li>
+<li><p>Create further examples with temporal visualization.</p></li>
+<li><p>Add parameters to choose antimicrobials that are consistent in time and
+have enough number of isolates to give an accurate measurement.</p></li>
+</ul>
+</div>
+<p>Determination of the Multiple Antimicrobial Resistance Index or <code class="docutils literal notranslate"><span class="pre">MARI</span></code> follows the procedure
+described by (5), in which the number of antimicrobials an isolate is resistant to (<em>R</em>) is divided by the
+total number of the antimicrobials used in the study (<em>T</em>). Thus, the calculating formula for a single
+isolate is shown below and it provides a value within the range [0,1] where values close to one indicate
+high multi-drug resistance.</p>
+<div class="math notranslate nohighlight">
+\[MARI_{ISO} = R / T\]</div>
+<p>In more general scenarios, the antimicrobials to which the pathogens are tested vary among health care
+centres and time, and therefore the comparison and analysis of <code class="docutils literal notranslate"><span class="pre">MARI</span></code> evolution in time is not straight
+forward. At the moment, for simplicity, it is recommended to check that the antimicrobials selected are
+available in the whole study period before applying the index.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please, ensure that all isolates contains records for all antimicrobials.</p>
+</div>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.mari.MARI</span></code></p>
+<p>For the sample data created below, the overall <code class="docutils literal notranslate"><span class="pre">MARI</span></code> for each isolate is</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Date</p></th>
+<th class="head"><p>SPECIMEN</p></th>
+<th class="head"><p>MICROORGANISM</p></th>
+<th class="head"><p>LAB_NUMBER</p></th>
+<th class="head"><p>MARI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2021-01-01</p></td>
+<td><p>BLDCUL</p></td>
+<td><p>ECOL</p></td>
+<td><p>lab1</p></td>
+<td><p>4/10 = 0.400000</p></td>
+</tr>
+<tr class="row-odd"><td><p>2021-01-01</p></td>
+<td><p>BLDCUL</p></td>
+<td><p>ECOL</p></td>
+<td><p>lab2</p></td>
+<td><p>0.800000</p></td>
+</tr>
+<tr class="row-even"><td><p>2021-01-02</p></td>
+<td><p>BLDCUL</p></td>
+<td><p>ECOL</p></td>
+<td><p>lab3</p></td>
+<td><p>0.700000</p></td>
+</tr>
+<tr class="row-odd"><td><p>2021-01-03</p></td>
+<td><p>BLDCUL</p></td>
+<td><p>ECOL</p></td>
+<td><p>lab4</p></td>
+<td><p>0.909091</p></td>
+</tr>
+</tbody>
+</table>
+<p>Similarly, the rolling window <code class="docutils literal notranslate"><span class="pre">MARIs</span></code> for &lt;BLDCUL, ECOL&gt; are …</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Date</p></th>
+<th class="head"><p>MARI (1D1)</p></th>
+<th class="head"><p>MARI (1D2)</p></th>
+<th class="head"><p>MARI Wrong!</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2021-01-01</p></td>
+<td><p>(0.4+0.8)/2 = 0.6</p></td>
+<td><p>(0.4+0.8)/2     = 0.60</p></td>
+<td><p>(0.4+0.8)/2 = 0.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>2021-01-02</p></td>
+<td><p>0.7         = 0.7</p></td>
+<td><p>(0.4+0.8+0.7)/3 = 0.63</p></td>
+<td><p>(0.6+0.7)/2 = 0.65</p></td>
+</tr>
+<tr class="row-even"><td><p>2021-01-03</p></td>
+<td><p>0.909091    = 0.9</p></td>
+<td><p>(0.7+0.9)/2     = 0.80</p></td>
+<td><p>(0.7+0.9)/2 = 0.8</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 56</span> <span class="c1"># Import libraries</span>
+<span class="linenos"> 57</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="linenos"> 58</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 59</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span> <span class="c1"># Import specific libraries</span>
+<span class="linenos"> 62</span> <span class="kn">from</span> <span class="nn">pyamr.core.mari</span> <span class="kn">import</span> <span class="n">MARI</span>
+<span class="linenos"> 63</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">fixture</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span> <span class="c1"># Filter user warning</span>
+<span class="linenos"> 66</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span> <span class="c1"># Set matplotlib</span>
+<span class="linenos"> 69</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 70</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 71</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos"> 72</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span> <span class="c1"># ---------------------</span>
+<span class="linenos"> 75</span> <span class="c1"># Create data</span>
+<span class="linenos"> 76</span> <span class="c1"># ---------------------</span>
+<span class="linenos"> 77</span> <span class="c1"># Load data</span>
+<span class="linenos"> 78</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fixture_05.csv&#39;</span><span class="p">)</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span> <span class="c1"># ---------------------</span>
+<span class="linenos"> 82</span> <span class="c1"># Compute MARI</span>
+<span class="linenos"> 83</span> <span class="c1"># ---------------------</span>
+<span class="linenos"> 84</span> <span class="c1"># Create MARI instance</span>
+<span class="linenos"> 85</span> <span class="n">mari</span> <span class="o">=</span> <span class="n">MARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos"> 86</span>                      <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos"> 87</span>                      <span class="s1">&#39;LAB_NUMBER&#39;</span><span class="p">,</span>
+<span class="linenos"> 88</span>                      <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span> <span class="c1"># Compute MARI overall</span>
+<span class="linenos"> 91</span> <span class="n">mari_overall</span><span class="p">,</span> <span class="n">isolates</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos"> 92</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos"> 93</span>     <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span> <span class="c1"># Compute MARI temporal (ITI)</span>
+<span class="linenos"> 96</span> <span class="n">mari_iti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+<span class="linenos"> 97</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos"> 98</span>     <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span> <span class="c1"># Compute MARI temporal (OTI)</span>
+<span class="linenos">101</span> <span class="n">mari_oti</span> <span class="o">=</span> <span class="n">mari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+<span class="linenos">102</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span>
+<span class="linenos">103</span>     <span class="n">return_isolates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span> <span class="c1"># Show</span>
+<span class="linenos">106</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Isolates:&quot;</span><span class="p">)</span>
+<span class="linenos">107</span> <span class="nb">print</span><span class="p">(</span><span class="n">isolates</span><span class="p">)</span>
+<span class="linenos">108</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (overall):&quot;</span><span class="p">)</span>
+<span class="linenos">109</span> <span class="nb">print</span><span class="p">(</span><span class="n">mari_overall</span><span class="p">)</span>
+<span class="linenos">110</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (iti):&quot;</span><span class="p">)</span>
+<span class="linenos">111</span> <span class="nb">print</span><span class="p">(</span><span class="n">mari_iti</span><span class="p">)</span>
+<span class="linenos">112</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">MARI (oti):&quot;</span><span class="p">)</span>
+<span class="linenos">113</span> <span class="nb">print</span><span class="p">(</span><span class="n">mari_oti</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Isolates:
+Empty DataFrame
+Columns: []
+Index: []
+
+
+
+MARI (overall):
+                        intermediate  resistant  sensitive  n_records  n_samples   total    mari
+SPECIMEN MICROORGANISM
+BLDCUL   CNS                     1.0       15.0        4.0       20.0          2  1.6000  0.8000
+         ECOL                    4.0       25.0       12.0       41.0          4  2.8091  0.7023
+URICUL   ECOL                    0.0       18.0        2.0       20.0          2  1.8000  0.9000
+
+
+
+MARI (iti):
+                                   intermediate  resistant  sensitive  n_records  n_samples   total    mari
+SPECIMEN MICROORGANISM DATE
+BLDCUL   CNS           2021-01-01           1.0        6.0        3.0       10.0        1.0  0.7000  0.7000
+                       2021-02-01           0.0        9.0        1.0       10.0        1.0  0.9000  0.9000
+         ECOL          2021-01-01           4.0        8.0        8.0       20.0        2.0  1.2000  0.6000
+                       2021-01-02           0.0        7.0        3.0       10.0        1.0  0.7000  0.7000
+                       2021-01-03           0.0       10.0        1.0       11.0        1.0  0.9091  0.9091
+URICUL   ECOL          2021-02-01           0.0        9.0        1.0       10.0        1.0  0.9000  0.9000
+                       2021-02-04           0.0        9.0        1.0       10.0        1.0  0.9000  0.9000
+
+
+
+MARI (oti):
+                                   intermediate  resistant  sensitive  n_records  n_samples   total    mari
+SPECIMEN MICROORGANISM DATE
+BLDCUL   CNS           2021-01-01           1.0        6.0        3.0       10.0        1.0  0.7000  0.7000
+                       2021-02-01           0.0        9.0        1.0       10.0        1.0  0.9000  0.9000
+         ECOL          2021-01-01           4.0        8.0        8.0       20.0        2.0  1.2000  0.6000
+                       2021-01-02           4.0       15.0       11.0       30.0        3.0  1.9000  0.6333
+                       2021-01-03           0.0       17.0        4.0       21.0        2.0  1.6091  0.8045
+URICUL   ECOL          2021-02-01           0.0        9.0        1.0       10.0        1.0  0.9000  0.9000
+                       2021-02-04           0.0        9.0        1.0       10.0        1.0  0.9000  0.9000
+</pre></div>
+</div>
+<p>Lets see the susceptibility test records.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">118</span> <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>LAB_NUMBER</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>SENSITIVITY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ATAZ</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACAZ</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACXM</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AGEN</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AMER</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAMI</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ATEM</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2021-01-01</td>
+      <td>lab1</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACTX</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2021-01-01</td>
+      <td>lab2</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2021-01-01</td>
+      <td>lab2</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ATAZ</td>
+      <td>intermediate</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2021-01-01</td>
+      <td>lab2</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACAZ</td>
+      <td>intermediate</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2021-01-01</td>
+      <td>lab2</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>intermediate</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2021-01-01</td>
+      <td>lab2</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACXM</td>
+      <td>intermediate</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the <code class="docutils literal notranslate"><span class="pre">overall_hard</span></code> resistance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">123</span> <span class="n">mari_overall</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>intermediate</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>n_records</th>
+      <th>n_samples</th>
+      <th>total</th>
+      <th>mari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">BLDCUL</th>
+      <th>CNS</th>
+      <td>1.0</td>
+      <td>15.0</td>
+      <td>4.0</td>
+      <td>20.0</td>
+      <td>2</td>
+      <td>1.6000</td>
+      <td>0.8000</td>
+    </tr>
+    <tr>
+      <th>ECOL</th>
+      <td>4.0</td>
+      <td>25.0</td>
+      <td>12.0</td>
+      <td>41.0</td>
+      <td>4</td>
+      <td>2.8091</td>
+      <td>0.7023</td>
+    </tr>
+    <tr>
+      <th>URICUL</th>
+      <th>ECOL</th>
+      <td>0.0</td>
+      <td>18.0</td>
+      <td>2.0</td>
+      <td>20.0</td>
+      <td>2</td>
+      <td>1.8000</td>
+      <td>0.9000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the resistance time-series using <code class="docutils literal notranslate"><span class="pre">independent</span></code> time intervals (ITI)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">129</span> <span class="n">mari_iti</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>intermediate</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>n_records</th>
+      <th>n_samples</th>
+      <th>total</th>
+      <th>mari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">BLDCUL</th>
+      <th rowspan="2" valign="top">CNS</th>
+      <th>2021-01-01</th>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.7000</td>
+      <td>0.7000</td>
+    </tr>
+    <tr>
+      <th>2021-02-01</th>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.9000</td>
+      <td>0.9000</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">ECOL</th>
+      <th>2021-01-01</th>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>8.0</td>
+      <td>20.0</td>
+      <td>2.0</td>
+      <td>1.2000</td>
+      <td>0.6000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>3.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.7000</td>
+      <td>0.7000</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>11.0</td>
+      <td>1.0</td>
+      <td>0.9091</td>
+      <td>0.9091</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">URICUL</th>
+      <th rowspan="2" valign="top">ECOL</th>
+      <th>2021-02-01</th>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.9000</td>
+      <td>0.9000</td>
+    </tr>
+    <tr>
+      <th>2021-02-04</th>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.9000</td>
+      <td>0.9000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the resistance time-series using <code class="docutils literal notranslate"><span class="pre">overlapping</span></code> time intervals (OTI)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">135</span> <span class="n">mari_oti</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>intermediate</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>n_records</th>
+      <th>n_samples</th>
+      <th>total</th>
+      <th>mari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">BLDCUL</th>
+      <th rowspan="2" valign="top">CNS</th>
+      <th>2021-01-01</th>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.7000</td>
+      <td>0.7000</td>
+    </tr>
+    <tr>
+      <th>2021-02-01</th>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.9000</td>
+      <td>0.9000</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">ECOL</th>
+      <th>2021-01-01</th>
+      <td>4.0</td>
+      <td>8.0</td>
+      <td>8.0</td>
+      <td>20.0</td>
+      <td>2.0</td>
+      <td>1.2000</td>
+      <td>0.6000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>4.0</td>
+      <td>15.0</td>
+      <td>11.0</td>
+      <td>30.0</td>
+      <td>3.0</td>
+      <td>1.9000</td>
+      <td>0.6333</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>17.0</td>
+      <td>4.0</td>
+      <td>21.0</td>
+      <td>2.0</td>
+      <td>1.6091</td>
+      <td>0.8045</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">URICUL</th>
+      <th rowspan="2" valign="top">ECOL</th>
+      <th>2021-02-01</th>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.9000</td>
+      <td>0.9000</td>
+    </tr>
+    <tr>
+      <th>2021-02-04</th>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.9000</td>
+      <td>0.9000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the information graphically</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.094 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-c-mari-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/8f81cfdc755f25117a29f35a949d3469/plot_core_c_mari.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_c_mari.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/12e4d3eafe5a84b7a244cd019ed533e3/plot_core_c_mari.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_c_mari.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_core_b_asai.html" class="btn btn-neutral float-left" title="Spectrum of Activity (ASAI)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_d_sart.html" class="btn btn-neutral float-right" title="Single Resistance Trend (SART)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

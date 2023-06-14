@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Using ARIMA &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,10 +20,14 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Using WLS + ARMA" href="plot_core_regression_ensemble.html" />
+    <link rel="prev" title="Metrics - weights" href="../metrics/plot_metrics_weights.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,18 +53,30 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_ensemble.html">Using WLS + ARMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_sarimax.html">Using SARIMAX (seasonal)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_theilsens.html">Using Theil-Sen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_regression_wls.html">Using weighted least squares (WLS)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
 </ul>
 
         </div>
@@ -72,8 +92,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Using ARIMA</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Using ARIMA</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_arima.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,45 +110,46 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="using-arima">
-<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"></span><h1>Using ARIMA<a class="headerlink" href="#using-arima" title="Permalink to this headline"></a></h1>
-<img src="../../../_images/sphx_glr_plot_core_regression_arima_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_arima_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-arima-aic                   806.3238
-arima-bic                   813.4699
-arima-hqic                  809.1889
-arima-llf                  -400.1619
-arima-const_coef            298.5062
-arima-const_std             114.4299
-arima-const_tvalue            2.6086
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"></span><h1>Using ARIMA<a class="headerlink" href="#using-arima" title="Permalink to this heading"></a></h1>
+<img src="../../../_images/sphx_glr_plot_core_regression_arima_001.png" srcset="../../../_images/sphx_glr_plot_core_regression_arima_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
+arima-aic                    789.492
+arima-bic                   796.6381
+arima-hqic                   792.357
+arima-llf                   -391.746
+arima-const_coef            278.3173
+arima-const_std             106.6553
+arima-const_tvalue            2.6095
 arima-const_tprob             0.0091
-arima-const_cil              74.2277
-arima-const_ciu             522.7846
+arima-const_cil              69.2769
+arima-const_ciu             487.3578
 arima-ar.L1_coef              0.9807
-arima-ar.L1_std               0.0219
-arima-ar.L1_tvalue           44.7396
+arima-ar.L1_std                0.025
+arima-ar.L1_tvalue           39.2272
 arima-ar.L1_tprob                0.0
-arima-ar.L1_cil               0.9378
-arima-ar.L1_ciu               1.0237
-arima-sigma2_coef          1243.0679
-arima-sigma2_std            199.8487
-arima-sigma2_tvalue             6.22
+arima-ar.L1_cil               0.9317
+arima-ar.L1_ciu               1.0297
+arima-sigma2_coef          1007.2336
+arima-sigma2_std            130.1935
+arima-sigma2_tvalue           7.7364
 arima-sigma2_tprob               0.0
-arima-sigma2_cil            851.3715
-arima-sigma2_ciu           1634.7642
-arima-m_dw                    2.0342
-arima-m_jb_value             613.599
+arima-sigma2_cil             752.059
+arima-sigma2_ciu           1262.4083
+arima-m_dw                    1.7824
+arima-m_jb_value            616.0233
 arima-m_jb_prob                  0.0
-arima-m_skew                 -2.5649
-arima-m_kurtosis             15.5604
-arima-m_nm_value             70.6142
+arima-m_skew                  -2.698
+arima-m_kurtosis             15.4776
+arima-m_nm_value             72.7594
 arima-m_nm_prob                  0.0
-arima-m_ks_value              0.5408
+arima-m_ks_value              0.5809
 arima-m_ks_prob                  0.0
-arima-m_shp_value             0.8163
+arima-m_shp_value             0.7854
 arima-m_shp_prob                 0.0
-arima-m_ad_value              2.1604
+arima-m_ad_value              2.7309
 arima-m_ad_nnorm               False
 arima-converged                 True
-arima-endog            [37.952290...
+arima-endog            [54.441912...
 arima-order                (1, 0, 0)
 arima-trend                        c
 arima-disp                         0
@@ -139,26 +161,26 @@ Summary:
                                SARIMAX Results
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                   80
-Model:                 ARIMA(1, 0, 0)   Log Likelihood                -400.162
-Date:                Mon, 20 Feb 2023   AIC                            806.324
-Time:                        17:41:34   BIC                            813.470
-Sample:                             0   HQIC                           809.189
+Model:                 ARIMA(1, 0, 0)   Log Likelihood                -391.746
+Date:                Mon, 12 Jun 2023   AIC                            789.492
+Time:                        16:00:37   BIC                            796.638
+Sample:                             0   HQIC                           792.357
                                  - 80
 Covariance Type:                  opg
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const        298.5062    114.430      2.609      0.009      74.228     522.785
-ar.L1          0.9807      0.022     44.740      0.000       0.938       1.024
-sigma2      1243.0679    199.849      6.220      0.000     851.372    1634.764
+const        278.3173    106.655      2.610      0.009      69.277     487.358
+ar.L1          0.9807      0.025     39.227      0.000       0.932       1.030
+sigma2      1007.2336    130.194      7.736      0.000     752.059    1262.408
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000  Durbin-Watson:                    2.034
-Prob(Omnibus):                  0.000  Jarque-Bera (JB):               613.599
-Skew:                          -2.565  Prob(JB):                         0.000
-Kurtosis_m:                    15.560  Cond No:
-Normal (N):                    70.614  Prob(N):                          0.000
+Omnibus:                        0.000  Durbin-Watson:                    1.782
+Prob(Omnibus):                  0.000  Jarque-Bera (JB):               616.023
+Skew:                          -2.698  Prob(JB):                         0.000
+Kurtosis_m:                    15.478  Cond No:
+Normal (N):                    72.759  Prob(N):                          0.000
 ==============================================================================
 </pre></div>
 </div>
@@ -309,8 +331,8 @@ Normal (N):                    70.614  Prob(N):                          0.000
 <span class="linenos">148</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.153 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.154 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-arima-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/2001417af432b95d68831cdd664f0313/plot_core_regression_arima.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_arima.py</span></code></a></p>
 </div>
@@ -324,7 +346,10 @@ Normal (N):                    70.614  Prob(N):                          0.000
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../metrics/plot_metrics_weights.html" class="btn btn-neutral float-left" title="Metrics - weights" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_regression_ensemble.html" class="btn btn-neutral float-right" title="Using WLS + ARMA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

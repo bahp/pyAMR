@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SARIMAX - Search &mdash; pyamr 0.0.1 documentation</title>
@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -33,11 +35,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +53,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -64,10 +72,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_apidoc/modules.html">pyamr</a></li>
-</ul>
 
         </div>
       </div>
@@ -82,9 +86,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Examples with TSA</a> &raquo;</li>
-      <li>SARIMAX - Search</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples with TSA</a></li>
+      <li class="breadcrumb-item active">SARIMAX - Search</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/_examples/forecasting/plot_sarimax_search.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,32 +104,33 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="sarimax-search">
-<span id="sphx-glr-examples-forecasting-plot-sarimax-search-py"></span><h1>SARIMAX - Search<a class="headerlink" href="#sarimax-search" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-forecasting-plot-sarimax-search-py"></span><h1>SARIMAX - Search<a class="headerlink" href="#sarimax-search" title="Permalink to this heading"></a></h1>
 <p>See <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html">SARIMAX</a></p>
-<img src="../../_images/sphx_glr_plot_sarimax_search_001.png" srcset="../../_images/sphx_glr_plot_sarimax_search_001.png" alt="Non-dynamic predictions for SARIMAX" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Summary:
+<img src="../../_images/sphx_glr_plot_sarimax_search_001.png" srcset="../../_images/sphx_glr_plot_sarimax_search_001.png" alt="Non-dynamic predictions for SARIMAX" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Summary:
     sarimax-order sarimax-seasonal_order sarimax-trend sarimax-aic sarimax-bic
-0       (0, 1, 1)  (0, 0, 0, 12)                    ct    761.1841    770.6619
-1       (2, 1, 0)  (0, 0, 0, 12)                    ct    760.1585    772.0058
-2       (0, 1, 1)  (0, 0, 0, 12)                     c     765.197    772.3053
-3       (2, 1, 0)  (0, 0, 0, 12)                     c    763.8269    773.3047
-4       (0, 1, 1)  (0, 0, 0, 12)                     n    769.6092    774.3481
+0       (0, 1, 1)  (0, 0, 0, 12)                     c    773.6823    780.7906
+1       (1, 1, 0)  (0, 0, 0, 12)                     c    773.8861    780.9944
+2       (1, 1, 0)  (0, 0, 0, 12)                     n    776.3367    781.0756
+3       (0, 1, 1)  (0, 0, 0, 12)                    ct     772.034    781.5118
+4       (0, 1, 1)  (0, 0, 0, 12)                     n    777.6836    782.4225
 ..            ...            ...                   ...         ...         ...
-288     (0, 0, 0)  (0, 0, 0, 12)                     c   1015.5618   1020.3258
-289     (0, 0, 1)  (0, 0, 1, 12)                     n   1031.1636   1038.3096
-290     (0, 0, 1)  (0, 0, 0, 12)                     n    1079.111    1083.875
-291     (0, 0, 0)  (0, 0, 1, 12)                     n    1101.599   1106.3631
-292     (0, 0, 0)  (0, 0, 0, 12)                     n   1172.6783   1175.0603
+254     (0, 0, 0)  (0, 0, 0, 12)                     c   1017.4102   1022.1743
+255     (0, 0, 1)  (0, 0, 1, 12)                     n   1032.0176   1039.1637
+256     (0, 0, 1)  (0, 0, 0, 12)                     n   1080.5957   1085.3598
+257     (0, 0, 0)  (0, 0, 1, 12)                     n   1104.1746   1108.9386
+258     (0, 0, 0)  (0, 0, 0, 12)                     n    1173.878     1176.26
 
-[293 rows x 5 columns]
- 0. Estimator (bic=770.66): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [ct,False]
- 1. Estimator (bic=772.01): SARIMAX(2, 1, 0)x(0, 0, 0, 12) [ct,False]
- 2. Estimator (bic=772.31): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [c,False]
- 3. Estimator (bic=773.30): SARIMAX(2, 1, 0)x(0, 0, 0, 12) [c,False]
- 4. Estimator (bic=774.35): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [n,False]
- 5. Estimator (bic=774.70): SARIMAX(0, 1, 2)x(0, 0, 0, 12) [ct,False]
- 6. Estimator (bic=774.83): SARIMAX(0, 1, 1)x(1, 0, 0, 12) [ct,False]
- 7. Estimator (bic=774.83): SARIMAX(0, 1, 1)x(0, 0, 1, 12) [ct,False]
- 8. Estimator (bic=774.89): SARIMAX(1, 1, 1)x(0, 0, 0, 12) [ct,False]
+[259 rows x 5 columns]
+ 0. Estimator (bic=780.79): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [c,False]
+ 1. Estimator (bic=780.99): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [c,False]
+ 2. Estimator (bic=781.08): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [n,False]
+ 3. Estimator (bic=781.51): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [ct,False]
+ 4. Estimator (bic=782.42): SARIMAX(0, 1, 1)x(0, 0, 0, 12) [n,False]
+ 5. Estimator (bic=783.28): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [ct,False]
+ 6. Estimator (bic=784.17): SARIMAX(1, 1, 0)x(0, 0, 0, 12) [t,False]
+ 7. Estimator (bic=784.34): SARIMAX(1, 1, 1)x(0, 0, 0, 12) [c,False]
+ 8. Estimator (bic=784.41): SARIMAX(0, 1, 2)x(0, 0, 0, 12) [c,False]
 </pre></div>
 </div>
 <div class="line-block">
@@ -250,8 +255,8 @@ to download the full example code</p>
 <span class="linenos">124</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  38.808 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-sarimax-search-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  47.486 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-sarimax-search-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/a305f7964a1181ef9e1af0cf4b09c034/plot_sarimax_search.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_sarimax_search.py</span></code></a></p>
 </div>

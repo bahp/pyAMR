@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASAI - Compute timeseries &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DRI - Example using MIMIC" href="plot_dri_b_mimic.html" />
+    <link rel="prev" title="ASAI - By gram stain (multiple)" href="plot_asai_b_multiple.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples with indexes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_acsi_b_mimic.html"><code class="docutils literal notranslate"><span class="pre">ACSI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_a_gramtype.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (binary)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_asai_b_multiple.html"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - By gram stain (multiple)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - Compute timeseries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#independent-time-intervals-iti">Independent Time Intervals (ITI)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plot_dri_b_mimic.html"><code class="docutils literal notranslate"><span class="pre">DRI</span></code> - Example using <code class="docutils literal notranslate"><span class="pre">MIMIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_a_antibiogram.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.heatmap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_b_clustermap.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.clustermap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_c_relmap.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - By specimen w/ <code class="docutils literal notranslate"><span class="pre">sns.relmap</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sari_d_temporal.html"><code class="docutils literal notranslate"><span class="pre">SARI</span></code> - Compute timeseries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_sart_a_basic.html"><code class="docutils literal notranslate"><span class="pre">SART</span></code> - Trend as slope of <code class="docutils literal notranslate"><span class="pre">WLS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples with indexes</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - Compute timeseries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_examples/indexes/plot_asai_c_temporal.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="asai-compute-timeseries">
+<span id="sphx-glr-examples-indexes-plot-asai-c-temporal-py"></span><h1><code class="docutils literal notranslate"><span class="pre">ASAI</span></code> - Compute timeseries<a class="headerlink" href="#asai-compute-timeseries" title="Permalink to this heading"></a></h1>
+<p>In order to study the temporal evolution of AMR, it is necessary to generate a resistance
+time series from the susceptibility test data. This is often achieved by computing the
+resistance index on consecutive partitions of the data. Note that each partition contains
+the susceptibility tests required to compute a resistance index. The traditional strategy
+of dealing with partitions considers independent time intervals (see yearly, monthly or
+weekly time series in Table 4.2). Unfortunately, this strategy forces to trade-off between
+granularity (level of detail) and accuracy. On one side, weekly time series are highly
+granular  but inaccurate. On the other hand, yearly time series are accurate but rough.
+Note that the granularity is represented by the number of observations in a time series
+while the accuracy is closely related with the number of susceptibility tests used to compute
+the resistance index. Conversely, the overlapping time intervals strategy drops such dependence
+by defining a window of fixed size which is moved across time. The length of the window is
+denoted as period and the time step as shift. For instance, three time series obtained using
+the overlapping time intervals strategy with a monthly shift (1M) and window lengths of 12,
+6 and 3 have been presented for the sake of clarity (see 1M<sub>12</sub>, 1M<sub>6</sub> and 1M<sub>3</sub> in Table 4.2).</p>
+<a class="reference internal image-reference" href="../../_images/timeseries-generation.png"><img alt="Generation of Time-Series" class="align-center" src="../../_images/timeseries-generation.png" style="width: 500px;" /></a>
+<p>The notation to define the time series generation methodology (SHIFT<sub>period</sub>) is described with
+various examples in Table 4.2. For instance, 1M<sub>12</sub> defines a time series with weekly resistance
+indexes (7D) calculated using the microbiology records available for the previous four weeks
+(4x7D). It is important to note that some notations are equivalent representations of the same
+susceptibility data at different granularities, hence their trends are comparable. As an example,
+the trend estimated for 1M<sub>1</sub> should be approximately thirty times the trend estimated for 1D<sub>30</sub>.</p>
+<p>Let’s see how to compute ASAI time series with examples.</p>
+<p>We first load the data and select one single pair for clarity.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 54</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 55</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 56</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos"> 57</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos"> 58</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 59</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span> <span class="c1"># Import own libraries</span>
+<span class="linenos"> 62</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">sari</span>
+<span class="linenos"> 63</span> <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">asai</span>
+<span class="linenos"> 64</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">load_data_nhs</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span> <span class="c1"># -------------------------</span>
+<span class="linenos"> 68</span> <span class="c1"># Methods</span>
+<span class="linenos"> 69</span> <span class="c1"># -------------------------</span>
+<span class="linenos"> 70</span> <span class="k">def</span> <span class="nf">create_mapper</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">column_key</span><span class="p">,</span> <span class="n">column_value</span><span class="p">):</span>
+<span class="linenos"> 71</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;This method constructs a mapper</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="sd">     Parameters</span>
+<span class="linenos"> 74</span><span class="sd">     ----------</span>
+<span class="linenos"> 75</span><span class="sd">     dataframe: dataframe-like</span>
+<span class="linenos"> 76</span><span class="sd">     The dataframe from which the columns are extracted</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="sd">     column_key: string-like</span>
+<span class="linenos"> 79</span><span class="sd">     The name of the column with the values for the keys of the mapper</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="sd">     column_value: string-like</span>
+<span class="linenos"> 82</span><span class="sd">     The name of the column with the values for the values of the mapper</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="sd">     Returns</span>
+<span class="linenos"> 85</span><span class="sd">     -------</span>
+<span class="linenos"> 86</span><span class="sd">     dictionary</span>
+<span class="linenos"> 87</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="linenos"> 88</span>     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[[</span><span class="n">column_key</span><span class="p">,</span> <span class="n">column_value</span><span class="p">]]</span>
+<span class="linenos"> 89</span>     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="linenos"> 90</span>     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">column_key</span><span class="p">],</span> <span class="n">dataframe</span><span class="p">[</span><span class="n">column_value</span><span class="p">]))</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span> <span class="c1"># -------------------------</span>
+<span class="linenos"> 93</span> <span class="c1"># Configuration</span>
+<span class="linenos"> 94</span> <span class="c1"># -------------------------</span>
+<span class="linenos"> 95</span> <span class="c1"># Configure seaborn style (context=talk)</span>
+<span class="linenos"> 96</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span> <span class="c1"># Set matplotlib</span>
+<span class="linenos"> 99</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">100</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">101</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos">102</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span> <span class="c1"># Pandas configuration</span>
+<span class="linenos">105</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="linenos">106</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="linenos">107</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span> <span class="c1"># Numpy configuration</span>
+<span class="linenos">110</span> <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">113</span> <span class="c1"># Load data</span>
+<span class="linenos">114</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">115</span> <span class="c1"># Load data</span>
+<span class="linenos">116</span> <span class="n">data</span><span class="p">,</span> <span class="n">antimicrobials</span><span class="p">,</span> <span class="n">microorganisms</span> <span class="o">=</span> <span class="n">load_data_nhs</span><span class="p">()</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span> <span class="c1"># Show</span>
+<span class="linenos">119</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+<span class="linenos">120</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">121</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
+<span class="linenos">122</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="linenos">123</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Dtypes:&quot;</span><span class="p">)</span>
+<span class="linenos">124</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span> <span class="c1"># Filter</span>
+<span class="linenos">127</span> <span class="n">idxs_spec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;URICUL&#39;</span><span class="p">])</span>
+<span class="linenos">128</span> <span class="n">idxs_abxs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">antimicrobial_code</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;AAUG&#39;</span><span class="p">])</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span> <span class="c1"># Filter</span>
+<span class="linenos">131</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idxs_spec</span> <span class="o">&amp;</span> <span class="n">idxs_abxs</span><span class="p">]</span>
+<span class="linenos">132</span>
+<span class="linenos">133</span> <span class="c1"># Filter dates (2016-2018 missing)</span>
+<span class="linenos">134</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">date_received</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s1">&#39;2008-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2016-12-31&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
+           date_received         date_outcome patient_id laboratory_number specimen_code  ...       antimicrobial_name sensitivity_method sensitivity  mic reported
+0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                 amikacin                NaN   sensitive  NaN      NaN
+1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              amoxycillin                NaN   resistant  NaN      NaN
+2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                augmentin                NaN   sensitive  NaN      NaN
+3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                aztreonam                NaN   sensitive  NaN      NaN
+4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              ceftazidime                NaN   sensitive  NaN      NaN
+...                  ...                  ...        ...               ...           ...  ...                      ...                ...         ...  ...      ...
+7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               gentamicin                 DD   resistant  NaN        Y
+7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...                meropenem                 DD   sensitive  NaN        Y
+7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...  piperacillin-tazobactam                 DD   sensitive  NaN        N
+7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               temocillin                 DD   sensitive  NaN        N
+7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...              tigecycline                 DD   sensitive  NaN        N
+
+[3770034 rows x 15 columns]
+
+Columns:
+Index([&#39;date_received&#39;, &#39;date_outcome&#39;, &#39;patient_id&#39;, &#39;laboratory_number&#39;, &#39;specimen_code&#39;, &#39;specimen_name&#39;, &#39;specimen_description&#39;, &#39;microorganism_code&#39;, &#39;microorganism_name&#39;, &#39;antimicrobial_code&#39;, &#39;antimicrobial_name&#39;, &#39;sensitivity_method&#39;, &#39;sensitivity&#39;, &#39;mic&#39;, &#39;reported&#39;], dtype=&#39;object&#39;)
+
+Dtypes:
+date_received           datetime64[ns]
+date_outcome                    object
+patient_id                      object
+laboratory_number               object
+specimen_code                   object
+specimen_name                   object
+specimen_description            object
+microorganism_code              object
+microorganism_name              object
+antimicrobial_code              object
+antimicrobial_name              object
+sensitivity_method              object
+sensitivity                     object
+mic                             object
+reported                        object
+dtype: object
+</pre></div>
+</div>
+<section id="independent-time-intervals-iti">
+<h2>Independent Time Intervals (ITI)<a class="headerlink" href="#independent-time-intervals-iti" title="Permalink to this heading"></a></h2>
+<p>This is the traditional method used in antimicrobial surveillance systems where
+the time spans considered are independent; that is, they do not overlap (e.g.
+monthly time series - 1M<sub>1</sub> or yearly timeseries - 12M<sub>1</sub>).</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Include in ASAI an option to filter and keep only those genus
+and species that have values over all the time period? or at
+least for more than 80 percent of the period?</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">150</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">151</span> <span class="c1"># Compute ITI sari (temporal)</span>
+<span class="linenos">152</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">153</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span> <span class="c1"># Create SARI instance</span>
+<span class="linenos">156</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+<span class="linenos">157</span>                     <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+<span class="linenos">158</span>                     <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+<span class="linenos">159</span>                     <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span> <span class="c1"># Create constants</span>
+<span class="linenos">162</span> <span class="n">shift</span><span class="p">,</span> <span class="n">period</span> <span class="o">=</span> <span class="s1">&#39;6M&#39;</span><span class="p">,</span> <span class="s1">&#39;800D&#39;</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span> <span class="c1"># Compute sari timeseries</span>
+<span class="linenos">165</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
+<span class="linenos">166</span>     <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">)</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span> <span class="c1"># Reset index</span>
+<span class="linenos">169</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="linenos">170</span>
+<span class="linenos">171</span> <span class="c1"># Show</span>
+<span class="linenos">172</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (temporal)&quot;</span><span class="p">)</span>
+<span class="linenos">173</span> <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">177</span> <span class="c1"># Filter for sari (temporal)</span>
+<span class="linenos">178</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">179</span> <span class="c1"># Appearance of organisms by date (or even freq instead of 1/0).</span>
+<span class="linenos">180</span> <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">],</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">])</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span> <span class="c1"># Filter</span>
+<span class="linenos">183</span> <span class="c1">#temp = temp[temp[&#39;microorganism_code&#39;].isin(s[s.all(axis=1)].index)]</span>
+<span class="linenos">184</span>
+<span class="linenos">185</span> <span class="c1"># Show</span>
+<span class="linenos">186</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Remaining microorganisms:&quot;</span><span class="p">)</span>
+<span class="linenos">187</span> <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">microorganism_code</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="linenos">188</span>
+<span class="linenos">189</span> <span class="c1"># -------------------------</span>
+<span class="linenos">190</span> <span class="c1"># Format dataframe</span>
+<span class="linenos">191</span> <span class="c1"># -------------------------</span>
+<span class="linenos">192</span> <span class="c1"># Create mappers</span>
+<span class="linenos">193</span> <span class="n">abx_map</span> <span class="o">=</span> <span class="n">create_mapper</span><span class="p">(</span><span class="n">antimicrobials</span><span class="p">,</span> <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="linenos">194</span> <span class="n">org_map</span> <span class="o">=</span> <span class="n">create_mapper</span><span class="p">(</span><span class="n">microorganisms</span><span class="p">,</span> <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span> <span class="s1">&#39;genus&#39;</span><span class="p">)</span>
+<span class="linenos">195</span> <span class="n">grm_map</span> <span class="o">=</span> <span class="n">create_mapper</span><span class="p">(</span><span class="n">microorganisms</span><span class="p">,</span> <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span> <span class="s1">&#39;gram_stain&#39;</span><span class="p">)</span>
+<span class="linenos">196</span>
+<span class="linenos">197</span> <span class="c1">#iti = iti[[&#39;date_received&#39;, &#39;freq&#39;, &#39;sari&#39;, &#39;antimicrobial_code&#39;, &#39;microorganism_code&#39;]]</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span> <span class="c1"># Include categories</span>
+<span class="linenos">200</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">abx_map</span><span class="p">)</span>
+<span class="linenos">201</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;genus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">org_map</span><span class="p">)</span>
+<span class="linenos">202</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;gram&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">grm_map</span><span class="p">)</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span> <span class="c1"># Empty grams are a new category (unknown - u)</span>
+<span class="linenos">205</span> <span class="n">temp</span><span class="o">.</span><span class="n">gram</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">gram</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="linenos">206</span>
+<span class="linenos">207</span> <span class="c1"># Show</span>
+<span class="linenos">208</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Microorganisms without gram stain:&quot;</span><span class="p">)</span>
+<span class="linenos">209</span> <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="n">temp</span><span class="o">.</span><span class="n">gram</span><span class="o">==</span><span class="s1">&#39;u&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">microorganism_code</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span> <span class="c1"># -------------------------------</span>
+<span class="linenos">212</span> <span class="c1"># Create antimicrobial spectrum</span>
+<span class="linenos">213</span> <span class="c1"># -------------------------------</span>
+<span class="linenos">214</span> <span class="c1"># Libraries</span>
+<span class="linenos">215</span> <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">ASAI</span>
+<span class="linenos">216</span>
+<span class="linenos">217</span> <span class="c1"># Create antimicrobial spectrum of activity instance</span>
+<span class="linenos">218</span> <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span>
+<span class="linenos">219</span>             <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+<span class="linenos">220</span>             <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+<span class="linenos">221</span>             <span class="n">column_frequency</span><span class="o">=</span><span class="s1">&#39;freq&#39;</span><span class="p">)</span>
+<span class="linenos">222</span> <span class="c1"># Compute</span>
+<span class="linenos">223</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span>
+<span class="linenos">224</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+<span class="linenos">225</span>              <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+<span class="linenos">226</span>              <span class="s1">&#39;gram&#39;</span><span class="p">],</span>
+<span class="linenos">227</span>     <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+<span class="linenos">228</span>     <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="linenos">229</span>     <span class="n">min_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">230</span>
+<span class="linenos">231</span> <span class="c1"># Unstack</span>
+<span class="linenos">232</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span>
+<span class="linenos">233</span>
+<span class="linenos">234</span> <span class="c1"># Show scores</span>
+<span class="linenos">235</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI:&quot;</span><span class="p">)</span>
+<span class="linenos">236</span> <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+<span class="linenos">237</span>
+<span class="linenos">238</span> <span class="c1"># Plot</span>
+<span class="linenos">239</span> <span class="c1"># ----</span>
+<span class="linenos">240</span> <span class="c1"># Create figure</span>
+<span class="linenos">241</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">242</span>
+<span class="linenos">243</span> <span class="c1"># Show</span>
+<span class="linenos">244</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">scores</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">,</span>
+<span class="linenos">245</span>              <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;gram&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;tab10&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+<span class="linenos">246</span>              <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+<span class="linenos">247</span>              <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="linenos">248</span>              <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="linenos">249</span>
+<span class="linenos">250</span>
+<span class="linenos">251</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">252</span>
+<span class="linenos">253</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">254</span><span class="sd"> # -------------------------</span>
+<span class="linenos">255</span><span class="sd"> # Compute ASAI</span>
+<span class="linenos">256</span><span class="sd"> # -------------------------</span>
+<span class="linenos">257</span><span class="sd"> iti = iti.rename(columns={</span>
+<span class="linenos">258</span><span class="sd">     &#39;microorganism_code&#39;: &#39;SPECIE&#39;,</span>
+<span class="linenos">259</span><span class="sd">     &#39;sari&#39;: &#39;RESISTANCE&#39;,</span>
+<span class="linenos">260</span><span class="sd">     &#39;genus&#39;: &#39;GENUS&#39;</span>
+<span class="linenos">261</span><span class="sd"> })</span>
+<span class="linenos">262</span>
+<span class="linenos">263</span>
+<span class="linenos">264</span><span class="sd"> fig, axes = plt.subplots(1, 2, figsize=(10, 3), sharey=True)</span>
+<span class="linenos">265</span>
+<span class="linenos">266</span><span class="sd"> # Variable for filtering</span>
+<span class="linenos">267</span><span class="sd"> s = pd.crosstab(iti[&#39;SPECIE&#39;], iti[&#39;date_received&#39;])</span>
+<span class="linenos">268</span>
+<span class="linenos">269</span><span class="sd"> # Create aux (non filtered)</span>
+<span class="linenos">270</span><span class="sd"> aux = iti.copy(deep=True)</span>
+<span class="linenos">271</span><span class="sd"> aux = aux.groupby([&#39;date_received&#39;,</span>
+<span class="linenos">272</span><span class="sd">                    &#39;antimicrobial_code&#39;,</span>
+<span class="linenos">273</span><span class="sd">                    &#39;gram&#39;])\</span>
+<span class="linenos">274</span><span class="sd">          .apply(asai, weights=&#39;uniform&#39;, threshold=0.5)</span>
+<span class="linenos">275</span>
+<span class="linenos">276</span>
+<span class="linenos">277</span><span class="sd"> plt.show()</span>
+<span class="linenos">278</span>
+<span class="linenos">279</span><span class="sd"> # Create aux (filtered)</span>
+<span class="linenos">280</span><span class="sd"> aux2 = iti.copy(deep=True)</span>
+<span class="linenos">281</span><span class="sd"> aux2 = aux2[aux2[&#39;SPECIE&#39;].isin(s[s.all(axis=1)].index)]</span>
+<span class="linenos">282</span><span class="sd"> aux2 = aux2.groupby([&#39;date_received&#39;,</span>
+<span class="linenos">283</span><span class="sd">                    &#39;antimicrobial_code&#39;,</span>
+<span class="linenos">284</span><span class="sd">                    &#39;gram&#39;])\</span>
+<span class="linenos">285</span><span class="sd">          .apply(asai, weights=&#39;uniform&#39;, threshold=0.8)</span>
+<span class="linenos">286</span>
+<span class="linenos">287</span><span class="sd"> a = 1</span>
+<span class="linenos">288</span><span class="sd"> # Display</span>
+<span class="linenos">289</span><span class="sd"> print(&quot;\nCrosstab:&quot;)</span>
+<span class="linenos">290</span><span class="sd"> print(s)</span>
+<span class="linenos">291</span><span class="sd"> print(&quot;\nSelected:&quot;)</span>
+<span class="linenos">292</span><span class="sd"> print(s[s.all(axis=1)])</span>
+<span class="linenos">293</span><span class="sd"> print(&quot;\nRemaining:&quot;)</span>
+<span class="linenos">294</span><span class="sd"> print(iti)</span>
+<span class="linenos">295</span><span class="sd"> print(aux.unstack())</span>
+<span class="linenos">296</span><span class="sd"> print(aux2.unstack())</span>
+<span class="linenos">297</span>
+<span class="linenos">298</span><span class="sd"> sns.lineplot(data=aux.reset_index(),</span>
+<span class="linenos">299</span><span class="sd">              x=&#39;date_received&#39;,</span>
+<span class="linenos">300</span><span class="sd">              y=&#39;ASAI_SCORE&#39;,</span>
+<span class="linenos">301</span><span class="sd">              palette=&quot;tab10&quot;,</span>
+<span class="linenos">302</span><span class="sd">              linewidth=0.75,</span>
+<span class="linenos">303</span><span class="sd">              hue=&#39;gram&#39;,</span>
+<span class="linenos">304</span><span class="sd">              marker=&#39;o&#39;,</span>
+<span class="linenos">305</span><span class="sd">              ax=axes[0])</span>
+<span class="linenos">306</span>
+<span class="linenos">307</span><span class="sd"> sns.lineplot(data=aux2.reset_index(),</span>
+<span class="linenos">308</span><span class="sd">              x=&#39;date_received&#39;,</span>
+<span class="linenos">309</span><span class="sd">              y=&#39;ASAI_SCORE&#39;,</span>
+<span class="linenos">310</span><span class="sd">              palette=&quot;tab10&quot;,</span>
+<span class="linenos">311</span><span class="sd">              linewidth=0.75,</span>
+<span class="linenos">312</span><span class="sd">              hue=&#39;gram&#39;,</span>
+<span class="linenos">313</span><span class="sd">              marker=&#39;o&#39;,</span>
+<span class="linenos">314</span><span class="sd">              ax=axes[1])</span>
+<span class="linenos">315</span><span class="sd"> &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_asai_c_temporal_001.png" srcset="../../_images/sphx_glr_plot_asai_c_temporal_001.png" alt="plot asai c temporal" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (temporal)
+    specimen_code microorganism_code antimicrobial_code date_received  hide  intermediate  not done  resistant  sensitive  freq    sari
+0          URICUL               ABAU               AAUG    2009-07-31   0.0           0.0       0.0        3.0        2.0   5.0  0.6000
+1          URICUL               ABAU               AAUG    2010-01-31   0.0           0.0       0.0        4.0        3.0   7.0  0.5714
+2          URICUL               ABAU               AAUG    2010-07-31   0.0           0.0       0.0        8.0        6.0  14.0  0.5714
+3          URICUL               ABAU               AAUG    2011-01-31   0.0           0.0       0.0       11.0        8.0  19.0  0.5789
+4          URICUL               ABAU               AAUG    2011-07-31   0.0           0.0       0.0       13.0        9.0  22.0  0.5909
+..            ...                ...                ...           ...   ...           ...       ...        ...        ...   ...     ...
+514        URICUL              VIRST               AAUG    2012-07-31   0.0           0.0       0.0        0.0        1.0   1.0  0.0000
+515        URICUL              VIRST               AAUG    2013-07-31   0.0           0.0       0.0        0.0        2.0   2.0  0.0000
+516        URICUL              VIRST               AAUG    2014-01-31   0.0           0.0       0.0        0.0        3.0   3.0  0.0000
+517        URICUL              YEAST               AAUG    2015-01-31   0.0           0.0       0.0        0.0        1.0   1.0  0.0000
+518        URICUL              YEAST               AAUG    2015-07-31   0.0           0.0       0.0        0.0        2.0   2.0  0.0000
+
+[519 rows x 11 columns]
+Remaining microorganisms:
+[&#39;ABAU&#39; &#39;ACHRO&#39; &#39;ACINE&#39; &#39;AEROC&#39; &#39;AEROM&#39; &#39;AFAE&#39; &#39;AHS&#39; &#39;AHYD&#39; &#39;ALWO&#39; &#39;AVIR&#39;
+ &#39;AXYL&#39; &#39;A_ARADIORES&#39; &#39;A_BSGD&#39; &#39;A_CHRYSEOB&#39; &#39;A_CHRYSEOM&#39; &#39;A_CTESTOSTE&#39;
+ &#39;A_EAVIUM&#39; &#39;A_ELUDWIGII&#39; &#39;A_FLAVOBAC&#39; &#39;A_HAFNIA S&#39; &#39;A_ISOLATED&#39;
+ &#39;A_LACTOBAC&#39; &#39;A_MBG&#39; &#39;A_PROVIDEN&#39; &#39;A_RAOULTEL&#39; &#39;A_SBOVIS&#39; &#39;A_SODORIFER&#39;
+ &#39;BACIL&#39; &#39;BCEP&#39; &#39;BHSA&#39; &#39;BHSB&#39; &#39;BHSC&#39; &#39;BHSCG&#39; &#39;BHSG&#39; &#39;CAMA&#39; &#39;CBRA&#39; &#39;CFRE&#39;
+ &#39;CIND&#39; &#39;CITRO&#39; &#39;CKOS&#39; &#39;CNS&#39; &#39;COLIF&#39; &#39;CORYN&#39; &#39;CSTR&#39; &#39;DACI&#39; &#39;DIPHT&#39; &#39;EAER&#39;
+ &#39;EASB&#39; &#39;ECLO&#39; &#39;ECOL&#39; &#39;EFAM&#39; &#39;EFAS&#39; &#39;ENTB&#39; &#39;ENTC&#39; &#39;HAEMO&#39; &#39;HALV&#39; &#39;HINF&#39;
+ &#39;KLEBS&#39; &#39;KOXY&#39; &#39;KPNE&#39; &#39;LFC&#39; &#39;MCOL&#39; &#39;MICROC&#39; &#39;MMOR&#39; &#39;MODO&#39; &#39;NEISS&#39; &#39;NLF&#39;
+ &#39;PAER&#39; &#39;PANTO&#39; &#39;PMIR&#39; &#39;PPUT&#39; &#39;PRET&#39; &#39;PROTE&#39; &#39;PSEUD&#39; &#39;PSTUA&#39; &#39;PVUL&#39;
+ &#39;QMCOL&#39; &#39;QMIXY&#39; &#39;SAGA&#39; &#39;SALMO&#39; &#39;SAUR&#39; &#39;SEPI&#39; &#39;SERRA&#39; &#39;SHAEM&#39; &#39;SLIQ&#39;
+ &#39;SLUG&#39; &#39;SMAL&#39; &#39;SMAR&#39; &#39;SMIL&#39; &#39;SMIT&#39; &#39;SPYO&#39; &#39;SSAL&#39; &#39;SSAP&#39; &#39;STAPH&#39; &#39;STREP&#39;
+ &#39;VIRST&#39; &#39;YEAST&#39;]
+
+Microorganisms without gram stain:
+[&#39;A_CHRYSEOM&#39; &#39;A_ISOLATED&#39; &#39;A_MBG&#39; &#39;COLIF&#39; &#39;DIPHT&#39; &#39;LFC&#39; &#39;MCOL&#39; &#39;MODO&#39;
+ &#39;NLF&#39; &#39;QMCOL&#39; &#39;QMIXY&#39; &#39;YEAST&#39;]
+
+ASAI:
+                                 N_GENUS           N_SPECIE            ASAI_SCORE
+gram                                   n    p    u        n     p    u          n       p       u
+date_received antimicrobial_code
+2009-01-31    AAUG                   5.0  3.0  1.0      5.0   4.0  1.0     0.6000  1.0000  1.0000
+2009-07-31    AAUG                  13.0  3.0  1.0     14.0   8.0  1.0     0.5000  1.0000  1.0000
+2010-01-31    AAUG                   9.0  3.0  1.0     11.0   7.0  1.0     0.2778  1.0000  1.0000
+2010-07-31    AAUG                  13.0  3.0  2.0     15.0   8.0  2.0     0.3462  1.0000  1.0000
+2011-01-31    AAUG                  10.0  4.0  1.0     11.0  10.0  1.0     0.2500  1.0000  1.0000
+2011-07-31    AAUG                  11.0  3.0  1.0     12.0   6.0  1.0     0.3182  1.0000  1.0000
+2012-01-31    AAUG                  11.0  4.0  1.0     14.0   7.0  1.0     0.3182  1.0000  1.0000
+2012-07-31    AAUG                  11.0  4.0  2.0     21.0  10.0  3.0     0.2576  1.0000  1.0000
+2013-01-31    AAUG                  14.0  6.0  3.0     29.0  17.0  5.0     0.3810  0.9667  0.6667
+2013-07-31    AAUG                  19.0  4.0  3.0     36.0  13.0  3.0     0.4825  1.0000  1.0000
+2014-01-31    AAUG                  14.0  6.0  4.0     34.0  14.0  5.0     0.5179  0.9667  1.0000
+2014-07-31    AAUG                  16.0  4.0  4.0     36.0  16.0  6.0     0.4271  0.9167  0.8750
+2015-01-31    AAUG                  16.0  6.0  5.0     34.0  19.0  7.0     0.5333  1.0000  0.7000
+2015-07-31    AAUG                  13.0  4.0  3.0     27.0  13.0  3.0     0.4423  1.0000  0.6667
+2016-01-31    AAUG                  11.0  1.0  2.0     22.0   4.0  2.0     0.4394  1.0000  1.0000
+
+&#39;\n# -------------------------\n# Compute ASAI\n# -------------------------\niti = iti.rename(columns={\n    \&#39;microorganism_code\&#39;: \&#39;SPECIE\&#39;,\n    \&#39;sari\&#39;: \&#39;RESISTANCE\&#39;,\n    \&#39;genus\&#39;: \&#39;GENUS\&#39;\n})\n\n\nfig, axes = plt.subplots(1, 2, figsize=(10, 3), sharey=True)\n\n# Variable for filtering\ns = pd.crosstab(iti[\&#39;SPECIE\&#39;], iti[\&#39;date_received\&#39;])\n\n# Create aux (non filtered)\naux = iti.copy(deep=True)\naux = aux.groupby([\&#39;date_received\&#39;,\n                   \&#39;antimicrobial_code\&#39;,\n                   \&#39;gram\&#39;])         .apply(asai, weights=\&#39;uniform\&#39;, threshold=0.5)\n\n\nplt.show()\n\n# Create aux (filtered)\naux2 = iti.copy(deep=True)\naux2 = aux2[aux2[\&#39;SPECIE\&#39;].isin(s[s.all(axis=1)].index)]\naux2 = aux2.groupby([\&#39;date_received\&#39;,\n                   \&#39;antimicrobial_code\&#39;,\n                   \&#39;gram\&#39;])         .apply(asai, weights=\&#39;uniform\&#39;, threshold=0.8)\n\na = 1\n# Display\nprint(&quot;\nCrosstab:&quot;)\nprint(s)\nprint(&quot;\nSelected:&quot;)\nprint(s[s.all(axis=1)])\nprint(&quot;\nRemaining:&quot;)\nprint(iti)\nprint(aux.unstack())\nprint(aux2.unstack())\n\nsns.lineplot(data=aux.reset_index(),\n             x=\&#39;date_received\&#39;,\n             y=\&#39;ASAI_SCORE\&#39;,\n             palette=&quot;tab10&quot;,\n             linewidth=0.75,\n             hue=\&#39;gram\&#39;,\n             marker=\&#39;o\&#39;,\n             ax=axes[0])\n\nsns.lineplot(data=aux2.reset_index(),\n             x=\&#39;date_received\&#39;,\n             y=\&#39;ASAI_SCORE\&#39;,\n             palette=&quot;tab10&quot;,\n             linewidth=0.75,\n             hue=\&#39;gram\&#39;,\n             marker=\&#39;o\&#39;,\n             ax=axes[1])\n&#39;
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.764 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-asai-c-temporal-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/ccfb9d6dc53d98c877756f90010e3913/plot_asai_c_temporal.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_asai_c_temporal.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/dfce8cdc8718b3d2ee9d286ff346ab18/plot_asai_c_temporal.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_asai_c_temporal.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_asai_b_multiple.html" class="btn btn-neutral float-left" title="ASAI - By gram stain (multiple)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_dri_b_mimic.html" class="btn btn-neutral float-right" title="DRI - Example using MIMIC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

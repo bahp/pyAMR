@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Single Antimicrobial Resistance (SARI) &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Spectrum of Activity (ASAI)" href="plot_core_b_asai.html" />
+    <link rel="prev" title="Step 04 - TSA to estimate trends" href="../guide/plot_step_04.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_b_asai.html">Spectrum of Activity (<code class="docutils literal notranslate"><span class="pre">ASAI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_c_mari.html">Multiple Resistance (<code class="docutils literal notranslate"><span class="pre">MARI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_d_sart.html">Single Resistance Trend (<code class="docutils literal notranslate"><span class="pre">SART</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_e_dri.html">Drug Resistance Index (<code class="docutils literal notranslate"><span class="pre">DRI</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_core_f_acri.html">Collateral Sensitivity Index (<code class="docutils literal notranslate"><span class="pre">ACSI</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/_examples/tutorial/indexes/plot_core_a_sari.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-indexes-plot-core-a-sari-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="single-antimicrobial-resistance-sari">
+<span id="sphx-glr-examples-tutorial-indexes-plot-core-a-sari-py"></span><h1>Single Antimicrobial Resistance (<code class="docutils literal notranslate"><span class="pre">SARI</span></code>)<a class="headerlink" href="#single-antimicrobial-resistance-sari" title="Permalink to this heading"></a></h1>
+<p>The Single Antimicrobial Resistance Index or <code class="docutils literal notranslate"><span class="pre">SARI</span></code> describes the proportion
+of resistant isolates for a given set of susceptibility tests. It provides a
+value within the range [0, 1] where values close to one indicate high resistance.
+It is agnostic to pathogen, antibiotic and/or time. The variables <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code> and
+<code class="docutils literal notranslate"><span class="pre">S</span></code> represent the number of susceptibility tests with Resistant, Intermediate and
+Susceptible outcomes respectively. The definition might vary slightly since the
+intermediate category is not always considered.</p>
+<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">16</span> <span class="c1"># Libraries</span>
+<span class="linenos">17</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">18</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos">19</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span> <span class="c1"># Specific</span>
+<span class="linenos">22</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos">23</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">fixture</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span> <span class="c1"># Set matplotlib</span>
+<span class="linenos">26</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">27</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">28</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.titlesize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos">29</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;legend.fontsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos">32</span> <span class="c1"># Methods</span>
+<span class="linenos">33</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos">34</span> <span class="k">def</span> <span class="nf">own</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+<span class="linenos">35</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Add offset to hard&quot;&quot;&quot;</span>
+<span class="linenos">36</span>     <span class="c1"># Extract vectors</span>
+<span class="linenos">37</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">resistant</span>
+<span class="linenos">38</span>     <span class="n">i</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">intermediate</span>
+<span class="linenos">39</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">sensitive</span>
+<span class="linenos">40</span>     <span class="c1"># Compute</span>
+<span class="linenos">41</span>     <span class="k">return</span> <span class="p">((</span><span class="n">r</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="p">))</span> <span class="o">+</span> <span class="n">offset</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos">44</span> <span class="c1"># Create data</span>
+<span class="linenos">45</span> <span class="c1"># ----------------------------------</span>
+<span class="linenos">46</span> <span class="c1"># Load data</span>
+<span class="linenos">47</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fixture_07.csv&#39;</span><span class="p">)</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span> <span class="c1"># ---------------------------------</span>
+<span class="linenos">50</span> <span class="c1"># Compute SARI</span>
+<span class="linenos">51</span> <span class="c1"># ---------------------------------</span>
+<span class="linenos">52</span> <span class="c1"># Create SARI instance</span>
+<span class="linenos">53</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SPECIMEN&#39;</span><span class="p">,</span>
+<span class="linenos">54</span>                      <span class="s1">&#39;MICROORGANISM&#39;</span><span class="p">,</span>
+<span class="linenos">55</span>                      <span class="s1">&#39;ANTIMICROBIAL&#39;</span><span class="p">,</span>
+<span class="linenos">56</span>                      <span class="s1">&#39;SENSITIVITY&#39;</span><span class="p">])</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span> <span class="c1"># Compute SARI overall (hard)</span>
+<span class="linenos">59</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">60</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">61</span>
+<span class="linenos">62</span> <span class="c1"># Compute SARI overall (soft)</span>
+<span class="linenos">63</span> <span class="n">sari_overall_soft</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">64</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">65</span>     <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">)</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span> <span class="c1"># Compute SARI overall (own)</span>
+<span class="linenos">68</span> <span class="n">sari_overall_own</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">69</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">70</span>     <span class="n">strategy</span><span class="o">=</span><span class="n">own</span><span class="p">,</span>
+<span class="linenos">71</span>     <span class="n">offset</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos">72</span>
+<span class="linenos">73</span> <span class="c1"># Compute SARI temporal (ITI)</span>
+<span class="linenos">74</span> <span class="n">sari_iti</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+<span class="linenos">75</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+<span class="linenos">76</span>
+<span class="linenos">77</span> <span class="c1"># Compute SARI temporal (OTI)</span>
+<span class="linenos">78</span> <span class="n">sari_oti</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span>
+<span class="linenos">79</span>     <span class="n">period</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">)</span>
+<span class="linenos">80</span>
+<span class="linenos">81</span> <span class="c1"># Show</span>
+<span class="linenos">82</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (overall):&quot;</span><span class="p">)</span>
+<span class="linenos">83</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
+<span class="linenos">84</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (iti):&quot;</span><span class="p">)</span>
+<span class="linenos">85</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_iti</span><span class="p">)</span>
+<span class="linenos">86</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">SARI (oti):&quot;</span><span class="p">)</span>
+<span class="linenos">87</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_oti</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (overall):
+SPECIMEN  MICROORGANISM  ANTIMICROBIAL
+BLDCUL    ECOL           AAUG             0.400000
+                         ACIP             0.600000
+          SAUR           ACIP             0.611111
+URICUL    SAUR           ACIP             0.700000
+Name: sari, dtype: float64
+
+SARI (iti):
+                                                 intermediate  resistant  sensitive  freq      sari
+SPECIMEN MICROORGANISM ANTIMICROBIAL DATE
+BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.250000
+                                     2021-01-02           0.0        1.0        2.0   3.0  0.333333
+                                     2021-01-03           0.0        1.0        1.0   2.0  0.500000
+                                     2021-01-04           0.0        1.0        0.0   1.0  1.000000
+                       ACIP          2021-01-01           0.0        3.0        1.0   4.0  0.750000
+                                     2021-01-02           0.0        2.0        1.0   3.0  0.666667
+                                     2021-01-03           0.0        1.0        1.0   2.0  0.500000
+                                     2021-01-04           0.0        0.0        1.0   1.0  0.000000
+         SAUR          ACIP          2021-01-01           0.0        4.0        0.0   4.0  1.000000
+                                     2021-01-02           0.0        1.0        2.0   3.0  0.333333
+                                     2021-01-08           0.0        5.0        1.0   6.0  0.833333
+                                     2021-01-09           0.0        1.0        4.0   5.0  0.200000
+URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        0.0   2.0  1.000000
+                                     2021-01-13           0.0        1.0        1.0   2.0  0.500000
+                                     2021-01-14           0.0        2.0        0.0   2.0  1.000000
+                                     2021-01-15           0.0        0.0        2.0   2.0  0.000000
+                                     2021-01-16           2.0        0.0        0.0   2.0  1.000000
+
+SARI (oti):
+                                                 intermediate  resistant  sensitive  freq      sari
+SPECIMEN MICROORGANISM ANTIMICROBIAL DATE
+BLDCUL   ECOL          AAUG          2021-01-01           0.0        1.0        3.0   4.0  0.250000
+                                     2021-01-02           0.0        2.0        5.0   7.0  0.285714
+                                     2021-01-03           0.0        2.0        3.0   5.0  0.400000
+                                     2021-01-04           0.0        2.0        1.0   3.0  0.666667
+                       ACIP          2021-01-01           0.0        3.0        1.0   4.0  0.750000
+                                     2021-01-02           0.0        5.0        2.0   7.0  0.714286
+                                     2021-01-03           0.0        3.0        2.0   5.0  0.600000
+                                     2021-01-04           0.0        1.0        2.0   3.0  0.333333
+         SAUR          ACIP          2021-01-01           0.0        4.0        0.0   4.0  1.000000
+                                     2021-01-02           0.0        5.0        2.0   7.0  0.714286
+                                     2021-01-08           0.0        5.0        1.0   6.0  0.833333
+                                     2021-01-09           0.0        6.0        5.0  11.0  0.545455
+URICUL   SAUR          ACIP          2021-01-12           1.0        1.0        0.0   2.0  1.000000
+                                     2021-01-13           1.0        2.0        1.0   4.0  0.750000
+                                     2021-01-14           0.0        3.0        1.0   4.0  0.750000
+                                     2021-01-15           0.0        2.0        2.0   4.0  0.500000
+                                     2021-01-16           2.0        0.0        2.0   4.0  0.500000
+</pre></div>
+</div>
+<p>Lets see the susceptibility test records.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">91</span> <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>SENSITIVITY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2021-01-03</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2021-01-04</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>AAUG</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>sensitive</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2021-01-01</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>resistant</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2021-01-02</td>
+      <td>BLDCUL</td>
+      <td>ECOL</td>
+      <td>ACIP</td>
+      <td>sensitive</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the <code class="docutils literal notranslate"><span class="pre">overall_hard</span></code> resistance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">96</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">BLDCUL</th>
+      <th rowspan="2" valign="top">ECOL</th>
+      <th>AAUG</th>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>ACIP</th>
+      <td>0.600000</td>
+    </tr>
+    <tr>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>0.611111</td>
+    </tr>
+    <tr>
+      <th>URICUL</th>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>0.700000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s compare with the <code class="docutils literal notranslate"><span class="pre">overall_soft</span></code> resistance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">101</span> <span class="n">sari_overall_soft</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">BLDCUL</th>
+      <th rowspan="2" valign="top">ECOL</th>
+      <th>AAUG</th>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>ACIP</th>
+      <td>0.600000</td>
+    </tr>
+    <tr>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>0.611111</td>
+    </tr>
+    <tr>
+      <th>URICUL</th>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>0.400000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s compare with the <code class="docutils literal notranslate"><span class="pre">overall_own</span></code> resistance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">106</span> <span class="n">sari_overall_own</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">BLDCUL</th>
+      <th rowspan="2" valign="top">ECOL</th>
+      <th>AAUG</th>
+      <td>5.400000</td>
+    </tr>
+    <tr>
+      <th>ACIP</th>
+      <td>5.600000</td>
+    </tr>
+    <tr>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>5.611111</td>
+    </tr>
+    <tr>
+      <th>URICUL</th>
+      <th>SAUR</th>
+      <th>ACIP</th>
+      <td>5.700000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the resistance time-series using <code class="docutils literal notranslate"><span class="pre">independent</span></code> time intervals (ITI)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">111</span> <span class="n">sari_iti</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>intermediate</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>freq</th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="12" valign="top">BLDCUL</th>
+      <th rowspan="8" valign="top">ECOL</th>
+      <th rowspan="4" valign="top">AAUG</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>0.250000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.750000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">SAUR</th>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>2021-01-08</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>0.833333</td>
+    </tr>
+    <tr>
+      <th>2021-01-09</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>0.200000</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">URICUL</th>
+      <th rowspan="5" valign="top">SAUR</th>
+      <th rowspan="5" valign="top">ACIP</th>
+      <th>2021-01-12</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2021-01-13</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>2021-01-14</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2021-01-15</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2021-01-16</th>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Let’s display the resistance time-series using <code class="docutils literal notranslate"><span class="pre">overlapping</span></code> time intervals (OTI)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">117</span> <span class="n">sari_oti</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>intermediate</th>
+      <th>resistant</th>
+      <th>sensitive</th>
+      <th>freq</th>
+      <th>sari</th>
+    </tr>
+    <tr>
+      <th>SPECIMEN</th>
+      <th>MICROORGANISM</th>
+      <th>ANTIMICROBIAL</th>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="12" valign="top">BLDCUL</th>
+      <th rowspan="8" valign="top">ECOL</th>
+      <th rowspan="4" valign="top">AAUG</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>0.250000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>7.0</td>
+      <td>0.285714</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.750000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>0.714286</td>
+    </tr>
+    <tr>
+      <th>2021-01-03</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>0.600000</td>
+    </tr>
+    <tr>
+      <th>2021-01-04</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">SAUR</th>
+      <th rowspan="4" valign="top">ACIP</th>
+      <th>2021-01-01</th>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2021-01-02</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>0.714286</td>
+    </tr>
+    <tr>
+      <th>2021-01-08</th>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>0.833333</td>
+    </tr>
+    <tr>
+      <th>2021-01-09</th>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>11.0</td>
+      <td>0.545455</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">URICUL</th>
+      <th rowspan="5" valign="top">SAUR</th>
+      <th rowspan="5" valign="top">ACIP</th>
+      <th>2021-01-12</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2021-01-13</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.750000</td>
+    </tr>
+    <tr>
+      <th>2021-01-14</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>0.750000</td>
+    </tr>
+    <tr>
+      <th>2021-01-15</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>2021-01-16</th>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.500000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On a side note, the variable <em>sari_overall</em> returned is a <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code>.
+However, it has been converted to a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> for display purposes.
+The <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> library used to create the documentation uses the method
+<code class="docutils literal notranslate"><span class="pre">_repr_html_</span></code> from the latter to display it nicely in the docs.</p>
+</div>
+<p>Let’s display the information graphically</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.073 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-indexes-plot-core-a-sari-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/3ca80573f481f6dddd7a64e52f0196db/plot_core_a_sari.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_a_sari.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/8137f7a9b0bd4b1b972874b014edd414/plot_core_a_sari.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_a_sari.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../guide/plot_step_04.html" class="btn btn-neutral float-left" title="Step 04 - TSA to estimate trends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_core_b_asai.html" class="btn btn-neutral float-right" title="Spectrum of Activity (ASAI)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
