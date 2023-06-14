@@ -47,7 +47,7 @@ supports interventions and toolkits to improve antibiotic prescribing in the com
 prescribing in general practices (GPs), dental and other settings and hospitals.
 
 <div>
-    <img src="docs/source/_static/imgs/todo-sart-table.png" width=700 align="right">  
+    <img src="docs/source/_static/imgs/todo-sart-table.png" width=600 align="center">  
 </div>
 <br>
 
