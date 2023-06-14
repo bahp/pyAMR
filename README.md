@@ -46,6 +46,10 @@ sometimes impossible, to treat. Thus providing accurate and up to date AMR surve
 supports interventions and toolkits to improve antibiotic prescribing in the community, including 
 prescribing in general practices (GPs), dental and other settings and hospitals.
 
+The example belows shows a summary of AMR metrics for Escherichia coli grown in urine samples 
+which includes the total number of isolates and the resistance rate (%) and the resistance 
+trend over the last month/year for each antimicrobial.
+
 <p align="center">
     <img src="docs/source/_static/imgs/todo-sart-table.png" width=600>  
 </p>
