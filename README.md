@@ -1,6 +1,6 @@
 # pyamr
 
-<img src="docs/source/_static/images/logo-pyamr-v2.png" align="right" width="130">
+<img src="docs/source/_static/imgs/logo-pyamr-v2.png" align="right" width="130">
 
 [url-epicimpoc]: https://bahp.github.io/portfolio-academic/projects/epicimpoc/
 [url-documentation]: https://bahp.github.io/pyAMR/index.html
@@ -46,7 +46,7 @@ sometimes impossible, to treat. Thus providing accurate and up to date AMR surve
 supports interventions and toolkits to improve antibiotic prescribing in the community, including 
 prescribing in general practices (GPs), dental and other settings and hospitals.
 
-<img src="docs/source/_static/images/todo-sart-table.png" align="right">  
+<img src="docs/source/_static/imgs/todo-sart-table.png" align="right">  
 
 <br>
 <br>
@@ -120,7 +120,7 @@ You can launch the test suite running
 python manage.py test
 ```
 
-### Releasing
+#### Releasing
 
 <!-- https://jacobtomlinson.dev/posts/2021/automating-releases-of-python-packages-with-github-actions/ -->
 
