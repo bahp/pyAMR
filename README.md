@@ -46,10 +46,9 @@ sometimes impossible, to treat. Thus providing accurate and up to date AMR surve
 supports interventions and toolkits to improve antibiotic prescribing in the community, including 
 prescribing in general practices (GPs), dental and other settings and hospitals.
 
-<div>
-    <img src="docs/source/_static/imgs/todo-sart-table.png" width=600 align="center">  
-</div>
-<br>
+<p align="center">
+    <img src="docs/source/_static/imgs/todo-sart-table.png" width=600>  
+</p>
 
 <!-- ----------------------- -->
 <!--    ABOUT THE PROJECT    -->
