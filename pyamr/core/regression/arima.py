@@ -294,9 +294,9 @@ class ARIMAWrapper(RegressionWrapper):
     # Note that some orders are not valid, these will throw an
     # exception that will be catched in the base wrapper 
     # grid_search method. For instance (0,0,0) is invalid.
-    orders = set(itertools.product(*[np.arange(0,max_ar+1),
-                                     np.arange(0,max_d+1),
-                                     np.arange(0,max_ma+1)]))
+    orders = list(set(itertools.product(*[np.arange(0,max_ar+1),
+                                          np.arange(0,max_d+1),
+                                          np.arange(0,max_ma+1)])))
 
     # Parameters
     grid_params = {'exog': [exog], 
