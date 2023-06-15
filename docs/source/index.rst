@@ -224,35 +224,8 @@ When using any of this project's source code, please cite:
 
 .. toctree::
 
-.. currentmodule:: pyamr
+   api
 
-
-aaaa
-
-.. automodule:: pyamr
-   :no-members:
-   :no-inherited-members:
-
-bbbb
-
-.. autosummary::
-   :toctree: source/
-   :template: module.rst
-
-cccc
-
-.. autosummary::
-   :toctree: _autosummary
-   :recursive:
-
-ddd
-
-.. autosummary::
-   :toctree: source/
-   :template: module.rst
-
-   utils
-   core
 
 Indices and tables
 ==================

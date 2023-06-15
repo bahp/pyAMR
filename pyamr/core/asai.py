@@ -205,9 +205,14 @@ def _asai_score(weights_genus, weights_specie, resistance, threshold): # pragma:
   return np.sum(weights_genus*weights_specie*(resistance<=threshold))
 
 
+def asai(*args, **kwargs):
+    """Redirects to ``antimicrobial_spectrum_activity_index``."""
+    return antimicrobial_spectrum_activity_index(*args, **kwargs)
 
-def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
-    """Computes the Antimicrobial Spectrum of Activity Index (ASAI).
+
+def antimicrobial_spectrum_activity_index(dataframe, weights='uniform',
+                                          threshold=0.5, tol=1e-6, verbose=0):
+    """Computes the Antimicrobial Spectrum of Activity.
 
     .. note:: Since threshold and weights have a default value, the
               warnings below will not be displayed. However, the code
@@ -236,7 +241,7 @@ def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
         [W_GENUS and W_SPECIE] are required if weights is None. Also,
         if weights = 'frequency' the column FREQUENCY must be present.
 
-    weights: string, default='frequency'
+    weights: string, default='uniform'
         The method to compute the weights. The methods supported are:
 
             - 'specified': weights must be in [W_GENUS and W_SPECIE]
@@ -249,7 +254,7 @@ def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
             - all genus weights must add up to one.
             - all specie weights within a genus must add up to one.
 
-    threshold: float, default=None
+    threshold: float, default=0.5
         The threshold resistance value above which the antimicrobial is
         considered non-effective to treat the microorganism. For instance,
         for a resistance threshold of 0.5, if a pair <o,a> has a resistance
@@ -414,10 +419,7 @@ def asai(dataframe, weights='uniform', threshold=0.5, tol=1e-6, verbose=0):
 
 
 class ASAI:
-    """Class to compute the Antimicrobial Spectrum of Activity Index.
-
-        .. minigallery:: pyamr.core.asai.ASAI
-            :add-heading:
+    """Antimicrobial Spectrum of Activity Index.
     """
     # Attributes
     c_gen = 'GENUS'

@@ -23,10 +23,6 @@ from pyamr.core.sari import sari
 # -------------------------------------------------------------------------
 class MARI:
     """Multiple Antimicrobial Resistance Index
-
-    .. minigallery:: pyamr.core.mari.MARI
-        :add-heading:
-
     """
     # Attributes
     c_lab = 'LAB_NUMBER'
@@ -64,7 +60,7 @@ class MARI:
     def compute_v1(self, dataframe, shift=None, period=None,
                  cdate=None, return_frequencies=True,
                  return_isolates=True, **kwargs): # pragma: no cover
-        """"""
+        """Compute MARI v1"""
         # Copy DataFrame
         aux = dataframe.copy(deep=True)
 
@@ -145,7 +141,7 @@ class MARI:
 
 
     def rolling(self, dataframe, period, cdate, shift=None):
-        """"""
+        """Compute metric using rolling approach"""
         if shift is None:
             warnings.warn("""
                 The input parameter <shift> is None. Thus, the value 
@@ -175,7 +171,7 @@ class MARI:
 
 
     def grouping(self, dataframe, period, cdate):
-        """Groups the data.
+        """Compute metric with independent groups.
         """
         # Create grouper
         if hasattr(dataframe[cdate].dt, str(period)):
@@ -274,7 +270,7 @@ class MARI:
     def compute_v3(self, dataframe, shift=None, period=None,
                          cdate=None, return_frequencies=True,
                          return_isolates=True, **kwargs): # pragma: no cover
-        """Compute MARI v2.
+        """Compute MARI v3.
 
         .. note: It does not work properly.
 
@@ -361,7 +357,7 @@ class MARI:
     def compute_v4(self, dataframe, shift=None, period=None,
                          cdate=None, return_frequencies=True,
                          return_isolates=True, **kwargs): # pragma: no cover
-        """Compute MARI v1.
+        """Compute MARI v4.
         """
 
         # Copy DataFrame

@@ -43,7 +43,7 @@ def _check_dataframe(dataframe):
 
 
 def sari(dataframe=None, strategy='hard', **kwargs):
-    """Computes the sari index.
+    """Computes the Single Antimicrobial Resistance Index.
 
     Parameters
     ----------
@@ -102,11 +102,7 @@ def sari(dataframe=None, strategy='hard', **kwargs):
 
 
 class SARI:
-    """Class to compute the Single Antimicrobial Resistance Index.
-
-    .. minigallery:: pyamr.core.sari.SARI
-        :add-heading:
-
+    """Single Antimicrobial Resistance Index.
     """
     # Attributes
     c_spe = 'SPECIMEN'
@@ -134,7 +130,7 @@ class SARI:
 
 
     def rolling(self, dataframe, period, cdate, shift=None):
-        """"""
+        """Computed metric using a rolling approach."""
         if shift is None:
             warnings.warn("""
                 The input parameter <shift> is None. Thus, the value 
@@ -158,7 +154,7 @@ class SARI:
 
 
     def grouping(self, dataframe, period, cdate):
-        """Groups the data.
+        """Computes metric using independent groups.
         """
         # Create grouper
         if hasattr(dataframe[cdate].dt, str(period)):
@@ -178,7 +174,7 @@ class SARI:
 
     def compute(self, dataframe, period=None, shift=None, cdate=None,
                 return_frequencies=True, **kwargs):
-        """Computes single antibiotic resistance index.
+        """Computes Single Antimicrobial Resistance Index.
 
         .. todo: Add parameters to rolling!
         .. todo: Place value at the left, center, right of window?
@@ -206,7 +202,7 @@ class SARI:
         2       --     ``Invalid`` - shift cannot be a number.
         ======= ====== =======================================================
 
-        Note that shift=2D and period=2D is equivalent to shift=2D and period=1.
+        .. note:: Using shift=2D and period=2D is equivalent to shift=2D and period=1.
 
         Parameters
         ----------

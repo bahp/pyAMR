@@ -33,6 +33,8 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.duration',         # see what files take longer.
+    #'sphinx.ext.doctest',         # allows to test within docs.
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
@@ -44,6 +46,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.githubpages',      # gh-pages needs a .nojekyll file
     'sphinxcontrib.bibtex',
+    'autodocsumm',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -73,6 +76,17 @@ autosummary_generate = True
 # ---------------------------
 # Make sure the target is unique
 autosectionlabel_prefix_document = True
+
+autodoc_default_options = {
+    'autosummary': True,
+}
+
+"""
+intersphinx_mapping = {
+    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
+}
+intersphinx_disabled_reftypes = ["*"]
+"""
 
 # ------------------
 # Plotly outcomes
@@ -121,6 +135,11 @@ sphinx_gallery_conf = {
 
     # Add intersphinx links to the examples
     # -------------------------------------
+    'prefer_full_module': [
+        # a list of regex command of your module where the full module
+        # name should be used for sphinx_gallery instead of the shortend
+        'pyamr.*+\d{4}',
+    ],
     'reference_url': {
         # The module you locally document uses None
         'sphinx_gallery': None,

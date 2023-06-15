@@ -1,6 +1,6 @@
 # Libraries
-import importlib.metadata
+#import importlib.metadata
 
-__version__ = importlib.metadata.version("pyamr")
+#__version__ = importlib.metadata.version("pyamr")
 
-VERSION = __version__
+#VERSION = __version__

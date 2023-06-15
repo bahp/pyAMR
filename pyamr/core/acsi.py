@@ -179,7 +179,7 @@ def CRI(x, func_mis=mutual_info_matrix_v3):
 
 
 class ACSI:
-    """Class to compute the Antimicrobial Collateral Sensitivity Index.
+    """Antimicrobial Collateral Sensitivity Index.
 
     Other possible names for this index...
 
@@ -187,9 +187,6 @@ class ACSI:
        b) Antimicrobial Collateral Resistance Index
        c) Antimicrobial Collateral Sensitivity Index
        d) Antimicrobial Collateral Resistance Index
-
-        .. minigallery:: pyamr.core.acsi.ACSI
-            :add-heading:
 
     """
 
@@ -262,7 +259,7 @@ class ACSI:
                 groupby=None,
                 func_mis=None,
                 return_combinations=False):
-        """Computes the antimicrobial collateral sensitivity index.
+        """Computes the Antimicrobial Collateral Sensitivity.
 
         .. note:: Enable to pass a combinations dataframe.
         .. note:: The lab number should be used only to compute

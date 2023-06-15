@@ -170,9 +170,9 @@ def plot_timeseries():
 
 
 class MidpointNormalize(colors.Normalize):
-    """Normalise the colorbar so that diverging bars
-       work there way either side from a prescribed
-       midpoint value)
+    """
+    Normalise the colorbar so that diverging bars work their way
+    either side from a prescribed midpoint value)
 
     Example
     -------

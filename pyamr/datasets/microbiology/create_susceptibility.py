@@ -12,7 +12,8 @@ from pyamr.datasets.load import load_registry_antimicrobials
 # Methods
 # ---------------------------------
 def create_microorganisms_lookup_table(orgs):
-    """Creates the look up table for the organisms.
+    """
+    Creates the look up table for the organisms.
 
     This method uses the information in the organisms dataframe
     and the information in the default microorganisms registry

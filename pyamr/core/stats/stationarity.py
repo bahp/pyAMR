@@ -48,7 +48,7 @@ class StationarityWrapper(BaseWrapper):
     ``Non-Stationary`` ``Non-Stationary`` ``Non-Stationary``
     ``Stationary``     ``Stationary``     ``Stationary``
     ``Non-Stationary`` ``Stationary``     ``Trend-Stationary``      Check the de-trended series
-    ``Stationary``     ``Non-Stationary`` ``Difference-Stationary`` Check the differenced-series
+    ``Stationary``     ``Non-Stationary`` ``Difference-Stationary`` Check the differenced series
     ================== ================== ========================= ============================
 
     """

@@ -46,20 +46,6 @@ class ADFWrapper(BaseWrapper):
     or decreasing over time; however, in the presence of a shock, trend-stationary
     processes revert to this mean tendency in the long run (deterministic trend)
     while unit-root processes have a permanent impact (stochastic trend).
-
-
-    .. minigallery:: numpy.diff
-        :add-heading:
-
-    .. minigallery:: numpy.exp
-        :add-heading:
-
-    .. minigallery:: pyamr.utils.plot.scalar_colormap
-        :add-heading:
-
-    .. minigallery:: pyamr.core.stats.adfuller.ADFWrapper
-        :add-heading:
-
     """
 
     def _identifier(self):

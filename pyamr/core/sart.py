@@ -6,10 +6,7 @@ import pandas as pd
 from pyamr.core.sari import SARI
 
 class SART:
-    """Class to compute the Single Antimicrobial Resistance Trend.
-
-        .. minigallery:: pyamr.core.sart.SART
-            :add-heading:
+    """Single Antimicrobial Resistance Trend.
     """
     # Attributes
     c_spe = 'SPECIMEN'
@@ -52,24 +49,22 @@ class SART:
 
     def compute(self, dataframe, period='180D', shift='30D', cdate=None,
                 return_objects=True, **kwargs):
-        """Computes single antibiotic resistance index.
+        """Computes Single Antimicrobial Resistance Index.
 
-        .. todo: Add parameters to rolling!
-        .. todo: Place value at the left, center, right of window?
-        .. todo: Ensure that works when time gaps present!
-        .. todo: Carefull with various indexes!
+        .. todo::
+
+            - Add parameters to rolling!
+            - Place value at the left, center, right of window?
+            - Ensure that works when time gaps present!
+            - Carefull with various indexes!
 
         Parameters
         ----------
         dataframe: pd.DataFrame
-            It might receive two different types of DataFrames.
-
-            The first option is a DataFrame with the raw susceptibility test
-            records where the interpretation ('sensitive', 'intermediate',
-            'resistant') that will be used to compute the sari.
-
-            The second option is a DataFrame with the sari values already
-            computed.
+            It might receive two different types of DataFrames. The first option is
+            a DataFrame with the raw susceptibility test records where the interpretation
+            ('sensitive', 'intermediate', 'resistant') that will be used to compute the sari.
+            The second option is a DataFrame with the sari values already computed.
 
         shift: str
             Frequency value to pass to pd.Grouper.

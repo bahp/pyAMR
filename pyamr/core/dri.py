@@ -3,6 +3,7 @@ import warnings
 import pandas as pd
 
 def dri(*args, **kwargs):
+    """Redirects to ``drug_resistance_index``."""
     return drug_resistance_index(*args, **kwargs)
 
 def drug_resistance_index_v2(smmry, cu='use', cr='sari',
@@ -103,12 +104,17 @@ def drug_resistance_index_v2(smmry, cu='use', cr='sari',
 def drug_resistance_index(dataframe,
             return_complete=False,
             return_usage=False):
-    """Computes the DRI.
-
-    .. note:
+    """Computes the Drug Resistance Index.
 
     Parameters
     ----------
+    dataframe: pd.DataFrame
+
+    return_complete: bool, default=False
+        Returns the whole set of results.
+
+    return_usage: bool, default=False
+        Returns only 'use_period' and 'dri'.
 
     Returns
     -------
@@ -146,18 +152,15 @@ def drug_resistance_index(dataframe,
 
 
 class DRI:
-    """Class to compute the Drug Resistance Index.
-
-        .. minigallery:: pyamr.core.dri.DRI
-            :add-heading:
+    """Drug Resistance Index.
     """
     # Attributes
-    c_spe = 'SPECIMEN'
-    c_org = 'MICROORGANISM'
-    c_abx = 'ANTIMICROBIAL'
-    c_dat = 'DATE'
-    c_out = 'SENSITIVITY'
-    c_drg = 'DRUG'
+    #c_spe = 'SPECIMEN'
+    #c_org = 'MICROORGANISM'
+    #c_abx = 'ANTIMICROBIAL'
+    #c_dat = 'DATE'
+    #c_out = 'SENSITIVITY'
+    #c_drg = 'DRUG'
 
     c_res = 'RESISTANCE'
     c_use = 'USE'
@@ -175,15 +178,15 @@ class DRI:
 
     def compute(self, dataframe, groupby=None,
                 column_usage=None, **kwargs):
-        """Computes the DRI index.
+        """Computes the Drug Resistance Index.
 
-        .. note:: Include checks.
+        .. note:: Needs to include checks.
 
         Parameters
         ----------
         dataframe: pd.DataFrame
             The pandas dataframe with the information. The following columns
-            are always required [RESISTANCE and USE]. The RESISTANCE columns
+            are always required [RESISTANCE and USE]. The RESISTANCE column
             indicates the proportion of resistance isolates and the USE the
             amount of antimicrobial doses applied.
 

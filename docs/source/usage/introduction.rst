@@ -613,87 +613,102 @@ outcomes, and mitigate the further development and dissemination of antimicrobia
      - [0, 1]
      - Ratio of pathogens resistant to the antimicrobials used to treat them
 
-- **Single Antimicrobial Resistance Index (SARI)**
 
-    The single antimicrobial resistance index describes the proportion of resistant isolates for a
-    given set of susceptibility tests. It provides a value within the range [0,1] where values close
-    to one indicate high resistance. It is agnostic to pathogen, antibiotic and time. The variables *R*,
-    *I* and *S* represent the number of susceptibility tests with Resistant, Intermediate and Susceptible
-    outcomes respectively. The definition might vary slightly since the intermediate category is not
-    always considered.
 
-    See: :py:mod:`pyamr.core.sari.SARI`
 
-    Example: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_a_sari.py`
+Single Antimicrobial Resistance (SARI)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **Multiple Antimicrobial Resistance Index (MARI)**
+The single antimicrobial resistance index describes the proportion of resistant isolates for a
+given set of susceptibility tests. It provides a value within the range [0,1] where values close
+to one indicate high resistance. It is agnostic to pathogen, antibiotic and time. The variables *R*,
+*I* and *S* represent the number of susceptibility tests with Resistant, Intermediate and Susceptible
+outcomes respectively. The definition might vary slightly since the intermediate category is not
+always considered.
 
-    The multiple antimicrobial resistance describes the ratio of antimicrobials tested (*T*) to which a
-    pathogen is resistant (*R*). It provides a value within the range [0,1] where values close to
-    one indicate high multi-drug resistance. It highly depends on the antimicrobials to which the
-    pathogen is tested. Since tested antimicrobials vary among health care centres and time, comparison
-    and analysis of its evolution in time is not straight forward. In addition, antibiotics which are
-    intrinsically resistant should not be considered.
+See: :py:mod:`pyamr.core.sari.SARI`
 
-    See: :py:mod:`pyamr.core.mari.MARI`
+.. minigallery:: pyamr.core.sari
+   :add-heading:
 
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_c_mari.py`
+Multiple Antimicrobial Resistance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **Single Antimicrobial Resistance Trend (SART)**
+The multiple antimicrobial resistance describes the ratio of antimicrobials tested (*T*) to which a
+pathogen is resistant (*R*). It provides a value within the range [0,1] where values close to
+one indicate high multi-drug resistance. It highly depends on the antimicrobials to which the
+pathogen is tested. Since tested antimicrobials vary among health care centres and time, comparison
+and analysis of its evolution in time is not straight forward. In addition, antibiotics which are
+intrinsically resistant should not be considered.
 
-    The single antimicrobial resistance trend measures the ratio of change per time unit
-    (e.g. monthly or yearly). To compute this metric, it is necessary to generate a
-    resistance time series from the susceptibility test data. This is often achieved by
-    computing the SARI consecutive or overlapping partitions of the data. Then, the trend
-    can be extracted using for example a linear model where the slope, which is a value
-    within the range [-1, 1] indicates the ratio of change.
+See: :py:mod:`pyamr.core.mari.MARI`
 
-    See: :py:mod:`pyamr.core.sart.SART`
+.. minigallery:: pyamr.core.mari
+   :add-heading:
 
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_d_sart.py`
+Single Antimicrobial Resistance Trend
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **Antimicrobial Spectrum of Activity Index (ASAI)**
+The single antimicrobial resistance trend measures the ratio of change per time unit
+(e.g. monthly or yearly). To compute this metric, it is necessary to generate a
+resistance time series from the susceptibility test data. This is often achieved by
+computing the SARI consecutive or overlapping partitions of the data. Then, the trend
+can be extracted using for example a linear model where the slope, which is a value
+within the range [-1, 1] indicates the ratio of change.
 
-    The antimicrobial spectrum of activity index refers to the range of microbe species that are
-    susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
-    classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
-    against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
-    have limited activity and are effective only against particular species of bacteria.
+See: :py:mod:`pyamr.core.sart.SART`
 
-    See: :py:mod:`pyamr.core.asai.ASAI`
+.. minigallery:: pyamr.core.sart
+   :add-heading:
 
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_b_asai.py`
+Antimicrobial Spectrum of Activity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **Antimicrobial Collateral Sensitivity Index (ACSI)**
+The antimicrobial spectrum of activity index refers to the range of microbe species that are
+susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
+classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
+against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
+have limited activity and are effective only against particular species of bacteria.
 
-    The antimicrobial collateral sensitivity index is based on the mutual information score
-    and is useful to identify antibiotic pairs displaying concurrent resistance, independence, or
-    disjoint resistance. Mutual information quantifies the degree of dependence between two antibiotic
-    susceptibility test results (X and Y) by measuring the amount of information gained about one test
-    result (X) by knowing that of the other (Y). Susceptibility test results for pairs of antibiotics
-    (X/Y) belong to one of four possible states: susceptible/susceptible, susceptible/resistant,
-    resistant/susceptible, or resistant/resistant. Concurrent resistance manifests as an X/Y bias toward
-    susceptible/susceptible and resistant/resistant states, resulting in a positive MIS. Conversely, an
-    X/Y bias toward susceptible/resistant and resistant/susceptible due to disjoint resistance would result
-    in a negative MIS. The MIS is maximised (0·7) when susceptibility to one antibiotic always predicts
-    susceptibility to another antibiotic and similarly for non-susceptibility. The MIS is minimised
-    (−0·7) when resistance to one antibiotic always predicts susceptibility to another and vice versa.
+See: :py:mod:`pyamr.core.asai.ASAI`
 
-    See: :py:mod:`pyamr.core.acsi.ACSI`
+.. minigallery:: pyamr.core.asai
+   :add-heading:
 
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_f_acri.py`
+Antimicrobial Collateral Sensitivity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- **Drug Resistance Index (DRI)**
+The antimicrobial collateral sensitivity index is based on the mutual information score
+and is useful to identify antibiotic pairs displaying concurrent resistance, independence, or
+disjoint resistance. Mutual information quantifies the degree of dependence between two antibiotic
+susceptibility test results (X and Y) by measuring the amount of information gained about one test
+result (X) by knowing that of the other (Y). Susceptibility test results for pairs of antibiotics
+(X/Y) belong to one of four possible states: susceptible/susceptible, susceptible/resistant,
+resistant/susceptible, or resistant/resistant. Concurrent resistance manifests as an X/Y bias toward
+susceptible/susceptible and resistant/resistant states, resulting in a positive MIS. Conversely, an
+X/Y bias toward susceptible/resistant and resistant/susceptible due to disjoint resistance would result
+in a negative MIS. The MIS is maximised (0·7) when susceptibility to one antibiotic always predicts
+susceptibility to another antibiotic and similarly for non-susceptibility. The MIS is minimised
+(−0·7) when resistance to one antibiotic always predicts susceptibility to another and vice versa.
 
-    The drug resistance index measures the proportion of pathogens that are resistant to the
-    antimicrobials used to treat them. It provides a value within the range [0,1] where values
-    close to one indicate high resistant for frequent antimicrobials. The variable *ρik* is the
-    proportion of resistance among organism *i* to antimicrobial *k* and *qik* is the
-    frequency of drug *k* used to treat organism *i*.
+See: :py:mod:`pyamr.core.acsi.ACSI`
 
-    See: :py:mod:`pyamr.core.dri.DRI`
+.. minigallery:: pyamr.core.acsi
+   :add-heading:
 
-    Examples: :ref:`sphx_glr__examples_tutorial_indexes_plot_core_e_dri.py`
+Drug Resistance Index (DRI)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The drug resistance index measures the proportion of pathogens that are resistant to the
+antimicrobials used to treat them. It provides a value within the range [0,1] where values
+close to one indicate high resistant for frequent antimicrobials. The variable *ρik* is the
+proportion of resistance among organism *i* to antimicrobial *k* and *qik* is the
+frequency of drug *k* used to treat organism *i*.
+
+See: :py:mod:`pyamr.core.dri.DRI`
+
+.. minigallery:: pyamr.core.dri
+   :add-heading:
 
 
 
@@ -798,7 +813,7 @@ of the covariance, such that the result always has a value between −1 and 1. T
 can only reflect a linear correlation of variables, and ignores many other types of
 relationships or correlations.
 
-See :ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
+See: :py:mod:`pyamr.core.stats.correlation.CorrelationWrapper`
 
 
 Kurtosis
@@ -887,7 +902,7 @@ based on log-likelihood function (LLF), and but related to Akaike's information 
 Stationarity
 ************
 
-See :ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
+See: :py:mod:`pyamr.core.stats.stationarity.StationarityWrapper`
 
 
 Statistical tests
@@ -952,17 +967,19 @@ or hypothesis about the process. The conjecture is called the null hypothesis.
 Augmented Dicker-Fuller
 ***********************
 
-:ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
+See: :py:mod:`pyamr.core.stats.adfuller.ADFWrapper`
 
-Kendal
+Kendall
 ************
 
-.. warning:: Pending!
+See: :py:mod:`pyamr.core.stats.kendall.KendalWrapper`
+
 
 Kwiatkowski–Phillips–Schmidt–Shin
 *********************************
 
-:ref:`sphx_glr__examples_tutorial_guide_plot_step_03.py`
+See: :py:mod:`pyamr.core.stats.kpss.KPSSWrapper`
+
 
 Jarque Bera
 ************

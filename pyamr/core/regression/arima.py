@@ -35,16 +35,14 @@ from pyamr.core.regression.wreg import _insample_conf_int
 
 
 class ARIMAWrapper(RegressionWrapper):
-  """Description
-
-
+  """
   """
 
   # --------------------------------------------------------------------------
   #                              overriden
   # --------------------------------------------------------------------------
   def _identifier(self):
-    """The name to identify the arima model."""
+    """Generates name to identify the model."""
     return "%s%s [%s, %s]" % (getattr(self, '_name', None),
                               getattr(self, 'order', None),
                               getattr(self, 'trend', None),
@@ -85,7 +83,7 @@ class ARIMAWrapper(RegressionWrapper):
   #                              evaluate
   # --------------------------------------------------------------------------
   def evaluate(self, alpha=0.05):
-    """This method creates a dictionary with the relevant attributes.
+    """Generates a dictionary with the relevant attributes.
 
     .. note:: 
           
@@ -94,8 +92,7 @@ class ARIMAWrapper(RegressionWrapper):
           it with numpy array as input, hence when pandas series is passed 
           the method _init_result gives an error.
 
-    @see: statsmodels.Arima
-    @see: statsmodels.ArimaResults
+    Include ref to `statsmodels:Arima` and `statsmodels:ArimaResults`.
 
     Parameters
     ---------- 
@@ -144,7 +141,7 @@ class ARIMAWrapper(RegressionWrapper):
   #                             summary method
   # --------------------------------------------------------------------------
   def as_summary(self, **kwargs):
-    """This method creates a summary string.
+    """Returns a summary string (statsmodels inspired)
     """ 
     # Variables.
     n = 12 + len(self._raw.params)
@@ -172,14 +169,14 @@ class ARIMAWrapper(RegressionWrapper):
   #                             prediction method
   # ---------------------------------------------------------------------------
   def get_prediction(self, start=None, end=None, alpha=0.05, **kwargs):
-    """This method calls the predict function in ARIMA.
+    """Calls the predict function in ARIMA.
 
     .. note:: 
 
-      The confidence intervals have been implemented using the functions
-      ``_forecast_conf_int()`` and ``_forecast_error()`` implemented in the 
-      statsmodels.ts.arima_model.ARIMAResults. As such, it produces the 
-      same confidence intervals than the method ``plot_predict()``.
+      The confidence intervals have been implemented using the following
+      functions ``_forecast_conf_int()`` and ``_forecast_error()``. These
+      are implemented in ``statsmodels.ts.arima_model.ARIMAResults``. As such,
+      it produces the same confidence intervals than the method ``plot_predict()``.
 
     .. note:: 
     
@@ -250,7 +247,7 @@ class ARIMAWrapper(RegressionWrapper):
   def auto(self, endog, exog=None, ic='bic', trends=['n','c'], max_ar=3,
                  max_ma=3, max_d=1, warn='ignore', return_fits=False, 
                  converged=True, disp=0, verbose=0, **kwargs):
-    """This method finds the best arima through bruteforce.
+    """Find the best model through bruteforce.
 
     Note: It uses grid search through the base wrapper.
 
