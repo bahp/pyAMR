@@ -180,13 +180,14 @@ class SART:
 
         # Construct DataFrame
         table = pd.DataFrame([
-            obj.as_series().append(
+            pd.concat([
+                obj.as_series(),
                 pd.Series({
                     self.c_spe: name[0],
                     self.c_org: name[1],
                     self.c_abx: name[2]
                 })
-            ) for name, obj in objs])
+            ]) for name, obj in objs])
 
         # Set index information
         table = table.set_index([
