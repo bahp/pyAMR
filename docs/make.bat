@@ -34,7 +34,7 @@ goto end
 
 :github
 %SPHINXBUILD% -M "html" %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
-@sphinx-apidoc -o .\source\_apidoc ..\pyamr
+@sphinx-apidoc -o .\source\_apidoc ..\pyamr -f
 @xcopy .\build\html ..\..\gh-pages\docs\ /E /Y > nul
 
 :end

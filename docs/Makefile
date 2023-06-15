@@ -24,5 +24,5 @@ help:
 # implemented by changing the BUILDDIR variable. (add make clean html)
 github:
 	@make clean html
-	@sphinx-apidoc -o source/_apidoc ../../pyamr
+	@sphinx-apidoc -o source/_apidoc ../../pyamr -f
 	@cp -a build/html/ ../../gh-pages/docs
