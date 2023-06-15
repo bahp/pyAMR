@@ -129,6 +129,11 @@ def load_microbiology_folder(path, folder,
         pd.read_csv(f, parse_dates=['date_received'], **kwargs)
             for f in glob.glob(str(path_sus / glob_pattern))])
 
+    # The previous parse dates should work but it fails if any value
+    # cannot be represented as an array of datetimes. For that reason,
+    # we ensure non-standard datetime parsing below.
+    data.date_received = pd.to_datetime(data.date_received)
+
     # Load databases (registries)
     db_abxs = pd.read_csv(path_abx)
     db_orgs = pd.read_csv(path_org)
