@@ -2,12 +2,26 @@
 Step 03 - Time Series Analysis
 ==============================
 
-.. warning:: Verify tests with conditions from stattools.
+In this tutorial example, we will delve into the fascinating field of time series
+analysis and explore how to compute and analyze time series data. Time series analysis
+involves studying data points collected over regular intervals of time, with the aim
+of understanding patterns, trends, and relationships that may exist within the data.
+By applying statistical techniques, we can uncover valuable insights and make predictions
+based on historical trends.
 
-Useful references:
+Throughout this example, we will explore various statistical metrics and tests
+to that are commonly used for time series analysis, empowering you to harness the
+power of time-dependent data and extract meaningful information from it. The
+special focus is stationarity, which is a common requirements for further application
+of time series analysis methods.
 
-- https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
-- https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
+See below for a few resources.
+
+  * `R1`_: Understanding KPSS test for stationarity.
+  * `R2`_: Understanding autoregressions.
+
+.. _R1: https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
+.. _R2: https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
 
 """
 
@@ -59,7 +73,7 @@ print(correlation.as_summary())
 # Augmented Dickey-Fuller test
 # ----------------------------
 #
-# The Augmented Dickey-Fuller - ``ADF`` - test can be used to test for a unit root
+# The Augmented Dickey-Fuller or ``ADF`` test can be used to test for a unit root
 # in a univariate process in the presence of serial correlation. The intuition behind
 # a unit root test is that it determines how strongly a time series is defined by a trend.
 # ``ADF`` tests the null hypothesis that a unit root is present in a time series sample.
@@ -101,7 +115,7 @@ print(adf.as_summary())
 # Kwiatkowski-Phillips-Schmidt-Shin test
 # --------------------------------------
 #
-# The Kwiatkowski–Phillips–Schmidt–Shin - ``KPSS`` - test is used to identify
+# The Kwiatkowski–Phillips–Schmidt–Shin or ``KPSS`` test is used to identify
 # whether a time series is stationary around a deterministic trend (thus
 # trend stationary) against the alternative of a unit root.
 #
@@ -135,21 +149,66 @@ print(adf.as_summary())
 
 ###################################################################
 #
-# Trend and stationarity in TS
-# ----------------------------
+# Understanding stationarity in TS
+# --------------------------------
 #
-# An analysis of stationarity around a trend was carried out to identify time series
-# satisfying the assumptions posed by ARIMA. The augmented Dickey–Fuller test (ADF) was
-# used to determine the presence of a unit root. When the other roots of the characteristic
-# function lie inside the unit circle the first difference of the process is stationary. Due
-# to this property, these are also called difference-stationary processes. Since the absence
-# of unit root is not a proof of non-stationarity, the Kwiatkowski–Phillips–Schmidt–Shin
-# (KPSS) test was used to identify the existence of an underlying trend which can also be
-# removed to obtain a stationary process. These are called trend-stationary processes. In
-# both, unit-root and trend-stationary processes, the mean can be increasing or decreasing
-# over time; however, in the presence of a shock, trend-stationary processes revert to this
-# mean tendency in the long run (deterministic trend) while unit-root processes have a
-# permanent impact (stochastic trend). The significance level of the tests was set to 0.05.
+# In time series analysis, "stationarity" refers to a key assumption about the behavior
+# of a time series over time. A stationary time series is one in which statistical properties,
+# such as mean, variance, and autocorrelation, remain constant over time. Stationarity is an
+# important concept because many time series analysis techniques rely on this assumption for
+# their validity. There are different types of stationarity that can be observed in time series
+# data. Let's explore them:
+#
+# - **Strict Stationarity:** A time series is considered strictly stationary if the joint probability
+#   distribution of any set of its time points is invariant over time. This means that the statistical
+#   properties, such as mean, variance, and covariance, are constant across all time points.
+#
+# - **Weak Stationarity:** Weak stationarity, also known as second-order stationarity or covariance
+#   stationarity, is a less strict form of stationarity. A time series is considered weakly stationary
+#   if its mean and variance are constant over time, and the autocovariance between any two time points
+#   only depends on the time lag between them. In other words, the statistical properties of the time
+#   series do not change with time.
+#
+# - **Trend Stationarity:** Trend stationarity refers to a time series that exhibits a stable mean over
+#   time but may have a changing variance. This means that the data has a consistent trend component but
+#   the other statistical properties remain constant. In trend stationary series, the mean of the time
+#   series can be modeled by a constant or a linear trend.
+#
+# - **Difference Stationarity:** Difference stationarity, also known as integrated stationarity, occurs
+#   when differencing a non-stationary time series results in a stationary series. Differencing involves
+#   computing the differences between consecutive observations to remove trends or other non-stationary
+#   patterns. A differenced time series is said to be difference stationary if it exhibits weak stationarity
+#   after differencing.
+#
+# - **Seasonal Stationarity:** ...
+#
+# .. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Unit_root_hypothesis_diagram.svg/1280px-Unit_root_hypothesis_diagram.svg.png
+#    :width: 200
+#    :align: right
+#    :alt: skewness
+#
+# The augmented Dickey–Fuller test or ``ADF`` can be used to determine the presence of a unit root.
+# When the other roots of the characteristic function lie inside the unit circle the first
+# difference of the process is stationary. Due to this property, these are also called
+# difference-stationary processes. Since the absence of unit root is not a proof of non-stationarity,
+# the Kwiatkowski–Phillips–Schmidt–Shin or ``KPSS`` test can be used to identify the existence of an
+# underlying trend which can also be removed to obtain a stationary process. These are called
+# trend-stationary processes. In both, unit-root and trend-stationary processes, the mean can be
+# increasing or decreasing over time; however, in the presence of a shock, trend-stationary
+# processes (blue) revert to this mean tendency in the long run (deterministic trend) while unit-root
+# processes (green) have a permanent impact (stochastic trend). The significance level of the tests
+# is usually set to 0.05.
+#
+#
+# ================== ================== ========================= ============================
+# ADF                KPSS               Outcome                   Note
+# ================== ================== ========================= ============================
+# ``Non-Stationary`` ``Non-Stationary`` ``Non-Stationary``
+# ``Stationary``     ``Stationary``     ``Stationary``
+# ``Non-Stationary`` ``Stationary``     ``Trend-Stationary``      Check the de-trended series
+# ``Stationary``     ``Non-Stationary`` ``Difference-Stationary`` Check the differenced-series
+# ================== ================== ========================= ============================
+#
 #
 # See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationarity.py`
 #

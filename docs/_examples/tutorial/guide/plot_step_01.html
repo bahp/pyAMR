@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Step 01 - Indexes &mdash; pyamr 0.0.1 documentation</title>
+  <title>Step 01 - Compute AMR metrics &mdash; pyamr 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
@@ -17,17 +17,14 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Step 02 - Temporal evolution" href="plot_step_02.html" />
-    <link rel="prev" title="Tutorials" href="../index.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,32 +55,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html#guide-step-by-step">Guide step by step</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Step 01 - Indexes</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#loading-data">Loading data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#computing-sari">Computing SARI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#computing-asai">Computing ASAI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#computing-sart">Computing SART</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#computing-dri">Computing DRI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#computing-mari">Computing MARI</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_02.html">Step 02 - Temporal evolution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_03.html">Step 03 - Time Series Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="plot_step_04.html">Step 04 - TSA to estimate trends</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#computing-amr-metrics">Computing AMR metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#time-series-analysis-regression">Time-series analysis (regression)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#statistical-tests-wrappers">Statistical tests (wrappers)</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -100,8 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
-      <li class="breadcrumb-item active">Step 01 - Indexes</li>
+      <li class="breadcrumb-item active">Step 01 - Compute AMR metrics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/guide/plot_step_01.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -113,13 +91,13 @@
              
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
-<section class="sphx-glr-example-title" id="step-01-indexes">
-<span id="sphx-glr-examples-tutorial-guide-plot-step-01-py"></span><h1>Step 01 - Indexes<a class="headerlink" href="#step-01-indexes" title="Permalink to this heading"></a></h1>
-<section id="loading-data">
-<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this heading"></a></h2>
+<section class="sphx-glr-example-title" id="step-01-compute-amr-metrics">
+<span id="sphx-glr-examples-tutorial-guide-plot-step-01-py"></span><h1>Step 01 - Compute AMR metrics<a class="headerlink" href="#step-01-compute-amr-metrics" title="Permalink to this heading"></a></h1>
+<section id="loading-susceptibility-test-data">
+<h2>Loading susceptibility test data<a class="headerlink" href="#loading-susceptibility-test-data" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../../../_images/susceptibility-test-record.png"><img alt="ASAI" class="align-right" src="../../../_images/susceptibility-test-record.png" style="width: 200px;" /></a>
 <p>A <code class="docutils literal notranslate"><span class="pre">Susceptibility</span> <span class="pre">test</span></code> record (see figure 4.1) is composed by laboratory
 identification number (LID), patient identification number (PID), date, sample
@@ -130,57 +108,56 @@ for each sample type, the data were grouped by pairs (pathogen, antimicrobial)
 since it is widely accepted by clinicians as detailed in the UK five year
 strategy in AMR.</p>
 <p>A small dataset will be used for this example.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">29</span> <span class="c1"># Libraries</span>
-<span class="linenos">30</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="linenos">31</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="linenos">32</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="linenos">33</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="linenos">34</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="linenos">35</span>
-<span class="linenos">36</span> <span class="c1"># Import from pyAMR</span>
-<span class="linenos">37</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_susceptibility</span>
-<span class="linenos">38</span>
-<span class="linenos">39</span> <span class="k">try</span><span class="p">:</span>
-<span class="linenos">40</span>     <span class="vm">__file__</span>
-<span class="linenos">41</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="linenos">42</span> <span class="k">except</span><span class="p">:</span>
-<span class="linenos">43</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="linenos">44</span>
-<span class="linenos">45</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">46</span> <span class="c1"># Load data</span>
-<span class="linenos">47</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">48</span> <span class="c1"># Load data</span>
-<span class="linenos">49</span> <span class="n">data</span> <span class="o">=</span> <span class="n">make_susceptibility</span><span class="p">()</span>
-<span class="linenos">50</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-<span class="linenos">51</span>
-<span class="linenos">52</span> <span class="c1"># Show</span>
-<span class="linenos">53</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
-<span class="linenos">54</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="linenos">55</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
-<span class="linenos">56</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
-<span class="linenos">57</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Unique:&quot;</span><span class="p">)</span>
-<span class="linenos">58</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span>
-<span class="linenos">59</span>     <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
-<span class="linenos">60</span>     <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
-<span class="linenos">61</span>     <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
-<span class="linenos">62</span>     <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
-<span class="linenos">63</span>     <span class="s1">&#39;patient_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">28</span> <span class="c1"># Libraries</span>
+<span class="linenos">29</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos">30</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos">31</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="linenos">32</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos">33</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span> <span class="c1"># Import from pyAMR</span>
+<span class="linenos">36</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.load</span> <span class="kn">import</span> <span class="n">make_susceptibility</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span> <span class="k">try</span><span class="p">:</span>
+<span class="linenos">39</span>     <span class="vm">__file__</span>
+<span class="linenos">40</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">41</span> <span class="k">except</span><span class="p">:</span>
+<span class="linenos">42</span>     <span class="n">TERMINAL</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">45</span> <span class="c1"># Load data</span>
+<span class="linenos">46</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">47</span> <span class="c1"># Load data</span>
+<span class="linenos">48</span> <span class="n">data</span> <span class="o">=</span> <span class="n">make_susceptibility</span><span class="p">()</span>
+<span class="linenos">49</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span> <span class="c1"># Show</span>
+<span class="linenos">52</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data:&quot;</span><span class="p">)</span>
+<span class="linenos">53</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos">54</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columns:&quot;</span><span class="p">)</span>
+<span class="linenos">55</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="linenos">56</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Unique:&quot;</span><span class="p">)</span>
+<span class="linenos">57</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span>
+<span class="linenos">58</span>     <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+<span class="linenos">59</span>     <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+<span class="linenos">60</span>     <span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+<span class="linenos">61</span>     <span class="s1">&#39;laboratory_number&#39;</span><span class="p">,</span>
+<span class="linenos">62</span>     <span class="s1">&#39;patient_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-       date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
-0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMI           amikacin                NaN   sensitive NaN       NaN
-1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   resistant NaN       NaN
-2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAZT          aztreonam                NaN   sensitive NaN       NaN
-4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               ACAZ        ceftazidime                NaN   sensitive NaN       NaN
-...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
-319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   sensitive NaN       NaN
-319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ALIN          linezolid                NaN   sensitive NaN       NaN
-319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ASYN           synercid                NaN   resistant NaN       NaN
-319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ATEI        teicoplanin                NaN   sensitive NaN       NaN
-319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AVAN         vancomycin                NaN   sensitive NaN       NaN
+       date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
+0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMI           amikacin                NaN    sensitive NaN       NaN
+1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMO        amoxycillin                NaN    resistant NaN       NaN
+2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAUG          augmentin                NaN    sensitive NaN       NaN
+3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAZT          aztreonam                NaN    sensitive NaN       NaN
+4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               ACAZ        ceftazidime                NaN    sensitive NaN       NaN
+...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
+319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AAMO        amoxycillin                NaN    sensitive NaN       NaN
+319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ALIN          linezolid                NaN    sensitive NaN       NaN
+319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ASYN           synercid                NaN    resistant NaN       NaN
+319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ATEI        teicoplanin                NaN    sensitive NaN       NaN
+319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AVAN         vancomycin                NaN    sensitive NaN       NaN
 
 [319122 rows x 15 columns]
 
@@ -214,14 +191,14 @@ dtype: int64
 </section>
 <section id="computing-sari">
 <h2>Computing SARI<a class="headerlink" href="#computing-sari" title="Permalink to this heading"></a></h2>
-<p>The Single Antimicrobial Resistance Index - <code class="docutils literal notranslate"><span class="pre">SARI</span></code> - describes the proportion
+<p>The Single Antimicrobial Resistance Index or <code class="docutils literal notranslate"><span class="pre">SARI</span></code> describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a
 value within the range [0, 1] where values close to one indicate high resistance.
 It is agnostic to pathogen, antibiotic and/or time. The variables <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code> and
 <code class="docutils literal notranslate"><span class="pre">S</span></code> represent the number of susceptibility tests with Resistant, Intermediate and
 Susceptible outcomes respectively. The definition might vary slightly since the
 intermediate category is not always considered.</p>
-<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></p>
+<p>For more information see: <a class="reference internal" href="../../../_autosummary/pyamr.core.sari.html#pyamr.core.sari.SARI" title="pyamr.core.sari.SARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></a></p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
@@ -231,26 +208,27 @@ intermediate category is not always considered.</p>
 <li><p><a class="reference internal" href="../../indexes/plot_sari_c_relmap.html#sphx-glr-examples-indexes-plot-sari-c-relmap-py"><span class="std std-ref">SARI - By specimen w/ sns.relmap</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 88</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos"> 89</span> <span class="c1"># Compute SARI</span>
-<span class="linenos"> 90</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos"> 91</span> <span class="c1"># Libraries</span>
-<span class="linenos"> 92</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
-<span class="linenos"> 93</span>
-<span class="linenos"> 94</span> <span class="c1"># Create sari instance</span>
-<span class="linenos"> 95</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
-<span class="linenos"> 96</span>                      <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
-<span class="linenos"> 97</span>                      <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
-<span class="linenos"> 98</span>                      <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
-<span class="linenos"> 99</span>
-<span class="linenos">100</span> <span class="c1"># Compute SARI overall</span>
-<span class="linenos">101</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
-<span class="linenos">102</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">103</span>
-<span class="linenos">104</span> <span class="c1"># Show</span>
-<span class="linenos">105</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SARI (overall):&quot;</span><span class="p">)</span>
-<span class="linenos">106</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
-<span class="linenos">107</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 87</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos"> 88</span> <span class="c1"># Compute SARI</span>
+<span class="linenos"> 89</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos"> 90</span> <span class="c1"># Libraries</span>
+<span class="linenos"> 91</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span> <span class="c1"># Create sari instance</span>
+<span class="linenos"> 94</span> <span class="n">sari</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+<span class="linenos"> 95</span>                      <span class="s1">&#39;microorganism_name&#39;</span><span class="p">,</span>
+<span class="linenos"> 96</span>                      <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+<span class="linenos"> 97</span>                      <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span> <span class="c1"># Compute SARI overall</span>
+<span class="linenos">100</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sari</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">101</span>     <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">102</span>
+<span class="linenos">103</span> <span class="c1"># Show</span>
+<span class="linenos">104</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SARI (overall):&quot;</span><span class="p">)</span>
+<span class="linenos">105</span> <span class="nb">print</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span> <span class="c1"># ------------</span>
 <span class="linenos">108</span> <span class="c1"># Plot Heatmap</span>
 <span class="linenos">109</span> <span class="c1"># ------------</span>
 <span class="linenos">110</span> <span class="c1"># Filter</span>
@@ -285,8 +263,7 @@ intermediate category is not always considered.</p>
 <span class="linenos">139</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_step_01_001.png" srcset="../../../_images/sphx_glr_plot_step_01_001.png" alt="Antibiogram" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (overall):
+<img src="../../../_images/sphx_glr_plot_step_01_001.png" srcset="../../../_images/sphx_glr_plot_step_01_001.png" alt="Antibiogram" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SARI (overall):
                                                                         intermediate  resistant  sensitive  freq      sari
 specimen_code microorganism_name                    antimicrobial_name
 BFLCUL        anaerobes                             metronidazole                0.0        0.0        1.0   1.0  0.000000
@@ -305,6 +282,13 @@ XINCUL        streptococcus beta-haemolytic group b cephalexin                  
 </pre></div>
 </div>
 </section>
+<section id="computing-mari">
+<h2>Computing MARI<a class="headerlink" href="#computing-mari" title="Permalink to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending… similar to <code class="docutils literal notranslate"><span class="pre">SARI</span></code>.</p>
+</div>
+</section>
 <section id="computing-asai">
 <h2>Computing ASAI<a class="headerlink" href="#computing-asai" title="Permalink to this heading"></a></h2>
 <p>The antimicrobial spectrum of activity refers to the range of microbe species
@@ -316,7 +300,7 @@ activity and are effective only against particular species of bacteria. While th
 profiles appeared in the mid-1950s, little effort has been made to define them.
 Furthermore, such ambiguous labels are overused for different and even contradictory
 purposes.</p>
-<p>In order to compute the antimicrobial spectrum of activity index - <code class="docutils literal notranslate"><span class="pre">ASAI</span></code> -, it
+<p>In order to compute the antimicrobial spectrum of activity index or <code class="docutils literal notranslate"><span class="pre">ASAI</span></code>, it
 is necessary to previously obtain the overall resistance (SARI) for all the
 microbe-antimicrobial pairs. Furthermore, by following the criteria used in the
 narrow-broad approach, these pairs were grouped into Gram-positive and Gram-negative.
@@ -325,7 +309,7 @@ is effective is computed for each genus. These are later added up and normalized
 the number of genera tested. An antimicrobial is considered effective to treat a
 particular species when the corresponding resistance index (SARI) is lower than
 a given threshold.</p>
-<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></p>
+<p>For more information see: <a class="reference internal" href="../../../_autosummary/pyamr.core.asai.html#pyamr.core.asai.ASAI" title="pyamr.core.asai.ASAI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></a></p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
@@ -340,69 +324,68 @@ and <code class="docutils literal notranslate"><span class="pre">resistance</spa
 information too. This information is available in the registries:
 <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.datasets.registries</span></code></p>
 <p>Lets include all this information using the <code class="docutils literal notranslate"><span class="pre">MicroorganismRegistry</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">184</span> <span class="c1"># ------------------------------</span>
-<span class="linenos">185</span> <span class="c1"># Include gram stain</span>
-<span class="linenos">186</span> <span class="c1"># ------------------------------</span>
-<span class="linenos">187</span> <span class="c1"># Libraries</span>
-<span class="linenos">188</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">MicroorganismRegistry</span>
-<span class="linenos">189</span>
-<span class="linenos">190</span> <span class="c1"># Load registry</span>
-<span class="linenos">191</span> <span class="n">mreg</span> <span class="o">=</span> <span class="n">MicroorganismRegistry</span><span class="p">()</span>
-<span class="linenos">192</span>
-<span class="linenos">193</span> <span class="c1"># Format sari dataframe</span>
-<span class="linenos">194</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">195</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">191</span> <span class="c1"># ------------------------------</span>
+<span class="linenos">192</span> <span class="c1"># Include gram stain</span>
+<span class="linenos">193</span> <span class="c1"># ------------------------------</span>
+<span class="linenos">194</span> <span class="c1"># Libraries</span>
+<span class="linenos">195</span> <span class="kn">from</span> <span class="nn">pyamr.datasets.registries</span> <span class="kn">import</span> <span class="n">MicroorganismRegistry</span>
 <span class="linenos">196</span>
-<span class="linenos">197</span> <span class="c1"># Create genus and species</span>
-<span class="linenos">198</span> <span class="n">dataframe</span><span class="p">[[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]]</span> <span class="o">=</span> \
-<span class="linenos">199</span>     <span class="n">dataframe</span><span class="o">.</span><span class="n">microorganism_name</span> \
-<span class="linenos">200</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> \
-<span class="linenos">201</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos">202</span>
-<span class="linenos">203</span> <span class="c1"># Combine with registry information</span>
-<span class="linenos">204</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
-<span class="linenos">205</span>
-<span class="linenos">206</span> <span class="c1"># Fill missing gram stain</span>
-<span class="linenos">207</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="linenos">197</span> <span class="c1"># Load registry</span>
+<span class="linenos">198</span> <span class="n">mreg</span> <span class="o">=</span> <span class="n">MicroorganismRegistry</span><span class="p">()</span>
+<span class="linenos">199</span>
+<span class="linenos">200</span> <span class="c1"># Format sari dataframe</span>
+<span class="linenos">201</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">sari_overall</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">202</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span> <span class="c1"># Create genus and species</span>
+<span class="linenos">205</span> <span class="n">dataframe</span><span class="p">[[</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]]</span> <span class="o">=</span> \
+<span class="linenos">206</span>     <span class="n">dataframe</span><span class="o">.</span><span class="n">microorganism_name</span> \
+<span class="linenos">207</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> \
+<span class="linenos">208</span>         <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">209</span>
+<span class="linenos">210</span> <span class="c1"># Combine with registry information</span>
+<span class="linenos">211</span> <span class="n">dataframe</span> <span class="o">=</span> <span class="n">mreg</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;microorganism_name&#39;</span><span class="p">)</span>
+<span class="linenos">212</span>
+<span class="linenos">213</span> <span class="c1"># Fill missing gram stain</span>
+<span class="linenos">214</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">gram_stain</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now that we have the <code class="docutils literal notranslate"><span class="pre">genus</span></code>, <code class="docutils literal notranslate"><span class="pre">species</span></code> and <code class="docutils literal notranslate"><span class="pre">gram_stain</span></code> information,
 lets compute <code class="docutils literal notranslate"><span class="pre">ASAI</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">215</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">216</span> <span class="c1"># Compute ASAI</span>
-<span class="linenos">217</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">218</span> <span class="c1"># Import specific libraries</span>
-<span class="linenos">219</span> <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">ASAI</span>
-<span class="linenos">220</span>
-<span class="linenos">221</span> <span class="c1"># Create asai instance</span>
-<span class="linenos">222</span> <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span>
-<span class="linenos">223</span>             <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
-<span class="linenos">224</span>             <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
-<span class="linenos">225</span>             <span class="n">column_frequency</span><span class="o">=</span><span class="s1">&#39;freq&#39;</span><span class="p">)</span>
-<span class="linenos">226</span>
-<span class="linenos">227</span> <span class="c1"># Compute</span>
-<span class="linenos">228</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
-<span class="linenos">229</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
-<span class="linenos">230</span>              <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
-<span class="linenos">231</span>              <span class="s1">&#39;gram_stain&#39;</span><span class="p">],</span>
-<span class="linenos">232</span>     <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
-<span class="linenos">233</span>     <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="linenos">234</span>     <span class="n">min_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos">235</span>
-<span class="linenos">236</span> <span class="c1"># Stack</span>
-<span class="linenos">237</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-<span class="linenos">238</span>
-<span class="linenos">239</span> <span class="c1"># Filter and drop index.</span>
-<span class="linenos">240</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos">241</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">222</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">223</span> <span class="c1"># Compute ASAI</span>
+<span class="linenos">224</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">225</span> <span class="c1"># Import specific libraries</span>
+<span class="linenos">226</span> <span class="kn">from</span> <span class="nn">pyamr.core.asai</span> <span class="kn">import</span> <span class="n">ASAI</span>
+<span class="linenos">227</span>
+<span class="linenos">228</span> <span class="c1"># Create asai instance</span>
+<span class="linenos">229</span> <span class="n">asai</span> <span class="o">=</span> <span class="n">ASAI</span><span class="p">(</span><span class="n">column_genus</span><span class="o">=</span><span class="s1">&#39;genus&#39;</span><span class="p">,</span>
+<span class="linenos">230</span>             <span class="n">column_specie</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
+<span class="linenos">231</span>             <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
+<span class="linenos">232</span>             <span class="n">column_frequency</span><span class="o">=</span><span class="s1">&#39;freq&#39;</span><span class="p">)</span>
+<span class="linenos">233</span>
+<span class="linenos">234</span> <span class="c1"># Compute</span>
+<span class="linenos">235</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">asai</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
+<span class="linenos">236</span>     <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+<span class="linenos">237</span>              <span class="s1">&#39;antimicrobial_name&#39;</span><span class="p">,</span>
+<span class="linenos">238</span>              <span class="s1">&#39;gram_stain&#39;</span><span class="p">],</span>
+<span class="linenos">239</span>     <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+<span class="linenos">240</span>     <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">241</span>     <span class="n">min_freq</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="linenos">242</span>
-<span class="linenos">243</span> <span class="c1"># Show</span>
-<span class="linenos">244</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (overall):&quot;</span><span class="p">)</span>
-<span class="linenos">245</span> <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="linenos">243</span> <span class="c1"># Stack</span>
+<span class="linenos">244</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="linenos">245</span>
+<span class="linenos">246</span> <span class="c1"># Filter and drop index.</span>
+<span class="linenos">247</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;URICUL&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">248</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">()</span>
+<span class="linenos">249</span>
+<span class="linenos">250</span> <span class="c1"># Show</span>
+<span class="linenos">251</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ASAI (overall):&quot;</span><span class="p">)</span>
+<span class="linenos">252</span> <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:570: UserWarning:
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:572: UserWarning:
 
 
                  Extreme resistances [0, 1] were found in the DataFrame. These
@@ -410,7 +393,7 @@ lets compute <code class="docutils literal notranslate"><span class="pre">ASAI</
                  to pairs with low number of records.
 
 
-c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:584: UserWarning:
+c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:583: UserWarning:
 
 
                  There are NULL values in columns that are required. These
@@ -474,84 +457,269 @@ trimethoprim           5.0  2.0 NaN      5.0  7.0 NaN   0.200000  1.000000 NaN
 vancomycin             NaN  2.0 NaN      NaN  7.0 NaN        NaN  1.000000 NaN
 </pre></div>
 </div>
-<p>Lets plot it now!</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">251</span> <span class="c1"># ---------------------------------------------------------------</span>
-<span class="linenos">252</span> <span class="c1"># Plot</span>
-<span class="linenos">253</span> <span class="c1"># ---------------------------------------------------------------</span>
-<span class="linenos">254</span> <span class="c1"># .. note: In order to sort the scores we need to compute metrics</span>
-<span class="linenos">255</span> <span class="c1">#          that combine the different subcategories (e.g. gram-negative</span>
-<span class="linenos">256</span> <span class="c1">#          and gram-positive). Two possible options are: (i) use the</span>
-<span class="linenos">257</span> <span class="c1">#          gmean or (ii) the width.</span>
-<span class="linenos">258</span>
-<span class="linenos">259</span> <span class="c1"># Libraries</span>
-<span class="linenos">260</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.utils</span> <span class="kn">import</span> <span class="n">scalar_colormap</span>
-<span class="linenos">261</span>
-<span class="linenos">262</span> <span class="c1"># Measures</span>
-<span class="linenos">263</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="linenos">264</span>
-<span class="linenos">265</span> <span class="c1"># Variables to plot.</span>
-<span class="linenos">266</span> <span class="n">x</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
-<span class="linenos">267</span> <span class="n">y_n</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="linenos">268</span> <span class="n">y_p</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="linenos">269</span> <span class="n">y_u</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;u&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="linenos">270</span>
-<span class="linenos">271</span> <span class="c1"># Constants</span>
-<span class="linenos">272</span> <span class="n">colormap_p</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
-<span class="linenos">273</span> <span class="n">colormap_n</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_n</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
-<span class="linenos">274</span> <span class="n">colormap_u</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_u</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<p>This is the information obtained where the columns n, p, and u stand
+for gram-positive, gram-negative and unknown respectively. Similarly,
+N_GENUS and N_SPECIE indicates the number of genus and species for
+the specific antimicrobial.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">259</span> <span class="n">scores</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3" halign="left">N_GENUS</th>
+      <th colspan="3" halign="left">N_SPECIE</th>
+      <th colspan="3" halign="left">ASAI_SCORE</th>
+    </tr>
+    <tr>
+      <th>gram_stain</th>
+      <th>n</th>
+      <th>p</th>
+      <th>u</th>
+      <th>n</th>
+      <th>p</th>
+      <th>u</th>
+      <th>n</th>
+      <th>p</th>
+      <th>u</th>
+    </tr>
+    <tr>
+      <th>antimicrobial_name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>amikacin</th>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.800000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>amoxycillin</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>NaN</td>
+      <td>0.500000</td>
+      <td>0.833333</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>amp c markers</th>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.250000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>augmentin</th>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>7.0</td>
+      <td>NaN</td>
+      <td>0.200000</td>
+      <td>1.000000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>aztreonam</th>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.666667</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>cefotaxime</th>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.200000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>cefoxitin</th>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.400000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>cefpodoxime</th>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>0.400000</td>
+      <td>0.833333</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ceftazidime</th>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.600000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>cefuroxime</th>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /><p>Lets plot it now!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">265</span> <span class="c1"># ---------------------------------------------------------------</span>
+<span class="linenos">266</span> <span class="c1"># Plot</span>
+<span class="linenos">267</span> <span class="c1"># ---------------------------------------------------------------</span>
+<span class="linenos">268</span> <span class="c1"># .. note: In order to sort the scores we need to compute metrics</span>
+<span class="linenos">269</span> <span class="c1">#          that combine the different subcategories (e.g. gram-negative</span>
+<span class="linenos">270</span> <span class="c1">#          and gram-positive). Two possible options are: (i) use the</span>
+<span class="linenos">271</span> <span class="c1">#          gmean or (ii) the width.</span>
+<span class="linenos">272</span>
+<span class="linenos">273</span> <span class="c1"># Libraries</span>
+<span class="linenos">274</span> <span class="kn">from</span> <span class="nn">pyamr.utils.plot</span> <span class="kn">import</span> <span class="n">scalar_colormap</span>
 <span class="linenos">275</span>
-<span class="linenos">276</span> <span class="c1"># ----------</span>
-<span class="linenos">277</span> <span class="c1"># Example</span>
-<span class="linenos">278</span> <span class="c1"># ----------</span>
-<span class="linenos">279</span> <span class="c1"># This example shows an stacked figure using more than two categories.</span>
-<span class="linenos">280</span> <span class="c1"># For instance, it uses gram-positive, gram-negative and gram-unknown.</span>
-<span class="linenos">281</span> <span class="c1"># All the indexes go within the range [0,1].</span>
-<span class="linenos">282</span> <span class="c1"># Create the figure</span>
-<span class="linenos">283</span> <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="linenos">276</span> <span class="c1"># Measures</span>
+<span class="linenos">277</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos">278</span>
+<span class="linenos">279</span> <span class="c1"># Variables to plot.</span>
+<span class="linenos">280</span> <span class="n">x</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos">281</span> <span class="n">y_n</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos">282</span> <span class="n">y_p</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="linenos">283</span> <span class="n">y_u</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s1">&#39;ASAI_SCORE&#39;</span><span class="p">][</span><span class="s1">&#39;u&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="linenos">284</span>
-<span class="linenos">285</span> <span class="c1"># Plot each category</span>
-<span class="linenos">286</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_p</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_p</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
-<span class="linenos">287</span>             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
-<span class="linenos">288</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_n</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
-<span class="linenos">289</span>             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
-<span class="linenos">290</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_u</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_u</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
-<span class="linenos">291</span>             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-unknown&#39;</span><span class="p">)</span>
-<span class="linenos">292</span>
-<span class="linenos">293</span> <span class="c1"># Configure</span>
-<span class="linenos">294</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">295</span>
-<span class="linenos">296</span> <span class="c1"># Format figure</span>
-<span class="linenos">297</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="linenos">285</span> <span class="c1"># Constants</span>
+<span class="linenos">286</span> <span class="n">colormap_p</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_p</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="linenos">287</span> <span class="n">colormap_n</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_n</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="linenos">288</span> <span class="n">colormap_u</span> <span class="o">=</span> <span class="n">scalar_colormap</span><span class="p">(</span><span class="n">y_u</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="linenos">289</span>
+<span class="linenos">290</span> <span class="c1"># ----------</span>
+<span class="linenos">291</span> <span class="c1"># Example</span>
+<span class="linenos">292</span> <span class="c1"># ----------</span>
+<span class="linenos">293</span> <span class="c1"># This example shows an stacked figure using more than two categories.</span>
+<span class="linenos">294</span> <span class="c1"># For instance, it uses gram-positive, gram-negative and gram-unknown.</span>
+<span class="linenos">295</span> <span class="c1"># All the indexes go within the range [0,1].</span>
+<span class="linenos">296</span> <span class="c1"># Create the figure</span>
+<span class="linenos">297</span> <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="linenos">298</span>
-<span class="linenos">299</span> <span class="c1"># Remove yticks</span>
-<span class="linenos">300</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
-<span class="linenos">301</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
-<span class="linenos">302</span>
-<span class="linenos">303</span> <span class="c1"># Set title</span>
-<span class="linenos">304</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
-<span class="linenos">305</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
-<span class="linenos">306</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-unknown&#39;</span><span class="p">)</span>
-<span class="linenos">307</span>
-<span class="linenos">308</span> <span class="c1"># Set x-axis</span>
-<span class="linenos">309</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="linenos">310</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="linenos">311</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="linenos">299</span> <span class="c1"># Plot each category</span>
+<span class="linenos">300</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_p</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_p</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
+<span class="linenos">301</span>             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
+<span class="linenos">302</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_n</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
+<span class="linenos">303</span>             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
+<span class="linenos">304</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_u</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">colormap_u</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">,</span>
+<span class="linenos">305</span>             <span class="n">saturation</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gram-unknown&#39;</span><span class="p">)</span>
+<span class="linenos">306</span>
+<span class="linenos">307</span> <span class="c1"># Configure</span>
+<span class="linenos">308</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">309</span>
+<span class="linenos">310</span> <span class="c1"># Format figure</span>
+<span class="linenos">311</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="linenos">312</span>
-<span class="linenos">313</span> <span class="c1"># Adjust</span>
-<span class="linenos">314</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">313</span> <span class="c1"># Remove yticks</span>
+<span class="linenos">314</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="linenos">315</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="linenos">316</span>
+<span class="linenos">317</span> <span class="c1"># Set title</span>
+<span class="linenos">318</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-positive&#39;</span><span class="p">)</span>
+<span class="linenos">319</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-negative&#39;</span><span class="p">)</span>
+<span class="linenos">320</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Gram-unknown&#39;</span><span class="p">)</span>
+<span class="linenos">321</span>
+<span class="linenos">322</span> <span class="c1"># Set x-axis</span>
+<span class="linenos">323</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="linenos">324</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="linenos">325</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="linenos">326</span>
+<span class="linenos">327</span> <span class="c1"># Adjust</span>
+<span class="linenos">328</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 <img src="../../../_images/sphx_glr_plot_step_01_002.png" srcset="../../../_images/sphx_glr_plot_step_01_002.png" alt="Gram-positive, Gram-negative, Gram-unknown" class = "sphx-glr-single-img"/></section>
 <section id="computing-sart">
 <h2>Computing SART<a class="headerlink" href="#computing-sart" title="Permalink to this heading"></a></h2>
-<p>The single antimicrobial resistance trend - <code class="docutils literal notranslate"><span class="pre">SART</span></code> - measures the ratio
+<p>The single antimicrobial resistance trend or <code class="docutils literal notranslate"><span class="pre">SART</span></code> measures the ratio
 of change per time unit (e.g. monthly or yearly). To compute this metric,
 it is necessary to generate a resistance time series from the susceptibility
 test data. This is often achieved by computing the SARI on consecutive or
 overlapping partitions of the data. Then, the trend can be extracted using
 for example a linear model where the slope, which is represented by a value
 within the range [-1, 1], indicates the ratio of change.</p>
-<p>For more information see: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sart.SART</span></code></p>
+<p>For more information see: <a class="reference internal" href="../../../_autosummary/pyamr.core.sart.html#pyamr.core.sart.SART" title="pyamr.core.sart.SART"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sart.SART</span></code></a></p>
 <p>For more examples see:</p>
 <blockquote>
 <div><ul class="simple">
@@ -561,61 +729,39 @@ within the range [-1, 1], indicates the ratio of change.</p>
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Be cautious when Computing the <code class="docutils literal notranslate"><span class="pre">SART</span></code> index using a small dataset
+<p>Be cautious when computing the <code class="docutils literal notranslate"><span class="pre">SART</span></code> index using a small dataset
 (e.g. a low number of susceptibility tests records) since it is very
 likely that the statistics produced (e.g. kurtosis or skewness) will
-be ill defined.</p>
+be ill defined. Also remember to check stationarity if using ARIMA.</p>
 </div>
 <p>Since it is necessary to have a decent amount of records to be
-able to compute the trends accurately, lets filter and choose
-the tuples were are interested in.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">348</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">349</span> <span class="c1"># Show top combinations</span>
-<span class="linenos">350</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">351</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
-<span class="linenos">352</span>
-<span class="linenos">353</span> <span class="c1"># Create SARI instance</span>
-<span class="linenos">354</span> <span class="n">sar</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
-<span class="linenos">355</span>                     <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
-<span class="linenos">356</span>                     <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
-<span class="linenos">357</span>                     <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
-<span class="linenos">358</span>
-<span class="linenos">359</span> <span class="c1"># Compute SARI overall</span>
-<span class="linenos">360</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
-<span class="linenos">361</span>      <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">362</span>
-<span class="linenos">363</span> <span class="c1"># Compute top tuples</span>
-<span class="linenos">364</span> <span class="n">top</span> <span class="o">=</span> <span class="n">sari_overall</span> \
-<span class="linenos">365</span>     <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> \
-<span class="linenos">366</span>     <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="linenos">367</span>
-<span class="linenos">368</span> <span class="c1"># Show</span>
-<span class="linenos">369</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top by Frequency:&quot;</span><span class="p">)</span>
-<span class="linenos">370</span> <span class="nb">print</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+able to compute the trends accurately, lets see which tuples
+have more number of samples.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">361</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">362</span> <span class="c1"># Show top combinations</span>
+<span class="linenos">363</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">364</span> <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
+<span class="linenos">365</span>
+<span class="linenos">366</span> <span class="c1"># Create SARI instance</span>
+<span class="linenos">367</span> <span class="n">sar</span> <span class="o">=</span> <span class="n">SARI</span><span class="p">(</span><span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+<span class="linenos">368</span>                     <span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+<span class="linenos">369</span>                     <span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+<span class="linenos">370</span>                     <span class="s1">&#39;sensitivity&#39;</span><span class="p">])</span>
 <span class="linenos">371</span>
-<span class="linenos">372</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">373</span> <span class="c1"># Filter data</span>
-<span class="linenos">374</span> <span class="c1"># -------------------------------------------</span>
-<span class="linenos">375</span> <span class="c1"># Define spec, orgs, abxs of interest</span>
-<span class="linenos">376</span> <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;URICUL&#39;</span><span class="p">]</span>
-<span class="linenos">377</span> <span class="n">orgs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ECOL&#39;</span><span class="p">]</span>
-<span class="linenos">378</span> <span class="n">abxs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ACELX&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;AAMPC&#39;</span><span class="p">,</span> <span class="s1">&#39;ATRI&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span>
-<span class="linenos">379</span>         <span class="s1">&#39;AMER&#39;</span><span class="p">,</span> <span class="s1">&#39;ANIT&#39;</span><span class="p">,</span> <span class="s1">&#39;AAMI&#39;</span><span class="p">,</span> <span class="s1">&#39;ACTX&#39;</span><span class="p">,</span> <span class="s1">&#39;ATAZ&#39;</span><span class="p">,</span>
-<span class="linenos">380</span>         <span class="s1">&#39;AGEN&#39;</span><span class="p">,</span> <span class="s1">&#39;AERT&#39;</span><span class="p">,</span> <span class="s1">&#39;ACAZ&#39;</span><span class="p">,</span> <span class="s1">&#39;AMEC&#39;</span><span class="p">,</span> <span class="s1">&#39;ACXT&#39;</span><span class="p">]</span>
-<span class="linenos">381</span>
-<span class="linenos">382</span> <span class="c1"># Create auxiliary DataFrame</span>
-<span class="linenos">383</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> \
-<span class="linenos">384</span>
-<span class="linenos">385</span> <span class="c1"># Filter</span>
-<span class="linenos">386</span> <span class="n">idxs_spec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
-<span class="linenos">387</span> <span class="n">idxs_orgs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">microorganism_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">orgs</span><span class="p">)</span>
-<span class="linenos">388</span> <span class="n">idxs_abxs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">antimicrobial_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">abxs</span><span class="p">)</span>
-<span class="linenos">389</span>
-<span class="linenos">390</span> <span class="c1"># Filter</span>
-<span class="linenos">391</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">idxs_spec</span> <span class="o">&amp;</span> <span class="n">idxs_orgs</span> <span class="o">&amp;</span> <span class="n">idxs_abxs</span><span class="p">]</span>
+<span class="linenos">372</span> <span class="c1"># Compute SARI overall</span>
+<span class="linenos">373</span> <span class="n">sari_overall</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="linenos">374</span>      <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">375</span>
+<span class="linenos">376</span> <span class="c1"># Compute top tuples</span>
+<span class="linenos">377</span> <span class="n">top</span> <span class="o">=</span> <span class="n">sari_overall</span> \
+<span class="linenos">378</span>     <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> \
+<span class="linenos">379</span>     <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">380</span>
+<span class="linenos">381</span> <span class="c1"># Show</span>
+<span class="linenos">382</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top by Frequency:&quot;</span><span class="p">)</span>
+<span class="linenos">383</span> <span class="nb">print</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Top by Frequency:
                                                      intermediate  resistant  sensitive    freq      sari
 specimen_code microorganism_code antimicrobial_code
@@ -631,33 +777,55 @@ WOUCUL        SAUR               AFUS                         0.0      613.0    
                                  AMET                         0.0      869.0     3372.0  4241.0  0.204905
 </pre></div>
 </div>
-<p>Now, lets compute the resistance trend.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">398</span> <span class="c1"># Libraries</span>
-<span class="linenos">399</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<p>Let’s choose the tuples were are interested in.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">388</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">389</span> <span class="c1"># Filter data</span>
+<span class="linenos">390</span> <span class="c1"># -------------------------------------------</span>
+<span class="linenos">391</span> <span class="c1"># Define spec, orgs, abxs of interest</span>
+<span class="linenos">392</span> <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;URICUL&#39;</span><span class="p">]</span>
+<span class="linenos">393</span> <span class="n">orgs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ECOL&#39;</span><span class="p">]</span>
+<span class="linenos">394</span> <span class="n">abxs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ACELX&#39;</span><span class="p">,</span> <span class="s1">&#39;ACIP&#39;</span><span class="p">,</span> <span class="s1">&#39;AAMPC&#39;</span><span class="p">,</span> <span class="s1">&#39;ATRI&#39;</span><span class="p">,</span> <span class="s1">&#39;AAUG&#39;</span><span class="p">,</span>
+<span class="linenos">395</span>         <span class="s1">&#39;AMER&#39;</span><span class="p">,</span> <span class="s1">&#39;ANIT&#39;</span><span class="p">,</span> <span class="s1">&#39;AAMI&#39;</span><span class="p">,</span> <span class="s1">&#39;ACTX&#39;</span><span class="p">,</span> <span class="s1">&#39;ATAZ&#39;</span><span class="p">,</span>
+<span class="linenos">396</span>         <span class="s1">&#39;AGEN&#39;</span><span class="p">,</span> <span class="s1">&#39;AERT&#39;</span><span class="p">,</span> <span class="s1">&#39;ACAZ&#39;</span><span class="p">,</span> <span class="s1">&#39;AMEC&#39;</span><span class="p">,</span> <span class="s1">&#39;ACXT&#39;</span><span class="p">]</span>
+<span class="linenos">397</span>
+<span class="linenos">398</span> <span class="c1"># Create auxiliary DataFrame</span>
+<span class="linenos">399</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> \
 <span class="linenos">400</span>
-<span class="linenos">401</span> <span class="c1"># Import specific libraries</span>
-<span class="linenos">402</span> <span class="kn">from</span> <span class="nn">pyamr.core.sart</span> <span class="kn">import</span> <span class="n">SART</span>
-<span class="linenos">403</span>
-<span class="linenos">404</span> <span class="c1"># Variables</span>
-<span class="linenos">405</span> <span class="n">shift</span><span class="p">,</span> <span class="n">period</span> <span class="o">=</span> <span class="s1">&#39;10D&#39;</span><span class="p">,</span> <span class="s1">&#39;180D&#39;</span>
-<span class="linenos">406</span>
-<span class="linenos">407</span> <span class="c1"># Create instance</span>
-<span class="linenos">408</span> <span class="n">sar</span> <span class="o">=</span> <span class="n">SART</span><span class="p">(</span><span class="n">column_specimen</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
-<span class="linenos">409</span>            <span class="n">column_microorganism</span><span class="o">=</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
-<span class="linenos">410</span>            <span class="n">column_antimicrobial</span><span class="o">=</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
-<span class="linenos">411</span>            <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
-<span class="linenos">412</span>            <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">,</span>
-<span class="linenos">413</span>            <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">)</span>
-<span class="linenos">414</span>
-<span class="linenos">415</span> <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
-<span class="linenos">416</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-<span class="linenos">417</span>
-<span class="linenos">418</span>     <span class="c1"># Compute resistance trends</span>
-<span class="linenos">419</span>     <span class="n">table</span><span class="p">,</span> <span class="n">objs</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
-<span class="linenos">420</span>         <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">return_objects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">401</span> <span class="c1"># Filter</span>
+<span class="linenos">402</span> <span class="n">idxs_spec</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">specimen_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+<span class="linenos">403</span> <span class="n">idxs_orgs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">microorganism_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">orgs</span><span class="p">)</span>
+<span class="linenos">404</span> <span class="n">idxs_abxs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">antimicrobial_code</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">abxs</span><span class="p">)</span>
+<span class="linenos">405</span>
+<span class="linenos">406</span> <span class="c1"># Filter</span>
+<span class="linenos">407</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="p">[</span><span class="n">idxs_spec</span> <span class="o">&amp;</span> <span class="n">idxs_orgs</span> <span class="o">&amp;</span> <span class="n">idxs_abxs</span><span class="p">]</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
+<p>Now, lets compute the resistance trend.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">414</span> <span class="c1"># Libraries</span>
+<span class="linenos">415</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="linenos">416</span>
+<span class="linenos">417</span> <span class="c1"># Import specific libraries</span>
+<span class="linenos">418</span> <span class="kn">from</span> <span class="nn">pyamr.core.sart</span> <span class="kn">import</span> <span class="n">SART</span>
+<span class="linenos">419</span>
+<span class="linenos">420</span> <span class="c1"># Variables</span>
+<span class="linenos">421</span> <span class="n">shift</span><span class="p">,</span> <span class="n">period</span> <span class="o">=</span> <span class="s1">&#39;10D&#39;</span><span class="p">,</span> <span class="s1">&#39;180D&#39;</span>
+<span class="linenos">422</span>
+<span class="linenos">423</span> <span class="c1"># Create instance</span>
+<span class="linenos">424</span> <span class="n">sar</span> <span class="o">=</span> <span class="n">SART</span><span class="p">(</span><span class="n">column_specimen</span><span class="o">=</span><span class="s1">&#39;specimen_code&#39;</span><span class="p">,</span>
+<span class="linenos">425</span>            <span class="n">column_microorganism</span><span class="o">=</span><span class="s1">&#39;microorganism_code&#39;</span><span class="p">,</span>
+<span class="linenos">426</span>            <span class="n">column_antimicrobial</span><span class="o">=</span><span class="s1">&#39;antimicrobial_code&#39;</span><span class="p">,</span>
+<span class="linenos">427</span>            <span class="n">column_date</span><span class="o">=</span><span class="s1">&#39;date_received&#39;</span><span class="p">,</span>
+<span class="linenos">428</span>            <span class="n">column_outcome</span><span class="o">=</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">,</span>
+<span class="linenos">429</span>            <span class="n">column_resistance</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">)</span>
+<span class="linenos">430</span>
+<span class="linenos">431</span> <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+<span class="linenos">432</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="linenos">433</span>
+<span class="linenos">434</span>     <span class="c1"># Compute resistance trends</span>
+<span class="linenos">435</span>     <span class="n">table</span><span class="p">,</span> <span class="n">objs</span> <span class="o">=</span> <span class="n">sar</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span>
+<span class="linenos">436</span>         <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">return_objects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span> 1/15. Computing... (&#39;URICUL&#39;, &#39;ECOL&#39;, &#39;AAMI&#39;)
  2/15. Computing... (&#39;URICUL&#39;, &#39;ECOL&#39;, &#39;AAMPC&#39;)
  3/15. Computing... (&#39;URICUL&#39;, &#39;ECOL&#39;, &#39;AAUG&#39;)
@@ -675,133 +843,474 @@ WOUCUL        SAUR               AFUS                         0.0      613.0    
 15/15. Computing... (&#39;URICUL&#39;, &#39;ECOL&#39;, &#39;ATRI&#39;)
 </pre></div>
 </div>
-<p>Lets see the summary DataFrame (note it is transposed!)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">426</span> <span class="c1"># Configure pandas</span>
-<span class="linenos">427</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span>
-<span class="linenos">428</span>     <span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>
-<span class="linenos">429</span>     <span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">1000</span>
-<span class="linenos">430</span> <span class="p">)</span>
-<span class="linenos">431</span>
-<span class="linenos">432</span> <span class="c1"># Show</span>
-<span class="linenos">433</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results:&quot;</span><span class="p">)</span>
-<span class="linenos">434</span> <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<p>Lets see the results(note it is transposed!)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">442</span> <span class="c1"># Configure pandas</span>
+<span class="linenos">443</span> <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span>
+<span class="linenos">444</span>     <span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>
+<span class="linenos">445</span>     <span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">1000</span>
+<span class="linenos">446</span> <span class="p">)</span>
+<span class="linenos">447</span>
+<span class="linenos">448</span> <span class="c1"># Show</span>
+<span class="linenos">449</span> <span class="c1">#print(&quot;Results:&quot;)</span>
+<span class="linenos">450</span> <span class="c1">#print(table.T)</span>
+<span class="linenos">451</span> <span class="n">table</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Results:
-specimen_code                     URICUL                                                                 ...
-microorganism_code                  ECOL                                                                 ...
-antimicrobial_code                  AAMI                AAMPC                 AAUG                 ACAZ  ...                 AMER                 ANIT                 ATAZ                 ATRI
-wls-rsquared                    0.557029              0.12798             0.906452             0.004545  ...             0.648313             0.907027             0.412661             0.600203
-wls-rsquared_adj                0.544373              0.09791             0.903779            -0.023896  ...             0.638265              0.90437              0.39588              0.58878
-wls-fvalue                     44.012024             4.256121           339.140633             0.159818  ...            64.520235           341.452365            24.590823            52.544462
-wls-fprob                            0.0             0.048164                  0.0             0.691754  ...                  0.0                  0.0             0.000018                  0.0
-wls-aic                              inf                  inf                  inf                  inf  ...                  inf                  inf                  inf                  inf
-wls-bic                              inf                  inf                  inf                  inf  ...                  inf                  inf                  inf                  inf
-wls-llf                             -inf                 -inf                 -inf                 -inf  ...                 -inf                 -inf                 -inf                 -inf
-wls-mse_model                   0.745856             4.978205            33.299393               0.2007  ...             0.519024            10.349547            45.507504            10.110853
-wls-mse_resid                   0.016947             1.169658             0.098188             1.255805  ...             0.008044              0.03031             1.850589             0.192425
-wls-mse_total                   0.037194             1.296609             1.020443             1.226496  ...             0.022238             0.316956             3.063281             0.467937
-wls-const_coef                  0.031283            68.761679             1.544961            65.712841  ...            -0.112373              6.26858            31.568866            37.277358
-wls-const_std                   0.093007             0.698295             0.234858              0.80353  ...             0.064328             0.130513             0.975447             0.328813
-wls-const_tvalue                0.336351            98.470788             6.578289            81.780194  ...            -1.746865             48.03046            32.363472           113.369592
-wls-const_tprob                 0.738614                  0.0                  0.0                  0.0  ...             0.089432                  0.0                  0.0                  0.0
-wls-const_cil                  -0.157532            67.333505             1.068175            64.081588  ...            -0.242966             6.003625            29.588602            36.609832
-wls-const_ciu                   0.220098            70.189854             2.021747            67.344094  ...             0.018221             6.533535            33.549129            37.944883
-wls-x1_coef                     0.024239             0.072052             0.167941            -0.012606  ...             0.020269            -0.093639             -0.18984            -0.092547
-wls-x1_std                      0.003654             0.034925             0.009119             0.031532  ...             0.002523             0.005067             0.038283             0.012767
-wls-x1_tvalue                   6.634156             2.063037            18.415771            -0.399772  ...             8.032449            -18.47843            -4.958913            -7.248756
-wls-x1_tprob                         0.0             0.048164                  0.0             0.691754  ...                  0.0                  0.0             0.000018                  0.0
-wls-x1_cil                      0.016822             0.000622             0.149427            -0.076619  ...             0.015146            -0.103927            -0.267558            -0.118466
-wls-x1_ciu                      0.031656             0.143482             0.186454             0.051408  ...             0.025391            -0.083352            -0.112122            -0.066628
-wls-s_dw                           0.741                1.091                0.176                0.445  ...                0.491                 0.63                0.246                0.232
-wls-s_jb_value                     0.509                0.638                2.336                0.239  ...                1.016                4.482                0.826                1.043
-wls-s_jb_prob                      0.775                0.727                0.311                0.887  ...                0.602                0.106                0.662                0.594
-wls-s_skew                          0.21                -0.17                0.316               -0.051  ...                0.388                0.834               -0.344               -0.171
-wls-s_kurtosis                     2.608                2.385                1.944                 2.62  ...                3.242                3.352                2.748                2.252
-wls-s_omnibus_value                 0.39                0.518                5.037                 0.05  ...                1.808                5.624                0.929                1.287
-wls-s_omnibus_prob                 0.823                0.772                0.081                0.975  ...                0.405                 0.06                0.628                0.525
-wls-m_dw                        0.736178             0.537678             0.043909             0.188735  ...             0.411431             1.133668             0.186264             0.089424
-wls-m_jb_value                 26.465944           457.685847            27.729537            10.593247  ...             0.486958             6.291782             1.385706            24.677527
-wls-m_jb_prob                   0.000002                  0.0             0.000001             0.005008  ...             0.783896             0.043029             0.500147             0.000004
-wls-m_skew                       1.61218              4.04353              1.89606             1.267125  ...             0.020609             0.368771             0.306621             1.751497
-wls-m_kurtosis                  5.602039            19.998144             4.899094              3.66998  ...             2.439495             4.880741             2.276972             4.932894
-wls-m_nm_value                 19.984589            59.422218             21.39435            10.974889  ...             0.308437             5.950009             1.657183            19.849339
-wls-m_nm_prob                   0.000046                  0.0             0.000023             0.004138  ...             0.857085             0.051047             0.436664             0.000049
-wls-m_ks_value                  0.405236             0.149246             0.366502             0.365003  ...             0.416082             0.280692             0.361949              0.24743
-wls-m_ks_prob                   0.000005             0.451309             0.000058             0.000063  ...             0.000003             0.004524             0.000075              0.01759
-wls-m_shp_value                 0.845794             0.486878             0.565564             0.844264  ...             0.991385             0.917726             0.970485             0.725119
-wls-m_shp_prob                  0.000126                  0.0                  0.0             0.000116  ...             0.991378             0.009516             0.421651             0.000001
-wls-m_ad_value                  1.637801             5.197208             7.445695             2.187059  ...              0.09537             1.379665             0.320155             3.993855
-wls-m_ad_nnorm                     False                False                False                False  ...                 True                False                 True                False
-wls-pearson                     0.548657            -0.482852            -0.197034            -0.816642  ...             0.901674            -0.892774            -0.910851            -0.893425
-wls-missing                        raise                raise                raise                raise  ...                raise                raise                raise                raise
-wls-exog             [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  ...  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....
-wls-endog            [0.0, 0.0, 0.0, ...  [100.0, 77.77777...  [13.513513513513...  [75.0, 73.529411...  ...  [0.0, 0.0, 0.0, ...  [5.4054054054054...  [37.5, 36.764705...  [40.540540540540...
-wls-trend                              c                    c                    c                    c  ...                    c                    c                    c                    c
-wls-weights          [0.0, 0.00281585...  [0.0, 0.03706907...  [0.0, 0.00124501...  [0.0, 0.00278805...  ...  [0.0, 0.00280885...  [0.0, 0.00124341...  [0.0, 0.00278805...  [0.0, 0.00124364...
-wls-W                &lt;pyamr.metrics.w...  &lt;pyamr.metrics.w...  &lt;pyamr.metrics.w...  &lt;pyamr.metrics.w...  ...  &lt;pyamr.metrics.w...  &lt;pyamr.metrics.w...  &lt;pyamr.metrics.w...  &lt;pyamr.metrics.w...
-wls-model            &lt;statsmodels.reg...  &lt;statsmodels.reg...  &lt;statsmodels.reg...  &lt;statsmodels.reg...  ...  &lt;statsmodels.reg...  &lt;statsmodels.reg...  &lt;statsmodels.reg...  &lt;statsmodels.reg...
-wls-id                  WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))  ...     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))
+<div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-[51 rows x 15 columns]
-</pre></div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>specimen_code</th>
+      <th colspan="4" halign="left">URICUL</th>
+    </tr>
+    <tr>
+      <th>microorganism_code</th>
+      <th colspan="4" halign="left">ECOL</th>
+    </tr>
+    <tr>
+      <th>antimicrobial_code</th>
+      <th>AAMI</th>
+      <th>AAMPC</th>
+      <th>AAUG</th>
+      <th>ACAZ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>wls-rsquared</th>
+      <td>0.557029</td>
+      <td>0.12798</td>
+      <td>0.906452</td>
+      <td>0.004545</td>
+    </tr>
+    <tr>
+      <th>wls-rsquared_adj</th>
+      <td>0.544373</td>
+      <td>0.09791</td>
+      <td>0.903779</td>
+      <td>-0.023896</td>
+    </tr>
+    <tr>
+      <th>wls-fvalue</th>
+      <td>44.012024</td>
+      <td>4.256121</td>
+      <td>339.140633</td>
+      <td>0.159818</td>
+    </tr>
+    <tr>
+      <th>wls-fprob</th>
+      <td>0.0</td>
+      <td>0.048164</td>
+      <td>0.0</td>
+      <td>0.691754</td>
+    </tr>
+    <tr>
+      <th>wls-aic</th>
+      <td>inf</td>
+      <td>inf</td>
+      <td>inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>wls-bic</th>
+      <td>inf</td>
+      <td>inf</td>
+      <td>inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>wls-llf</th>
+      <td>-inf</td>
+      <td>-inf</td>
+      <td>-inf</td>
+      <td>-inf</td>
+    </tr>
+    <tr>
+      <th>wls-mse_model</th>
+      <td>0.745856</td>
+      <td>4.978205</td>
+      <td>33.299393</td>
+      <td>0.2007</td>
+    </tr>
+    <tr>
+      <th>wls-mse_resid</th>
+      <td>0.016947</td>
+      <td>1.169658</td>
+      <td>0.098188</td>
+      <td>1.255805</td>
+    </tr>
+    <tr>
+      <th>wls-mse_total</th>
+      <td>0.037194</td>
+      <td>1.296609</td>
+      <td>1.020443</td>
+      <td>1.226496</td>
+    </tr>
+    <tr>
+      <th>wls-const_coef</th>
+      <td>0.031283</td>
+      <td>68.761679</td>
+      <td>1.544961</td>
+      <td>65.712841</td>
+    </tr>
+    <tr>
+      <th>wls-const_std</th>
+      <td>0.093007</td>
+      <td>0.698295</td>
+      <td>0.234858</td>
+      <td>0.80353</td>
+    </tr>
+    <tr>
+      <th>wls-const_tvalue</th>
+      <td>0.336351</td>
+      <td>98.470788</td>
+      <td>6.578289</td>
+      <td>81.780194</td>
+    </tr>
+    <tr>
+      <th>wls-const_tprob</th>
+      <td>0.738614</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>wls-const_cil</th>
+      <td>-0.157532</td>
+      <td>67.333505</td>
+      <td>1.068175</td>
+      <td>64.081588</td>
+    </tr>
+    <tr>
+      <th>wls-const_ciu</th>
+      <td>0.220098</td>
+      <td>70.189854</td>
+      <td>2.021747</td>
+      <td>67.344094</td>
+    </tr>
+    <tr>
+      <th>wls-x1_coef</th>
+      <td>0.024239</td>
+      <td>0.072052</td>
+      <td>0.167941</td>
+      <td>-0.012606</td>
+    </tr>
+    <tr>
+      <th>wls-x1_std</th>
+      <td>0.003654</td>
+      <td>0.034925</td>
+      <td>0.009119</td>
+      <td>0.031532</td>
+    </tr>
+    <tr>
+      <th>wls-x1_tvalue</th>
+      <td>6.634156</td>
+      <td>2.063037</td>
+      <td>18.415771</td>
+      <td>-0.399772</td>
+    </tr>
+    <tr>
+      <th>wls-x1_tprob</th>
+      <td>0.0</td>
+      <td>0.048164</td>
+      <td>0.0</td>
+      <td>0.691754</td>
+    </tr>
+    <tr>
+      <th>wls-x1_cil</th>
+      <td>0.016822</td>
+      <td>0.000622</td>
+      <td>0.149427</td>
+      <td>-0.076619</td>
+    </tr>
+    <tr>
+      <th>wls-x1_ciu</th>
+      <td>0.031656</td>
+      <td>0.143482</td>
+      <td>0.186454</td>
+      <td>0.051408</td>
+    </tr>
+    <tr>
+      <th>wls-s_dw</th>
+      <td>0.741</td>
+      <td>1.091</td>
+      <td>0.176</td>
+      <td>0.445</td>
+    </tr>
+    <tr>
+      <th>wls-s_jb_value</th>
+      <td>0.509</td>
+      <td>0.638</td>
+      <td>2.336</td>
+      <td>0.239</td>
+    </tr>
+    <tr>
+      <th>wls-s_jb_prob</th>
+      <td>0.775</td>
+      <td>0.727</td>
+      <td>0.311</td>
+      <td>0.887</td>
+    </tr>
+    <tr>
+      <th>wls-s_skew</th>
+      <td>0.21</td>
+      <td>-0.17</td>
+      <td>0.316</td>
+      <td>-0.051</td>
+    </tr>
+    <tr>
+      <th>wls-s_kurtosis</th>
+      <td>2.608</td>
+      <td>2.385</td>
+      <td>1.944</td>
+      <td>2.62</td>
+    </tr>
+    <tr>
+      <th>wls-s_omnibus_value</th>
+      <td>0.39</td>
+      <td>0.518</td>
+      <td>5.037</td>
+      <td>0.05</td>
+    </tr>
+    <tr>
+      <th>wls-s_omnibus_prob</th>
+      <td>0.823</td>
+      <td>0.772</td>
+      <td>0.081</td>
+      <td>0.975</td>
+    </tr>
+    <tr>
+      <th>wls-m_dw</th>
+      <td>0.736178</td>
+      <td>0.537678</td>
+      <td>0.043909</td>
+      <td>0.188735</td>
+    </tr>
+    <tr>
+      <th>wls-m_jb_value</th>
+      <td>26.465944</td>
+      <td>457.685847</td>
+      <td>27.729537</td>
+      <td>10.593247</td>
+    </tr>
+    <tr>
+      <th>wls-m_jb_prob</th>
+      <td>0.000002</td>
+      <td>0.0</td>
+      <td>0.000001</td>
+      <td>0.005008</td>
+    </tr>
+    <tr>
+      <th>wls-m_skew</th>
+      <td>1.61218</td>
+      <td>4.04353</td>
+      <td>1.89606</td>
+      <td>1.267125</td>
+    </tr>
+    <tr>
+      <th>wls-m_kurtosis</th>
+      <td>5.602039</td>
+      <td>19.998144</td>
+      <td>4.899094</td>
+      <td>3.66998</td>
+    </tr>
+    <tr>
+      <th>wls-m_nm_value</th>
+      <td>19.984589</td>
+      <td>59.422218</td>
+      <td>21.39435</td>
+      <td>10.974889</td>
+    </tr>
+    <tr>
+      <th>wls-m_nm_prob</th>
+      <td>0.000046</td>
+      <td>0.0</td>
+      <td>0.000023</td>
+      <td>0.004138</td>
+    </tr>
+    <tr>
+      <th>wls-m_ks_value</th>
+      <td>0.405236</td>
+      <td>0.149246</td>
+      <td>0.366502</td>
+      <td>0.365003</td>
+    </tr>
+    <tr>
+      <th>wls-m_ks_prob</th>
+      <td>0.000005</td>
+      <td>0.451309</td>
+      <td>0.000058</td>
+      <td>0.000063</td>
+    </tr>
+    <tr>
+      <th>wls-m_shp_value</th>
+      <td>0.845794</td>
+      <td>0.486878</td>
+      <td>0.565564</td>
+      <td>0.844264</td>
+    </tr>
+    <tr>
+      <th>wls-m_shp_prob</th>
+      <td>0.000126</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000116</td>
+    </tr>
+    <tr>
+      <th>wls-m_ad_value</th>
+      <td>1.637801</td>
+      <td>5.197208</td>
+      <td>7.445695</td>
+      <td>2.187059</td>
+    </tr>
+    <tr>
+      <th>wls-m_ad_nnorm</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>wls-pearson</th>
+      <td>0.548657</td>
+      <td>-0.482852</td>
+      <td>-0.197034</td>
+      <td>-0.816642</td>
+    </tr>
+    <tr>
+      <th>wls-missing</th>
+      <td>raise</td>
+      <td>raise</td>
+      <td>raise</td>
+      <td>raise</td>
+    </tr>
+    <tr>
+      <th>wls-exog</th>
+      <td>[[1.0, 0.0], [1....</td>
+      <td>[[1.0, 0.0], [1....</td>
+      <td>[[1.0, 0.0], [1....</td>
+      <td>[[1.0, 0.0], [1....</td>
+    </tr>
+    <tr>
+      <th>wls-endog</th>
+      <td>[0.0, 0.0, 0.0, ...</td>
+      <td>[100.0, 77.77777...</td>
+      <td>[13.513513513513...</td>
+      <td>[75.0, 73.529411...</td>
+    </tr>
+    <tr>
+      <th>wls-trend</th>
+      <td>c</td>
+      <td>c</td>
+      <td>c</td>
+      <td>c</td>
+    </tr>
+    <tr>
+      <th>wls-weights</th>
+      <td>[0.0, 0.00281585...</td>
+      <td>[0.0, 0.03706907...</td>
+      <td>[0.0, 0.00124501...</td>
+      <td>[0.0, 0.00278805...</td>
+    </tr>
+    <tr>
+      <th>wls-W</th>
+      <td>&lt;pyamr.metrics.w...</td>
+      <td>&lt;pyamr.metrics.w...</td>
+      <td>&lt;pyamr.metrics.w...</td>
+      <td>&lt;pyamr.metrics.w...</td>
+    </tr>
+    <tr>
+      <th>wls-model</th>
+      <td>&lt;statsmodels.reg...</td>
+      <td>&lt;statsmodels.reg...</td>
+      <td>&lt;statsmodels.reg...</td>
+      <td>&lt;statsmodels.reg...</td>
+    </tr>
+    <tr>
+      <th>wls-id</th>
+      <td>WLS(c,Sig(N, N))</td>
+      <td>WLS(c,Sig(N, N))</td>
+      <td>WLS(c,Sig(N, N))</td>
+      <td>WLS(c,Sig(N, N))</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<p>Lets see the model summary for the first entry</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">440</span> <span class="c1"># Display</span>
-<span class="linenos">441</span> <span class="c1"># This example shows how to make predictions using the wrapper and how</span>
-<span class="linenos">442</span> <span class="c1"># to plot the result in data. In addition, it compares the intervals</span>
-<span class="linenos">443</span> <span class="c1"># provided by get_prediction (confidence intervals) and the intervals</span>
-<span class="linenos">444</span> <span class="c1"># provided by wls_prediction_std (prediction intervals).</span>
-<span class="linenos">445</span>
-<span class="linenos">446</span> <span class="c1"># Variables</span>
-<span class="linenos">447</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">objs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># AAUG</span>
-<span class="linenos">448</span>
-<span class="linenos">449</span> <span class="c1"># Series</span>
-<span class="linenos">450</span> <span class="n">series</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">as_series</span><span class="p">()</span>
-<span class="linenos">451</span>
-<span class="linenos">452</span> <span class="c1"># Variables.</span>
-<span class="linenos">453</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">50</span>
-<span class="linenos">454</span>
-<span class="linenos">455</span> <span class="c1"># Get x and y</span>
-<span class="linenos">456</span> <span class="n">x</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="s1">&#39;wls-exog&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">]</span>
-<span class="linenos">457</span> <span class="n">y</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="s1">&#39;wls-endog&#39;</span><span class="p">]</span>
-<span class="linenos">458</span>
-<span class="linenos">459</span> <span class="c1"># Compute predictions (exogenous?). It returns a 2D array</span>
-<span class="linenos">460</span> <span class="c1"># where the rows contain the time (t), the mean, the lower</span>
-<span class="linenos">461</span> <span class="c1"># and upper confidence (or prediction?) interval.</span>
-<span class="linenos">462</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
-<span class="linenos">463</span>
-<span class="linenos">464</span> <span class="c1"># Create figure</span>
-<span class="linenos">465</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="linenos">466</span>
-<span class="linenos">467</span> <span class="c1"># Plotting confidence intervals</span>
-<span class="linenos">468</span> <span class="c1"># -----------------------------</span>
-<span class="linenos">469</span> <span class="c1"># Plot truth values.</span>
-<span class="linenos">470</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
-<span class="linenos">471</span>         <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-<span class="linenos">472</span>         <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
-<span class="linenos">473</span>
-<span class="linenos">474</span> <span class="c1"># Plot forecasted values.</span>
-<span class="linenos">475</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
-<span class="linenos">476</span>         <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">_identifier</span><span class="p">(</span><span class="n">short</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="linenos">477</span>
-<span class="linenos">478</span> <span class="c1"># Plot the confidence intervals.</span>
-<span class="linenos">479</span> <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
-<span class="linenos">480</span>                 <span class="n">preds</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span>
-<span class="linenos">481</span>                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
-<span class="linenos">482</span>                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</div>
+<br />
+<br /><p>Lets visualise the first entry</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">457</span> <span class="c1"># Display</span>
+<span class="linenos">458</span> <span class="c1"># This example shows how to make predictions using the wrapper and how</span>
+<span class="linenos">459</span> <span class="c1"># to plot the result in data. In addition, it compares the intervals</span>
+<span class="linenos">460</span> <span class="c1"># provided by get_prediction (confidence intervals) and the intervals</span>
+<span class="linenos">461</span> <span class="c1"># provided by wls_prediction_std (prediction intervals).</span>
+<span class="linenos">462</span>
+<span class="linenos">463</span> <span class="c1"># Variables</span>
+<span class="linenos">464</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">objs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># AAUG</span>
+<span class="linenos">465</span>
+<span class="linenos">466</span> <span class="c1"># Series</span>
+<span class="linenos">467</span> <span class="n">series</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">as_series</span><span class="p">()</span>
+<span class="linenos">468</span>
+<span class="linenos">469</span> <span class="c1"># Variables.</span>
+<span class="linenos">470</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">50</span>
+<span class="linenos">471</span>
+<span class="linenos">472</span> <span class="c1"># Get x and y</span>
+<span class="linenos">473</span> <span class="n">x</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="s1">&#39;wls-exog&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="linenos">474</span> <span class="n">y</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="s1">&#39;wls-endog&#39;</span><span class="p">]</span>
+<span class="linenos">475</span>
+<span class="linenos">476</span> <span class="c1"># Compute predictions (exogenous?). It returns a 2D array</span>
+<span class="linenos">477</span> <span class="c1"># where the rows contain the time (t), the mean, the lower</span>
+<span class="linenos">478</span> <span class="c1"># and upper confidence (or prediction?) interval.</span>
+<span class="linenos">479</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+<span class="linenos">480</span>
+<span class="linenos">481</span> <span class="c1"># Create figure</span>
+<span class="linenos">482</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="linenos">483</span>
-<span class="linenos">484</span> <span class="c1"># Legend</span>
-<span class="linenos">485</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="linenos">486</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="linenos">487</span>
-<span class="linenos">488</span>
-<span class="linenos">489</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
-<span class="linenos">490</span> <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+<span class="linenos">484</span> <span class="c1"># Plotting confidence intervals</span>
+<span class="linenos">485</span> <span class="c1"># -----------------------------</span>
+<span class="linenos">486</span> <span class="c1"># Plot truth values.</span>
+<span class="linenos">487</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#A6CEE3&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="linenos">488</span>         <span class="n">markeredgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="linenos">489</span>         <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed&#39;</span><span class="p">)</span>
+<span class="linenos">490</span>
+<span class="linenos">491</span> <span class="c1"># Plot forecasted values.</span>
+<span class="linenos">492</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
+<span class="linenos">493</span>         <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">_identifier</span><span class="p">(</span><span class="n">short</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="linenos">494</span>
+<span class="linenos">495</span> <span class="c1"># Plot the confidence intervals.</span>
+<span class="linenos">496</span> <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
+<span class="linenos">497</span>                 <span class="n">preds</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span>
+<span class="linenos">498</span>                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+<span class="linenos">499</span>                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="linenos">500</span>
+<span class="linenos">501</span> <span class="c1"># Legend</span>
+<span class="linenos">502</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="linenos">503</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_step_01_003.png" srcset="../../../_images/sphx_glr_plot_step_01_003.png" alt="('URICUL', 'ECOL', 'AAUG')" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<img src="../../../_images/sphx_glr_plot_step_01_003.png" srcset="../../../_images/sphx_glr_plot_step_01_003.png" alt="('URICUL', 'ECOL', 'AAUG')" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &quot;(&#39;URICUL&#39;, &#39;ECOL&#39;, &#39;AAUG&#39;)&quot;)
+</pre></div>
+</div>
+<p>Lets see the summary</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">508</span> <span class="c1"># Summary</span>
+<span class="linenos">509</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="linenos">510</span> <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+</pre></div>
+</div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Name: (&#39;URICUL&#39;, &#39;ECOL&#39;, &#39;AAUG&#39;)
 
                             WLS Regression Results
@@ -809,8 +1318,8 @@ wls-id                  WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N
 Dep. Variable:                      y   R-squared:                       0.906
 Model:                            WLS   Adj. R-squared:                  0.904
 Method:                 Least Squares   F-statistic:                     339.1
-Date:                Mon, 12 Jun 2023   Prob (F-statistic):           1.38e-19
-Time:                        16:00:31   Log-Likelihood:                   -inf
+Date:                Thu, 15 Jun 2023   Prob (F-statistic):           1.38e-19
+Time:                        18:15:41   Log-Likelihood:                   -inf
 No. Observations:                  37   AIC:                               inf
 Df Residuals:                      35   BIC:                               inf
 Df Model:                           1
@@ -829,158 +1338,398 @@ Normal (N):                    21.394   Prob(N):                         0.000
 ==============================================================================
 </pre></div>
 </div>
-<p>Lets display the information as a table graph</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">496</span> <span class="c1"># Libraries</span>
-<span class="linenos">497</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.table_graph</span> <span class="kn">import</span> <span class="n">_DEFAULT_CONFIGURATION</span>
-<span class="linenos">498</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.table_graph</span> <span class="kn">import</span> <span class="n">vlinebgplot</span>
-<span class="linenos">499</span>
-<span class="linenos">500</span> <span class="c1"># Configuration for display</span>
-<span class="linenos">501</span> <span class="n">info</span> <span class="o">=</span> <span class="n">_DEFAULT_CONFIGURATION</span>
-<span class="linenos">502</span>
-<span class="linenos">503</span> <span class="c1"># Lets define one as an example.</span>
-<span class="linenos">504</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">505</span>     <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
-<span class="linenos">506</span>     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Freq&#39;</span><span class="p">,</span>
-<span class="linenos">507</span>     <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8000</span><span class="p">],</span>
-<span class="linenos">508</span>     <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
-<span class="linenos">509</span>         <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
-<span class="linenos">510</span>         <span class="s1">&#39;vmin&#39;</span><span class="p">:</span> <span class="mi">0</span>
-<span class="linenos">511</span>     <span class="p">}</span>
-<span class="linenos">512</span> <span class="p">}</span>
-<span class="linenos">513</span>
-<span class="linenos">514</span> <span class="c1"># .. note: It is important to ensure that the column names</span>
-<span class="linenos">515</span> <span class="c1">#          match with the keys of the previously loaded</span>
-<span class="linenos">516</span> <span class="c1">#          info configuration so that it is used.</span>
-<span class="linenos">517</span>
-<span class="linenos">518</span> <span class="c1"># Rename columns</span>
-<span class="linenos">519</span> <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">520</span>     <span class="s1">&#39;wls-x1_coef&#39;</span><span class="p">:</span> <span class="s1">&#39;sart_m&#39;</span><span class="p">,</span>
-<span class="linenos">521</span>     <span class="s1">&#39;wls-const_coef&#39;</span><span class="p">:</span> <span class="s1">&#39;offset&#39;</span><span class="p">,</span>
-<span class="linenos">522</span>     <span class="s1">&#39;wls-rsquared&#39;</span><span class="p">:</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span>
-<span class="linenos">523</span>     <span class="s1">&#39;wls-rsquared_adj&#39;</span><span class="p">:</span> <span class="s1">&#39;r2_adj&#39;</span><span class="p">,</span>
-<span class="linenos">524</span>     <span class="s1">&#39;wls-m_skew&#39;</span><span class="p">:</span> <span class="s1">&#39;skew&#39;</span><span class="p">,</span>
-<span class="linenos">525</span>     <span class="s1">&#39;wls-m_kurtosis&#39;</span><span class="p">:</span> <span class="s1">&#39;kurtosis&#39;</span><span class="p">,</span>
-<span class="linenos">526</span>     <span class="s1">&#39;wls-m_jb_prob&#39;</span><span class="p">:</span> <span class="s1">&#39;jb&#39;</span><span class="p">,</span>
-<span class="linenos">527</span>     <span class="s1">&#39;wls-m_dw&#39;</span><span class="p">:</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span>
-<span class="linenos">528</span>     <span class="s1">&#39;wls-const_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span>
-<span class="linenos">529</span>     <span class="s1">&#39;wls-x1_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span>
-<span class="linenos">530</span>     <span class="s1">&#39;wls-pearson&#39;</span><span class="p">:</span> <span class="s1">&#39;pearson&#39;</span><span class="p">,</span>
-<span class="linenos">531</span>     <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="s1">&#39;freq&#39;</span><span class="p">,</span>
+<p>Lets display the information as a table graph for all tuples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">516</span> <span class="c1"># Libraries</span>
+<span class="linenos">517</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.table_graph</span> <span class="kn">import</span> <span class="n">_DEFAULT_CONFIGURATION</span>
+<span class="linenos">518</span> <span class="kn">from</span> <span class="nn">pyamr.graphics.table_graph</span> <span class="kn">import</span> <span class="n">vlinebgplot</span>
+<span class="linenos">519</span>
+<span class="linenos">520</span> <span class="c1"># Configuration for display</span>
+<span class="linenos">521</span> <span class="n">info</span> <span class="o">=</span> <span class="n">_DEFAULT_CONFIGURATION</span>
+<span class="linenos">522</span>
+<span class="linenos">523</span> <span class="c1"># Lets define one as an example.</span>
+<span class="linenos">524</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">525</span>     <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+<span class="linenos">526</span>     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Freq&#39;</span><span class="p">,</span>
+<span class="linenos">527</span>     <span class="s1">&#39;xticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8000</span><span class="p">],</span>
+<span class="linenos">528</span>     <span class="s1">&#39;kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">529</span>         <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+<span class="linenos">530</span>         <span class="s1">&#39;vmin&#39;</span><span class="p">:</span> <span class="mi">0</span>
+<span class="linenos">531</span>     <span class="p">}</span>
 <span class="linenos">532</span> <span class="p">}</span>
 <span class="linenos">533</span>
-<span class="linenos">534</span>
-<span class="linenos">535</span> <span class="c1"># ----------------</span>
-<span class="linenos">536</span> <span class="c1"># Combine with SARI</span>
+<span class="linenos">534</span> <span class="c1"># .. note: It is important to ensure that the column names</span>
+<span class="linenos">535</span> <span class="c1">#          match with the keys of the previously loaded</span>
+<span class="linenos">536</span> <span class="c1">#          info configuration so that it is used.</span>
 <span class="linenos">537</span>
-<span class="linenos">538</span> <span class="c1"># Format combined DataFrame</span>
-<span class="linenos">539</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
-<span class="linenos">540</span> <span class="n">comb</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">)</span>
-<span class="linenos">541</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="linenos">542</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
-<span class="linenos">543</span>
-<span class="linenos">544</span> <span class="c1"># Add new columns</span>
-<span class="linenos">545</span> <span class="n">comb</span><span class="p">[</span><span class="s1">&#39;sart_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">sart_m</span> <span class="o">*</span> <span class="mi">12</span>   <span class="c1"># Yearly trend</span>
-<span class="linenos">546</span> <span class="n">comb</span><span class="p">[</span><span class="s1">&#39;sari_pct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">sari</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># SARI percent</span>
-<span class="linenos">547</span>
-<span class="linenos">548</span> <span class="c1"># Sort by trend</span>
-<span class="linenos">549</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;sart_y&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">550</span>
-<span class="linenos">551</span> <span class="c1"># Select only numeric columns</span>
-<span class="linenos">552</span> <span class="c1"># data = comb.select_dtypes(include=np.number)</span>
-<span class="linenos">553</span> <span class="n">data</span> <span class="o">=</span> <span class="n">comb</span><span class="p">[[</span>
-<span class="linenos">554</span>     <span class="s1">&#39;index&#39;</span><span class="p">,</span>
-<span class="linenos">555</span>     <span class="s1">&#39;sart_m&#39;</span><span class="p">,</span>
-<span class="linenos">556</span>     <span class="c1">#&#39;sart_y&#39;,</span>
-<span class="linenos">557</span>     <span class="s1">&#39;sari_pct&#39;</span><span class="p">,</span>
-<span class="linenos">558</span>     <span class="s1">&#39;r2&#39;</span><span class="p">,</span>
-<span class="linenos">559</span>     <span class="c1">#&#39;r2_adj&#39;,</span>
-<span class="linenos">560</span>     <span class="s1">&#39;skew&#39;</span><span class="p">,</span>
-<span class="linenos">561</span>     <span class="s1">&#39;kurtosis&#39;</span><span class="p">,</span>
-<span class="linenos">562</span>     <span class="s1">&#39;jb&#39;</span><span class="p">,</span>
-<span class="linenos">563</span>     <span class="s1">&#39;dw&#39;</span><span class="p">,</span>
-<span class="linenos">564</span>     <span class="s1">&#39;ptm&#39;</span><span class="p">,</span>
-<span class="linenos">565</span>     <span class="c1">#&#39;ptn&#39;,</span>
-<span class="linenos">566</span>     <span class="s1">&#39;pearson&#39;</span><span class="p">,</span>
-<span class="linenos">567</span>     <span class="s1">&#39;freq&#39;</span>
-<span class="linenos">568</span> <span class="p">]]</span>
-<span class="linenos">569</span>
-<span class="linenos">570</span> <span class="c1"># Show DataFrame</span>
-<span class="linenos">571</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Results:&quot;</span><span class="p">)</span>
-<span class="linenos">572</span> <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="linenos">573</span>
-<span class="linenos">574</span> <span class="c1"># Create pair grid</span>
-<span class="linenos">575</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_vars</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
-<span class="linenos">576</span>     <span class="n">y_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">.45</span><span class="p">)</span>
-<span class="linenos">577</span>
-<span class="linenos">578</span> <span class="c1"># Set common features</span>
-<span class="linenos">579</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="linenos">580</span>
-<span class="linenos">581</span> <span class="c1"># Plot strips and format axes (skipping index)</span>
-<span class="linenos">582</span> <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
-<span class="linenos">583</span>
-<span class="linenos">584</span>     <span class="c1"># Get information</span>
-<span class="linenos">585</span>     <span class="n">d</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="p">{}</span>
-<span class="linenos">586</span>
-<span class="linenos">587</span>     <span class="c1"># .. note: We need to use scatter plot if we want to</span>
-<span class="linenos">588</span>     <span class="c1">#          assign colors to the markers according to</span>
-<span class="linenos">589</span>     <span class="c1">#          their value.</span>
-<span class="linenos">590</span>
-<span class="linenos">591</span>     <span class="c1"># Using scatter plot</span>
-<span class="linenos">592</span>     <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-<span class="linenos">593</span>                     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
-<span class="linenos">594</span>                     <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cmap&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="linenos">595</span>                     <span class="n">norm</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="linenos">596</span>
-<span class="linenos">597</span>     <span class="c1"># Plot vertical lines</span>
-<span class="linenos">598</span>     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vline&#39;</span><span class="p">,</span> <span class="p">[]):</span>
-<span class="linenos">599</span>         <span class="n">vlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">538</span> <span class="c1"># Rename columns</span>
+<span class="linenos">539</span> <span class="n">rename</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">540</span>     <span class="s1">&#39;wls-x1_coef&#39;</span><span class="p">:</span> <span class="s1">&#39;sart_m&#39;</span><span class="p">,</span>
+<span class="linenos">541</span>     <span class="s1">&#39;wls-const_coef&#39;</span><span class="p">:</span> <span class="s1">&#39;offset&#39;</span><span class="p">,</span>
+<span class="linenos">542</span>     <span class="s1">&#39;wls-rsquared&#39;</span><span class="p">:</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span>
+<span class="linenos">543</span>     <span class="s1">&#39;wls-rsquared_adj&#39;</span><span class="p">:</span> <span class="s1">&#39;r2_adj&#39;</span><span class="p">,</span>
+<span class="linenos">544</span>     <span class="s1">&#39;wls-m_skew&#39;</span><span class="p">:</span> <span class="s1">&#39;skew&#39;</span><span class="p">,</span>
+<span class="linenos">545</span>     <span class="s1">&#39;wls-m_kurtosis&#39;</span><span class="p">:</span> <span class="s1">&#39;kurtosis&#39;</span><span class="p">,</span>
+<span class="linenos">546</span>     <span class="s1">&#39;wls-m_jb_prob&#39;</span><span class="p">:</span> <span class="s1">&#39;jb&#39;</span><span class="p">,</span>
+<span class="linenos">547</span>     <span class="s1">&#39;wls-m_dw&#39;</span><span class="p">:</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span>
+<span class="linenos">548</span>     <span class="s1">&#39;wls-const_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptm&#39;</span><span class="p">,</span>
+<span class="linenos">549</span>     <span class="s1">&#39;wls-x1_tprob&#39;</span><span class="p">:</span> <span class="s1">&#39;ptn&#39;</span><span class="p">,</span>
+<span class="linenos">550</span>     <span class="s1">&#39;wls-pearson&#39;</span><span class="p">:</span> <span class="s1">&#39;pearson&#39;</span><span class="p">,</span>
+<span class="linenos">551</span>     <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="s1">&#39;freq&#39;</span><span class="p">,</span>
+<span class="linenos">552</span> <span class="p">}</span>
+<span class="linenos">553</span>
+<span class="linenos">554</span>
+<span class="linenos">555</span> <span class="c1"># ----------------</span>
+<span class="linenos">556</span> <span class="c1"># Combine with SARI</span>
+<span class="linenos">557</span>
+<span class="linenos">558</span> <span class="c1"># Format combined DataFrame</span>
+<span class="linenos">559</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sari_overall</span><span class="p">)</span>
+<span class="linenos">560</span> <span class="n">comb</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">)</span>
+<span class="linenos">561</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="linenos">562</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">rename</span><span class="p">)</span>
+<span class="linenos">563</span>
+<span class="linenos">564</span> <span class="c1"># Add new columns</span>
+<span class="linenos">565</span> <span class="n">comb</span><span class="p">[</span><span class="s1">&#39;sart_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">sart_m</span> <span class="o">*</span> <span class="mi">12</span>   <span class="c1"># Yearly trend</span>
+<span class="linenos">566</span> <span class="n">comb</span><span class="p">[</span><span class="s1">&#39;sari_pct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">sari</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># SARI percent</span>
+<span class="linenos">567</span>
+<span class="linenos">568</span> <span class="c1"># Sort by trend</span>
+<span class="linenos">569</span> <span class="n">comb</span> <span class="o">=</span> <span class="n">comb</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;sart_y&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">570</span>
+<span class="linenos">571</span> <span class="c1"># Select only numeric columns</span>
+<span class="linenos">572</span> <span class="c1"># data = comb.select_dtypes(include=np.number)</span>
+<span class="linenos">573</span> <span class="n">data</span> <span class="o">=</span> <span class="n">comb</span><span class="p">[[</span>
+<span class="linenos">574</span>     <span class="s1">&#39;index&#39;</span><span class="p">,</span>
+<span class="linenos">575</span>     <span class="s1">&#39;sart_m&#39;</span><span class="p">,</span>
+<span class="linenos">576</span>     <span class="c1">#&#39;sart_y&#39;,</span>
+<span class="linenos">577</span>     <span class="s1">&#39;sari_pct&#39;</span><span class="p">,</span>
+<span class="linenos">578</span>     <span class="s1">&#39;r2&#39;</span><span class="p">,</span>
+<span class="linenos">579</span>     <span class="c1">#&#39;r2_adj&#39;,</span>
+<span class="linenos">580</span>     <span class="s1">&#39;skew&#39;</span><span class="p">,</span>
+<span class="linenos">581</span>     <span class="s1">&#39;kurtosis&#39;</span><span class="p">,</span>
+<span class="linenos">582</span>     <span class="s1">&#39;jb&#39;</span><span class="p">,</span>
+<span class="linenos">583</span>     <span class="s1">&#39;dw&#39;</span><span class="p">,</span>
+<span class="linenos">584</span>     <span class="s1">&#39;ptm&#39;</span><span class="p">,</span>
+<span class="linenos">585</span>     <span class="c1">#&#39;ptn&#39;,</span>
+<span class="linenos">586</span>     <span class="s1">&#39;pearson&#39;</span><span class="p">,</span>
+<span class="linenos">587</span>     <span class="s1">&#39;freq&#39;</span>
+<span class="linenos">588</span> <span class="p">]]</span>
+<span class="linenos">589</span>
+<span class="linenos">590</span> <span class="c1"># Show DataFrame</span>
+<span class="linenos">591</span> <span class="c1">#print(&quot;\nResults:&quot;)</span>
+<span class="linenos">592</span> <span class="c1">#print(data)</span>
+<span class="linenos">593</span>
+<span class="linenos">594</span> <span class="c1"># Create pair grid</span>
+<span class="linenos">595</span> <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x_vars</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+<span class="linenos">596</span>     <span class="n">y_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">.45</span><span class="p">)</span>
+<span class="linenos">597</span>
+<span class="linenos">598</span> <span class="c1"># Set common features</span>
+<span class="linenos">599</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="linenos">600</span>
-<span class="linenos">601</span>     <span class="c1"># Configure axes</span>
-<span class="linenos">602</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
-<span class="linenos">603</span>            <span class="n">xlim</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xlim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="linenos">604</span>            <span class="n">xticks</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xticks&#39;</span><span class="p">,</span> <span class="p">[]),</span>
-<span class="linenos">605</span>            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="linenos">606</span>     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="linenos">607</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">608</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
-<span class="linenos">609</span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="linenos">601</span> <span class="c1"># Plot strips and format axes (skipping index)</span>
+<span class="linenos">602</span> <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+<span class="linenos">603</span>
+<span class="linenos">604</span>     <span class="c1"># Get information</span>
+<span class="linenos">605</span>     <span class="n">d</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">info</span> <span class="k">else</span> <span class="p">{}</span>
+<span class="linenos">606</span>
+<span class="linenos">607</span>     <span class="c1"># .. note: We need to use scatter plot if we want to</span>
+<span class="linenos">608</span>     <span class="c1">#          assign colors to the markers according to</span>
+<span class="linenos">609</span>     <span class="c1">#          their value.</span>
 <span class="linenos">610</span>
-<span class="linenos">611</span> <span class="c1"># Despine</span>
-<span class="linenos">612</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">613</span>
-<span class="linenos">614</span> <span class="c1"># Adjust layout</span>
-<span class="linenos">615</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="linenos">616</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">611</span>     <span class="c1"># Using scatter plot</span>
+<span class="linenos">612</span>     <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="linenos">613</span>                     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+<span class="linenos">614</span>                     <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cmap&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="linenos">615</span>                     <span class="n">norm</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="linenos">616</span>
+<span class="linenos">617</span>     <span class="c1"># Plot vertical lines</span>
+<span class="linenos">618</span>     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vline&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+<span class="linenos">619</span>         <span class="n">vlinebgplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">620</span>
+<span class="linenos">621</span>     <span class="c1"># Configure axes</span>
+<span class="linenos">622</span>     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span>
+<span class="linenos">623</span>            <span class="n">xlim</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xlim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="linenos">624</span>            <span class="n">xticks</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xticks&#39;</span><span class="p">,</span> <span class="p">[]),</span>
+<span class="linenos">625</span>            <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="linenos">626</span>     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">627</span>     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">628</span>     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span>
+<span class="linenos">629</span>                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+<span class="linenos">630</span>
+<span class="linenos">631</span> <span class="c1"># Despine</span>
+<span class="linenos">632</span> <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">633</span>
+<span class="linenos">634</span> <span class="c1"># Adjust layout</span>
+<span class="linenos">635</span> <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="linenos">636</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="linenos">637</span>
+<span class="linenos">638</span> <span class="c1">#%</span>
+<span class="linenos">639</span> <span class="c1"># Lets see the data plotted</span>
+<span class="linenos">640</span> <span class="n">data</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../../_images/sphx_glr_plot_step_01_004.png" srcset="../../../_images/sphx_glr_plot_step_01_004.png" alt="SART (m), SARI (%), R2, Skew, Kurtosis, Prob(JB), DW, P>|t| m, Pearson, Freq" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Results:
-                index    sart_m   sari_pct        r2      skew   kurtosis             jb        dw           ptm   pearson    freq
-7    URICUL_ECOL_ACXT  0.384616  27.961433  0.871941 -0.902044   4.450753   1.606333e-02  0.321748  2.839420e-25  0.800813   726.0
-10   URICUL_ECOL_AMEC  0.364059   6.923077  0.924855  0.292228   3.163261   7.528772e-01  0.246717  1.093236e-06  0.905281   390.0
-2    URICUL_ECOL_AAUG  0.167941   6.569901  0.906452  1.896060   4.899094   9.519356e-07  0.043909  1.346934e-07 -0.197034  9163.0
-1   URICUL_ECOL_AAMPC  0.072052  70.078740  0.127980  4.043530  19.998144  4.118898e-100  0.537678  3.529026e-38 -0.482852   254.0
-9    URICUL_ECOL_AGEN  0.042474  35.586207  0.027657  1.568770   4.014620   2.290097e-04  0.041650  2.673921e-27 -0.725585   725.0
-0    URICUL_ECOL_AAMI  0.024239   0.692521  0.557029  1.612180   5.602039   1.790578e-06  0.736178  7.386144e-01  0.548657   722.0
-11   URICUL_ECOL_AMER  0.020269   0.414365  0.648313  0.020609   2.439495   7.838960e-01  0.411431  8.943204e-02  0.901674   724.0
-3    URICUL_ECOL_ACAZ -0.012606  65.521978  0.004545  1.267125   3.669980   5.008476e-03  0.188735  1.467954e-41 -0.816642   728.0
-4   URICUL_ECOL_ACELX -0.014681   8.753952  0.111695  2.012401   5.357851   5.199214e-08  0.052479  3.380317e-34 -0.664276  9173.0
-6    URICUL_ECOL_ACTX -0.031965  66.803279  0.029500  2.046082   7.029445   9.090421e-12  0.145249  3.437555e-42 -0.745643   732.0
-5    URICUL_ECOL_ACIP -0.074978  13.726559  0.669167  2.075303   5.564571   1.073938e-08  0.071392  9.838272e-39 -0.709830  9172.0
-14   URICUL_ECOL_ATRI -0.092547  35.226777  0.600203  1.751497   4.932894   4.378678e-06  0.089424  1.661517e-46 -0.893425  9172.0
-12   URICUL_ECOL_ANIT -0.093639   3.782841  0.907027  0.368771   4.880741   4.302857e-02  1.133668  1.526017e-33 -0.892774  9173.0
-13   URICUL_ECOL_ATAZ -0.189840  27.884615  0.412661  0.306621   2.276972   5.001472e-01  0.186264  1.129783e-27 -0.910851   728.0
-8    URICUL_ECOL_AERT -0.472199   4.568528  0.798147 -1.435647   3.976333   1.009636e-03  0.077592  8.089724e-18 -0.482881   197.0
-</pre></div>
+<img src="../../../_images/sphx_glr_plot_step_01_004.png" srcset="../../../_images/sphx_glr_plot_step_01_004.png" alt="SART (m), SARI (%), R2, Skew, Kurtosis, Prob(JB), DW, P>|t| m, Pearson, Freq" class = "sphx-glr-single-img"/><div class="output_subarea output_html rendered_html output_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>sart_m</th>
+      <th>sari_pct</th>
+      <th>r2</th>
+      <th>skew</th>
+      <th>kurtosis</th>
+      <th>jb</th>
+      <th>dw</th>
+      <th>ptm</th>
+      <th>pearson</th>
+      <th>freq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>URICUL_ECOL_ACXT</td>
+      <td>0.385</td>
+      <td>27.961</td>
+      <td>0.872</td>
+      <td>-0.902</td>
+      <td>4.451</td>
+      <td>0.016</td>
+      <td>0.322</td>
+      <td>0.000</td>
+      <td>0.801</td>
+      <td>726.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>URICUL_ECOL_AMEC</td>
+      <td>0.364</td>
+      <td>6.923</td>
+      <td>0.925</td>
+      <td>0.292</td>
+      <td>3.163</td>
+      <td>0.753</td>
+      <td>0.247</td>
+      <td>0.000</td>
+      <td>0.905</td>
+      <td>390.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>URICUL_ECOL_AAUG</td>
+      <td>0.168</td>
+      <td>6.570</td>
+      <td>0.906</td>
+      <td>1.896</td>
+      <td>4.899</td>
+      <td>0.000</td>
+      <td>0.044</td>
+      <td>0.000</td>
+      <td>-0.197</td>
+      <td>9163.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>URICUL_ECOL_AAMPC</td>
+      <td>0.072</td>
+      <td>70.079</td>
+      <td>0.128</td>
+      <td>4.044</td>
+      <td>19.998</td>
+      <td>0.000</td>
+      <td>0.538</td>
+      <td>0.000</td>
+      <td>-0.483</td>
+      <td>254.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>URICUL_ECOL_AGEN</td>
+      <td>0.042</td>
+      <td>35.586</td>
+      <td>0.028</td>
+      <td>1.569</td>
+      <td>4.015</td>
+      <td>0.000</td>
+      <td>0.042</td>
+      <td>0.000</td>
+      <td>-0.726</td>
+      <td>725.0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>URICUL_ECOL_AAMI</td>
+      <td>0.024</td>
+      <td>0.693</td>
+      <td>0.557</td>
+      <td>1.612</td>
+      <td>5.602</td>
+      <td>0.000</td>
+      <td>0.736</td>
+      <td>0.739</td>
+      <td>0.549</td>
+      <td>722.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>URICUL_ECOL_AMER</td>
+      <td>0.020</td>
+      <td>0.414</td>
+      <td>0.648</td>
+      <td>0.021</td>
+      <td>2.439</td>
+      <td>0.784</td>
+      <td>0.411</td>
+      <td>0.089</td>
+      <td>0.902</td>
+      <td>724.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>URICUL_ECOL_ACAZ</td>
+      <td>-0.013</td>
+      <td>65.522</td>
+      <td>0.005</td>
+      <td>1.267</td>
+      <td>3.670</td>
+      <td>0.005</td>
+      <td>0.189</td>
+      <td>0.000</td>
+      <td>-0.817</td>
+      <td>728.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>URICUL_ECOL_ACELX</td>
+      <td>-0.015</td>
+      <td>8.754</td>
+      <td>0.112</td>
+      <td>2.012</td>
+      <td>5.358</td>
+      <td>0.000</td>
+      <td>0.052</td>
+      <td>0.000</td>
+      <td>-0.664</td>
+      <td>9173.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>URICUL_ECOL_ACTX</td>
+      <td>-0.032</td>
+      <td>66.803</td>
+      <td>0.030</td>
+      <td>2.046</td>
+      <td>7.029</td>
+      <td>0.000</td>
+      <td>0.145</td>
+      <td>0.000</td>
+      <td>-0.746</td>
+      <td>732.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>URICUL_ECOL_ACIP</td>
+      <td>-0.075</td>
+      <td>13.727</td>
+      <td>0.669</td>
+      <td>2.075</td>
+      <td>5.565</td>
+      <td>0.000</td>
+      <td>0.071</td>
+      <td>0.000</td>
+      <td>-0.710</td>
+      <td>9172.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>URICUL_ECOL_ATRI</td>
+      <td>-0.093</td>
+      <td>35.227</td>
+      <td>0.600</td>
+      <td>1.751</td>
+      <td>4.933</td>
+      <td>0.000</td>
+      <td>0.089</td>
+      <td>0.000</td>
+      <td>-0.893</td>
+      <td>9172.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>URICUL_ECOL_ANIT</td>
+      <td>-0.094</td>
+      <td>3.783</td>
+      <td>0.907</td>
+      <td>0.369</td>
+      <td>4.881</td>
+      <td>0.043</td>
+      <td>1.134</td>
+      <td>0.000</td>
+      <td>-0.893</td>
+      <td>9173.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>URICUL_ECOL_ATAZ</td>
+      <td>-0.190</td>
+      <td>27.885</td>
+      <td>0.413</td>
+      <td>0.307</td>
+      <td>2.277</td>
+      <td>0.500</td>
+      <td>0.186</td>
+      <td>0.000</td>
+      <td>-0.911</td>
+      <td>728.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>URICUL_ECOL_AERT</td>
+      <td>-0.472</td>
+      <td>4.569</td>
+      <td>0.798</td>
+      <td>-1.436</td>
+      <td>3.976</td>
+      <td>0.001</td>
+      <td>0.078</td>
+      <td>0.000</td>
+      <td>-0.483</td>
+      <td>197.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br />
+<br /></section>
+<section id="computing-acsi">
+<h2>Computing ACSI<a class="headerlink" href="#computing-acsi" title="Permalink to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending…</p>
 </div>
 </section>
 <section id="computing-dri">
 <h2>Computing DRI<a class="headerlink" href="#computing-dri" title="Permalink to this heading"></a></h2>
-</section>
-<section id="computing-mari">
-<h2>Computing MARI<a class="headerlink" href="#computing-mari" title="Permalink to this heading"></a></h2>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.458 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-01-py">
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pending…</p>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.004 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-guide-plot-step-01-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../../_downloads/e19dd4cf8b826a76fbf636939ec3bb4d/plot_step_01.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_step_01.py</span></code></a></p>
 </div>
@@ -995,10 +1744,7 @@ Normal (N):                    21.394   Prob(N):                         0.000
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_step_02.html" class="btn btn-neutral float-right" title="Step 02 - Temporal evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

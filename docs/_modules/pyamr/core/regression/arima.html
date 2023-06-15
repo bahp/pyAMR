@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -64,6 +63,9 @@
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -127,17 +129,15 @@
 <span class="kn">from</span> <span class="nn">pyamr.core.regression.wreg</span> <span class="kn">import</span> <span class="n">_insample_conf_int</span>
 
 
-<div class="viewcode-block" id="ARIMAWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.arima.ARIMAWrapper">[docs]</a><span class="k">class</span> <span class="nc">ARIMAWrapper</span><span class="p">(</span><span class="n">RegressionWrapper</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;Description</span>
-
-
+<div class="viewcode-block" id="ARIMAWrapper"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.regression.arima.html#pyamr.core.regression.arima.ARIMAWrapper">[docs]</a><span class="k">class</span> <span class="nc">ARIMAWrapper</span><span class="p">(</span><span class="n">RegressionWrapper</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="c1"># --------------------------------------------------------------------------</span>
   <span class="c1">#                              overriden</span>
   <span class="c1"># --------------------------------------------------------------------------</span>
   <span class="k">def</span> <span class="nf">_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name to identify the arima model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates name to identify the model.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2"> [</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
                               <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;order&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
                               <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;trend&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
@@ -146,7 +146,7 @@
   <span class="c1"># --------------------------------------------------------------------------</span>
   <span class="c1">#                         confidence intervals</span>
   <span class="c1"># --------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ARIMAWrapper.conf_int_forecast"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.arima.ARIMAWrapper.conf_int_forecast">[docs]</a>  <span class="k">def</span> <span class="nf">conf_int_forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<div class="viewcode-block" id="ARIMAWrapper.conf_int_forecast"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.regression.arima.html#pyamr.core.regression.arima.ARIMAWrapper.conf_int_forecast">[docs]</a>  <span class="k">def</span> <span class="nf">conf_int_forecast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the out-sample confidence interval.</span>
 
 <span class="sd">    Parameters</span>
@@ -177,8 +177,8 @@
   <span class="c1"># --------------------------------------------------------------------------</span>
   <span class="c1">#                              evaluate</span>
   <span class="c1"># --------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ARIMAWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.arima.ARIMAWrapper.evaluate">[docs]</a>  <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates a dictionary with the relevant attributes.</span>
+<div class="viewcode-block" id="ARIMAWrapper.evaluate"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.regression.arima.html#pyamr.core.regression.arima.ARIMAWrapper.evaluate">[docs]</a>  <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a dictionary with the relevant attributes.</span>
 
 <span class="sd">    .. note:: </span>
 <span class="sd">          </span>
@@ -187,8 +187,7 @@
 <span class="sd">          it with numpy array as input, hence when pandas series is passed </span>
 <span class="sd">          the method _init_result gives an error.</span>
 
-<span class="sd">    @see: statsmodels.Arima</span>
-<span class="sd">    @see: statsmodels.ArimaResults</span>
+<span class="sd">    Include ref to `statsmodels:Arima` and `statsmodels:ArimaResults`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ---------- </span>
@@ -236,8 +235,8 @@
   <span class="c1"># --------------------------------------------------------------------------</span>
   <span class="c1">#                             summary method</span>
   <span class="c1"># --------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ARIMAWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.arima.ARIMAWrapper.as_summary">[docs]</a>  <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method creates a summary string.</span>
+<div class="viewcode-block" id="ARIMAWrapper.as_summary"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.regression.arima.html#pyamr.core.regression.arima.ARIMAWrapper.as_summary">[docs]</a>  <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a summary string (statsmodels inspired)</span>
 <span class="sd">    &quot;&quot;&quot;</span> 
     <span class="c1"># Variables.</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
@@ -264,15 +263,15 @@
   <span class="c1"># ---------------------------------------------------------------------------</span>
   <span class="c1">#                             prediction method</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ARIMAWrapper.get_prediction"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.arima.ARIMAWrapper.get_prediction">[docs]</a>  <span class="k">def</span> <span class="nf">get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method calls the predict function in ARIMA.</span>
+<div class="viewcode-block" id="ARIMAWrapper.get_prediction"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.regression.arima.html#pyamr.core.regression.arima.ARIMAWrapper.get_prediction">[docs]</a>  <span class="k">def</span> <span class="nf">get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calls the predict function in ARIMA.</span>
 
 <span class="sd">    .. note:: </span>
 
-<span class="sd">      The confidence intervals have been implemented using the functions</span>
-<span class="sd">      ``_forecast_conf_int()`` and ``_forecast_error()`` implemented in the </span>
-<span class="sd">      statsmodels.ts.arima_model.ARIMAResults. As such, it produces the </span>
-<span class="sd">      same confidence intervals than the method ``plot_predict()``.</span>
+<span class="sd">      The confidence intervals have been implemented using the following</span>
+<span class="sd">      functions ``_forecast_conf_int()`` and ``_forecast_error()``. These</span>
+<span class="sd">      are implemented in ``statsmodels.ts.arima_model.ARIMAResults``. As such,</span>
+<span class="sd">      it produces the same confidence intervals than the method ``plot_predict()``.</span>
 
 <span class="sd">    .. note:: </span>
 <span class="sd">    </span>
@@ -340,10 +339,10 @@
   <span class="c1"># ---------------------------------------------------------------------------</span>
   <span class="c1">#                               auto method</span>
   <span class="c1"># ---------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ARIMAWrapper.auto"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.arima.ARIMAWrapper.auto">[docs]</a>  <span class="k">def</span> <span class="nf">auto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="s1">&#39;bic&#39;</span><span class="p">,</span> <span class="n">trends</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">max_ar</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<div class="viewcode-block" id="ARIMAWrapper.auto"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.regression.arima.html#pyamr.core.regression.arima.ARIMAWrapper.auto">[docs]</a>  <span class="k">def</span> <span class="nf">auto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endog</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="s1">&#39;bic&#39;</span><span class="p">,</span> <span class="n">trends</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">max_ar</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
                  <span class="n">max_ma</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">return_fits</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
                  <span class="n">converged</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method finds the best arima through bruteforce.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the best model through bruteforce.</span>
 
 <span class="sd">    Note: It uses grid search through the base wrapper.</span>
 
@@ -387,9 +386,9 @@
     <span class="c1"># Note that some orders are not valid, these will throw an</span>
     <span class="c1"># exception that will be catched in the base wrapper </span>
     <span class="c1"># grid_search method. For instance (0,0,0) is invalid.</span>
-    <span class="n">orders</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_ar</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
-                                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_d</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
-                                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_ma</span><span class="o">+</span><span class="mi">1</span><span class="p">)]))</span>
+    <span class="n">orders</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_ar</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                                          <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_d</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                                          <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_ma</span><span class="o">+</span><span class="mi">1</span><span class="p">)])))</span>
 
     <span class="c1"># Parameters</span>
     <span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;exog&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">exog</span><span class="p">],</span> 

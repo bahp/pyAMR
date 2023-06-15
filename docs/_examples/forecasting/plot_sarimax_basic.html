@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SARIMAX - Basic &mdash; pyamr 0.0.1 documentation</title>
@@ -17,10 +17,9 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -72,6 +71,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
+</ul>
 
         </div>
       </div>
@@ -100,19 +102,18 @@
              
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-examples-forecasting-plot-sarimax-basic-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-examples-forecasting-plot-sarimax-basic-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="sarimax-basic">
 <span id="sphx-glr-examples-forecasting-plot-sarimax-basic-py"></span><h1>SARIMAX - Basic<a class="headerlink" href="#sarimax-basic" title="Permalink to this heading"></a></h1>
 <p>See <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html">SARIMAX</a></p>
-<img src="../../_images/sphx_glr_plot_sarimax_basic_001.png" srcset="../../_images/sphx_glr_plot_sarimax_basic_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
-sarimax-aic                    768.1633
-sarimax-bic                      782.38
-sarimax-hqic                   773.8589
-sarimax-llf                   -378.0816
-sarimax-intercept_coef           4.4734
+<img src="../../_images/sphx_glr_plot_sarimax_basic_001.png" srcset="../../_images/sphx_glr_plot_sarimax_basic_001.png" alt="ARIMA non-dynamic, ARIMA dynamic" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Series:
+sarimax-aic                    764.1138
+sarimax-bic                    778.3305
+sarimax-hqic                   769.8095
+sarimax-llf                   -376.0569
+sarimax-intercept_coef          23.9663
                               ...
 sarimax-seasonal_order    (1, 0, 1, 12)
 sarimax-order                 (0, 1, 1)
@@ -125,31 +126,31 @@ Summary:
                                      SARIMAX Results
 ==========================================================================================
 Dep. Variable:                                  y   No. Observations:                   80
-Model:             SARIMAX(0, 1, 1)x(1, 0, 1, 12)   Log Likelihood                -378.082
-Date:                            Mon, 12 Jun 2023   AIC                            768.163
-Time:                                    16:02:03   BIC                            782.380
-Sample:                                         0   HQIC                           773.859
+Model:             SARIMAX(0, 1, 1)x(1, 0, 1, 12)   Log Likelihood                -376.057
+Date:                            Thu, 15 Jun 2023   AIC                            764.114
+Time:                                    18:17:22   BIC                            778.331
+Sample:                                         0   HQIC                           769.809
                                              - 80
 Covariance Type:                              opg
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-intercept      4.4734     19.518      0.229      0.819     -33.782      42.728
-drift         -0.0878      0.217     -0.404      0.686      -0.513       0.338
-ma.L1         -0.4870      0.071     -6.884      0.000      -0.626      -0.348
-ar.S.L12       0.5968      1.619      0.369      0.712      -2.577       3.771
-ma.S.L12      -0.5369      1.725     -0.311      0.756      -3.918       2.844
-sigma2       831.2679     74.633     11.138      0.000     684.991     977.545
+intercept     23.9663      9.263      2.587      0.010       5.811      42.121
+drift         -0.3219      0.137     -2.345      0.019      -0.591      -0.053
+ma.L1         -0.4928      0.089     -5.521      0.000      -0.668      -0.318
+ar.S.L12      -0.7897      0.520     -1.518      0.129      -1.809       0.230
+ma.S.L12       0.6418      0.639      1.005      0.315      -0.610       1.894
+sigma2       784.2609    143.939      5.449      0.000     502.145    1066.377
 ==============================================================================
-Ljung-Box(L1)(Q):                0.14   Jarque-Bera (JB):               399.48
-Prob(Q):                         0.71   Prob(JB):                         0.00
-Heteroskedasticity(H):           1.51   Skew:                            -2.11
-Prob(H)(two-sided):              0.30   Kurtosis:                        13.18
+Ljung-Box(L1)(Q):                0.03   Jarque-Bera (JB):                 0.69
+Prob(Q):                         0.87   Prob(JB):                         0.71
+Heteroskedasticity(H):           0.84   Skew:                            -0.23
+Prob(H)(two-sided):              0.67   Kurtosis:                         3.08
 ==============================================================================
                                     Manual
 ------------------------------------------------------------------------------
-Omnibus:                        0.000   Durbin-Watson:                   2.046
-Normal (N):                    59.137   Prob(N):                         0.000
+Omnibus:                        0.000   Durbin-Watson:                   2.000
+Normal (N):                     1.127   Prob(N):                         0.569
 ==============================================================================
 Note that JB, P(JB), skew and kurtosis have different values.
 Note that Prob(Q) tests no correlation of residuals.
@@ -305,8 +306,8 @@ Note that Prob(Q) tests no correlation of residuals.
 <span class="linenos">152</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.640 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-sarimax-basic-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.501 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-forecasting-plot-sarimax-basic-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9b0f9b89eb0b59845f2aaa6c1c02b924/plot_sarimax_basic.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_sarimax_basic.py</span></code></a></p>
 </div>

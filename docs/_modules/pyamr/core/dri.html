@@ -16,10 +16,9 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -65,6 +64,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+</ul>
 
         </div>
       </div>
@@ -96,6 +98,7 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <div class="viewcode-block" id="dri"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.dri">[docs]</a><span class="k">def</span> <span class="nf">dri</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Redirects to ``drug_resistance_index``.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">drug_resistance_index</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="drug_resistance_index_v2"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.drug_resistance_index_v2">[docs]</a><span class="k">def</span> <span class="nf">drug_resistance_index_v2</span><span class="p">(</span><span class="n">smmry</span><span class="p">,</span> <span class="n">cu</span><span class="o">=</span><span class="s1">&#39;use&#39;</span><span class="p">,</span> <span class="n">cr</span><span class="o">=</span><span class="s1">&#39;sari&#39;</span><span class="p">,</span>
@@ -196,12 +199,17 @@
 <div class="viewcode-block" id="drug_resistance_index"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.drug_resistance_index">[docs]</a><span class="k">def</span> <span class="nf">drug_resistance_index</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span>
             <span class="n">return_complete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">return_usage</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the DRI.</span>
-
-<span class="sd">    .. note:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the Drug Resistance Index.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
+<span class="sd">    dataframe: pd.DataFrame</span>
+
+<span class="sd">    return_complete: bool, default=False</span>
+<span class="sd">        Returns the whole set of results.</span>
+
+<span class="sd">    return_usage: bool, default=False</span>
+<span class="sd">        Returns only &#39;use_period&#39; and &#39;dri&#39;.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -239,16 +247,15 @@
 
 
 <div class="viewcode-block" id="DRI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.DRI">[docs]</a><span class="k">class</span> <span class="nc">DRI</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Drug Resistance Index.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Attributes</span>
-    <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIMEN&#39;</span>
-    <span class="n">c_org</span> <span class="o">=</span> <span class="s1">&#39;MICROORGANISM&#39;</span>
-    <span class="n">c_abx</span> <span class="o">=</span> <span class="s1">&#39;ANTIMICROBIAL&#39;</span>
-    <span class="n">c_dat</span> <span class="o">=</span> <span class="s1">&#39;DATE&#39;</span>
-    <span class="n">c_out</span> <span class="o">=</span> <span class="s1">&#39;SENSITIVITY&#39;</span>
-    <span class="n">c_drg</span> <span class="o">=</span> <span class="s1">&#39;DRUG&#39;</span>
+    <span class="c1">#c_spe = &#39;SPECIMEN&#39;</span>
+    <span class="c1">#c_org = &#39;MICROORGANISM&#39;</span>
+    <span class="c1">#c_abx = &#39;ANTIMICROBIAL&#39;</span>
+    <span class="c1">#c_dat = &#39;DATE&#39;</span>
+    <span class="c1">#c_out = &#39;SENSITIVITY&#39;</span>
+    <span class="c1">#c_drg = &#39;DRUG&#39;</span>
 
     <span class="n">c_res</span> <span class="o">=</span> <span class="s1">&#39;RESISTANCE&#39;</span>
     <span class="n">c_use</span> <span class="o">=</span> <span class="s1">&#39;USE&#39;</span>
@@ -266,15 +273,15 @@
 
 <div class="viewcode-block" id="DRI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.dri.DRI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">column_usage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the DRI index.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the Drug Resistance Index.</span>
 
-<span class="sd">        .. note:: Include checks.</span>
+<span class="sd">        .. note:: Needs to include checks.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        dataframe: pd.DataFrame</span>
 <span class="sd">            The pandas dataframe with the information. The following columns</span>
-<span class="sd">            are always required [RESISTANCE and USE]. The RESISTANCE columns</span>
+<span class="sd">            are always required [RESISTANCE and USE]. The RESISTANCE column</span>
 <span class="sd">            indicates the proportion of resistance isolates and the USE the</span>
 <span class="sd">            amount of antimicrobial doses applied.</span>
 

@@ -35,9 +35,8 @@ import matplotlib.pyplot as plt
 
 # Import specific libraries
 from pyamr.core.asai import ASAI
-from pyamr.core.asai import asai
 from pyamr.datasets.load import fixture
-from pyamr.graphics.utils import scalar_colormap
+from pyamr.utils.plot import scalar_colormap
 
 # Configure seaborn style (context=talk)
 sns.set(style="white")

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.utils package &mdash; pyamr 0.0.1 documentation</title>
@@ -17,10 +17,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -70,6 +69,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.examples.html">pyamr.examples package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
@@ -101,6 +101,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -159,15 +162,55 @@
 </section>
 <section id="module-pyamr.utils.plot">
 <span id="pyamr-utils-plot-module"></span><h2>pyamr.utils.plot module<a class="headerlink" href="#module-pyamr.utils.plot" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.plot.MidpointNormalize" title="pyamr.utils.plot.MidpointNormalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MidpointNormalize</span></code></a>([vmin, vmax, midpoint, clip])</p></td>
+<td><p>Normalise the colorbar so that diverging bars work their way either side from a prescribed midpoint value)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.plot.create_mapper" title="pyamr.utils.plot.create_mapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_mapper</span></code></a>(dataframe, column_key, ...)</p></td>
+<td><p>This method constructs a mapper</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.plot.get_category_colors" title="pyamr.utils.plot.get_category_colors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_category_colors</span></code></a>(index, category[, cmap])</p></td>
+<td><p>Creates the colors for the different elements in a given categorical feature vector.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.plot.hlinebgplot" title="pyamr.utils.plot.hlinebgplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hlinebgplot</span></code></a>(ax, right, yv[, bg])</p></td>
+<td><p>This function adds a vertical line and background</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.plot.plot_sns_clustermap" title="pyamr.utils.plot.plot_sns_clustermap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_sns_clustermap</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.plot.plot_sns_heatmap" title="pyamr.utils.plot.plot_sns_heatmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_sns_heatmap</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.plot.plot_sns_relmap" title="pyamr.utils.plot.plot_sns_relmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_sns_relmap</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.plot.plot_spectrum" title="pyamr.utils.plot.plot_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_spectrum</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.plot.plot_timeseries" title="pyamr.utils.plot.plot_timeseries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_timeseries</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.plot.scalar_colormap" title="pyamr.utils.plot.scalar_colormap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scalar_colormap</span></code></a>(values, cmap, vmin, vmax)</p></td>
+<td><p>This method creates a colormap based on values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.plot.vlinebgplot" title="pyamr.utils.plot.vlinebgplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vlinebgplot</span></code></a>(ax, top, xv[, bg])</p></td>
+<td><p>This function adds a vertical line and background</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.utils.plot.MidpointNormalize">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">MidpointNormalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">midpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#MidpointNormalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.MidpointNormalize" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Normalize</span></code></p>
-<dl class="simple">
-<dt>Normalise the colorbar so that diverging bars</dt><dd><p>work there way either side from a prescribed
-midpoint value)</p>
-</dd>
-</dl>
+<p>Normalise the colorbar so that diverging bars work their way
+either side from a prescribed midpoint value)</p>
 <p class="rubric">Example</p>
 <p>&gt; MidpointNormalize(midpoint=0., vmin=-100, vmax=100)</p>
 </dd></dl>

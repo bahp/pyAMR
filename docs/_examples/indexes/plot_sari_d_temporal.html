@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SARI - Compute timeseries &mdash; pyamr 0.0.1 documentation</title>
@@ -17,10 +17,9 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -81,6 +80,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Visualization</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
+</ul>
 
         </div>
       </div>
@@ -109,7 +111,7 @@
              
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-sari-d-temporal-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-examples-indexes-plot-sari-d-temporal-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="sari-compute-timeseries">
@@ -195,20 +197,19 @@ the trend estimated for 1M<sub>1</sub> should be approximately thirty times the 
 <span class="linenos">107</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">date_received</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s1">&#39;2008-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2016-12-31&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Data:
-           date_received         date_outcome patient_id laboratory_number specimen_code  ...       antimicrobial_name sensitivity_method sensitivity  mic reported
-0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                 amikacin                NaN   sensitive  NaN      NaN
-1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              amoxycillin                NaN   resistant  NaN      NaN
-2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                augmentin                NaN   sensitive  NaN      NaN
-3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...                aztreonam                NaN   sensitive  NaN      NaN
-4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL  ...              ceftazidime                NaN   sensitive  NaN      NaN
-...                  ...                  ...        ...               ...           ...  ...                      ...                ...         ...  ...      ...
-7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               gentamicin                 DD   resistant  NaN        Y
-7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...                meropenem                 DD   sensitive  NaN        Y
-7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...  piperacillin-tazobactam                 DD   sensitive  NaN        N
-7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...               temocillin                 DD   sensitive  NaN        N
-7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  ...              tigecycline                 DD   sensitive  NaN        N
+           date_received         date_outcome patient_id laboratory_number specimen_code                   specimen_name  ... antimicrobial_code       antimicrobial_name sensitivity_method sensitivity  mic reported
+0    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMI                 amikacin                NaN   sensitive  NaN      NaN
+1    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAMO              amoxycillin                NaN   resistant  NaN      NaN
+2    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAUG                augmentin                NaN   sensitive  NaN      NaN
+3    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               AAZT                aztreonam                NaN   sensitive  NaN      NaN
+4    2009-01-03 00:00:00                  NaN      20091           X428501        BLDCUL                             NaN  ...               ACAZ              ceftazidime                NaN   sensitive  NaN      NaN
+...                  ...                  ...        ...               ...           ...                             ...  ...                ...                      ...                ...         ...  ...      ...
+7929 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AGEN               gentamicin                 DD   resistant  NaN        Y
+7930 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               AMER                meropenem                 DD   sensitive  NaN        Y
+7931 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATAZ  piperacillin-tazobactam                 DD   sensitive  NaN        N
+7932 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATEM               temocillin                 DD   sensitive  NaN        N
+7933 2021-01-21 23:56:00  2021-01-22 00:00:00     199863          H2230229         FBCUL  Fluid in Blood Culture Bottles  ...               ATIG              tigecycline                 DD   sensitive  NaN        N
 
 [3770034 rows x 15 columns]
 
@@ -298,8 +299,7 @@ monthly time series - 1M<sub>1</sub> or yearly timeseries - 12M<sub>1</sub>).</p
 <span class="linenos">174</span> <span class="nb">print</span><span class="p">(</span><span class="n">iti</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_sari_d_temporal_001.png" srcset="../../_images/sphx_glr_plot_sari_d_temporal_001.png" alt="Time-series $30D_{30D}$" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (ITI):
+<img src="../../_images/sphx_glr_plot_sari_d_temporal_001.png" srcset="../../_images/sphx_glr_plot_sari_d_temporal_001.png" alt="Time-series $30D_{30D}$" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (ITI):
    specimen_code microorganism_code antimicrobial_code date_received  intermediate  resistant  sensitive   freq    sari
 0         URICUL               ECOL               AAUG    2009-01-03           0.0        5.0       32.0   37.0  0.1351
 1         URICUL               ECOL               AAUG    2009-02-02           0.0        7.0      107.0  114.0  0.0614
@@ -376,8 +376,7 @@ not have a large number of records in the dataset.</p>
 <span class="linenos">238</span> <span class="nb">print</span><span class="p">(</span><span class="n">oti</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_sari_d_temporal_002.png" srcset="../../_images/sphx_glr_plot_sari_d_temporal_002.png" alt="Time-series $30D_{180D}$" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (OTI):
+<img src="../../_images/sphx_glr_plot_sari_d_temporal_002.png" srcset="../../_images/sphx_glr_plot_sari_d_temporal_002.png" alt="Time-series $30D_{180D}$" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Temporal (OTI):
    specimen_code microorganism_code antimicrobial_code date_received  intermediate  resistant  sensitive    freq    sari
 0         URICUL               ECOL               AAUG    2009-01-03           0.0        5.0       32.0    37.0  0.1351
 1         URICUL               ECOL               AAUG    2009-02-02           0.0       12.0      139.0   151.0  0.0795
@@ -529,12 +528,11 @@ and reached certain stability on 1M<sub>6</sub> approximately (ish?).</p>
 <span class="linenos">377</span><span class="sd"> &quot;&quot;&quot;</span>
 </pre></div>
 </div>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;\n#g.map(label, &quot;x&quot;)\n#g.set_titles(&quot;&quot;)\n#g.set(yticks=[])\ng.set(xlabel=\&#39;date\&#39;)\ng.despine(bottom=True, left=True)\n\n# Show\nplt.show()\n&#39;
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.249 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-sari-d-temporal-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  15.742 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-indexes-plot-sari-d-temporal-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/c5891bdb998ce8d19e7f298de744a4a3/plot_sari_d_temporal.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_sari_d_temporal.py</span></code></a></p>
 </div>

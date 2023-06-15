@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.core.regression package &mdash; pyamr 0.0.1 documentation</title>
@@ -17,10 +17,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -201,6 +200,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.examples.html">pyamr.examples package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
@@ -210,6 +210,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -245,21 +248,48 @@
 </section>
 <section id="module-pyamr.core.regression.arima">
 <span id="pyamr-core-regression-arima-module"></span><h2>pyamr.core.regression.arima module<a class="headerlink" href="#module-pyamr.core.regression.arima" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.arima.ARIMAWrapper" title="pyamr.core.regression.arima.ARIMAWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ARIMAWrapper</span></code></a>([estimator, evaluate])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.arima.ARIMAWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.arima.</span></span><span class="sig-name descname"><span class="pre">ARIMAWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/arima.html#ARIMAWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionWrapper</span></code></a></p>
-<p>Description</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.arima.ARIMAWrapper.as_summary" title="pyamr.core.regression.arima.ARIMAWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>(**kwargs)</p></td>
+<td><p>Returns a summary string (statsmodels inspired)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.arima.ARIMAWrapper.auto" title="pyamr.core.regression.arima.ARIMAWrapper.auto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auto</span></code></a>(endog[, exog, ic, trends, max_ar, ...])</p></td>
+<td><p>Find the best model through bruteforce.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.arima.ARIMAWrapper.conf_int_forecast" title="pyamr.core.regression.arima.ARIMAWrapper.conf_int_forecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conf_int_forecast</span></code></a>(predictions[, alpha])</p></td>
+<td><p>Computes the out-sample confidence interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.arima.ARIMAWrapper.evaluate" title="pyamr.core.regression.arima.ARIMAWrapper.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>([alpha])</p></td>
+<td><p>Generates a dictionary with the relevant attributes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.arima.ARIMAWrapper.get_prediction" title="pyamr.core.regression.arima.ARIMAWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>([start, end, alpha])</p></td>
+<td><p>Calls the predict function in ARIMA.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.arima.ARIMAWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/arima.html#ARIMAWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.as_summary" title="Permalink to this definition"></a></dt>
-<dd><p>This method creates a summary string.</p>
+<dd><p>Returns a summary string (statsmodels inspired)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.arima.ARIMAWrapper.auto">
 <span class="sig-name descname"><span class="pre">auto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['n',</span> <span class="pre">'c']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/arima.html#ARIMAWrapper.auto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.auto" title="Permalink to this definition"></a></dt>
-<dd><p>This method finds the best arima through bruteforce.</p>
+<dd><p>Find the best model through bruteforce.</p>
 <p>Note: It uses grid search through the base wrapper.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -302,7 +332,7 @@ are returned. If true, only those models that converged are returned.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.arima.ARIMAWrapper.evaluate">
 <span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/arima.html#ARIMAWrapper.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.evaluate" title="Permalink to this definition"></a></dt>
-<dd><p>This method creates a dictionary with the relevant attributes.</p>
+<dd><p>Generates a dictionary with the relevant attributes.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There is an issue with the method conf_int(alpha). It can receive
@@ -310,8 +340,7 @@ as input parameters a pandas series or a numpy array. We are using
 it with numpy array as input, hence when pandas series is passed
 the method _init_result gives an error.</p>
 </div>
-<p>&#64;see: statsmodels.Arima
-&#64;see: statsmodels.ArimaResults</p>
+<p>Include ref to <cite>statsmodels:Arima</cite> and <cite>statsmodels:ArimaResults</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>alpha</strong> (<em>the confidence interval.</em>)</p>
@@ -328,13 +357,13 @@ the method _init_result gives an error.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.arima.ARIMAWrapper.get_prediction">
 <span class="sig-name descname"><span class="pre">get_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/arima.html#ARIMAWrapper.get_prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.arima.ARIMAWrapper.get_prediction" title="Permalink to this definition"></a></dt>
-<dd><p>This method calls the predict function in ARIMA.</p>
+<dd><p>Calls the predict function in ARIMA.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The confidence intervals have been implemented using the functions
-<code class="docutils literal notranslate"><span class="pre">_forecast_conf_int()</span></code> and <code class="docutils literal notranslate"><span class="pre">_forecast_error()</span></code> implemented in the
-statsmodels.ts.arima_model.ARIMAResults. As such, it produces the
-same confidence intervals than the method <code class="docutils literal notranslate"><span class="pre">plot_predict()</span></code>.</p>
+<p>The confidence intervals have been implemented using the following
+functions <code class="docutils literal notranslate"><span class="pre">_forecast_conf_int()</span></code> and <code class="docutils literal notranslate"><span class="pre">_forecast_error()</span></code>. These
+are implemented in <code class="docutils literal notranslate"><span class="pre">statsmodels.ts.arima_model.ARIMAResults</span></code>. As such,
+it produces the same confidence intervals than the method <code class="docutils literal notranslate"><span class="pre">plot_predict()</span></code>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -376,10 +405,38 @@ the differenced endogenous variables.</p></li>
 </section>
 <section id="module-pyamr.core.regression.pyarima">
 <span id="pyamr-core-regression-pyarima-module"></span><h2>pyamr.core.regression.pyarima module<a class="headerlink" href="#module-pyamr.core.regression.pyarima" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima.PyramidWrapper" title="pyamr.core.regression.pyarima.PyramidWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PyramidWrapper</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.pyarima.PyramidWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.pyarima.</span></span><span class="sig-name descname"><span class="pre">PyramidWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/pyarima.html#PyramidWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.pyarima.PyramidWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wregression.BaseRegressionWrapper" title="pyamr.core.regression.wregression.BaseRegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRegressionWrapper</span></code></a></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima.PyramidWrapper.as_summary" title="pyamr.core.regression.pyarima.PyramidWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>(**kwargs)</p></td>
+<td><p>This method displays the summary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima.PyramidWrapper.auto" title="pyamr.core.regression.pyarima.PyramidWrapper.auto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auto</span></code></a>(**kwargs)</p></td>
+<td><p>This method finds the best arima.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima.PyramidWrapper.fit" title="pyamr.core.regression.pyarima.PyramidWrapper.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(**kwargs)</p></td>
+<td><p>This method fits the specified arima model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima.PyramidWrapper.from_instance" title="pyamr.core.regression.pyarima.PyramidWrapper.from_instance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_instance</span></code></a>(arima, **kwargs)</p></td>
+<td><p>This method constructs a PyramidWrapper object from pyramid.ARIMA</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima.PyramidWrapper.get_prediction" title="pyamr.core.regression.pyarima.PyramidWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.pyarima.PyramidWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/pyarima.html#PyramidWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.pyarima.PyramidWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -431,10 +488,41 @@ the differenced endogenous variables.</p></li>
 </section>
 <section id="module-pyamr.core.regression.pyarima2">
 <span id="pyamr-core-regression-pyarima2-module"></span><h2>pyamr.core.regression.pyarima2 module<a class="headerlink" href="#module-pyamr.core.regression.pyarima2" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima2.PyramidWrapper" title="pyamr.core.regression.pyarima2.PyramidWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PyramidWrapper</span></code></a>([estimator, evaluate])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.pyarima2.PyramidWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.pyarima2.</span></span><span class="sig-name descname"><span class="pre">PyramidWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/pyarima2.html#PyramidWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionWrapper</span></code></a></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima2.PyramidWrapper.as_summary" title="pyamr.core.regression.pyarima2.PyramidWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>(**kwargs)</p></td>
+<td><p>This method displays the summary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima2.PyramidWrapper.auto" title="pyamr.core.regression.pyarima2.PyramidWrapper.auto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auto</span></code></a>(**kwargs)</p></td>
+<td><p>This method finds the best arima.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima2.PyramidWrapper.evaluate" title="pyamr.core.regression.pyarima2.PyramidWrapper.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>([alpha])</p></td>
+<td><p>This method set all the variables into this class.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima2.PyramidWrapper.from_instance" title="pyamr.core.regression.pyarima2.PyramidWrapper.from_instance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_instance</span></code></a>(arima, **kwargs)</p></td>
+<td><p>This method constructs a PyramidWrapper object from pyramid.ARIMA</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima2.PyramidWrapper.get_prediction" title="pyamr.core.regression.pyarima2.PyramidWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>([start, end, alpha])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.pyarima2.PyramidWrapper.resid" title="pyamr.core.regression.pyarima2.PyramidWrapper.resid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resid</span></code></a>()</p></td>
+<td><p>Get the residual</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.pyarima2.PyramidWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/pyarima2.html#PyramidWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.pyarima2.PyramidWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -486,11 +574,42 @@ the differenced endogenous variables.</p></li>
 </section>
 <section id="module-pyamr.core.regression.sarimax">
 <span id="pyamr-core-regression-sarimax-module"></span><h2>pyamr.core.regression.sarimax module<a class="headerlink" href="#module-pyamr.core.regression.sarimax" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper" title="pyamr.core.regression.sarimax.SARIMAXWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SARIMAXWrapper</span></code></a>([estimator, evaluate])</p></td>
+<td><p>Description</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.sarimax.</span></span><span class="sig-name descname"><span class="pre">SARIMAXWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionWrapper</span></code></a></p>
 <p>Description</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary" title="pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>(**kwargs)</p></td>
+<td><p>This method creates a summary string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.auto" title="pyamr.core.regression.sarimax.SARIMAXWrapper.auto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auto</span></code></a>(endog[, exog, ic, max_ar, max_ma, ...])</p></td>
+<td><p>This method finds the best arima through bruteforce.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate" title="pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>([alpha])</p></td>
+<td><p>This method creates a dictioanry with the relevant parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction" title="pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>([start, end, alpha])</p></td>
+<td><p>This method calls the get prediction function in ARIMA.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.load" title="pyamr.core.regression.sarimax.SARIMAXWrapper.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(**kwargs)</p></td>
+<td><p>This method loads the information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.save" title="pyamr.core.regression.sarimax.SARIMAXWrapper.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(**kwargs)</p></td>
+<td><p>This method saves the information.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -588,10 +707,32 @@ the differenced endogenous variables.</p></li>
 </section>
 <section id="module-pyamr.core.regression.theilsens">
 <span id="pyamr-core-regression-theilsens-module"></span><h2>pyamr.core.regression.theilsens module<a class="headerlink" href="#module-pyamr.core.regression.theilsens" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.theilsens.TheilSensWrapper" title="pyamr.core.regression.theilsens.TheilSensWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TheilSensWrapper</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.theilsens.TheilSensWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.theilsens.</span></span><span class="sig-name descname"><span class="pre">TheilSensWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/theilsens.html#TheilSensWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.theilsens.TheilSensWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wregression.BaseRegressionWrapper" title="pyamr.core.regression.wregression.BaseRegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRegressionWrapper</span></code></a></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.theilsens.TheilSensWrapper.as_summary" title="pyamr.core.regression.theilsens.TheilSensWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>([alpha])</p></td>
+<td><p>This method displays the summary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.theilsens.TheilSensWrapper.fit" title="pyamr.core.regression.theilsens.TheilSensWrapper.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(**kwargs)</p></td>
+<td><p>This method....</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.theilsens.TheilSensWrapper.get_prediction" title="pyamr.core.regression.theilsens.TheilSensWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>([exog, start, end])</p></td>
+<td><p>This method...</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.theilsens.TheilSensWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/theilsens.html#TheilSensWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.theilsens.TheilSensWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -640,10 +781,56 @@ the differenced endogenous variables.</p></li>
 </section>
 <section id="module-pyamr.core.regression.wbase">
 <span id="pyamr-core-regression-wbase-module"></span><h2>pyamr.core.regression.wbase module<a class="headerlink" href="#module-pyamr.core.regression.wbase" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper" title="pyamr.core.regression.wbase.BaseWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.wbase.BaseWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wbase.</span></span><span class="sig-name descname"><span class="pre">BaseWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wbase.html#BaseWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.as_series" title="pyamr.core.regression.wbase.BaseWrapper.as_series"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_series</span></code></a>([flabel, label])</p></td>
+<td><p>This method returns a series with all the information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.as_summary" title="pyamr.core.regression.wbase.BaseWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>()</p></td>
+<td><p>This method displays the final summary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.attrs" title="pyamr.core.regression.wbase.BaseWrapper.attrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attrs</span></code></a>()</p></td>
+<td><p>This method returns all the defined attributes as tuples.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.fargs" title="pyamr.core.regression.wbase.BaseWrapper.fargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fargs</span></code></a>(kwargs, function)</p></td>
+<td><p>This method returns elements in kwargs which are function inputs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.fit" title="pyamr.core.regression.wbase.BaseWrapper.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(**kwargs)</p></td>
+<td><p>This method performs the fit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.from_list_dataframe" title="pyamr.core.regression.wbase.BaseWrapper.from_list_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_list_dataframe</span></code></a>(wrapper_list, **kwargs)</p></td>
+<td><p>This methods creates a dataframe summary from a list.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.grid_search" title="pyamr.core.regression.wbase.BaseWrapper.grid_search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_search</span></code></a>(grid_params)</p></td>
+<td><p>This method computes grid search.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.grid_search_dataframe" title="pyamr.core.regression.wbase.BaseWrapper.grid_search_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grid_search_dataframe</span></code></a>(grid_params, **kwargs)</p></td>
+<td><p>This method computes grid search and stores results in a dataframe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.load" title="pyamr.core.regression.wbase.BaseWrapper.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(fname)</p></td>
+<td><p>This method loads the wrapper.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.methods" title="pyamr.core.regression.wbase.BaseWrapper.methods"><code class="xref py py-obj docutils literal notranslate"><span class="pre">methods</span></code></a>()</p></td>
+<td><p>This method returns all the defined methods as tuples.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper.save" title="pyamr.core.regression.wbase.BaseWrapper.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(fname)</p></td>
+<td><p>This method saves the wrapper.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.wbase.BaseWrapper.as_series">
 <span class="sig-name descname"><span class="pre">as_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wbase.html#BaseWrapper.as_series"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wbase.BaseWrapper.as_series" title="Permalink to this definition"></a></dt>
@@ -772,6 +959,17 @@ results are stored in an array with the corresponding wrapper instances.</p>
 </section>
 <section id="module-pyamr.core.regression.wls">
 <span id="pyamr-core-regression-wls-module"></span><h2>pyamr.core.regression.wls module<a class="headerlink" href="#module-pyamr.core.regression.wls" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.PredictionResult" title="pyamr.core.regression.wls.PredictionResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PredictionResult</span></code></a>(mean, cilo, ciup, pstd, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.WLSWrapper" title="pyamr.core.regression.wls.WLSWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WLSWrapper</span></code></a>([estimator, evaluate])</p></td>
+<td><p>The description...</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.wls.PredictionResult">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wls.</span></span><span class="sig-name descname"><span class="pre">PredictionResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cilo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ciup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pstd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pilo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">piup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endog</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wls.html#PredictionResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wls.PredictionResult" title="Permalink to this definition"></a></dt>
@@ -783,6 +981,29 @@ results are stored in an array with the corresponding wrapper instances.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wls.</span></span><span class="sig-name descname"><span class="pre">WLSWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wls.html#WLSWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionWrapper</span></code></a></p>
 <p>The description…</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.WLSWrapper.as_summary" title="pyamr.core.regression.wls.WLSWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>(**kwargs)</p></td>
+<td><p>This method creates a summary string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.WLSWrapper.evaluate" title="pyamr.core.regression.wls.WLSWrapper.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>([alpha])</p></td>
+<td><p>This method set all the variables into this class.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.WLSWrapper.fit" title="pyamr.core.regression.wls.WLSWrapper.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(endog[, exog, trend, weights, W])</p></td>
+<td><p>This method computes the WLS.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.WLSWrapper.get_prediction" title="pyamr.core.regression.wls.WLSWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>([start, end, alpha])</p></td>
+<td><p>This method predicts using the model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.WLSWrapper.line" title="pyamr.core.regression.wls.WLSWrapper.line"><code class="xref py py-obj docutils literal notranslate"><span class="pre">line</span></code></a>(x)</p></td>
+<td><p>This method returns arrays to plot line and confidence intervals.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wls.WLSWrapper.pred_int" title="pyamr.core.regression.wls.WLSWrapper.pred_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pred_int</span></code></a>([start, end])</p></td>
+<td><p>This method computes the prediction intervals</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.wls.WLSWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wls.html#WLSWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wls.WLSWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -902,10 +1123,32 @@ class statsmodels.WLS (see xxx)</p></li>
 </section>
 <section id="module-pyamr.core.regression.wlsarma">
 <span id="pyamr-core-regression-wlsarma-module"></span><h2>pyamr.core.regression.wlsarma module<a class="headerlink" href="#module-pyamr.core.regression.wlsarma" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wlsarma.WLSARMAWrapper" title="pyamr.core.regression.wlsarma.WLSARMAWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WLSARMAWrapper</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.wlsarma.WLSARMAWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wlsarma.</span></span><span class="sig-name descname"><span class="pre">WLSARMAWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wlsarma.html#WLSARMAWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wlsarma.WLSARMAWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wregression.BaseRegressionWrapper" title="pyamr.core.regression.wregression.BaseRegressionWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRegressionWrapper</span></code></a></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wlsarma.WLSARMAWrapper.as_summary" title="pyamr.core.regression.wlsarma.WLSARMAWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>(**kwargs)</p></td>
+<td><p>This method displays the summary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wlsarma.WLSARMAWrapper.fit" title="pyamr.core.regression.wlsarma.WLSARMAWrapper.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(endog[, exog, weights, wls_kwargs, ...])</p></td>
+<td><p>This method...</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wlsarma.WLSARMAWrapper.get_prediction" title="pyamr.core.regression.wlsarma.WLSARMAWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>([start, end, ptype])</p></td>
+<td><p>This method computes the prediction.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.wlsarma.WLSARMAWrapper.as_summary">
 <span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wlsarma.html#WLSARMAWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wlsarma.WLSARMAWrapper.as_summary" title="Permalink to this definition"></a></dt>
@@ -955,11 +1198,33 @@ fshape-start.</p>
 </section>
 <section id="module-pyamr.core.regression.wreg">
 <span id="pyamr-core-regression-wreg-module"></span><h2>pyamr.core.regression.wreg module<a class="headerlink" href="#module-pyamr.core.regression.wreg" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper" title="pyamr.core.regression.wreg.RegressionWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegressionWrapper</span></code></a>([estimator, evaluate])</p></td>
+<td><p>Description...</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.wreg.RegressionWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wreg.</span></span><span class="sig-name descname"><span class="pre">RegressionWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wreg.html#RegressionWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wreg.RegressionWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper" title="pyamr.core.stats.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a></p>
 <p>Description…</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper.conf_int_insample" title="pyamr.core.regression.wreg.RegressionWrapper.conf_int_insample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conf_int_insample</span></code></a>(predictions[, alpha])</p></td>
+<td><p>Computes the in-sample confidence interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper.fit" title="pyamr.core.regression.wreg.RegressionWrapper.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(**kwargs)</p></td>
+<td><p>This method performs the fit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wreg.RegressionWrapper.resid" title="pyamr.core.regression.wreg.RegressionWrapper.resid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resid</span></code></a>()</p></td>
+<td><p>Get the residual</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.wreg.RegressionWrapper.conf_int_insample">
 <span class="sig-name descname"><span class="pre">conf_int_insample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wreg.html#RegressionWrapper.conf_int_insample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wreg.RegressionWrapper.conf_int_insample" title="Permalink to this definition"></a></dt>
@@ -999,10 +1264,26 @@ fshape-start.</p>
 </section>
 <section id="module-pyamr.core.regression.wregression">
 <span id="pyamr-core-regression-wregression-module"></span><h2>pyamr.core.regression.wregression module<a class="headerlink" href="#module-pyamr.core.regression.wregression" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wregression.BaseRegressionWrapper" title="pyamr.core.regression.wregression.BaseRegressionWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseRegressionWrapper</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.regression.wregression.BaseRegressionWrapper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.wregression.</span></span><span class="sig-name descname"><span class="pre">BaseRegressionWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wregression.html#BaseRegressionWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wregression.BaseRegressionWrapper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyamr.core.regression.wbase.BaseWrapper" title="pyamr.core.regression.wbase.BaseWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseWrapper</span></code></a></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.wregression.BaseRegressionWrapper.conf_int_insample" title="pyamr.core.regression.wregression.BaseRegressionWrapper.conf_int_insample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conf_int_insample</span></code></a>(forecast[, resid, alpha])</p></td>
+<td><p>This function computes a basic confidence interval.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.regression.wregression.BaseRegressionWrapper.conf_int_insample">
 <span class="sig-name descname"><span class="pre">conf_int_insample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forecast</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/wregression.html#BaseRegressionWrapper.conf_int_insample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.wregression.BaseRegressionWrapper.conf_int_insample" title="Permalink to this definition"></a></dt>

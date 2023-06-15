@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -64,6 +63,9 @@
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -110,9 +112,8 @@
 <span class="kn">from</span> <span class="nn">pyamr.core.stats.wbase</span> <span class="kn">import</span> <span class="n">BaseWrapper</span>
 
 
-<div class="viewcode-block" id="ADFWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper">[docs]</a><span class="k">class</span> <span class="nc">ADFWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The ADF wrapper.</span>
-
+<div class="viewcode-block" id="ADFWrapper"><a class="viewcode-back" href="../../../../generated/pyamr.core.stats.adfuller.html#pyamr.core.stats.adfuller.ADFWrapper">[docs]</a><span class="k">class</span> <span class="nc">ADFWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The Augmented Dickey-Fuller test can be used to test for a unit root in</span>
 <span class="sd">    a univariate process in the presence of serial correlation. It tests the</span>
 <span class="sd">    null hypothesis that a unit root is present in a time series sample. The</span>
@@ -121,13 +122,15 @@
 <span class="sd">    negative the statistic, the stronger the rejection of the hypothesis that</span>
 <span class="sd">    there is a unit root at some level of confidence.</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    H0: The series has a unit root =&gt; Non-stationary</span>
-<span class="sd">    H1: The series has no unit root =&gt; Stationary / Trend-Stationary</span>
+<span class="sd">    ====== =========================== =====================================</span>
+<span class="sd">    H      Hypothesis                  Stationarity</span>
+<span class="sd">    ====== =========================== =====================================</span>
+<span class="sd">    **H0** The series has a unit root  ``Non-stationary``</span>
+<span class="sd">    **H1** The series has no unit root ``Stationary`` / ``Trend-Stationary``</span>
+<span class="sd">    ====== =========================== =====================================</span>
 
-<span class="sd">    If p-value &gt; 0.05: Failed to reject H0.</span>
-<span class="sd">    If p-value &lt;= 0.05: Reject H0.</span>
+<span class="sd">    | If p-value &gt; 0.05: Failed to reject H0.</span>
+<span class="sd">    | If p-value &lt;= 0.05: Reject H0.</span>
 
 <span class="sd">    The absence of unit root is not a proof of non-stationarity. As such, it</span>
 <span class="sd">    is also possible to use the Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test</span>
@@ -138,11 +141,6 @@
 <span class="sd">    or decreasing over time; however, in the presence of a shock, trend-stationary</span>
 <span class="sd">    processes revert to this mean tendency in the long run (deterministic trend)</span>
 <span class="sd">    while unit-root processes have a permanent impact (stochastic trend).</span>
-
-<span class="sd">    [1] https://machinelearningmastery.com/time-series-data-stationary-python/</span>
-<span class="sd">    [2] https://www.statsmodels.org/stable/examples/notebooks/generated/stationarity_detrending_adf_kpss.html</span>
-
-<span class="sd">    .. todo: .</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -152,7 +150,7 @@
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1">#                             new methods</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ADFWrapper.is_stationary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.is_stationary">[docs]</a>    <span class="k">def</span> <span class="nf">is_stationary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<div class="viewcode-block" id="ADFWrapper.is_stationary"><a class="viewcode-back" href="../../../../generated/pyamr.core.stats.adfuller.html#pyamr.core.stats.adfuller.ADFWrapper.is_stationary">[docs]</a>    <span class="k">def</span> <span class="nf">is_stationary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method returns a boolean with the stationarity outocme.</span>
 
 <span class="sd">        Parameters</span>
@@ -166,7 +164,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="p">[</span><span class="s1">&#39;pvalue&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">alpha</span> <span class="k">else</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="ADFWrapper.stationarity"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.stationarity">[docs]</a>    <span class="k">def</span> <span class="nf">stationarity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<div class="viewcode-block" id="ADFWrapper.stationarity"><a class="viewcode-back" href="../../../../generated/pyamr.core.stats.adfuller.html#pyamr.core.stats.adfuller.ADFWrapper.stationarity">[docs]</a>    <span class="k">def</span> <span class="nf">stationarity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method returns the stationarity outcome.</span>
 
 <span class="sd">        Parameters</span>
@@ -183,7 +181,7 @@
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1">#                          overriden methods</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="ADFWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ADFWrapper.evaluate"><a class="viewcode-back" href="../../../../generated/pyamr.core.stats.adfuller.html#pyamr.core.stats.adfuller.ADFWrapper.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluates the model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Create dictionary</span>
@@ -203,7 +201,7 @@
         <span class="c1"># Return</span>
         <span class="k">return</span> <span class="n">d</span></div>
 
-<div class="viewcode-block" id="ADFWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.adfuller.ADFWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ADFWrapper.as_summary"><a class="viewcode-back" href="../../../../generated/pyamr.core.stats.adfuller.html#pyamr.core.stats.adfuller.ADFWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates the summary to display.</span>
 
 <span class="sd">        .. note: Use self.__dict__ to pass all the parameters</span>

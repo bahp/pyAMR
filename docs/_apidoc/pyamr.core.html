@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.core package &mdash; pyamr 0.0.1 documentation</title>
@@ -17,10 +17,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -120,18 +119,13 @@
 <li class="toctree-l6"><a class="reference internal" href="#pyamr.core.asai.ASAI_old.compute"><code class="docutils literal notranslate"><span class="pre">ASAI_old.compute()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.asai.antimicrobial_spectrum_activity_index"><code class="docutils literal notranslate"><span class="pre">antimicrobial_spectrum_activity_index()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#pyamr.core.asai.asai"><code class="docutils literal notranslate"><span class="pre">asai()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#module-pyamr.core.dri">pyamr.core.dri module</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#pyamr.core.dri.DRI"><code class="docutils literal notranslate"><span class="pre">DRI</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_abx"><code class="docutils literal notranslate"><span class="pre">DRI.c_abx</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_dat"><code class="docutils literal notranslate"><span class="pre">DRI.c_dat</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_drg"><code class="docutils literal notranslate"><span class="pre">DRI.c_drg</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_org"><code class="docutils literal notranslate"><span class="pre">DRI.c_org</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_out"><code class="docutils literal notranslate"><span class="pre">DRI.c_out</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_res"><code class="docutils literal notranslate"><span class="pre">DRI.c_res</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_spe"><code class="docutils literal notranslate"><span class="pre">DRI.c_spe</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.c_use"><code class="docutils literal notranslate"><span class="pre">DRI.c_use</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#pyamr.core.dri.DRI.compute"><code class="docutils literal notranslate"><span class="pre">DRI.compute()</span></code></a></li>
 </ul>
@@ -203,6 +197,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.examples.html">pyamr.examples package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
@@ -212,6 +207,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -502,20 +500,85 @@
 </section>
 <section id="module-pyamr.core.acsi">
 <span id="pyamr-core-acsi-module"></span><h2>pyamr.core.acsi module<a class="headerlink" href="#module-pyamr.core.acsi" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI" title="pyamr.core.acsi.ACSI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ACSI</span></code></a>([column_specimen, ...])</p></td>
+<td><p>Antimicrobial Collateral Sensitivity Index.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.CRI" title="pyamr.core.acsi.CRI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CRI</span></code></a>(x[, func_mis])</p></td>
+<td><p>Collateral resistance index</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.acsi.collateral_resistance_index" title="pyamr.core.acsi.collateral_resistance_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collateral_resistance_index</span></code></a>(m)</p></td>
+<td><p>Collateral Resistance Index</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.create_combinations_v1" title="pyamr.core.acsi.create_combinations_v1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_combinations_v1</span></code></a>(d, groupby[, ...])</p></td>
+<td><p>Creates the DataFrame with all combinations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.acsi.mutual_info_matrix_v3" title="pyamr.core.acsi.mutual_info_matrix_v3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mutual_info_matrix_v3</span></code></a>([x, y, ct])</p></td>
+<td><p>Compute the component information score.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.acsi.ACSI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.acsi.</span></span><span class="sig-name descname"><span class="pre">ACSI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_specimen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIMEN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_microorganism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'MICROORGANISM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_antimicrobial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIMICROBIAL'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_sensitivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SENSITIVITY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_laboratory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LAB_NUMBER'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/acsi.html#ACSI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.acsi.ACSI" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Antimicrobial Collateral Sensitivity Index</p>
-<dl class="simple">
-<dt>How should we call this index?</dt><dd><ol class="loweralpha simple">
+<p>Antimicrobial Collateral Sensitivity Index.</p>
+<p>Other possible names for this index…</p>
+<blockquote>
+<div><ol class="loweralpha simple">
 <li><p>Antimicrobial Disjoint Resistance Index</p></li>
 <li><p>Antimicrobial Collateral Resistance Index</p></li>
 <li><p>Antimicrobial Collateral Sensitivity Index</p></li>
 <li><p>Antimicrobial Collateral Resistance Index</p></li>
 </ol>
-</dd>
-</dl>
+</div></blockquote>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.c_abx" title="pyamr.core.acsi.ACSI.c_abx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_abx</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.c_dat" title="pyamr.core.acsi.ACSI.c_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_dat</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.c_lab" title="pyamr.core.acsi.ACSI.c_lab"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_lab</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.c_org" title="pyamr.core.acsi.ACSI.c_org"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_org</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.c_sns" title="pyamr.core.acsi.ACSI.c_sns"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_sns</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.c_spe" title="pyamr.core.acsi.ACSI.c_spe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_spe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.combinations" title="pyamr.core.acsi.ACSI.combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combinations</span></code></a>(dataframe, **kwargs)</p></td>
+<td><p>Creates the combinations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.compute" title="pyamr.core.acsi.ACSI.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, flag_combinations, ...])</p></td>
+<td><p>Computes the Antimicrobial Collateral Sensitivity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.compute_from_combinations" title="pyamr.core.acsi.ACSI.compute_from_combinations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_from_combinations</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.acsi.ACSI.compute_from_contingency" title="pyamr.core.acsi.ACSI.compute_from_contingency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_from_contingency</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.acsi.ACSI.c_abx">
 <span class="sig-name descname"><span class="pre">c_abx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANTIMICROBIAL'</span></em><a class="headerlink" href="#pyamr.core.acsi.ACSI.c_abx" title="Permalink to this definition"></a></dt>
@@ -562,7 +625,7 @@ pass all of them.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.acsi.ACSI.compute">
 <span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_combinations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_contingency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_mis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_combinations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/acsi.html#ACSI.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.acsi.ACSI.compute" title="Permalink to this definition"></a></dt>
-<dd><p>Computes the antimicrobial collateral sensitivity index.</p>
+<dd><p>Computes the Antimicrobial Collateral Sensitivity.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Enable to pass a combinations dataframe.</p>
@@ -679,10 +742,67 @@ and lab_id</p>
 </section>
 <section id="module-pyamr.core.asai">
 <span id="pyamr-core-asai-module"></span><h2>pyamr.core.asai module<a class="headerlink" href="#module-pyamr.core.asai" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI" title="pyamr.core.asai.ASAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ASAI</span></code></a>([column_genus, column_specie, ...])</p></td>
+<td><p>Antimicrobial Spectrum of Activity Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old" title="pyamr.core.asai.ASAI_old"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ASAI_old</span></code></a>([weights, threshold, column_genus, ...])</p></td>
+<td><p>This class computes the antimicrobial spectrum of activity.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.antimicrobial_spectrum_activity_index" title="pyamr.core.asai.antimicrobial_spectrum_activity_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">antimicrobial_spectrum_activity_index</span></code></a>(dataframe)</p></td>
+<td><p>Computes the Antimicrobial Spectrum of Activity.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.asai" title="pyamr.core.asai.asai"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asai</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Redirects to <code class="docutils literal notranslate"><span class="pre">antimicrobial_spectrum_activity_index</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.asai.ASAI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">ASAI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_specie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'THRESHOLD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FREQUENCY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wgenus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wspecie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_SPECIE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#ASAI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.ASAI" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Antimicrobial Spectrum of Activity Index.</p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.c_fre" title="pyamr.core.asai.ASAI.c_fre"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_fre</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.c_gen" title="pyamr.core.asai.ASAI.c_gen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_gen</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.c_res" title="pyamr.core.asai.ASAI.c_res"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_res</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.c_spe" title="pyamr.core.asai.ASAI.c_spe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_spe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.c_thr" title="pyamr.core.asai.ASAI.c_thr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_thr</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.c_wgen" title="pyamr.core.asai.ASAI.c_wgen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_wgen</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.c_wspe" title="pyamr.core.asai.ASAI.c_wspe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_wspe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.compute" title="pyamr.core.asai.ASAI.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, groupby, min_freq])</p></td>
+<td><p>Computes the ASAI index (safely).</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.asai.ASAI.c_fre">
 <span class="sig-name descname"><span class="pre">c_fre</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FREQUENCY'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI.c_fre" title="Permalink to this definition"></a></dt>
@@ -782,6 +902,43 @@ and therefore not always adds up to exactly one.</p></li>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.0.1.</span></p>
 </div>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_abx" title="pyamr.core.asai.ASAI_old.c_abx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_abx</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_fre" title="pyamr.core.asai.ASAI_old.c_fre"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_fre</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_gen" title="pyamr.core.asai.ASAI_old.c_gen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_gen</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_res" title="pyamr.core.asai.ASAI_old.c_res"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_res</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_spe" title="pyamr.core.asai.ASAI_old.c_spe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_spe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_thr" title="pyamr.core.asai.ASAI_old.c_thr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_thr</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_wgen" title="pyamr.core.asai.ASAI_old.c_wgen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_wgen</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.c_wspe" title="pyamr.core.asai.ASAI_old.c_wspe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_wspe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.compute" title="pyamr.core.asai.ASAI_old.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe, by_category)</p></td>
+<td><p>This function computes the asai index by category.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.asai.ASAI_old.c_abx">
 <span class="sig-name descname"><span class="pre">c_abx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.asai.ASAI_old.c_abx" title="Permalink to this definition"></a></dt>
@@ -847,9 +1004,25 @@ resistance outcome within the range [0,1].</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="pyamr.core.asai.asai">
-<span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">asai</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#asai"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.asai" title="Permalink to this definition"></a></dt>
-<dd><p>Computes the ASAI.</p>
+<dt class="sig sig-object py" id="pyamr.core.asai.antimicrobial_spectrum_activity_index">
+<span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">antimicrobial_spectrum_activity_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#antimicrobial_spectrum_activity_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.antimicrobial_spectrum_activity_index" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the Antimicrobial Spectrum of Activity.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since threshold and weights have a default value, the
+warnings below will not be displayed. However, the code
+is there in case the behaviour needs to be changed in
+the future.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another way to check that the weights are correct is just
+by computing ASAI with th=0 and th=1. These should result
+in asai=1 and asai=0 respectively.
+| # Compute score
+| score_1 = np.sum(wgn * wsp * (sari &lt;= 0))
+| score_2 = np.sum(wgn * wsp * (sari &lt;= 1))</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Should the duplicated check only for the columns
@@ -865,11 +1038,11 @@ of this?</p>
 are always required [RESISTANCE, GENUS and SPECIE]. In addition,
 [W_GENUS and W_SPECIE] are required if weights is None. Also,
 if weights = ‘frequency’ the column FREQUENCY must be present.</p></li>
-<li><p><strong>weights</strong> (<em>string, default=’frequency’</em>) –</p>
+<li><p><strong>weights</strong> (<em>string, default=’uniform’</em>) –</p>
 <p>The method to compute the weights. The methods supported are:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>‘specified’: weights must be specified in [W_GENUS and W_SPECIE]</p></li>
+<li><p>‘specified’: weights must be in [W_GENUS and W_SPECIE]</p></li>
 <li><p>‘uniform’: uniform weights for genus and species within genus.</p></li>
 <li><p>‘frequency’: weights are proportional to the frequencies.</p></li>
 </ul>
@@ -883,7 +1056,7 @@ if weights = ‘frequency’ the column FREQUENCY must be present.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><strong>threshold</strong> (<em>float, default=None</em>) – The threshold resistance value above which the antimicrobial is
+<li><p><strong>threshold</strong> (<em>float, default=0.5</em>) – The threshold resistance value above which the antimicrobial is
 considered non-effective to treat the microorganism. For instance,
 for a resistance threshold of 0.5, if a pair &lt;o,a&gt; has a resistance
 value of 0.4, the microorganism will be considered sensitive. In
@@ -904,46 +1077,64 @@ and therefore not always adds up to exactly one.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.core.asai.asai">
+<span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">asai</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#asai"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.asai" title="Permalink to this definition"></a></dt>
+<dd><p>Redirects to <code class="docutils literal notranslate"><span class="pre">antimicrobial_spectrum_activity_index</span></code>.</p>
+</dd></dl>
+
 </section>
 <section id="module-pyamr.core.dri">
 <span id="pyamr-core-dri-module"></span><h2>pyamr.core.dri module<a class="headerlink" href="#module-pyamr.core.dri" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.dri.DRI" title="pyamr.core.dri.DRI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DRI</span></code></a>([column_resistance, column_usage])</p></td>
+<td><p>Drug Resistance Index.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.dri.dri" title="pyamr.core.dri.dri"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dri</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Redirects to <code class="docutils literal notranslate"><span class="pre">drug_resistance_index</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.dri.drug_resistance_index" title="pyamr.core.dri.drug_resistance_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drug_resistance_index</span></code></a>(dataframe[, ...])</p></td>
+<td><p>Computes the Drug Resistance Index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.dri.drug_resistance_index_v2" title="pyamr.core.dri.drug_resistance_index_v2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">drug_resistance_index_v2</span></code></a>(smmry[, cu, cr, ...])</p></td>
+<td><p>Computes the Drug Resistance Index</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.dri.DRI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.dri.</span></span><span class="sig-name descname"><span class="pre">DRI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'USE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/dri.html#DRI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.dri.DRI" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pyamr.core.dri.DRI.c_abx">
-<span class="sig-name descname"><span class="pre">c_abx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANTIMICROBIAL'</span></em><a class="headerlink" href="#pyamr.core.dri.DRI.c_abx" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pyamr.core.dri.DRI.c_dat">
-<span class="sig-name descname"><span class="pre">c_dat</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DATE'</span></em><a class="headerlink" href="#pyamr.core.dri.DRI.c_dat" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pyamr.core.dri.DRI.c_drg">
-<span class="sig-name descname"><span class="pre">c_drg</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DRUG'</span></em><a class="headerlink" href="#pyamr.core.dri.DRI.c_drg" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pyamr.core.dri.DRI.c_org">
-<span class="sig-name descname"><span class="pre">c_org</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MICROORGANISM'</span></em><a class="headerlink" href="#pyamr.core.dri.DRI.c_org" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pyamr.core.dri.DRI.c_out">
-<span class="sig-name descname"><span class="pre">c_out</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SENSITIVITY'</span></em><a class="headerlink" href="#pyamr.core.dri.DRI.c_out" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<p>Drug Resistance Index.</p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.dri.DRI.c_res" title="pyamr.core.dri.DRI.c_res"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_res</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.dri.DRI.c_use" title="pyamr.core.dri.DRI.c_use"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_use</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.dri.DRI.compute" title="pyamr.core.dri.DRI.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, groupby, column_usage])</p></td>
+<td><p>Computes the Drug Resistance Index.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.dri.DRI.c_res">
 <span class="sig-name descname"><span class="pre">c_res</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'RESISTANCE'</span></em><a class="headerlink" href="#pyamr.core.dri.DRI.c_res" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pyamr.core.dri.DRI.c_spe">
-<span class="sig-name descname"><span class="pre">c_spe</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SPECIMEN'</span></em><a class="headerlink" href="#pyamr.core.dri.DRI.c_spe" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -954,16 +1145,16 @@ and therefore not always adds up to exactly one.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.dri.DRI.compute">
 <span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/dri.html#DRI.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.dri.DRI.compute" title="Permalink to this definition"></a></dt>
-<dd><p>Computes the DRI index.</p>
+<dd><p>Computes the Drug Resistance Index.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Include checks.</p>
+<p>Needs to include checks.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – The pandas dataframe with the information. The following columns
-are always required [RESISTANCE and USE]. The RESISTANCE columns
+are always required [RESISTANCE and USE]. The RESISTANCE column
 indicates the proportion of resistance isolates and the USE the
 amount of antimicrobial doses applied.</p></li>
 <li><p><strong>groupby</strong> (<em>list, default=None</em>) – The elements to groupby (pd.groupby)</p></li>
@@ -982,12 +1173,22 @@ creation will be used.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.core.dri.dri">
 <span class="sig-prename descclassname"><span class="pre">pyamr.core.dri.</span></span><span class="sig-name descname"><span class="pre">dri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/dri.html#dri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.dri.dri" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Redirects to <code class="docutils literal notranslate"><span class="pre">drug_resistance_index</span></code>.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.core.dri.drug_resistance_index">
 <span class="sig-prename descclassname"><span class="pre">pyamr.core.dri.</span></span><span class="sig-name descname"><span class="pre">drug_resistance_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_complete</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/dri.html#drug_resistance_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.dri.drug_resistance_index" title="Permalink to this definition"></a></dt>
-<dd><p>Computes the DRI.</p>
+<dd><p>Computes the Drug Resistance Index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>)</p></li>
+<li><p><strong>return_complete</strong> (<em>bool, default=False</em>) – Returns the whole set of results.</p></li>
+<li><p><strong>return_usage</strong> (<em>bool, default=False</em>) – Returns only ‘use_period’ and ‘dri’.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -1028,10 +1229,46 @@ present in the DataFrame:</p>
 </section>
 <section id="module-pyamr.core.freq">
 <span id="pyamr-core-freq-module"></span><h2>pyamr.core.freq module<a class="headerlink" href="#module-pyamr.core.freq" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.freq.Frequency" title="pyamr.core.freq.Frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frequency</span></code></a>([column_antibiotic, ...])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.freq.Frequency">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.freq.</span></span><span class="sig-name descname"><span class="pre">Frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_antibiotic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIBIOTIC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_organism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DATE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_outcome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SENSITIVITY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_labnumber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%Y-%M-%d'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/freq.html#Frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.freq.Frequency" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.freq.Frequency.c_abx" title="pyamr.core.freq.Frequency.c_abx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_abx</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.freq.Frequency.c_dat" title="pyamr.core.freq.Frequency.c_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_dat</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.freq.Frequency.c_org" title="pyamr.core.freq.Frequency.c_org"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_org</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.freq.Frequency.c_out" title="pyamr.core.freq.Frequency.c_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_out</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.freq.Frequency.compute" title="pyamr.core.freq.Frequency.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, strategy, by_category, ...])</p></td>
+<td><p>This function computes the frequencies.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.freq.Frequency.fit" title="pyamr.core.freq.Frequency.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.freq.Frequency.c_abx">
 <span class="sig-name descname"><span class="pre">c_abx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.core.freq.Frequency.c_abx" title="Permalink to this definition"></a></dt>
@@ -1088,11 +1325,65 @@ also grouped by organisms or antibiotics.</p></li>
 </section>
 <section id="module-pyamr.core.mari">
 <span id="pyamr-core-mari-module"></span><h2>pyamr.core.mari module<a class="headerlink" href="#module-pyamr.core.mari" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI" title="pyamr.core.mari.MARI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MARI</span></code></a>([groupby])</p></td>
+<td><p>Multiple Antimicrobial Resistance Index</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.mari.</span></span><span class="sig-name descname"><span class="pre">MARI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['SPECIMEN',</span> <span class="pre">'MICROORGANISM',</span> <span class="pre">'LAB_NUMBER',</span> <span class="pre">'SENSITIVITY']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/mari.html#MARI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.mari.MARI" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Multiple Antimicrobial Resistance Index</p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.c_dat" title="pyamr.core.mari.MARI.c_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_dat</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.c_lab" title="pyamr.core.mari.MARI.c_lab"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_lab</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.c_org" title="pyamr.core.mari.MARI.c_org"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_org</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.c_out" title="pyamr.core.mari.MARI.c_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_out</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.c_spe" title="pyamr.core.mari.MARI.c_spe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_spe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.compute" title="pyamr.core.mari.MARI.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe, **kwargs)</p></td>
+<td><p>Compute the Multiple Antimicrobial Resistance Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.compute_v1" title="pyamr.core.mari.MARI.compute_v1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_v1</span></code></a>(dataframe[, shift, period, ...])</p></td>
+<td><p>Compute MARI v1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.compute_v2" title="pyamr.core.mari.MARI.compute_v2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_v2</span></code></a>(dataframe[, shift, period, ...])</p></td>
+<td><p>Compute MARI v2.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.compute_v3" title="pyamr.core.mari.MARI.compute_v3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_v3</span></code></a>(dataframe[, shift, period, ...])</p></td>
+<td><p>Compute MARI v3.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.compute_v4" title="pyamr.core.mari.MARI.compute_v4"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_v4</span></code></a>(dataframe[, shift, period, ...])</p></td>
+<td><p>Compute MARI v4.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.grouping" title="pyamr.core.mari.MARI.grouping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grouping</span></code></a>(dataframe, period, cdate)</p></td>
+<td><p>Compute metric with independent groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.mari.MARI.rolling" title="pyamr.core.mari.MARI.rolling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rolling</span></code></a>(dataframe, period, cdate[, shift])</p></td>
+<td><p>Compute metric using rolling approach</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI.c_dat">
 <span class="sig-name descname"><span class="pre">c_dat</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DATE'</span></em><a class="headerlink" href="#pyamr.core.mari.MARI.c_dat" title="Permalink to this definition"></a></dt>
@@ -1165,7 +1456,8 @@ counts for each individual isolate.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI.compute_v1">
 <span class="sig-name descname"><span class="pre">compute_v1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_isolates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/mari.html#MARI.compute_v1"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.mari.MARI.compute_v1" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute MARI v1</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI.compute_v2">
@@ -1176,36 +1468,87 @@ counts for each individual isolate.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI.compute_v3">
 <span class="sig-name descname"><span class="pre">compute_v3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_isolates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/mari.html#MARI.compute_v3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.mari.MARI.compute_v3" title="Permalink to this definition"></a></dt>
-<dd><p>Compute MARI v2.</p>
+<dd><p>Compute MARI v3.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI.compute_v4">
 <span class="sig-name descname"><span class="pre">compute_v4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_isolates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/mari.html#MARI.compute_v4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.mari.MARI.compute_v4" title="Permalink to this definition"></a></dt>
-<dd><p>Compute MARI v1.</p>
+<dd><p>Compute MARI v4.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI.grouping">
 <span class="sig-name descname"><span class="pre">grouping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/mari.html#MARI.grouping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.mari.MARI.grouping" title="Permalink to this definition"></a></dt>
-<dd><p>Groups the data.</p>
+<dd><p>Compute metric with independent groups.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.mari.MARI.rolling">
 <span class="sig-name descname"><span class="pre">rolling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/mari.html#MARI.rolling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.mari.MARI.rolling" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Compute metric using rolling approach</p>
+</dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-pyamr.core.sari">
 <span id="pyamr-core-sari-module"></span><h2>pyamr.core.sari module<a class="headerlink" href="#module-pyamr.core.sari" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI" title="pyamr.core.sari.SARI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SARI</span></code></a>([groupby])</p></td>
+<td><p>Single Antimicrobial Resistance Index.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.sari" title="pyamr.core.sari.sari"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sari</span></code></a>([dataframe, strategy])</p></td>
+<td><p>Computes the Single Antimicrobial Resistance Index.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.sari.SARI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></span><span class="sig-name descname"><span class="pre">SARI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['SPECIMEN',</span> <span class="pre">'MICROORGANISM',</span> <span class="pre">'ANTIMICROBIAL',</span> <span class="pre">'SENSITIVITY']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Single Antimicrobial Resistance Trend</p>
+<p>Single Antimicrobial Resistance Index.</p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.c_abx" title="pyamr.core.sari.SARI.c_abx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_abx</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.c_dat" title="pyamr.core.sari.SARI.c_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_dat</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.c_org" title="pyamr.core.sari.SARI.c_org"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_org</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.c_out" title="pyamr.core.sari.SARI.c_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_out</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.c_spe" title="pyamr.core.sari.SARI.c_spe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_spe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.compute" title="pyamr.core.sari.SARI.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, period, shift, cdate, ...])</p></td>
+<td><p>Computes Single Antimicrobial Resistance Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.grouping" title="pyamr.core.sari.SARI.grouping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grouping</span></code></a>(dataframe, period, cdate)</p></td>
+<td><p>Computes metric using independent groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.rolling" title="pyamr.core.sari.SARI.rolling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rolling</span></code></a>(dataframe, period, cdate[, shift])</p></td>
+<td><p>Computed metric using a rolling approach.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.sari.SARI.c_abx">
 <span class="sig-name descname"><span class="pre">c_abx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANTIMICROBIAL'</span></em><a class="headerlink" href="#pyamr.core.sari.SARI.c_abx" title="Permalink to this definition"></a></dt>
@@ -1234,7 +1577,7 @@ counts for each individual isolate.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.sari.SARI.compute">
 <span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI.compute" title="Permalink to this definition"></a></dt>
-<dd><p>Computes single antibiotic resistance index.</p>
+<dd><p>Computes Single Antimicrobial Resistance Index.</p>
 <p class="rubric">Examples</p>
 <table class="docutils align-default">
 <thead>
@@ -1286,7 +1629,10 @@ counts for each individual isolate.</p></li>
 </tr>
 </tbody>
 </table>
-<p>Note that shift=2D and period=2D is equivalent to shift=2D and period=1.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using shift=2D and period=2D is equivalent to shift=2D and period=1.</p>
+</div>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul>
@@ -1330,20 +1676,21 @@ resistance index (sari) and the frequencies.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.sari.SARI.grouping">
 <span class="sig-name descname"><span class="pre">grouping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI.grouping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI.grouping" title="Permalink to this definition"></a></dt>
-<dd><p>Groups the data.</p>
+<dd><p>Computes metric using independent groups.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.sari.SARI.rolling">
 <span class="sig-name descname"><span class="pre">rolling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI.rolling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI.rolling" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Computed metric using a rolling approach.</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.core.sari.sari">
 <span class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></span><span class="sig-name descname"><span class="pre">sari</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#sari"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.sari" title="Permalink to this definition"></a></dt>
-<dd><p>Computes the sari index.</p>
+<dd><p>Computes the Single Antimicrobial Resistance Index.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul>
@@ -1379,10 +1726,50 @@ can be passed.</p>
 </section>
 <section id="module-pyamr.core.sart">
 <span id="pyamr-core-sart-module"></span><h2>pyamr.core.sart module<a class="headerlink" href="#module-pyamr.core.sart" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sart.SART" title="pyamr.core.sart.SART"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SART</span></code></a>([column_specimen, ...])</p></td>
+<td><p>Single Antimicrobial Resistance Trend.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.sart.SART">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.sart.</span></span><span class="sig-name descname"><span class="pre">SART</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_specimen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIMEN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_microorganism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'MICROORGANISM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_antimicrobial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIMICROBIAL'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DATE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_outcome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SENSITIVITY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sart.html#SART"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sart.SART" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Single Antimicrobial Resistance Trend.</p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sart.SART.c_abx" title="pyamr.core.sart.SART.c_abx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_abx</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.sart.SART.c_dat" title="pyamr.core.sart.SART.c_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_dat</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sart.SART.c_org" title="pyamr.core.sart.SART.c_org"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_org</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.sart.SART.c_out" title="pyamr.core.sart.SART.c_out"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_out</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sart.SART.c_res" title="pyamr.core.sart.SART.c_res"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_res</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.sart.SART.c_spe" title="pyamr.core.sart.SART.c_spe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_spe</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sart.SART.compute" title="pyamr.core.sart.SART.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, period, shift, cdate, ...])</p></td>
+<td><p>Computes Single Antimicrobial Resistance Index.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.sart.SART.c_abx">
 <span class="sig-name descname"><span class="pre">c_abx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANTIMICROBIAL'</span></em><a class="headerlink" href="#pyamr.core.sart.SART.c_abx" title="Permalink to this definition"></a></dt>
@@ -1416,24 +1803,30 @@ can be passed.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.sart.SART.compute">
 <span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'180D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'30D'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sart.html#SART.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sart.SART.compute" title="Permalink to this definition"></a></dt>
-<dd><p>Computes single antibiotic resistance index.</p>
+<dd><p>Computes Single Antimicrobial Resistance Index.</p>
+<div class="admonition-todo admonition" id="id7">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Add parameters to rolling!</p></li>
+<li><p>Place value at the left, center, right of window?</p></li>
+<li><p>Ensure that works when time gaps present!</p></li>
+<li><p>Carefull with various indexes!</p></li>
+</ul>
+</div>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul>
-<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – It might receive two different types of DataFrames.</p>
-<p>The first option is a DataFrame with the raw susceptibility test
-records where the interpretation (‘sensitive’, ‘intermediate’,
-‘resistant’) that will be used to compute the sari.</p>
-<p>The second option is a DataFrame with the sari values already
-computed.</p>
-</li>
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – It might receive two different types of DataFrames. The first option is
+a DataFrame with the raw susceptibility test records where the interpretation
+(‘sensitive’, ‘intermediate’, ‘resistant’) that will be used to compute the sari.
+The second option is a DataFrame with the sari values already computed.</p></li>
 <li><p><strong>shift</strong> (<em>str</em>) – Frequency value to pass to pd.Grouper.</p></li>
 <li><p><strong>period</strong> (<em>str, int</em>) – Window value to pass to pd.rolling.</p></li>
 <li><p><strong>cdate</strong> (<em>string, default=None</em>) – The column that will be used as date.</p></li>
 <li><p><strong>return_frequencies</strong> (<em>boolean, default=True</em>) – Whether to return the frequencies or just the resistance index.</p></li>
 <li><p><strong>strategy</strong> (<em>string or func, default=’hard’</em>) – The method used to compute sari. The possible options
 are ‘soft’, ‘medium’ and ‘hard’. In addition, a function
-with the following signature func(DataFrame, <a href="#id7"><span class="problematic" id="id8">**</span></a>kwargs)
+with the following signature func(DataFrame, <a href="#id8"><span class="problematic" id="id9">**</span></a>kwargs)
 can be passed.</p>
 <blockquote>
 <div><ol class="lowerroman simple">

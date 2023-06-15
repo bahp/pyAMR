@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction &mdash; pyamr 0.0.1 documentation</title>
@@ -17,10 +17,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -52,26 +51,38 @@
               <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basics-of-susceptibility-testing">Basics of susceptibility testing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#microorganisms">Microorganisms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-susceptibility-testing">What is susceptibility testing?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#specimen">Specimen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#microorganism">Microorganism</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#taxonomy">Taxonomy</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gram-stain">Gram Stain</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#shape-or-morphology">Shape or morphology</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#growth-type">Growth Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#haemolysis">Haemolysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gram-stain">Gram Stain</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#coagulase-production">Coagulase Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#oxygen-requirements">Oxygen requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#haemolysis">Haemolysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#streptococcus-groups">Streptococcus groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mobility">Mobility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transmission">Transmission</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#antimicrobials">Antimicrobials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#antimicrobial">Antimicrobial</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#description-of-metrics-for-amr">Description of metrics for AMR</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#essentials-of-time-series-analysis">Essentials of time series analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#summary-of-amr-metrics">Summary of AMR metrics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-antimicrobial-resistance-sari">Single Antimicrobial Resistance (SARI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-antimicrobial-resistance">Multiple Antimicrobial Resistance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-antimicrobial-resistance-trend">Single Antimicrobial Resistance Trend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#antimicrobial-spectrum-of-activity">Antimicrobial Spectrum of Activity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#antimicrobial-collateral-sensitivity">Antimicrobial Collateral Sensitivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drug-resistance-index-dri">Drug Resistance Index (DRI)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#concepts-for-time-series-analysis">Concepts for time series analysis</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#statistical-properties">Statistical properties</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pearson">Pearson</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">R2</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#skewness">Skewness</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#kurtosis">Kurtosis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#skewness">Skewness</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">R2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#akaike-information-criterion">Akaike information criterion</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bayesian-information-criterion">Bayesian information criterion</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#hannan-quinn-information-criterion">Hannan-Quinn information criterion</a></li>
@@ -80,7 +91,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#statistical-tests">Statistical tests</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#augmented-dicker-fuller">Augmented Dicker-Fuller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#kendal">Kendal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kendall">Kendall</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#kwiatkowskiphillipsschmidtshin">Kwiatkowski–Phillips–Schmidt–Shin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#jarque-bera">Jarque Bera</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#durbin-watson">Durbin Watson</a></li>
@@ -106,6 +117,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -164,8 +178,8 @@ blood or urine), pathogen, antimicrobial, reported status and outcome (resistant
 or intermediate). In research, the susceptibility test data is usually first grouped by
 specimen or culture type, and further grouped by pairs (pathogen, antimicrobial)
 since it is widely accepted by clinicians as detailed in the UK five year strategy in AMR [21].</p>
-<section id="basics-of-susceptibility-testing">
-<h2>Basics of susceptibility testing<a class="headerlink" href="#basics-of-susceptibility-testing" title="Permalink to this heading"></a></h2>
+<section id="what-is-susceptibility-testing">
+<h2>What is susceptibility testing?<a class="headerlink" href="#what-is-susceptibility-testing" title="Permalink to this heading"></a></h2>
 <p>Antimicrobial susceptibility testing or <code class="docutils literal notranslate"><span class="pre">AST</span></code> is a laboratory method used to determine the
 effectiveness of antimicrobial agents against specific microorganisms. It helps in guiding
 appropriate antimicrobial therapy by providing valuable information about the susceptibility
@@ -182,17 +196,45 @@ disc where microbial growth is inhibited due to the effectiveness of the drug.</
 intermediate, or resistant based on their MIC or zone of inhibition values. These breakpoints
 serve as guidelines for determining appropriate treatment options.</p></li>
 <li><p><strong>Quality Control:</strong> Quality control measures are essential to ensure the accuracy and reliability
-of antimicrobial susceptibility testing. It involves testing reference strains with known
+of antimicrobial susceptibility testing (AST). It involves testing reference strains with known
 susceptibility patterns to verify that the testing process is performing as expected.</p></li>
 <li><p><strong>Interpretive Criteria:</strong> Interpretive criteria are guidelines provided by regulatory bodies,
 such as the Clinical and Laboratory Standards Institute (CLSI) or the European Committee on
 Antimicrobial Susceptibility Testing (EUCAST). These criteria help interpret the test results
 and provide recommendations for appropriate antimicrobial therapy.</p></li>
 </ul>
-<p>Overall, antimicrobial susceptibility testing plays a vital role in guiding the selection of
+<p>Overall, antimicrobial susceptibility testing (AST) plays a vital role in guiding the selection of
 appropriate antimicrobial agents, optimizing treatment outcomes, and combating antimicrobial resistance.</p>
-<section id="microorganisms">
-<h3>Microorganisms<a class="headerlink" href="#microorganisms" title="Permalink to this heading"></a></h3>
+<p>Let’s see in more detail some concepts related with AST.</p>
+<section id="specimen">
+<h3>Specimen<a class="headerlink" href="#specimen" title="Permalink to this heading"></a></h3>
+<p>A microbiology specimen sample refers to a biological material or substance collected from a
+patient or the environment for laboratory analysis in the field of microbiology. These samples
+are collected to identify and study microorganisms, such as bacteria, viruses, fungi, and parasites,
+present in the specimen. Microbiology specimen samples play a crucial role in diagnosing and monitoring
+infectious diseases, identifying the causative agents, and guiding appropriate treatment strategies.
+In clinical specimens, these samples are collected from patients to diagnose and monitor infectious
+diseases. Common types of clinical microbiology specimen samples include:</p>
+<ul class="simple">
+<li><p><strong>Blood:</strong> A blood sample collected for blood cultures to identify bacteria or fungi
+causing bloodstream infections.</p></li>
+<li><p><strong>Urine:</strong> A urine sample collected for urinalysis and urine culture to detect urinary
+tract infections and identify the causative organisms.</p></li>
+<li><p><strong>Respiratory Specimens:</strong> These include sputum (mucus coughed up from the lungs),
+throat swabs, nasopharyngeal swabs, and bronchoalveolar lavage (BAL) samples. They
+are used to diagnose respiratory tract infections, such as pneumonia, tuberculosis,
+and influenza.</p></li>
+<li><p><strong>Stool:</strong> A stool sample collected for fecal analysis and culture to detect
+gastrointestinal infections, including bacterial, viral, or parasitic causes.</p></li>
+<li><p><strong>Wound Swabs:</strong> Swabs taken from infected wounds or abscesses to identify the
+bacteria or fungi causing the infection.</p></li>
+<li><p><strong>Genital Specimens:</strong> These include vaginal swabs, cervical swabs, urethral swabs,
+and genital ulcers. They are collected to diagnose sexually transmitted infections
+(STIs) and other genital infections.</p></li>
+</ul>
+</section>
+<section id="microorganism">
+<h3>Microorganism<a class="headerlink" href="#microorganism" title="Permalink to this heading"></a></h3>
 <p>A microorganism, or microbe, is an organism of microscopic size, which may exist in its
 single-celled form or as a colony of cells. Microbes are important in human culture and health
 in many ways, serving to ferment foods and treat sewage, and to produce fuel, enzymes, and
@@ -245,40 +287,35 @@ this enzyme.</p></td>
 <td><p>Wehther require oxygen for growth and metabolism</p></td>
 <td><p>aerobic, anaerobic</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fermenting</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lactose-fermenting</span></code></p></td>
 <td><p>Whether they can derive energy through fermentation in the absence of oxygen, or
-oxidative, meaning they require oxygen for energy production.</p></td>
+oxidative, meaning they require oxygen for energy production. It is not universally
+performed by all microorganisms.</p></td>
 <td><p>lactose, non-lactose</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hemolysis</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">haemolysis</span></code></p></td>
 <td><p>Refers to the ability of bacteria to lyse red blood cells</p></td>
 <td><p>alpha, beta, gamma, no-hemolysis</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">group</span></code></p></td>
-<td></td>
-<td><p>A, B, C, D, …</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">arrangement</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">arrangement</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">endospores</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">endospores</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mobility</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">strep_group</span></code></p></td>
+<td><p>Streptococcus is a diverse group of bacteria and the most common classification is
+the so-called Lancefield which groups bacterias based on the presence of specific
+carbohydrate antigens on their cell walls.</p></td>
+<td><p>A, B, C, D</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp_range</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temp_range</span></code></p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp_optima</span></code></p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temp_range</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">temp_optima</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
@@ -290,9 +327,18 @@ oxidative, meaning they require oxygen for energy production.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transmission</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mobility</span></code></p></td>
+<td><p>methods that allow microorganisms to move and navigate through their environments.</p></td>
+<td><p>flagellar, ciliary, amoeboid, gliding, tumbling/twitching, spore dispersal, passive</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transmission</span></code></p></td>
 <td><p>How they spread from one host to another</p></td>
-<td></td>
+<td><p>direct contact, indirect contact, airborn, vector-born, fecal-oral, vertical</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">host</span></code></p></td>
+<td><p>refers to an organism that provides a suitable environment and resources for the
+growth, survival, and reproduction of microorganisms</p></td>
+<td><p>human, animal, swine, cattle, …</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">habitat</span></code></p></td>
 <td><p>Whether their are found in the environment (soil bacteria or waterborne bacteria),
@@ -300,11 +346,7 @@ whether they coexist with the host without causing harm (commensal) or cause a
 disease (pathogenic)</p></td>
 <td><p>environmental, commensal, pathogenic</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">host</span></code></p></td>
-<td></td>
-<td><p>human, animal, swine, cattle, …</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">disease</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">disease</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
@@ -339,6 +381,24 @@ See an example below.</p>
 </ul>
 </div></blockquote>
 </section>
+<section id="shape-or-morphology">
+<h4>Shape or morphology<a class="headerlink" href="#shape-or-morphology" title="Permalink to this heading"></a></h4>
+<p><a class="reference external" href="https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology">ROS1</a>: Microbial morphology.</p>
+<p>Different types of microbes have different, but characteristic, shapes. Under suitable
+conditions, the shape and size of microbes are relatively stable. It is important to know
+the morphological structure of microbes, as it provides us with a better understanding of
+microbial physiology, pathogenic mechanisms, antigenic features, and allows us to identify
+them by species. In addition, knowledge of microbial morphology can be helpful in diagnosing
+disease and in preventing microbial infections.</p>
+<p>Bacteria are complex and highly variable microbes. They come in four basic shapes: <strong>spherical</strong>
+(cocci), <strong>rod-shaped</strong> (bacilli), <strong>arc-shaped</strong> (vibrio), and <strong>spiral</strong> (spirochete). See some
+examples included in the figure below.</p>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"><img alt="pyAMR" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg" width="600" /></a>
+<!--
+<img src="https://microbenotes.com/wp-content/uploads/2020/05/Bacterial-Shapes-and-Arrangement.jpeg"/>
+<img src="https://ars.els-cdn.com/content/image/3-s2.0-B978012802234400001X-f01-03-9780128022344.jpg"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
+--></section>
 <section id="gram-stain">
 <h4>Gram Stain<a class="headerlink" href="#gram-stain" title="Permalink to this heading"></a></h4>
 <p>Gram stain or Gram staining, also called Gram’s method, is a method of staining used to
@@ -365,26 +425,19 @@ receptive to certain cell wall–targeting antibiotics than gram-negative bacter
 due to the absence of the outer membrane.</p>
 </div>
 </section>
-<section id="shape-or-morphology">
-<h4>Shape or morphology<a class="headerlink" href="#shape-or-morphology" title="Permalink to this heading"></a></h4>
-<p><a class="reference external" href="https://www.sciencedirect.com/topics/medicine-and-dentistry/microbial-morphology">ROS1</a>: Microbial morphology.</p>
-<p>Different types of microbes have different, but characteristic, shapes. Under suitable
-conditions, the shape and size of microbes are relatively stable. It is important to know
-the morphological structure of microbes, as it provides us with a better understanding of
-microbial physiology, pathogenic mechanisms, antigenic features, and allows us to identify
-them by species. In addition, knowledge of microbial morphology can be helpful in diagnosing
-disease and in preventing microbial infections.</p>
-<p>Bacteria are complex and highly variable microbes. They come in four basic shapes: <strong>spherical</strong>
-(cocci), <strong>rod-shaped</strong> (bacilli), <strong>arc-shaped</strong> (vibrio), and <strong>spiral</strong> (spirochete). See some
-examples included in the figure below.</p>
-<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"><img alt="pyAMR" class="align-center" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg" width="600" /></a>
-<!--
-<img src="https://microbenotes.com/wp-content/uploads/2020/05/Bacterial-Shapes-and-Arrangement.jpeg"/>
-<img src="https://ars.els-cdn.com/content/image/3-s2.0-B978012802234400001X-f01-03-9780128022344.jpg"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Bacterial_morphology_diagram-ro.svg"/>
---></section>
-<section id="growth-type">
-<h4>Growth Type<a class="headerlink" href="#growth-type" title="Permalink to this heading"></a></h4>
+<section id="coagulase-production">
+<h4>Coagulase Production<a class="headerlink" href="#coagulase-production" title="Permalink to this heading"></a></h4>
+<p>Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
+to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
+Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
+the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
+test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
+However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
+Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
+opportunistic infection.</p>
+</section>
+<section id="oxygen-requirements">
+<h4>Oxygen requirements<a class="headerlink" href="#oxygen-requirements" title="Permalink to this heading"></a></h4>
 <p>The two main types of bacterial growth are <strong>aerobic</strong> and <strong>anaerobic</strong>. The basic difference
 between the two, is that the former thrives in oxygenated environment and latter in an environment
 marked by the absence of oxygen, there also exist other differences which cannot be ignored.</p>
@@ -420,20 +473,107 @@ Enterococcus faecalis (formerly called “Group D Strep”), Staphylococcus sapr
 epidermidis display gamma hemolysis.</p></li>
 </ul>
 </section>
-<section id="coagulase-production">
-<h4>Coagulase Production<a class="headerlink" href="#coagulase-production" title="Permalink to this heading"></a></h4>
-<p>Coagulase is a protein enzyme produced by several microorganisms that enables the conversion of fibrinogen
-to fibrin. In the laboratory, it is used to distinguish between different types of Staphylococcus isolates.
-Importantly, S. aureus is generally coagulase-positive, meaning that a positive coagulase test would indicate
-the presence of S. aureus or any of the other 11 coagulase-positive Staphylococci. A negative coagulase
-test would instead show the presence of coagulase-negative organisms such as S. epidermidis or S. saprophyticus.
-However, it is now known that not all S. aureus are coagulase-positive. Whereas coagulase-positive
-Staphylococci are usually pathogenic, coagulase-negative Staphylococci are more often associated with
-opportunistic infection.</p>
+<section id="streptococcus-groups">
+<h4>Streptococcus groups<a class="headerlink" href="#streptococcus-groups" title="Permalink to this heading"></a></h4>
+<p>When discussing Streptococcus, a genus of bacteria, the categorization typically refers to different
+groups or serotypes within the genus. Streptococcus is a diverse group of bacteria that are classified
+based on their cell wall composition, hemolytic activity (ability to lyse red blood cells), and specific
+antigenic properties.</p>
+<p>The most common classification system for Streptococcus is the Lancefield classification, which groups
+the bacteria based on the presence of specific carbohydrate antigens on their cell walls. The Lancefield
+system assigns letters to different serological groups: Groups A, B, C, D, etc. These letters are
+determined by the reactions of the bacteria with specific antisera.</p>
+<p>Here is a brief overview of the four groups you mentioned within the context of Streptococcus:</p>
+<ul class="simple">
+<li><p><strong>Group A Streptococcus (GAS):</strong> Group A streptococcus, also known as Streptococcus pyogenes, is
+associated with a wide range of human infections. It can cause conditions such as strep throat,
+impetigo (skin infection), cellulitis, necrotizing fasciitis (flesh-eating disease), and scarlet
+fever.</p></li>
+<li><p><strong>Group B Streptococcus (GBS):</strong> Group B streptococcus, also known as Streptococcus agalactiae, is
+commonly found in the gastrointestinal and genital tracts of healthy adults. However, it can cause
+serious infections in newborns, pregnant women, and individuals with weakened immune systems. GBS
+is a leading cause of sepsis, pneumonia, and meningitis in newborns.</p></li>
+<li><p><strong>Group C Streptococcus:</strong> Group C streptococcus comprises several different species within the genus
+Streptococcus that share certain antigenic characteristics. Some strains of Group C streptococcus
+can cause human infections, including respiratory tract infections, skin and soft tissue infections,
+and invasive diseases.</p></li>
+<li><p><strong>Group D Streptococcus:</strong> Group D streptococcus includes various species, such as Streptococcus
+faecalis and Streptococcus faecium. These bacteria are part of the normal flora of the human
+gastrointestinal tract. However, they can also cause infections, particularly in individuals with
+underlying health conditions. Group D streptococci are associated with infections such as urinary
+tract infections, endocarditis (infection of the heart valves), and intra-abdominal infections.</p></li>
+</ul>
+<p>It’s important to note that there are other serogroups and species within the genus Streptococcus,
+each with its own unique characteristics and disease associations.</p>
+</section>
+<section id="mobility">
+<h4>Mobility<a class="headerlink" href="#mobility" title="Permalink to this heading"></a></h4>
+<p>Microorganisms exhibit various types of mobility that allow them to move and navigate through their
+environments. Here are some common types of microorganism mobility:</p>
+<ul class="simple">
+<li><p><strong>Flagellar Mobility:</strong> Many bacteria possess whip-like appendages called flagella that enable
+them to move. These flagella can rotate, allowing the microorganism to propel itself through
+liquid environments such as water or mucus.</p></li>
+<li><p><strong>Ciliary Mobility:</strong> Some microorganisms, particularly certain protozoa and certain types of
+algae, have numerous tiny hair-like structures called cilia. Coordinated beating of these cilia
+creates a wave-like motion, allowing the microorganism to move through liquids.</p></li>
+<li><p><strong>Amoeboid Movement:</strong> Amoebas and certain types of other protozoa exhibit amoeboid movement.
+They extend and retract pseudopods, which are temporary bulges or projections of the cell membrane.
+By changing the shape of their bodies, they can crawl or ooze along surfaces.</p></li>
+<li><p><strong>Gliding:</strong> Some bacteria and algae exhibit gliding motility, which involves smooth, continuous
+movement across surfaces. The exact mechanisms of gliding are not fully understood, but they may
+involve secretion of slime or other surface interactions.</p></li>
+<li><p><strong>Tumbling and Twitching:</strong> Certain bacteria, such as Escherichia coli, use a combination of tumbling
+and twitching for movement. Tumbling involves a change in direction by randomly reorienting their
+flagella, while twitching involves the extension, attachment, and retraction of pili (thin, hair-like
+structures) to pull the cell along surfaces.</p></li>
+<li><p><strong>Spore Dispersal:</strong> Fungi and some bacteria produce spores as a means of dispersal. These spores can
+be carried by wind, water, or animals to colonize new environments.</p></li>
+<li><p><strong>Passive Movement:</strong> Some microorganisms rely on external factors like air or water currents to carry
+them to new locations. They may possess adaptations such as lightweight structures or structures that
+facilitate floating to aid in passive dispersal.</p></li>
+</ul>
+<p>It’s important to note that not all microorganisms are motile. Some microorganisms, such as certain
+bacteria and fungi, are non-motile and rely on other means of dispersal, such as wind, water, or the
+movement of other organisms.</p>
+</section>
+<section id="transmission">
+<h4>Transmission<a class="headerlink" href="#transmission" title="Permalink to this heading"></a></h4>
+<p>Microorganisms can be transmitted through various routes or modes of transmission. The primary modes
+of transmission include:</p>
+<ul class="simple">
+<li><p><strong>Direct Contact:</strong> Transmission occurs through direct physical contact between an infected
+individual and a susceptible person. This can involve touching, kissing, sexual contact, or
+contact with infected bodily fluids or lesions.</p></li>
+<li><p><strong>Indirect Contact:</strong> Transmission occurs indirectly through contact with contaminated surfaces,
+objects, or fomites. Examples include touching a doorknob, using contaminated utensils, or
+sharing personal items like towels or razors.</p></li>
+<li><p><strong>Respiratory Droplets:</strong> Transmission occurs when an infected person coughs, sneezes, talks,
+or breathes, releasing respiratory droplets containing microorganisms into the air. These
+droplets can be inhaled by nearby individuals, leading to infection. Diseases such as influenza,
+common cold, and COVID-19 can be transmitted through respiratory droplets.</p></li>
+<li><p><strong>Airborne Transmission:</strong> Microorganisms can remain suspended in the air for longer periods
+and can be inhaled over longer distances. Airborne transmission typically involves smaller
+particles or droplet nuclei that can carry infectious agents, such as tuberculosis bacteria
+or certain fungal spores.</p></li>
+<li><p><strong>Vector-borne Transmission:</strong> Certain microorganisms are transmitted through vectors, which are
+living organisms that can carry and transmit pathogens. Vectors include mosquitoes (e.g., malaria,
+dengue fever), ticks (e.g., Lyme disease), fleas (e.g., plague), and flies (e.g., sleeping sickness).</p></li>
+<li><p><strong>Fecal-Oral Transmission:</strong> Microorganisms can be transmitted when fecal matter from an infected
+individual contaminates food, water, or surfaces, and is subsequently ingested by another person.
+This transmission route is common for diseases such as cholera, hepatitis A, and norovirus.</p></li>
+<li><p><strong>Vertical Transmission:</strong> Microorganisms can be transmitted from an infected mother to her child
+during pregnancy, childbirth, or breastfeeding. This mode of transmission can occur for certain
+viruses like HIV, hepatitis B, and Zika virus.</p></li>
+</ul>
+<p>It’s important to note that the modes of transmission can vary depending on the specific microorganism
+and the disease it causes. Public health measures such as hand hygiene, respiratory etiquette, proper
+food and water handling, vector control, and vaccination are crucial in preventing the transmission of
+microorganisms and controlling infectious diseases.</p>
 </section>
 </section>
-<section id="antimicrobials">
-<h3>Antimicrobials<a class="headerlink" href="#antimicrobials" title="Permalink to this heading"></a></h3>
+<section id="antimicrobial">
+<h3>Antimicrobial<a class="headerlink" href="#antimicrobial" title="Permalink to this heading"></a></h3>
 <p>An antimicrobial is an agent that kills microorganisms or stops their growth. Antimicrobial
 medicines can be grouped according to the microorganisms they act primarily against in for main
 categories: (i) <strong>anibiotics</strong> which are used against bacteria, (ii) <strong>antifungals</strong> which are used
@@ -482,8 +622,8 @@ and effective use.</p>
 </div></blockquote>
 </section>
 </section>
-<section id="description-of-metrics-for-amr">
-<h2>Description of metrics for AMR<a class="headerlink" href="#description-of-metrics-for-amr" title="Permalink to this heading"></a></h2>
+<section id="summary-of-amr-metrics">
+<h2>Summary of AMR metrics<a class="headerlink" href="#summary-of-amr-metrics" title="Permalink to this heading"></a></h2>
 <p>Establishing quantifiable metrics is essential to gain a standardized and objective framework to
 monitor the emergence and spread of resistant strains, assess the effectiveness of antimicrobial
 interventions, and evaluate the impact of various interventions and policies. Such metrics enable
@@ -542,57 +682,108 @@ outcomes, and mitigate the further development and dissemination of antimicrobia
 </tr>
 </tbody>
 </table>
-<ul>
-<li><p><strong>Single Antimicrobial Resistance Index (SARI)</strong></p>
-<blockquote>
-<div><p>The single antimicrobial resistance index describes the proportion of resistant isolates for a
+<section id="single-antimicrobial-resistance-sari">
+<h3>Single Antimicrobial Resistance (SARI)<a class="headerlink" href="#single-antimicrobial-resistance-sari" title="Permalink to this heading"></a></h3>
+<p>The single antimicrobial resistance index describes the proportion of resistant isolates for a
 given set of susceptibility tests. It provides a value within the range [0,1] where values close
 to one indicate high resistance. It is agnostic to pathogen, antibiotic and time. The variables <em>R</em>,
 <em>I</em> and <em>S</em> represent the number of susceptibility tests with Resistant, Intermediate and Susceptible
 outcomes respectively. The definition might vary slightly since the intermediate category is not
 always considered.</p>
-<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></p>
-<p>Example: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_a_sari.html#sphx-glr-examples-tutorial-indexes-plot-core-a-sari-py"><span class="std std-ref">Single Antimicrobial Resistance (SARI)</span></a></p>
-</div></blockquote>
-</li>
-<li><p><strong>Multiple Antimicrobial Resistance Index (MARI)</strong></p>
-<blockquote>
-<div><p>The multiple antimicrobial resistance describes the ratio of antimicrobials tested (<em>T</em>) to which a
+<p>See: <a class="reference internal" href="../_autosummary/pyamr.core.sari.html#pyamr.core.sari.SARI" title="pyamr.core.sari.SARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></a></p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Step 01 - Compute AMR metrics"><img alt="" src="../_images/sphx_glr_plot_step_01_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/guide/plot_step_01.html#sphx-glr-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">Step 01 - Compute AMR metrics</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Step 01 - Compute AMR metrics</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In this example, we will explore how to compute a time series from susceptibility test data and..."><img alt="" src="../_images/sphx_glr_plot_step_02_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/guide/plot_step_02.html#sphx-glr-examples-tutorial-guide-plot-step-02-py"><span class="std std-ref">Step 02 - Temporal evolution</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Step 02 - Temporal evolution</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The Single Antimicrobial Resistance Index or SARI describes the proportion of resistant isolate..."><img alt="" src="../_images/sphx_glr_plot_core_a_sari_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/indexes/plot_core_a_sari.html#sphx-glr-examples-tutorial-indexes-plot-core-a-sari-py"><span class="std std-ref">Single Antimicrobial Resistance (SARI)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Single Antimicrobial Resistance (``SARI``)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The Drug Resistance Index or DRI measures changes through time in the proportion of disease-cau..."><img alt="" src="../_images/sphx_glr_plot_core_e_dri_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/indexes/plot_core_e_dri.html#sphx-glr-examples-tutorial-indexes-plot-core-e-dri-py"><span class="std std-ref">Drug Resistance Index (DRI)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Drug Resistance Index (``DRI``)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="ASAI - By gram stain (binary)"><img alt="" src="../_images/sphx_glr_plot_asai_a_gramtype_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_a_gramtype.html#sphx-glr-examples-indexes-plot-asai-a-gramtype-py"><span class="std std-ref">ASAI - By gram stain (binary)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - By gram stain (binary)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="ASAI - By gram stain (multiple)"><img alt="" src="../_images/sphx_glr_plot_asai_b_multiple_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_b_multiple.html#sphx-glr-examples-indexes-plot-asai-b-multiple-py"><span class="std std-ref">ASAI - By gram stain (multiple)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - By gram stain (multiple)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_asai_c_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_c_temporal.html#sphx-glr-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">ASAI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - Compute timeseries</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In the field of healthcare, analyzing drug resistance in antimicrobial use is crucial for under..."><img alt="" src="../_images/sphx_glr_plot_dri_b_mimic_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_dri_b_mimic.html#sphx-glr-examples-indexes-plot-dri-b-mimic-py"><span class="std std-ref">DRI - Example using MIMIC</span></a></p>
+  <div class="sphx-glr-thumbnail-title">DRI - Example using MIMIC</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.heatmap"><img alt="" src="../_images/sphx_glr_plot_sari_a_antibiogram_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_a_antibiogram.html#sphx-glr-examples-indexes-plot-sari-a-antibiogram-py"><span class="std std-ref">SARI - By specimen w/ sns.heatmap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.heatmap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.clustermap"><img alt="" src="../_images/sphx_glr_plot_sari_b_clustermap_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_b_clustermap.html#sphx-glr-examples-indexes-plot-sari-b-clustermap-py"><span class="std std-ref">SARI - By specimen w/ sns.clustermap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.clustermap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.relmap"><img alt="" src="../_images/sphx_glr_plot_sari_c_relmap_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_c_relmap.html#sphx-glr-examples-indexes-plot-sari-c-relmap-py"><span class="std std-ref">SARI - By specimen w/ sns.relmap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.relmap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_sari_d_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_d_temporal.html#sphx-glr-examples-indexes-plot-sari-d-temporal-py"><span class="std std-ref">SARI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - Compute timeseries</div>
+</div></div></section>
+<section id="multiple-antimicrobial-resistance">
+<h3>Multiple Antimicrobial Resistance<a class="headerlink" href="#multiple-antimicrobial-resistance" title="Permalink to this heading"></a></h3>
+<p>The multiple antimicrobial resistance describes the ratio of antimicrobials tested (<em>T</em>) to which a
 pathogen is resistant (<em>R</em>). It provides a value within the range [0,1] where values close to
 one indicate high multi-drug resistance. It highly depends on the antimicrobials to which the
 pathogen is tested. Since tested antimicrobials vary among health care centres and time, comparison
 and analysis of its evolution in time is not straight forward. In addition, antibiotics which are
 intrinsically resistant should not be considered.</p>
-<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.mari.MARI</span></code></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_c_mari.html#sphx-glr-examples-tutorial-indexes-plot-core-c-mari-py"><span class="std std-ref">Multiple Resistance (MARI)</span></a></p>
-</div></blockquote>
-</li>
-<li><p><strong>Single Antimicrobial Resistance Trend (SART)</strong></p>
-<blockquote>
-<div><p>The single antimicrobial resistance trend measures the ratio of change per time unit
+<p>See: <a class="reference internal" href="../_autosummary/pyamr.core.mari.html#pyamr.core.mari.MARI" title="pyamr.core.mari.MARI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.mari.MARI</span></code></a></p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Determination of the Multiple Antimicrobial Resistance Index or MARI follows the procedure desc..."><img alt="" src="../_images/sphx_glr_plot_core_c_mari_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/indexes/plot_core_c_mari.html#sphx-glr-examples-tutorial-indexes-plot-core-c-mari-py"><span class="std std-ref">Multiple Resistance (MARI)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Multiple Resistance (``MARI``)</div>
+</div></div></section>
+<section id="single-antimicrobial-resistance-trend">
+<h3>Single Antimicrobial Resistance Trend<a class="headerlink" href="#single-antimicrobial-resistance-trend" title="Permalink to this heading"></a></h3>
+<p>The single antimicrobial resistance trend measures the ratio of change per time unit
 (e.g. monthly or yearly). To compute this metric, it is necessary to generate a
 resistance time series from the susceptibility test data. This is often achieved by
 computing the SARI consecutive or overlapping partitions of the data. Then, the trend
 can be extracted using for example a linear model where the slope, which is a value
 within the range [-1, 1] indicates the ratio of change.</p>
-<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sart.SART</span></code></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_d_sart.html#sphx-glr-examples-tutorial-indexes-plot-core-d-sart-py"><span class="std std-ref">Single Resistance Trend (SART)</span></a></p>
-</div></blockquote>
-</li>
-<li><p><strong>Antimicrobial Spectrum of Activity Index (ASAI)</strong></p>
-<blockquote>
-<div><p>The antimicrobial spectrum of activity index refers to the range of microbe species that are
+<p>See: <a class="reference internal" href="../_autosummary/pyamr.core.sart.html#pyamr.core.sart.SART" title="pyamr.core.sart.SART"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.sart.SART</span></code></a></p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Step 01 - Compute AMR metrics"><img alt="" src="../_images/sphx_glr_plot_step_01_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/guide/plot_step_01.html#sphx-glr-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">Step 01 - Compute AMR metrics</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Step 01 - Compute AMR metrics</div>
+</div></div></section>
+<section id="antimicrobial-spectrum-of-activity">
+<h3>Antimicrobial Spectrum of Activity<a class="headerlink" href="#antimicrobial-spectrum-of-activity" title="Permalink to this heading"></a></h3>
+<p>The antimicrobial spectrum of activity index refers to the range of microbe species that are
 susceptible to these agents and therefore can be treated. In general, antimicrobial agents are
 classified into broad, intermediate or narrow spectrum. Broad spectrum antimicrobials are active
 against both Gram-positive and Gram-negative bacteria. In contrast, narrow spectrum antimicrobials
 have limited activity and are effective only against particular species of bacteria.</p>
-<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_b_asai.html#sphx-glr-examples-tutorial-indexes-plot-core-b-asai-py"><span class="std std-ref">Spectrum of Activity (ASAI)</span></a></p>
-</div></blockquote>
-</li>
-<li><p><strong>Antimicrobial Collateral Sensitivity Index (ACSI)</strong></p>
-<blockquote>
-<div><p>The antimicrobial collateral sensitivity index is based on the mutual information score
+<p>See: <a class="reference internal" href="../_autosummary/pyamr.core.asai.html#pyamr.core.asai.ASAI" title="pyamr.core.asai.ASAI"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></a></p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Step 01 - Compute AMR metrics"><img alt="" src="../_images/sphx_glr_plot_step_01_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/guide/plot_step_01.html#sphx-glr-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">Step 01 - Compute AMR metrics</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Step 01 - Compute AMR metrics</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In this example, we will explore how to compute a time series from susceptibility test data and..."><img alt="" src="../_images/sphx_glr_plot_step_02_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/guide/plot_step_02.html#sphx-glr-examples-tutorial-guide-plot-step-02-py"><span class="std std-ref">Step 02 - Temporal evolution</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Step 02 - Temporal evolution</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The Antimicrobial Spectrum of Activity Index or ASAI refers to the range of microbe species tha..."><img alt="" src="../_images/sphx_glr_plot_core_b_asai_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/indexes/plot_core_b_asai.html#sphx-glr-examples-tutorial-indexes-plot-core-b-asai-py"><span class="std std-ref">Spectrum of Activity (ASAI)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Spectrum of Activity (``ASAI``)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="ASAI - By gram stain (binary)"><img alt="" src="../_images/sphx_glr_plot_asai_a_gramtype_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_a_gramtype.html#sphx-glr-examples-indexes-plot-asai-a-gramtype-py"><span class="std std-ref">ASAI - By gram stain (binary)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - By gram stain (binary)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="ASAI - By gram stain (multiple)"><img alt="" src="../_images/sphx_glr_plot_asai_b_multiple_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_b_multiple.html#sphx-glr-examples-indexes-plot-asai-b-multiple-py"><span class="std std-ref">ASAI - By gram stain (multiple)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - By gram stain (multiple)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_asai_c_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_c_temporal.html#sphx-glr-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">ASAI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - Compute timeseries</div>
+</div></div></section>
+<section id="antimicrobial-collateral-sensitivity">
+<h3>Antimicrobial Collateral Sensitivity<a class="headerlink" href="#antimicrobial-collateral-sensitivity" title="Permalink to this heading"></a></h3>
+<p>The antimicrobial collateral sensitivity index is based on the mutual information score
 and is useful to identify antibiotic pairs displaying concurrent resistance, independence, or
 disjoint resistance. Mutual information quantifies the degree of dependence between two antibiotic
 susceptibility test results (X and Y) by measuring the amount of information gained about one test
@@ -605,24 +796,31 @@ in a negative MIS. The MIS is maximised (0·7) when susceptibility to one antibi
 susceptibility to another antibiotic and similarly for non-susceptibility. The MIS is minimised
 (−0·7) when resistance to one antibiotic always predicts susceptibility to another and vice versa.</p>
 <p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.acsi.ACSI</span></code></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_f_acri.html#sphx-glr-examples-tutorial-indexes-plot-core-f-acri-py"><span class="std std-ref">Collateral Sensitivity Index (ACSI)</span></a></p>
-</div></blockquote>
-</li>
-<li><p><strong>Drug Resistance Index (DRI)</strong></p>
-<blockquote>
-<div><p>The drug resistance index measures the proportion of pathogens that are resistant to the
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The Collateral Sensitivity Index - ACSI ..."><img alt="" src="../_images/sphx_glr_plot_core_f_acri_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/indexes/plot_core_f_acri.html#sphx-glr-examples-tutorial-indexes-plot-core-f-acri-py"><span class="std std-ref">Collateral Sensitivity Index (ACSI)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Collateral Sensitivity Index (``ACSI``)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="ACSI - Example using MIMIC"><img alt="" src="../_images/sphx_glr_plot_acsi_b_mimic_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_acsi_b_mimic.html#sphx-glr-examples-indexes-plot-acsi-b-mimic-py"><span class="std std-ref">ACSI - Example using MIMIC</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ACSI - Example using MIMIC</div>
+</div></div></section>
+<section id="drug-resistance-index-dri">
+<h3>Drug Resistance Index (DRI)<a class="headerlink" href="#drug-resistance-index-dri" title="Permalink to this heading"></a></h3>
+<p>The drug resistance index measures the proportion of pathogens that are resistant to the
 antimicrobials used to treat them. It provides a value within the range [0,1] where values
 close to one indicate high resistant for frequent antimicrobials. The variable <em>ρik</em> is the
 proportion of resistance among organism <em>i</em> to antimicrobial <em>k</em> and <em>qik</em> is the
 frequency of drug <em>k</em> used to treat organism <em>i</em>.</p>
 <p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.dri.DRI</span></code></p>
-<p>Examples: <a class="reference internal" href="../_examples/tutorial/indexes/plot_core_e_dri.html#sphx-glr-examples-tutorial-indexes-plot-core-e-dri-py"><span class="std std-ref">Drug Resistance Index (DRI)</span></a></p>
-</div></blockquote>
-</li>
-</ul>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The Drug Resistance Index or DRI measures changes through time in the proportion of disease-cau..."><img alt="" src="../_images/sphx_glr_plot_core_e_dri_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/indexes/plot_core_e_dri.html#sphx-glr-examples-tutorial-indexes-plot-core-e-dri-py"><span class="std std-ref">Drug Resistance Index (DRI)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Drug Resistance Index (``DRI``)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In the field of healthcare, analyzing drug resistance in antimicrobial use is crucial for under..."><img alt="" src="../_images/sphx_glr_plot_dri_b_mimic_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_dri_b_mimic.html#sphx-glr-examples-indexes-plot-dri-b-mimic-py"><span class="std std-ref">DRI - Example using MIMIC</span></a></p>
+  <div class="sphx-glr-thumbnail-title">DRI - Example using MIMIC</div>
+</div></div></section>
 </section>
-<section id="essentials-of-time-series-analysis">
-<h2>Essentials of time series analysis<a class="headerlink" href="#essentials-of-time-series-analysis" title="Permalink to this heading"></a></h2>
+<section id="concepts-for-time-series-analysis">
+<h2>Concepts for time series analysis<a class="headerlink" href="#concepts-for-time-series-analysis" title="Permalink to this heading"></a></h2>
 <p>Time series analysis is a specific way of analyzing a sequence of data points collected over
 an interval of time. In time series analysis, analysts record data points at consistent intervals
 over a set period of time. Time series analysis typically requires a large number of data points
@@ -712,18 +910,21 @@ the product of their standard deviations; thus, it is essentially a normalized m
 of the covariance, such that the result always has a value between −1 and 1. The measure
 can only reflect a linear correlation of variables, and ignores many other types of
 relationships or correlations.</p>
+<p>See: <a class="reference internal" href="../_autosummary/pyamr.core.stats.correlation.html#pyamr.core.stats.correlation.CorrelationWrapper" title="pyamr.core.stats.correlation.CorrelationWrapper"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.stats.correlation.CorrelationWrapper</span></code></a></p>
 </section>
-<section id="id1">
-<h4>R2<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
-<p>R-squared is a goodness-of-fit measure for linear regression models. This
-statistic indicates the percentage of the variance in the dependent variable
-that the independent variables explain collectively. R-squared measures the
-strength of the relationship between your model and the dependent variable
-on a convenient 0 – 100% scale. R-squared is always between 0 and 100% where
-(i) <strong>0%</strong> represents a model that does not explain any of the variation in the
-response variable around its mean. The mean of the dependent variable predicts
-the dependent variable as well as the regression model and (ii) <strong>100%</strong> represents
-a model that explains all the variation in the response variable around its mean.</p>
+<section id="kurtosis">
+<h4>Kurtosis<a class="headerlink" href="#kurtosis" title="Permalink to this heading"></a></h4>
+<a class="reference internal image-reference" href="https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png"><img alt="kurtosis" class="align-right" src="https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png" style="width: 320px;" /></a>
+<p>Kurtosis describes the extent to which the tails (or extremes) of a set of data
+differ from those of a normal distribution. A bell curve distribution would exhibit
+kurtosis of 3, so only numbers above or below 3 can be described as “excess” Kurtosis.</p>
+<p>It is common to compare the excess kurtosis (defined below) of a distribution to 0,
+which is the excess kurtosis of any univariate normal distribution. Distributions
+with negative excess kurtosis are said to be platykurtic, although this does not
+imply the distribution is “flat-topped” as is sometimes stated. Rather, it means the
+distribution produces fewer and/or less extreme outliers than the normal distribution.
+An example of a platykurtic distribution is the uniform distribution, which does not
+produce outliers. Distributions with a positive excess kurtosis are said to be leptokurt.</p>
 </section>
 <section id="skewness">
 <h4>Skewness<a class="headerlink" href="#skewness" title="Permalink to this heading"></a></h4>
@@ -739,19 +940,17 @@ tails on both sides of the mean balance out overall; this is the case for a
 symmetric distribution, but can also be true for an asymmetric distribution
 where one tail is long and thin, and the other is short but fat.</p>
 </section>
-<section id="kurtosis">
-<h4>Kurtosis<a class="headerlink" href="#kurtosis" title="Permalink to this heading"></a></h4>
-<a class="reference internal image-reference" href="https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png"><img alt="kurtosis" class="align-right" src="https://surferhelp.goldensoftware.com/Resources/image/kurtosis.png" style="width: 320px;" /></a>
-<p>Kurtosis describes the extent to which the tails (or extremes) of a set of data
-differ from those of a normal distribution. A bell curve distribution would exhibit
-kurtosis of 3, so only numbers above or below 3 can be described as “excess” Kurtosis.</p>
-<p>It is common to compare the excess kurtosis (defined below) of a distribution to 0,
-which is the excess kurtosis of any univariate normal distribution. Distributions
-with negative excess kurtosis are said to be platykurtic, although this does not
-imply the distribution is “flat-topped” as is sometimes stated. Rather, it means the
-distribution produces fewer and/or less extreme outliers than the normal distribution.
-An example of a platykurtic distribution is the uniform distribution, which does not
-produce outliers. Distributions with a positive excess kurtosis are said to be leptokurt.</p>
+<section id="id1">
+<h4>R2<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>R-squared is a goodness-of-fit measure for linear regression models. This
+statistic indicates the percentage of the variance in the dependent variable
+that the independent variables explain collectively. R-squared measures the
+strength of the relationship between your model and the dependent variable
+on a convenient 0 – 100% scale. R-squared is always between 0 and 100% where
+(i) <strong>0%</strong> represents a model that does not explain any of the variation in the
+response variable around its mean. The mean of the dependent variable predicts
+the dependent variable as well as the regression model and (ii) <strong>100%</strong> represents
+a model that explains all the variation in the response variable around its mean.</p>
 </section>
 <section id="akaike-information-criterion">
 <h4>Akaike information criterion<a class="headerlink" href="#akaike-information-criterion" title="Permalink to this heading"></a></h4>
@@ -775,10 +974,7 @@ based on log-likelihood function (LLF), and but related to Akaike’s informatio
 </section>
 <section id="stationarity">
 <h4>Stationarity<a class="headerlink" href="#stationarity" title="Permalink to this heading"></a></h4>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Pending!</p>
-</div>
+<p>See: <a class="reference internal" href="../_autosummary/pyamr.core.stats.stationarity.html#pyamr.core.stats.stationarity.StationarityWrapper" title="pyamr.core.stats.stationarity.StationarityWrapper"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.stats.stationarity.StationarityWrapper</span></code></a></p>
 </section>
 </section>
 <section id="statistical-tests">
@@ -856,24 +1052,15 @@ or hypothesis about the process. The conjecture is called the null hypothesis.</
 </table>
 <section id="augmented-dicker-fuller">
 <h4>Augmented Dicker-Fuller<a class="headerlink" href="#augmented-dicker-fuller" title="Permalink to this heading"></a></h4>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Pending!</p>
-</div>
+<p>See: <a class="reference internal" href="../_autosummary/pyamr.core.stats.adfuller.html#pyamr.core.stats.adfuller.ADFWrapper" title="pyamr.core.stats.adfuller.ADFWrapper"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.stats.adfuller.ADFWrapper</span></code></a></p>
 </section>
-<section id="kendal">
-<h4>Kendal<a class="headerlink" href="#kendal" title="Permalink to this heading"></a></h4>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Pending!</p>
-</div>
+<section id="kendall">
+<h4>Kendall<a class="headerlink" href="#kendall" title="Permalink to this heading"></a></h4>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.stats.kendall.KendalWrapper</span></code></p>
 </section>
 <section id="kwiatkowskiphillipsschmidtshin">
 <h4>Kwiatkowski–Phillips–Schmidt–Shin<a class="headerlink" href="#kwiatkowskiphillipsschmidtshin" title="Permalink to this heading"></a></h4>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Pending!</p>
-</div>
+<p>See: <code class="xref py py-mod docutils literal notranslate"><span class="pre">pyamr.core.stats.kpss.KPSSWrapper</span></code></p>
 </section>
 <section id="jarque-bera">
 <h4>Jarque Bera<a class="headerlink" href="#jarque-bera" title="Permalink to this heading"></a></h4>
@@ -917,8 +1104,12 @@ no autocorrelation detected in the sample.</p>
 </section>
 <section id="omnibus">
 <h4>Omnibus<a class="headerlink" href="#omnibus" title="Permalink to this heading"></a></h4>
-<p>Omnibus tests are a kind of statistical test. They test whether the explained variance
-in a set of data is significantly greater than the unexplained …</p>
+<p>It’s important to note that the term “omnibus statistical test” is not limited to a specific
+statistical method or test but rather refers to a general concept of assessing the overall
+significance of a set of variables or factors collectively. The specific statistical test used
+as an omnibus test may vary depending on the research design, data type, and analysis
+objectives.</p>
+<p>They test whether the explained variance in a set of data is significantly greater than the unexplained.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Pending!</p>

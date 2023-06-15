@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.core.table package &mdash; pyamr 0.0.1 documentation</title>
@@ -17,10 +17,9 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -156,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.examples.html">pyamr.examples package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
@@ -165,6 +165,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -200,10 +203,49 @@
 </section>
 <section id="module-pyamr.core.table.acronym">
 <span id="pyamr-core-table-acronym-module"></span><h2>pyamr.core.table.acronym module<a class="headerlink" href="#module-pyamr.core.table.acronym" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.AcronymBuilder" title="pyamr.core.table.acronym.AcronymBuilder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AcronymBuilder</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.acronym" title="pyamr.core.table.acronym.acronym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">acronym</span></code></a>(name[, length, prefix])</p></td>
+<td><p>This method created the acronym for a given string</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.table.acronym.AcronymBuilder">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.table.acronym.</span></span><span class="sig-name descname"><span class="pre">AcronymBuilder</span></span><a class="reference internal" href="../_modules/pyamr/core/table/acronym.html#AcronymBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.table.acronym.AcronymBuilder" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.AcronymBuilder.fit" title="pyamr.core.table.acronym.AcronymBuilder.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(values, acronyms)</p></td>
+<td><p>This method creates a dictionary with the acronyms</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.AcronymBuilder.has_acronym" title="pyamr.core.table.acronym.AcronymBuilder.has_acronym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_acronym</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.AcronymBuilder.has_value" title="pyamr.core.table.acronym.AcronymBuilder.has_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_value</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.AcronymBuilder.inverse_transform" title="pyamr.core.table.acronym.AcronymBuilder.inverse_transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_transform</span></code></a>(acronyms)</p></td>
+<td><p>This method returns the values for given acronyms.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.AcronymBuilder.transform" title="pyamr.core.table.acronym.AcronymBuilder.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(values)</p></td>
+<td><p>This method returns the acronyms for given values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.acronym.AcronymBuilder.update" title="pyamr.core.table.acronym.AcronymBuilder.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.table.acronym.AcronymBuilder.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acronyms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/table/acronym.html#AcronymBuilder.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.table.acronym.AcronymBuilder.fit" title="Permalink to this definition"></a></dt>
@@ -287,10 +329,29 @@ approach to create acronyms does not ensure they are always unique.</p>
 </section>
 <section id="module-pyamr.core.table.antibiotic">
 <span id="pyamr-core-table-antibiotic-module"></span><h2>pyamr.core.table.antibiotic module<a class="headerlink" href="#module-pyamr.core.table.antibiotic" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticTable" title="pyamr.core.table.antibiotic.AntibioticTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AntibioticTable</span></code></a>([to_lowercase, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable" title="pyamr.core.table.antibiotic.AntibioticsTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AntibioticsTable</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.table.antibiotic.AntibioticTable">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.table.antibiotic.</span></span><span class="sig-name descname"><span class="pre">AntibioticTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_lowercase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_uppercase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_spaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_parenthesis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/table/antibiotic.html#AntibioticTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticTable" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticTable.fit" title="pyamr.core.table.antibiotic.AntibioticTable.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(dataframe)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyamr.core.table.antibiotic.AntibioticTable.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/table/antibiotic.html#AntibioticTable.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticTable.fit" title="Permalink to this definition"></a></dt>
@@ -302,6 +363,52 @@ approach to create acronyms does not ensure they are always unique.</p>
 <dt class="sig sig-object py" id="pyamr.core.table.antibiotic.AntibioticsTable">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.table.antibiotic.</span></span><span class="sig-name descname"><span class="pre">AntibioticsTable</span></span><a class="reference internal" href="../_modules/pyamr/core/table/antibiotic.html#AntibioticsTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.codeF" title="pyamr.core.table.antibiotic.AntibioticsTable.codeF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">codeF</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.codeO" title="pyamr.core.table.antibiotic.AntibioticsTable.codeO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">codeO</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.l" title="pyamr.core.table.antibiotic.AntibioticsTable.l"><code class="xref py py-obj docutils literal notranslate"><span class="pre">l</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.nameF" title="pyamr.core.table.antibiotic.AntibioticsTable.nameF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nameF</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.nameO" title="pyamr.core.table.antibiotic.AntibioticsTable.nameO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nameO</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.usecols" title="pyamr.core.table.antibiotic.AntibioticsTable.usecols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">usecols</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.compute" title="pyamr.core.table.antibiotic.AntibioticsTable.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(input_path, output_path)</p></td>
+<td><p>This method computes/updates a table from data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.create_table" title="pyamr.core.table.antibiotic.AntibioticsTable.create_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_table</span></code></a>(data_path)</p></td>
+<td><p>This method creates the table from input data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.fit" title="pyamr.core.table.antibiotic.AntibioticsTable.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(values, acronym)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.merge_table" title="pyamr.core.table.antibiotic.AntibioticsTable.merge_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_table</span></code></a>(df1, df2, on, conflicts)</p></td>
+<td><p>This function merges the two basic columns name and code.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.show_information" title="pyamr.core.table.antibiotic.AntibioticsTable.show_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_information</span></code></a>(df, dfc, pathname)</p></td>
+<td><p>This method shows important information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.antibiotic.AntibioticsTable.update" title="pyamr.core.table.antibiotic.AntibioticsTable.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.table.antibiotic.AntibioticsTable.codeF">
 <span class="sig-name descname"><span class="pre">codeF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'antibioticCode'</span></em><a class="headerlink" href="#pyamr.core.table.antibiotic.AntibioticsTable.codeF" title="Permalink to this definition"></a></dt>
@@ -394,10 +501,67 @@ approach to create acronyms does not ensure they are always unique.</p>
 </section>
 <section id="module-pyamr.core.table.organism">
 <span id="pyamr-core-table-organism-module"></span><h2>pyamr.core.table.organism module<a class="headerlink" href="#module-pyamr.core.table.organism" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable" title="pyamr.core.table.organism.OrganismsTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganismsTable</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="pyamr.core.table.organism.OrganismsTable">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.table.organism.</span></span><span class="sig-name descname"><span class="pre">OrganismsTable</span></span><a class="reference internal" href="../_modules/pyamr/core/table/organism.html#OrganismsTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.codeF" title="pyamr.core.table.organism.OrganismsTable.codeF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">codeF</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.codeO" title="pyamr.core.table.organism.OrganismsTable.codeO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">codeO</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.codeS" title="pyamr.core.table.organism.OrganismsTable.codeS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">codeS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.len_sp" title="pyamr.core.table.organism.OrganismsTable.len_sp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">len_sp</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.len_tp" title="pyamr.core.table.organism.OrganismsTable.len_tp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">len_tp</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.nameF" title="pyamr.core.table.organism.OrganismsTable.nameF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nameF</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.nameO" title="pyamr.core.table.organism.OrganismsTable.nameO"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nameO</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.nameS" title="pyamr.core.table.organism.OrganismsTable.nameS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nameS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.usecols" title="pyamr.core.table.organism.OrganismsTable.usecols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">usecols</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.compute" title="pyamr.core.table.organism.OrganismsTable.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(input_path, output_path)</p></td>
+<td><p>This method computes/updates a table from data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.create_table" title="pyamr.core.table.organism.OrganismsTable.create_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_table</span></code></a>(data_path)</p></td>
+<td><p>This method creates the table from input data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.merge_table" title="pyamr.core.table.organism.OrganismsTable.merge_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_table</span></code></a>(df1, df2, on, conflicts)</p></td>
+<td><p>This function merges the two basic columns name and code.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.organism.OrganismsTable.show_information" title="pyamr.core.table.organism.OrganismsTable.show_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_information</span></code></a>(df, dfc, pathname)</p></td>
+<td><p>This method shows important information.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pyamr.core.table.organism.OrganismsTable.codeF">
 <span class="sig-name descname"><span class="pre">codeF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'organismCode'</span></em><a class="headerlink" href="#pyamr.core.table.organism.OrganismsTable.codeF" title="Permalink to this definition"></a></dt>
@@ -495,6 +659,35 @@ approach to create acronyms does not ensure they are always unique.</p>
 </section>
 <section id="module-pyamr.core.table.utils">
 <span id="pyamr-core-table-utils-module"></span><h2>pyamr.core.table.utils module<a class="headerlink" href="#module-pyamr.core.table.utils" title="Permalink to this heading"></a></h2>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.utils.delete_numbers" title="pyamr.core.table.utils.delete_numbers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_numbers</span></code></a>(df[, cols])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.utils.delete_parenthesis" title="pyamr.core.table.utils.delete_parenthesis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_parenthesis</span></code></a>(df[, cols])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.utils.delete_spaces" title="pyamr.core.table.utils.delete_spaces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_spaces</span></code></a>(df[, cols])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.utils.delete_types" title="pyamr.core.table.utils.delete_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_types</span></code></a>(df[, cols])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.utils.ending_specie" title="pyamr.core.table.utils.ending_specie"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ending_specie</span></code></a>(df[, cols])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.utils.lettercase" title="pyamr.core.table.utils.lettercase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lettercase</span></code></a>(df[, cols, funct])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.table.utils.specie_abbreviation" title="pyamr.core.table.utils.specie_abbreviation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">specie_abbreviation</span></code></a>(df[, cols])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.table.utils.transform_rename" title="pyamr.core.table.utils.transform_rename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform_rename</span></code></a>(filepath, df)</p></td>
+<td><p>This function rename codes (i.e.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.core.table.utils.delete_numbers">
 <span class="sig-prename descclassname"><span class="pre">pyamr.core.table.utils.</span></span><span class="sig-name descname"><span class="pre">delete_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/table/utils.html#delete_numbers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.table.utils.delete_numbers" title="Permalink to this definition"></a></dt>

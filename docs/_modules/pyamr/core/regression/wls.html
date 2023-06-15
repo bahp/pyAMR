@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -53,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference.html">API Reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
@@ -130,7 +130,7 @@
         <span class="k">return</span> <span class="n">e</span>
 
 
-<div class="viewcode-block" id="PredictionResult"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wls.PredictionResult">[docs]</a><span class="k">class</span> <span class="nc">PredictionResult</span><span class="p">():</span>
+<div class="viewcode-block" id="PredictionResult"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.regression.html#pyamr.core.regression.wls.PredictionResult">[docs]</a><span class="k">class</span> <span class="nc">PredictionResult</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cilo</span><span class="p">,</span> <span class="n">ciup</span><span class="p">,</span> <span class="n">pstd</span><span class="p">,</span> <span class="n">pilo</span><span class="p">,</span>
                  <span class="n">piup</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">nobs</span><span class="p">,</span> <span class="n">endog</span><span class="p">):</span>
@@ -546,7 +546,7 @@
     <span class="c1">#  Example I</span>
     <span class="c1"># -------------</span>
     <span class="c1"># This example shows how to make predictions using the wrapper and how</span>
-    <span class="c1"># to plot the resulting data. In addition, it compares the intervales</span>
+    <span class="c1"># to plot the resulting data. In addition, it compares the intervals</span>
     <span class="c1"># provided by get_prediction (confidence intervals) and the intervals</span>
     <span class="c1"># provided by wls_prediction_std (prediction intervals).</span>
     <span class="c1">#</span>
@@ -572,9 +572,12 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.00</span><span class="p">,</span>
             <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">wls</span><span class="o">.</span><span class="n">_identifier</span><span class="p">(</span><span class="n">short</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
+    <span class="nb">print</span><span class="p">(</span><span class="n">preds</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
     <span class="c1"># Plot the confidence intervals.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">preds</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
-                    <span class="n">preds</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span>
+                    <span class="n">y1</span><span class="o">=</span><span class="n">preds</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span>
+                    <span class="n">y2</span><span class="o">=</span><span class="n">preds</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:],</span>
                     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
                     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 

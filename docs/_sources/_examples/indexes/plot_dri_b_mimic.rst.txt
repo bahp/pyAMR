@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download__examples_indexes_plot_dri_b_mimic.py>`
+        :ref:`Go to the end <sphx_glr_download__examples_indexes_plot_dri_b_mimic.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -298,22 +298,20 @@ Lets also load the ``prescriptions`` (could be also overall usage) data
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-           subject_id   hadm_id  pharmacy_id            starttime             stoptime drug_type  ... dose_unit_rx form_val_disp  form_unit_disp doses_per_24_hrs  route                DATE
-    26       17868682  25218370     81568564  2167-05-24 20:00:00  2167-05-26 02:00:00      MAIN  ...            g             1             BAG              3.0     IV 2167-05-24 20:00:00
-    48       17868682  24052239     59994266  2167-06-20 23:00:00  2167-06-22 11:00:00      MAIN  ...           mg           200              mL              2.0     IV 2167-06-20 23:00:00
-    58       17868682  24052239     39104292  2167-06-22 20:00:00  2167-06-25 12:00:00      MAIN  ...           mg             3            VIAL              2.0     IV 2167-06-22 20:00:00
-    60       17868682  24052239      1791946  2167-06-24 20:00:00  2167-06-25 12:00:00      MAIN  ...           mg             3            VIAL              2.0     IV 2167-06-24 20:00:00
-    76       12315540  24554730     25748315  2172-08-15 11:00:00  2172-08-16 20:00:00      MAIN  ...           mg           1.5             TAB              0.0     PO 2172-08-15 11:00:00
-    ...           ...       ...          ...                  ...                  ...       ...  ...          ...           ...             ...              ...    ...                 ...
-    99154    15276693  21600683     24768410  2141-08-21 08:00:00  2141-08-26 18:00:00      MAIN  ...           mg             1             TAB              0.0  PO/NG 2141-08-21 08:00:00
-    99218    10819462  26263456     61192290  2181-12-01 16:00:00  2181-12-02 15:00:00      MAIN  ...           mg             4              mL              3.0     IV 2181-12-01 16:00:00
-    99435    17442082  26038207     88544744  2135-08-07 15:00:00  2135-08-08 14:00:00      MAIN  ...            g             1            VIAL              1.0     IV 2135-08-07 15:00:00
-    99511    17442082  20010297     74705027  2135-09-10 07:00:00  2135-09-10 11:00:00      MAIN  ...           gm             1            VIAL              1.0     IV 2135-09-10 07:00:00
-    99760    19103067  28239677     20279428  2124-06-02 04:00:00  2124-06-02 22:00:00      MAIN  ...           mg             2             CAP              3.0  PO/NG 2124-06-02 04:00:00
+           subject_id   hadm_id  pharmacy_id            starttime             stoptime drug_type          DRUG      gsn  ...  form_rx dose_val_rx dose_unit_rx form_val_disp form_unit_disp doses_per_24_hrs  route                DATE
+    26       17868682  25218370     81568564  2167-05-24 20:00:00  2167-05-26 02:00:00      MAIN     CEFAZOLIN   068632  ...      NaN           2            g             1            BAG              3.0     IV 2167-05-24 20:00:00
+    48       17868682  24052239     59994266  2167-06-20 23:00:00  2167-06-22 11:00:00      MAIN    VANCOMYCIN   043952  ...      NaN        1000           mg           200             mL              2.0     IV 2167-06-20 23:00:00
+    58       17868682  24052239     39104292  2167-06-22 20:00:00  2167-06-25 12:00:00      MAIN    VANCOMYCIN   009331  ...      NaN        1500           mg             3           VIAL              2.0     IV 2167-06-22 20:00:00
+    60       17868682  24052239      1791946  2167-06-24 20:00:00  2167-06-25 12:00:00      MAIN    VANCOMYCIN   009331  ...      NaN        1500           mg             3           VIAL              2.0     IV 2167-06-24 20:00:00
+    76       12315540  24554730     25748315  2172-08-15 11:00:00  2172-08-16 20:00:00      MAIN  LEVOFLOXACIN   029928  ...      NaN         750           mg           1.5            TAB              0.0     PO 2172-08-15 11:00:00
+    ...           ...       ...          ...                  ...                  ...       ...           ...      ...  ...      ...         ...          ...           ...            ...              ...    ...                 ...
+    99154    15276693  21600683     24768410  2141-08-21 08:00:00  2141-08-26 18:00:00      MAIN  LEVOFLOXACIN  46771.0  ...      NaN         750           mg             1            TAB              0.0  PO/NG 2141-08-21 08:00:00
+    99218    10819462  26263456     61192290  2181-12-01 16:00:00  2181-12-02 15:00:00      MAIN   CLINDAMYCIN   9344.0  ...      NaN         600           mg             4             mL              3.0     IV 2181-12-01 16:00:00
+    99435    17442082  26038207     88544744  2135-08-07 15:00:00  2135-08-08 14:00:00      MAIN      CEFEPIME  24095.0  ...      NaN           2            g             1           VIAL              1.0     IV 2135-08-07 15:00:00
+    99511    17442082  20010297     74705027  2135-09-10 07:00:00  2135-09-10 11:00:00      MAIN   CEFTRIAXONE   9162.0  ...      NaN           1           gm             1           VIAL              1.0     IV 2135-09-10 07:00:00
+    99760    19103067  28239677     20279428  2124-06-02 04:00:00  2124-06-02 22:00:00      MAIN   CLINDAMYCIN   9339.0  ...      NaN         300           mg             2            CAP              3.0  PO/NG 2124-06-02 04:00:00
 
     [2655 rows x 18 columns]
 
@@ -499,7 +497,7 @@ preliminary step to compute the ``DRI``.
         <tr>
           <th>3</th>
           <td>2110</td>
-          <td>POSITIVE FOR METHICILLIN RESISTANT STAPH AUREUS</td>
+          <td>POSITIVE FOR METHICILLIN RESISTANT S...</td>
           <td>ERYTHROMYCIN</td>
           <td>0.0</td>
           <td>0.0</td>
@@ -700,27 +698,27 @@ Lets compute the ``DRI``
         <tr>
           <th>2110</th>
           <td>30.0</td>
-          <td>0.681667</td>
+          <td>0.6817</td>
         </tr>
         <tr>
           <th>2111</th>
           <td>262.0</td>
-          <td>0.251580</td>
+          <td>0.2516</td>
         </tr>
         <tr>
           <th>2112</th>
           <td>196.0</td>
-          <td>0.103980</td>
+          <td>0.1040</td>
         </tr>
         <tr>
           <th>2113</th>
           <td>159.0</td>
-          <td>0.132956</td>
+          <td>0.1330</td>
         </tr>
         <tr>
           <th>2114</th>
           <td>64.0</td>
-          <td>0.057600</td>
+          <td>0.0576</td>
         </tr>
         <tr>
           <th>...</th>
@@ -730,27 +728,27 @@ Lets compute the ``DRI``
         <tr>
           <th>2206</th>
           <td>303.0</td>
-          <td>0.110191</td>
+          <td>0.1102</td>
         </tr>
         <tr>
           <th>2207</th>
           <td>135.0</td>
-          <td>0.261192</td>
+          <td>0.2612</td>
         </tr>
         <tr>
           <th>2208</th>
           <td>36.0</td>
-          <td>0.214109</td>
+          <td>0.2141</td>
         </tr>
         <tr>
           <th>2209</th>
           <td>192.0</td>
-          <td>0.217839</td>
+          <td>0.2178</td>
         </tr>
         <tr>
           <th>2210</th>
           <td>75.0</td>
-          <td>0.037037</td>
+          <td>0.0370</td>
         </tr>
       </tbody>
     </table>
@@ -991,8 +989,6 @@ The top microorganisms are:
 
 
 .. rst-class:: sphx-glr-script-out
-
- Out:
 
  .. code-block:: none
 
@@ -1238,28 +1234,25 @@ The results look as follows:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.613 seconds)
+   **Total running time of the script:** ( 0 minutes  12.707 seconds)
 
 
 .. _sphx_glr_download__examples_indexes_plot_dri_b_mimic.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
 
-  .. container:: sphx-glr-download sphx-glr-download-python
 
-     :download:`Download Python source code: plot_dri_b_mimic.py <plot_dri_b_mimic.py>`
+    .. container:: sphx-glr-download sphx-glr-download-python
 
+      :download:`Download Python source code: plot_dri_b_mimic.py <plot_dri_b_mimic.py>`
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_dri_b_mimic.ipynb <plot_dri_b_mimic.ipynb>`
+      :download:`Download Jupyter notebook: plot_dri_b_mimic.ipynb <plot_dri_b_mimic.ipynb>`
 
 
 .. only:: html

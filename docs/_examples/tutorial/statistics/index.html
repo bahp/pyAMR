@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Statistical tests (wrappers) &mdash; pyamr 0.0.1 documentation</title>
+  <title>Using the statistical tests wrappers &mdash; pyamr 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
@@ -12,15 +12,16 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -31,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -54,9 +61,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -72,8 +78,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Statistical tests (wrappers)</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using the statistical tests wrappers</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/statistics/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -83,19 +89,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="statistical-tests-wrappers">
-<span id="sphx-glr-examples-tutorial-statistics"></span><h1>Statistical tests (wrappers)<a class="headerlink" href="#statistical-tests-wrappers" title="Permalink to this headline"></a></h1>
-<p>Examples computing and interpreting statistical tests.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The Augmented Dickey-Fuller test..."><img alt="ADFuller" src="../../../_images/sphx_glr_plot_core_stats_adfuller_thumb.png" />
+  <section id="using-the-statistical-tests-wrappers">
+<span id="sphx-glr-examples-tutorial-statistics"></span><h1>Using the statistical tests wrappers<a class="headerlink" href="#using-the-statistical-tests-wrappers" title="Permalink to this heading"></a></h1>
+<p>Examples using some wrappers implemented to compute statistical tests.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The Augmented Dickey-Fuller test..."><img alt="" src="../../../_images/sphx_glr_plot_core_stats_adfuller_thumb.png" />
 <p><a class="reference internal" href="plot_core_stats_adfuller.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-adfuller-py"><span class="std std-ref">ADFuller</span></a></p>
   <div class="sphx-glr-thumbnail-title">ADFuller</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="Correlation" src="../../../_images/sphx_glr_plot_core_stats_correlation_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="" src="../../../_images/sphx_glr_plot_core_stats_correlation_thumb.png" />
 <p><a class="reference internal" href="plot_core_stats_correlation.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-correlation-py"><span class="std std-ref">Correlation</span></a></p>
   <div class="sphx-glr-thumbnail-title">Correlation</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="Kendall" src="../../../_images/sphx_glr_plot_core_stats_kendall_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="" src="../../../_images/sphx_glr_plot_core_stats_kendall_thumb.png" />
 <p><a class="reference internal" href="plot_core_stats_kendall.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-kendall-py"><span class="std std-ref">Kendall</span></a></p>
   <div class="sphx-glr-thumbnail-title">Kendall</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="Stationarity" src="../../../_images/sphx_glr_plot_core_stats_stationarity_thumb.png" />
+</div><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="" src="../../../_images/sphx_glr_plot_core_stats_stationarity_thumb.png" />
 <p><a class="reference internal" href="plot_core_stats_stationarity.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-stationarity-py"><span class="std std-ref">Stationarity</span></a></p>
   <div class="sphx-glr-thumbnail-title">Stationarity</div>
 </div></div><div class="toctree-wrapper compound">

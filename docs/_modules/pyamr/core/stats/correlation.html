@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -53,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference.html">API Reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
@@ -102,7 +102,7 @@
 <span class="c1">#</span>
 <span class="c1">###############################################################################</span>
 <span class="c1"># Forces decimals on divisions.</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span> 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 
 <span class="c1"># Libraries</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -117,129 +117,144 @@
 
 
 <div class="viewcode-block" id="CorrelationWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper">[docs]</a><span class="k">class</span> <span class="nc">CorrelationWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 
-  <span class="c1"># --------------------------------------------------------------------------</span>
-  <span class="c1">#                          overriden methods</span>
-  <span class="c1"># --------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="CorrelationWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.evaluate">[docs]</a>  <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method set all the variables into this class.</span>
+<span class="sd">    The Pearson Correlation Coefficient measures the linear correlation between two</span>
+<span class="sd">    variables with a value within the range [-1,1]. Coefficient values of -1, 0 and</span>
+<span class="sd">    1 indicate total negative linear correlation, no inear correlation and total</span>
+<span class="sd">    positive correlation respectively. In this study, the coefficient is used to assess</span>
+<span class="sd">    whether or not there is a linear correlation between the number of observations</span>
+<span class="sd">    (susceptibility test records) and the computed resistance index.</span>
+
+<span class="sd">    The Spearman Correlation Coefficient...</span>
+
+<span class="sd">    The Cross-Correlation ....</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Create series.</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c1"># Add results</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;spearman_corr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.spearmanr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">correlation</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;spearman_pval&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.spearmanr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pvalue</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pearson_corr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.pearsonr&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pearson_pval&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.pearsonr&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">d</span><span class="p">[</span><span class="s1">&#39;crosscorr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;numpy.correlate&#39;</span><span class="p">]</span>
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">d</span></div>
-    
-<div class="viewcode-block" id="CorrelationWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.as_summary">[docs]</a>  <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method displays the summary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Create summary base</span>
-    <span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot;         Correlation</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;==============================</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;Pearson:           </span><span class="si">%#11.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">pearson_corr</span>
-    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;Spearman:          </span><span class="si">%#11.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">spearman_corr</span>
-    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;Cross correlation: </span><span class="si">%#11.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">crosscorr</span>
-    <span class="n">summary</span><span class="o">+=</span> <span class="s2">&quot;==============================&quot;</span>
-    <span class="c1"># Return</span>
-    <span class="k">return</span> <span class="n">summary</span></div>
 
-<div class="viewcode-block" id="CorrelationWrapper.fit"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.fit">[docs]</a>  <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method computes kendall for monotonic increase</span>
+    <span class="c1"># --------------------------------------------------------------------------</span>
+    <span class="c1">#                          overriden methods</span>
+    <span class="c1"># --------------------------------------------------------------------------</span>
+<div class="viewcode-block" id="CorrelationWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method sets all the variables into this class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create series.</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Add results</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;spearman_corr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.spearmanr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">correlation</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;spearman_pval&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.spearmanr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pvalue</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pearson_corr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.pearsonr&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;pearson_pval&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.pearsonr&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;crosscorr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;numpy.correlate&#39;</span><span class="p">]</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">d</span></div>
 
-<span class="sd">    NOTES: - scipy pvalues are not reliavble if less than 500 observations.</span>
+<div class="viewcode-block" id="CorrelationWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method displays the summary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create summary base</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot;         Correlation</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="s2">&quot;==============================</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="s2">&quot;Pearson:           </span><span class="si">%#11.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">pearson_corr</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="s2">&quot;Spearman:          </span><span class="si">%#11.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">spearman_corr</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="s2">&quot;Cross correlation: </span><span class="si">%#11.3f</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">crosscorr</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="s2">&quot;==============================&quot;</span>
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">summary</span></div>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    x1        :</span>
-<span class="sd">    y2        :</span>
+<div class="viewcode-block" id="CorrelationWrapper.fit"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.correlation.CorrelationWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method computes kendall for monotonic increase</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    object : A CorrelationWrapper objects.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Library.</span>
-    <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="sd">          .. note:: the pvalues produced by scipy are not reliable if less than 500 observations.</span>
 
-    <span class="c1"># Empty the class</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_empty</span><span class="p">()</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x1: np.array</span>
+<span class="sd">            Variable x1</span>
 
-    <span class="c1"># Update the configuration</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="sd">        y2: np.array</span>
+<span class="sd">            Variable y2</span>
 
-    <span class="c1"># Initialize raw data</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="p">{}</span> 
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        object : A CorrelationWrapper objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Library.</span>
+        <span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 
-    <span class="c1"># Compute correlations</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;numpy.correlate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;numpy.corrcoef&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.pearsonr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>  
-    <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.spearmanr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span> 
+        <span class="c1"># Empty the class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_empty</span><span class="p">()</span>
 
-    <span class="c1"># Evaluate the model</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">:</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+        <span class="c1"># Update the configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="c1"># Save results.</span>
-    <span class="k">return</span> <span class="bp">self</span></div></div>
-    
+        <span class="c1"># Initialize raw data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Compute correlations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;numpy.correlate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;numpy.corrcoef&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.pearsonr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_raw</span><span class="p">[</span><span class="s1">&#39;scipy.stats.spearmanr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+
+        <span class="c1"># Evaluate the model</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+
+        <span class="c1"># Save results.</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
- 
-  <span class="c1"># ----------------------------</span>
-  <span class="c1"># set basic configuration</span>
-  <span class="c1"># ----------------------------</span>
-  <span class="c1"># Set pandas configuration.</span>
-  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
-  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
-  <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 
-  <span class="c1"># ----------------------------</span>
-  <span class="c1"># create data</span>
-  <span class="c1"># ----------------------------</span>
-  <span class="c1"># Constants</span>
-  <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
-  <span class="n">offset</span> <span class="o">=</span> <span class="mi">100</span>
-  <span class="n">slope</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="c1"># ----------------------------</span>
+    <span class="c1"># set basic configuration</span>
+    <span class="c1"># ----------------------------</span>
+    <span class="c1"># Set pandas configuration.</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.width&#39;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 
-  <span class="c1"># Create time-series.</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
-  <span class="n">y1</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">slope</span> <span class="o">+</span> <span class="n">offset</span>
-  <span class="n">y2</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">slope</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset</span> 
+    <span class="c1"># ----------------------------</span>
+    <span class="c1"># create data</span>
+    <span class="c1"># ----------------------------</span>
+    <span class="c1"># Constants</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">slope</span> <span class="o">=</span> <span class="mi">10</span>
 
-  <span class="c1"># ----------------------------</span>
-  <span class="c1"># create correlation object</span>
-  <span class="c1"># ----------------------------</span>
-  <span class="c1"># Create object</span>
-  <span class="n">correlation</span> <span class="o">=</span> <span class="n">CorrelationWrapper</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x1</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="o">=</span><span class="n">y2</span><span class="p">)</span>
+    <span class="c1"># Create time-series.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">slope</span> <span class="o">+</span> <span class="n">offset</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">slope</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset</span>
 
-  <span class="c1"># Print series.</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">correlation</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
+    <span class="c1"># ----------------------------</span>
+    <span class="c1"># create correlation object</span>
+    <span class="c1"># ----------------------------</span>
+    <span class="c1"># Create object</span>
+    <span class="n">correlation</span> <span class="o">=</span> <span class="n">CorrelationWrapper</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x1</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="o">=</span><span class="n">y2</span><span class="p">)</span>
 
-  <span class="c1"># Print summary.</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">correlation</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
+    <span class="c1"># Print series.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">correlation</span><span class="o">.</span><span class="n">as_series</span><span class="p">())</span>
 
-  <span class="n">correlation</span>
+    <span class="c1"># Print summary.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">correlation</span><span class="o">.</span><span class="n">as_summary</span><span class="p">())</span>
 
-  <span class="c1"># -----------------</span>
-  <span class="c1"># Save and load</span>
-  <span class="c1"># -----------------</span>
-  <span class="c1"># File location</span>
-  <span class="c1">#fname = &#39;../examples/saved/correlation-sample.pickle&#39;</span>
+    <span class="n">correlation</span>
 
-  <span class="c1"># Save</span>
-  <span class="c1">#correlation.save(fname=fname)</span>
+    <span class="c1"># -----------------</span>
+    <span class="c1"># Save and load</span>
+    <span class="c1"># -----------------</span>
+    <span class="c1"># File location</span>
+    <span class="c1"># fname = &#39;../examples/saved/correlation-sample.pickle&#39;</span>
 
-  <span class="c1"># Load</span>
-  <span class="c1">#correlation = CorrelationWrapper().load(fname=fname)</span>
+    <span class="c1"># Save</span>
+    <span class="c1"># correlation.save(fname=fname)</span>
+
+    <span class="c1"># Load</span>
+    <span class="c1"># correlation = CorrelationWrapper().load(fname=fname)</span>
 </pre></div>
 
            </div>

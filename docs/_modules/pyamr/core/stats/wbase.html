@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -53,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference.html">API Reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
@@ -177,10 +177,7 @@
 
 
 <div class="viewcode-block" id="BaseWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper">[docs]</a><span class="k">class</span> <span class="nc">BaseWrapper</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Description</span>
-
-
-
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base Wrapper</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Main attributes of the class.</span>
@@ -210,8 +207,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="c1"># ---------------------------------------------------------------------------</span>
-
+    <span class="c1"># ---------------------------------------------------------------------------</span>
     <span class="c1">#                            helper methods</span>
     <span class="c1"># ---------------------------------------------------------------------------</span>
     <span class="k">def</span> <span class="nf">_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -259,8 +255,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)))</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-        <span class="c1"># ---------------------------------------------------------------------------</span>
-
+    <span class="c1"># ---------------------------------------------------------------------------</span>
     <span class="c1">#                               grid search</span>
     <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="BaseWrapper.grid_search"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.wbase.BaseWrapper.grid_search">[docs]</a>    <span class="k">def</span> <span class="nf">grid_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>

@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -53,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference.html">API Reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
@@ -111,8 +111,7 @@
 
 
 <div class="viewcode-block" id="KPSSWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kpss.KPSSWrapper">[docs]</a><span class="k">class</span> <span class="nc">KPSSWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The KPSS wrapper.</span>
-
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test is used to identify</span>
 <span class="sd">    whether a time series is stationary around a deterministic trend (thus</span>
 <span class="sd">    trend stationary) against the alternative of a unit root.</span>
@@ -127,13 +126,15 @@
 <span class="sd">    processes revert to this mean tendency in the long run (deterministic trend)</span>
 <span class="sd">    while unit-root processes have a permanent impact (stochastic trend).</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    H0: The series has unit root =&gt; Trend Stationary.</span>
-<span class="sd">    H1: The series has no unit root =&gt; No Trend Stationary.</span>
+<span class="sd">    ====== =========================== =====================================</span>
+<span class="sd">    H      Hypothesis                  Stationarity</span>
+<span class="sd">    ====== =========================== =====================================</span>
+<span class="sd">    **H0** The series has no unit root ``Trend-stationary``</span>
+<span class="sd">    **H1** The series has a unit root  ``No Trend-Stationary``</span>
+<span class="sd">    ====== =========================== =====================================</span>
 
-<span class="sd">    If p-value &gt; alpha: Failed to reject H0</span>
-<span class="sd">    If p-value &lt;= alpha: Reject H0</span>
+<span class="sd">    | If p-value &gt; alpha: Failed to reject H0</span>
+<span class="sd">    | If p-value &lt;= alpha: Reject H0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 </pre></div>

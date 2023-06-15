@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classes &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="pyamr.metrics.scores.html" />
+    <link rel="prev" title="Classes" href="pyamr.core.regression.arima.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sari.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sari.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.mari.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sart.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.asai.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.asai.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.adfuller.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.correlation.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.kendall.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.kendall.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.stationarity.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.theilsens.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.wls.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.arima.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper"><code class="docutils literal notranslate"><span class="pre">SARIMAXWrapper</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary"><code class="docutils literal notranslate"><span class="pre">SARIMAXWrapper.as_summary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.auto"><code class="docutils literal notranslate"><span class="pre">SARIMAXWrapper.auto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate"><code class="docutils literal notranslate"><span class="pre">SARIMAXWrapper.evaluate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction"><code class="docutils literal notranslate"><span class="pre">SARIMAXWrapper.get_prediction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.load"><code class="docutils literal notranslate"><span class="pre">SARIMAXWrapper.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.save"><code class="docutils literal notranslate"><span class="pre">SARIMAXWrapper.save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples-using-pyamr-core-regression-sarimax-sarimaxwrapper">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.regression.sarimax.SARIMAXWrapper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.weights.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.utils.plot.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.utils.plot.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">API</a></li>
+      <li class="breadcrumb-item active">Classes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/pyamr.core.regression.sarimax.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>pyamr.core.regression.sarimax
+pyamr.core.regression.sarimax
+=============================
+=============================</p>
+<span class="target" id="module-pyamr.core.regression.sarimax"></span><section id="classes">
+<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.regression.sarimax.</span></span><span class="sig-name descname"><span class="pre">SARIMAXWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper" title="Permalink to this definition"></a></dt>
+<dd><p>Description</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary" title="pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>(**kwargs)</p></td>
+<td><p>This method creates a summary string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.auto" title="pyamr.core.regression.sarimax.SARIMAXWrapper.auto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auto</span></code></a>(endog[, exog, ic, max_ar, max_ma, ...])</p></td>
+<td><p>This method finds the best arima through bruteforce.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate" title="pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>([alpha])</p></td>
+<td><p>This method creates a dictioanry with the relevant parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction" title="pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_prediction</span></code></a>([start, end, alpha])</p></td>
+<td><p>This method calls the get prediction function in ARIMA.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.load" title="pyamr.core.regression.sarimax.SARIMAXWrapper.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(**kwargs)</p></td>
+<td><p>This method loads the information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.save" title="pyamr.core.regression.sarimax.SARIMAXWrapper.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(**kwargs)</p></td>
+<td><p>This method saves the information.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary">
+<span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.as_summary" title="Permalink to this definition"></a></dt>
+<dd><p>This method creates a summary string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper.auto">
+<span class="sig-name descname"><span class="pre">auto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[12]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['n',</span> <span class="pre">'c',</span> <span class="pre">'t',</span> <span class="pre">'ct']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converged</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper.auto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.auto" title="Permalink to this definition"></a></dt>
+<dd><p>This method finds the best arima through bruteforce.</p>
+<p>Note: It uses grid search through the base wrapper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endog</strong> (<em>array-like</em>) – The endogenous variable (aka. time series data)</p></li>
+<li><p><strong>exog</strong> (<em>array-like</em>) – The exogenous variable (by default is the time t starting in 0)</p></li>
+<li><p><strong>ic</strong> (<em>string</em>) – The information criteria which should be any of the params which
+are set in the wrapper (see method _init_result).</p></li>
+<li><p><strong>max_ar</strong> (<em>number</em>) – The maximum autorregresive order to inspect.</p></li>
+<li><p><strong>max_ma</strong> (<em>number</em>) – The maximum moving average order to inspect.</p></li>
+<li><p><strong>max_d</strong> (<em>number</em>) – The maximum difference to inspect.</p></li>
+<li><p><strong>max_P</strong> (<em>number</em>)</p></li>
+<li><p><strong>max_D</strong> (<em>number</em>)</p></li>
+<li><p><strong>max_Q</strong> (<em>number</em>)</p></li>
+<li><p><strong>list_s</strong> (<em>array-like</em>)</p></li>
+<li><p><strong>warn</strong> (<em>string, options = {ignore, raise}</em>) – Whether or not to ignore the warnings raised</p></li>
+<li><p><strong>return_fits</strong> (<em>bool</em>) – Whether or not to return all the fits. If false only the best model
+is returned. If true all the models and the best model are returned
+separately.</p></li>
+<li><p><strong>converged</strong> (<em>bool</em>) – Whether or not to return only converging models. If false all models
+are returned. If true, only those models that converged are returned.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.evaluate" title="Permalink to this definition"></a></dt>
+<dd><p>This method creates a dictioanry with the relevant parameters.</p>
+<p>&#64;see: statsmodels.Sarimax
+&#64;see: statsmodels.SarimaxResults</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>significance level</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>dictionary</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary with the parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction">
+<span class="sig-name descname"><span class="pre">get_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper.get_prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.get_prediction" title="Permalink to this definition"></a></dt>
+<dd><p>This method calls the get prediction function in ARIMA.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>int (optional)</em>) – The time t to start the prediction</p></li>
+<li><p><strong>end</strong> (<em>int (optional)</em>) – The time t to end the prediction</p></li>
+<li><p><strong>dynamic</strong> (<em>bool</em>) – The dynamic keyword affects in-sample prediction. If dynamic is false
+then the in-sample lagged values are used for prediction. if dynamic
+is true, then in-sample forecasts are used in place of lagged dependent
+variables. The first forecasted value is start.</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – The alpha value when creating the norm point percent function to
+compute the confidence intervals for the forecast predictions.</p></li>
+<li><p><strong>typ</strong> (<em>string-like, options = {linear, levels}</em>) – Wether to predict the original levels (levels) or predict in terms of
+the differenced endogenous variables.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.load" title="Permalink to this definition"></a></dt>
+<dd><p>This method loads the information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.regression.sarimax.SARIMAXWrapper.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/regression/sarimax.html#SARIMAXWrapper.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.regression.sarimax.SARIMAXWrapper.save" title="Permalink to this definition"></a></dt>
+<dd><p>This method saves the information.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples-using-pyamr-core-regression-sarimax-sarimaxwrapper">
+<span id="sphx-glr-backref-pyamr-core-regression-sarimax-sarimaxwrapper"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.regression.sarimax.SARIMAXWrapper</span></code><a class="headerlink" href="#examples-using-pyamr-core-regression-sarimax-sarimaxwrapper" title="Permalink to this heading"></a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Approximate a function using Sesonal Autoregressive Integrated Moving Average (SARIMA)"><img alt="" src="../_images/sphx_glr_plot_core_regression_d_sarimax_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/regression/plot_core_regression_d_sarimax.html#sphx-glr-examples-tutorial-regression-plot-core-regression-d-sarimax-py"><span class="std std-ref">Using SARIMAX for seasonality</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Using SARIMAX for seasonality</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="See SARIMAX"><img alt="" src="../_images/sphx_glr_plot_sarimax_basic_thumb.png" />
+<p><a class="reference internal" href="../_examples/forecasting/plot_sarimax_basic.html#sphx-glr-examples-forecasting-plot-sarimax-basic-py"><span class="std std-ref">SARIMAX - Basic</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARIMAX - Basic</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="See SARIMAX"><img alt="" src="../_images/sphx_glr_plot_sarimax_search_thumb.png" />
+<p><a class="reference internal" href="../_examples/forecasting/plot_sarimax_search.html#sphx-glr-examples-forecasting-plot-sarimax-search-py"><span class="std std-ref">SARIMAX - Search</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARIMAX - Search</div>
+</div></div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyamr.core.regression.arima.html" class="btn btn-neutral float-left" title="Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyamr.metrics.scores.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

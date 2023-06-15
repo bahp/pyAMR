@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download__examples_tutorial_guide_plot_step_03.py>`
+        :ref:`Go to the end <sphx_glr_download__examples_tutorial_guide_plot_step_03.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -21,14 +21,28 @@
 Step 03 - Time Series Analysis
 ==============================
 
-.. warning:: Verify tests with conditions from stattools.
+In this tutorial example, we will delve into the fascinating field of time series
+analysis and explore how to compute and analyze time series data. Time series analysis
+involves studying data points collected over regular intervals of time, with the aim
+of understanding patterns, trends, and relationships that may exist within the data.
+By applying statistical techniques, we can uncover valuable insights and make predictions
+based on historical trends.
 
-Useful references:
+Throughout this example, we will explore various statistical metrics and tests
+to that are commonly used for time series analysis, empowering you to harness the
+power of time-dependent data and extract meaningful information from it. The
+special focus is stationarity, which is a common requirements for further application
+of time series analysis methods.
 
-- https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
-- https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
+See below for a few resources.
 
-.. GENERATED FROM PYTHON SOURCE LINES 15-20
+  * `R1`_: Understanding KPSS test for stationarity.
+  * `R2`_: Understanding autoregressions.
+
+.. _R1: https://www.machinelearningplus.com/time-series/kpss-test-for-stationarity/
+.. _R2: https://www.statsmodels.org/dev/examples/notebooks/generated/autoregressions.html
+
+.. GENERATED FROM PYTHON SOURCE LINES 29-34
 
 Create time series (TS)
 -----------------------
@@ -36,10 +50,10 @@ Create time series (TS)
 First lets create an artificial series. The series has been plotted
 ad the end of the tutorial.
 
-.. GENERATED FROM PYTHON SOURCE LINES 21-31
+.. GENERATED FROM PYTHON SOURCE LINES 35-45
 
 .. code-block:: default
-   :lineno-start: 22
+   :lineno-start: 36
 
 
     # ----------------------------
@@ -58,7 +72,7 @@ ad the end of the tutorial.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-42
+.. GENERATED FROM PYTHON SOURCE LINES 46-56
 
 Pearson correlation coefficient
 -------------------------------
@@ -71,10 +85,10 @@ number of observations (susceptibility test records) and the computed resistance
 
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlation.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-57
+.. GENERATED FROM PYTHON SOURCE LINES 57-71
 
 .. code-block:: default
-   :lineno-start: 44
+   :lineno-start: 58
 
 
     # -------------------------------
@@ -96,28 +110,26 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_correlatio
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
 
              Correlation
     ==============================
-    Pearson:                 0.776
-    Spearman:                0.802
-    Cross correlation: 5053755.386
+    Pearson:                 0.784
+    Spearman:                0.790
+    Cross correlation: 5114836.774
     ==============================
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-81
+.. GENERATED FROM PYTHON SOURCE LINES 72-95
 
 Augmented Dickey-Fuller test
 ----------------------------
 
-The Augmented Dickey-Fuller - ``ADF`` - test can be used to test for a unit root
+The Augmented Dickey-Fuller or ``ADF`` test can be used to test for a unit root
 in a univariate process in the presence of serial correlation. The intuition behind
 a unit root test is that it determines how strongly a time series is defined by a trend.
 ``ADF`` tests the null hypothesis that a unit root is present in a time series sample.
@@ -138,10 +150,10 @@ H      Hypothesis                  Stationarity
 
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-99
+.. GENERATED FROM PYTHON SOURCE LINES 96-113
 
 .. code-block:: default
-   :lineno-start: 83
+   :lineno-start: 97
 
 
     # ----------------------------
@@ -166,30 +178,28 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_adfuller.p
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
 
         adfuller test stationarity (ct)    
     =======================================
-    statistic:                       -1.668
-    pvalue:                         0.76456   
-    nlags:                                3    
-    nobs:                                96     
+    statistic:                       -2.128
+    pvalue:                         0.53020   
+    nlags:                                1    
+    nobs:                                98     
     stationarity (α=0.05):   non-stationary
     =======================================
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 100-128
+.. GENERATED FROM PYTHON SOURCE LINES 114-142
 
 Kwiatkowski-Phillips-Schmidt-Shin test
 --------------------------------------
 
-The Kwiatkowski–Phillips–Schmidt–Shin - ``KPSS`` - test is used to identify
+The Kwiatkowski–Phillips–Schmidt–Shin or ``KPSS`` test is used to identify
 whether a time series is stationary around a deterministic trend (thus
 trend stationary) against the alternative of a unit root.
 
@@ -215,10 +225,10 @@ H      Hypothesis                  Stationarity
 
 .. See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_kpss.py`
 
-.. GENERATED FROM PYTHON SOURCE LINES 129-136
+.. GENERATED FROM PYTHON SOURCE LINES 143-150
 
 .. code-block:: default
-   :lineno-start: 130
+   :lineno-start: 144
 
 
     # --------------------------------
@@ -234,31 +244,76 @@ H      Hypothesis                  Stationarity
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 137-155
+.. GENERATED FROM PYTHON SOURCE LINES 151-214
 
-Trend and stationarity in TS
-----------------------------
+Understanding stationarity in TS
+--------------------------------
 
-An analysis of stationarity around a trend was carried out to identify time series
-satisfying the assumptions posed by ARIMA. The augmented Dickey–Fuller test (ADF) was
-used to determine the presence of a unit root. When the other roots of the characteristic
-function lie inside the unit circle the first difference of the process is stationary. Due
-to this property, these are also called difference-stationary processes. Since the absence
-of unit root is not a proof of non-stationarity, the Kwiatkowski–Phillips–Schmidt–Shin
-(KPSS) test was used to identify the existence of an underlying trend which can also be
-removed to obtain a stationary process. These are called trend-stationary processes. In
-both, unit-root and trend-stationary processes, the mean can be increasing or decreasing
-over time; however, in the presence of a shock, trend-stationary processes revert to this
-mean tendency in the long run (deterministic trend) while unit-root processes have a
-permanent impact (stochastic trend). The significance level of the tests was set to 0.05.
+In time series analysis, "stationarity" refers to a key assumption about the behavior
+of a time series over time. A stationary time series is one in which statistical properties,
+such as mean, variance, and autocorrelation, remain constant over time. Stationarity is an
+important concept because many time series analysis techniques rely on this assumption for
+their validity. There are different types of stationarity that can be observed in time series
+data. Let's explore them:
+
+- **Strict Stationarity:** A time series is considered strictly stationary if the joint probability
+  distribution of any set of its time points is invariant over time. This means that the statistical
+  properties, such as mean, variance, and covariance, are constant across all time points.
+
+- **Weak Stationarity:** Weak stationarity, also known as second-order stationarity or covariance
+  stationarity, is a less strict form of stationarity. A time series is considered weakly stationary
+  if its mean and variance are constant over time, and the autocovariance between any two time points
+  only depends on the time lag between them. In other words, the statistical properties of the time
+  series do not change with time.
+
+- **Trend Stationarity:** Trend stationarity refers to a time series that exhibits a stable mean over
+  time but may have a changing variance. This means that the data has a consistent trend component but
+  the other statistical properties remain constant. In trend stationary series, the mean of the time
+  series can be modeled by a constant or a linear trend.
+
+- **Difference Stationarity:** Difference stationarity, also known as integrated stationarity, occurs
+  when differencing a non-stationary time series results in a stationary series. Differencing involves
+  computing the differences between consecutive observations to remove trends or other non-stationary
+  patterns. A differenced time series is said to be difference stationary if it exhibits weak stationarity
+  after differencing.
+
+- **Seasonal Stationarity:** ...
+
+.. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Unit_root_hypothesis_diagram.svg/1280px-Unit_root_hypothesis_diagram.svg.png
+   :width: 200
+   :align: right
+   :alt: skewness
+
+The augmented Dickey–Fuller test or ``ADF`` can be used to determine the presence of a unit root.
+When the other roots of the characteristic function lie inside the unit circle the first
+difference of the process is stationary. Due to this property, these are also called
+difference-stationary processes. Since the absence of unit root is not a proof of non-stationarity,
+the Kwiatkowski–Phillips–Schmidt–Shin or ``KPSS`` test can be used to identify the existence of an
+underlying trend which can also be removed to obtain a stationary process. These are called
+trend-stationary processes. In both, unit-root and trend-stationary processes, the mean can be
+increasing or decreasing over time; however, in the presence of a shock, trend-stationary
+processes (blue) revert to this mean tendency in the long run (deterministic trend) while unit-root
+processes (green) have a permanent impact (stochastic trend). The significance level of the tests
+is usually set to 0.05.
+
+
+================== ================== ========================= ============================
+ADF                KPSS               Outcome                   Note
+================== ================== ========================= ============================
+``Non-Stationary`` ``Non-Stationary`` ``Non-Stationary``
+``Stationary``     ``Stationary``     ``Stationary``
+``Non-Stationary`` ``Stationary``     ``Trend-Stationary``      Check the de-trended series
+``Stationary``     ``Non-Stationary`` ``Difference-Stationary`` Check the differenced-series
+================== ================== ========================= ============================
+
 
 See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationarity.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 156-206
+.. GENERATED FROM PYTHON SOURCE LINES 215-265
 
 .. code-block:: default
-   :lineno-start: 157
+   :lineno-start: 216
 
 
     # ----------------------------
@@ -321,31 +376,35 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\virtualenvs\venv-py3790-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2019: InterpolationWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\stats\stationarity.py:187: InterpolationWarning:
 
     The test statistic is outside of the range of p-values available in the
     look-up table. The actual p-value is smaller than the p-value returned.
 
 
-    c:\users\kelda\desktop\repositories\virtualenvs\venv-py3790-pyamr\lib\site-packages\statsmodels\tsa\stattools.py:2190: InterpolationWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\stats\stationarity.py:188: InterpolationWarning:
 
     The test statistic is outside of the range of p-values available in the
     look-up table. The actual p-value is smaller than the p-value returned.
 
 
-    (2.9, 0.95, {'10%': 1.2888, '5%': 1.1412, '2.5%': 1.0243, '1%': 0.907})
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\stats\stationarity.py:189: InterpolationWarning:
+
+    The test statistic is outside of the range of p-values available in the
+    look-up table. The actual p-value is smaller than the p-value returned.
+
+
+    (3.2, 0.95, {'10%': 1.2888, '5%': 1.1412, '2.5%': 1.0243, '1%': 0.907})
 
 
           stationarity (alpha=0.05)   
     ==================================
               root           trend    
     ----------------------------------
-    c   False (0.085)   False (0.010)
-    ct  False (0.765)   False (0.010)
+    c   False (0.095)   False (0.010)
+    ct  False (0.530)   False (0.010)
     ==================================
 
 
@@ -354,28 +413,25 @@ See also :ref:`sphx_glr__examples_tutorial_statistics_plot_core_stats_stationari
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.103 seconds)
+   **Total running time of the script:** ( 0 minutes  0.101 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_03.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
 
-  .. container:: sphx-glr-download sphx-glr-download-python
 
-     :download:`Download Python source code: plot_step_03.py <plot_step_03.py>`
+    .. container:: sphx-glr-download sphx-glr-download-python
 
+      :download:`Download Python source code: plot_step_03.py <plot_step_03.py>`
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_step_03.ipynb <plot_step_03.ipynb>`
+      :download:`Download Jupyter notebook: plot_step_03.ipynb <plot_step_03.ipynb>`
 
 
 .. only:: html

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Time-series analysis (regression) &mdash; pyamr 0.0.1 documentation</title>
@@ -12,15 +12,16 @@
       <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon.png"/>
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -31,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> pyamr
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,6 +50,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
@@ -54,9 +61,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/modules.html">pyamr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -72,8 +78,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Time-series analysis (regression)</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Time-series analysis (regression)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/_examples/tutorial/regression/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -84,23 +90,23 @@
            <div itemprop="articleBody">
              
   <section id="time-series-analysis-regression">
-<span id="sphx-glr-examples-tutorial-regression"></span><h1>Time-series analysis (regression)<a class="headerlink" href="#time-series-analysis-regression" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-examples-tutorial-regression"></span><h1>Time-series analysis (regression)<a class="headerlink" href="#time-series-analysis-regression" title="Permalink to this heading"></a></h1>
 <p>Examples using regression and time-series analysis.</p>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Using ARIMA"><img alt="Using ARIMA" src="../../../_images/sphx_glr_plot_core_regression_arima_thumb.png" />
-<p><a class="reference internal" href="plot_core_regression_arima.html#sphx-glr-examples-tutorial-regression-plot-core-regression-arima-py"><span class="std std-ref">Using ARIMA</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using ARIMA</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using WLS + ARMA"><img alt="Using WLS + ARMA" src="../../../_images/sphx_glr_plot_core_regression_ensemble_thumb.png" />
-<p><a class="reference internal" href="plot_core_regression_ensemble.html#sphx-glr-examples-tutorial-regression-plot-core-regression-ensemble-py"><span class="std std-ref">Using WLS + ARMA</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using WLS + ARMA</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using SARIMAX (seasonal)"><img alt="Using SARIMAX (seasonal)" src="../../../_images/sphx_glr_plot_core_regression_sarimax_thumb.png" />
-<p><a class="reference internal" href="plot_core_regression_sarimax.html#sphx-glr-examples-tutorial-regression-plot-core-regression-sarimax-py"><span class="std std-ref">Using SARIMAX (seasonal)</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using SARIMAX (seasonal)</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="In non-parametric statistics, the Theil–Sen estimator is a method for robustly fitting a line t..."><img alt="Using Theil-Sen" src="../../../_images/sphx_glr_plot_core_regression_theilsens_thumb.png" />
-<p><a class="reference internal" href="plot_core_regression_theilsens.html#sphx-glr-examples-tutorial-regression-plot-core-regression-theilsens-py"><span class="std std-ref">Using Theil-Sen</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Using Theil-Sen</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Using weighted least squares (WLS)"><img alt="Using weighted least squares (WLS)" src="../../../_images/sphx_glr_plot_core_regression_wls_thumb.png" />
-<p><a class="reference internal" href="plot_core_regression_wls.html#sphx-glr-examples-tutorial-regression-plot-core-regression-wls-py"><span class="std std-ref">Using weighted least squares (WLS)</span></a></p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="In non-parametric statistics, the Theil–Sen estimator is a method for robustly fitting a line t..."><img alt="" src="../../../_images/sphx_glr_plot_core_regression_a_theilsens_thumb.png" />
+<p><a class="reference internal" href="plot_core_regression_a_theilsens.html#sphx-glr-examples-tutorial-regression-plot-core-regression-a-theilsens-py"><span class="std std-ref">Using Theil-Sen estimator</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Using Theil-Sen estimator</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Approximating a function using Weighted Least Squares (WLS)"><img alt="" src="../../../_images/sphx_glr_plot_core_regression_b_wls_thumb.png" />
+<p><a class="reference internal" href="plot_core_regression_b_wls.html#sphx-glr-examples-tutorial-regression-plot-core-regression-b-wls-py"><span class="std std-ref">Using weighted least squares (WLS)</span></a></p>
   <div class="sphx-glr-thumbnail-title">Using weighted least squares (WLS)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Approximate a function using Autoregressive Integrated Moving Average (ARIMA)"><img alt="" src="../../../_images/sphx_glr_plot_core_regression_c_arima_thumb.png" />
+<p><a class="reference internal" href="plot_core_regression_c_arima.html#sphx-glr-examples-tutorial-regression-plot-core-regression-c-arima-py"><span class="std std-ref">Using autoregressive model ARIMA</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Using autoregressive model ARIMA</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Approximate a function using Sesonal Autoregressive Integrated Moving Average (SARIMA)"><img alt="" src="../../../_images/sphx_glr_plot_core_regression_d_sarimax_thumb.png" />
+<p><a class="reference internal" href="plot_core_regression_d_sarimax.html#sphx-glr-examples-tutorial-regression-plot-core-regression-d-sarimax-py"><span class="std std-ref">Using SARIMAX for seasonality</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Using SARIMAX for seasonality</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This method shows an ensemble method that combines the use of Weighted Linear Regression (WLS) ..."><img alt="" src="../../../_images/sphx_glr_plot_core_regression_e_ensemble_thumb.png" />
+<p><a class="reference internal" href="plot_core_regression_e_ensemble.html#sphx-glr-examples-tutorial-regression-plot-core-regression-e-ensemble-py"><span class="std std-ref">Using an ensemble WLS + ARMA</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Using an ensemble WLS + ARMA</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
 </section>

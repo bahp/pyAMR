@@ -16,10 +16,9 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -65,6 +64,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+</ul>
 
         </div>
       </div>
@@ -98,8 +100,9 @@
 <span class="c1"># Own</span>
 <span class="kn">from</span> <span class="nn">pyamr.core.sari</span> <span class="kn">import</span> <span class="n">SARI</span>
 
-<div class="viewcode-block" id="SART"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.sart.SART">[docs]</a><span class="k">class</span> <span class="nc">SART</span><span class="p">:</span>
-
+<div class="viewcode-block" id="SART"><a class="viewcode-back" href="../../../generated/pyamr.core.sart.html#pyamr.core.sart.SART">[docs]</a><span class="k">class</span> <span class="nc">SART</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single Antimicrobial Resistance Trend.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Attributes</span>
     <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIMEN&#39;</span>
     <span class="n">c_org</span> <span class="o">=</span> <span class="s1">&#39;MICROORGANISM&#39;</span>
@@ -139,26 +142,24 @@
                         <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">c_out</span><span class="p">]</span>
 
-<div class="viewcode-block" id="SART.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.sart.SART.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s1">&#39;180D&#39;</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;30D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="SART.compute"><a class="viewcode-back" href="../../../generated/pyamr.core.sart.html#pyamr.core.sart.SART.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s1">&#39;180D&#39;</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="s1">&#39;30D&#39;</span><span class="p">,</span> <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">return_objects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes single antibiotic resistance index.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes Single Antimicrobial Resistance Index.</span>
 
-<span class="sd">        .. todo: Add parameters to rolling!</span>
-<span class="sd">        .. todo: Place value at the left, center, right of window?</span>
-<span class="sd">        .. todo: Ensure that works when time gaps present!</span>
-<span class="sd">        .. todo: Carefull with various indexes!</span>
+<span class="sd">        .. todo::</span>
+
+<span class="sd">            - Add parameters to rolling!</span>
+<span class="sd">            - Place value at the left, center, right of window?</span>
+<span class="sd">            - Ensure that works when time gaps present!</span>
+<span class="sd">            - Carefull with various indexes!</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        dataframe: pd.DataFrame</span>
-<span class="sd">            It might receive two different types of DataFrames.</span>
-
-<span class="sd">            The first option is a DataFrame with the raw susceptibility test</span>
-<span class="sd">            records where the interpretation (&#39;sensitive&#39;, &#39;intermediate&#39;,</span>
-<span class="sd">            &#39;resistant&#39;) that will be used to compute the sari.</span>
-
-<span class="sd">            The second option is a DataFrame with the sari values already</span>
-<span class="sd">            computed.</span>
+<span class="sd">            It might receive two different types of DataFrames. The first option is</span>
+<span class="sd">            a DataFrame with the raw susceptibility test records where the interpretation</span>
+<span class="sd">            (&#39;sensitive&#39;, &#39;intermediate&#39;, &#39;resistant&#39;) that will be used to compute the sari.</span>
+<span class="sd">            The second option is a DataFrame with the sari values already computed.</span>
 
 <span class="sd">        shift: str</span>
 <span class="sd">            Frequency value to pass to pd.Grouper.</span>
@@ -269,13 +270,14 @@
 
         <span class="c1"># Construct DataFrame</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
-            <span class="n">obj</span><span class="o">.</span><span class="n">as_series</span><span class="p">()</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+                <span class="n">obj</span><span class="o">.</span><span class="n">as_series</span><span class="p">(),</span>
                 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">:</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">c_org</span><span class="p">:</span> <span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">:</span> <span class="n">name</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
                 <span class="p">})</span>
-            <span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">])</span>
+            <span class="p">])</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">])</span>
 
         <span class="c1"># Set index information</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span>

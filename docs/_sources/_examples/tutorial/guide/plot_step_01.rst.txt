@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download__examples_tutorial_guide_plot_step_01.py>`
+        :ref:`Go to the end <sphx_glr_download__examples_tutorial_guide_plot_step_01.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -18,13 +18,13 @@
 .. _sphx_glr__examples_tutorial_guide_plot_step_01.py:
 
 
-Step 01 - Indexes
-=================
+Step 01 - Compute AMR metrics
+=============================
 
 .. GENERATED FROM PYTHON SOURCE LINES 8-27
 
-Loading data
-------------
+Loading susceptibility test data
+--------------------------------
 
 .. image:: ../../../_static/imgs/susceptibility-test-record.png
    :width: 200
@@ -43,10 +43,10 @@ strategy in AMR.
 A small dataset will be used for this example.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-65
+.. GENERATED FROM PYTHON SOURCE LINES 27-64
 
 .. code-block:: default
-   :lineno-start: 29
+   :lineno-start: 28
 
 
     # Libraries
@@ -91,24 +91,22 @@ A small dataset will be used for this example.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
     Data:
-           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
-    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMI           amikacin                NaN   sensitive NaN       NaN
-    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   resistant NaN       NaN
-    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               AAZT          aztreonam                NaN   sensitive NaN       NaN
-    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN  ...               ACAZ        ceftazidime                NaN   sensitive NaN       NaN
-    ...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
-    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AAMO        amoxycillin                NaN   sensitive NaN       NaN
-    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ALIN          linezolid                NaN   sensitive NaN       NaN
-    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ASYN           synercid                NaN   resistant NaN       NaN
-    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               ATEI        teicoplanin                NaN   sensitive NaN       NaN
-    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN  ...               AVAN         vancomycin                NaN   sensitive NaN       NaN
+           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
+    0         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMI           amikacin                NaN    sensitive NaN       NaN
+    1         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAMO        amoxycillin                NaN    resistant NaN       NaN
+    2         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAUG          augmentin                NaN    sensitive NaN       NaN
+    3         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               AAZT          aztreonam                NaN    sensitive NaN       NaN
+    4         2009-01-03           NaN       20091           X428501        BLDCUL            NaN                blood  ...         klebsiella               ACAZ        ceftazidime                NaN    sensitive NaN       NaN
+    ...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
+    319117    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AAMO        amoxycillin                NaN    sensitive NaN       NaN
+    319118    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ALIN          linezolid                NaN    sensitive NaN       NaN
+    319119    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ASYN           synercid                NaN    resistant NaN       NaN
+    319120    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               ATEI        teicoplanin                NaN    sensitive NaN       NaN
+    319121    2009-12-31           NaN       24645          H2012337        BLDCUL            NaN                blood  ...       enterococcus               AVAN         vancomycin                NaN    sensitive NaN       NaN
 
     [319122 rows x 15 columns]
 
@@ -141,12 +139,12 @@ A small dataset will be used for this example.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 66-86
+.. GENERATED FROM PYTHON SOURCE LINES 65-85
 
 Computing SARI
 --------------
 
-The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
+The Single Antimicrobial Resistance Index or ``SARI`` describes the proportion
 of resistant isolates for a given set of susceptibility tests. It provides a
 value within the range [0, 1] where values close to one indicate high resistance.
 It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` and
@@ -164,10 +162,10 @@ For more examples see:
   - :ref:`sphx_glr__examples_indexes_plot_sari_c_relmap.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 87-141
+.. GENERATED FROM PYTHON SOURCE LINES 86-141
 
 .. code-block:: default
-   :lineno-start: 88
+   :lineno-start: 87
 
 
     # -------------------------------------------
@@ -190,6 +188,7 @@ For more examples see:
     print("SARI (overall):")
     print(sari_overall)
 
+    # ------------
     # Plot Heatmap
     # ------------
     # Filter
@@ -234,8 +233,6 @@ For more examples see:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
     SARI (overall):
@@ -258,7 +255,14 @@ For more examples see:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 142-182
+.. GENERATED FROM PYTHON SOURCE LINES 142-146
+
+Computing MARI
+--------------
+
+.. warning:: Pending... similar to ``SARI``.
+
+.. GENERATED FROM PYTHON SOURCE LINES 149-189
 
 Computing ASAI
 --------------
@@ -273,7 +277,7 @@ profiles appeared in the mid-1950s, little effort has been made to define them.
 Furthermore, such ambiguous labels are overused for different and even contradictory
 purposes.
 
-In order to compute the antimicrobial spectrum of activity index - ``ASAI`` -, it
+In order to compute the antimicrobial spectrum of activity index or ``ASAI``, it
 is necessary to previously obtain the overall resistance (SARI) for all the
 microbe-antimicrobial pairs. Furthermore, by following the criteria used in the
 narrow-broad approach, these pairs were grouped into Gram-positive and Gram-negative.
@@ -301,10 +305,10 @@ information too. This information is available in the registries:
 Lets include all this information using the ``MicroorganismRegistry``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 183-209
+.. GENERATED FROM PYTHON SOURCE LINES 190-216
 
 .. code-block:: default
-   :lineno-start: 184
+   :lineno-start: 191
 
 
     # ------------------------------
@@ -339,16 +343,16 @@ Lets include all this information using the ``MicroorganismRegistry``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 210-213
+.. GENERATED FROM PYTHON SOURCE LINES 217-220
 
 Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
 lets compute ``ASAI``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 214-247
+.. GENERATED FROM PYTHON SOURCE LINES 221-254
 
 .. code-block:: default
-   :lineno-start: 215
+   :lineno-start: 222
 
 
     # -------------------------------------------
@@ -389,11 +393,9 @@ lets compute ``ASAI``.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:570: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:572: UserWarning:
 
 
                      Extreme resistances [0, 1] were found in the DataFrame. These 
@@ -401,7 +403,7 @@ lets compute ``ASAI``.
                      to pairs with low number of records.
 
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:584: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:583: UserWarning:
 
 
                      There are NULL values in columns that are required. These
@@ -467,14 +469,215 @@ lets compute ``ASAI``.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 248-249
+.. GENERATED FROM PYTHON SOURCE LINES 255-259
+
+This is the information obtained where the columns n, p, and u stand
+for gram-positive, gram-negative and unknown respectively. Similarly,
+N_GENUS and N_SPECIE indicates the number of genus and species for
+the specific antimicrobial.
+
+.. GENERATED FROM PYTHON SOURCE LINES 259-261
+
+.. code-block:: default
+   :lineno-start: 259
+
+    scores.head(10)
+
+
+
+
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead tr th {
+            text-align: left;
+        }
+
+        .dataframe thead tr:last-of-type th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="3" halign="left">N_GENUS</th>
+          <th colspan="3" halign="left">N_SPECIE</th>
+          <th colspan="3" halign="left">ASAI_SCORE</th>
+        </tr>
+        <tr>
+          <th>gram_stain</th>
+          <th>n</th>
+          <th>p</th>
+          <th>u</th>
+          <th>n</th>
+          <th>p</th>
+          <th>u</th>
+          <th>n</th>
+          <th>p</th>
+          <th>u</th>
+        </tr>
+        <tr>
+          <th>antimicrobial_name</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>amikacin</th>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>0.800000</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>amoxycillin</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>NaN</td>
+          <td>2.0</td>
+          <td>7.0</td>
+          <td>NaN</td>
+          <td>0.500000</td>
+          <td>0.833333</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>amp c markers</th>
+          <td>4.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>4.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>0.250000</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>augmentin</th>
+          <td>5.0</td>
+          <td>2.0</td>
+          <td>NaN</td>
+          <td>5.0</td>
+          <td>7.0</td>
+          <td>NaN</td>
+          <td>0.200000</td>
+          <td>1.000000</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>aztreonam</th>
+          <td>3.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>3.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>0.666667</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>cefotaxime</th>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>0.200000</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>cefoxitin</th>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>0.400000</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>cefpodoxime</th>
+          <td>5.0</td>
+          <td>2.0</td>
+          <td>NaN</td>
+          <td>5.0</td>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>0.400000</td>
+          <td>0.833333</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>ceftazidime</th>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>0.600000</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>cefuroxime</th>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>5.0</td>
+          <td>NaN</td>
+          <td>NaN</td>
+          <td>0.000000</td>
+          <td>NaN</td>
+          <td>NaN</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 262-263
 
 Lets plot it now!
 
-.. GENERATED FROM PYTHON SOURCE LINES 250-318
+.. GENERATED FROM PYTHON SOURCE LINES 264-332
 
 .. code-block:: default
-   :lineno-start: 251
+   :lineno-start: 265
 
 
     # ---------------------------------------------------------------
@@ -486,7 +689,7 @@ Lets plot it now!
     #          gmean or (ii) the width.
 
     # Libraries
-    from pyamr.graphics.utils import scalar_colormap
+    from pyamr.utils.plot import scalar_colormap
 
     # Measures
     scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
@@ -556,12 +759,12 @@ Lets plot it now!
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 319-345
+.. GENERATED FROM PYTHON SOURCE LINES 333-359
 
 Computing SART
 --------------
 
-The single antimicrobial resistance trend - ``SART`` - measures the ratio
+The single antimicrobial resistance trend or ``SART`` measures the ratio
 of change per time unit (e.g. monthly or yearly). To compute this metric,
 it is necessary to generate a resistance time series from the susceptibility
 test data. This is often achieved by computing the SARI on consecutive or
@@ -576,20 +779,19 @@ For more examples see:
   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_d_sart.py`
   - :ref:`sphx_glr__examples_indexes_plot_sart_a_basic.py`
 
-.. note:: Be cautious when Computing the ``SART`` index using a small dataset
+.. note:: Be cautious when computing the ``SART`` index using a small dataset
           (e.g. a low number of susceptibility tests records) since it is very
           likely that the statistics produced (e.g. kurtosis or skewness) will
-          be ill defined.
+          be ill defined. Also remember to check stationarity if using ARIMA.
 
 Since it is necessary to have a decent amount of records to be
-able to compute the trends accurately, lets filter and choose
-the tuples were are interested in.
+able to compute the trends accurately, lets see which tuples
+have more number of samples.
 
-.. GENERATED FROM PYTHON SOURCE LINES 346-394
+.. GENERATED FROM PYTHON SOURCE LINES 360-385
 
 .. code-block:: default
-   :lineno-start: 348
-
+   :lineno-start: 361
 
 
     # -------------------------------------------
@@ -615,6 +817,42 @@ the tuples were are interested in.
     # Show
     print("\nTop by Frequency:")
     print(top)
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+
+    Top by Frequency:
+                                                         intermediate  resistant  sensitive    freq      sari
+    specimen_code microorganism_code antimicrobial_code                                                      
+    URICUL        ECOL               A_CEFPODOX                   0.0      595.0     8582.0  9177.0  0.064836
+                                     ANIT                         0.0      347.0     8826.0  9173.0  0.037828
+                                     ACELX                        0.0      803.0     8370.0  9173.0  0.087540
+                                     ATRI                         0.0     3231.0     5941.0  9172.0  0.352268
+                                     ACIP                         0.0     1259.0     7913.0  9172.0  0.137266
+                                     AAUG                         0.0      602.0     8561.0  9163.0  0.065699
+    WOUCUL        SAUR               AFUS                         0.0      613.0     3631.0  4244.0  0.144439
+                                     APEN                         0.0     3677.0      566.0  4243.0  0.866604
+                                     AERY                         0.0     1186.0     3056.0  4242.0  0.279585
+                                     AMET                         0.0      869.0     3372.0  4241.0  0.204905
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 386-387
+
+Let's choose the tuples were are interested in.
+
+.. GENERATED FROM PYTHON SOURCE LINES 387-410
+
+.. code-block:: default
+   :lineno-start: 388
+
 
     # -------------------------------------------
     # Filter data
@@ -642,38 +880,17 @@ the tuples were are interested in.
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    Top by Frequency:
-                                                         intermediate  resistant  sensitive    freq      sari
-    specimen_code microorganism_code antimicrobial_code                                                      
-    URICUL        ECOL               A_CEFPODOX                   0.0      595.0     8582.0  9177.0  0.064836
-                                     ANIT                         0.0      347.0     8826.0  9173.0  0.037828
-                                     ACELX                        0.0      803.0     8370.0  9173.0  0.087540
-                                     ATRI                         0.0     3231.0     5941.0  9172.0  0.352268
-                                     ACIP                         0.0     1259.0     7913.0  9172.0  0.137266
-                                     AAUG                         0.0      602.0     8561.0  9163.0  0.065699
-    WOUCUL        SAUR               AFUS                         0.0      613.0     3631.0  4244.0  0.144439
-                                     APEN                         0.0     3677.0      566.0  4243.0  0.866604
-                                     AERY                         0.0     1186.0     3056.0  4242.0  0.279585
-                                     AMET                         0.0      869.0     3372.0  4241.0  0.204905
 
 
 
-
-.. GENERATED FROM PYTHON SOURCE LINES 395-396
+.. GENERATED FROM PYTHON SOURCE LINES 411-412
 
 Now, lets compute the resistance trend.
 
-.. GENERATED FROM PYTHON SOURCE LINES 397-422
+.. GENERATED FROM PYTHON SOURCE LINES 413-438
 
 .. code-block:: default
-   :lineno-start: 398
+   :lineno-start: 414
 
 
     # Libraries
@@ -706,8 +923,6 @@ Now, lets compute the resistance trend.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
      1/15. Computing... ('URICUL', 'ECOL', 'AAMI')
@@ -729,14 +944,14 @@ Now, lets compute the resistance trend.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 423-424
+.. GENERATED FROM PYTHON SOURCE LINES 439-440
 
-Lets see the summary DataFrame (note it is transposed!)
+Lets see the results(note it is transposed!)
 
-.. GENERATED FROM PYTHON SOURCE LINES 425-436
+.. GENERATED FROM PYTHON SOURCE LINES 441-453
 
 .. code-block:: default
-   :lineno-start: 426
+   :lineno-start: 442
 
 
     # Configure pandas
@@ -746,88 +961,423 @@ Lets see the summary DataFrame (note it is transposed!)
     )
 
     # Show
-    print("Results:")
-    print(table.T)
+    #print("Results:")
+    #print(table.T)
+    table.head(4).T
 
 
 
 
 
-.. rst-class:: sphx-glr-script-out
 
- Out:
+.. raw:: html
 
- .. code-block:: none
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
 
-    Results:
-    specimen_code                     URICUL                                                                 ...                                                                                    
-    microorganism_code                  ECOL                                                                 ...                                                                                    
-    antimicrobial_code                  AAMI                AAMPC                 AAUG                 ACAZ  ...                 AMER                 ANIT                 ATAZ                 ATRI
-    wls-rsquared                    0.557029              0.12798             0.906452             0.004545  ...             0.648313             0.907027             0.412661             0.600203
-    wls-rsquared_adj                0.544373              0.09791             0.903779            -0.023896  ...             0.638265              0.90437              0.39588              0.58878
-    wls-fvalue                     44.012024             4.256121           339.140633             0.159818  ...            64.520235           341.452365            24.590823            52.544462
-    wls-fprob                            0.0             0.048164                  0.0             0.691754  ...                  0.0                  0.0             0.000018                  0.0
-    wls-aic                              inf                  inf                  inf                  inf  ...                  inf                  inf                  inf                  inf
-    wls-bic                              inf                  inf                  inf                  inf  ...                  inf                  inf                  inf                  inf
-    wls-llf                             -inf                 -inf                 -inf                 -inf  ...                 -inf                 -inf                 -inf                 -inf
-    wls-mse_model                   0.745856             4.978205            33.299393               0.2007  ...             0.519024            10.349547            45.507504            10.110853
-    wls-mse_resid                   0.016947             1.169658             0.098188             1.255805  ...             0.008044              0.03031             1.850589             0.192425
-    wls-mse_total                   0.037194             1.296609             1.020443             1.226496  ...             0.022238             0.316956             3.063281             0.467937
-    wls-const_coef                  0.031283            68.761679             1.544961            65.712841  ...            -0.112373              6.26858            31.568866            37.277358
-    wls-const_std                   0.093007             0.698295             0.234858              0.80353  ...             0.064328             0.130513             0.975447             0.328813
-    wls-const_tvalue                0.336351            98.470788             6.578289            81.780194  ...            -1.746865             48.03046            32.363472           113.369592
-    wls-const_tprob                 0.738614                  0.0                  0.0                  0.0  ...             0.089432                  0.0                  0.0                  0.0
-    wls-const_cil                  -0.157532            67.333505             1.068175            64.081588  ...            -0.242966             6.003625            29.588602            36.609832
-    wls-const_ciu                   0.220098            70.189854             2.021747            67.344094  ...             0.018221             6.533535            33.549129            37.944883
-    wls-x1_coef                     0.024239             0.072052             0.167941            -0.012606  ...             0.020269            -0.093639             -0.18984            -0.092547
-    wls-x1_std                      0.003654             0.034925             0.009119             0.031532  ...             0.002523             0.005067             0.038283             0.012767
-    wls-x1_tvalue                   6.634156             2.063037            18.415771            -0.399772  ...             8.032449            -18.47843            -4.958913            -7.248756
-    wls-x1_tprob                         0.0             0.048164                  0.0             0.691754  ...                  0.0                  0.0             0.000018                  0.0
-    wls-x1_cil                      0.016822             0.000622             0.149427            -0.076619  ...             0.015146            -0.103927            -0.267558            -0.118466
-    wls-x1_ciu                      0.031656             0.143482             0.186454             0.051408  ...             0.025391            -0.083352            -0.112122            -0.066628
-    wls-s_dw                           0.741                1.091                0.176                0.445  ...                0.491                 0.63                0.246                0.232
-    wls-s_jb_value                     0.509                0.638                2.336                0.239  ...                1.016                4.482                0.826                1.043
-    wls-s_jb_prob                      0.775                0.727                0.311                0.887  ...                0.602                0.106                0.662                0.594
-    wls-s_skew                          0.21                -0.17                0.316               -0.051  ...                0.388                0.834               -0.344               -0.171
-    wls-s_kurtosis                     2.608                2.385                1.944                 2.62  ...                3.242                3.352                2.748                2.252
-    wls-s_omnibus_value                 0.39                0.518                5.037                 0.05  ...                1.808                5.624                0.929                1.287
-    wls-s_omnibus_prob                 0.823                0.772                0.081                0.975  ...                0.405                 0.06                0.628                0.525
-    wls-m_dw                        0.736178             0.537678             0.043909             0.188735  ...             0.411431             1.133668             0.186264             0.089424
-    wls-m_jb_value                 26.465944           457.685847            27.729537            10.593247  ...             0.486958             6.291782             1.385706            24.677527
-    wls-m_jb_prob                   0.000002                  0.0             0.000001             0.005008  ...             0.783896             0.043029             0.500147             0.000004
-    wls-m_skew                       1.61218              4.04353              1.89606             1.267125  ...             0.020609             0.368771             0.306621             1.751497
-    wls-m_kurtosis                  5.602039            19.998144             4.899094              3.66998  ...             2.439495             4.880741             2.276972             4.932894
-    wls-m_nm_value                 19.984589            59.422218             21.39435            10.974889  ...             0.308437             5.950009             1.657183            19.849339
-    wls-m_nm_prob                   0.000046                  0.0             0.000023             0.004138  ...             0.857085             0.051047             0.436664             0.000049
-    wls-m_ks_value                  0.405236             0.149246             0.366502             0.365003  ...             0.416082             0.280692             0.361949              0.24743
-    wls-m_ks_prob                   0.000005             0.451309             0.000058             0.000063  ...             0.000003             0.004524             0.000075              0.01759
-    wls-m_shp_value                 0.845794             0.486878             0.565564             0.844264  ...             0.991385             0.917726             0.970485             0.725119
-    wls-m_shp_prob                  0.000126                  0.0                  0.0             0.000116  ...             0.991378             0.009516             0.421651             0.000001
-    wls-m_ad_value                  1.637801             5.197208             7.445695             2.187059  ...              0.09537             1.379665             0.320155             3.993855
-    wls-m_ad_nnorm                     False                False                False                False  ...                 True                False                 True                False
-    wls-pearson                     0.548657            -0.482852            -0.197034            -0.816642  ...             0.901674            -0.892774            -0.910851            -0.893425
-    wls-missing                        raise                raise                raise                raise  ...                raise                raise                raise                raise
-    wls-exog             [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  ...  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....  [[1.0, 0.0], [1....
-    wls-endog            [0.0, 0.0, 0.0, ...  [100.0, 77.77777...  [13.513513513513...  [75.0, 73.529411...  ...  [0.0, 0.0, 0.0, ...  [5.4054054054054...  [37.5, 36.764705...  [40.540540540540...
-    wls-trend                              c                    c                    c                    c  ...                    c                    c                    c                    c
-    wls-weights          [0.0, 0.00281585...  [0.0, 0.03706907...  [0.0, 0.00124501...  [0.0, 0.00278805...  ...  [0.0, 0.00280885...  [0.0, 0.00124341...  [0.0, 0.00278805...  [0.0, 0.00124364...
-    wls-W                <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...  ...  <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...  <pyamr.metrics.w...
-    wls-model            <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...  ...  <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...  <statsmodels.reg...
-    wls-id                  WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))  ...     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))     WLS(c,Sig(N, N))
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
 
-    [51 rows x 15 columns]
+        .dataframe thead tr th {
+            text-align: left;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr>
+          <th>specimen_code</th>
+          <th colspan="4" halign="left">URICUL</th>
+        </tr>
+        <tr>
+          <th>microorganism_code</th>
+          <th colspan="4" halign="left">ECOL</th>
+        </tr>
+        <tr>
+          <th>antimicrobial_code</th>
+          <th>AAMI</th>
+          <th>AAMPC</th>
+          <th>AAUG</th>
+          <th>ACAZ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>wls-rsquared</th>
+          <td>0.557029</td>
+          <td>0.12798</td>
+          <td>0.906452</td>
+          <td>0.004545</td>
+        </tr>
+        <tr>
+          <th>wls-rsquared_adj</th>
+          <td>0.544373</td>
+          <td>0.09791</td>
+          <td>0.903779</td>
+          <td>-0.023896</td>
+        </tr>
+        <tr>
+          <th>wls-fvalue</th>
+          <td>44.012024</td>
+          <td>4.256121</td>
+          <td>339.140633</td>
+          <td>0.159818</td>
+        </tr>
+        <tr>
+          <th>wls-fprob</th>
+          <td>0.0</td>
+          <td>0.048164</td>
+          <td>0.0</td>
+          <td>0.691754</td>
+        </tr>
+        <tr>
+          <th>wls-aic</th>
+          <td>inf</td>
+          <td>inf</td>
+          <td>inf</td>
+          <td>inf</td>
+        </tr>
+        <tr>
+          <th>wls-bic</th>
+          <td>inf</td>
+          <td>inf</td>
+          <td>inf</td>
+          <td>inf</td>
+        </tr>
+        <tr>
+          <th>wls-llf</th>
+          <td>-inf</td>
+          <td>-inf</td>
+          <td>-inf</td>
+          <td>-inf</td>
+        </tr>
+        <tr>
+          <th>wls-mse_model</th>
+          <td>0.745856</td>
+          <td>4.978205</td>
+          <td>33.299393</td>
+          <td>0.2007</td>
+        </tr>
+        <tr>
+          <th>wls-mse_resid</th>
+          <td>0.016947</td>
+          <td>1.169658</td>
+          <td>0.098188</td>
+          <td>1.255805</td>
+        </tr>
+        <tr>
+          <th>wls-mse_total</th>
+          <td>0.037194</td>
+          <td>1.296609</td>
+          <td>1.020443</td>
+          <td>1.226496</td>
+        </tr>
+        <tr>
+          <th>wls-const_coef</th>
+          <td>0.031283</td>
+          <td>68.761679</td>
+          <td>1.544961</td>
+          <td>65.712841</td>
+        </tr>
+        <tr>
+          <th>wls-const_std</th>
+          <td>0.093007</td>
+          <td>0.698295</td>
+          <td>0.234858</td>
+          <td>0.80353</td>
+        </tr>
+        <tr>
+          <th>wls-const_tvalue</th>
+          <td>0.336351</td>
+          <td>98.470788</td>
+          <td>6.578289</td>
+          <td>81.780194</td>
+        </tr>
+        <tr>
+          <th>wls-const_tprob</th>
+          <td>0.738614</td>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>0.0</td>
+        </tr>
+        <tr>
+          <th>wls-const_cil</th>
+          <td>-0.157532</td>
+          <td>67.333505</td>
+          <td>1.068175</td>
+          <td>64.081588</td>
+        </tr>
+        <tr>
+          <th>wls-const_ciu</th>
+          <td>0.220098</td>
+          <td>70.189854</td>
+          <td>2.021747</td>
+          <td>67.344094</td>
+        </tr>
+        <tr>
+          <th>wls-x1_coef</th>
+          <td>0.024239</td>
+          <td>0.072052</td>
+          <td>0.167941</td>
+          <td>-0.012606</td>
+        </tr>
+        <tr>
+          <th>wls-x1_std</th>
+          <td>0.003654</td>
+          <td>0.034925</td>
+          <td>0.009119</td>
+          <td>0.031532</td>
+        </tr>
+        <tr>
+          <th>wls-x1_tvalue</th>
+          <td>6.634156</td>
+          <td>2.063037</td>
+          <td>18.415771</td>
+          <td>-0.399772</td>
+        </tr>
+        <tr>
+          <th>wls-x1_tprob</th>
+          <td>0.0</td>
+          <td>0.048164</td>
+          <td>0.0</td>
+          <td>0.691754</td>
+        </tr>
+        <tr>
+          <th>wls-x1_cil</th>
+          <td>0.016822</td>
+          <td>0.000622</td>
+          <td>0.149427</td>
+          <td>-0.076619</td>
+        </tr>
+        <tr>
+          <th>wls-x1_ciu</th>
+          <td>0.031656</td>
+          <td>0.143482</td>
+          <td>0.186454</td>
+          <td>0.051408</td>
+        </tr>
+        <tr>
+          <th>wls-s_dw</th>
+          <td>0.741</td>
+          <td>1.091</td>
+          <td>0.176</td>
+          <td>0.445</td>
+        </tr>
+        <tr>
+          <th>wls-s_jb_value</th>
+          <td>0.509</td>
+          <td>0.638</td>
+          <td>2.336</td>
+          <td>0.239</td>
+        </tr>
+        <tr>
+          <th>wls-s_jb_prob</th>
+          <td>0.775</td>
+          <td>0.727</td>
+          <td>0.311</td>
+          <td>0.887</td>
+        </tr>
+        <tr>
+          <th>wls-s_skew</th>
+          <td>0.21</td>
+          <td>-0.17</td>
+          <td>0.316</td>
+          <td>-0.051</td>
+        </tr>
+        <tr>
+          <th>wls-s_kurtosis</th>
+          <td>2.608</td>
+          <td>2.385</td>
+          <td>1.944</td>
+          <td>2.62</td>
+        </tr>
+        <tr>
+          <th>wls-s_omnibus_value</th>
+          <td>0.39</td>
+          <td>0.518</td>
+          <td>5.037</td>
+          <td>0.05</td>
+        </tr>
+        <tr>
+          <th>wls-s_omnibus_prob</th>
+          <td>0.823</td>
+          <td>0.772</td>
+          <td>0.081</td>
+          <td>0.975</td>
+        </tr>
+        <tr>
+          <th>wls-m_dw</th>
+          <td>0.736178</td>
+          <td>0.537678</td>
+          <td>0.043909</td>
+          <td>0.188735</td>
+        </tr>
+        <tr>
+          <th>wls-m_jb_value</th>
+          <td>26.465944</td>
+          <td>457.685847</td>
+          <td>27.729537</td>
+          <td>10.593247</td>
+        </tr>
+        <tr>
+          <th>wls-m_jb_prob</th>
+          <td>0.000002</td>
+          <td>0.0</td>
+          <td>0.000001</td>
+          <td>0.005008</td>
+        </tr>
+        <tr>
+          <th>wls-m_skew</th>
+          <td>1.61218</td>
+          <td>4.04353</td>
+          <td>1.89606</td>
+          <td>1.267125</td>
+        </tr>
+        <tr>
+          <th>wls-m_kurtosis</th>
+          <td>5.602039</td>
+          <td>19.998144</td>
+          <td>4.899094</td>
+          <td>3.66998</td>
+        </tr>
+        <tr>
+          <th>wls-m_nm_value</th>
+          <td>19.984589</td>
+          <td>59.422218</td>
+          <td>21.39435</td>
+          <td>10.974889</td>
+        </tr>
+        <tr>
+          <th>wls-m_nm_prob</th>
+          <td>0.000046</td>
+          <td>0.0</td>
+          <td>0.000023</td>
+          <td>0.004138</td>
+        </tr>
+        <tr>
+          <th>wls-m_ks_value</th>
+          <td>0.405236</td>
+          <td>0.149246</td>
+          <td>0.366502</td>
+          <td>0.365003</td>
+        </tr>
+        <tr>
+          <th>wls-m_ks_prob</th>
+          <td>0.000005</td>
+          <td>0.451309</td>
+          <td>0.000058</td>
+          <td>0.000063</td>
+        </tr>
+        <tr>
+          <th>wls-m_shp_value</th>
+          <td>0.845794</td>
+          <td>0.486878</td>
+          <td>0.565564</td>
+          <td>0.844264</td>
+        </tr>
+        <tr>
+          <th>wls-m_shp_prob</th>
+          <td>0.000126</td>
+          <td>0.0</td>
+          <td>0.0</td>
+          <td>0.000116</td>
+        </tr>
+        <tr>
+          <th>wls-m_ad_value</th>
+          <td>1.637801</td>
+          <td>5.197208</td>
+          <td>7.445695</td>
+          <td>2.187059</td>
+        </tr>
+        <tr>
+          <th>wls-m_ad_nnorm</th>
+          <td>False</td>
+          <td>False</td>
+          <td>False</td>
+          <td>False</td>
+        </tr>
+        <tr>
+          <th>wls-pearson</th>
+          <td>0.548657</td>
+          <td>-0.482852</td>
+          <td>-0.197034</td>
+          <td>-0.816642</td>
+        </tr>
+        <tr>
+          <th>wls-missing</th>
+          <td>raise</td>
+          <td>raise</td>
+          <td>raise</td>
+          <td>raise</td>
+        </tr>
+        <tr>
+          <th>wls-exog</th>
+          <td>[[1.0, 0.0], [1....</td>
+          <td>[[1.0, 0.0], [1....</td>
+          <td>[[1.0, 0.0], [1....</td>
+          <td>[[1.0, 0.0], [1....</td>
+        </tr>
+        <tr>
+          <th>wls-endog</th>
+          <td>[0.0, 0.0, 0.0, ...</td>
+          <td>[100.0, 77.77777...</td>
+          <td>[13.513513513513...</td>
+          <td>[75.0, 73.529411...</td>
+        </tr>
+        <tr>
+          <th>wls-trend</th>
+          <td>c</td>
+          <td>c</td>
+          <td>c</td>
+          <td>c</td>
+        </tr>
+        <tr>
+          <th>wls-weights</th>
+          <td>[0.0, 0.00281585...</td>
+          <td>[0.0, 0.03706907...</td>
+          <td>[0.0, 0.00124501...</td>
+          <td>[0.0, 0.00278805...</td>
+        </tr>
+        <tr>
+          <th>wls-W</th>
+          <td>&lt;pyamr.metrics.w...</td>
+          <td>&lt;pyamr.metrics.w...</td>
+          <td>&lt;pyamr.metrics.w...</td>
+          <td>&lt;pyamr.metrics.w...</td>
+        </tr>
+        <tr>
+          <th>wls-model</th>
+          <td>&lt;statsmodels.reg...</td>
+          <td>&lt;statsmodels.reg...</td>
+          <td>&lt;statsmodels.reg...</td>
+          <td>&lt;statsmodels.reg...</td>
+        </tr>
+        <tr>
+          <th>wls-id</th>
+          <td>WLS(c,Sig(N, N))</td>
+          <td>WLS(c,Sig(N, N))</td>
+          <td>WLS(c,Sig(N, N))</td>
+          <td>WLS(c,Sig(N, N))</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
 
+.. GENERATED FROM PYTHON SOURCE LINES 454-455
 
+Lets visualise the first entry
 
-
-.. GENERATED FROM PYTHON SOURCE LINES 437-438
-
-Lets see the model summary for the first entry
-
-.. GENERATED FROM PYTHON SOURCE LINES 439-492
+.. GENERATED FROM PYTHON SOURCE LINES 456-505
 
 .. code-block:: default
-   :lineno-start: 440
+   :lineno-start: 457
 
 
     # Display
@@ -879,10 +1429,6 @@ Lets see the model summary for the first entry
     plt.title(name)
 
 
-    print("Name: %s\n" % str(name))
-    print(obj.as_summary())
-
-
 
 
 .. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_01_003.png
@@ -893,7 +1439,32 @@ Lets see the model summary for the first entry
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
+ .. code-block:: none
+
+
+    Text(0.5, 1.0, "('URICUL', 'ECOL', 'AAUG')")
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 506-507
+
+Lets see the summary
+
+.. GENERATED FROM PYTHON SOURCE LINES 507-512
+
+.. code-block:: default
+   :lineno-start: 508
+
+
+    # Summary
+    print("Name: %s\n" % str(name))
+    print(obj.as_summary())
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
 
  .. code-block:: none
 
@@ -904,8 +1475,8 @@ Lets see the model summary for the first entry
     Dep. Variable:                      y   R-squared:                       0.906
     Model:                            WLS   Adj. R-squared:                  0.904
     Method:                 Least Squares   F-statistic:                     339.1
-    Date:                Mon, 12 Jun 2023   Prob (F-statistic):           1.38e-19
-    Time:                        16:00:31   Log-Likelihood:                   -inf
+    Date:                Thu, 15 Jun 2023   Prob (F-statistic):           1.38e-19
+    Time:                        18:15:41   Log-Likelihood:                   -inf
     No. Observations:                  37   AIC:                               inf
     Df Residuals:                      35   BIC:                               inf
     Df Model:                           1                                         
@@ -926,14 +1497,14 @@ Lets see the model summary for the first entry
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 493-494
+.. GENERATED FROM PYTHON SOURCE LINES 513-514
 
-Lets display the information as a table graph
+Lets display the information as a table graph for all tuples
 
-.. GENERATED FROM PYTHON SOURCE LINES 495-618
+.. GENERATED FROM PYTHON SOURCE LINES 515-642
 
 .. code-block:: default
-   :lineno-start: 496
+   :lineno-start: 516
 
 
     # Libraries
@@ -1011,12 +1582,12 @@ Lets display the information as a table graph
     ]]
 
     # Show DataFrame
-    print("\nResults:")
-    print(data)
+    #print("\nResults:")
+    #print(data)
 
     # Create pair grid
     g = sns.PairGrid(data, x_vars=data.columns[1:],
-        y_vars=["index"], height=4, aspect=.45)
+        y_vars=["index"], height=3, aspect=.45)
 
     # Set common features
     g.set(xlabel='', ylabel='')
@@ -1058,6 +1629,10 @@ Lets display the information as a table graph
     plt.tight_layout()
     plt.show()
 
+    #%
+    # Lets see the data plotted
+    data.round(decimals=3)
+
 
 
 
@@ -1067,69 +1642,295 @@ Lets display the information as a table graph
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
 
- Out:
+.. raw:: html
 
- .. code-block:: none
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
 
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
 
-    Results:
-                    index    sart_m   sari_pct        r2      skew   kurtosis             jb        dw           ptm   pearson    freq
-    7    URICUL_ECOL_ACXT  0.384616  27.961433  0.871941 -0.902044   4.450753   1.606333e-02  0.321748  2.839420e-25  0.800813   726.0
-    10   URICUL_ECOL_AMEC  0.364059   6.923077  0.924855  0.292228   3.163261   7.528772e-01  0.246717  1.093236e-06  0.905281   390.0
-    2    URICUL_ECOL_AAUG  0.167941   6.569901  0.906452  1.896060   4.899094   9.519356e-07  0.043909  1.346934e-07 -0.197034  9163.0
-    1   URICUL_ECOL_AAMPC  0.072052  70.078740  0.127980  4.043530  19.998144  4.118898e-100  0.537678  3.529026e-38 -0.482852   254.0
-    9    URICUL_ECOL_AGEN  0.042474  35.586207  0.027657  1.568770   4.014620   2.290097e-04  0.041650  2.673921e-27 -0.725585   725.0
-    0    URICUL_ECOL_AAMI  0.024239   0.692521  0.557029  1.612180   5.602039   1.790578e-06  0.736178  7.386144e-01  0.548657   722.0
-    11   URICUL_ECOL_AMER  0.020269   0.414365  0.648313  0.020609   2.439495   7.838960e-01  0.411431  8.943204e-02  0.901674   724.0
-    3    URICUL_ECOL_ACAZ -0.012606  65.521978  0.004545  1.267125   3.669980   5.008476e-03  0.188735  1.467954e-41 -0.816642   728.0
-    4   URICUL_ECOL_ACELX -0.014681   8.753952  0.111695  2.012401   5.357851   5.199214e-08  0.052479  3.380317e-34 -0.664276  9173.0
-    6    URICUL_ECOL_ACTX -0.031965  66.803279  0.029500  2.046082   7.029445   9.090421e-12  0.145249  3.437555e-42 -0.745643   732.0
-    5    URICUL_ECOL_ACIP -0.074978  13.726559  0.669167  2.075303   5.564571   1.073938e-08  0.071392  9.838272e-39 -0.709830  9172.0
-    14   URICUL_ECOL_ATRI -0.092547  35.226777  0.600203  1.751497   4.932894   4.378678e-06  0.089424  1.661517e-46 -0.893425  9172.0
-    12   URICUL_ECOL_ANIT -0.093639   3.782841  0.907027  0.368771   4.880741   4.302857e-02  1.133668  1.526017e-33 -0.892774  9173.0
-    13   URICUL_ECOL_ATAZ -0.189840  27.884615  0.412661  0.306621   2.276972   5.001472e-01  0.186264  1.129783e-27 -0.910851   728.0
-    8    URICUL_ECOL_AERT -0.472199   4.568528  0.798147 -1.435647   3.976333   1.009636e-03  0.077592  8.089724e-18 -0.482881   197.0
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>index</th>
+          <th>sart_m</th>
+          <th>sari_pct</th>
+          <th>r2</th>
+          <th>skew</th>
+          <th>kurtosis</th>
+          <th>jb</th>
+          <th>dw</th>
+          <th>ptm</th>
+          <th>pearson</th>
+          <th>freq</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>7</th>
+          <td>URICUL_ECOL_ACXT</td>
+          <td>0.385</td>
+          <td>27.961</td>
+          <td>0.872</td>
+          <td>-0.902</td>
+          <td>4.451</td>
+          <td>0.016</td>
+          <td>0.322</td>
+          <td>0.000</td>
+          <td>0.801</td>
+          <td>726.0</td>
+        </tr>
+        <tr>
+          <th>10</th>
+          <td>URICUL_ECOL_AMEC</td>
+          <td>0.364</td>
+          <td>6.923</td>
+          <td>0.925</td>
+          <td>0.292</td>
+          <td>3.163</td>
+          <td>0.753</td>
+          <td>0.247</td>
+          <td>0.000</td>
+          <td>0.905</td>
+          <td>390.0</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>URICUL_ECOL_AAUG</td>
+          <td>0.168</td>
+          <td>6.570</td>
+          <td>0.906</td>
+          <td>1.896</td>
+          <td>4.899</td>
+          <td>0.000</td>
+          <td>0.044</td>
+          <td>0.000</td>
+          <td>-0.197</td>
+          <td>9163.0</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>URICUL_ECOL_AAMPC</td>
+          <td>0.072</td>
+          <td>70.079</td>
+          <td>0.128</td>
+          <td>4.044</td>
+          <td>19.998</td>
+          <td>0.000</td>
+          <td>0.538</td>
+          <td>0.000</td>
+          <td>-0.483</td>
+          <td>254.0</td>
+        </tr>
+        <tr>
+          <th>9</th>
+          <td>URICUL_ECOL_AGEN</td>
+          <td>0.042</td>
+          <td>35.586</td>
+          <td>0.028</td>
+          <td>1.569</td>
+          <td>4.015</td>
+          <td>0.000</td>
+          <td>0.042</td>
+          <td>0.000</td>
+          <td>-0.726</td>
+          <td>725.0</td>
+        </tr>
+        <tr>
+          <th>0</th>
+          <td>URICUL_ECOL_AAMI</td>
+          <td>0.024</td>
+          <td>0.693</td>
+          <td>0.557</td>
+          <td>1.612</td>
+          <td>5.602</td>
+          <td>0.000</td>
+          <td>0.736</td>
+          <td>0.739</td>
+          <td>0.549</td>
+          <td>722.0</td>
+        </tr>
+        <tr>
+          <th>11</th>
+          <td>URICUL_ECOL_AMER</td>
+          <td>0.020</td>
+          <td>0.414</td>
+          <td>0.648</td>
+          <td>0.021</td>
+          <td>2.439</td>
+          <td>0.784</td>
+          <td>0.411</td>
+          <td>0.089</td>
+          <td>0.902</td>
+          <td>724.0</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>URICUL_ECOL_ACAZ</td>
+          <td>-0.013</td>
+          <td>65.522</td>
+          <td>0.005</td>
+          <td>1.267</td>
+          <td>3.670</td>
+          <td>0.005</td>
+          <td>0.189</td>
+          <td>0.000</td>
+          <td>-0.817</td>
+          <td>728.0</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>URICUL_ECOL_ACELX</td>
+          <td>-0.015</td>
+          <td>8.754</td>
+          <td>0.112</td>
+          <td>2.012</td>
+          <td>5.358</td>
+          <td>0.000</td>
+          <td>0.052</td>
+          <td>0.000</td>
+          <td>-0.664</td>
+          <td>9173.0</td>
+        </tr>
+        <tr>
+          <th>6</th>
+          <td>URICUL_ECOL_ACTX</td>
+          <td>-0.032</td>
+          <td>66.803</td>
+          <td>0.030</td>
+          <td>2.046</td>
+          <td>7.029</td>
+          <td>0.000</td>
+          <td>0.145</td>
+          <td>0.000</td>
+          <td>-0.746</td>
+          <td>732.0</td>
+        </tr>
+        <tr>
+          <th>5</th>
+          <td>URICUL_ECOL_ACIP</td>
+          <td>-0.075</td>
+          <td>13.727</td>
+          <td>0.669</td>
+          <td>2.075</td>
+          <td>5.565</td>
+          <td>0.000</td>
+          <td>0.071</td>
+          <td>0.000</td>
+          <td>-0.710</td>
+          <td>9172.0</td>
+        </tr>
+        <tr>
+          <th>14</th>
+          <td>URICUL_ECOL_ATRI</td>
+          <td>-0.093</td>
+          <td>35.227</td>
+          <td>0.600</td>
+          <td>1.751</td>
+          <td>4.933</td>
+          <td>0.000</td>
+          <td>0.089</td>
+          <td>0.000</td>
+          <td>-0.893</td>
+          <td>9172.0</td>
+        </tr>
+        <tr>
+          <th>12</th>
+          <td>URICUL_ECOL_ANIT</td>
+          <td>-0.094</td>
+          <td>3.783</td>
+          <td>0.907</td>
+          <td>0.369</td>
+          <td>4.881</td>
+          <td>0.043</td>
+          <td>1.134</td>
+          <td>0.000</td>
+          <td>-0.893</td>
+          <td>9173.0</td>
+        </tr>
+        <tr>
+          <th>13</th>
+          <td>URICUL_ECOL_ATAZ</td>
+          <td>-0.190</td>
+          <td>27.885</td>
+          <td>0.413</td>
+          <td>0.307</td>
+          <td>2.277</td>
+          <td>0.500</td>
+          <td>0.186</td>
+          <td>0.000</td>
+          <td>-0.911</td>
+          <td>728.0</td>
+        </tr>
+        <tr>
+          <th>8</th>
+          <td>URICUL_ECOL_AERT</td>
+          <td>-0.472</td>
+          <td>4.569</td>
+          <td>0.798</td>
+          <td>-1.436</td>
+          <td>3.976</td>
+          <td>0.001</td>
+          <td>0.078</td>
+          <td>0.000</td>
+          <td>-0.483</td>
+          <td>197.0</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
 
+.. GENERATED FROM PYTHON SOURCE LINES 643-647
 
+Computing ACSI
+--------------
 
+.. warning:: Pending...
 
-.. GENERATED FROM PYTHON SOURCE LINES 619-621
+.. GENERATED FROM PYTHON SOURCE LINES 649-653
 
 Computing DRI
 --------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 624-626
-
-Computing MARI
---------------
+.. warning:: Pending...
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.458 seconds)
+   **Total running time of the script:** ( 0 minutes  6.004 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_01.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
 
-  .. container:: sphx-glr-download sphx-glr-download-python
 
-     :download:`Download Python source code: plot_step_01.py <plot_step_01.py>`
+    .. container:: sphx-glr-download sphx-glr-download-python
 
+      :download:`Download Python source code: plot_step_01.py <plot_step_01.py>`
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_step_01.ipynb <plot_step_01.ipynb>`
+      :download:`Download Jupyter notebook: plot_step_01.ipynb <plot_step_01.ipynb>`
 
 
 .. only:: html

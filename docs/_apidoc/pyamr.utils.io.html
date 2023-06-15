@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.utils.io package &mdash; pyamr 0.0.1 documentation</title>
@@ -17,15 +17,15 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API" href="../api.html" />
     <link rel="prev" title="pyamr.utils package" href="pyamr.utils.html" /> 
 </head>
 
@@ -69,6 +69,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.examples.html">pyamr.examples package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.graphics.html">pyamr.graphics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.tests.html">pyamr.tests package</a></li>
@@ -103,6 +104,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -142,6 +146,38 @@
 Filename:
 Date:
 Description:</p>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.io.read.files_with_extension" title="pyamr.utils.io.read.files_with_extension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">files_with_extension</span></code></a>(folder, ext)</p></td>
+<td><p>This method return files with extension.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_csv" title="pyamr.utils.io.read.read_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_csv</span></code></a>(path, **kwargs)</p></td>
+<td><p>This method...</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_csv_file" title="pyamr.utils.io.read.read_csv_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_csv_file</span></code></a>(path[, rename_map, std_cols, ...])</p></td>
+<td><p>This method reads a csv file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_csv_folder" title="pyamr.utils.io.read.read_csv_folder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_csv_folder</span></code></a>(path, **kwargs)</p></td>
+<td><p>Load all excel files into a pandas dataframe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_data" title="pyamr.utils.io.read.read_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_data</span></code></a>(ftype, **kwargs)</p></td>
+<td><p>This method loads data from the specified format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_excel" title="pyamr.utils.io.read.read_excel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_excel</span></code></a>(path)</p></td>
+<td><p>This function...</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_excel_file" title="pyamr.utils.io.read.read_excel_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_excel_file</span></code></a>(path[, rename_map, std_cols])</p></td>
+<td><p>This method...</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_excel_folder" title="pyamr.utils.io.read.read_excel_folder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_excel_folder</span></code></a>([path])</p></td>
+<td><p>Load all excel files into a pandas dataframe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.utils.io.read.read_mysql_server" title="pyamr.utils.io.read.read_mysql_server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_mysql_server</span></code></a>([url, query, rename_map])</p></td>
+<td><p>This function rename codes (i.e.</p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py function">
 <dt class="sig sig-object py" id="pyamr.utils.io.read.files_with_extension">
 <span class="sig-prename descclassname"><span class="pre">pyamr.utils.io.read.</span></span><span class="sig-name descname"><span class="pre">files_with_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/io/read.html#files_with_extension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.io.read.files_with_extension" title="Permalink to this definition"></a></dt>
@@ -268,6 +304,7 @@ before renaming.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="pyamr.utils.html" class="btn btn-neutral float-left" title="pyamr.utils package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

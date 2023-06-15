@@ -1,13 +1,12 @@
 """
-Step 01 - Indexes
-=================
+Step 01 - Compute AMR metrics
+=============================
 """
 
 
 #######################################################################
-#
-# Loading data
-# ------------
+# Loading susceptibility test data
+# --------------------------------
 #
 # .. image:: ../../../_static/imgs/susceptibility-test-record.png
 #    :width: 200
@@ -67,7 +66,7 @@ print(data[[
 # Computing SARI
 # --------------
 #
-# The Single Antimicrobial Resistance Index - ``SARI`` - describes the proportion
+# The Single Antimicrobial Resistance Index or ``SARI`` describes the proportion
 # of resistant isolates for a given set of susceptibility tests. It provides a
 # value within the range [0, 1] where values close to one indicate high resistance.
 # It is agnostic to pathogen, antibiotic and/or time. The variables ``R``, ``I`` and
@@ -105,6 +104,7 @@ sari_overall = sari.compute(data,
 print("SARI (overall):")
 print(sari_overall)
 
+# ------------
 # Plot Heatmap
 # ------------
 # Filter
@@ -140,6 +140,13 @@ plt.subplots_adjust(right=1.05)
 
 #######################################################################
 #
+# Computing MARI
+# --------------
+#
+# .. warning:: Pending... similar to ``SARI``.
+
+#######################################################################
+#
 # Computing ASAI
 # --------------
 #
@@ -153,7 +160,7 @@ plt.subplots_adjust(right=1.05)
 # Furthermore, such ambiguous labels are overused for different and even contradictory
 # purposes.
 #
-# In order to compute the antimicrobial spectrum of activity index - ``ASAI`` -, it
+# In order to compute the antimicrobial spectrum of activity index or ``ASAI``, it
 # is necessary to previously obtain the overall resistance (SARI) for all the
 # microbe-antimicrobial pairs. Furthermore, by following the criteria used in the
 # narrow-broad approach, these pairs were grouped into Gram-positive and Gram-negative.
@@ -244,6 +251,13 @@ scores.index = scores.index.droplevel()
 print("\nASAI (overall):")
 print(scores)
 
+#%%
+# This is the information obtained where the columns n, p, and u stand
+# for gram-positive, gram-negative and unknown respectively. Similarly,
+# N_GENUS and N_SPECIE indicates the number of genus and species for
+# the specific antimicrobial.
+scores.head(10)
+
 #######################################################################
 #
 # Lets plot it now!
@@ -257,7 +271,7 @@ print(scores)
 #          gmean or (ii) the width.
 
 # Libraries
-from pyamr.graphics.utils import scalar_colormap
+from pyamr.utils.plot import scalar_colormap
 
 # Measures
 scores['width'] = np.abs(scores['ASAI_SCORE'].sum(axis=1))
@@ -320,7 +334,7 @@ plt.tight_layout()
 # Computing SART
 # --------------
 #
-# The single antimicrobial resistance trend - ``SART`` - measures the ratio
+# The single antimicrobial resistance trend or ``SART`` measures the ratio
 # of change per time unit (e.g. monthly or yearly). To compute this metric,
 # it is necessary to generate a resistance time series from the susceptibility
 # test data. This is often achieved by computing the SARI on consecutive or
@@ -335,15 +349,14 @@ plt.tight_layout()
 #   - :ref:`sphx_glr__examples_tutorial_indexes_plot_core_d_sart.py`
 #   - :ref:`sphx_glr__examples_indexes_plot_sart_a_basic.py`
 #
-# .. note:: Be cautious when Computing the ``SART`` index using a small dataset
+# .. note:: Be cautious when computing the ``SART`` index using a small dataset
 #           (e.g. a low number of susceptibility tests records) since it is very
 #           likely that the statistics produced (e.g. kurtosis or skewness) will
-#           be ill defined.
+#           be ill defined. Also remember to check stationarity if using ARIMA.
 #
 # Since it is necessary to have a decent amount of records to be
-# able to compute the trends accurately, lets filter and choose
-# the tuples were are interested in.
-
+# able to compute the trends accurately, lets see which tuples
+# have more number of samples.
 
 # -------------------------------------------
 # Show top combinations
@@ -368,6 +381,9 @@ top = sari_overall \
 # Show
 print("\nTop by Frequency:")
 print(top)
+
+#%%
+# Let's choose the tuples were are interested in.
 
 # -------------------------------------------
 # Filter data
@@ -421,7 +437,7 @@ with warnings.catch_warnings():
 
 ######################################################
 #
-# Lets see the summary DataFrame (note it is transposed!)
+# Lets see the results(note it is transposed!)
 
 # Configure pandas
 pd.set_option(
@@ -430,12 +446,13 @@ pd.set_option(
 )
 
 # Show
-print("Results:")
-print(table.T)
+#print("Results:")
+#print(table.T)
+table.head(4).T
 
 ######################################################
 #
-# Lets see the model summary for the first entry
+# Lets visualise the first entry
 
 # Display
 # This example shows how to make predictions using the wrapper and how
@@ -485,13 +502,16 @@ ax.fill_between(preds[0, :], preds[2, :],
 plt.legend()
 plt.title(name)
 
+#%%
+# Lets see the summary
 
+# Summary
 print("Name: %s\n" % str(name))
 print(obj.as_summary())
 
-#######################################################
+##############################################################
 #
-# Lets display the information as a table graph
+# Lets display the information as a table graph for all tuples
 
 # Libraries
 from pyamr.graphics.table_graph import _DEFAULT_CONFIGURATION
@@ -568,12 +588,12 @@ data = comb[[
 ]]
 
 # Show DataFrame
-print("\nResults:")
-print(data)
+#print("\nResults:")
+#print(data)
 
 # Create pair grid
 g = sns.PairGrid(data, x_vars=data.columns[1:],
-    y_vars=["index"], height=4, aspect=.45)
+    y_vars=["index"], height=3, aspect=.45)
 
 # Set common features
 g.set(xlabel='', ylabel='')
@@ -615,12 +635,19 @@ sns.despine(left=True, bottom=True)
 plt.tight_layout()
 plt.show()
 
+#%
+# Lets see the data plotted
+data.round(decimals=3)
+
+#######################################################################
+# Computing ACSI
+# --------------
+#
+# .. warning:: Pending...
+
 #######################################################################
 #
 # Computing DRI
 # --------------
-
-#######################################################################
 #
-# Computing MARI
-# --------------
+# .. warning:: Pending...

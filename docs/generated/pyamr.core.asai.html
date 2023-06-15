@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functions &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Classes" href="pyamr.core.stats.adfuller.html" />
+    <link rel="prev" title="Classes" href="pyamr.core.sart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sari.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sari.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.mari.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sart.html">Classes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyamr.core.asai.antimicrobial_spectrum_activity_index"><code class="docutils literal notranslate"><span class="pre">antimicrobial_spectrum_activity_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyamr.core.asai.asai"><code class="docutils literal notranslate"><span class="pre">asai()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples-using-pyamr-core-asai-asai">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.asai.asai</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyamr.core.asai.ASAI"><code class="docutils literal notranslate"><span class="pre">ASAI</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.asai.ASAI.compute"><code class="docutils literal notranslate"><span class="pre">ASAI.compute()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.asai.ASAI_old"><code class="docutils literal notranslate"><span class="pre">ASAI_old</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.asai.ASAI_old.compute"><code class="docutils literal notranslate"><span class="pre">ASAI_old.compute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.adfuller.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.correlation.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.kendall.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.kendall.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.stationarity.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.theilsens.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.wls.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.arima.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.sarimax.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.weights.html">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.utils.plot.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.utils.plot.html#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">API</a></li>
+      <li class="breadcrumb-item active">Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/pyamr.core.asai.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>pyamr.core.asai
+pyamr.core.asai
+===============
+===============</p>
+<span class="target" id="module-pyamr.core.asai"></span><section id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.core.asai.antimicrobial_spectrum_activity_index">
+<span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">antimicrobial_spectrum_activity_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#antimicrobial_spectrum_activity_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.antimicrobial_spectrum_activity_index" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the Antimicrobial Spectrum of Activity.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since threshold and weights have a default value, the
+warnings below will not be displayed. However, the code
+is there in case the behaviour needs to be changed in
+the future.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another way to check that the weights are correct is just
+by computing ASAI with th=0 and th=1. These should result
+in asai=1 and asai=0 respectively.
+| # Compute score
+| score_1 = np.sum(wgn * wsp * (sari &lt;= 0))
+| score_2 = np.sum(wgn * wsp * (sari &lt;= 1))</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Should the duplicated check only for the columns
+GENUS and SPECIE? What if we do not group by
+antibiotic? It has to be unique for the antibiotic
+also. It is up to the user to make the right use
+of this?</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – The pandas dataframe with the information. The following columns
+are always required [RESISTANCE, GENUS and SPECIE]. In addition,
+[W_GENUS and W_SPECIE] are required if weights is None. Also,
+if weights = ‘frequency’ the column FREQUENCY must be present.</p></li>
+<li><p><strong>weights</strong> (<em>string, default=’uniform’</em>) –</p>
+<p>The method to compute the weights. The methods supported are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘specified’: weights must be in [W_GENUS and W_SPECIE]</p></li>
+<li><p>‘uniform’: uniform weights for genus and species within genus.</p></li>
+<li><p>‘frequency’: weights are proportional to the frequencies.</p></li>
+</ul>
+</div></blockquote>
+<p>The following rules must be fulfilled by the weight columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>consistent weight for a given genus</p></li>
+<li><p>all genus weights must add up to one.</p></li>
+<li><p>all specie weights within a genus must add up to one.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>threshold</strong> (<em>float, default=0.5</em>) – The threshold resistance value above which the antimicrobial is
+considered non-effective to treat the microorganism. For instance,
+for a resistance threshold of 0.5, if a pair &lt;o,a&gt; has a resistance
+value of 0.4, the microorganism will be considered sensitive. In
+order to use specific thresholds keep threshold to None and include
+a column ‘THRESHOLD’.ss</p></li>
+<li><p><strong>tol</strong> (<em>float, default=1e-6</em>) – The tolerance in order to check that all conditions (uniqueness
+and sums) are satisfied. Note that that float precision varies
+and therefore not always adds up to exactly one.</p></li>
+<li><p><strong>verbose</strong> (<em>int, default=0</em>) – The level of verbosity.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataframe with the ASAI information and counts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-core-asai-antimicrobial-spectrum-activity-index"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.core.asai.asai">
+<span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">asai</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#asai"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.asai" title="Permalink to this definition"></a></dt>
+<dd><p>Redirects to <code class="docutils literal notranslate"><span class="pre">antimicrobial_spectrum_activity_index</span></code>.</p>
+</dd></dl>
+
+<section id="examples-using-pyamr-core-asai-asai">
+<span id="sphx-glr-backref-pyamr-core-asai-asai"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.asai.asai</span></code><a class="headerlink" href="#examples-using-pyamr-core-asai-asai" title="Permalink to this heading"></a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_asai_c_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_c_temporal.html#sphx-glr-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">ASAI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - Compute timeseries</div>
+</div></div></section>
+</section>
+<section id="classes">
+<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.core.asai.ASAI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">ASAI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_specie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'THRESHOLD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FREQUENCY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wgenus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wspecie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_SPECIE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#ASAI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.ASAI" title="Permalink to this definition"></a></dt>
+<dd><p>Antimicrobial Spectrum of Activity Index.</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI.compute" title="pyamr.core.asai.ASAI.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, groupby, min_freq])</p></td>
+<td><p>Computes the ASAI index (safely).</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.asai.ASAI.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#ASAI.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.ASAI.compute" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the ASAI index (safely).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – The pandas dataframe with the information. The following columns
+are always required [RESISTANCE, GENUS and SPECIE]. In addition,
+[W_GENUS and W_SPECIE] are required if weights is None. Also,
+if weights = ‘frequency’ the column FREQUENCY must be present.</p></li>
+<li><p><strong>groupby</strong> (<em>list, default=None</em>) – The elements to groupby (pd.groupby)</p></li>
+<li><p><strong>min_freq</strong> (<em>int, default=None</em>) – The minimum number of susceptibility tests required in order to
+include the species to compute ASAI. Note that to work the dataframe
+must include a column indicating the frequencies.</p></li>
+<li><p><strong>weights</strong> (<em>string, default=None</em>) –</p>
+<p>The method to compute the weights. The methods supported are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>None: weights must be specified in [W_GENUS and W_SPECIE]</p></li>
+<li><p>‘uniform’: uniform weights for genus and species within genus.</p></li>
+<li><p>‘frequency: weights are proportional to the frequencies.</p></li>
+</ul>
+</div></blockquote>
+<p>The following rules must be fulfilled by the weight columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>consistent weight for a given genus</p></li>
+<li><p>all genus weights must add up to one.</p></li>
+<li><p>all specie weights within a genus must add up to one.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>threshold</strong> (<em>float, default=None</em>) – The threshold resistance value above which the antimicrobial is
+considered non-effective to treat the microorganism. For instance,
+for a resistance threshold of 0.5, if a pair &lt;o,a&gt; has a resistance
+value of 0.4, the microorganism will be considered sensitive. In
+order to use specific thresholds keep threshold to None and include
+a column ‘THRESHOLD’.ss</p></li>
+<li><p><strong>tol</strong> (<em>float, default=1e-6</em>) – The tolerance in order to check that all conditions (uniqueness
+and sums) are satisfied. Note that that float precision varies
+and therefore not always adds up to exactly one.</p></li>
+<li><p><strong>verbose</strong> (<em>int, default=0</em>) – The level of verbosity.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataframe with the ASAI information and counts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="id1">
+<span id="id2"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.asai.ASAI</span></code><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_asai_c_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_c_temporal.html#sphx-glr-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">ASAI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - Compute timeseries</div>
+</div></div><dl class="py class">
+<dt class="sig sig-object py" id="pyamr.core.asai.ASAI_old">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.asai.</span></span><span class="sig-name descname"><span class="pre">ASAI_old</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_specie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_antibiotic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIBIOTIC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_resistance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RESISTANCE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'THRESHOLD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FREQUENCY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wgenus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_wspecie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'W_SPECIE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#ASAI_old"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.ASAI_old" title="Permalink to this definition"></a></dt>
+<dd><p>This class computes the antimicrobial spectrum of activity.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.0.1.</span></p>
+</div>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.asai.ASAI_old.compute" title="pyamr.core.asai.ASAI_old.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe, by_category)</p></td>
+<td><p>This function computes the asai index by category.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.asai.ASAI_old.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_category</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/asai.html#ASAI_old.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.asai.ASAI_old.compute" title="Permalink to this definition"></a></dt>
+<dd><p>This function computes the asai index by category.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>pandas DataFrame</em>) – The pandas DataFrame containing the data. In particular it needs to
+contain the following columns: genus, specie, antibiotic and the
+resistance outcome within the range [0,1].</p></li>
+<li><p><strong>by_category</strong> (<em>string</em>) – The name of the column that will be used to group ASAI.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the dataframe…</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-core-asai-asai-old"></span></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyamr.core.sart.html" class="btn btn-neutral float-left" title="Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyamr.core.stats.adfuller.html" class="btn btn-neutral float-right" title="Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

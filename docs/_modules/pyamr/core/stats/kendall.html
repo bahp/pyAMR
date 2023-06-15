@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -53,6 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/advanced.html">Advanced</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../usage/todo.html">Future Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference.html">API Reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
 <ul>
@@ -118,7 +118,8 @@
 <span class="c1"># ----------------------------------------------------------------------------</span>
 
 <div class="viewcode-block" id="kendall"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.kendall">[docs]</a><span class="k">def</span> <span class="nf">kendall</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;   </span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;Computes the kendall statistical test</span>
+
 <span class="sd">  Parameters</span>
 <span class="sd">  ----------</span>
 <span class="sd">  x     : a vector of data</span>
@@ -170,8 +171,18 @@
   <span class="c1"># Return</span>
   <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span></div>
 
+
 <div class="viewcode-block" id="KendallWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper">[docs]</a><span class="k">class</span> <span class="nc">KendallWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">  The Kendall statistical test, also known as Kendall&#39;s rank correlation test or</span>
+<span class="sd">  Kendall&#39;s tau test, is a nonparametric statistical test used to assess the strength</span>
+<span class="sd">  and direction of association between two variables. It is particularly suited for</span>
+<span class="sd">  analyzing ranked or ordinal data, where the values of the variables are ranked or</span>
+<span class="sd">  ordered but not necessarily quantitatively measurable. The coefficient ranges from</span>
+<span class="sd">  -1 to +1, where a value of +1 indicates a perfect positive rank correlation, -1</span>
+<span class="sd">  indicates a perfect negative rank correlation, and 0 indicates no rank correlation.</span>
+
 <span class="sd">  &quot;&quot;&quot;</span>
 
   <span class="c1"># --------------------------------------------------------------------------</span>
@@ -222,7 +233,7 @@
   <span class="c1">#                           override methods</span>
   <span class="c1"># --------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="KendallWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.kendall.KendallWrapper.evaluate">[docs]</a>  <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluates the model.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluates the model for the specified alpha.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Create series</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>

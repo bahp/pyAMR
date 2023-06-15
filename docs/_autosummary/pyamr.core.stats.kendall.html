@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.core.stats.kendall &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyamr.core.stats.stationarity" href="pyamr.core.stats.stationarity.html" />
+    <link rel="prev" title="pyamr.core.stats.correlation" href="pyamr.core.stats.correlation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sari.html">pyamr.core.sari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.mari.html">pyamr.core.mari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sart.html">pyamr.core.sart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.asai.html">pyamr.core.asai</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.adfuller.html">pyamr.core.stats.adfuller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.correlation.html">pyamr.core.stats.correlation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyamr.core.stats.kendall</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.stats.kendall.kendall"><code class="docutils literal notranslate"><span class="pre">kendall()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-pyamr-core-stats-kendall-kendall">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.stats.kendall.kendall</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper"><code class="docutils literal notranslate"><span class="pre">KendallWrapper</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.as_summary"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.as_summary()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.evaluate"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.evaluate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.trend_direction"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.trend_direction()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.trend_exists"><code class="docutils literal notranslate"><span class="pre">KendallWrapper.trend_exists()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-pyamr-core-stats-kendall-kendallwrapper">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.stats.kendall.KendallWrapper</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.stationarity.html">pyamr.core.stats.stationarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.theilsens.html">pyamr.core.regression.theilsens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.wls.html">pyamr.core.regression.wls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.arima.html">pyamr.core.regression.arima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.sarimax.html">pyamr.core.regression.sarimax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.scores.html">pyamr.metrics.scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.weights.html">pyamr.metrics.weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.utils.plot.html">pyamr.utils.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">API</a></li>
+      <li class="breadcrumb-item active">pyamr.core.stats.kendall</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_autosummary/pyamr.core.stats.kendall.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyamr.core.stats.kendall">
+<span id="pyamr-core-stats-kendall"></span><h1>pyamr.core.stats.kendall<a class="headerlink" href="#module-pyamr.core.stats.kendall" title="Permalink to this heading"></a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.core.stats.kendall.kendall">
+<span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.kendall.</span></span><span class="sig-name descname"><span class="pre">kendall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#kendall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.kendall" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the kendall statistical test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>a vector of data</em>)</p></li>
+<li><p><strong>alpha</strong> (<em>significance level (0.05 default)</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>trend</strong> (<em>tells the trend (increasing, decreasing or no trend)</em>)</p></li>
+<li><p><strong>h</strong> (<em>True (if trend is present) or False (if trend is absence)</em>)</p></li>
+<li><p><strong>p</strong> (<em>p value of the significance test</em>)</p></li>
+<li><p><strong>z</strong> (<em>normalized test statistics</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="examples-using-pyamr-core-stats-kendall-kendall">
+<span id="sphx-glr-backref-pyamr-core-stats-kendall-kendall"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.stats.kendall.kendall</span></code><a class="headerlink" href="#examples-using-pyamr-core-stats-kendall-kendall" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="" src="../_images/sphx_glr_plot_core_stats_kendall_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/statistics/plot_core_stats_kendall.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-kendall-py"><span class="std std-ref">Kendall</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Kendall</div>
+</div></div></section>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.core.stats.kendall.KendallWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.stats.kendall.</span></span><span class="sig-name descname"><span class="pre">KendallWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper" title="Permalink to this definition"></a></dt>
+<dd><p>The Kendall statistical test, also known as Kendall’s rank correlation test or
+Kendall’s tau test, is a nonparametric statistical test used to assess the strength
+and direction of association between two variables. It is particularly suited for
+analyzing ranked or ordinal data, where the values of the variables are ranked or
+ordered but not necessarily quantitatively measurable. The coefficient ranges from
+-1 to +1, where a value of +1 indicates a perfect positive rank correlation, -1
+indicates a perfect negative rank correlation, and 0 indicates no rank correlation.</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.as_summary" title="pyamr.core.stats.kendall.KendallWrapper.as_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_summary</span></code></a>([alpha])</p></td>
+<td><p>This method displays the summary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.evaluate" title="pyamr.core.stats.kendall.KendallWrapper.evaluate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate</span></code></a>([alpha])</p></td>
+<td><p>Evaluates the model for the specified alpha.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.trend_direction" title="pyamr.core.stats.kendall.KendallWrapper.trend_direction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trend_direction</span></code></a>(alpha)</p></td>
+<td><p>This method returns the trend direction.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.stats.kendall.KendallWrapper.trend_exists" title="pyamr.core.stats.kendall.KendallWrapper.trend_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trend_exists</span></code></a>(alpha)</p></td>
+<td><p>This method returns a boolean with the stationarity outocme.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.stats.kendall.KendallWrapper.as_summary">
+<span class="sig-name descname"><span class="pre">as_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper.as_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper.as_summary" title="Permalink to this definition"></a></dt>
+<dd><p>This method displays the summary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.stats.kendall.KendallWrapper.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper.evaluate" title="Permalink to this definition"></a></dt>
+<dd><p>Evaluates the model for the specified alpha.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.stats.kendall.KendallWrapper.trend_direction">
+<span class="sig-name descname"><span class="pre">trend_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper.trend_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper.trend_direction" title="Permalink to this definition"></a></dt>
+<dd><p>This method returns the trend direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>float</em>) – The significance level</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.stats.kendall.KendallWrapper.trend_exists">
+<span class="sig-name descname"><span class="pre">trend_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/stats/kendall.html#KendallWrapper.trend_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.stats.kendall.KendallWrapper.trend_exists" title="Permalink to this definition"></a></dt>
+<dd><p>This method returns a boolean with the stationarity outocme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>float</em>) – The significance level</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples-using-pyamr-core-stats-kendall-kendallwrapper">
+<span id="sphx-glr-backref-pyamr-core-stats-kendall-kendallwrapper"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.stats.kendall.KendallWrapper</span></code><a class="headerlink" href="#examples-using-pyamr-core-stats-kendall-kendallwrapper" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Example using your package"><img alt="" src="../_images/sphx_glr_plot_core_stats_kendall_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/statistics/plot_core_stats_kendall.html#sphx-glr-examples-tutorial-statistics-plot-core-stats-kendall-py"><span class="std std-ref">Kendall</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Kendall</div>
+</div></div></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyamr.core.stats.correlation.html" class="btn btn-neutral float-left" title="pyamr.core.stats.correlation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyamr.core.stats.stationarity.html" class="btn btn-neutral float-right" title="pyamr.core.stats.stationarity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

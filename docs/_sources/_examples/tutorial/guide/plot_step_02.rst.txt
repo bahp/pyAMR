@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download__examples_tutorial_guide_plot_step_02.py>`
+        :ref:`Go to the end <sphx_glr_download__examples_tutorial_guide_plot_step_02.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -21,17 +21,68 @@
 Step 02 - Temporal evolution
 ============================
 
-.. GENERATED FROM PYTHON SOURCE LINES 9-13
+In this example, we will explore how to compute a time series from susceptibility
+test data and examine different indexes that can be utilized. Through this analysis,
+we will gain a deeper understanding of how to utilize these indexes to evaluate the
+evolving patterns of bacterial susceptibility and guide effective antimicrobial therapy
+strategies.
+
+.. |1D30| replace:: 1D\ :sub:`30`
+.. |1M1| replace:: 1M\ :sub:`1`
+.. |1M30| replace:: 1M\ :sub:`30`
+.. |7D4| replace:: 1M\ :sub:`12`
+.. |1M12| replace:: 1M\ :sub:`12`
+.. |1M6| replace:: 1M\ :sub:`6`
+.. |1M3| replace:: 1M\ :sub:`3`
+.. |12M1| replace:: 12M\ :sub:`1`
+.. |SP| replace:: SHIFT\ :sub:`period`
+
+In order to study the temporal evolution of AMR, it is necessary to generate a resistance
+time series from the susceptibility test data. This is often achieved by computing the
+resistance index on consecutive partitions of the data. Note that each partition contains
+the susceptibility tests required to compute a resistance index. The traditional strategy
+of dealing with partitions considers independent time intervals (see yearly, monthly or
+weekly time series in Table 4.2). Unfortunately, this strategy forces to trade-off between
+granularity (level of detail) and accuracy. On one side, weekly time series are highly
+granular  but inaccurate. On the other hand, yearly time series are accurate but rough.
+Note that the granularity is represented by the number of observations in a time series
+while the accuracy is closely related with the number of susceptibility tests used to compute
+the resistance index. Conversely, the overlapping time intervals strategy drops such dependence
+by defining a window of fixed size which is moved across time. The length of the window is
+denoted as period and the time step as shift. For instance, three time series obtained using
+the overlapping time intervals strategy with a monthly shift (1M) and window lengths of 12,
+6 and 3 have been presented for the sake of clarity (see |1M12|, |1M6| and |1M3| in Table 4.2).
+
+.. image:: ../../../_static/imgs/timeseries-generation.png
+   :width: 500
+   :align: center
+   :alt: Generation of Time-Series
+
+|
+
+The notation to define the time series generation methodology (|SP|) is described with
+various examples in Table 4.2. For instance, |7D4| defines a time series with weekly resistance
+indexes (7D) calculated using the microbiology records available for the previous four weeks
+(4x7D). It is important to note that some notations are equivalent representations of the same
+susceptibility data at different granularities, hence their trends are comparable. As an example,
+the trend estimated for |1M1| should be approximately thirty times the trend estimated for |1D30|.
+
+.. note:: Using overlapping time intervals to compute an index is better than applying a moving
+       average because it captures more detailed patterns in the data and reduces bias from
+       fixed window sizes. It provides a more comprehensive analysis and improves accuracy in
+       representing the characteristics of the time series.
+
+.. GENERATED FROM PYTHON SOURCE LINES 59-63
 
 Loading data
 ------------
 
 A small dataset will be used for this example.
 
-.. GENERATED FROM PYTHON SOURCE LINES 14-48
+.. GENERATED FROM PYTHON SOURCE LINES 64-98
 
 .. code-block:: default
-   :lineno-start: 15
+   :lineno-start: 65
 
 
     # Libraries
@@ -73,24 +124,22 @@ A small dataset will be used for this example.
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
 
     Data:
-           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name  ... antimicrobial_code antimicrobial_name sensitivity_method sensitivity mic  reported
-    113       2009-01-03           NaN       20099           X428892        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    119       2009-01-03           NaN       20100           X429141        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    164       2009-01-03           NaN       22571           X429323        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    268       2009-01-03           NaN       22576           X428467        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    293       2009-01-03           NaN       24017           X429325        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    ...              ...           ...         ...               ...           ...            ...  ...                ...                ...                ...         ...  ..       ...
-    318940    2009-12-31           NaN       20088          H2011867        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    318946    2009-12-31           NaN       20089          H2012653        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    318983    2009-12-31           NaN       22565          F1741389        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    319048    2009-12-31           NaN       24013          H2012150        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
-    319070    2009-12-31           NaN       24015          H2012340        URICUL            NaN  ...               AAUG          augmentin                NaN   sensitive NaN       NaN
+           date_received  date_outcome  patient_id laboratory_number specimen_code  specimen_name specimen_description  ... microorganism_name antimicrobial_code antimicrobial_name sensitivity_method  sensitivity mic  reported
+    113       2009-01-03           NaN       20099           X428892        URICUL            NaN                urine  ...           coliform               AAUG          augmentin                NaN    sensitive NaN       NaN
+    119       2009-01-03           NaN       20100           X429141        URICUL            NaN       catheter urine  ...           coliform               AAUG          augmentin                NaN    sensitive NaN       NaN
+    164       2009-01-03           NaN       22571           X429323        URICUL            NaN     mid stream urine  ...           coliform               AAUG          augmentin                NaN    sensitive NaN       NaN
+    268       2009-01-03           NaN       22576           X428467        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
+    293       2009-01-03           NaN       24017           X429325        URICUL            NaN    clean catch urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
+    ...              ...           ...         ...               ...           ...            ...                  ...  ...                ...                ...                ...                ...          ...  ..       ...
+    318940    2009-12-31           NaN       20088          H2011867        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
+    318946    2009-12-31           NaN       20089          H2012653        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
+    318983    2009-12-31           NaN       22565          F1741389        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
+    319048    2009-12-31           NaN       24013          H2012150        URICUL            NaN                urine  ...       enterococcus               AAUG          augmentin                NaN    sensitive NaN       NaN
+    319070    2009-12-31           NaN       24015          H2012340        URICUL            NaN     mid stream urine  ...   escherichia coli               AAUG          augmentin                NaN    sensitive NaN       NaN
 
     [15269 rows x 15 columns]
 
@@ -115,32 +164,16 @@ A small dataset will be used for this example.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-80
+.. GENERATED FROM PYTHON SOURCE LINES 99-115
 
 Computing SARI timeseries
 -------------------------
 
-.. |1D30| replace:: 1D\ :sub:`30`
-.. |1M1| replace:: 1M\ :sub:`1`
-.. |3M1| replace:: 3M\ :sub:`1`
-.. |1M30| replace:: 1M\ :sub:`30`
-.. |7D4| replace:: 7D\ :sub:`4`
-.. |1M12| replace:: 1M\ :sub:`12`
-.. |1M6| replace:: 1M\ :sub:`6`
-.. |1M3| replace:: 1M\ :sub:`3`
-.. |12M1| replace:: 12M\ :sub:`1`
-.. |SP| replace:: SHIFT\ :sub:`period`
-
 In order to study the temporal evolution of AMR, it is necessary to generate
 a resistance time series from the susceptibility test data. This is often
-achieved by calculating the resistance index  (e.g. ``SARI``) on consecutive
+achieved by calculating the resistance index; that is ``SARI`` on consecutive
 partitions of the data. Note that each partition contains the susceptibility
 tests that will be used to compute the resistance index.
-
-The notation to define the time series generation methodology (|SP|). For instance,
-|1M1| defines a time series with monthly resistance indexes and |7D4| defines a time series
-with weekly resistance indexes (7D) calculated using the microbiology records available for
-the previous four weeks (4x7D).
 
 For more information see: :py:mod:`pyamr.core.sari.SARI`
 
@@ -148,11 +181,12 @@ For more examples see:
 
   - :ref:`sphx_glr__examples_indexes_plot_sari_d_temporal.py`
 
+First, let's compute the time series
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-107
+.. GENERATED FROM PYTHON SOURCE LINES 115-143
 
 .. code-block:: default
-   :lineno-start: 82
+   :lineno-start: 116
 
 
     # -----------------------------------------
@@ -177,59 +211,186 @@ For more examples see:
     iti = iti.reset_index()
 
     # Show
-    print("\nSARI (temporal):")
-    print(iti)
+    #print("\nSARI (temporal):")
+    #print(iti)
+
+    iti.head(10)
 
 
 
 
 
-.. rst-class:: sphx-glr-script-out
 
- Out:
+.. raw:: html
 
- .. code-block:: none
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>specimen_code</th>
+          <th>microorganism_name</th>
+          <th>antimicrobial_name</th>
+          <th>date_received</th>
+          <th>resistant</th>
+          <th>sensitive</th>
+          <th>freq</th>
+          <th>sari</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>URICUL</td>
+          <td>acinetobacter</td>
+          <td>augmentin</td>
+          <td>2009-03-04</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.000000</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>URICUL</td>
+          <td>acinetobacter</td>
+          <td>augmentin</td>
+          <td>2009-05-03</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.000000</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>URICUL</td>
+          <td>acinetobacter</td>
+          <td>augmentin</td>
+          <td>2009-08-01</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.000000</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>URICUL</td>
+          <td>acinetobacter ba...</td>
+          <td>augmentin</td>
+          <td>2009-02-02</td>
+          <td>1.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.000000</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>URICUL</td>
+          <td>acinetobacter ba...</td>
+          <td>augmentin</td>
+          <td>2009-04-03</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>0.500000</td>
+        </tr>
+        <tr>
+          <th>5</th>
+          <td>URICUL</td>
+          <td>acinetobacter ba...</td>
+          <td>augmentin</td>
+          <td>2009-05-03</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.0</td>
+          <td>0.000000</td>
+        </tr>
+        <tr>
+          <th>6</th>
+          <td>URICUL</td>
+          <td>acinetobacter ba...</td>
+          <td>augmentin</td>
+          <td>2009-07-02</td>
+          <td>1.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.000000</td>
+        </tr>
+        <tr>
+          <th>7</th>
+          <td>URICUL</td>
+          <td>acinetobacter ba...</td>
+          <td>augmentin</td>
+          <td>2009-08-31</td>
+          <td>1.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.000000</td>
+        </tr>
+        <tr>
+          <th>8</th>
+          <td>URICUL</td>
+          <td>citrobacter</td>
+          <td>augmentin</td>
+          <td>2009-06-02</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>3.0</td>
+          <td>0.666667</td>
+        </tr>
+        <tr>
+          <th>9</th>
+          <td>URICUL</td>
+          <td>citrobacter</td>
+          <td>augmentin</td>
+          <td>2009-07-02</td>
+          <td>1.0</td>
+          <td>0.0</td>
+          <td>1.0</td>
+          <td>1.000000</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 144-146
+
+Let's plot the evolution of a single combination.
 
 
-    SARI (temporal):
-        specimen_code   microorganism_name antimicrobial_name date_received  resistant  sensitive  freq  sari
-    0          URICUL        acinetobacter          augmentin    2009-03-04        0.0        1.0   1.0   0.0
-    1          URICUL        acinetobacter          augmentin    2009-05-03        0.0        1.0   1.0   0.0
-    2          URICUL        acinetobacter          augmentin    2009-08-01        0.0        1.0   1.0   0.0
-    3          URICUL  acinetobacter ba...          augmentin    2009-02-02        1.0        0.0   1.0   1.0
-    4          URICUL  acinetobacter ba...          augmentin    2009-04-03        1.0        1.0   2.0   0.5
-    ..            ...                  ...                ...           ...        ...        ...   ...   ...
-    172        URICUL  streptococcus be...          augmentin    2009-10-30        0.0       52.0  52.0   0.0
-    173        URICUL  streptococcus be...          augmentin    2009-11-29        0.0       36.0  36.0   0.0
-    174        URICUL  streptococcus be...          augmentin    2009-12-29        0.0        2.0   2.0   0.0
-    175        URICUL  streptococcus be...          augmentin    2009-03-04        0.0        2.0   2.0   0.0
-    176        URICUL  streptococcus be...          augmentin    2009-04-03        0.0        1.0   1.0   0.0
-
-    [177 rows x 8 columns]
-
-
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 108-110
-
-Let's plot the evolution of a single combination ...
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 111-160
+.. GENERATED FROM PYTHON SOURCE LINES 147-199
 
 .. code-block:: default
-   :lineno-start: 112
+   :lineno-start: 148
 
 
     # --------------
     # Filter
     # --------------
-    # Filter
-    idxs_spec = iti.specimen_code.isin(['URICUL'])
-    idxs_orgs = iti.microorganism_name.isin(['escherichia coli'])
-    idxs_abxs = iti.antimicrobial_name.isin(['augmentin'])
+    # Constants
+    s, o, a = 'URICUL', 'escherichia coli', 'augmentin'
 
     # Filter
+    idxs_spec = iti.specimen_code == s
+    idxs_orgs = iti.microorganism_name == o
+    idxs_abxs = iti.antimicrobial_name == a
     aux = iti[idxs_spec & idxs_orgs & idxs_abxs]
 
     # --------------
@@ -242,7 +403,7 @@ Let's plot the evolution of a single combination ...
 
     # Plot line
     sns.lineplot(x=aux.date_received, y=aux.sari,
-        palette="tab10", linewidth=0.75, linestyle='--',
+        linewidth=0.75, linestyle='--', #palette="tab10",
         marker='o', markersize=3, markeredgecolor='k',
         markeredgewidth=0.5, markerfacecolor=None,
         alpha=0.5, ax=axes[0])
@@ -256,7 +417,8 @@ Let's plot the evolution of a single combination ...
 
     # Configure
     axes[0].set(ylim=[-0.1, 1.1],
-        title='Time-series $%s_{%s}$' % (shift, period))
+        title='[%s, %s, %s] with $%s_{%s}$' % (
+            s, o.upper(), a.upper(), shift, period))
 
     # Despine
     sns.despine(bottom=True)
@@ -265,58 +427,213 @@ Let's plot the evolution of a single combination ...
     plt.tight_layout()
 
     # Show
-    print("\nTemporal (ITI):")
-    print(aux)
+    #print("\nTemporal (ITI):")
+    #print(aux)
+    aux
 
 
 
 
 
 .. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_001.png
-   :alt: Time-series $30D_{30D}$
+   :alt: [URICUL, ESCHERICHIA COLI, AUGMENTIN] with $30D_{30D}$
    :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_001.png
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
 
- Out:
+.. raw:: html
 
- .. code-block:: none
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
 
-    C:\Users\kelda\Desktop\repositories\github\pyAMR\main\examples\tutorial\guide\plot_step_02.py:136: UserWarning:
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
 
-    Ignoring `palette` because no `hue` variable has been assigned.
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>specimen_code</th>
+          <th>microorganism_name</th>
+          <th>antimicrobial_name</th>
+          <th>date_received</th>
+          <th>resistant</th>
+          <th>sensitive</th>
+          <th>freq</th>
+          <th>sari</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>52</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-01-03</td>
+          <td>5.0</td>
+          <td>32.0</td>
+          <td>37.0</td>
+          <td>0.135135</td>
+        </tr>
+        <tr>
+          <th>53</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-02-02</td>
+          <td>7.0</td>
+          <td>107.0</td>
+          <td>114.0</td>
+          <td>0.061404</td>
+        </tr>
+        <tr>
+          <th>54</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-03-04</td>
+          <td>26.0</td>
+          <td>904.0</td>
+          <td>930.0</td>
+          <td>0.027957</td>
+        </tr>
+        <tr>
+          <th>55</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-04-03</td>
+          <td>23.0</td>
+          <td>812.0</td>
+          <td>835.0</td>
+          <td>0.027545</td>
+        </tr>
+        <tr>
+          <th>56</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-05-03</td>
+          <td>48.0</td>
+          <td>839.0</td>
+          <td>887.0</td>
+          <td>0.054115</td>
+        </tr>
+        <tr>
+          <th>57</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-06-02</td>
+          <td>64.0</td>
+          <td>861.0</td>
+          <td>925.0</td>
+          <td>0.069189</td>
+        </tr>
+        <tr>
+          <th>58</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-07-02</td>
+          <td>55.0</td>
+          <td>815.0</td>
+          <td>870.0</td>
+          <td>0.063218</td>
+        </tr>
+        <tr>
+          <th>59</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-08-01</td>
+          <td>58.0</td>
+          <td>811.0</td>
+          <td>869.0</td>
+          <td>0.066743</td>
+        </tr>
+        <tr>
+          <th>60</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-08-31</td>
+          <td>59.0</td>
+          <td>928.0</td>
+          <td>987.0</td>
+          <td>0.059777</td>
+        </tr>
+        <tr>
+          <th>61</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-09-30</td>
+          <td>53.0</td>
+          <td>924.0</td>
+          <td>977.0</td>
+          <td>0.054248</td>
+        </tr>
+        <tr>
+          <th>62</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-10-30</td>
+          <td>99.0</td>
+          <td>795.0</td>
+          <td>894.0</td>
+          <td>0.110738</td>
+        </tr>
+        <tr>
+          <th>63</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-11-29</td>
+          <td>98.0</td>
+          <td>648.0</td>
+          <td>746.0</td>
+          <td>0.131367</td>
+        </tr>
+        <tr>
+          <th>64</th>
+          <td>URICUL</td>
+          <td>escherichia coli</td>
+          <td>augmentin</td>
+          <td>2009-12-29</td>
+          <td>7.0</td>
+          <td>85.0</td>
+          <td>92.0</td>
+          <td>0.076087</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
 
-
-    Temporal (ITI):
-       specimen_code microorganism_name antimicrobial_name date_received  resistant  sensitive   freq      sari
-    52        URICUL   escherichia coli          augmentin    2009-01-03        5.0       32.0   37.0  0.135135
-    53        URICUL   escherichia coli          augmentin    2009-02-02        7.0      107.0  114.0  0.061404
-    54        URICUL   escherichia coli          augmentin    2009-03-04       26.0      904.0  930.0  0.027957
-    55        URICUL   escherichia coli          augmentin    2009-04-03       23.0      812.0  835.0  0.027545
-    56        URICUL   escherichia coli          augmentin    2009-05-03       48.0      839.0  887.0  0.054115
-    57        URICUL   escherichia coli          augmentin    2009-06-02       64.0      861.0  925.0  0.069189
-    58        URICUL   escherichia coli          augmentin    2009-07-02       55.0      815.0  870.0  0.063218
-    59        URICUL   escherichia coli          augmentin    2009-08-01       58.0      811.0  869.0  0.066743
-    60        URICUL   escherichia coli          augmentin    2009-08-31       59.0      928.0  987.0  0.059777
-    61        URICUL   escherichia coli          augmentin    2009-09-30       53.0      924.0  977.0  0.054248
-    62        URICUL   escherichia coli          augmentin    2009-10-30       99.0      795.0  894.0  0.110738
-    63        URICUL   escherichia coli          augmentin    2009-11-29       98.0      648.0  746.0  0.131367
-    64        URICUL   escherichia coli          augmentin    2009-12-29        7.0       85.0   92.0  0.076087
-
-
-
-
-.. GENERATED FROM PYTHON SOURCE LINES 161-186
+.. GENERATED FROM PYTHON SOURCE LINES 200-226
 
 Computing ASAI timeseries
 -------------------------
 
-.. warning::
-
-      - Computing ASAI needs lots of consistent data!
-      - What if species do not appear on all time periods?
+.. warning:: It is important to take into account that computing
+             this index, specially over a period of time, requires
+             a lot of consistent data. Ideally, all the species
+             for the genus of interest should appear on all the
+             time periods.
 
 Once we have computed ``SARI`` on a temporal fashion, it is possible
 to use such information to compute ``ASAI`` in a temporal fashion too.
@@ -336,10 +653,10 @@ information is available in the registries: :py:mod:`pyamr.datasets.registries`.
 Lets include all this information using the ``MicroorganismRegistry``.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 187-216
+.. GENERATED FROM PYTHON SOURCE LINES 226-255
 
 .. code-block:: default
-   :lineno-start: 188
+   :lineno-start: 227
 
 
     # ------------------------------
@@ -543,10 +860,10 @@ Lets include all this information using the ``MicroorganismRegistry``.
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 217-228
+.. GENERATED FROM PYTHON SOURCE LINES 256-267
 
 Now that we have the ``genus``, ``species`` and ``gram_stain`` information,
-lets see how compute ``ASAI`` in a temporal fashion with an example. It is
+lets see how to compute ``ASAI`` in a temporal fashion with an example. It is
 important to highlight that now the date (``date_received``) is also included
 in the groupby parameter when calling the compute method.
 
@@ -557,10 +874,10 @@ For more examples see:
   - :ref:`sphx_glr__examples_indexes_plot_asai_c_temporal.py`
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 229-260
+.. GENERATED FROM PYTHON SOURCE LINES 268-299
 
 .. code-block:: default
-   :lineno-start: 230
+   :lineno-start: 269
 
 
     # -------------------------------------------
@@ -599,11 +916,9 @@ For more examples see:
 
 .. rst-class:: sphx-glr-script-out
 
- Out:
-
  .. code-block:: none
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:570: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:572: UserWarning:
 
 
                      Extreme resistances [0, 1] were found in the DataFrame. These 
@@ -611,7 +926,7 @@ For more examples see:
                      to pairs with low number of records.
 
 
-    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:584: UserWarning:
+    c:\users\kelda\desktop\repositories\github\pyamr\main\pyamr\core\asai.py:583: UserWarning:
 
 
                      There are NULL values in columns that are required. These
@@ -853,15 +1168,15 @@ For more examples see:
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 261-263
+.. GENERATED FROM PYTHON SOURCE LINES 300-302
 
-Let's plot the evolution of a single combination ...
+Let's plot the evolution for both stains.
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 264-328
+.. GENERATED FROM PYTHON SOURCE LINES 303-373
 
 .. code-block:: default
-   :lineno-start: 265
+   :lineno-start: 304
 
 
     # Libraries
@@ -874,27 +1189,25 @@ Let's plot the evolution of a single combination ...
     # --------------
     # Filter
     # --------------
+    #
+    s, a = 'URICUL', 'augmentin'
     # Filter and drop index.
-    scores = scores.filter(like='URICUL', axis=0)
-    scores = scores.filter(like='augmentin', axis=0)
+    scores = scores.filter(like=s, axis=0)
+    scores = scores.filter(like=a, axis=0)
     scores.index = scores.index.droplevel(level=[1,2])
-
-    # Show
-    print("\nASAI (overall):")
-    print(scores.unstack())
 
     # ----------
     # Plot
     # ----------
     # Initialize the matplotlib figure
-    f, ax = plt.subplots(figsize=(6, 6))
+    f, ax = plt.subplots(1, figsize=(10, 5))
 
     # Show
     sns.lineplot(data=scores, x='date_received', y='ASAI_SCORE',
                  hue='gram_stain', palette="tab10", linewidth=0.75,
                  linestyle='--', marker='o', markersize=3,
                  markeredgecolor='k', markeredgewidth=0.5,
-                 markerfacecolor=None, alpha=0.5)#, ax=axes[0])
+                 markerfacecolor=None, alpha=0.5, ax=ax)#, ax=axes[0])
 
     # Create aux table for visualization
     aux = scores[['N_GENUS', 'N_SPECIE']] \
@@ -905,10 +1218,11 @@ Let's plot the evolution of a single combination ...
     #aux.columns = month_abbr(range(1, len(aux.columns)+1))
 
     # Draw table
-    table = plt.table(cellText=aux.to_numpy(),
-                      rowLabels=aux.index,
-                      colLabels=aux.columns,
-                      cellLoc='center')
+    table = ax.table(cellText=aux.to_numpy(),
+                     rowLabels=aux.index,
+                     colLabels=aux.columns.date,
+                     cellLoc='center',
+                     loc='bottom')
     table.auto_set_font_size(False)
     table.set_fontsize(7.5)
     table.scale(1, 1.2)
@@ -918,7 +1232,9 @@ Let's plot the evolution of a single combination ...
 
     # Add a legend and informative axis label
     ax.set(xlabel='', ylabel='ASAI', xticks=[],
-           title="ASAI evolution 2009")
+           title="[%s, %s] with $%s_{%s}$" % (
+            s, a.upper(), shift, period))
+
 
     # Tight layout()
     plt.tight_layout()
@@ -926,76 +1242,224 @@ Let's plot the evolution of a single combination ...
     # Show
     plt.show()
 
+    # Show
+    #print("\nASAI (overall):")
+    #print(scores.unstack())
+
+    scores.unstack()
 
 
 
 
 .. image-sg:: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_002.png
-   :alt: ASAI evolution 2009
+   :alt: [URICUL, AUGMENTIN] with $30D_{30D}$
    :srcset: /_examples/tutorial/guide/images/sphx_glr_plot_step_02_002.png
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
 
- Out:
+.. raw:: html
 
- .. code-block:: none
+    <div class="output_subarea output_html rendered_html output_result">
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
 
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
 
-    ASAI (overall):
-                  N_GENUS      N_SPECIE      ASAI_SCORE      
-    gram_stain          n    p        n    p          n     p
-    date_received                                            
-    2009-01-03        2.0  2.0      2.0  3.0   0.500000  1.00
-    2009-02-02        2.0  2.0      2.0  3.0   0.500000  0.75
-    2009-03-04        1.0  2.0      1.0  5.0   1.000000  1.00
-    2009-04-03        3.0  2.0      3.0  6.0   0.333333  1.00
-    2009-05-03        3.0  2.0      3.0  5.0   0.666667  1.00
-    2009-06-02        3.0  2.0      3.0  4.0   0.333333  1.00
-    2009-07-02        4.0  2.0      4.0  6.0   0.250000  1.00
-    2009-08-01        1.0  2.0      1.0  5.0   1.000000  1.00
-    2009-08-31        2.0  2.0      2.0  4.0   0.500000  1.00
-    2009-09-30        1.0  2.0      1.0  6.0   1.000000  1.00
-    2009-10-30        3.0  2.0      3.0  5.0   0.333333  0.75
-    2009-11-29        2.0  2.0      2.0  4.0   0.500000  1.00
-    2009-12-29        1.0  2.0      1.0  4.0   1.000000  1.00
+        .dataframe thead tr th {
+            text-align: left;
+        }
 
+        .dataframe thead tr:last-of-type th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="2" halign="left">N_GENUS</th>
+          <th colspan="2" halign="left">N_SPECIE</th>
+          <th colspan="2" halign="left">ASAI_SCORE</th>
+        </tr>
+        <tr>
+          <th>gram_stain</th>
+          <th>n</th>
+          <th>p</th>
+          <th>n</th>
+          <th>p</th>
+          <th>n</th>
+          <th>p</th>
+        </tr>
+        <tr>
+          <th>date_received</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>2009-01-03</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>0.500000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-02-02</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>0.500000</td>
+          <td>0.75</td>
+        </tr>
+        <tr>
+          <th>2009-03-04</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>5.0</td>
+          <td>1.000000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-04-03</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>6.0</td>
+          <td>0.333333</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-05-03</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>5.0</td>
+          <td>0.666667</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-06-02</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>4.0</td>
+          <td>0.333333</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-07-02</th>
+          <td>4.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>6.0</td>
+          <td>0.250000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-08-01</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>5.0</td>
+          <td>1.000000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-08-31</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>0.500000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-09-30</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>6.0</td>
+          <td>1.000000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-10-30</th>
+          <td>3.0</td>
+          <td>2.0</td>
+          <td>3.0</td>
+          <td>5.0</td>
+          <td>0.333333</td>
+          <td>0.75</td>
+        </tr>
+        <tr>
+          <th>2009-11-29</th>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>2.0</td>
+          <td>4.0</td>
+          <td>0.500000</td>
+          <td>1.00</td>
+        </tr>
+        <tr>
+          <th>2009-12-29</th>
+          <td>1.0</td>
+          <td>2.0</td>
+          <td>1.0</td>
+          <td>4.0</td>
+          <td>1.000000</td>
+          <td>1.00</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+    <br />
+    <br />
 
+.. GENERATED FROM PYTHON SOURCE LINES 374-377
 
-
-.. GENERATED FROM PYTHON SOURCE LINES 329-332
-
-Considerations
---------------
+Further considerations
+----------------------
 
 .. warning:: Pending!
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.594 seconds)
+   **Total running time of the script:** ( 0 minutes  1.421 seconds)
 
 
 .. _sphx_glr_download__examples_tutorial_guide_plot_step_02.py:
 
+.. only:: html
 
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-example
+  .. container:: sphx-glr-footer sphx-glr-footer-example
 
 
 
-  .. container:: sphx-glr-download sphx-glr-download-python
 
-     :download:`Download Python source code: plot_step_02.py <plot_step_02.py>`
+    .. container:: sphx-glr-download sphx-glr-download-python
 
+      :download:`Download Python source code: plot_step_02.py <plot_step_02.py>`
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-     :download:`Download Jupyter notebook: plot_step_02.ipynb <plot_step_02.ipynb>`
+      :download:`Download Jupyter notebook: plot_step_02.ipynb <plot_step_02.ipynb>`
 
 
 .. only:: html

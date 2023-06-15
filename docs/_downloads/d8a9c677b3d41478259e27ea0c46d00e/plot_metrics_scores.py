@@ -1,10 +1,10 @@
 """
-Metrics - scores
+Metrics - errors
 ================
 
-Example of metrics implemented.
-
+Example with the 'errors' or scores implemented.
 """
+
 # General libraries.
 import numpy as np
 

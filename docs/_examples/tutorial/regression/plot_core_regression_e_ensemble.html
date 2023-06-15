@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using an ensemble WLS + ARMA &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Visualization</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using an ensemble WLS + ARMA</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/_examples/tutorial/regression/plot_core_regression_e_ensemble.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-tutorial-regression-plot-core-regression-e-ensemble-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="using-an-ensemble-wls-arma">
+<span id="sphx-glr-examples-tutorial-regression-plot-core-regression-e-ensemble-py"></span><h1>Using an ensemble WLS + ARMA<a class="headerlink" href="#using-an-ensemble-wls-arma" title="Permalink to this heading"></a></h1>
+<p>This method shows an ensemble method that combines the use of Weighted
+Linear Regression (WLS) to fit the main function and ARMA to fit the
+residuals.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Not working yet!</p>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;\n# Import class.\nimport numpy as np\nimport pandas as pd\nimport matplotlib as mpl\nimport matplotlib.pyplot as plt\nimport statsmodels.api as sm\nimport statsmodels.robust.norms as norms\n\nfrom statsmodels.tsa.arima_model import ARIMA\n\n\n# import weights.\nfrom pyamr.datasets.load import make_timeseries\nfrom pyamr.metrics.weights import SigmoidA\nfrom pyamr.core.regression.wls import WLSWrapper\nfrom pyamr.core.regression.wlsarma import WLSARMAWrapper\n\n# Matplotlib options\nmpl.rc(&#39;legend&#39;, fontsize=6)\nmpl.rc(&#39;xtick&#39;, labelsize=6)\nmpl.rc(&#39;ytick&#39;, labelsize=6)\n\n# Set pandas configuration.\npd.set_option(&#39;display.max_colwidth&#39;, 14)\npd.set_option(&#39;display.width&#39;, 150)\npd.set_option(&#39;display.precision&#39;, 4)\n\n# Create timeseries data\nx, y, f = make_timeseries()\n\n# Create method to compute weights from frequencies\nW = SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0)\n\n# Note that the function fit will call M.weights(weights) inside and will\n# store the M converter in the instance. Therefore, the code execute is\n# equivalent to &lt;weights=M.weights(f)&gt; with the only difference being that\n# the weight converter is not saved.\nwls = WLSWrapper(estimator=sm.WLS).fit(     exog=x, endog=y, trend=&#39;c&#39;, weights=f,\n    W=W, missing=&#39;raise&#39;)\n\n# Create WLS + ARIMA model.\nwlsarima = WLSARMAWrapper().fit(endog=y, exog=x, weights=f,\n    wls_kwargs={&#39;W&#39;: W, &#39;trend&#39;: &#39;c&#39;, &#39;missing&#39;: &#39;raise&#39;},\n     arima_kwargs={&#39;exog&#39;: None, &#39;max_ar&#39;: 1,\n                   &#39;max_ma&#39;: 1, &#39;max_d&#39;: 0, &#39;ic&#39;: &#39;bic&#39;,\n                   &#39;order&#39;: (1,0,0)})\n\npred1 = wlsarima.get_prediction(start=None, end=140)\npred2 = wls.get_prediction(start=None, end=140)\n\nendog = getattr(wlsarima._wls, &#39;endog&#39;)\nexog = getattr(wlsarima._wls, &#39;exog&#39;)[:, 1]\n\n# Create figures.\nfig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True, sharex=True)\n# Plot observations.\naxes[0].plot(exog, endog, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,\n             markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,\n             markersize=5, linewidth=0.75, label=&#39;Observed&#39;)\naxes[0].plot(pred1[0, :], pred1[1, :], color=&#39;#39ac73&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=&#39;WLSARMA&#39;)\naxes[1].plot(pred2[0, :], pred2[1, :], color=&#39;r&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=&#39;WLS&#39;)\n\nplt.legend()\nplt.show()\n\nimport sys\n\nsys.exit()\n\n# Create WLS + SARIMAX model.\nwlssarimax = WLSARMAWrapper().fit(endog=y, exog=x, weights=f,\n                                  wls_kwargs={&#39;W&#39;: W, &#39;trend&#39;: &#39;c&#39;, &#39;missing&#39;: &#39;raise&#39;},\n                                  sarimax_kwargs={&#39;exog&#39;: None, &#39;ic&#39;: &#39;bic&#39;, &#39;max_ar&#39;: 1, &#39;max_ma&#39;: 1, &#39;max_d&#39;: 0,\n                                                  &#39;max_P&#39;: 0, &#39;max_D&#39;: 0, &#39;max_Q&#39;: 0, &#39;list_s&#39;: [12]})\n\n# Create best SARIMAX model\nmodels, sarimax = SARIMAXWrapper().fit(endog=y, ic=&#39;bic&#39;,\n                                       max_ar=1, max_ma=1, max_d=1,\n                                       max_P=0, max_D=0, max_Q=0,\n                                       list_s=[0], return_fits=True)\n\n# Print series.\nprint(wlsarima.as_series())\n\n# Print summaries.\nprint(wlsarima.as_summary())\nprint(wlssarimax.as_summary())\nprint(wlsarima._arma.as_summary())\nprint(wlssarimax._arma.as_summary())\n\n# -----------------\n# Save &amp; Load\n# -----------------\n# File location\nfname_wlsarima = &#39;../../examples/saved/wlsarima-sample.pickle&#39;\nfname_wlssarimax = &#39;../../examples/saved/wlssarimax-sample.pickle&#39;\n\n# Save\nwlsarima.save(fname=fname_wlsarima)\n# wlssarimax.save(fname=fname_wlssarimax) (zstatespace can&#39;t be pickled)\n\n# Load\nwlsarima = WLSARMAWrapper().load(fname=fname_wlsarima)\n# wlssarimax = WLSARMAWrapper().load(fname=fname_wlssarimax)\n\n# -----------------\n#  Predictions\n# -----------------\n# Variables.\nstart, end = None, None\n\n# Compute predictions.\npreds_wls = wlsarima.get_prediction(start=start, end=end, ptype=&#39;wls&#39;)\npreds_arima = wlsarima.get_prediction(start=start, end=end, ptype=&#39;arma&#39;)\npreds_sarimax = wlssarimax.get_prediction(start=start, end=end, ptype=&#39;arma&#39;)\npreds_wlsarima = wlsarima.get_prediction(start=start, end=end)\npreds_wlssarimax = wlssarimax.get_prediction(start=start, end=end)\npreds_sarimax = sarimax.get_prediction(start=start, end=end)\n\n# Create figures.\nfig, axes = plt.subplots(1, 2, figsize=(10, 4))\n\n# Subplot 0\n# ---------\n# Plot observed values\nendog = getattr(wlsarima._wls, &#39;endog&#39;)\nexog = getattr(wlsarima._wls, &#39;exog&#39;)[:, 1]\naxes[0].plot(exog, endog, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,\n             markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,\n             markersize=5, linewidth=0.75, label=&#39;Observed&#39;)\n\n# Plot forecasted values (WLS-ARIMA).\naxes[0].plot(preds_wlsarima[0, :], preds_wlsarima[1, :], color=&#39;#39ac73&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlsarima._identifier(short=True))\n\n# Plot confidence intervals (WLS-ARIMA)\naxes[0].fill_between(preds_wlsarima[0, 3:],\n                     preds_wlsarima[2, 3:],\n                     preds_wlsarima[3, 3:],\n                     color=&#39;#39ac73&#39;, alpha=0.1)\n\n# Plot forecasted values (WLS-SARIMAX).\naxes[0].plot(preds_wlssarimax[0, :], preds_wlssarimax[1, :], color=&#39;b&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlssarimax._identifier(short=True))\n\n# Plot confidence intervals (WLS-SARIMAX)\naxes[0].fill_between(preds_wlssarimax[0, 3:],\n                     preds_wlssarimax[2, 3:],\n                     preds_wlssarimax[3, 3:],\n                     color=&#39;b&#39;, alpha=0.1)\n\n# Plot forecasted values and confidence intervals (SARIMAX).\naxes[0].plot(preds_sarimax[0, :], preds_sarimax[1, :], color=&#39;#FF0000&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=sarimax._identifier())\n\n# Plot confidence intervals\naxes[0].fill_between(preds_sarimax[0, 3:],\n                     preds_sarimax[2, 3:],\n                     preds_sarimax[3, 3:],\n                     color=&#39;#FF0000&#39;, alpha=0.1)\n\n# Subplot 1\n# ---------\n# Plot observed values.\naxes[1].plot(x, y, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,\n             markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,\n             markersize=5, linewidth=0.75, label=&#39;Observed&#39;)\n\n# Plot wls separately.\naxes[1].plot(preds_wls[0, :], preds_wls[1, :], color=&#39;#39ac73&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlsarima._wls._identifier(short=True))\n\naxes[1].fill_between(preds_wls[0, :],\n                     preds_wls[2, :],\n                     preds_wls[3, :],\n                     color=&#39;#39ac73&#39;, alpha=0.1)\n\n# Plot arma separately.\naxes[1].plot(preds_arima[0, :], preds_arima[1, :], color=&#39;#FF0000&#39;,\n             alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,\n             markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,\n             label=wlsarima._arma._identifier())\n\naxes[1].fill_between(preds_arima[0, :],\n                     preds_arima[2, :],\n                     preds_arima[3, :],\n                     color=&#39;#FF0000&#39;, alpha=0.1)\n\n# Grid\naxes[0].grid(linestyle=&#39;--&#39;, linewidth=0.35, alpha=0.5)\naxes[1].grid(linestyle=&#39;--&#39;, linewidth=0.35, alpha=0.5)\n\n# Legend\naxes[0].legend()\naxes[1].legend()\n\n# Show\nplt.show()\n&quot;
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 13</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 14</span><span class="sd"> # Import class.</span>
+<span class="linenos"> 15</span><span class="sd"> import numpy as np</span>
+<span class="linenos"> 16</span><span class="sd"> import pandas as pd</span>
+<span class="linenos"> 17</span><span class="sd"> import matplotlib as mpl</span>
+<span class="linenos"> 18</span><span class="sd"> import matplotlib.pyplot as plt</span>
+<span class="linenos"> 19</span><span class="sd"> import statsmodels.api as sm</span>
+<span class="linenos"> 20</span><span class="sd"> import statsmodels.robust.norms as norms</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="sd"> from statsmodels.tsa.arima_model import ARIMA</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="sd"> # import weights.</span>
+<span class="linenos"> 26</span><span class="sd"> from pyamr.datasets.load import make_timeseries</span>
+<span class="linenos"> 27</span><span class="sd"> from pyamr.metrics.weights import SigmoidA</span>
+<span class="linenos"> 28</span><span class="sd"> from pyamr.core.regression.wls import WLSWrapper</span>
+<span class="linenos"> 29</span><span class="sd"> from pyamr.core.regression.wlsarma import WLSARMAWrapper</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="sd"> # Matplotlib options</span>
+<span class="linenos"> 32</span><span class="sd"> mpl.rc(&#39;legend&#39;, fontsize=6)</span>
+<span class="linenos"> 33</span><span class="sd"> mpl.rc(&#39;xtick&#39;, labelsize=6)</span>
+<span class="linenos"> 34</span><span class="sd"> mpl.rc(&#39;ytick&#39;, labelsize=6)</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span><span class="sd"> # Set pandas configuration.</span>
+<span class="linenos"> 37</span><span class="sd"> pd.set_option(&#39;display.max_colwidth&#39;, 14)</span>
+<span class="linenos"> 38</span><span class="sd"> pd.set_option(&#39;display.width&#39;, 150)</span>
+<span class="linenos"> 39</span><span class="sd"> pd.set_option(&#39;display.precision&#39;, 4)</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span><span class="sd"> # Create timeseries data</span>
+<span class="linenos"> 42</span><span class="sd"> x, y, f = make_timeseries()</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="sd"> # Create method to compute weights from frequencies</span>
+<span class="linenos"> 45</span><span class="sd"> W = SigmoidA(r=200, g=0.5, offset=0.0, scale=1.0)</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span><span class="sd"> # Note that the function fit will call M.weights(weights) inside and will</span>
+<span class="linenos"> 48</span><span class="sd"> # store the M converter in the instance. Therefore, the code execute is</span>
+<span class="linenos"> 49</span><span class="sd"> # equivalent to &lt;weights=M.weights(f)&gt; with the only difference being that</span>
+<span class="linenos"> 50</span><span class="sd"> # the weight converter is not saved.</span>
+<span class="linenos"> 51</span><span class="sd"> wls = WLSWrapper(estimator=sm.WLS).fit( \</span>
+<span class="linenos"> 52</span><span class="sd">     exog=x, endog=y, trend=&#39;c&#39;, weights=f,</span>
+<span class="linenos"> 53</span><span class="sd">     W=W, missing=&#39;raise&#39;)</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="sd"> # Create WLS + ARIMA model.</span>
+<span class="linenos"> 56</span><span class="sd"> wlsarima = WLSARMAWrapper().fit(endog=y, exog=x, weights=f,</span>
+<span class="linenos"> 57</span><span class="sd">     wls_kwargs={&#39;W&#39;: W, &#39;trend&#39;: &#39;c&#39;, &#39;missing&#39;: &#39;raise&#39;},</span>
+<span class="linenos"> 58</span><span class="sd">      arima_kwargs={&#39;exog&#39;: None, &#39;max_ar&#39;: 1,</span>
+<span class="linenos"> 59</span><span class="sd">                    &#39;max_ma&#39;: 1, &#39;max_d&#39;: 0, &#39;ic&#39;: &#39;bic&#39;,</span>
+<span class="linenos"> 60</span><span class="sd">                    &#39;order&#39;: (1,0,0)})</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="sd"> pred1 = wlsarima.get_prediction(start=None, end=140)</span>
+<span class="linenos"> 63</span><span class="sd"> pred2 = wls.get_prediction(start=None, end=140)</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span><span class="sd"> endog = getattr(wlsarima._wls, &#39;endog&#39;)</span>
+<span class="linenos"> 66</span><span class="sd"> exog = getattr(wlsarima._wls, &#39;exog&#39;)[:, 1]</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span><span class="sd"> # Create figures.</span>
+<span class="linenos"> 69</span><span class="sd"> fig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True, sharex=True)</span>
+<span class="linenos"> 70</span><span class="sd"> # Plot observations.</span>
+<span class="linenos"> 71</span><span class="sd"> axes[0].plot(exog, endog, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,</span>
+<span class="linenos"> 72</span><span class="sd">              markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,</span>
+<span class="linenos"> 73</span><span class="sd">              markersize=5, linewidth=0.75, label=&#39;Observed&#39;)</span>
+<span class="linenos"> 74</span><span class="sd"> axes[0].plot(pred1[0, :], pred1[1, :], color=&#39;#39ac73&#39;,</span>
+<span class="linenos"> 75</span><span class="sd">              alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,</span>
+<span class="linenos"> 76</span><span class="sd">              markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,</span>
+<span class="linenos"> 77</span><span class="sd">              label=&#39;WLSARMA&#39;)</span>
+<span class="linenos"> 78</span><span class="sd"> axes[1].plot(pred2[0, :], pred2[1, :], color=&#39;r&#39;,</span>
+<span class="linenos"> 79</span><span class="sd">              alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,</span>
+<span class="linenos"> 80</span><span class="sd">              markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,</span>
+<span class="linenos"> 81</span><span class="sd">              label=&#39;WLS&#39;)</span>
+<span class="linenos"> 82</span>
+<span class="linenos"> 83</span><span class="sd"> plt.legend()</span>
+<span class="linenos"> 84</span><span class="sd"> plt.show()</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="sd"> import sys</span>
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span><span class="sd"> sys.exit()</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="sd"> # Create WLS + SARIMAX model.</span>
+<span class="linenos"> 91</span><span class="sd"> wlssarimax = WLSARMAWrapper().fit(endog=y, exog=x, weights=f,</span>
+<span class="linenos"> 92</span><span class="sd">                                   wls_kwargs={&#39;W&#39;: W, &#39;trend&#39;: &#39;c&#39;, &#39;missing&#39;: &#39;raise&#39;},</span>
+<span class="linenos"> 93</span><span class="sd">                                   sarimax_kwargs={&#39;exog&#39;: None, &#39;ic&#39;: &#39;bic&#39;, &#39;max_ar&#39;: 1, &#39;max_ma&#39;: 1, &#39;max_d&#39;: 0,</span>
+<span class="linenos"> 94</span><span class="sd">                                                   &#39;max_P&#39;: 0, &#39;max_D&#39;: 0, &#39;max_Q&#39;: 0, &#39;list_s&#39;: [12]})</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="sd"> # Create best SARIMAX model</span>
+<span class="linenos"> 97</span><span class="sd"> models, sarimax = SARIMAXWrapper().fit(endog=y, ic=&#39;bic&#39;,</span>
+<span class="linenos"> 98</span><span class="sd">                                        max_ar=1, max_ma=1, max_d=1,</span>
+<span class="linenos"> 99</span><span class="sd">                                        max_P=0, max_D=0, max_Q=0,</span>
+<span class="linenos">100</span><span class="sd">                                        list_s=[0], return_fits=True)</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span><span class="sd"> # Print series.</span>
+<span class="linenos">103</span><span class="sd"> print(wlsarima.as_series())</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="sd"> # Print summaries.</span>
+<span class="linenos">106</span><span class="sd"> print(wlsarima.as_summary())</span>
+<span class="linenos">107</span><span class="sd"> print(wlssarimax.as_summary())</span>
+<span class="linenos">108</span><span class="sd"> print(wlsarima._arma.as_summary())</span>
+<span class="linenos">109</span><span class="sd"> print(wlssarimax._arma.as_summary())</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span><span class="sd"> # -----------------</span>
+<span class="linenos">112</span><span class="sd"> # Save &amp; Load</span>
+<span class="linenos">113</span><span class="sd"> # -----------------</span>
+<span class="linenos">114</span><span class="sd"> # File location</span>
+<span class="linenos">115</span><span class="sd"> fname_wlsarima = &#39;../../examples/saved/wlsarima-sample.pickle&#39;</span>
+<span class="linenos">116</span><span class="sd"> fname_wlssarimax = &#39;../../examples/saved/wlssarimax-sample.pickle&#39;</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="sd"> # Save</span>
+<span class="linenos">119</span><span class="sd"> wlsarima.save(fname=fname_wlsarima)</span>
+<span class="linenos">120</span><span class="sd"> # wlssarimax.save(fname=fname_wlssarimax) (zstatespace can&#39;t be pickled)</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="sd"> # Load</span>
+<span class="linenos">123</span><span class="sd"> wlsarima = WLSARMAWrapper().load(fname=fname_wlsarima)</span>
+<span class="linenos">124</span><span class="sd"> # wlssarimax = WLSARMAWrapper().load(fname=fname_wlssarimax)</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span><span class="sd"> # -----------------</span>
+<span class="linenos">127</span><span class="sd"> #  Predictions</span>
+<span class="linenos">128</span><span class="sd"> # -----------------</span>
+<span class="linenos">129</span><span class="sd"> # Variables.</span>
+<span class="linenos">130</span><span class="sd"> start, end = None, None</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="sd"> # Compute predictions.</span>
+<span class="linenos">133</span><span class="sd"> preds_wls = wlsarima.get_prediction(start=start, end=end, ptype=&#39;wls&#39;)</span>
+<span class="linenos">134</span><span class="sd"> preds_arima = wlsarima.get_prediction(start=start, end=end, ptype=&#39;arma&#39;)</span>
+<span class="linenos">135</span><span class="sd"> preds_sarimax = wlssarimax.get_prediction(start=start, end=end, ptype=&#39;arma&#39;)</span>
+<span class="linenos">136</span><span class="sd"> preds_wlsarima = wlsarima.get_prediction(start=start, end=end)</span>
+<span class="linenos">137</span><span class="sd"> preds_wlssarimax = wlssarimax.get_prediction(start=start, end=end)</span>
+<span class="linenos">138</span><span class="sd"> preds_sarimax = sarimax.get_prediction(start=start, end=end)</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="sd"> # Create figures.</span>
+<span class="linenos">141</span><span class="sd"> fig, axes = plt.subplots(1, 2, figsize=(10, 4))</span>
+<span class="linenos">142</span>
+<span class="linenos">143</span><span class="sd"> # Subplot 0</span>
+<span class="linenos">144</span><span class="sd"> # ---------</span>
+<span class="linenos">145</span><span class="sd"> # Plot observed values</span>
+<span class="linenos">146</span><span class="sd"> endog = getattr(wlsarima._wls, &#39;endog&#39;)</span>
+<span class="linenos">147</span><span class="sd"> exog = getattr(wlsarima._wls, &#39;exog&#39;)[:, 1]</span>
+<span class="linenos">148</span><span class="sd"> axes[0].plot(exog, endog, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,</span>
+<span class="linenos">149</span><span class="sd">              markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,</span>
+<span class="linenos">150</span><span class="sd">              markersize=5, linewidth=0.75, label=&#39;Observed&#39;)</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="sd"> # Plot forecasted values (WLS-ARIMA).</span>
+<span class="linenos">153</span><span class="sd"> axes[0].plot(preds_wlsarima[0, :], preds_wlsarima[1, :], color=&#39;#39ac73&#39;,</span>
+<span class="linenos">154</span><span class="sd">              alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,</span>
+<span class="linenos">155</span><span class="sd">              markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,</span>
+<span class="linenos">156</span><span class="sd">              label=wlsarima._identifier(short=True))</span>
+<span class="linenos">157</span>
+<span class="linenos">158</span><span class="sd"> # Plot confidence intervals (WLS-ARIMA)</span>
+<span class="linenos">159</span><span class="sd"> axes[0].fill_between(preds_wlsarima[0, 3:],</span>
+<span class="linenos">160</span><span class="sd">                      preds_wlsarima[2, 3:],</span>
+<span class="linenos">161</span><span class="sd">                      preds_wlsarima[3, 3:],</span>
+<span class="linenos">162</span><span class="sd">                      color=&#39;#39ac73&#39;, alpha=0.1)</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span><span class="sd"> # Plot forecasted values (WLS-SARIMAX).</span>
+<span class="linenos">165</span><span class="sd"> axes[0].plot(preds_wlssarimax[0, :], preds_wlssarimax[1, :], color=&#39;b&#39;,</span>
+<span class="linenos">166</span><span class="sd">              alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,</span>
+<span class="linenos">167</span><span class="sd">              markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,</span>
+<span class="linenos">168</span><span class="sd">              label=wlssarimax._identifier(short=True))</span>
+<span class="linenos">169</span>
+<span class="linenos">170</span><span class="sd"> # Plot confidence intervals (WLS-SARIMAX)</span>
+<span class="linenos">171</span><span class="sd"> axes[0].fill_between(preds_wlssarimax[0, 3:],</span>
+<span class="linenos">172</span><span class="sd">                      preds_wlssarimax[2, 3:],</span>
+<span class="linenos">173</span><span class="sd">                      preds_wlssarimax[3, 3:],</span>
+<span class="linenos">174</span><span class="sd">                      color=&#39;b&#39;, alpha=0.1)</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span><span class="sd"> # Plot forecasted values and confidence intervals (SARIMAX).</span>
+<span class="linenos">177</span><span class="sd"> axes[0].plot(preds_sarimax[0, :], preds_sarimax[1, :], color=&#39;#FF0000&#39;,</span>
+<span class="linenos">178</span><span class="sd">              alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,</span>
+<span class="linenos">179</span><span class="sd">              markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,</span>
+<span class="linenos">180</span><span class="sd">              label=sarimax._identifier())</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span><span class="sd"> # Plot confidence intervals</span>
+<span class="linenos">183</span><span class="sd"> axes[0].fill_between(preds_sarimax[0, 3:],</span>
+<span class="linenos">184</span><span class="sd">                      preds_sarimax[2, 3:],</span>
+<span class="linenos">185</span><span class="sd">                      preds_sarimax[3, 3:],</span>
+<span class="linenos">186</span><span class="sd">                      color=&#39;#FF0000&#39;, alpha=0.1)</span>
+<span class="linenos">187</span>
+<span class="linenos">188</span><span class="sd"> # Subplot 1</span>
+<span class="linenos">189</span><span class="sd"> # ---------</span>
+<span class="linenos">190</span><span class="sd"> # Plot observed values.</span>
+<span class="linenos">191</span><span class="sd"> axes[1].plot(x, y, color=&#39;#A6CEE3&#39;, alpha=0.5, marker=&#39;o&#39;,</span>
+<span class="linenos">192</span><span class="sd">              markeredgecolor=&#39;k&#39;, markeredgewidth=0.5,</span>
+<span class="linenos">193</span><span class="sd">              markersize=5, linewidth=0.75, label=&#39;Observed&#39;)</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span><span class="sd"> # Plot wls separately.</span>
+<span class="linenos">196</span><span class="sd"> axes[1].plot(preds_wls[0, :], preds_wls[1, :], color=&#39;#39ac73&#39;,</span>
+<span class="linenos">197</span><span class="sd">              alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,</span>
+<span class="linenos">198</span><span class="sd">              markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,</span>
+<span class="linenos">199</span><span class="sd">              label=wlsarima._wls._identifier(short=True))</span>
+<span class="linenos">200</span>
+<span class="linenos">201</span><span class="sd"> axes[1].fill_between(preds_wls[0, :],</span>
+<span class="linenos">202</span><span class="sd">                      preds_wls[2, :],</span>
+<span class="linenos">203</span><span class="sd">                      preds_wls[3, :],</span>
+<span class="linenos">204</span><span class="sd">                      color=&#39;#39ac73&#39;, alpha=0.1)</span>
+<span class="linenos">205</span>
+<span class="linenos">206</span><span class="sd"> # Plot arma separately.</span>
+<span class="linenos">207</span><span class="sd"> axes[1].plot(preds_arima[0, :], preds_arima[1, :], color=&#39;#FF0000&#39;,</span>
+<span class="linenos">208</span><span class="sd">              alpha=0.95, marker=&#39;o&#39;, markersize=2, linewidth=1.0,</span>
+<span class="linenos">209</span><span class="sd">              markeredgewidth=0.2, markeredgecolor=&#39;k&#39;,</span>
+<span class="linenos">210</span><span class="sd">              label=wlsarima._arma._identifier())</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span><span class="sd"> axes[1].fill_between(preds_arima[0, :],</span>
+<span class="linenos">213</span><span class="sd">                      preds_arima[2, :],</span>
+<span class="linenos">214</span><span class="sd">                      preds_arima[3, :],</span>
+<span class="linenos">215</span><span class="sd">                      color=&#39;#FF0000&#39;, alpha=0.1)</span>
+<span class="linenos">216</span>
+<span class="linenos">217</span><span class="sd"> # Grid</span>
+<span class="linenos">218</span><span class="sd"> axes[0].grid(linestyle=&#39;--&#39;, linewidth=0.35, alpha=0.5)</span>
+<span class="linenos">219</span><span class="sd"> axes[1].grid(linestyle=&#39;--&#39;, linewidth=0.35, alpha=0.5)</span>
+<span class="linenos">220</span>
+<span class="linenos">221</span><span class="sd"> # Legend</span>
+<span class="linenos">222</span><span class="sd"> axes[0].legend()</span>
+<span class="linenos">223</span><span class="sd"> axes[1].legend()</span>
+<span class="linenos">224</span>
+<span class="linenos">225</span><span class="sd"> # Show</span>
+<span class="linenos">226</span><span class="sd"> plt.show()</span>
+<span class="linenos">227</span><span class="sd"> &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.001 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-tutorial-regression-plot-core-regression-e-ensemble-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/cfdef6a8cd0de9d39eb62640d1025bdb/plot_core_regression_e_ensemble.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_core_regression_e_ensemble.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/36af7968a373407b01d8d670f6508bc9/plot_core_regression_e_ensemble.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_core_regression_e_ensemble.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

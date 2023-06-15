@@ -16,10 +16,9 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -64,6 +63,9 @@
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -114,8 +116,9 @@
 <span class="c1"># -------------------------------------------------------------------------</span>
 <span class="c1">#                            helper methods</span>
 <span class="c1"># -------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="MARI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI">[docs]</a><span class="k">class</span> <span class="nc">MARI</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiple Antimicrobial Resistance Index&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MARI"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI">[docs]</a><span class="k">class</span> <span class="nc">MARI</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiple Antimicrobial Resistance Index</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Attributes</span>
     <span class="n">c_lab</span> <span class="o">=</span> <span class="s1">&#39;LAB_NUMBER&#39;</span>
     <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIMEN&#39;</span>
@@ -149,10 +152,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">groupby</span> <span class="o">=</span> <span class="n">groupby</span>
 
 
-<div class="viewcode-block" id="MARI.compute_v1"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v1">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="MARI.compute_v1"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI.compute_v1">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                  <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute MARI v1&quot;&quot;&quot;</span>
         <span class="c1"># Copy DataFrame</span>
         <span class="n">aux</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -232,8 +235,8 @@
         <span class="k">return</span> <span class="n">dataframe</span></div>
 
 
-<div class="viewcode-block" id="MARI.rolling"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.rolling">[docs]</a>    <span class="k">def</span> <span class="nf">rolling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MARI.rolling"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI.rolling">[docs]</a>    <span class="k">def</span> <span class="nf">rolling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute metric using rolling approach&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">shift</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                The input parameter &lt;shift&gt; is None. Thus, the value </span>
@@ -262,8 +265,8 @@
         <span class="k">return</span> <span class="n">freqs</span></div>
 
 
-<div class="viewcode-block" id="MARI.grouping"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.grouping">[docs]</a>    <span class="k">def</span> <span class="nf">grouping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Groups the data.</span>
+<div class="viewcode-block" id="MARI.grouping"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI.grouping">[docs]</a>    <span class="k">def</span> <span class="nf">grouping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">cdate</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute metric with independent groups.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Create grouper</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataframe</span><span class="p">[</span><span class="n">cdate</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">period</span><span class="p">)):</span>
@@ -285,7 +288,7 @@
         <span class="k">return</span> <span class="n">freqs</span></div>
 
 
-<div class="viewcode-block" id="MARI.compute_v2"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v2">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="MARI.compute_v2"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI.compute_v2">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute MARI v2.</span>
@@ -359,10 +362,10 @@
 
 
 
-<div class="viewcode-block" id="MARI.compute_v3"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v3">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="MARI.compute_v3"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI.compute_v3">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute MARI v2.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute MARI v3.</span>
 
 <span class="sd">        .. note: It does not work properly.</span>
 
@@ -446,10 +449,10 @@
         <span class="k">return</span> <span class="n">aux</span></div>
 
 
-<div class="viewcode-block" id="MARI.compute_v4"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute_v4">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="MARI.compute_v4"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI.compute_v4">[docs]</a>    <span class="k">def</span> <span class="nf">compute_v4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">cdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_frequencies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                          <span class="n">return_isolates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c1"># pragma: no cover</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute MARI v1.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute MARI v4.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Copy DataFrame</span>
@@ -537,7 +540,7 @@
         <span class="k">return</span> <span class="n">dataframe</span></div>
 
 
-<div class="viewcode-block" id="MARI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.mari.MARI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MARI.compute"><a class="viewcode-back" href="../../../generated/pyamr.core.mari.html#pyamr.core.mari.MARI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the Multiple Antimicrobial Resistance Index.</span>
 
 <span class="sd">        .. note: The compute_v3 does not work properly</span>

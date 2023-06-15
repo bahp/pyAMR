@@ -16,10 +16,9 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -64,6 +63,9 @@
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_apidoc/pyamr.html">pyamr package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -298,22 +300,26 @@
   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights_genus</span><span class="o">*</span><span class="n">weights_specie</span><span class="o">*</span><span class="p">(</span><span class="n">resistance</span><span class="o">&lt;=</span><span class="n">threshold</span><span class="p">))</span>
 
 
+<div class="viewcode-block" id="asai"><a class="viewcode-back" href="../../../generated/pyamr.core.asai.html#pyamr.core.asai.asai">[docs]</a><span class="k">def</span> <span class="nf">asai</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Redirects to ``antimicrobial_spectrum_activity_index``.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">antimicrobial_spectrum_activity_index</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="asai"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.asai">[docs]</a><span class="k">def</span> <span class="nf">asai</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the ASAI.</span>
 
-<span class="sd">    .. note: Since threshold and weights have a default value, the</span>
-<span class="sd">             warnings below will not be displayed. However, the code</span>
-<span class="sd">             is there in case the behaviour needs to be changed in</span>
-<span class="sd">             the future.</span>
+<div class="viewcode-block" id="antimicrobial_spectrum_activity_index"><a class="viewcode-back" href="../../../generated/pyamr.core.asai.html#pyamr.core.asai.antimicrobial_spectrum_activity_index">[docs]</a><span class="k">def</span> <span class="nf">antimicrobial_spectrum_activity_index</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+                                          <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the Antimicrobial Spectrum of Activity.</span>
 
-<span class="sd">    .. note: Another way to check that the weights are correct is just</span>
-<span class="sd">             by computing ASAI with th=0 and th=1. These should result</span>
-<span class="sd">             in asai=1 and asai=0 respectively.</span>
+<span class="sd">    .. note:: Since threshold and weights have a default value, the</span>
+<span class="sd">              warnings below will not be displayed. However, the code</span>
+<span class="sd">              is there in case the behaviour needs to be changed in</span>
+<span class="sd">              the future.</span>
 
-<span class="sd">                 # Compute score</span>
-<span class="sd">                 score_1 = np.sum(wgn * wsp * (sari &lt;= 0))</span>
-<span class="sd">                 score_2 = np.sum(wgn * wsp * (sari &lt;= 1))</span>
+<span class="sd">    .. note:: Another way to check that the weights are correct is just</span>
+<span class="sd">              by computing ASAI with th=0 and th=1. These should result</span>
+<span class="sd">              in asai=1 and asai=0 respectively.</span>
+<span class="sd">              | # Compute score</span>
+<span class="sd">              | score_1 = np.sum(wgn * wsp * (sari &lt;= 0))</span>
+<span class="sd">              | score_2 = np.sum(wgn * wsp * (sari &lt;= 1))</span>
 
 
 <span class="sd">    .. warning:: Should the duplicated check only for the columns</span>
@@ -330,10 +336,10 @@
 <span class="sd">        [W_GENUS and W_SPECIE] are required if weights is None. Also,</span>
 <span class="sd">        if weights = &#39;frequency&#39; the column FREQUENCY must be present.</span>
 
-<span class="sd">    weights: string, default=&#39;frequency&#39;</span>
+<span class="sd">    weights: string, default=&#39;uniform&#39;</span>
 <span class="sd">        The method to compute the weights. The methods supported are:</span>
 
-<span class="sd">            - &#39;specified&#39;: weights must be specified in [W_GENUS and W_SPECIE]</span>
+<span class="sd">            - &#39;specified&#39;: weights must be in [W_GENUS and W_SPECIE]</span>
 <span class="sd">            - &#39;uniform&#39;: uniform weights for genus and species within genus.</span>
 <span class="sd">            - &#39;frequency&#39;: weights are proportional to the frequencies.</span>
 
@@ -343,7 +349,7 @@
 <span class="sd">            - all genus weights must add up to one.</span>
 <span class="sd">            - all specie weights within a genus must add up to one.</span>
 
-<span class="sd">    threshold: float, default=None</span>
+<span class="sd">    threshold: float, default=0.5</span>
 <span class="sd">        The threshold resistance value above which the antimicrobial is</span>
 <span class="sd">        considered non-effective to treat the microorganism. For instance,</span>
 <span class="sd">        for a resistance threshold of 0.5, if a pair &lt;o,a&gt; has a resistance</span>
@@ -507,8 +513,9 @@
 
 
 
-<div class="viewcode-block" id="ASAI"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI">[docs]</a><span class="k">class</span> <span class="nc">ASAI</span><span class="p">():</span>
-
+<div class="viewcode-block" id="ASAI"><a class="viewcode-back" href="../../../generated/pyamr.core.asai.html#pyamr.core.asai.ASAI">[docs]</a><span class="k">class</span> <span class="nc">ASAI</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Antimicrobial Spectrum of Activity Index.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Attributes</span>
     <span class="n">c_gen</span> <span class="o">=</span> <span class="s1">&#39;GENUS&#39;</span>
     <span class="n">c_spe</span> <span class="o">=</span> <span class="s1">&#39;SPECIE&#39;</span>
@@ -561,7 +568,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="ASAI.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ASAI.compute"><a class="viewcode-back" href="../../../generated/pyamr.core.asai.html#pyamr.core.asai.ASAI.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes the ASAI index (safely).</span>
 
 <span class="sd">        .. note: Review first NaN and then duplicated?</span>
@@ -693,7 +700,7 @@
 
 
 
-<div class="viewcode-block" id="ASAI_old"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI_old">[docs]</a><span class="k">class</span> <span class="nc">ASAI_old</span><span class="p">():</span> <span class="c1"># pragma: no cover</span>
+<div class="viewcode-block" id="ASAI_old"><a class="viewcode-back" href="../../../generated/pyamr.core.asai.html#pyamr.core.asai.ASAI_old">[docs]</a><span class="k">class</span> <span class="nc">ASAI_old</span><span class="p">():</span> <span class="c1"># pragma: no cover</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;This class computes the antimicrobial spectrum of activity. </span>
 
 <span class="sd">  .. deprecated:: 0.0.1</span>
@@ -769,7 +776,7 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">required_columns</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">c_gen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_spe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_abx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c_res</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="ASAI_old.compute"><a class="viewcode-back" href="../../../_apidoc/pyamr.core.html#pyamr.core.asai.ASAI_old.compute">[docs]</a>  <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="p">):</span>
+<div class="viewcode-block" id="ASAI_old.compute"><a class="viewcode-back" href="../../../generated/pyamr.core.asai.html#pyamr.core.asai.ASAI_old.compute">[docs]</a>  <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">,</span> <span class="n">by_category</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This function computes the asai index by category.</span>
 
 <span class="sd">    Parameters</span>

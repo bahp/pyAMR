@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.core.sari &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyamr.core.mari" href="pyamr.core.mari.html" />
+    <link rel="prev" title="API" href="../api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyamr.core.sari</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.sari.sari"><code class="docutils literal notranslate"><span class="pre">sari()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-pyamr-core-sari-sari">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.sari.sari</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.core.sari.SARI"><code class="docutils literal notranslate"><span class="pre">SARI</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.sari.SARI.compute"><code class="docutils literal notranslate"><span class="pre">SARI.compute()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.sari.SARI.grouping"><code class="docutils literal notranslate"><span class="pre">SARI.grouping()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.core.sari.SARI.rolling"><code class="docutils literal notranslate"><span class="pre">SARI.rolling()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.mari.html">pyamr.core.mari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sart.html">pyamr.core.sart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.asai.html">pyamr.core.asai</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.adfuller.html">pyamr.core.stats.adfuller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.correlation.html">pyamr.core.stats.correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.kendall.html">pyamr.core.stats.kendall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.stationarity.html">pyamr.core.stats.stationarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.theilsens.html">pyamr.core.regression.theilsens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.wls.html">pyamr.core.regression.wls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.arima.html">pyamr.core.regression.arima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.sarimax.html">pyamr.core.regression.sarimax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.scores.html">pyamr.metrics.scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.weights.html">pyamr.metrics.weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.utils.plot.html">pyamr.utils.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">API</a></li>
+      <li class="breadcrumb-item active">pyamr.core.sari</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_autosummary/pyamr.core.sari.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyamr.core.sari">
+<span id="pyamr-core-sari"></span><h1>pyamr.core.sari<a class="headerlink" href="#module-pyamr.core.sari" title="Permalink to this heading"></a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.core.sari.sari">
+<span class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></span><span class="sig-name descname"><span class="pre">sari</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hard'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#sari"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.sari" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the Single Antimicrobial Resistance Index.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – A dataframe with the susceptibility test interpretations
+as columns. The default strategies used (see below) expect
+the following columns [‘sensitive’, ‘intermediate’, ‘resistant’]
+and if they do not appear they weill be set to zeros.</p></li>
+<li><p><strong>strategy</strong> (<em>string or func, default=’hard’</em>) – The method used to compute sari. The possible options
+are ‘soft’, ‘medium’ and ‘hard’. In addition, a function
+with the following signature func(dataframe, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs)
+can be passed.</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">basic</span></code> as R / R+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">soft</span></code>    as R / R+I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">medium</span></code>  as R+0.5I / R+0.5I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hard</span></code>  as R+I / R+I+S</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>**kwargs</strong> (<em>arguments to pass the strategy function.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resistance index</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="examples-using-pyamr-core-sari-sari">
+<span id="sphx-glr-backref-pyamr-core-sari-sari"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.sari.sari</span></code><a class="headerlink" href="#examples-using-pyamr-core-sari-sari" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_asai_c_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_c_temporal.html#sphx-glr-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">ASAI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - Compute timeseries</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In the field of healthcare, analyzing drug resistance in antimicrobial use is crucial for under..."><img alt="" src="../_images/sphx_glr_plot_dri_b_mimic_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_dri_b_mimic.html#sphx-glr-examples-indexes-plot-dri-b-mimic-py"><span class="std std-ref">DRI - Example using MIMIC</span></a></p>
+  <div class="sphx-glr-thumbnail-title">DRI - Example using MIMIC</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.heatmap"><img alt="" src="../_images/sphx_glr_plot_sari_a_antibiogram_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_a_antibiogram.html#sphx-glr-examples-indexes-plot-sari-a-antibiogram-py"><span class="std std-ref">SARI - By specimen w/ sns.heatmap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.heatmap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.clustermap"><img alt="" src="../_images/sphx_glr_plot_sari_b_clustermap_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_b_clustermap.html#sphx-glr-examples-indexes-plot-sari-b-clustermap-py"><span class="std std-ref">SARI - By specimen w/ sns.clustermap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.clustermap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.relmap"><img alt="" src="../_images/sphx_glr_plot_sari_c_relmap_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_c_relmap.html#sphx-glr-examples-indexes-plot-sari-c-relmap-py"><span class="std std-ref">SARI - By specimen w/ sns.relmap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.relmap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_sari_d_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_d_temporal.html#sphx-glr-examples-indexes-plot-sari-d-temporal-py"><span class="std std-ref">SARI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - Compute timeseries</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="For more information, check https://plotly.com/python/treemaps/"><img alt="" src="../_images/sphx_glr_plot_pyplot_treemap_thumb.png" />
+<p><a class="reference internal" href="../_examples/visualization/plot_pyplot_treemap.html#sphx-glr-examples-visualization-plot-pyplot-treemap-py"><span class="std std-ref">Plotly - Treemap (sari)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plotly - Treemap (sari)</div>
+</div></div></section>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.core.sari.SARI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.core.sari.</span></span><span class="sig-name descname"><span class="pre">SARI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['SPECIMEN',</span> <span class="pre">'MICROORGANISM',</span> <span class="pre">'ANTIMICROBIAL',</span> <span class="pre">'SENSITIVITY']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI" title="Permalink to this definition"></a></dt>
+<dd><p>Single Antimicrobial Resistance Index.</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.compute" title="pyamr.core.sari.SARI.compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute</span></code></a>(dataframe[, period, shift, cdate, ...])</p></td>
+<td><p>Computes Single Antimicrobial Resistance Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.grouping" title="pyamr.core.sari.SARI.grouping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grouping</span></code></a>(dataframe, period, cdate)</p></td>
+<td><p>Computes metric using independent groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.core.sari.SARI.rolling" title="pyamr.core.sari.SARI.rolling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rolling</span></code></a>(dataframe, period, cdate[, shift])</p></td>
+<td><p>Computed metric using a rolling approach.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.sari.SARI.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_frequencies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI.compute" title="Permalink to this definition"></a></dt>
+<dd><p>Computes Single Antimicrobial Resistance Index.</p>
+<p class="rubric">Examples</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>shift</p></th>
+<th class="head"><p>period</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>None</p></td>
+<td><p>Uses all data (agnostic to time)</p></td>
+</tr>
+<tr class="row-odd"><td><p>None</p></td>
+<td><p>year</p></td>
+<td><p>Value every year using whole year’s data.</p></td>
+</tr>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>2D</p></td>
+<td><p>Value every 2 days using 2 days data.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2D</p></td>
+<td><p>2D</p></td>
+<td><p>Value every 2 days using 2 days data.</p></td>
+</tr>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2D</p></td>
+<td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span></code> Value every 2 days using 2x2D=4 days data.</p></td>
+</tr>
+<tr class="row-even"><td><p>2D</p></td>
+<td><p>None</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span></code> - period cannot be None (in this case)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2D</p></td>
+<td><p>year</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span></code> - period cannot be a year (in this case)</p></td>
+</tr>
+<tr class="row-even"><td><p>year</p></td>
+<td><p>–</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span></code> - shift cannot be a named time.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>–</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span></code> - shift cannot be a number.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using shift=2D and period=2D is equivalent to shift=2D and period=1.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul>
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – A dataframe with the susceptibility test interpretations
+as columns. The default strategies used (see below) expect
+the following columns [‘sensitive’, ‘intermediate’, ‘resistant’]
+and if they do not appear they weill be set to zeros.</p></li>
+<li><p><strong>shift</strong> (<em>str</em>) – Frequency (datetime) value to group by when applying a rolling window.</p></li>
+<li><p><strong>period</strong> (<em>str, int</em>) – If used alone (shift=None) is the value used to create groups (e.g. year).
+The whole data within the groups will be used to compute the metrics. On
+the contrary, when used in combinations with shift, it indicates the
+interval used to compute the metrics (e.g. 2D, 2 times the shift value)</p></li>
+<li><p><strong>cdate</strong> (<em>string, default=None</em>) – The column that will be used as date.</p></li>
+<li><p><strong>return_frequencies</strong> (<em>boolean, default=True</em>) – Whether to return the frequencies or just the resistance index.</p></li>
+<li><p><strong>strategy</strong> (<em>string or func, default=’hard’</em>) – The method used to compute sari. The possible options
+are ‘soft’, ‘medium’ and ‘hard’. In addition, a function
+with the following signature func(DataFrame, <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs)
+can be passed.</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">basic</span></code> as R / R+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">soft</span></code>    as R / R+I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">medium</span></code>  as R+0.5I / R+0.5I+S</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hard</span></code>  as R+I / R+I+S</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>**kwargs</strong> (<em>arguments to pass the strategy function.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resistance index (pd.Series) or a pd.DataFrame with the
+resistance index (sari) and the frequencies.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Series or pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.sari.SARI.grouping">
+<span class="sig-name descname"><span class="pre">grouping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI.grouping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI.grouping" title="Permalink to this definition"></a></dt>
+<dd><p>Computes metric using independent groups.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.core.sari.SARI.rolling">
+<span class="sig-name descname"><span class="pre">rolling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cdate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/core/sari.html#SARI.rolling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.core.sari.SARI.rolling" title="Permalink to this definition"></a></dt>
+<dd><p>Computed metric using a rolling approach.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="id5">
+<span id="id6"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.core.sari.SARI</span></code><a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_asai_c_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_asai_c_temporal.html#sphx-glr-examples-indexes-plot-asai-c-temporal-py"><span class="std std-ref">ASAI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">ASAI - Compute timeseries</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In the field of healthcare, analyzing drug resistance in antimicrobial use is crucial for under..."><img alt="" src="../_images/sphx_glr_plot_dri_b_mimic_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_dri_b_mimic.html#sphx-glr-examples-indexes-plot-dri-b-mimic-py"><span class="std std-ref">DRI - Example using MIMIC</span></a></p>
+  <div class="sphx-glr-thumbnail-title">DRI - Example using MIMIC</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.heatmap"><img alt="" src="../_images/sphx_glr_plot_sari_a_antibiogram_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_a_antibiogram.html#sphx-glr-examples-indexes-plot-sari-a-antibiogram-py"><span class="std std-ref">SARI - By specimen w/ sns.heatmap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.heatmap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.clustermap"><img alt="" src="../_images/sphx_glr_plot_sari_b_clustermap_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_b_clustermap.html#sphx-glr-examples-indexes-plot-sari-b-clustermap-py"><span class="std std-ref">SARI - By specimen w/ sns.clustermap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.clustermap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="SARI - By specimen w/ sns.relmap"><img alt="" src="../_images/sphx_glr_plot_sari_c_relmap_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_c_relmap.html#sphx-glr-examples-indexes-plot-sari-c-relmap-py"><span class="std std-ref">SARI - By specimen w/ sns.relmap</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - By specimen w/ sns.relmap</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="In order to study the temporal evolution of AMR, it is necessary to generate a resistance time ..."><img alt="" src="../_images/sphx_glr_plot_sari_d_temporal_thumb.png" />
+<p><a class="reference internal" href="../_examples/indexes/plot_sari_d_temporal.html#sphx-glr-examples-indexes-plot-sari-d-temporal-py"><span class="std std-ref">SARI - Compute timeseries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">SARI - Compute timeseries</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="For more information, check https://plotly.com/python/treemaps/"><img alt="" src="../_images/sphx_glr_plot_pyplot_treemap_thumb.png" />
+<p><a class="reference internal" href="../_examples/visualization/plot_pyplot_treemap.html#sphx-glr-examples-visualization-plot-pyplot-treemap-py"><span class="std std-ref">Plotly - Treemap (sari)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plotly - Treemap (sari)</div>
+</div></div></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api.html" class="btn btn-neutral float-left" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyamr.core.mari.html" class="btn btn-neutral float-right" title="pyamr.core.mari" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

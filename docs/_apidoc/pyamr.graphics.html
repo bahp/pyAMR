@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pyamr.graphics package &mdash; pyamr 0.0.1 documentation</title>
@@ -17,17 +17,16 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyamr.metrics package" href="pyamr.metrics.html" />
-    <link rel="prev" title="pyamr.datasets.microbiology package" href="pyamr.datasets.microbiology.html" /> 
+    <link rel="prev" title="pyamr.examples package" href="pyamr.examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -70,13 +69,50 @@
 <li class="toctree-l2 current"><a class="reference internal" href="pyamr.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="pyamr.core.html">pyamr.core package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.datasets.html">pyamr.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyamr.examples.html">pyamr.examples package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">pyamr.graphics package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pyamr-graphics-antibiogram-module">pyamr.graphics.antibiogram module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pyamr-graphics-spectrum-module">pyamr.graphics.spectrum module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pyamr-graphics-table-graph-module">pyamr.graphics.table_graph module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pyamr-graphics-utils-module">pyamr.graphics.utils module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.graphics.antibiogram">pyamr.graphics.antibiogram module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram"><code class="docutils literal notranslate"><span class="pre">Antibiogram</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_abx"><code class="docutils literal notranslate"><span class="pre">Antibiogram.c_abx</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_cat"><code class="docutils literal notranslate"><span class="pre">Antibiogram.c_cat</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_gen"><code class="docutils literal notranslate"><span class="pre">Antibiogram.c_gen</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_idx"><code class="docutils literal notranslate"><span class="pre">Antibiogram.c_idx</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_org"><code class="docutils literal notranslate"><span class="pre">Antibiogram.c_org</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.fit"><code class="docutils literal notranslate"><span class="pre">Antibiogram.fit()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.plot"><code class="docutils literal notranslate"><span class="pre">Antibiogram.plot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.graphics.table_graph">pyamr.graphics.table_graph module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph"><code class="docutils literal notranslate"><span class="pre">TableGraph</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.fontsize"><code class="docutils literal notranslate"><span class="pre">TableGraph.fontsize</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.get_map_config"><code class="docutils literal notranslate"><span class="pre">TableGraph.get_map_config()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot"><code class="docutils literal notranslate"><span class="pre">TableGraph.plot()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_array"><code class="docutils literal notranslate"><span class="pre">TableGraph.plot_array()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_dataframe"><code class="docutils literal notranslate"><span class="pre">TableGraph.plot_dataframe()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_matrix"><code class="docutils literal notranslate"><span class="pre">TableGraph.plot_matrix()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_vertical_line"><code class="docutils literal notranslate"><span class="pre">TableGraph.plot_vertical_line()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2"><code class="docutils literal notranslate"><span class="pre">TableGraph2</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.add_vline"><code class="docutils literal notranslate"><span class="pre">TableGraph2.add_vline()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.check_vmin_vmax"><code class="docutils literal notranslate"><span class="pre">TableGraph2.check_vmin_vmax()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.display_column"><code class="docutils literal notranslate"><span class="pre">TableGraph2.display_column()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.plot"><code class="docutils literal notranslate"><span class="pre">TableGraph2.plot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.graphics.utils_to_delete">pyamr.graphics.utils_to_delete module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.graphics.utils_to_delete.MidpointNormalize"><code class="docutils literal notranslate"><span class="pre">MidpointNormalize</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.graphics.utils_to_delete.hlinebgplot"><code class="docutils literal notranslate"><span class="pre">hlinebgplot()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.graphics.utils_to_delete.scalar_colormap"><code class="docutils literal notranslate"><span class="pre">scalar_colormap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.graphics.utils_to_delete.vlinebgplot"><code class="docutils literal notranslate"><span class="pre">vlinebgplot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyamr.graphics">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyamr.metrics.html">pyamr.metrics package</a></li>
@@ -84,9 +120,12 @@
 <li class="toctree-l3"><a class="reference internal" href="pyamr.utils.html">pyamr.utils package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.html#module-pyamr">Module contents</a></li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 </ul>
 
         </div>
@@ -119,20 +158,377 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="pyamr-graphics-antibiogram-module">
-<h2>pyamr.graphics.antibiogram module<a class="headerlink" href="#pyamr-graphics-antibiogram-module" title="Permalink to this heading"></a></h2>
+<section id="module-pyamr.graphics.antibiogram">
+<span id="pyamr-graphics-antibiogram-module"></span><h2>pyamr.graphics.antibiogram module<a class="headerlink" href="#module-pyamr.graphics.antibiogram" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram" title="pyamr.graphics.antibiogram.Antibiogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Antibiogram</span></code></a>([column_organism, ...])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.graphics.antibiogram.</span></span><span class="sig-name descname"><span class="pre">Antibiogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_organism</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SPECIE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_antibiotic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANTIBIOTIC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GENUS'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CATEGORY'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SARI'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap_genus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nipy_spectral'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap_category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab20b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discard_intrinsic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/antibiogram.html#Antibiogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_abx" title="pyamr.graphics.antibiogram.Antibiogram.c_abx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_abx</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_cat" title="pyamr.graphics.antibiogram.Antibiogram.c_cat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_cat</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_gen" title="pyamr.graphics.antibiogram.Antibiogram.c_gen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_gen</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_idx" title="pyamr.graphics.antibiogram.Antibiogram.c_idx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_idx</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.c_org" title="pyamr.graphics.antibiogram.Antibiogram.c_org"><code class="xref py py-obj docutils literal notranslate"><span class="pre">c_org</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.fit" title="pyamr.graphics.antibiogram.Antibiogram.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(dataframe)</p></td>
+<td><p>This method fits the antibiogram to the data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.antibiogram.Antibiogram.plot" title="pyamr.graphics.antibiogram.Antibiogram.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>([organisms, antibiotics, genera, ...])</p></td>
+<td><p>This function plots the antibiogram.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram.c_abx">
+<span class="sig-name descname"><span class="pre">c_abx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ANTIBIOTIC'</span></em><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram.c_abx" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram.c_cat">
+<span class="sig-name descname"><span class="pre">c_cat</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CATEGORY'</span></em><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram.c_cat" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram.c_gen">
+<span class="sig-name descname"><span class="pre">c_gen</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GENUS'</span></em><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram.c_gen" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram.c_idx">
+<span class="sig-name descname"><span class="pre">c_idx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SARI'</span></em><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram.c_idx" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram.c_org">
+<span class="sig-name descname"><span class="pre">c_org</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SPECIE'</span></em><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram.c_org" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/antibiogram.html#Antibiogram.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram.fit" title="Permalink to this definition"></a></dt>
+<dd><p>This method fits the antibiogram to the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – The…</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Antibiogram instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.antibiogram.Antibiogram.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organisms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">antibiotics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genera</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categories</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weighted'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticklabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yticklabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/antibiogram.html#Antibiogram.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.antibiogram.Antibiogram.plot" title="Permalink to this definition"></a></dt>
+<dd><p>This function plots the antibiogram.</p>
+<p>The arguments are those to be passed to the clustermap implementation
+which is available on seaborn.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>method</strong> (<em>string-like</em>)</p></li>
+<li><p><strong>metric</strong> (<em>string-like</em>)</p></li>
+<li><p><strong>vmin, vmax</strong> (<em>float-like, float-like</em>) – The min and maximum values within the matrix (or feasible range).</p></li>
+<li><p><strong>cmap</strong> (<em>string-like</em>) – The colormap to be used to plot the resistance indexes.</p></li>
+<li><p><strong>figsize</strong> (<em>tuple-like</em>) – The size of the figure</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>an axis object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="pyamr-graphics-spectrum-module">
-<h2>pyamr.graphics.spectrum module<a class="headerlink" href="#pyamr-graphics-spectrum-module" title="Permalink to this heading"></a></h2>
+<section id="module-pyamr.graphics.table_graph">
+<span id="pyamr-graphics-table-graph-module"></span><h2>pyamr.graphics.table_graph module<a class="headerlink" href="#module-pyamr.graphics.table_graph" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph" title="pyamr.graphics.table_graph.TableGraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableGraph</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2" title="pyamr.graphics.table_graph.TableGraph2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableGraph2</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.graphics.table_graph.</span></span><span class="sig-name descname"><span class="pre">TableGraph</span></span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.fontsize" title="pyamr.graphics.table_graph.TableGraph.fontsize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fontsize</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.get_map_config" title="pyamr.graphics.table_graph.TableGraph.get_map_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_map_config</span></code></a>([title, xlim, xsym, xticks, ...])</p></td>
+<td><p>This function helps creating a configuration map.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot" title="pyamr.graphics.table_graph.TableGraph.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>(data, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_array" title="pyamr.graphics.table_graph.TableGraph.plot_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_array</span></code></a>(x[, ax, ax_kwargs, cmap_kwargs, ...])</p></td>
+<td><p>this method plots a single column.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_dataframe" title="pyamr.graphics.table_graph.TableGraph.plot_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_dataframe</span></code></a>(dataframe[, axes, configuration])</p></td>
+<td><p>This method plots the whole table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_matrix" title="pyamr.graphics.table_graph.TableGraph.plot_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_matrix</span></code></a>(data[, axes, ylabels, clabels, ...])</p></td>
+<td><p>This method plots a matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph.plot_vertical_line" title="pyamr.graphics.table_graph.TableGraph.plot_vertical_line"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_vertical_line</span></code></a>(ax, top, xv[, bg, lw, cb])</p></td>
+<td><p>This function adds a vertical line and background</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph.fontsize">
+<span class="sig-name descname"><span class="pre">fontsize</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph.fontsize" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph.get_map_config">
+<span class="sig-name descname"><span class="pre">get_map_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xsym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vsym</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Blues'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">midpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgecolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph.get_map_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph.get_map_config" title="Permalink to this definition"></a></dt>
+<dd><p>This function helps creating a configuration map.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph.plot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph.plot_array">
+<span class="sig-name descname"><span class="pre">plot_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph.plot_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph.plot_array" title="Permalink to this definition"></a></dt>
+<dd><p>this method plots a single column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>values to plot.</em>)</p></li>
+<li><p><strong>ax</strong> (<em>axis to plot the information.</em>)</p></li>
+<li><p><strong>ax_kwargs</strong> (<em>axis configuration information.</em>)</p></li>
+<li><p><strong>cmap_kwargs</strong> (<em>cmap configuration information.</em>)</p></li>
+<li><p><strong>scatter_kwargs</strong> (<em>scatter configuration information.</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>axis</strong></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the axis in which the series is plotted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph.plot_dataframe">
+<span class="sig-name descname"><span class="pre">plot_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph.plot_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph.plot_dataframe" title="Permalink to this definition"></a></dt>
+<dd><p>This method plots the whole table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong></p></li>
+<li><p><strong>configuration</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph.plot_matrix">
+<span class="sig-name descname"><span class="pre">plot_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph.plot_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph.plot_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>This method plots a matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong></p></li>
+<li><p><strong>ylabels</strong></p></li>
+<li><p><strong>configuration</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph.plot_vertical_line">
+<span class="sig-name descname"><span class="pre">plot_vertical_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph.plot_vertical_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph.plot_vertical_line" title="Permalink to this definition"></a></dt>
+<dd><p>This function adds a vertical line and background</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>the axis to plot the line.</em>)</p></li>
+<li><p><strong>top</strong> (<em>the height of the vertical line.</em>)</p></li>
+<li><p><strong>xv</strong> (<em>the x value where the line should be placed.</em>)</p></li>
+<li><p><strong>bg</strong> (<em>the x value where the background should be extended.</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph2">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.graphics.table_graph.</span></span><span class="sig-name descname"><span class="pre">TableGraph2</span></span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph2" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.add_vline" title="pyamr.graphics.table_graph.TableGraph2.add_vline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_vline</span></code></a>(ax, top, xv[, bg])</p></td>
+<td><p>This function adds a vertical line and background</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.check_vmin_vmax" title="pyamr.graphics.table_graph.TableGraph2.check_vmin_vmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_vmin_vmax</span></code></a>(x, kwargs)</p></td>
+<td><p>This methos check the vmax and vmin for colors.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.display_column" title="pyamr.graphics.table_graph.TableGraph2.display_column"><code class="xref py py-obj docutils literal notranslate"><span class="pre">display_column</span></code></a>(x, y, cmap, ax, **kwargs)</p></td>
+<td><p>This method displays a single column.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.table_graph.TableGraph2.plot" title="pyamr.graphics.table_graph.TableGraph2.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot</span></code></a>(df, axes, information)</p></td>
+<td><p>This method plots the whole table.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph2.add_vline">
+<span class="sig-name descname"><span class="pre">add_vline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph2.add_vline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph2.add_vline" title="Permalink to this definition"></a></dt>
+<dd><p>This function adds a vertical line and background</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph2.check_vmin_vmax">
+<span class="sig-name descname"><span class="pre">check_vmin_vmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph2.check_vmin_vmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph2.check_vmin_vmax" title="Permalink to this definition"></a></dt>
+<dd><p>This methos check the vmax and vmin for colors.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph2.display_column">
+<span class="sig-name descname"><span class="pre">display_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph2.display_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph2.display_column" title="Permalink to this definition"></a></dt>
+<dd><p>This method displays a single column.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyamr.graphics.table_graph.TableGraph2.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">information</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/table_graph.html#TableGraph2.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.table_graph.TableGraph2.plot" title="Permalink to this definition"></a></dt>
+<dd><p>This method plots the whole table.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="pyamr-graphics-table-graph-module">
-<h2>pyamr.graphics.table_graph module<a class="headerlink" href="#pyamr-graphics-table-graph-module" title="Permalink to this heading"></a></h2>
+<section id="module-pyamr.graphics.utils_to_delete">
+<span id="pyamr-graphics-utils-to-delete-module"></span><h2>pyamr.graphics.utils_to_delete module<a class="headerlink" href="#module-pyamr.graphics.utils_to_delete" title="Permalink to this heading"></a></h2>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.utils_to_delete.MidpointNormalize" title="pyamr.graphics.utils_to_delete.MidpointNormalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MidpointNormalize</span></code></a>([vmin, vmax, midpoint, clip])</p></td>
+<td><p>Normalise the colorbar so that diverging bars</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.utils_to_delete.hlinebgplot" title="pyamr.graphics.utils_to_delete.hlinebgplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hlinebgplot</span></code></a>(ax, right, yv[, bg])</p></td>
+<td><p>This function adds a vertical line and background</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyamr.graphics.utils_to_delete.scalar_colormap" title="pyamr.graphics.utils_to_delete.scalar_colormap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scalar_colormap</span></code></a>(values, cmap, vmin, vmax)</p></td>
+<td><p>This method creates a colormap based on values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyamr.graphics.utils_to_delete.vlinebgplot" title="pyamr.graphics.utils_to_delete.vlinebgplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vlinebgplot</span></code></a>(ax, top, xv[, bg])</p></td>
+<td><p>This function adds a vertical line and background</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.graphics.utils_to_delete.MidpointNormalize">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.graphics.utils_to_delete.</span></span><span class="sig-name descname"><span class="pre">MidpointNormalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">midpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/utils_to_delete.html#MidpointNormalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.utils_to_delete.MidpointNormalize" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Normalize</span></code></p>
+<dl class="simple">
+<dt>Normalise the colorbar so that diverging bars</dt><dd><p>work there way either side from a prescribed
+midpoint value)</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>&gt; MidpointNormalize(midpoint=0., vmin=-100, vmax=100)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.graphics.utils_to_delete.hlinebgplot">
+<span class="sig-prename descclassname"><span class="pre">pyamr.graphics.utils_to_delete.</span></span><span class="sig-name descname"><span class="pre">hlinebgplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/utils_to_delete.html#hlinebgplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.utils_to_delete.hlinebgplot" title="Permalink to this definition"></a></dt>
+<dd><p>This function adds a vertical line and background</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.graphics.utils_to_delete.scalar_colormap">
+<span class="sig-prename descclassname"><span class="pre">pyamr.graphics.utils_to_delete.</span></span><span class="sig-name descname"><span class="pre">scalar_colormap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/utils_to_delete.html#scalar_colormap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.utils_to_delete.scalar_colormap" title="Permalink to this definition"></a></dt>
+<dd><p>This method creates a colormap based on values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>array-like</em>) – The values to create the corresponding colors</p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – The colormap</p></li>
+<li><p><strong>vmin, vmax</strong> (<em>float</em>) – The minimum and maximum possible values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar colormap</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.graphics.utils_to_delete.vlinebgplot">
+<span class="sig-prename descclassname"><span class="pre">pyamr.graphics.utils_to_delete.</span></span><span class="sig-name descname"><span class="pre">vlinebgplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/graphics/utils_to_delete.html#vlinebgplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.graphics.utils_to_delete.vlinebgplot" title="Permalink to this definition"></a></dt>
+<dd><p>This function adds a vertical line and background</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib axes</em>)</p></li>
+<li><p><strong>top</strong> (<em>float</em>) – The max y value</p></li>
+<li><p><strong>xv</strong> (<em>float</em>) – The x value</p></li>
+<li><p><strong>bg</strong> (<em>boolean</em>) – Whether to include a background</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="pyamr-graphics-utils-module">
-<h2>pyamr.graphics.utils module<a class="headerlink" href="#pyamr-graphics-utils-module" title="Permalink to this heading"></a></h2>
-</section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="module-pyamr.graphics">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyamr.graphics" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -140,7 +536,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pyamr.datasets.microbiology.html" class="btn btn-neutral float-left" title="pyamr.datasets.microbiology package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyamr.examples.html" class="btn btn-neutral float-left" title="pyamr.examples package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="pyamr.metrics.html" class="btn btn-neutral float-right" title="pyamr.metrics package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

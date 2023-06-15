@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyamr.utils.plot &mdash; pyamr 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/logo-pyamr-icon-v2.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="pyamr.metrics.weights" href="pyamr.metrics.weights.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyamr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/advanced.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/todo.html">Future Actions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Galleries</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/tutorial/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/indexes/index.html">Examples with indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/forecasting/index.html">Examples with TSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples/visualization/index.html">Visualization</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sari.html">pyamr.core.sari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.mari.html">pyamr.core.mari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.sart.html">pyamr.core.sart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.asai.html">pyamr.core.asai</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.adfuller.html">pyamr.core.stats.adfuller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.correlation.html">pyamr.core.stats.correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.kendall.html">pyamr.core.stats.kendall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.stats.stationarity.html">pyamr.core.stats.stationarity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.theilsens.html">pyamr.core.regression.theilsens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.wls.html">pyamr.core.regression.wls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.arima.html">pyamr.core.regression.arima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.core.regression.sarimax.html">pyamr.core.regression.sarimax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.scores.html">pyamr.metrics.scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyamr.metrics.weights.html">pyamr.metrics.weights</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyamr.utils.plot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.utils.plot.create_mapper"><code class="docutils literal notranslate"><span class="pre">create_mapper()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.utils.plot.get_category_colors"><code class="docutils literal notranslate"><span class="pre">get_category_colors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.utils.plot.hlinebgplot"><code class="docutils literal notranslate"><span class="pre">hlinebgplot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-pyamr-utils-plot-hlinebgplot">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.hlinebgplot</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.utils.plot.plot_sns_clustermap"><code class="docutils literal notranslate"><span class="pre">plot_sns_clustermap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.utils.plot.plot_sns_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_sns_heatmap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.utils.plot.plot_sns_relmap"><code class="docutils literal notranslate"><span class="pre">plot_sns_relmap()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.utils.plot.plot_spectrum"><code class="docutils literal notranslate"><span class="pre">plot_spectrum()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.utils.plot.plot_timeseries"><code class="docutils literal notranslate"><span class="pre">plot_timeseries()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.utils.plot.scalar_colormap"><code class="docutils literal notranslate"><span class="pre">scalar_colormap()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-pyamr-utils-plot-scalar-colormap">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.scalar_colormap</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pyamr.utils.plot.vlinebgplot"><code class="docutils literal notranslate"><span class="pre">vlinebgplot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-pyamr-utils-plot-vlinebgplot">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.vlinebgplot</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyamr.utils.plot.MidpointNormalize"><code class="docutils literal notranslate"><span class="pre">MidpointNormalize</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-pyamr-utils-plot-midpointnormalize">Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.MidpointNormalize</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyamr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">API</a></li>
+      <li class="breadcrumb-item active">pyamr.utils.plot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_autosummary/pyamr.utils.plot.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyamr.utils.plot">
+<span id="pyamr-utils-plot"></span><h1>pyamr.utils.plot<a class="headerlink" href="#module-pyamr.utils.plot" title="Permalink to this heading"></a></h1>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.create_mapper">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">create_mapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#create_mapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.create_mapper" title="Permalink to this definition"></a></dt>
+<dd><p>This method constructs a mapper</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>dataframe-like</em>) – The dataframe from which the columns are extracted</p></li>
+<li><p><strong>column_key</strong> (<em>string-like</em>) – The name of the column with the values for the keys of the mapper</p></li>
+<li><p><strong>column_value</strong> (<em>string-like</em>) – The name of the column with the values for the values of the mapper</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-utils-plot-create-mapper"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.get_category_colors">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">get_category_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hls'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#get_category_colors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.get_category_colors" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the colors for the different elements in
+a given categorical feature vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>array-like</em>) – The vector with the categorical values</p></li>
+<li><p><strong>cmap</strong> (<em>string-like</em>) – The colormap to use</p></li>
+<li><p><strong>default</strong> (<em>string-like</em>) – The color to be used for the first value. Note that this
+value needs to appear first on the the sorted list, as such
+it is recommended to set is as _default.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of colors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-utils-plot-get-category-colors"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.hlinebgplot">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">hlinebgplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#hlinebgplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.hlinebgplot" title="Permalink to this definition"></a></dt>
+<dd><p>This function adds a vertical line and background</p>
+</dd></dl>
+
+<section id="examples-using-pyamr-utils-plot-hlinebgplot">
+<span id="sphx-glr-backref-pyamr-utils-plot-hlinebgplot"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.hlinebgplot</span></code><a class="headerlink" href="#examples-using-pyamr-utils-plot-hlinebgplot" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Table Boxplot"><img alt="" src="../_images/sphx_glr_plot_dataframe_distb_thumb.png" />
+<p><a class="reference internal" href="../_examples/visualization/plot_dataframe_distb.html#sphx-glr-examples-visualization-plot-dataframe-distb-py"><span class="std std-ref">Table Boxplot</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Table Boxplot</div>
+</div></div><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.plot_sns_clustermap">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">plot_sns_clustermap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#plot_sns_clustermap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.plot_sns_clustermap" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-utils-plot-plot-sns-clustermap"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.plot_sns_heatmap">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">plot_sns_heatmap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#plot_sns_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.plot_sns_heatmap" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-utils-plot-plot-sns-heatmap"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.plot_sns_relmap">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">plot_sns_relmap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#plot_sns_relmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.plot_sns_relmap" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-utils-plot-plot-sns-relmap"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.plot_spectrum">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">plot_spectrum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#plot_spectrum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.plot_spectrum" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-utils-plot-plot-spectrum"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.plot_timeseries">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">plot_timeseries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#plot_timeseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.plot_timeseries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<span class="target" id="sphx-glr-backref-pyamr-utils-plot-plot-timeseries"></span><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.scalar_colormap">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">scalar_colormap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#scalar_colormap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.scalar_colormap" title="Permalink to this definition"></a></dt>
+<dd><p>This method creates a colormap based on values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>array-like</em>)</p></li>
+<li><p><strong>The values to create the corresponding colors</strong></p></li>
+<li><p><strong>cmap</strong> (<em>str</em>)</p></li>
+<li><p><strong>The colormap</strong></p></li>
+<li><p><strong>vmin, vmax</strong> (<em>float</em>)</p></li>
+<li><p><strong>The minimum and maximum possible values</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scalar colormap</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="examples-using-pyamr-utils-plot-scalar-colormap">
+<span id="sphx-glr-backref-pyamr-utils-plot-scalar-colormap"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.scalar_colormap</span></code><a class="headerlink" href="#examples-using-pyamr-utils-plot-scalar-colormap" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Step 01 - Compute AMR metrics"><img alt="" src="../_images/sphx_glr_plot_step_01_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/guide/plot_step_01.html#sphx-glr-examples-tutorial-guide-plot-step-01-py"><span class="std std-ref">Step 01 - Compute AMR metrics</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Step 01 - Compute AMR metrics</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The Antimicrobial Spectrum of Activity Index or ASAI refers to the range of microbe species tha..."><img alt="" src="../_images/sphx_glr_plot_core_b_asai_thumb.png" />
+<p><a class="reference internal" href="../_examples/tutorial/indexes/plot_core_b_asai.html#sphx-glr-examples-tutorial-indexes-plot-core-b-asai-py"><span class="std std-ref">Spectrum of Activity (ASAI)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Spectrum of Activity (``ASAI``)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Table Boxplot"><img alt="" src="../_images/sphx_glr_plot_dataframe_distb_thumb.png" />
+<p><a class="reference internal" href="../_examples/visualization/plot_dataframe_distb.html#sphx-glr-examples-visualization-plot-dataframe-distb-py"><span class="std std-ref">Table Boxplot</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Table Boxplot</div>
+</div></div><dl class="py function">
+<dt class="sig sig-object py" id="pyamr.utils.plot.vlinebgplot">
+<span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">vlinebgplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#vlinebgplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.vlinebgplot" title="Permalink to this definition"></a></dt>
+<dd><p>This function adds a vertical line and background</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib axes</em>)</p></li>
+<li><p><strong>top</strong> (<em>float</em>) – The max y value</p></li>
+<li><p><strong>xv</strong> (<em>float</em>) – The x value</p></li>
+<li><p><strong>bg</strong> (<em>boolean</em>) – Whether to include a background</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="examples-using-pyamr-utils-plot-vlinebgplot">
+<span id="sphx-glr-backref-pyamr-utils-plot-vlinebgplot"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.vlinebgplot</span></code><a class="headerlink" href="#examples-using-pyamr-utils-plot-vlinebgplot" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Table Scatterplot"><img alt="" src="../_images/sphx_glr_plot_dataframe_table_thumb.png" />
+<p><a class="reference internal" href="../_examples/visualization/plot_dataframe_table.html#sphx-glr-examples-visualization-plot-dataframe-table-py"><span class="std std-ref">Table Scatterplot</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Table Scatterplot</div>
+</div></div></section>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyamr.utils.plot.MidpointNormalize">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyamr.utils.plot.</span></span><span class="sig-name descname"><span class="pre">MidpointNormalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">midpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyamr/utils/plot.html#MidpointNormalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyamr.utils.plot.MidpointNormalize" title="Permalink to this definition"></a></dt>
+<dd><p>Normalise the colorbar so that diverging bars work their way
+either side from a prescribed midpoint value)</p>
+<p class="rubric">Example</p>
+<p>&gt; MidpointNormalize(midpoint=0., vmin=-100, vmax=100)</p>
+</dd></dl>
+
+<section id="examples-using-pyamr-utils-plot-midpointnormalize">
+<span id="sphx-glr-backref-pyamr-utils-plot-midpointnormalize"></span><h3>Examples using <code class="docutils literal notranslate"><span class="pre">pyamr.utils.plot.MidpointNormalize</span></code><a class="headerlink" href="#examples-using-pyamr-utils-plot-midpointnormalize" title="Permalink to this heading"></a></h3>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="# Code source: Óscar Nájera # License: BSD 3 clause"><img alt="" src="../_images/sphx_glr_plot_function_thumb1.png" />
+<p><a class="reference internal" href="../_examples/pyamr/examples/plot_function.html#sphx-glr-examples-pyamr-examples-plot-function-py"><span class="std std-ref">Plot function</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plot function</div>
+</div></div></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyamr.metrics.weights.html" class="btn btn-neutral float-left" title="pyamr.metrics.weights" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2023, Bernard Hernandez.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

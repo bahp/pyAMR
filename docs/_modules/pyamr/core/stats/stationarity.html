@@ -16,10 +16,9 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -61,9 +60,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../_examples/forecasting/index.html">Examples with TSA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../_examples/visualization/index.html">Visualization</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../_apidoc/pyamr.html">pyamr package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api.html">API</a></li>
 </ul>
 
         </div>
@@ -114,35 +112,42 @@
 <span class="kn">from</span> <span class="nn">pyamr.core.stats.wbase</span> <span class="kn">import</span> <span class="n">fargs</span>
 
 
-<div class="viewcode-block" id="StationarityWrapper"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper">[docs]</a><span class="k">class</span> <span class="nc">StationarityWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This method....</span>
+<div class="viewcode-block" id="StationarityWrapper"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.stats.stationarity.html#pyamr.core.stats.stationarity.StationarityWrapper">[docs]</a><span class="k">class</span> <span class="nc">StationarityWrapper</span><span class="p">(</span><span class="n">BaseWrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    In time series analysis, &quot;stationarity&quot; refers to a key assumption about the behavior</span>
+<span class="sd">    of a time series over time. A stationary time series is one in which statistical properties,</span>
+<span class="sd">    such as mean, variance, and autocorrelation, remain constant over time. Stationarity is an</span>
+<span class="sd">    important concept because many time series analysis techniques rely on this assumption for</span>
+<span class="sd">    their validity. There are different types of stationarity that can be observed in time series</span>
+<span class="sd">    data.</span>
 
+<span class="sd">    The augmented Dickey–Fuller test or ``ADF`` can be used to determine the presence of a unit root.</span>
+<span class="sd">    When the other roots of the characteristic function lie inside the unit circle the first</span>
+<span class="sd">    difference of the process is stationary. Due to this property, these are also called</span>
+<span class="sd">    difference-stationary processes. Since the absence of unit root is not a proof of non-stationarity,</span>
+<span class="sd">    the Kwiatkowski–Phillips–Schmidt–Shin or ``KPSS`` test can be used to identify the existence of an</span>
+<span class="sd">    underlying trend which can also be removed to obtain a stationary process. These are called</span>
+<span class="sd">    trend-stationary processes. In both, unit-root and trend-stationary processes, the mean can be</span>
+<span class="sd">    increasing or decreasing over time; however, in the presence of a shock, trend-stationary</span>
+<span class="sd">    processes (blue) revert to this mean tendency in the long run (deterministic trend) while unit-root</span>
+<span class="sd">    processes (green) have a permanent impact (stochastic trend). The significance level of the tests</span>
+<span class="sd">    is usually set to 0.05.</span>
 
-<span class="sd">    Types of stationarity in time-series:</span>
-<span class="sd">      - Trend stationary</span>
-<span class="sd">      - Seasonal stationary</span>
-<span class="sd">      - Strictly stationary</span>
-
-<span class="sd">    Applies both ADF and KPSS tests.</span>
-
-<span class="sd">    ADF            KPSS           Outcome               Note</span>
-<span class="sd">    ============== ============== ===================== ========================</span>
-<span class="sd">    Non-Stationary Non-Stationary Non-Stationary</span>
-<span class="sd">    Stationary     Stationary     Stationary</span>
-<span class="sd">    Non-Stationary Stationary     Trend-Stationary      Check de-trended series</span>
-<span class="sd">    Stationary     Non-Stationary Difference-Stationary Check differenced-series</span>
-<span class="sd">    ============== ============== ===================== ========================</span>
-
-<span class="sd">    [1] https://machinelearningmastery.com/time-series-data-stationary-python/</span>
-<span class="sd">    [2]</span>
-<span class="sd">    [3]</span>
+<span class="sd">    ================== ================== ========================= ============================</span>
+<span class="sd">     ADF                KPSS               Outcome                   Note</span>
+<span class="sd">    ================== ================== ========================= ============================</span>
+<span class="sd">    ``Non-Stationary`` ``Non-Stationary`` ``Non-Stationary``</span>
+<span class="sd">    ``Stationary``     ``Stationary``     ``Stationary``</span>
+<span class="sd">    ``Non-Stationary`` ``Stationary``     ``Trend-Stationary``      Check the de-trended series</span>
+<span class="sd">    ``Stationary``     ``Non-Stationary`` ``Difference-Stationary`` Check the differenced series</span>
+<span class="sd">    ================== ================== ========================= ============================</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1">#                          overriden methods</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
-<div class="viewcode-block" id="StationarityWrapper.evaluate"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="StationarityWrapper.evaluate"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.stats.stationarity.html#pyamr.core.stats.stationarity.StationarityWrapper.evaluate">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method initialises the series.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Create dictionary.</span>
@@ -193,7 +198,7 @@
         <span class="c1"># Return</span>
         <span class="k">return</span> <span class="n">d</span></div>
 
-<div class="viewcode-block" id="StationarityWrapper.as_summary"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<div class="viewcode-block" id="StationarityWrapper.as_summary"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.stats.stationarity.html#pyamr.core.stats.stationarity.StationarityWrapper.as_summary">[docs]</a>    <span class="k">def</span> <span class="nf">as_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates the summary to display.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Create summary.</span>
@@ -218,7 +223,7 @@
         <span class="c1"># Return</span>
         <span class="k">return</span> <span class="n">summary</span></div>
 
-<div class="viewcode-block" id="StationarityWrapper.fit"><a class="viewcode-back" href="../../../../_apidoc/pyamr.core.stats.html#pyamr.core.stats.stationarity.StationarityWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">adf_kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="n">kpss_kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="StationarityWrapper.fit"><a class="viewcode-back" href="../../../../_autosummary/pyamr.core.stats.stationarity.html#pyamr.core.stats.stationarity.StationarityWrapper.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">adf_kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="n">kpss_kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method studies the stationarity of a given time-series.</span>
 
 <span class="sd">        The parameters which can be passed to the adfuller and kpss methods</span>

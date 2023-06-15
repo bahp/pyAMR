@@ -12,8 +12,10 @@ import matplotlib.gridspec as gridspec
 
 from matplotlib import colors
 
-from pyamr.graphics.utils import hlinebgplot
+from pyamr.utils.plot import hlinebgplot
 
+import pyamr
+pyamr.utils.plot.scalar_colormap([1,2,3,4], 'coolwarm', vmin=0, vmax=10)
 
 # -------------------
 # PLOTTING SETTINGS
